@@ -1,6 +1,6 @@
 name: oVirt
 #subhead: Static site construction kit
-domain: ovirt.org
+domain: testovirt-jeb.rhcloud.com
 
 # Be sure to set up and install Juvia before enabling!
 #has_comments: true
@@ -66,7 +66,7 @@ keywords:
 # add your user@host contained within your git repo. (You may also use
 # the entire git repo line).
 
-openshift: 54feeb2de0b8cdf3fc0001ab@ovirtmm-garrett.rhcloud.com
+openshift: 56438e7f89f5cf77f0000135@testovirt-jeb.rhcloud.com
 
 # If you'd rather use OpenShift via git instead of rsync, comment out
 # the above line and add your git URL as a 'production' remote.
