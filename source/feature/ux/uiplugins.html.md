@@ -4,8 +4,8 @@ category: feature
 authors: sahina, vszocs
 wiki_category: Feature
 wiki_title: Features/UIPlugins
-wiki_revision_count: 55
-wiki_last_updated: 2015-05-13
+wiki_revision_count: 51
+wiki_last_updated: 2014-10-13
 wiki_conversion_fallback: true
 wiki_warnings: conversion-fallback
 ---
@@ -234,27 +234,11 @@ When requesting content from remote servers, UI plugins should ensure that reque
 
 For example, to load remote script using protocol of enclosing web page: ``
 
-#### Working with REST API session
+#### Prevent closing shared REST API session
 
 Upon successful login, WebAdmin acquires oVirt Engine REST API session for use by all UI plugins. Refer to [REST API integration](#REST_API_integration) for details.
 
 To prevent closing the REST API session after processing given request, UI plugins should always include `Prefer: persistent-auth` header in all requests to REST API service.
-
-The REST API session acquired by WebAdmin is marked as [CSRF](http://en.wikipedia.org/wiki/Cross-site_request_forgery) protected, which means all requests associated with this session must include a CSRF token (in addition to `JSESSIONID` cookie that is automatically sent by the browser). Otherwise, REST API will reject the request, which may trigger unexpected follow-up behavior such as "Authentication Required" browser popup.
-
-The CSRF token is represented as `JSESSIONID` header with value obtained from `RestApiSessionAcquired` event handler function.
-
-Following code snippet illustrates above mentioned practices using `XMLHttpRequest` object:
-
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() { /* process response when done */ };
-    xhr.open('GET', 'http://example-host/ovirt-engine/api', true);
-    xhr.withCredentials = true; // for cross-site requests, ensure that auth information and cookies are included
-    xhr.setRequestHeader('Accept', 'application/json'); // control response format
-    xhr.setRequestHeader('Filter', 'false'); // control whether to filter results based on (WebAdmin) user's permissions
-    xhr.setRequestHeader('Prefer', 'persistent-auth'); // prevent closing REST API session after processing request
-    xhr.setRequestHeader('JSESSIONID', sessionId); // include CSRF token
-    xhr.send(null);
 
 ### Terms used in API reference
 
@@ -439,18 +423,16 @@ Returns [UUID](http://en.wikipedia.org/wiki/Universally_unique_identifier) of cu
 Adds new main tab with content provided from given URL. All arguments are required except for `options`. The `label` is the text displayed on tab header. The `historyToken` serves as unique identifier of the tab, with its value reflected in tab header URL. Recommended `historyToken` format is `letters-with-dashes`. The `contentUrl` is passed to `src` attribute of the `iframe` element which renders tab content. The `options` can be undefined, null or object containing additional tab options:
 
 *   `alignRight` - controls horizontal tab header alignment, default value is `false`
-*   `priority` - controls tab's relative priority within the tab panel, default value is `Number.MAX_VALUE`
 
 <!-- -->
 
     api.addMainTab('Custom Tab One', 'custom-tab-one',
         'plugin/ExamplePlugin/one.html'
     );
-    api.addMainTab('Custom Tab Two', 'custom-tab-two',
+    api.addMainTab('Custom Tab Two, 'custom-tab-two',
         'plugin/ExamplePlugin/two.html',
         {
-            alignRight: true,
-            priority: -1
+            alignRight: true
         }
     );
 
@@ -470,8 +452,7 @@ Adds new sub tab with content provided from given URL. All arguments are require
     api.addSubTab('Host', 'Custom Host Tab Two, 'custom-host-tab-two',
         'plugin/ExamplePlugin/host-two.html',
         {
-            alignRight: true,
-            priority: -1
+            alignRight: true
         }
     );
 
@@ -608,26 +589,6 @@ Updates the content URL of given dialog. Semantics of `dialogToken` and `content
 Closes the given dialog. Semantics of `dialogToken` is identical to one declared by `showDialog` function. Once closed, the dialog is destroyed.
 
     api.closeDialog('custom-dialog');
-
-#### Navigation
-
-      revealPlace
-
-      string historyToken
-
-Reveals the given application place, e.g. standard or plugin-contributed main tab. The `historyToken` denotes a logical place of the web application, represented as `#historyToken` in application's URL.
-
-    api.revealPlace('hosts');
-
-#### Search
-
-      setSearchString
-
-      string searchString
-
-Applies the given search string. The `searchString` is the text to apply into WebAdmin's search panel.
-
-    api.setSearchString('Hosts: name = abc');
 
 ### API option reference
 

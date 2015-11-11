@@ -4,11 +4,11 @@ category: feature
 authors: jniederm
 wiki_category: Feature|VM Icon
 wiki_title: Features/VM Icons
-wiki_revision_count: 44
-wiki_last_updated: 2015-05-12
+wiki_revision_count: 27
+wiki_last_updated: 2015-02-23
 feature_name: VM Icons
 feature_modules: engine
-feature_status: Implementation
+feature_status: Design
 ---
 
 # VM Icons
@@ -22,18 +22,17 @@ It allows users to add icon to VMs and Templates in order to customize the appea
 *   Name: [Jakub Niedermertl](User:jniederm)
 *   Email: <jniederm@redhat.com>
 
+### Status
+
+*   Design
+*   Last updated on 2015-2-23 by [Jakub Niedermertl](User:jniederm)
+*   Target release: 3.6
+
 ### Description
 
 User can optionally add arbitrary image (limited in dimensions, size, and format) - icon - to VM and Template entities. Icons are stored in new separate DB table 'vm_icons'. Rows of this table are referenced from 'vm_static' table.
 
-Currently used default icons (assigned according to OS) will also be stored in 'vm_icons' table. Thus this system fully replace current approach of storing and providing icons - GWT ClientBundles and ImageResources.
-
-Each icon is stored in two sizes:
-
-*   Large, 150x120 px, used in basic userportal
-*   Small, 43x43 px, used in mostly in extended userportal
-
-User can only upload the large version of custom icon, the small one is computed during store procedure.
+Currently used default icons (assigned according to OS) will also be stored in 'wm_icons' table. Thus this system fully replace current approach of storing and providing icons - GWT ClientBundles and ImageResources.
 
 #### Icon inheritance
 
@@ -50,8 +49,8 @@ User can only upload the large version of custom icon, the small one is computed
 #### Default Icons
 
 *   Default icons are assigned based on operating system.
-*   'vm_icon_defaults' database table maps operating system IDs to icon IDs
-*   'vm_icon_defaults' table and default icons are updated during each engine startup according to '/usr/share/ovirt-engine/conf/osinfo-defaults.properties' file and '/user/share/ovirt-engine/icons/small,large' directories.
+*   If some icon is considered to be default some operating system, database column 'vm_icons(default_for_os)' of such icon contains os identifier as defined in 'packaging/conf/osinfo-defaults.properties' file.
+*   Non-null value of 'vm_icons(default_for_os)' columns indicates that given row should not be deleted even if it is not referenced by any vm entity.
 
 ### Design
 
@@ -61,113 +60,29 @@ User can only upload the large version of custom icon, the small one is computed
 *   Icons are transferred and stored in dataUrl format.
 *   Icons are cached in browser based on their UUIDs in order to save network resources during listing updates.
 *   Icons are stored in separate database table. Each image is stored at most once.
+*   User action 'Delete (custom) icon' means to recreate association to default icon.
 
 #### UI
 
 *   Show icons in Userportal > Basic, Userpotal > Extended > Virtual Machines, Templates.
-*   Add icon editing and validating tab to 'New VM', 'Edit VM' and 'Edit Template', 'New Pool' dialogs.
-*   Create per-session cache of Icons: Map<Guid, String> iconUuid -> icon
+*   Add icon editing and validating tab to 'New VM', 'Edit VM' and 'Edit Template' dialogs.
+*   Create per-session cache of Icons: Map<String, String> iconUuid -> icon
 
 #### Backend
 
 *   Extend commands saving VMs and templates to be able to validate and store icon reference. It should validate that old icon, if custom (user defined), is still reference by other row or delete unused custom icon.
 *   Create new command to validate and store a new icon.
 *   Create new query to fetch map [guid->icon] by list of icon guids.
-*   Extend model VmBase by `Guid smallIconId` and `Guid LargeIconId`.
-*   Create new business entities corresponding to 'vm_icons' and 'vm_icon_defaults' database tables.
+*   Extend model VmBase by `Guid icon`.
+*   Create new model class VmIcon corresponding to 'vm_icons' database table.
 
 #### Database
 
-![Database schema](vm_icons_db.png "Database schema")
-
-#### REST API
-
-*   `/api/icons` read-only top level collection of all icons
-
-      GET /icons
-      Accept: application/xml
-
-<icons>
-`    `<icon href="/ovirt-engine/api/icons/4905bfca-59a5-4022-ae66-ab7763f33c8f" id="4905bfca-59a5-4022-ae66-ab7763f33c8f">
-`        `<media_type>`image/jpeg`</media_type>
-`       `<data>`/9j/4AAQSkZJRgABAQEAYABgAAD...`</data>
-`    `</icon>
-`    `<icon href="/ovirt-engine/api/icons/91386415-dc7f-41db-90c6-e0b8f4f941b2" id="91386415-dc7f-41db-90c6-e0b8f4f941b2">
-`         `<media_type>`image/png`</media_type>
-`         `<data>`iVBORw...`</data>
-`    `</icon>
-</icons>
-
-*   `/api/icons/{id}` provides an object corresponding to VmIcon business entity
-
-      GET /icons/4905bfca-59a5-4022-ae66-ab7763f33c8f
-      Accept: application/xml
-
-<icon href="/ovirt-engine/api/icons/4905bfca-59a5-4022-ae66-ab7763f33c8f" id="4905bfca-59a5-4022-ae66-ab7763f33c8f">
-`    `<media_type>`image/jpeg`</media_type>
-`    `<data>`/9j/4AAQSkZJ...`</data>
-</icon>
-
-*   entities at `/api/vms/{id}` and `/api/templates/{id}` contains property `icons` that provides icon IDs that and can be resolved using top level `/api/icons` collection
-
-      GET /api/vms/789
-      Accept: application/xml
-
-<vm id="789" href=...>
-      ...
-`    `<small_icon id="123" href="/icons/123" />
-`    `<large_icon id="456" href="/icons/456" />
-      ...
-</vm>
-
-*   org.ovirt.engine.api.model.VmBase entity contains `vmLargeIcon` property corresponding to org.ovirt.engine.core.common.action.VmManagementParametersBase#vmLargeIcon that allows to update icon in [dataUrl](http://en.wikipedia.org/wiki/Data_URI_scheme) form. Similarly to WebAdmin/UserPorlal UI, there is no direct way to add, update, delete icon itself.
-
-      POST /vms
-      Content-Type: application/xml
-      Accept: application/xml
-<vm>
-`    `<name>`vm1`</name>
-          `<vm_large_icon>[`data:image/png;base64,iVBORw0KGgoAAAANS`](data:image/png;base64,iVBORw0KGgoAAAANS)`...`</vm_large_icon>` 
-          ...
-</vm>
-
-<vm id="147" href=...>
-`    `<name>`vm1`</name>
-`    `<small_icon id="111" href="/icons/111" />
-`    `<large_icon id="222" href="/icons/222" />
-          ...
-</vm>
-
-<hr/>
-      PUT /vms/147
-      Content-Type: application/xml
-      Accept: application/xml
-<vm>
-`    `<vm_large_icon>[`data:image/png;base64,iVBORw0KGgoAABANS`](data:image/png;base64,iVBORw0KGgoAABANS)`...`</vm_large_icon>
-</vm>
-
-<vm id="147" href=...>
-`    `<name>`vm1`</name>
-`    `<small_icon id="333" href="/icons/333" />
-`    `<large_icon id="444" href="/icons/444" />
-          ...
-</vm>
-
-<hr/>
-      PUT /vms/147
-      Content-Type: application/xml
-      Accept: application/xml
-<vm>
-`    `<small_icon id="123" />
-`    `<large_icon id="456" />
-</vm>
-
-<vm id="147" href=...>
-`    `<name>`vm1`</name>
-`    `<small_icon id="123" href="/icons/123" />
-`    `<large_icon id="456" href="/icons/456" />
-          ...
-</vm>
+*   New nullable column 'icon' of type 'uuid' in table 'vm_static'.
+*   New table 'vm_icons' with columns 'uuid id not null', 'data_url character varing(32\*1024) not null', 'default_for_os character varing(64) null' .
+*   New constraint check on 'vm_static' : \`entity_type\` != 'INSTANCE_TYPE' OR \`icon\` != null.
+*   New constraint unique on vm_icons(data_url).
+*   New constraint foreign key vm_static(icon) - vm_icons(id)
 
 #### Compatibility issues
 

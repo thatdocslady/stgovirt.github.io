@@ -4,8 +4,8 @@ category: feature
 authors: tjelinek
 wiki_category: Feature
 wiki_title: Features/Clone VM
-wiki_revision_count: 7
-wiki_last_updated: 2015-05-15
+wiki_revision_count: 6
+wiki_last_updated: 2014-06-09
 ---
 
 # Clone VM
@@ -21,7 +21,7 @@ Allow to simply and directly clone the VM.
 
 ### Current status
 
-*   Target Release: 3.6
+*   Target Release: 3.5
 *   Status: done
 
 ### Background

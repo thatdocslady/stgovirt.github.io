@@ -4,11 +4,11 @@ category: feature
 authors: dougsland
 wiki_category: Feature
 wiki_title: Features/Node/subpackages
-wiki_revision_count: 10
-wiki_last_updated: 2015-03-06
+wiki_revision_count: 4
+wiki_last_updated: 2015-03-03
 feature_name: subpackages
 feature_modules: node
-feature_status: Merged/Done
+feature_status: Patch in Review
 ---
 
 # subpackages
@@ -42,22 +42,7 @@ As all source will be splitted by RPM, we could drop the current TUI code and ad
 
 ### Testing
 
-The ovirt-node project will generate the bellow rpms and the ovirt-node-lib and ovirt-node-lib-config (the 'core' of ovirt-node) must be installed **without** the dependency of **ovirt-node-tui-installer** and **ovirt-node-tui-setup**.
-
-*   ovirt-node-plugin-snmp-logic
-*   ovirt-node-plugin-cim-logic
-*   ovirt-node-lib
-*   ovirt-node-lib-config
-*   ovirt-node- cli-tools
-*   ovirt-node-tui-installer
-*   ovirt-node-tui-setup
-*   ovirt-node-lib-legacy
-
-**Example of testing**:
-
-*   Install CentOS6
-*   Downloaded the new ovirt-node packages (listed above) to EL6 platform
-*   Install ovirt-node-lib and ovirt-node-lib-config and via yum and their depedency (no need any tui package)
+Build ovirt node project and it should generate the following rpms: ovirt-node-plugin-snmp-logic, ovirt-node-plugin-cim-logic, ovirt-node-lib, ovirt-node-lib-config, ovirt-node- cli-tools, ovirt-node-tui-installer, ovirt-node-tui-setup, ovirt-node-lib-legacy. In the end, you could install the 'core' of ovirt-node, like: ovirt-node-lib and ovirt-node-lib-config without the tui subpackages.
 
 ### Documentation / External references
 

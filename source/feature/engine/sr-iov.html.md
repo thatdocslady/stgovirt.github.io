@@ -1,11 +1,11 @@
 ---
 title: SR-IOV
 category: feature
-authors: alkaplan, danken, ibarkan
+authors: alkaplan, danken
 wiki_category: Feature
 wiki_title: Feature/SR-IOV
-wiki_revision_count: 189
-wiki_last_updated: 2015-06-03
+wiki_revision_count: 183
+wiki_last_updated: 2015-02-08
 feature_name: SR_IOV
 feature_modules: engine,vdsm, api
 feature_status: Design
@@ -37,16 +37,6 @@ VM's nic (vNic) can be connected directly to a VF (1-1) instead of to virtual ne
 In order to connect a vNic directly to a VF of SR-IOV enabled nic the vNic's profile should be marked as a "passthrough" one. The properties that should be configured on the VF are taken from the vNic's profile/network (vlan tag, mtu, custom properties). Each SR-IOV enabled host-nic should have a definition of a set of networks that it is allowed to service. When starting the VM, its vNic will be directly connected to one of the free VFs on the host. But not all PFs are equivalent: the vNic is to be connected via a host-nic that has the vNic's network as one of its allowed networks.
 
 <b> Note: migration is not supported. </b>
-
-#### Definitions
-
-*   <b>Free VF</b>
-    -   the management system will consider a VF as free if
-        -   the VF is not attached directly to a VM (as reported by getHostDevListByCaps)
-        -   the VF doesn't have macvatp device on top of it (it is filtered by the vdsm before getVdsCaps, so if the VF is reported by the getVdsCap, it can be considered it doesn't have macvtap device on top of it).
-        -   the VF doesn't have network (bridge) or vlan device on top of it.
-        -   notice: although if the VF has any other device (not macvtap, bridge or vlan device) it will be considered as free.
-        -   the VF doesn't share iommu group with other devices.
 
 #### Affected Flows
 
@@ -148,6 +138,11 @@ In order to connect a vNic directly to a VF of SR-IOV enabled nic the vNic's pro
     -   the VF the vNic should be connected to one of its VFs.
     -   the network configuration that should be applied on the VF (vlan, mtu).
 *   should update the hostdev table which vfs are not free anymore.
+*   <b>available vf</b>
+    -   the vnic's network is in the vfsConfig.network list of its PF.
+    -   the vf is not attached to a vm (in the hostdev table the vm_id column is empty).
+    -   the vf doesn't have a mac address (should be checked in VdsNetworkInterface table)
+    -   there are no devices that belong to the same iommu-group as the vf and attached to another vm.
 
 ##### stop vm
 
@@ -166,6 +161,8 @@ In order to connect a vNic directly to a VF of SR-IOV enabled nic the vNic's pro
         -   counting the number of VFs the PF is their parent.
     -   num of free VFs
         -   counting the num of VFs that are marked as free and the PF is their parent.
+        -   if a more than one VF belongs to the same iommu group, all the group will be considered as only one free VF.
+        -   if VFs from different PFs belong to the same iommu_group then the amount of free VFs will be increased just in one of them.
 *   the command should run-
     -   on each CollectVdsNetworkDataVDSCommand
     -   after updateHostNicVfsConfig- in case the number of VFs was updated.
@@ -192,12 +189,6 @@ In order to connect a vNic directly to a VF of SR-IOV enabled nic the vNic's pro
     -   the VF will be detached from the host and attached to the vm.
     -   the vnic's mac address should be applied on the VF before starting the vm.
 
-##### Virtual functions configuration persistence
-
-*   Vdsm will persist the number of virtual functions of a device if a successful call to hostdevChangeNumvfs was made on this device. The persistent information is kept in the file system under /var/lib/vdsm/virtual_functions/ where each file contains a SRIOV device last changed value (/sys/class/net/'device name'/device/sriov_numvfs). An example is a file called /var/lib/vdsm/virtual_functions/0000:02:00.0 which contains "7". A call for hostdevChangeNumvfs can fail because a software bug, a hardware failure or the failure to listen to the engine client for a certain time period. If a failure has occurred, an attempt to write the last known value will be made.
-*   During host boot process, Vdsm service will attempt to restore the last persisted number of virtual functions on all managed SRIOV devices before network restoration (assuming some of the persisted networks might be based on SRIOV virtual functions). Failure to do so will fail all network restoration process.
-*   A SRIOV device that was never configured via hostdevChangeNumvfs will be considered unmanaged by Vdsm and no persist/restore attempts will take place on it.
-
 ##### hotPlugHostDev
 
     hotPlugNic(Map info)
@@ -216,6 +207,7 @@ In order to connect a vNic directly to a VF of SR-IOV enabled nic the vNic's pro
 *   this verb is implemented as part of [hostdev passthrough](http://www.ovirt.org/Features/hostdev_passthrough).
 *   for sr-iov supported nics this verb updates 'sriov_numvfs' file in sysfs (/sys/class/net/'device name'/device/sriov_numvfs) which contains the number of VFs that are enabled on this PF.
     -   The update is done by first changing the current value to 0 in order to remove all the existing VFs and then changing it to the desired value.
+    -   Since changes in the 'sriov_numvfs' are not persistent across reboots the value should be stored in the vdsm's db and re-applied after each reboot (see open issues).
 
 ##### hostdevListByCaps
 
@@ -227,6 +219,12 @@ In order to connect a vNic directly to a VF of SR-IOV enabled nic the vNic's pro
         -   VF
             -   iommu_group
             -   is free
+*   free VF considered as VF that a vm can be connected directly to it (no device [tap, bridge, etc], not attached to another vm).
+    -   the management system will consider a VF as free if
+        -   the VF is not attached directly to a VM (as reported by getHostDevListByCaps)
+        -   the VF doesn't have macvatp device on top of it (it is filtered by the vdsm before getVdsCaps, so if the VF is reported by the getVdsCap, it can be considered it doesn't have macvtap device on top of it).
+        -   the VF doesn't have network (bridge) or vlan device on top of it.
+        -   notice: although if the VF has any other device (not macvtap, bridge or vlan device) it will be considered as free.
 
 #### User Experience
 
@@ -334,7 +332,13 @@ The <b>VFs configuration</b> on a SR-IOV enabled nic is represented as a sub res
 *   [hostdev passthrough](http://www.ovirt.org/Features/hostdev_passthrough)
 *   [UCS integration](http://www.ovirt.org/Features/UCS_Integration)
 *   [PCI: SRIOV control and status via sysfs](http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=1789382a72a537447d65ea4131d8bcc1ad85ce7b)
-*   [official network adapters support in RHEL](https://access.redhat.com/articles/1390483)
+*   List of drivers that support SR-IOV configure:
+    -   rhel6:
+        -   drivers with support for #vfs in sysfs- bnx2x, 140e, igb, ixgbe, qlnic
+        -   drivers with various control over vfs through ethtool on host- benet, bnx2x, enic, i40e, igb, ixgbe, mlx4, qlcnic, sfc
+    -   rhel7:
+        -   drivers with support for #vfs in sysfs- bnx2x, 140e, igb, ixgbe, qlnic
+        -   drivers with various control over vfs through ethtool on host- broadcom/bnx2x, cisco/enic, emulex/benet, intel/i40e, intel/igb, intel/ixgbe, mellanox/mlx4, qlogic/qlnic, sfc
 *   List of guest operating systems that have available VF drivers for [intel nics](http://www.intel.com/support/network/adapter/pro100/sb/CS-031492.htm)
     -   Windows Server 2012\*.
     -   Windows 8\*.
@@ -369,6 +373,21 @@ The <b>VFs configuration</b> on a SR-IOV enabled nic is represented as a sub res
     -   instead of blocking migration in case the vm has pci-passthrough vnics, this marking can be tuned by the admin.
         -   if the admin requests migration despite the pci-passthrough type, Vdsm can auto-unplug the PCI device before migration, and plug it back on the destination.
         -   that would allow some kind of migration to guests that are willing to see a PCI device disappear and re-appear.
+*   persisting num of vfs
+    -   Engine-side persistence.
+        -   Pro: hosts stays stupid. If we could, we'd like to see all network (apart of mgmt) persisted in Engine.
+        -   Con: restoring VFs would come after on-host network. No host IPs can be set on a VFs. VFs are to be dedicated to VMs.
+        -   Con: We may have users with already-defined host networks on VFs
+    -   systemd/udev persistence
+        -   Pro: helps other RHEL users, potentially
+        -   Con: would take a while
+    -   place an ad-hoc udev rule
+        -   Con: need to understand <https://communities.intel.com/message/142770>
+    -   /var/lib/vdsm/sriov/pf/max_vfs persistence
+        -   Pro: can be applied before network service starts
+    -   User-controlled persistence:
+        -   Pro: easy life for devel
+        -   Con: tough luck for ovirt-node users
 *   should free/non-free VFs be reported by the vdsm on getVdsCaps?
     -   today just non-free (with mac or ip) VFs are reported. It is ok we'll have some kind of regression when stop reporting the VFs at all?
     -   is it ok we won't have the possibility to configure regular networks on VFs via setup networks?
@@ -379,6 +398,8 @@ The <b>VFs configuration</b> on a SR-IOV enabled nic is represented as a sub res
 *   port mirroring (Nir- Should we care about this in the first stage?)
     -   is it relevant in case of VFs (virtio or pci-passthrough)?
 *   Does all the VM's OSs supported by oVirt have driver to support SR-IOV?
+*   IOMMU
+    -   how does IOMMU groups effect scheduling?
 
 ### Notes
 
@@ -392,17 +413,6 @@ The <b>VFs configuration</b> on a SR-IOV enabled nic is represented as a sub res
         -   contains num of VFs enabled by the nics.
         -   In order to update the file the value should first be changed to 0 (i.e all the VFs should first be removed).
             -   for example- echo '0' > /sys/class/net/eth0/device/sriov_numvfs ==> echo '7' > /sys/class/net/eth0/device/sriov_numvfs
-*   read the iommu group of a device - readlink /sys/class/net/<device_name>/device/iommu_group
-    -   -   just sr-iov supported nics contain this file.
-
-*   passthrough vnic doesn't support
-    -   reporting statistics
-    -   mac-spoofing
-    -   port mirroring
-    -   custom mtu
-    -   QoS
-    -   linking
-    -   migration
-*   run the following command on your host- /sbin/lspci -nn | grep -qE '8086:(340[36].\*rev 13|3405.\*rev (12|13|22))' && echo "Interrupt remapping is broken" if it says the remapping is broken add the vfio_iommu_type1.allow_unsafe_interrupts=1 parameter to the kernel command line-
+        -   just sr-iov supported nics contain this file.
 
 <Category:Feature> <Category:Networking>

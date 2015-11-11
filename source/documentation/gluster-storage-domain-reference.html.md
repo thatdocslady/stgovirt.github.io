@@ -1,11 +1,11 @@
 ---
 title: Gluster Storage Domain Reference
 category: documentation
-authors: fsimonce, sandrobonazzola
+authors: fsimonce
 wiki_category: Documentation
 wiki_title: Gluster Storage Domain Reference
-wiki_revision_count: 2
-wiki_last_updated: 2015-04-02
+wiki_revision_count: 1
+wiki_last_updated: 2014-05-21
 ---
 
 # Gluster Storage Domain Reference
@@ -14,7 +14,7 @@ wiki_last_updated: 2015-04-02
 
 In order to use a gluster volume as an oVirt Storage Domain we suggest to:
 
-*   use the gluster replica 3 (three copies). See [Creating Replicated Volumes](https://access.redhat.com/documentation/en-US/Red_Hat_Storage/2.1/html/Administration_Guide/sect-User_Guide-Setting_Volumes-Replicated.html) guide
+*   use the gluster replica 3 (three copies)
 *   set the network.ping-timeout to 10 seconds
 *   set the cluster.quorum-type to auto
 

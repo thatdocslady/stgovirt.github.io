@@ -156,9 +156,6 @@
   Feature/Cockpit: Feature/Node/Cockpit
   Feature/Node/Cockpit: Features/Node/Cockpit
   CI: Category:Infrastructure
-  Affinity Group Enforcement Service: Affinity Rules Enforcement Service
-  Affinity Rules Enforcement Service: Affinity Rules Enforcement Manager
-  Home/Features/ResolveActiveInterface: Features/ResolveActiveInterface
 :map:
   Main Page: "/index"
   How to create a user account: howto/create-a-user-account
@@ -1263,45 +1260,3 @@
   Features/Node/DbusBackend: feature/dbusbackend
   Outreachy: uncategorized/outreachy
   Features/Node/subpackages: feature/subpackages
-  Features/PatternFly Tooltips: feature/patternfly-tooltips
-  Features/Debian support for hosts: feature/debian-support-for-hosts
-  Features/LUN Resize: feature/lun-resize
-  Features/Vm Parameters in REST API for Vm Pools: api/vm-parameters-in-rest-api-for-vm-pools
-  Home/Features/KatelloIntegration: feature/katellointegration
-  Features/Image Upload: feature/image-upload
-  Features/BackupAwareness: feature/backupawareness
-  Features/Boot: feature/boot
-  OVirt Scheduler Policies: feature/scheduler-policies
-  Hosted engine metadata: sla/hosted-engine-metadata
-  QA:TestCase Hosted Engine External Gluster Support: testing/testcase/-hosted-engine-external-gluster-support
-  CI/Build and test standards: ci/build-and-test-standards
-  Features/oVirt Live Rebase on CentOS 7: feature/live-rebase-on-centos-7
-  Features/Hosted Engine configuration on shared storage: feature/hosted-engine-configuration-on-shared-storage
-  Features/Hosted Engine add hosts with Web UI: feature/hosted-engine-add-hosts-with-web-ui
-  Project moVirt for iOS: uncategorized/project-mfor-ios
-  CinderGlance Docker Integration: feature/cinderglance-docker-integration
-  Features/Design/Events: event/events
-  NumaAwareKsmSupport: feature/numaawareksmsupport
-  Hosted engine VM management: feature/hosted-engine-vm-management
-  Affinity Rules Enforcement Manager: feature/affinity-rules-enforcement-manager
-  Features/Sla/MemoryBasedBalancing: feature/memorybasedbalancing
-  Features/Sla/PendingResourceManager: feature/pendingresourcemanager
-  Feature/VmDevices rework: feature/vmdevices-rework
-  Vdsm on el6: vdsm/on-el6
-  OVirt 3.6 Test Day: release/3.6/test-day
-  Affinity Group Enforcement Service: uncategorized/affinity-group-enforcement-service
-  OVirt 3.6 Release Notes: release/3.6/index
-  Infra/Hackathons: infra/hackathons
-  Features/Copy Disks: feature/copy-disks
-  Features/IOThreads Support: feature/iothreads-support
-  Affinity Rules Enforcement Service: uncategorized/affinity-rules-enforcement-service
-  Features/ResolveActiveInterface: feature/resolveactiveinterface
-  Home/Features/ResolveActiveInterface: feature/resolveactiveinterface
-  Features/VDSM/GenericRegistration: feature/genericregistration
-  Features/Extension tester tool: feature/extension-tester-tool
-  Features/HEApplianceFlow: feature/heapplianceflow
-  Feature/IP-on-role-network: feature/ip-on-role-network
-  Features/BackupAwareness/UI: feature/ui
-  Features/MomVdsmSeparation: vdsm/momvdsmseparation
-  Features/BackupAwareness/UI/Splash: feature/splash
-  Feature/VmPinningToMultipleHosts: feature/vmpinningtomultiplehosts

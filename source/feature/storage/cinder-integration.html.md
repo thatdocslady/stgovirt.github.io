@@ -4,8 +4,8 @@ category: feature
 authors: derez, sandrobonazzola
 wiki_category: Feature|Cinder_Integration
 wiki_title: Features/Cinder Integration
-wiki_revision_count: 62
-wiki_last_updated: 2015-06-11
+wiki_revision_count: 52
+wiki_last_updated: 2015-02-15
 feature_name: Cinder Integration
 feature_modules: engine/vdsm
 feature_status: Design
@@ -69,14 +69,11 @@ Managing OpenStack Cinder volumes provisioned by ceph storage through oVirt engi
 *   Sync Cinder data with engine DB.
 *   Cinder storage domain monitoring.
 *   Support multiple backends (lvm/etc).
-*   OVF disk / disaster recovery support
 
 ### Relevant Flows
 
 *   Add/Remove/Edit OpenStack volume provider
 *   Add/Remove/Update/Extend Cinder Disk
-*   Attach/Detach Storage Domain
-*   Activate/Deactivate Storage Domain
 *   Remove VM
 *   Add Template
 *   Remove Template
@@ -126,21 +123,9 @@ Managing OpenStack Cinder volumes provisioned by ceph storage through oVirt engi
 ` `<tenant_name></tenant_name>
 </openstack_volume_provider>
 
-##### Get Volume Provider: GET /api/openstackvolumeproviders/{provider_id} (All-Content: true)
+##### Get Volume Types: GET /api/openstackvolumeproviders/{provider_id}/volumetypes
 
-` `<openstack_volume_providers>
-`  `<openstack_volume_provider href="/api/openstackvolumeproviders/{id}" id="{id}">
-`    `<name>`cinder2`</name>
-`    `<requires_authentication>`true`</requires_authentication>
-`    `&lt;username&gt;`cinder`</username>
-`    `<data_center href="/api/datacenters/{id}" id="{id}">
-            ...
-`    `</data_center>
-`  `</openstack_volume_provider>
-</openstack_volume_providers>
-
-##### Get Volume Type: GET /api/openstackvolumeproviders/{provider_id}/volumetypes
-
+      E.g.
 <openstack_volume_types>
 ` `<openstack_volume_type href="/api/openstackvolumeproviders/{id}/volumetypes/{volume_type_id}" id="{id}">
 `   `<name>`ceph`</name>
@@ -153,42 +138,6 @@ Managing OpenStack Cinder volumes provisioned by ceph storage through oVirt engi
 `  `<openstack_volume_provider href="/api/openstackvolumeproviders/{provider_id}" id="{id}"/>
 ` `</openstack_volume_type>
 </openstack_volume_types>
-
-##### Get Authentication Keys: GET /api/openstackvolumeproviders/{provider_id}/authenticationkeys
-
-<openstack_volume_authentication_keys>
-`  `<openstack_volume_authentication_key>
-`   `<description>`my ceph secret`</description>
-`   `<uuid>`c50352a3-0700-48e9-9189-ed359c09bcf8`</uuid>
-`   `<usage_type>`ceph`</usage_type>
-`   `<creation_date>`2015-05-31T15:28:25.525+03:00`</creation_date>
-` `</openstack_volume_authentication_key>
-</openstack_volume_authentication_keys>
-
-##### Create an Authentication Key: POST /api/openstackvolumeproviders/{provider_id}/authenticationkeys
-
-<openstack_volume_authentication_key>
-`  `<uuid>`0e6fff8d-8af9-49e2-b04f-1a5dbbe883a2`</uuid>
-`  `<description>`my ceph secret`</description>
-`  `<usage_type>`ceph`</usage_type>
-`  `<value>`YQo=`</value>
-</openstack_volume_authentication_key>
-
-##### Create a Cinder disk on a specific Volume Type: POST /api/vms/{vm_id}/disks
-
-<disk>`    `
-`   `<openstack_volume_type>
-`     `<name>`my_ceph`</name>
-`   `</openstack_volume_type>
-`   `<storage_domains>
-`     `<storage_domain>
-`       `<name>`cinder`</name>
-`     `</storage_domain>
-         `</storage_domains>`    
-`   `<provisioned_size>`1073741824`</provisioned_size>
-`   `<interface>`virtio`</interface>
-`   `<format>`raw`</format>
-</disk>
 
 ##### Get Unregistered Disks: GET /api/storagedomains/{storage_domain_id}/disks;unregistered
 
@@ -259,13 +208,5 @@ Cinder disks are deleted asynchronously, hence ';async' flag could be passed as 
 ##### Cinder Disks List
 
 ![](cinder_disks_storage.png "cinder_disks_storage.png")
-
-##### Cinder Authentication Keys
-
-![](cinder_auth_keys.png "cinder_auth_keys.png")
-
-##### Authentication Key Dialog
-
-![](cinder_new_auth_key.png "cinder_new_auth_key.png")
 
 [Cinder_Integration](Category:Feature) [Cinder_Integration](Category:oVirt 3.6 Proposed Feature)

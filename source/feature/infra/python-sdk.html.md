@@ -1,11 +1,11 @@
 ---
 title: Python-sdk
 category: sdk
-authors: adahms, bproffitt, michael pasternak
+authors: adahms, michael pasternak
 wiki_category: SDK
 wiki_title: Python-sdk
-wiki_revision_count: 36
-wiki_last_updated: 2015-03-25
+wiki_revision_count: 35
+wiki_last_updated: 2014-07-24
 ---
 
 # Python-sdk
@@ -73,7 +73,7 @@ from ovirtsdk.api import API
 
 *   create proxy
 
-api = API(url='[http://host:port/api](http://host:port/api)', username='user@domain', password='password')
+api = API(url='[http://host:port](http://host:port)', username='user@domain', password='password')
 
 *   list entities
 

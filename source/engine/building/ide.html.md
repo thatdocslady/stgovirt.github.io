@@ -1,10 +1,10 @@
 ---
 title: IDE
-authors: abonas, amureini, dneary, doron, gina, lhornyak, nslomian, nsoffer, roy,
-  shireesh, snmishra, tjelinek, vered
+authors: abonas, amureini, dneary, doron, lhornyak, nslomian, nsoffer, roy, shireesh,
+  snmishra, tjelinek, vered
 wiki_title: Building oVirt Engine/IDE
-wiki_revision_count: 50
-wiki_last_updated: 2015-05-20
+wiki_revision_count: 49
+wiki_last_updated: 2014-11-12
 ---
 
 # IDE
@@ -21,7 +21,7 @@ As for Java IDE, some like Eclipse, some like Net Beans,
 and others can't stand the thought of anything which is not **VI**.
 
 This page is intended for those who would like to use some sort of
-a graphical development environment, which does not require the use
+a graphical development environment, which does not requier the use
 of 'esc'+':' combination ;)
 
 ### Eclipse

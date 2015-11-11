@@ -4,8 +4,8 @@ category: feature
 authors: emesika, ovedo
 wiki_category: Feature
 wiki_title: Features/EntityHealthStatus
-wiki_revision_count: 39
-wiki_last_updated: 2015-06-12
+wiki_revision_count: 30
+wiki_last_updated: 2015-02-03
 ---
 
 # Entity Health Status
@@ -17,10 +17,10 @@ wiki_last_updated: 2015-06-12
 Provide a mechanism to set entity health status which will be displayed in the UI as follows
 
       OK
-`Info  `![`ExternalStatusInfo.png`](ExternalStatusInfo.png "fig:ExternalStatusInfo.png")
-`Warning `![`ExternalStatusFailure.png`](ExternalStatusFailure.png "fig:ExternalStatusFailure.png")
-`Error  `![`ExternalStatusWarning.png`](ExternalStatusWarning.png "fig:ExternalStatusWarning.png")
-`Failure  `![`ExternalStatusError.png`](ExternalStatusError.png "fig:ExternalStatusError.png")
+      Info
+      Warning
+      Critical
+      Failure
 
 The Health Status field will be returned as part of the retrieved entity when a call to display the entity is done using the REST API.
 
@@ -63,12 +63,10 @@ results with :
 ` `<host id=................>
            ......
            ......
-`     `<external_status>
-`       `<state>`ok`</state>
-`   `</external_status>
+`     `<external_status>`ok`</external_status>
 `  `</host>
 
-Setting the status for a entity will be done via the External Events mechanism with an additional external_status element from the Status API type under the entity For example
+Setting the status for a entity will be done via the External Events mechanism with an additional externalstatus elemet under the entity For example
 
 ` `<event>
 `   `<description>`The heat of the host is above 30 Oc`</description>
@@ -76,27 +74,23 @@ Setting the status for a entity will be done via the External Events mechanism w
 `   `<origin>`HP Openview`</origin>
 `   `<custom_id>`1`</custom_id>
 `   `<flood_rate>`30`</flood_rate>
-`  `<host id="50bf66ec-38df-47f1-a737-95d46e8d35fc" >
-`  `<external_status>
-`       `<state>`warning`</state>
-`   `</external_status>
-`  `</host>
+`   `<host id="82d9f776-12cf-437a-b686-5958d09f9eb4" >
+`     `<external_status>`error`</external_status>
+`   `</host>
 ` `</event>
 
-Another example for storage domains and when the external status and the event severity is different
+Another example for storage domains and when the external status and the event severity is diffrent :
 
-<event>
-`  `<description>`No space left on device`</description>
-`  `<severity>`error`</severity>
-`  `<origin>`XXX`</origin>
-`  `<custom_id>`11`</custom_id>
-`  `<flood_rate>`30`</flood_rate>
-`  `<storage_domain id="949c21d6-1e65-4f1a-9442-4def1ccaf11a" >
-`   `<external_status>
-`      `<state>`failure`</state>
-`  `</external_status>
-`  `</storage_domain>
-</event>
+` `<event>
+`   `<description>`No space left on device`</description>
+`   `<severity>`error`</severity>
+`   `<origin>`XXX`</origin>
+`   `<custom_id>`1`</custom_id>
+`   `<flood_rate>`30`</flood_rate>
+`   `<storagedomain id="73d9f776-12cf-437a-b686-5958d09f9ec5" >
+`     `<external_status>`failure`</external_status>
+`   `</storagedomain>
+` `</event>
 
 external_status field will be represented with a new seprate enum containing the values :
 
@@ -105,10 +99,6 @@ external_status field will be represented with a new seprate enum containing the
        WARNING
        ERROR
        FAILURE
-
-## Search Engine
-
-The new external_status field will be available as a search field for the entity main view
 
 ### Benefit to oVirt
 

@@ -4,8 +4,8 @@ category: infra
 authors: bproffitt, dcaroest, dneary, eedri, knesenko, quaid, rydekull
 wiki_category: Infrastructure
 wiki_title: Infrastructure team administrators
-wiki_revision_count: 22
-wiki_last_updated: 2015-04-12
+wiki_revision_count: 21
+wiki_last_updated: 2014-06-29
 ---
 
 # Infrastructure team administrators
@@ -62,6 +62,12 @@ Project coordinator: David Caro <dcaroest@redhat.com>
 <!-- -->
 
     ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAtyoVzBXA7ufgTaJiUeotNHSHuz6hXT+DzIGMKI6WHGXVZQMQch6mhptTWqoY2wCqRmCDd96mrByWTt152g+/AniTu2s/XQ7syzrbPsQthVbfuGUQt1u8uW8oG7fdZFwfBE0PbtgXGv8gFyGeHRtzr/PIyILyFJ9TitUyUqswO2O+sptlPzCQYIehji3rf5TipTcrVMtVAk2OgPlF83bHLD/qTYxE96Gpb0xHON5MlCRlhKqvdoyHyInP9Wg2GXXxPQ2tTSkfPdEt0S/qkSCUp7BDcgsmFm+bXCEwfP8BMdWufecVJWbbm0FBu4XXzoerxxrMeWi6vB/xBimvStGZsQ== dneary@redhat.com
+
+*   knesenko (maintainer)
+
+<!-- -->
+
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3lARddzwVFQu8WPibzkCz830OjzTztEOUE6uejgsqUTbd15VmAlUhm2UFZnElUVHk1cwpr7KYFWEmzFRzJ8w79j3AgfGqauvIXPfClsEfqp3UPPGDok7HakXnGj6zV4ePNzHsQfn38DxwLblyR9c+S2O4R4sL62J2BhESvZGG5RfzlJPZghgkuh8jjlWDqN4jTYISMOaZ+jOueFLanEEzOuqct5QhyA1ToseWTfotXm40PYQlfx2OP9ub9Wevb1Sj0b832KccP+xrrePuRqgpJdg0PZZb/HknIND44k5gm+sMvm8mX6R6YfDPZNli76kCGi8hqiKnUroCe2niRe8x knesenko@redhat.com
 
 *   misc (Michael Scherer) (maintainer)
 

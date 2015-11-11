@@ -1,11 +1,9 @@
 ---
 title: Decommission Master Domain and SPM
-category: feature
-authors: aglitke, fsimonce
-wiki_category: Feature|Decommission_Master_Domain_and_SPM
+authors: fsimonce
 wiki_title: Features/Decommission Master Domain and SPM
-wiki_revision_count: 19
-wiki_last_updated: 2015-04-16
+wiki_revision_count: 8
+wiki_last_updated: 2015-01-16
 wiki_conversion_fallback: true
 wiki_warnings: conversion-fallback
 ---
@@ -33,10 +31,8 @@ More information:
 *   Email: <fsimonce@redhat.com>
 *   Name: [Liron Aravot](user:Laravot)
 *   Email: <laravot@redhat.com>
-*   Name: [Adam Litke](user:Aglitke)
-*   Email: <alitke@redhat.com>
-*   PM Requirements : Scott Herold
-*   Email: <sherold@redhat.com>
+*   PM Requirements : [Andrew Cathrow](user:ACathrow)
+*   Email: <acathrow@redhat.com>
 
 ### Current status
 
@@ -95,31 +91,31 @@ New API
 
 cloneImageStructure
 
-multiple createVolumeContainer
+multiple createVolumeV2
 
 copyImage
 
-multiple createVolumeContainer and copyVolumeData (similar to cloneImageStructure)
+multiple createVolumeV2 and copyVolume (similar to cloneImageStructure)
 
 createVolume
 
-createVolumeContainer + allocateVolume (to preallocate a volume when needed)
+createVolumeV2 + allocateVolume (to preallocate a volume when needed)
 
 deleteImage
 
-multiple removeVolume + wipeVolume (to post-zero the volume)
+multiple deleteVolumeV2 + wipeVolume (to post-zero the volume)
 
 deleteVolume
 
-removeVolume
+deleteVolumeV2
 
 downloadImage
 
-createVolumeContainer + copyVolumeData
+createVolumeV2 + copyVolume
 
 downloadImageFromStream
 
-createVolumeContainer + copyVolumeData
+createVolumeV2 + copyVolume
 
 extendVolumeSize
 
@@ -127,7 +123,7 @@ extendVolumeSize
 
 mergeSnapshots
 
-createVolumeContainer + mergeSnapshotsV2
+createVolumeV2 + mergeSnapshotsV2
 
 moveImage
 
@@ -139,23 +135,19 @@ N/A (to be removed, engine will use copyImage + deleteImage)
 
 syncImageData
 
-multiple copyVolumeData
+multiple copyVolume
 
 uploadImage
 
-copyVolumeData
+copyVolume
 
 #### Create Volume
 
-     createVolumeContainer(sdUUID, imgUUID, size, volFormat, diskType, volUUID, desc, srcImgUUID, srcVolUUID)
+     createVolumeV2(sdUUID, imgUUID, volUUID, srcImgUUID, srcVolUUID, ...TBD...)
 
 **Parameters:**
 
 *   **sdUUID**, **imgUUID**, **volUUID**: domain, image and volume uuids
-*   **size**: The intended capacity of the new volume (in sectors)
-*   **volFormat**: Request either cow (4) or raw (5)
-*   **diskType**: (Legacy) Set the type of disk to be created: unknown (0), system (1), data (2), shared (3), swap (4), temporary (5)
-*   **desc**: Set a volume description
 *   **srcImgUUID**, **srcVolUUID**: parent image and volume uuids
 
 This (synchronous) API will allow to create a volume in a storage domain. The operation mostly involves metadata changes and it should leave the volume fully prepared and ready to be used or in an inconsistent way easily identifiable from the garbage collector.
@@ -186,37 +178,26 @@ Garbage collection (for unfinished volumes):
 *   volumes that are marked as not-ready will be removed
 *   unmark the parent as internal volume (when needed)
 
-#### Delete Volumes
+#### Delete Volume
 
-     removeVolumes(sdUUID, imgUUID, volumeList)
+     deleteVolumeV2(sdUUID, imgUUID, volUUID)
 
 **Parameters:**
 
-*   **sdUUID**, **imgUUID**, **volumeList**: domain UUID, image UUID, and volume UUID list
+*   **sdUUID**, **imgUUID**, **volUUID**: domain, image and volume uuids
 
-This (synchronous) API will allow to delete one or more volumes from an image. The volume list must be in ascendant order (beginning with the leaf and including additional consecutive volumes as desired).
-
-To allow retry of a partially-completed compound delete without requiring engine to poll for what has already been removed, this API will not fail when volumeList contains volume UUIDs that do not belong to the image.
+This (synchronous) API will allow to delete a volume in a storage domain. It will allow to remove leaf volumes and volumes that have no relevant data (e.g. live merged).
 
 Overview of the flow on file and block domains:
 
-*   Rename the volume using a special removing postfix
-*   Invoke the garbage collector which will:
-    -   mark the parent as leaf volume or update the chain (e.g. live merge case)
-    -   remove the volume metadata and lease files
-    -   remove the volume
+*   mark the volume as not-ready
+*   mark the parent as leaf volume or update the chain (e.g. live merge case)
+*   remove the volume metadata and lease files
+*   remove the volume
 
 **Completion check**: on success getVolumeInfo will raise VolumeDoesNotExist (on failure the volume info are returned)
 
-     removeImage(sdUUID, imgUUID)
-
-**Parameters:**
-
-*   **sdUUID**, **imgUUID**: domain UUID, image UUID
-
-This (synchronous) API will cause an image to be removed from a storage domain. All volumes are removed (as if removeVolumes were called with the complete list of volumes in the image). On error, some volumes may have been removed.
-
-**Completion check**: on success getImagesList will not contain *imgUUID*
+It looks possible to also remove an entire image in one shot (e.g. on block domains use the image tag to remove all the volumes, on file domains rename the image directory as not-ready). At the moment this is out of scope of the changes and it can be introduced later when volUUID is blank.
 
 #### Allocate Volume
 
@@ -244,30 +225,6 @@ Overview of the flow on file domains:
 
 It seems that to preserve the fallocate/allocateVolume semantic we should not simply write zeroes, but actually preallocate the volume space maintaining all the previous data (read/write). This behavior may be slow for new created volumes that we want just to preallocate with zeroes. For this reason I suggest to add a **wipeData** flag in the API that eventually can be used to specify to delete the data in the volume.
 
-#### Isolate Volumes
-
-     isolateVolumes(sdUUID, srcImgUUID, dstImgUUID, volumeList)
-
-**Parameters:**
-
-*   **sdUUID**, **srcImgUUID**, **dstImgUUID**, **volumeList**: domain UUID, source image UUID, destination image UUID, and volume UUID list
-
-This (synchronous) API allows you to move one or more volumes into a new image in order to isolate them during a subsequent operation (eg. wipeVolume). The volume list must be in ascendant order (beginning with the leaf and including additional consecutive volumes as desired).
-
-To allow retry of a partially-completed compound call without requiring engine to poll for what has already been isolated, this API will skip volumes which already belong to the destination image.
-
-Overview of the flow on block domains:
-
-*   Update the LV tag for each volume to set the new imgUUID
-
-Overview of the flow in fileDomains:
-
-*   Check if the image dir exists
-    -   If so, it must only contain volumes mentioned in volumeList
-    -   If not, create the image dir
-*   Hardlink the metadata, lease, and volume files into the new image
-*   Call removeVolumes to remove the volume from the original image
-
 #### Wipe Volume
 
      wipeVolume(sdUUID, imgUUID, volUUID)
@@ -278,7 +235,7 @@ Overview of the flow in fileDomains:
 
 Wipe volume is used to remove the data stored in the volume (mostly for security reasons, relevant for block domains).
 
-In conjunction with isolateVolumes, this API can be used to replicate the old behavior of deleteVolume(..., postZero=True).
+In conjunction with deleteVolumeV2 this API can be used to implement the old behavior of deleteVolume with postZero=True.
 
 Eventually a set of different wiping algorithms can be supported similarly to [virStorageVolWipeAlgorithm](http://libvirt.org/html/libvirt-libvirt.html#virStorageVolWipeAlgorithm)
 
@@ -295,12 +252,10 @@ Eventually a set of different wiping algorithms can be supported similarly to [v
 
 Overview of the flow on block domains (file domains are not relevant):
 
-*   Acquire the volume lease
 *   mark volume as illegal
 *   wipe the content of the volume
 *   rebuild the qcow2 header (when needed)
 *   mark volume as legal
-*   Release the volume lease
 
 **Completion check**: getVolumeInfo will report the volume as legal
 
@@ -308,7 +263,7 @@ Provided some assumptions and flags this API may be unified with allocateVolume.
 
 #### Copy Volume
 
-     copyVolumeData(srcImage, dstImage, collapsed)
+     copyVolume(srcImage, dstImage, collapsed)
 
 **Parameters:**
 
@@ -343,9 +298,9 @@ Overview of the flow on file and block domains:
 *   copy the data from source to destination
 *   mark the volume as legal
 
-**Completion check**: getVolumeInfo will report the volume as legal and unlocked
+**Completion check**: getVolumeInfo will report the volume as legal
 
-At the moment this API assumes that the destination container should be already prepared (e.g. destination volume was created). This behavior allows cloneImageStructure to be reimplemented with a series of createVolumeContainer and syncImageData with a series of (eventually concurrent) copyVolumeData requests.
+At the moment this API assumes that the destination container should be already prepared (e.g. destination volume was created). This behavior allows cloneImageStructure to be reimplemented with a series of createVolumeV2 and syncImageData with a series of (eventually concurrent) copyVolume requests.
 
 #### Extend Volume Size
 
@@ -373,17 +328,19 @@ Block Domains
 
 File Domains
 
-createVolumeContainer style="background-color: yellow;" Completed - Requires Testing style="background-color: yellow;" Completed - Requires Testing
+createVolumeV2 style="background-color: orange;" Completed - Requires Testing style="background-color: yellow;" In Progress
 
-removeVolume style="background-color: yellow;" Completed - Requires Testing style="background-color: yellow;" Completed - Requires Testing
+deleteVolumeV2 - -
 
 allocateVolume style="background-color: lightgreen;" N/A -
 
 wipeVolume - style="background-color: lightgreen;" N/A
 
-copyVolumeData (VDSM images) style="background-color: yellow;" Completed - Requires Testing style="background-color: yellow;" Completed - Requires Testing
+deleteVolumeV2 - -
 
-copyVolumeData (Glance images) - -
+copyVolume (VDSM images) - -
+
+copyVolume (Glance images) - -
 
 extendVolumeSize - -
 
@@ -395,27 +352,27 @@ VDSM API
 
 Engine Flow Status
 
-AddImageFromScratchCommand createVolumeContainer -
+AddImageFromScratchCommand createVolumeV2 -
 
-HibernateVmCommand createVolumeContainer -
+HibernateVmCommand createVolumeV2 -
 
-LiveSnapshotMemoryImageBuilder createVolumeContainer -
+LiveSnapshotMemoryImageBuilder createVolumeV2 -
 
-DestroyImageCommand removeVolume -
+DestroyImageCommand deleteVolumeV2 -
 
-RestoreFromSnapshotCommand removeVolume -
+RestoreFromSnapshotCommand deleteVolumeV2 -
 
-CopyImageGroupCommand copyVolumeData -
+CopyImageGroupCommand copyVolume -
 
-CreateCloneOfTemplateCommand copyVolumeData -
+CreateCloneOfTemplateCommand copyVolume -
 
-CreateImageTemplateCommand copyVolumeData -
+CreateImageTemplateCommand copyVolume -
 
-ImportRepoImageCopyTaskHandler copyVolumeData -
+ImportRepoImageCopyTaskHandler copyVolume -
 
-ExportRepoImageCommand copyVolumeData -
+ExportRepoImageCommand copyVolume -
 
-CreateSnapshotCommand createVolumeContainer -
+CreateSnapshotCommand createVolumeV2 -
 
 RemoveSnapshotSingleDiskCommand mergeSnapshotsV2 -
 
@@ -423,18 +380,18 @@ ActivateStorageDomainCommand (none, related to connectStoragePool) -
 
 DeactivateStorageDomainCommand (none, related to connectStoragePool)) -
 
-RemoveImageCommand removeVolume -
+RemoveImageCommand deleteVolumeV2 -
 
-RemoveTemplateSnapshotCommand removeVolume -
+RemoveTemplateSnapshotCommand deleteVolumeV2 -
 
-VmCommand (removeMemoryVolumes) removeVolume -
+VmCommand (removeMemoryVolumes) deleteVolumeV2 -
 
-CreateImagePlaceholderTaskHandler createVolumeContainer, removeVolume -
+CreateImagePlaceholderTaskHandler createVolumeV2, deleteVolumeV2 -
 
-VmReplicateDiskFinishTaskHandler removeVolume -
+VmReplicateDiskFinishTaskHandler deleteVolumeV2 -
 
-MemoryImageRemover removeVolume -
+MemoryImageRemover deleteVolumeV2 -
 
-VmReplicateDiskStartTaskHandler copyVolumeData -
+VmReplicateDiskStartTaskHandler copyVolume -
 
 ExtendImageSizeCommand extendVolumeSize -

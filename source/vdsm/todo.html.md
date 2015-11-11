@@ -4,8 +4,8 @@ category: vdsm
 authors: aglitke, amuller, apuimedo, danken, ekohl, gvallarelli, ibarkan, phoracek
 wiki_category: Vdsm
 wiki_title: Vdsm TODO
-wiki_revision_count: 122
-wiki_last_updated: 2015-05-29
+wiki_revision_count: 117
+wiki_last_updated: 2015-02-07
 ---
 
 # Vdsm TODO
@@ -31,10 +31,6 @@ wiki_last_updated: 2015-05-29
 *   Add git submodules for pyflakes and pep8 to vdsm. Control the specific version of each tool to use from within the vdsm build itself. This way we can make sure everyone is using the same version of the tools regardless of where vdsm is being built.
     -   See <https://github.com/jcrocholl/pep8> and <https://github.com/pyflakes/pyflakes/>
 
-<!-- -->
-
-*   BindingXML's wrapApiMethod is incredibly fragile when deciding what not to log. Logging should be done as a decorator per called function, after password entries are converted to ProtectedPassword.
-
 #### net
 
 *   setupNetwork: stop passing kwarg to ifcfg files blindly. We should name all supported options and ignore the rest.
@@ -44,6 +40,10 @@ wiki_last_updated: 2015-05-29
 *   drop force from network API
 
 #### virt
+
+*   drop self.destServer.getVmStats() call from migration sequence. It is raceful by design, and gives nothing that a migrationCreate does not.
+
+<!-- -->
 
 *   el7 hosts must not support clusterLevel<3.4
 
@@ -121,7 +121,7 @@ wiki_last_updated: 2015-05-29
 
 <!-- -->
 
-*   ~~Split off the network restoration from vdsm startup so that it is performed in a different init service. This vdsm-network-restoration service should be oneshot and happen before network.service. <http://gerrit.ovirt.org/#/c/29441/>~~
+*   Split off the network restoration from vdsm startup so that it is performed in a different init service. This vdsm-network-restoration service should be oneshot and happen before network.service. <http://gerrit.ovirt.org/#/c/29441/>
 
 <!-- -->
 
@@ -129,7 +129,7 @@ wiki_last_updated: 2015-05-29
 
 <!-- -->
 
-*   Allow multiple setting IPv4 and IPv6 addresses per network device. (API change is needed; we report multiple ipv6 addresses).
+*   Allow multiple setting IPv4 and IPv6 addresses per network device. (API changes is needed; we report multiple ipv6 addresses).
 
 <!-- -->
 
@@ -166,7 +166,7 @@ wiki_last_updated: 2015-05-29
 
 <!-- -->
 
-*   use ElementTree instead of minidom in libvirt.py
+*   use ElementTree instead of minidon in libvirt.py
 
 <!-- -->
 
@@ -203,10 +203,6 @@ wiki_last_updated: 2015-05-29
 <!-- -->
 
 *   persist mtu and vlan tag as integers
-
-<!-- -->
-
-*   stop passing \*\*options both to configure(). They should be passed into _objectivizeNetwork() and reside in the network entity objects. If this is impossible, we should separate the the two variables and name them differently.
 
 ### refactoring
 

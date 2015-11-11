@@ -4,8 +4,8 @@ category: feature
 authors: adahms, kianku, roy
 wiki_category: Feature
 wiki_title: Features/CPU SLA
-wiki_revision_count: 35
-wiki_last_updated: 2015-04-14
+wiki_revision_count: 30
+wiki_last_updated: 2014-10-08
 ---
 
 # CPU SLA
@@ -16,22 +16,15 @@ wiki_last_updated: 2015-04-14
 
 The CPU SLA feature enables users to limit the CPU usage of a virtual machine.
 
-## Owners
+## Owner
 
-#### Initial design and implementation
-
-*   Name: [Kobi Ianko](User:kianku) <s>kobi@redhat.com</s>
-
-#### Maintainers
-
-*   Name: [Roy Golan](User:rgolan) rgolan@redhat.com
-*   Name: [Martin Sivak](User:msivak) msivak@redhat.com
+*   Name: [Kobi Ianko](User:kianku), Email: kobi@redhat.com
 
 ## Current status
 
 *   Target Release: 3.5
-*   Status: completed
-*   Last updated: April 14, 2015
+*   Status: design
+*   Last updated: ,
 
 ## Detailed Description
 
@@ -76,8 +69,6 @@ The administrator will allocate CPU profiles to be used in the Cluster at the Cl
 ![](CpuLimitClusterSubTab.png "fig:CpuLimitClusterSubTab.png")
 
 ## VDSM
-
-**TODO - this section needs update**
 
 In the VDSM we will be using the libvirt API of CPU tuning (http://libvirt.org/formatdomain.html#elementsCPUTuning), and MOM. The Qos entered by the user will be picked by the engine's "Sync MOM Policy", and forward to Libvirt dom xml meta-data section.
 For using the metadata section we will define a URI that will serve as a namespace from vm tunable parameters ("<http://ovirt.org/vm/tune/1.0>"). A MOM policy will convert Qos value into the libvirt period and quota parameters, and set the value to Libvirt using a MOM controller, ensuring that the CPU limits are enforced.

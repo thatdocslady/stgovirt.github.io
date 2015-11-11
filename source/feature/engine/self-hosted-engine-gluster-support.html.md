@@ -4,11 +4,11 @@ category: feature
 authors: sandrobonazzola
 wiki_category: Feature|Self Hosted Engine Gluster Support
 wiki_title: Features/Self Hosted Engine Gluster Support
-wiki_revision_count: 16
-wiki_last_updated: 2015-04-03
+wiki_revision_count: 15
+wiki_last_updated: 2015-01-14
 feature_name: Self Hosted Engine Gluster Support
 feature_modules: ovirt-hosted-engine-setup
-feature_status: ON_QA
+feature_status: POST
 ---
 
 # Self Hosted Engine Gluster Support
@@ -86,7 +86,7 @@ Requirements:
 
 ### Testing
 
-*   [QA:TestCase Hosted Engine External Gluster Support](QA:TestCase Hosted Engine External Gluster Support)
+Test plan still to be created
 
 ### Contingency Plan
 

@@ -1,11 +1,11 @@
 ---
 title: Past events
 category: event
-authors: danken, dneary, sandrobonazzola
+authors: danken, dneary
 wiki_category: Events
 wiki_title: Past events
-wiki_revision_count: 14
-wiki_last_updated: 2015-05-17
+wiki_revision_count: 11
+wiki_last_updated: 2014-10-12
 ---
 
 ## Past events

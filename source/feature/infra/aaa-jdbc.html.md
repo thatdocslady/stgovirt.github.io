@@ -1,11 +1,11 @@
 ---
 title: AAA JDBC
 category: feature
-authors: alonbl, moolit
+authors: alonbl
 wiki_category: Feature
 wiki_title: Features/AAA JDBC
-wiki_revision_count: 17
-wiki_last_updated: 2015-04-11
+wiki_revision_count: 11
+wiki_last_updated: 2014-07-21
 ---
 
 # AAA JDBC Provider
@@ -103,7 +103,7 @@ Output should be easy to parse.
           user
 `       `<command>
                   add
-                  edit
+                  modify
                   delete
                   unlock
                   password-reset
@@ -114,32 +114,27 @@ Output should be easy to parse.
                  env - string is environment
                  file - string is file
                  interactive - acquire from console
-                 none - equal to --flag=noPassword
              --passwordValidTo=`<date>`, default now()
              --accountValidFrom=`<date>`, default now()
              --accountValidTo=`<date>`, default infinite
-             --accountLoginTime=7 * 48 length string, default 1 ** 7 * 48
+             --accountLoginTime=48 length string, default 1**48
 `       --attribute=`<name>`=`<value>
                  displayName
                  email
                  description
                  ...
-              --flag=[+|-]`<flag>`, default none
+              --flags=[+|-]`<flags>`, default none
                  disabled
-                 noPassword
-              --newName=`<name>`, ignored unless this is an edit command
-              --id=`<int>`, ignored unless this is an add command
+                 no password
          group
 `       `<command>
                  add
-                 edit
                  delete
                  show
 `       `<group-name>
 `       --attribute=`<name>`=`<value>
                  displayName
                  description
-             --id=`<int>`, ignored unless this is an add command
          group-manage
 `       `<command>
                  useradd

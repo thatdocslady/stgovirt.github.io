@@ -4,8 +4,8 @@ category: feature
 authors: sandrobonazzola
 wiki_category: Feature|Self Hosted Engine Hyper Converged Gluster Support
 wiki_title: Features/Self Hosted Engine Hyper Converged Gluster Support
-wiki_revision_count: 7
-wiki_last_updated: 2015-03-17
+wiki_revision_count: 6
+wiki_last_updated: 2015-02-09
 feature_name: Self Hosted Engine Hyper Converged Gluster Support
 feature_modules: ovirt-hosted-engine-setup
 feature_status: POST
@@ -61,10 +61,6 @@ By default gluster uses a port that vdsm also wants, so we need to change base-p
 to ***/etc/glusterfs/glusterd.vol***
 
 and ensure glusterd service is enabled and started before proceeding.
-
-##### Engine Changes
-
-*   The iptables port range to be opened for Gluster must include enough ports starting at base-port for the briks.
 
 ##### VDSM commands involved
 

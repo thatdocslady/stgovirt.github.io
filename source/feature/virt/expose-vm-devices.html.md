@@ -2,8 +2,8 @@
 title: Expose VM Devices
 authors: ofrenkel
 wiki_title: Features/Expose VM Devices
-wiki_revision_count: 4
-wiki_last_updated: 2015-05-07
+wiki_revision_count: 1
+wiki_last_updated: 2014-06-19
 ---
 
 # Expose VM Devices
@@ -42,11 +42,13 @@ for every device we will show:
       * icon per type
       * Type: like USB, Controller, Disk...
       * address
-      * boot order
+      * boot order (if relevant)
       * plugged
       * readonly
       * engine managed
+      * alias
       * spec params
+      * custom properties
 
 #### UI
 
@@ -61,9 +63,9 @@ This will be a collection of all VM devices
 
 ### UI Mock-Ups
 
-*   sub tab view with icons for devices
+*   TODO - sub tab view with icons for devices
 
-![](Vm_devices_tab.png "Vm_devices_tab.png")
+![](TODO.png "TODO.png")
 
 ### Open Issues
 

@@ -1,11 +1,11 @@
 ---
 title: OVirt Slide Decks
 category: collateral
-authors: apahim, bproffitt, dougsland, jbrooks, lpeer, ofrenkel, scrat
+authors: apahim, bproffitt, dougsland, jbrooks, lpeer, ofrenkel
 wiki_category: collateral
 wiki_title: OVirt Slide Decks
-wiki_revision_count: 37
-wiki_last_updated: 2015-04-27
+wiki_revision_count: 32
+wiki_last_updated: 2015-02-09
 ---
 
 # OVirt Slide Decks
@@ -21,18 +21,6 @@ These template presentations are provided to build new slides for oVirt presenta
 
 73-slide presentation, updated Oct. 2014: [Introduction_to_oVirt.odp](http://www.ovirt.org/images/a/ad/Introduction_to_oVirt.odp) (ODP)
 This is a large presentation, with notes. It can be used as is, or cut to fit a shorter presentation, such as for a meetup or user-group meeting.
-
-## Grazer Linuxtage 2015
-
-*   Open Source Virtualization with oVirt (45 minutes introduction, oVirt 3.5, planned features for 3.6 and interaction with OpenStack): [Open_Source_Virtualization_with_oVirt_GLT_2015.odp](http://www.ovirt.org/images/3/39/Open_Source_Virtualization_with_oVirt_GLT_2015.odp) (ODP)
-
-## Sasoconf 2015
-
-*   Introduction to oVirt in SASO Conference: [Introduction to oVirt (ODP)](https://villadalmine.fedorapeople.org/Presentaciones/Sasoconf2015/Introduction_to_oVirt-Sasoconf2015.odp)
-
-## chemnitz 2015
-
-*   Open Source Virtualization with oVirt (45 minutes introduction): [Open_Source_Virtualization_with_oVirt_CLT_2015.odp](http://www.ovirt.org/images/a/ae/Open_Source_Virtualization_with_oVirt_CLT_2015.odp) (ODP)
 
 ## brno 2015
 
@@ -62,10 +50,6 @@ This is a large presentation, with notes. It can be used as is, or cut to fit a 
 
 *   Elastic Overkill: Is Cloud Really The Be-All End-All for Everyone?:[FISL15_ElasticOverkill.odp‎](http://www.ovirt.org/images/b/bf/FISL15_ElasticOverkill.odp) (ODP)
 *   oVirt: How to Connect with a Mature Open Source Project:[FISL15_MatureCommunity.odp](http://www.ovirt.org/images/5/54/FISL15_MatureCommunity.odp) (ODP)
-
-## Fudcon 2014 in Managua
-
-*   [Crea Tu Primer Nodo en Ovirt](https://villadalmine.fedorapeople.org/Presentaciones/Fudcon2014Managua/) (HTML)
 
 ## oVirt Decks from FOSDEM 2012
 

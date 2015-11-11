@@ -4,8 +4,8 @@ category: feature
 authors: derez, mlipchuk, sandrobonazzola, vered
 wiki_category: Feature|ImportStorageDomain
 wiki_title: Features/ImportStorageDomain
-wiki_revision_count: 183
-wiki_last_updated: 2015-05-12
+wiki_revision_count: 178
+wiki_last_updated: 2015-01-14
 feature_name: Import Storage Domain
 feature_modules: engine/vdsm
 feature_status: Released
@@ -29,7 +29,6 @@ The usability of the feature might be useful for various use cases, here are som
 
 Storage Domains that can be restored for VMs/Templates must contain OVF_STORE disks.
 Since OVF_STORE disk is only supported from a 3.5v Data Center, the Storage Domains that can be restored have to be managed in a 3.5v Data Center before the disaster.
-As long as the setup contains 3.5v Data Centers, the Import Storage Domain feature will automatically be supported for those Data Centers.
 
 ### Owner
 
@@ -281,7 +280,7 @@ iscsiHost
 `   `<iscsi_target>`iqn.name3.120.03`</iscsi_target>
 </action>
 
-##### Import the iSCSI Storage Domains to the setup
+##### Import the block Storage Domains to the setup
 
       POST /api/storagedomains/ HTTP/1.1
       Accept: application/xml
@@ -296,25 +295,10 @@ iscsiHost
 `  `</storage>
 </storage_domain>
 
-##### Import the FCP Storage Domains to the setup
-
-      POST /api/storagedomains/ HTTP/1.1
-      Accept: application/xml
-      Content-type: application/xml
-
-<storage_domain id="ecf053fc-fe65-4d64-883e-c38ca898951c">
-`  `<import>`true`</import>
-`  `<host id="9d05868b-d40d-4a8c-9a81-dbf09d654fba" />
-`  `<type>`data`</type>
-`  `<storage>
-`     `<type>`fcp`</type>
-`  `</storage>
-</storage_domain>
-
 #### Import NFS Storage Domain
 
 Importing a Storage Domain requires a POST request, with the storage domain representation included, sent to the URL of the storage domain collection.
- POST /api/storagedomains HTTP/1.1
+ POST /api/datacenters/01a45ff0-915a-11e0-8b87-5254004ac988/storagedomains HTTP/1.1
 
       Accept: application/xml
       Content-type: application/xml

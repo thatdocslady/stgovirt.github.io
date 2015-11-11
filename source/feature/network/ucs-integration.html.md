@@ -1,11 +1,11 @@
 ---
 title: UCS Integration
 category: feature
-authors: apuimedo, danken, mburman
+authors: apuimedo, danken
 wiki_category: Feature
 wiki_title: Features/UCS Integration
-wiki_revision_count: 10
-wiki_last_updated: 2015-05-20
+wiki_revision_count: 7
+wiki_last_updated: 2014-05-05
 feature_name: Cisco UCS integration
 feature_modules: engine,network,vdsm
 feature_status: Partially Released
@@ -44,7 +44,7 @@ For the hook to work, one must manually specify the VM custom properties with
       {'XX:XX:XX:XX:XX:XX': 'port_profile_name1',
        'YY:YY:YY:YY:YY:YY': 'port_profile_name2'}
 
-The profile names should first be defined in UCS-M following Cisco's [instructions](http://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/sw/vm_fex/kvm/gui/config_guide/2-1/b_GUI_KVM_VM-FEX_UCSM_Configuration_Guide_2_1/b_GUI_KVM_VM-FEX_UCSM_Configuration_Guide_2_1_chapter_010.html#task_1892A1847A4F45F6A6363B98091AF61A). The administrator must then manually copy the port profile names from UCS-M and the MAC addresses assigned by the engine and write the above dictionary.
+This implies that the administrator must manually copy the port profile names from UCS-M and the MAC addresses assigned by the engine and write the above dictionary.
 
 ## Current status
 
@@ -70,7 +70,7 @@ You can get the hook resulting from this integration level [here](http://plain.r
 *   Use the engine-config to append the appropriate custom property:
 
        sudo engine-config -s CustomDeviceProperties=
-       '{type=interface;prop={vmfex=^[a-zA-Z0-9_.-]{2,32}$}}'
+       '{type=interface;prop={vmfex=^[a-zA-Z0-9_ ---]+$}}'
 
 *   Verify that the vmfex_dev custom device propertes were properly added:
 
@@ -102,10 +102,6 @@ will be transformed into:
         </virtualport>
         <model type='virtio'/>
     </interface>
-
-## Current status
-
-Level V completed and released as vdsm-hook-vmfex-dev
 
 ### Level V: "The Network provider strikes back"
 

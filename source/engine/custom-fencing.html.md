@@ -2,8 +2,8 @@
 title: Custom Fencing
 authors: emesika
 wiki_title: Custom Fencing
-wiki_revision_count: 11
-wiki_last_updated: 2015-03-18
+wiki_revision_count: 10
+wiki_last_updated: 2015-02-22
 ---
 
 # Custom Fencing
@@ -62,12 +62,6 @@ Example 2: Adding a new custom fencing device 'yyy' that have just port setting 
         engine-config -s CustomVdsFenceType="yyy"
         engine-config -s CustomVdsFenceOptionMapping="yyy:port=ipport"
         engine-config -s CustomFencePowerWaitParam="yyy=power_wait"
-
-Example 3: Adding support for Intel Modular agent
-
-       engine-config -s CustomVdsFenceType="intelmodular"
-       engine-config -s CustomFencePowerWaitParam="intelmodular=power_wait"
-       engine-config -s CustomVdsFenceOptionMapping="intelmodular:port=port"
 
 NOTE : if you have a power management card that needs no other parameters to be set, you still have to set it mapping as empty example
 

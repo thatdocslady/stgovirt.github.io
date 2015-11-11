@@ -1,36 +1,22 @@
 ---
 title: Vdsm Developers
 category: vdsm
-authors: abonas, adahms, amuller, amureini, apahim, apevec, danken, dougsland, ekohl,
-  fromani, herrold, itzikb, lhornyak, mbetak, mlipchuk, moolit, moti, mpavlik, nsoffer,
-  phoracek, quaid, sandrobonazzola, sgordon, smelamud, vered, vfeenstr, vitordelima,
-  yanivbronhaim, ybronhei
+authors: abonas, adahms, amuller, apahim, apevec, danken, dougsland, ekohl, fromani,
+  herrold, itzikb, lhornyak, mbetak, mlipchuk, moolit, moti, mpavlik, nsoffer, quaid,
+  sgordon, vered, vfeenstr, vitordelima, yanivbronhaim, ybronhei
 wiki_category: Vdsm
 wiki_title: Vdsm Developers
-wiki_revision_count: 169
-wiki_last_updated: 2015-05-21
+wiki_revision_count: 160
+wiki_last_updated: 2015-02-12
 ---
 
 # Vdsm Developers
 
 ## Installing the required packages
 
-In order to build VDSM you should enable oVirt repositories by installing an ovirt-release rpm:
+Red Hat Enterprise Linux 6 users must add an EPEL yum repository for installing the python-ordereddict and pyton-pthreading packages. The command bellow installs a package that in turn installs the EPEL yum repository and required GPG keys.
 
-      yum install http://resources.ovirt.org/pub/yum-repo/ovirt-release-master.rpm
-
-If you need a previous installation use the corresponding repo instead:
-
-      yum install http://resources.ovirt.org/pub/yum-repo/ovirt-release35.rpm 
-      yum install http://resources.ovirt.org/pub/yum-repo/ovirt-release33.rpm 
-      yum install http://resources.ovirt.org/pub/yum-repo/ovirt-release34.rpm
-
-This will add all the required repositories for you, including:
-
-*   EPEL repositories for Red Hat Enterprise Linux, CentOS or similar distributions
-*   GlusterFS repositories
-*   Fedora Virtualization Preview repositories for Fedora or similar distributions
-*   All required GPG keys.
+      yum install http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm 
 
 Red Hat Enterprise Linux 6 users must install a newer pep8 version than the one shipped in EPEL6. Older pep8 versions have a bug that's tickled by VDSM. You can use \`pip\`, or
 
@@ -40,22 +26,31 @@ el6's pyflakes is a bit old, too, so consider taking
 
       yum install http://danken.fedorapeople.org/pyflakes-0.8.1-3.el6.noarch.rpm
 
+oVirt repo:
+
+       yum install http://resources.ovirt.org/releases/ovirt-release/ovirt-release35.rpm
+
+If you need a 3.4 or 3.3 installation use the corresponding repo instead:
+
+      yum install http://resources.ovirt.org/releases/ovirt-release/ovirt-release33.rpm 
+      yum install http://resources.ovirt.org/releases/ovirt-release/ovirt-release34.rpm
+
+EL 6 and EL 7 users must add the glusterfs repository, providing newer glusterfs packages not available on Red Hat Enterprise Linux 6. Optionally, install 'wget' if not already installed.
+
+      rpm -q wget 2> /dev/null || yum install wget
+`wget -O /etc/yum.repos.d/glusterfs-epel.repo `[`http://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/glusterfs-epel.repo`](http://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/glusterfs-epel.repo)
+
+Fedora users must add the glusterfs repository, providing newer glusterfs packages not available yet on Fedora repository:
+
+`wget -O /etc/yum.repos.d/glusterfs-fedora.repo `[`http://download.gluster.org/pub/gluster/glusterfs/LATEST/Fedora/glusterfs-fedora.repo`](http://download.gluster.org/pub/gluster/glusterfs/LATEST/Fedora/glusterfs-fedora.repo)
+
 Install the following packages before attempting to build:
 
        yum install make autoconf automake pyflakes logrotate gcc python-pep8 libvirt-python python-devel \
        python-nose rpm-build sanlock-python genisoimage python-ordereddict python-pthreading libselinux-python\
        python-ethtool m2crypto python-dmidecode python-netaddr python-inotify python-argparse git \
        python-cpopen bridge-utils libguestfs-tools-c pyparted openssl libnl3 libtool gettext-devel python-ioprocess \
-       policycoreutils-python python-simplejson python-blivet python-six mom
-
-On EL7.1, pep8 is not available, and the version in pypi is too new, failing the build. So install pip, and then pep8 1.5.6:
-
-       easy_install pip
-       pip install pep8==1.5.6
-
-On EL7.1, pyflakes is not available currently. Until we understand why, please install it using easy_install:
-
-      easy_install pyflakes
+       policycoreutils-python python-simplejson
 
 ## Getting the source
 
@@ -498,7 +493,7 @@ Which fedpkg build will generate a koji url that will provide the RPMs and can b
 
 ## Troubleshooting
 
-### Missing dependencies on EL
+### Missing dependencies on RHEL 6.4
 
 Since c0729453573, vdsm requires newer libvirt and selinux-policy packages, which are not available yet in RHEL or Centos repositories, and is not kept in ovirt repositories (such as ovirt-nightly).
 

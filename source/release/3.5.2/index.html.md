@@ -4,15 +4,15 @@ category: documentation
 authors: pkliczewski, sandrobonazzola
 wiki_category: Documentation
 wiki_title: OVirt 3.5.2 Release Notes
-wiki_revision_count: 19
-wiki_last_updated: 2015-05-06
+wiki_revision_count: 6
+wiki_last_updated: 2015-03-04
 ---
 
 # OVirt 3.5.2 Release Notes
 
-The oVirt Project is pleased to announce the availability of oVirt 3.5.2 release as of April 28th, 2015.
+The oVirt Project is pleased to announce the availability of oVirt 3.5.2 release candidate as of February 27, 2015.
 
-oVirt is an open source alternative to VMware vSphere, and provides an awesome KVM management interface for multi-node virtualization. This release is available now for Fedora 20, Red Hat Enterprise Linux 6.6, CentOS 6.6, (or similar) and Red Hat Enterprise Linux 7.1, CentOS 7.1 (or similar).
+oVirt is an open source alternative to VMware vSphere, and provides an awesome KVM management interface for multi-node virtualization. This release is available now for Fedora 20, Red Hat Enterprise Linux 6.6, CentOS 6.6, (or similar) and Red Hat Enterprise Linux 7, CentOS 7 (or similar).
 
 To find out more about features which were added in previous oVirt releases, check out the [previous versions release notes](http://www.ovirt.org/Category:Releases). For a general overview of oVirt, read [ the Quick Start Guide](Quick_Start_Guide) and the [about oVirt](about oVirt) page.
 
@@ -20,17 +20,39 @@ To find out more about features which were added in previous oVirt releases, che
 
 ### Fedora / CentOS / RHEL
 
-oVirt 3.5.2 release is available since 2015-04-28.
+### CANDIDATE RELEASE
+
+oVirt 3.5.2 candidate release is available since 2015-02-27. In order to install it you've to enable oVirt 3.5 release candidate repository.
 
 In order to install it on a clean system, you need to install
 
 `# yum localinstall `[`http://resources.ovirt.org/pub/yum-repo/ovirt-release35.rpm`](http://resources.ovirt.org/pub/yum-repo/ovirt-release35.rpm)
 
+And then manually add the release candidate repository for your distribution to **/etc/yum.repos.d/ovirt-3.5.repo**
+
+**For CentOS / RHEL:**
+
+      [ovirt-3.5-pre]
+      name=Latest oVirt 3.5 pre release
+`baseurl=`[`http://resources.ovirt.org/pub/ovirt-3.5-pre/rpm/el$releasever`](http://resources.ovirt.org/pub/ovirt-3.5-pre/rpm/el$releasever)
+      enabled=1
+      skip_if_unavailable=1
+      gpgcheck=1
+
+**For Fedora:**
+
+      [ovirt-3.5-pre]
+      name=Latest oVirt 3.5 pre release
+`baseurl=`[`http://resources.ovirt.org/pub/ovirt-3.5-pre/rpm/fc$releasever`](http://resources.ovirt.org/pub/ovirt-3.5-pre/rpm/fc$releasever)
+      enabled=1
+      skip_if_unavailable=1
+      gpgcheck=1
+
 If you are upgrading from a previous version, you may have the ovirt-release34 package already installed on your system. You can then install ovirt-release35.rpm as in a clean install side-by-side.
 
 Once ovirt-release35 package is installed, you will have the ovirt-3.5-stable repository and any other repository needed for satisfying dependencies enabled by default.
 
-If you're installing oVirt 3.5.2 on a clean host, you should read our [Quick Start Guide](Quick Start Guide).
+If you're installing oVirt 3.5.1 on a clean host, you should read our [Quick Start Guide](Quick Start Guide).
 
 If you are upgrading from oVirt < 3.4.1, you must first upgrade to oVirt 3.4.1 or later. Please see [oVirt 3.4.1 release notes](oVirt 3.4.1 release notes) for upgrade instructions.
 
@@ -45,19 +67,6 @@ If you're going to install oVirt as Hosted Engine on a clean system please follo
 
 If you're upgrading an existing Hosted Engine setup, please follow [Hosted_Engine_Howto#Upgrade_Hosted_Engine](Hosted_Engine_Howto#Upgrade_Hosted_Engine) guide.
 
-### oVirt Live
-
-A new oVirt Live ISO is available:
-
-[`http://resources.ovirt.org/pub/ovirt-3.5/iso/ovirt-live/el6-3.5.2/ovirt-live-el6-3.5.2.iso`](http://resources.ovirt.org/pub/ovirt-3.5/iso/ovirt-live/el6-3.5.2/ovirt-live-el6-3.5.2.iso)
-
-### oVirt Node
-
-New oVirt Node ISO are available:
-
-[`http://resources.ovirt.org/pub/ovirt-3.5/iso/ovirt-node/el6-3.5.2/ovirt-node-iso-3.5-0.999.201504280933.el6.iso`](http://resources.ovirt.org/pub/ovirt-3.5/iso/ovirt-node/el6-3.5.2/ovirt-node-iso-3.5-0.999.201504280933.el6.iso)
-[`http://resources.ovirt.org/pub/ovirt-3.5/iso/ovirt-node/el7-3.5.2/ovirt-node-iso-3.5-0.999.201504280931.el7.centos.iso`](http://resources.ovirt.org/pub/ovirt-3.5/iso/ovirt-node/el7-3.5.2/ovirt-node-iso-3.5-0.999.201504280931.el7.centos.iso)
-
 ## What's New in 3.5.2?
 
 ## Known issues
@@ -68,11 +77,6 @@ New oVirt Node ISO are available:
       [ ERROR ] Failed to execute stage 'Closing up': Command '/bin/systemctl' failed to execute
 
 Retrying (engine-cleanup, engine-setup again) it's enough to avoid it cause the kernel module it's always ready on further attempts. Manually starting NFS service (/bin/systemctl restart nfs-server.service) before running engine setup it's enough to avoid it at all.
-
-*   NFS startup on EL7.1 requires manual startup of rpcbind.service before running engine setup in order to avoid
-
-      [ INFO  ] Restarting nfs services
-      [ ERROR ] Failed to execute stage 'Closing up': Command '/bin/systemctl' failed to execute
 
 *   Engine and host upgrade ordering due to bug . When upgrading your deployment to 3.5.2 please your upgrade engine first and next your hosts. When following order is not preserved you will see following error every 3 seconds (by default):
 
@@ -86,23 +90,7 @@ Following exception prevents host monitoring but affected host stays in status '
 
 ### oVirt Engine
 
-**Fixed in oVirt 3.5.2.1 Async Release**
- - Importing storage domains into an uninitialized datacenter leads to duplicate OVF_STORE disks being created, and can cause catastrophic loss of VM configuration data
- - Tracker: oVirt 3.5.2.1 release
-
-**Fixed in oVirt 3.5.2 RC4 / Final release**
- - Template creation stuck after upgrade
- - "Authentication Required" login screen that references RESTAPI
- **Fixed in oVirt 3.5.2 RC3**
- - Typos in CDA message when importing a "dirty" SD to an uninitialized DC
- **Fixed in oVirt 3.5.2 RC2**
- - NPE when adding a VM to a VM pool when there's not enough storage
- - Missing namespace and prinicipal parameters for managing users in CLI
- - [AAA] process initialization errors
- - [backend] [NPE] Adding permission to an object fails if DEBUG level is set
- - [performance] bad getVMList output creates unnecessary calls from Engine
- - Configure new user role dialog: faulty rendering due to javascript exception (missing "ActionGroup___DISK_LIVE_STORAGE_MIGRATION")
- **Fixed in oVirt 3.5.2 RC1**
+**Fixed in oVirt 3.5.2 RC1**
  - Data Center downgrade should not be allowed if it implies downgrading the storage format
  - [engine-backend] Moving a shared disk to a gluster domain is not blocked
  - Overlap of "Enable Virt Service" and "Enable Gluster Service" radio buttons
@@ -152,53 +140,24 @@ Following exception prevents host monitoring but affected host stays in status '
 
 ### ovirt-hosted-engine-setup
 
-**Fixed in oVirt 3.5.2 RC3 / Final release**
- - [hosted-engine] [iSCSI support] connectStoragePools fails with "SSLError: The read operation timed out" while adding a new host to the setup
- **Fixed in oVirt 3.5.2 RC1 / Final release**
+**Fixed in oVirt 3.5.2 RC1**
  - [hosted-engine] Bad check of iso image permission
  - vdsClient/vdscli SSLError timeout error
  - [RFE][HC] make override of iptables configurable when using hosted-engine
 
 ### ovirt-iso-uploader
 
-**Fixed in oVirt 3.5.2 RC1 / Final release**
+**Fixed in oVirt 3.5.2 RC1**
  - [engine-iso-uploader] engine-iso-uploader does not work with Local ISO domain
 
 ### ovirt-log-collector
 
-**Fixed in oVirt 3.5.2 RC1 / Final release**
+**Fixed in oVirt 3.5.2 RC1**
  - [RHEL7] Missing some info from host's archive
-
-### ovirt-optimizer
-
-**Fixed in oVirt 3.5.2 RC2 / Final release**
- - font and tab case don't match
- - [EL7] ovirt-optimizer is missing dependencies
- - link to jquery is '<http://>'
 
 ### VDSM
 
-**Fixed in oVirt 3.5.2 RC4 / Final release**
- - RHEV: Failed to Delete First snapshot with live merge
- - [RHEL7.0] oVirt fails to create glusterfs domain
- - [New] - Host status does not move to non-operational when glusterd is down.
- - Live Merge: Active layer merge is not properly synchronized with vdsm
- - Vdsm upgrade 3.4 >> 3.5.1 doesn't restart vdsmd service
- - StorageDomainAccessError: Domain is either partially accessible or entirely inacessible when creating an iSCSI storage domain with RHEV-H 6.6
- - [3.5-6.6/7.1] Failed to retrieve iscsi lun from hardware iscsi after register to RHEV-M
- **Fixed in oVirt 3.5.2 RC3**
- - VDSM script reset network configuration on every reboot when based on predefined bond
- - vdsm failing to start due to KeyError at vdsm-restore-net-config
- - vdsClient/vdscli SSLError timeout error
- - [Rhel7.1] After live storage migration on block storage vdsm extends migrated drive using all free space in the vg
- - [performance] bad getVMList output creates unnecessary calls from Engine
- - [performance] bad getVMList output creates unnecessary calls from Engine
- - After failure to setupNetworks: restore-nets with unified persistence does not restore pre-vdsm ifcfg
- - Live-deleting a snapshot of preallocated disk results in a block domain using up all available space
- - [SCALE] snapshot deletion -> heavy swapping on SPM
- - Failed to auto shrink qcow block volumes on merge
- - [RHEL 7.0 + 7.1] Host configure with DHCP is losing connectivity after some time - dhclient is not running
- **Fixed in oVirt 3.5.2 RC1**
+**Fixed in oVirt 3.5.2 RC1**
  - Wrong default multipath configuration for EL6
  - vdsm package causes logrotate to trigger selinux AVC alerts
  - [rhevh66] vdsm does not come up after first reboot after registration

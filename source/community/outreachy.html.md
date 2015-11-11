@@ -1,9 +1,9 @@
 ---
 title: Outreachy
-authors: bproffitt, danken, gshereme, sandrobonazzola, tjelinek
+authors: bproffitt, danken, tjelinek
 wiki_title: Outreachy
-wiki_revision_count: 11
-wiki_last_updated: 2015-03-10
+wiki_revision_count: 7
+wiki_last_updated: 2015-03-04
 ---
 
 # Outreachy
@@ -37,7 +37,7 @@ For more information, visit the [Outreachy application page](//wiki.gnome.org/Ou
 ## Information for Mentors
 
 1.  Read the [information for mentors](//wiki.gnome.org/Outreachy/Admin/InfoForMentor) to be familiar with the expectations for the application process, contracts, and mentoring during the internships.
-2.  Send a brief e-mail with an introduction and a subject starting with [INTRODUCTION] to outreachy-list@gnome.org - Outreachy will subscribe you to the list and everyone will know who you are! This is a private list for organizations' coordinators and mentors, where prospective applicants can send their inquiries and applications. Outreachy will also subscribe you to the announce list, which is a low-traffic list with important coordination e-mails. While the main list can get busy at times and you are only asked to follow up on e-mails reflecting interest in your organization in the subject, Outreachy asks you to keep a close eye on the e-mails sent to the announce list.
+2.  Send a brief e-mail with an introduction and a subject starting with [INTRODUCTION] to gnome-outreachy-list@gnome.org - Outreachy will subscribe you to the list and everyone will know who you are! This is a private list for organizations' coordinators and mentors, where prospective applicants can send their inquiries and applications. Outreachy will also subscribe you to the announce list, which is a low-traffic list with important coordination e-mails. While the main list can get busy at times and you are only asked to follow up on e-mails reflecting interest in your organization in the subject, Outreachy asks you to keep a close eye on the e-mails sent to the announce list.
 3.  (After March 3) sign up as a mentor in the [online application system](//outreachy.gnome.org/) by following the guide for it.
 4.  Start hanging out in #outreachy and #outreachy-admin on GIMPNet (irc.gnome.org).
 5.  You are welcome to pitch in answering any questions from prospective applicants on the mailing list and the IRC channel.
@@ -63,10 +63,7 @@ Add yourself as a mentor and ideas you are willing to mentor in this section. Pl
 ### Greg Sheremeta
 
 **Contact Info:** mail: gshereme@redhat.com, irc: gshereme in #ovirt channel in irc.oftc.net
-**Ideas You Would like to See for oVirt:** Mostly some frontend improvements I'd like to see regarding the usage of Bootstrap and SASS
-
-*   implementing SASS in the oVirt webapps and porting CSS over from GWT embedded to SASS
-*   implementing Bootstrap grids in oVirt dialogs and pages
+**Ideas You Would like to See for oVirt:** A small, perhaps mobile-friendly client using oVirt.js.
 
 ### Dan Kenigsberg
 
@@ -75,14 +72,6 @@ Add yourself as a mentor and ideas you are willing to mentor in this section. Pl
 
 *   Add [teaming](http://fedoraproject.org/wiki/Features/TeamDriver) support to Vdsm. You would add a new network configurator named ifcfg.team which is just like the ifcfg configurator, but implements a "bond" with a team device.
 *   Add a before_ifcfg_write hook point, to let hook writers modify ifcfg files before it is written. Stop passing random kwargs to ifcfg files, and drop the silly "force" argument from the API.
-
-### Sandro Bonazzola
-
-**Name:** Sandro Bonazzola
-**Contact Info:** mail: sbonazzo@redhat.com, irc: sbonazzo in #centos-devel@irc.freenode.net, #fedora-devel@irc.freenode.net and #ovirt@irc.oftc.net
-**Ideas You Would like to See for oVirt:**
-
-*   Google Web Toolkit properly packaged for Fedora and CentOS 7. It's a pre-requisite to packaging oVirt Engine properly for Fedora and CentOS 7 and can be broken in several minor tasks packaging missing dependencies for GWT.
 
 ### Your name here
 

@@ -1,12 +1,12 @@
 ---
 title: Installing VDSM from rpm
 category: vdsm
-authors: abonas, danken, dougsland, imansano, jniederm, jumper45, lvroyce, mburns,
-  ranglust, sming, tdosek
+authors: abonas, danken, dougsland, imansano, jumper45, lvroyce, mburns, ranglust,
+  sming, tdosek
 wiki_category: Vdsm
 wiki_title: Installing VDSM from rpm
-wiki_revision_count: 23
-wiki_last_updated: 2015-03-16
+wiki_revision_count: 22
+wiki_last_updated: 2013-03-28
 ---
 
 # Installing VDSM from rpm
@@ -84,12 +84,12 @@ Add the following content into the file: **/etc/vdsm/vdsm.conf** (you may need t
 
 Restart the vdsmd service by executing:
 
-      systemctl restart vdsmd
+      service vdsmd restart
 
 If Vdsm was started earlier with ssl=true, it would refuse to start and you may need to use the undocumented verb
 
-      vdsm-tool configure --force
-      systemctl start vdsmd
+      service vdsmd reconfigure
+      service vdsmd start
 
 which edits **/etc/libvirt/qemu.conf** and changes **spice_tls=1** to **spice_tls=0**.
 

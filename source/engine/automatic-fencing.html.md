@@ -1,9 +1,9 @@
 ---
 title: Automatic Fencing
-authors: emesika, mperina, ofrenkel, tscofield, ybronhei
+authors: mperina, ofrenkel, tscofield, ybronhei
 wiki_title: Automatic Fencing
-wiki_revision_count: 14
-wiki_last_updated: 2015-05-25
+wiki_revision_count: 13
+wiki_last_updated: 2014-04-22
 ---
 
 # Automatic Fencing
@@ -97,10 +97,6 @@ Support for host kdump detection using fence_kdump will be inserted into current
 # Troubleshooting
 
 Check that you can run the fence agent from the command line. Use the fence script that corresponds with the fence type you are setting up.
-
-*   All agents
-
-fence-agents package removed support of sending boolean flags by their own, so, if you are using in your fence agent option field any flag, you should give it a '1' value For example, instead of "ssh,lanplus" , you should write "ssl=1,lanplus=1"
 
 *   fence_drac5
     -   When testing make sure to use the "--action=status" parameter.

@@ -1,9 +1,9 @@
 ---
 title: Memory Hotplug
-authors: ofrenkel, vitordelima
+authors: vitordelima
 wiki_title: Features/Memory Hotplug
-wiki_revision_count: 6
-wiki_last_updated: 2015-05-13
+wiki_revision_count: 5
+wiki_last_updated: 2014-12-17
 ---
 
 # Memory Hotplug
@@ -19,7 +19,7 @@ This feature will add the possibility of hot plugging virtual memory modules int
 
 #### Current status
 
-Implementation: <https://gerrit.ovirt.org/#/q/status:open+branch:master+topic:hotPlugMem>
+In planning.
 
 #### Detailed Description
 

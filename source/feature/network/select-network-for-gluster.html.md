@@ -1,11 +1,11 @@
 ---
 title: Select Network For Gluster
 category: feature
-authors: danken, sahina, sandrobonazzola
-wiki_category: Feature|GlusterHostDiskManagement
+authors: danken, sahina
+wiki_category: Feature
 wiki_title: Features/Select Network For Gluster
-wiki_revision_count: 29
-wiki_last_updated: 2015-03-19
+wiki_revision_count: 28
+wiki_last_updated: 2015-01-16
 feature_name: Select Network for Gluster traffic
 feature_modules: engine,gluster
 feature_status: Design
@@ -107,4 +107,4 @@ New API:
 
 The network to be updated for brick, is passed as a parameter in the GlusterBrickEntity
 
-[GlusterHostDiskManagement](Category: Feature) [Category: Gluster](Category: Gluster) [GlusterHostDiskManagement](Category:oVirt 3.6 Proposed Feature)
+[Category: Feature](Category: Feature) [Category: Gluster](Category: Gluster)

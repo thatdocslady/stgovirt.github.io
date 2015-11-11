@@ -4,8 +4,8 @@ category: feature
 authors: mperina
 wiki_category: Feature
 wiki_title: Features/Fencing refactoring
-wiki_revision_count: 26
-wiki_last_updated: 2015-03-04
+wiki_revision_count: 22
+wiki_last_updated: 2015-01-28
 feature_name: Fencing refactoring
 feature_modules: engine
 feature_status: Design
@@ -19,12 +19,6 @@ The goal of this fencing refactoring is to clean up the code and provide those f
 
 *   Make SSH Soft Fencing part of Non Responding Treatment
 *   Provide ability to enable/disable SSH Soft Fencing, Kdump detection and Power Management Restart per host
-*   Refactor Power Management tab in Host Detail to ease management of multiple power management agents
-
-Following bugs are associated with fencing refactoring:
-
-*   [#1182510 - [RFE] - Fencing refactoring](https://bugzilla.redhat.com/1182510)
-*   [#1198628 - [RFE] - Refactoring of Power Management tab in Host Detail](https://bugzilla.redhat.com/1198628)
 
 ## Owner
 
@@ -59,9 +53,7 @@ Each host will own one record in this table, which will be created during 1st ho
 
 ### Webadmin UI
 
-New [ Host Availability](Media:Fence-refactoring-host-availability-tab.png) tab will be added into **Host detail** dialog. This tab will contain check boxes for all steps to enabled/disable each step for the specific host. And it will also contain other options related to host availability.
-
-[ Power Management](Media:Fence-refactoring-power-management-tab.png) tab will be refactored to ease handling of multiple power management agents.
+New **Fence Sequence** tab will be added into **Host detail** dialog. This tab will contain check boxes for all steps to enabled/disable each step for the specific host.
 
 ### REST API
 

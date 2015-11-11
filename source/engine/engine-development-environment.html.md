@@ -2,12 +2,12 @@
 title: OVirt Engine Development Environment
 category: engine
 authors: alonbl, amureini, arik, didi, dougsland, ecohen, gchaplik, gshereme, mkolesni,
-  moolit, mperina, msivak, nsoffer, ofri, roy, smizrahi, tsaban, vered, vitordelima,
-  vszocs, yair zaslavsky, ykleinbe
+  moolit, msivak, nsoffer, ofri, roy, smizrahi, tsaban, vered, vitordelima, vszocs,
+  yair zaslavsky, ykleinbe
 wiki_category: Engine
 wiki_title: OVirt Engine Development Environment
-wiki_revision_count: 93
-wiki_last_updated: 2015-05-26
+wiki_revision_count: 89
+wiki_last_updated: 2015-02-23
 ---
 
 # OVirt Engine Development Environment
@@ -55,17 +55,24 @@ Create `/etc/yum.repos.d/patternfly.repo` and copy/paste the contents of correct
 
       # yum install git java-devel maven openssl postgresql-server \
           m2crypto python-psycopg2 python-cheetah python-daemon libxml2-python \
-          unzip patternfly1 pyflakes python-pep8 python-docker-py
+          unzip patternfly1
 
-###### Application servers
+###### Fedora
 
-Following application servers are required for engine development:
+      # yum install jboss-as
 
-*   WildFly 8.2 for oVirt 3.6+ development
-        # yum install ovirt-engine-wildfly ovirt-engine-wildfly-overlay
+ovirt-engine doesn't work with jboss-as >= 8.0 (wildfly) on Fedora 20. To work around this issue, when using Fedora 20, do the following instead:
 
-*   JBoss 7.1.1 for backporting changes to oVirt 3.5
-        # yum install ovirt-engine-jboss-as
+      # wget http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip
+      # unzip jboss-as-7.1.1.Final -d /usr/share
+
+###### RHEL
+
+Option 1, setup jboss channel, and install downstream jboss, JBOSS_HOME will be /usr/share/jbossas.
+
+      # yum install jbossas-standalone jbossas-bundles jbossas-modules-eap
+
+Option 2, setup jboss upstream, download jboss-as-7.1.1 from [jboss site](http://www.jboss.org/jbossas/downloads/) and extract to $HOME. JBOSS_HOME will be ${HOME}/jboss-as-<version>...
 
 ##### Install ovirt packages
 
@@ -158,11 +165,6 @@ on Debian, include
       PATTERNFLY_HOME="$HOME/patternfly"
 
 Build may be customized, refer to [README.developer](http://gerrit.ovirt.org/gitweb?p=ovirt-engine.git;a=blob;f=README.developer;hb=HEAD) for further information.
-
-If WildFly 8.2 should be used, then it's required to manually setup ovirt-engine-wildfly-overlay using following command:
-
-    echo "ENGINE_JAVA_MODULEPATH="/usr/share/ovirt-engine-wildfly-overlay/modules:${ENGINE_JAVA_MODULEPATH}"" \
-      > $PREFIX/etc/ovirt-engine/engine.conf.d/20-setup-jboss-overlay.conf
 
 Setup product by executing the following command and replying to questions, if you followed the database creation above then your database user is 'engine', its password is 'engine' and the database name is 'engine':
 

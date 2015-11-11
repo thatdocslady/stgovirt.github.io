@@ -1,11 +1,11 @@
 ---
 title: GlusterHostDiskManagement
 category: feature
-authors: bala, rnahcimu, sahina, sandrobonazzola
-wiki_category: Feature|GlusterHostDiskManagement
+authors: bala, rnahcimu, sahina
+wiki_category: Feature
 wiki_title: Features/GlusterHostDiskManagement
-wiki_revision_count: 22
-wiki_last_updated: 2015-03-19
+wiki_revision_count: 21
+wiki_last_updated: 2015-01-06
 feature_name: Host Device Management
 feature_modules: engine,gluster
 feature_status: In Progress
@@ -101,4 +101,4 @@ None
 
 None
 
-[GlusterHostDiskManagement](Category: Feature) [Category: Gluster](Category: Gluster) [GlusterHostDiskManagement](Category:oVirt 3.6 Proposed Feature)
+[Category: Feature](Category: Feature) [Category: Gluster](Category: Gluster) [GlusterHostDiskManagement](Category:oVirt 3.6 Proposed Feature)

@@ -1,11 +1,11 @@
 ---
 title: oVirtScheduler
 category: feature
-authors: danken, doron, gchaplik, lhornyak
+authors: danken, doron, lhornyak
 wiki_category: Feature
 wiki_title: Features/oVirtScheduler
-wiki_revision_count: 11
-wiki_last_updated: 2015-04-07
+wiki_revision_count: 10
+wiki_last_updated: 2013-07-30
 ---
 
 # oVirt Scheduler
@@ -117,7 +117,8 @@ The specific API and design details can be found in the following page: [Feature
 
 ### References
 
-Some of the concepts in this design are related to the filter scheduler Nova Scheduler is using [1](http://docs.openstack.org/trunk/config-reference/content/section_compute-scheduler.html).
+Some of the concepts in this design are related to the filter scheduler Nova Scheduler is using.
+<http://docs.openstack.org/trunk/openstack-compute/admin/content/filter-scheduler.html>
 The idea is to possibly allow logic and potentially some code sharing between these sub-projects,
 even though both use different implementations and architectures.
 

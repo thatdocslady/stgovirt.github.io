@@ -1,184 +1,46 @@
 ---
 title: hostdev passthrough
 category: feature
-authors: mbetak, mpolednik
+authors: mpolednik
 wiki_category: Feature
 wiki_title: Features/hostdev passthrough
-wiki_revision_count: 65
-wiki_last_updated: 2015-05-07
+wiki_revision_count: 31
+wiki_last_updated: 2015-02-02
 ---
 
 # VM device hostdev passthrough
 
 ### Summary
 
-This feature will add host device reporting and their passthrough to guests.
+This feature will allow passthrough of host devices to guest
 
-### Owner VDSM
+### Owner
 
 *   Name: [ Martin Polednik](User:Martin Polednik)
 *   Email: <mpolednik@redhat.com>
 
-### Owner Engine
-
-*   Name: [ Martin Betak](User:Martin Betak)
-*   Email: <mbetak@redhat.com>
-
 ### Current status
 
-*   Last updated date: Wed Apr 8 2015
+*   Last updated date: Thu Aug 28 2014
 
 ### Terminology
 
 *   SR-IOV - Single Root I/O Virtualization - technology that allows single device to expose multiple endpoints that can be passed to VMs
-*   PF - Physical Function - refers to a physical device (possibly supporting SR-IOV)
+*   PF - Physical Function - refers to a physical device that supports SR-IOV
 *   VF - Virtual Function - virtual function exposed by SR-IOV capable device
-*   IOMMU group - unit of isolation created by the kernel IOMMU driver. Each IOMMU group is isolated from other IOMMU groups with respect to DMA. For our purposes, IOMMU groups are a set of PCI devices which may span multiple PCI buses.
+*   IOMMU group - I/O memory management unit group that incorporates multiple device DMAs on given bus
 *   VFIO - Virtual Function I/O - virtualization device driver, replacement of the pci-stub driver
 
 ### Host requirements
 
 *   hardware IOMMU support (AMD-Vi, Intel VT-d enabled in BIOS)
-*   enabled IOMMU support (intel_iommu=on for Intel, amd_iommu=on for AMD in kernel cmdline)
+*   enabled IOMMU support (intel_iommu=on for Intel, iommu=on for AMD in kernel cmdline)
 *   SR-IOV: SR-IOV capable hardware in bus with enough bandwidth to accomodate VFs
 *   RHEL7 or newer (kernel >= 3.6)
 
-### Only passing part of the devices in an IOMMU group
-
-"It's never been a requirement to pass through all devices within an IOMMU group to a guest. IOMMU groups are the unit of isolation and therefore ownership, but VM assignment is still done at the device level. Users may choose to leave some devices in the group unassigned. For instance with Quadro assignment, due to hardware issues with legacy interrupt masking, we do not support assignment of the audio function even though it's part of the same IOMMU group as the graphics function. For a supported configuration, the audio function should remain unused and unassigned to the VM."
-
-* Alex Williamson
-
-### Engine, frontend side
-
-This feature will be accessible only in WebAdmin UI since basic users should not manipulate host and it's devices. The list of host devices will be visible in Host Sub Tab and in Vm Sub Tab. Vm's HostDevice SubTab will have the added ability to assign/unassign given host device to VM. ![](Host_Dev_SubTab2.png "fig:Host_Dev_SubTab2.png")
-
-The attachement of new devices will be facilitated by new dialog (spawned by add host device button). In this dialog user will be able to select one (or more) devices to be attached.
-
-![](Add_Host_Device_2.png "Add_Host_Device_2.png")
-
-In the dialog table user will also have information about whether particular device is in use by other VMs or to which VMs has this device been attached. The backend will support configuring same host device for multiple vms (an overcommit of a sort), but only one of them will be allowed to run at given time.
-
-The dialog will also make user aware of the IOMMU group restriction by adding all necessary devices to the "selected" area if user specifies only one device.
-
 ### VDSM, host side
 
-Unlike virtual devices, host passthrough uses real host hardware, making the number of such assigned devices limited. The passthrough capability itself requires hardware that supports intel VT-d or AMD-vi. This capability can be reported through reading /sys/class/iommu and looking for 'dmar' file. Iommu also needs to be allowed on the host, which can unreliably be detected by parsing /proc/cmdline for intel_iommu=on or iommu=on.
-
-In order to report state of these devices, new verb is introduced: hostdevListByCaps. The verb takes list as an argument where each element of the list is a string identifying the class of devices caller wants to display (pci, usb_device, usb...). If no classes are specified, all of them are displayed. vdsClient supports hostdevFilterByCaps and displays the devices as a tree. Examples of the format are given below.
-
-Generic:
-
-    pci_0000_00_1f_2 = {'params': {'address': {'bus': '0',
-                                            'domain': '0',
-                                            'function': '2',
-                                            'slot': '31'},
-                                'capability': 'pci',
-                                'iommu_group': '11',
-                                'parent': 'computer',
-                                'product': '82801JI (ICH10 Family) SATA AHCI Controller',
-                                'product_id': '0x3a22',
-                                'vendor': 'Intel Corporation',
-                                'vendor_id': '0x8086'}}
-
-PF:
-
-    pci_0000_05_00_1 = {'params': {'address': {'bus': '5',
-                                            'domain': '0',
-                                            'function': '1',
-                                            'slot': '0'},
-                                'capability': 'pci',
-                                'iommu_group': '15',
-                                'parent': 'pci_0000_00_09_0',
-                                'product': '82576 Gigabit Network Connection',
-                                'product_id': '0x10c9',
-                                'totalvfs': 7,
-                                'vendor': 'Intel Corporation',
-                                'vendor_id': '0x8086'}}
-
-VF:
-
-    pci_0000_05_10_1 = {'params': {'address': {'bus': '5',
-                                            'domain': '0',
-                                            'function': '1',
-                                            'slot': '16'},
-                                'capability': 'pci',
-                                'iommu_group': '22',
-                                'parent': 'pci_0000_00_09_0',
-                                'physfn': 'pci_0000_05_00_1',
-                                'product': '82576 Virtual Function',
-                                'product_id': '0x10ca',
-                                'vendor': 'Intel Corporation',
-                                'vendor_id': '0x8086'}}
-
-Known device classes:
-
-    pci <- passthrough compatible
-    usb
-    usb_device <- passthrough compatible
-    scsi <- passthrough compatible
-    scsi_host
-    scsi_target
-    net
-    storage
-
-When domain with valid hostdev definition in devices section is started, VM tries to detach_detachable() the device. Due to libvirt's inability to automatically manage USB devices, problems with qemu not running under root user (https://bugzilla.redhat.com/show_bug.cgi?id=1196185) and possibility for more control on our side, the host devices are running in managed=no mode, meaning the handling of device reset is given to VDSM. The detach_detachable() call takes care of detaching the device from host (unbinding it from current drivers and binding to vfio, or pci-stub if old KVM is used - this behaviour is handled by libvirt's detachFlags call) and correctly setting permissions for /dev/vfio iommu group endpoint.
-
-The valid hostdev definition is similar to other devices and is documented in vdsm/rpc/vdsmapi-schema.json.
-
-Valid minimal host device definition for device pci_0000_05_10_1:
-
-    {..., 'devices': [..., {'type': 'hostdev', 'device': 'pci_0000_05_10_1'}, ...], ...}
-
-detach_detachable details: detachFlag() call spawns new device in /dev/vfio named after device's iommu group. The group can be read via link /sys/bus/pci/devices/$device_name/iommu_group or libvirt's nodeDev XML - so for example, /dev/vfio/12 can exist. Qemu needs an access to this device, which by default is set to root:root 0600 mode. VDSM chowns and chmods this file through udev rule to qemu:qemu 0600. *VFIO uses iommu group as atomic unit for passthrough*, meaning that the whole group has to be attached - this ranges from single device (SR-IOV VF) to multiple devices (GPU + sound card + hub). VDSM uses devices as atomic unit (due to possibility of running single device with unsafe interrupts), attachment of whole groups is left to engine.
-
-When domain with specified hostdev is destroyed, the device is released back to host via the reattach_detachable() call. The call takes care of reattaching the device back to host (meaning unbinding from vfio driver) via libvirt's reAttach() call and removing udev rule file for given iommu group.
-
-### Expected workflows
-
-#### VM creation
-
-1.  VDSM receives vmCreate command with valid host device definition,
-2.  before XML is generated, the device is
-3.  detached from the host
-4.  and it's permissions are modified by generated udev rule,
-5.  XML is constructed and VM is started.
-
-The expected outcome is
-
-*   Guest is running,
-*   /dev/vfio/X (where X is iommu group of the device) exists and has qemu:qemu 0600 permissions,
-*   /etc/udev/rules.d/99-vdsm-iommu_group_X.rules file exists.
-
-#### VM removal
-
-1.  VM is destroyed as ussual,
-2.  cleanup routine takes care of reattaching the device back to host
-3.  related udev rules are cleaned up
-
-The expected outcome is:
-
-*   Guest is correctly destroyed,
-*   host devices are reattached back to the host (meaning no unused /dev/vfio/X endpoints exist),
-*   udev rules related to iommu groups used are removed from the system.
-
-#### Parsing libvirt XML of the device
-
-Host device in the xml isn't different from other devices, therefore we have to parse it's
-
-*   alias
-*   address
-
-The address indicates how the device is visible inside the guest.
-
-1.  Find all host devices,
-2.  construct libvirt name (pci_0000_05_10_1) from the address as seen in XML
-3.  pair to existing device
-4.  or if the device doesn't exist, add it to VM conf
-
-### SR-IOV
-
-SR-IOV capability can be found via /sys/bus/pci/devices/\`device_name\`/sriov_numvfs and sriov_totalvfs, that indicate the device SHOULD be capable of spawning multiple virtual functions. It is possible that the bus device is connected to doesn't have enough bandwidth for these virtual functions.
+Unlike virtual devices, host passthrough uses real host hardware, making the number of such assigned devices limited. The passthrough capability itself requires hardware that supports intel VT-d or AMD-vi. This capability can be reported through the parsing of kernel cmdline (/proc/cmdline), where intel_iommu or iommu option appears. Please note that this cannot guarantee that the feature is in fully working condition, but should be sufficient on correctly configured passthrough hosts. SR-IOV capability can be found via /sys/bus/pci/devices/\`device_name\`/sriov_numvfs and sriov_totalvfs, that indicate the device SHOULD be capable of spawning multiple virtual functions. It is possible that the bus device is connected to doesn't have enough bandwidth for these virtual functions.
 
     echo 7 > sriov_numvfs                                                                                                                                                                    
     -bash: echo: write error: Cannot allocate memory
@@ -186,94 +48,93 @@ SR-IOV capability can be found via /sys/bus/pci/devices/\`device_name\`/sriov_nu
     dmesg | tail -n 1
     [ 9952.612558] igb 0000:07:00.0: SR-IOV: bus number out of range
 
-VFs can be spawned by hostdevChangeNumvfs(device_name, number) call, which spawns number VFs for device_name PF. This call might fail for many reasons, resulting in failure to spawn the VFs. Reasons for failure include not enough bandwidth on the bus to handle multiple devices.
+In order to report state of these devices, new verb is introduced: hostdevListByCaps. The verb takes list as an argument where each element of the list is a string identifying the class of devices caller wants to display (pci, usb_device, usb...). If no classes are specified, all of them are displayed. vdsClient supports hostdevFilterByCaps and displays the devices as a tree. Verb return format is specified in (ref 1), tree in (ref 2).
 
-Passthrough of VF is similar to generic passthrough.
+When domain with valid hostdev definition in devices section is started, VM tries to detach_if_detachable() the device. Due to libvirt's inability to automatically manage USB devices and possibility for more control on our side, the host devices are running in managed=no mode, meaning the handling of device reset is given to VDSM. The detach_if_detachable() call takes care of detaching the device from host (unbinding it from current drivers and binding to vfio, or pci-stub if old KVM is used - this behaviour is handled by libvirt's detachFlags call).
 
-### API
+The valid hostdev definition is similar to other devices and is documented in vdsm/rpc/vdsmapi-schema.json.
 
-The API of hostdev feature is defined in vdsm/hostdev.py.
+detach_if_detachable details: detachFlag() call spawns new device in /dev/vfio named after device's iommu group. The group can be read via link /sys/bus/pci/devices/$device_name/iommu_group or libvirt's nodeDev XML - so for example, /dev/vfio/12 can exist. Qemu needs an access to this device, which by default is set to root:root 0600 mode. VDSM chowns and chmods this file through udev rule to qemu:qemu 0600. *VFIO uses iommu group as atomic unit for passthrough*, meaning that the whole group has to be attached - this ranges from single device (SR-IOV VF) to multiple devices (GPU + sound card + hub). VDSM uses devices as atomic unit (due to possibility of running single device with unsafe interrupts), attachment of whole groups is left to engine.
 
-#### Structures
+When domain with specified hostdev is destroyed, the device is released back to host via the reattach_if_detachable() call. The call takes care of reattaching the device back to host (meaning unbinding from vfio driver) via libvirt's reAttach() call. This call is also exposed via hostdevRelease verb, which serves as an emergency release in case VDSM doesn't correctly release the device itself (you should never see this error case).
 
-`
-device_name
-`
+ref 1:
 
-Structure that represents the libvirt name of the device. Such name looks like pci_0000_00_0 for pci devices, usb_usb1 for usb devices or scsi_0_0_0_0.
+    devices: ['deviceName': [{'params': {'capability': '...', 'product': '', product_id: '', 'vendor': '', 'vendor_id': '', 'iommu_group', 'parent': ''}, 'vmId': ''}]]
 
-`
-device_params
-`
+ref 2:
 
-    {'params': {'address': {'bus': '5',
-                                            'domain': '0',
-                                            'function': '0',
-                                            'slot': '0'},
-                                'capability': 'pci',
-                                'iommu_group': '15',
-                                'parent': 'pci_0000_00_09_0',
-                                'product': '82576 Gigabit Network Connection',
-                                'product_id': '0x10c9',
-                                'totalvfs': 7,
-                                'vendor': 'Intel Corporation',
-                                'vendor_id': '0x8086'}}
+    pci_0000_00_1f_2 = {'params': {'capability': 'pci',
+                            'iommu_group': '11',
+                            'parent': 'computer',
+                            'product': '82801JI (ICH10 Family) SATA AHCI Controller',
+                            'product_id': '0x3a22',
+                            'vendor': 'Intel Corporation',
+                            'vendor_id': '0x8086'},
+                 'vmId': ''}
+        scsi_host1 = {'params': {'capability': 'scsi_host', 'parent': 'pci_0000_00_1f_2'}, 'vmId': ''}
+            scsi_target1_0_0 = {'params': {'capability': 'scsi_target', 'parent': 'scsi_host1'}, 'vmId': ''}
+                scsi_1_0_0_0 = {'params': {'capability': 'scsi', 'parent': 'scsi_target1_0_0'}, 'vmId': ''}
+                    scsi_generic_sg1 = {'params': {'capability': 'scsi_generic', 'parent': 'scsi_1_0_0_0'},
+                                        'vmId': ''}
 
-Dictionary containing all relevant information about the device as returned by libvirt.
+ref 3:
 
-#### Internal
+    <device>
+      <name>pci_0000_00_19_0</name>
+      <path>/sys/devices/pci0000:00/0000:00:19.0</path>
+      <parent>computer</parent>
+      <driver>
+        <name>e1000e</name>
+      </driver>
+      <capability type='pci'>
+        <domain>0</domain>
+        <bus>0</bus>
+        <slot>25</slot>
+        <function>0</function>
+        <product id='0x1502'>82579LM Gigabit Network Connection</product>
+        <vendor id='0x8086'>Intel Corporation</vendor>
+      </capability>
+    </device>
 
-*   `pci_address_to_name -> domain -> bus -> slot -> function -> device_name`
+### SR-IOV
 
-Converts domain, bus, slot and function fields of device_params to device_name.
+*   to be discussed
+*   possibly report numvfs and totalvfs in PV definition
+*   possibly report PV in VF definition
+*   should VF spawning be handled by engine or user? (possible VT-d, iommu etc. complications)
 
-*   `list_by_caps -> vmContainer -> [String] -> {device_name: device_params}`
+### Engine side
 
-Where [String] is list of strings of device classes. See "known device classes".
+(currently ideas, may be changed after someone with deeper understanding of engine takes a look)
 
-*   `get_device_params -> device_name -> device_params`
+Engine is given means of:
 
-<!-- -->
+*   fetching host devices via hostdevListByCaps call
+*   adding host devices via VM's device section
+*   removing loose devices via hostdevRelease call
 
-*   `detach_detachable -> device_name -> device_params`
+#### Fetching the devices and removing loose devices
 
-This call manages all actions required to successfully prepare the device for passthrough incl. detaching it and correcting ownership of the device.
+The devices and their assignment to VMs should be visible in hosts tab - lower section of screen where General, Virtual Machines, Network Interfaces etc. tabs are. They could be listed in similar manner as network interfaces are, mentioning the device name, product and product_id, vendor and vendor_id and possibly iommu group along with VM they are attached to (left blank if none).
 
-*   `reattach_detachable -> device_name -> ()`
+Information can be gathered via regular polling or refresh button (which should be present even while polling in order to speed up the process of hot(un)plug detection). Right clicking on the device could bring up "force release" option, that would propagate the hostdevRelease call.
 
-This call manages all actiosn required to successfully reattach the device back to host incl. reattaching it and removing udev files managing ownership.
+#### Adding host devices
 
-*   `change_numvfs -> device_name -> numvfs -> ()`
+Host devices can be listed in New VM dialog as another tab on the left side (called probably host devices?). Clicking on this tab would bring table similar to one in hosts tab but showing only unassigned devices. User can select multiple devices (left to UI/UX - im not sure of the best way to accomplish this - maybe moving them like NICs from host to VM similar to "Setup Host Networks"?).
 
-Where Int ≤ device_params['totalvfs'].
+There are 2 kinds of additional information that can be helpful for UI: parent attribute of fetched devices allows for construction of a device tree. Another information is iommu_group mentioned in VDSM side: engine should implicitly auto-move iommu groups instead of devices, but still allow the user to somehow enable "device granularity", possibly through some small decouple button (on: moving a device to VM moves whole group, off: only a single device is moved) but there should be mention of additional host configuration required (vfio_iommu_type1.allow_unsafe_interrupts=1).
 
-#### External
-
-*   Create VM device definition (minimal):
-
-      {'type': 'hostdev', 'device': device_name}
-
-*   `hostdevListByCaps -> [String] -> [vmDevice]`
-
-Where [String] is list of strings of device classes. See "known device classes".
-
-*   `hostdevChangeNumvfs -> device_name -> Int -> status`
-
-Where Int ≤ device_params['totalvfs'].
-
-### Cluster (not implemented, possible ideas)
+### Cluster
 
 Host device structure has 2 fields that are meant to be used as possible implementation of cluster support - vendor_id and product_id. Cluster model and UI could be modified to allow adding these fields as kind of "required devices" - only hosts with those devices would be cluster compatible. This would allow for a migration routine of hotunplug, migrate and hotplug. It might be possible to allow engine to create a device (defined by vendor_id and product_id and identified by name) that would be used as a required device for better UI/UX support.
 
-### Migration (not implemented, possible ideas)
+### Migration
 
 Migration should be disabled for any VM with hostdev device. This means that in order to migrate the VM, host devices need to be hotunplugged before migration and hotplugged after migration. Whether this routine should be handled by user, engine or VDSM is to be decided.
 
 Migration of network devices IS possible using bonding but that is out of scope for the hostdev support.
-
-### Related bugs
-
-[Bug 1196185 - libvirt doesn't set permissions for VFIO endpoint](https://bugzilla.redhat.com/show_bug.cgi?id=1196185)
 
 ### Troubleshooting
 
@@ -291,7 +152,9 @@ Error on VDSM side, /dev/vfio/X does not have correct permissions.
 
 You are trying to pass through device that is in IOMMU group with other devices. There are 2 possibilities: either add all other devices from the group or enable unsafe interrupts in vfio_iommu_type1 with allow_unsafe_interrupts=1 (append vfio_iommu_type1.allow_unsafe_interrupts=1 to kernel cmdline). The second solution might lead to vulnerability/instability.
 
-Other: In case of device assignment failure, you can try to allow kernel to reassign devices from BIOS by appending pci=realloc to command line (also solves "not enough MMIO resources for SR-IOV" and other "bad bios" problems).
+Device is stuck in acquired mode even if the VM isn't running: use service hostdevRelease <deviceName> call.
+
+Other: In case of device assignment failure, you can try to allow kernel to reassign devices from BIOS by appending pci=realloc to command line (also solves "not enough MMIO resources for SR-IOV" and other "bad bios" problems)
 
 ### References
 
@@ -299,6 +162,5 @@ Other: In case of device assignment failure, you can try to allow kernel to reas
 *   <https://www.pcisig.com/specifications/iov/>
 *   <http://libvirt.org/guide/html/Application_Development_Guide-Device_Config-PCI_Pass.html>
 *   <https://bbs.archlinux.org/viewtopic.php?id=162768> (great post for troubleshooting)
-*   <http://vfio.blogspot.cz/> (Alex Williamson's blog on VFIO)
 
 <Category:Feature>
