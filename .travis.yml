@@ -3,7 +3,7 @@ script: "./build.sh"
 sudo: true
 branches:
   only:
-  - pr-docs-merge
+  - middleman
 rvm:
 - 2.1.2
 env:

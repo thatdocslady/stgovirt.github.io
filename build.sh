@@ -13,19 +13,19 @@ set -e
 bundle exec middleman build
 
 # cleanup
-rm -rf ../ovirt-stg.gh-pages
+rm -rf ../stgovirt.github.io.master
 
 #clone `master' branch of the repository using encrypted GH_TOKEN for authentification
-git clone https://${GH_TOKEN}@github.com/jasonbrooks/ovirt-stg.git ../ovirt-stg.gh-pages
+git clone https://${GH_TOKEN}@github.com/stgovirt.github.io.git ../stgovirt.github.io.master
 
 # copy generated HTML site to `master' branch
-cp -R build/* ../ovirt-stg.gh-pages
+cp -R build/* ../stgovirt.github.io.master
 
 # commit and push generated content to `master' branch
 # since repository was cloned in write mode with token auth - we can push there
-cd ../ovirt-stg.gh-pages
+cd ../stgovirt.github.io.master
 git config user.email "jason@sealrock.net"
 git config user.name "Jason Brooks"
 git add -A .
 git commit -a -m "Travis #$TRAVIS_BUILD_NUMBER"
-git push --quiet origin gh-pages > /dev/null 2>&1
+git push --quiet origin master > /dev/null 2>&1
