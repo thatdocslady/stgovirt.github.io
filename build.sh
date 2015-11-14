@@ -28,4 +28,4 @@ git config user.email "jason@sealrock.net"
 git config user.name "Jason Brooks"
 git add -A .
 git commit -a -m "Travis #$TRAVIS_BUILD_NUMBER"
-git push --quiet origin master > /dev/null 2>&1
+git push --quiet origin gh-pages > /dev/null 2>&1
