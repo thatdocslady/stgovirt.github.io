@@ -1,0 +1,10 @@
+language: ruby
+script: "./build.sh"
+branches:
+  only:
+  - pr-docs-merge
+rvm:
+- 2.1.2
+env:
+  global:
+    secure: mchP6lqvLYaLib9Y8gaLey69vnOSZ+5P69F7/3OKDa55O6kClz/2zAYbvzkDraOQPIkZintNPUgVr5cUqCZnx3z+sqGsW4IjMiRE6pcq5684zPB4Czt5KzxlSF3cybumBgPlPQX3QO7l4yaab+wUiahn+nj4UAMgR9l5u9J7UhVA/SqUx8yfxik5MQdbuyxIuSz9wYz1qoZ+7Jwfpv6d0jv6+MNjlmwxHcauefGd1hHCqRx7eUoMnUdgiRftecScmw5VStHXUN0GHgZBK3gBBxFn4zNlkznmWeexQMUu3tLv8n4YwCusxsjV1YUPTpEFb2ztmELa9ibLUdUsnO9Jt39tx03HDHH9al8y/F6szazCC4krOYuQ1/KT/pPg5YM7exi1zKnawkN5R9Bcc7jXSWPjoXKTxKDnTQj4X2oSTld2G1d+mWRhufZx+Dc7shGDamWJ+wmU3RdUqOEHRc4tAZFrA1p3VI4Dn29HE486Mp3xIlJnMtdnSXthzUMIX7Cjj0zuV/ndUmCL6pflGKK6IjmX1liCPhMCQTM2CVQteAc2ENGTPr19plU5gy3V420YXPPn+yqmnOKxUZiZCRcx1kuR+SRgOGckJCtMttahpWQelOxBB/DEbQDrZdu/doxyf7K9QHgSg6SSRAd/356yuM27J19nl6sNL1zKXo+IKLE=
