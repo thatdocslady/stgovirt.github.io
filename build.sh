@@ -13,7 +13,7 @@ set -e
 bundle exec middleman build
 
 # cleanup
-#rm -rf ../ovirt-stg.gh-pages
+rm -rf ../ovirt-stg.gh-pages
 
 #clone `master' branch of the repository using encrypted GH_TOKEN for authentification
 git clone https://${GH_TOKEN}@github.com/jasonbrooks/ovirt-stg.git ../ovirt-stg.gh-pages
