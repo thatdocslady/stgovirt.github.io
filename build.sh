@@ -16,7 +16,7 @@ bundle exec middleman build
 rm -rf ../stgovirt.github.io.master
 
 #clone `master' branch of the repository using encrypted GH_TOKEN for authentification
-git clone https://${GH_TOKEN}@github.com/stgovirt.github.io.git ../stgovirt.github.io.master
+git clone https://${GH_TOKEN}@github.com/stgovirt/stgovirt.github.io.git ../stgovirt.github.io.master
 
 # copy generated HTML site to `master' branch
 cp -R build/* ../stgovirt.github.io.master
