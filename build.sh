@@ -7,7 +7,7 @@ if [ $TRAVIS_PULL_REQUEST == "true" ]; then
 fi
 
 # enable error reporting to the console
-set -e
+set -x
 
 # build site with middleman, by default to `build' folder
 bundle exec middleman build
