@@ -24,7 +24,7 @@ cp -R build/* ../ovirt-stg.gh-pages
 # commit and push generated content to `master' branch
 # since repository was cloned in write mode with token auth - we can push there
 cd ../ovirt-stg.gh-pages
-git config user.email "jbrooks@redhat.com"
+git config user.email "jason@sealrock.net"
 git config user.name "Jason Brooks"
 git add -A .
 git commit -a -m "Travis #$TRAVIS_BUILD_NUMBER"
