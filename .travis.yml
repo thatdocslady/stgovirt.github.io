@@ -1,5 +1,6 @@
 language: ruby
 script: "./build.sh"
+sudo: true
 branches:
   only:
   - pr-docs-merge
