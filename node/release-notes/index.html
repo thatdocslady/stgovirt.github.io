@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Node Release Notes &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Node Release Notes</td>
+</tr>
+<tr>
+<th>category</th>
+<td>node</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>fabiand, mburns, nkesick</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Node</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Node Release Notes</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>17</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-11-19</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Node_Release_Notes' target='_blank'>
+Node Release Notes
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="node-release-notes">Node Release Notes</h1>
+
+<h2 id="release-notes">3.0.2 Release Notes</h2>
+
+<ul>
+  <li>Bug fixes
+    <ul>
+      <li>Fixes to let gluster work oob</li>
+      <li>Fix link detection with some NICs</li>
+      <li>Add some module dependencies</li>
+      <li>Better debugging informations</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="release-notes-1">3.0.1 Release Notes</h2>
+
+<ul>
+  <li>Several bug fixes</li>
+</ul>
+
+<h2 id="release-notes-2"><strong>3.0.0 Release Notes</strong></h2>
+
+<ul>
+  <li>For an detailed overview take a look at the <a href="/node/3.0-release-management/">Node 3.0 release-management</a> page</li>
+  <li>Universal Image - Remove VDSM specific bits to make the image more general (an VDSM image is still provided)</li>
+  <li>Improved upgrade tool</li>
+  <li>Software iSCSI root</li>
+  <li>Puppet configuration management</li>
+  <li>Bridegeless Networking</li>
+  <li>NIC Bonds</li>
+  <li>New installer TUI</li>
+  <li>IPv6 support in the setup TUI</li>
+  <li>Diagnostics page in the setup TUI</li>
+  <li>Images for Fedora 19 and EL6</li>
+</ul>
+
+<h2 id="release-notes-3">2.6.1 Release Notes</h2>
+
+<ul>
+  <li>Fix for <a href="https://bugzilla.redhat.com/show_bug.cgi?id=911699">CVE-2013-0293</a></li>
+  <li>Updated vdsm and latest Fedora 18 packages</li>
+</ul>
+
+<h2 id="release-notes-4">2.6.0 Release Notes</h2>
+
+<ul>
+  <li>Move to Fedora 18 base</li>
+  <li>Add new Setup UI (based on python-urwid)</li>
+  <li>glusterfs client support added</li>
+  <li>Full Plugin enablement</li>
+  <li>various other enhancements and bug fixes</li>
+</ul>
+
+<h2 id="release-notes-5">2.5.5 Release Notes</h2>
+
+<ul>
+  <li>include dns_resolver kmod to fix nfs mounting issues</li>
+</ul>
+
+<h2 id="release-notes-6">2.5.4 Release Notes</h2>
+
+<ul>
+  <li>Fix selinux booleans related to sanlock</li>
+</ul>
+
+<h2 id="release-notes-7">2.5.3 Release Notes</h2>
+
+<ul>
+  <li>Include /bin/hostname command</li>
+</ul>
+
+<h2 id="release-notes-8">2.5.2 Release Notes</h2>
+
+<ul>
+  <li>This build includes the fixed vdsm to allow nfs</li>
+</ul>
+
+<p>based domains to be attached.</p>
+
+<h2 id="release-notes-9">2.5.1 Release Notes</h2>
+
+<ul>
+  <li>Refactoring for pep8 compliance</li>
+  <li>Various bug fixes for oVirt 3.1 support</li>
+  <li>TECH PREVIEW: Plugin Support</li>
+</ul>
+
+<h3 id="known-issues-for-240">Known issues for 2.4.0</h3>
+
+<ul>
+  <li>See Current Backlog for other issues <a href="/node/backlog/">Node_Backlog</a></li>
+</ul>
+
+<h2 id="release-notes-10">2.4.0 Release Notes</h2>
+
+<ul>
+  <li>Move to F17 Base</li>
+  <li>Various spec file cleanups</li>
+  <li>fix some issues around networking</li>
+  <li>Various bugs related to F17 transition</li>
+</ul>
+
+<h3 id="known-issues-for-240-1">Known issues for 2.4.0</h3>
+
+<ul>
+  <li>See Current Backlog for other issues <a href="/node/backlog/">Node_Backlog</a></li>
+</ul>
+
+<h2 id="release-notes-11">2.3.0 Release Notes</h2>
+
+<ul>
+  <li>Migrate to systemd for fedora based images</li>
+  <li>Add support for detecting and cleaning fakeraid devices</li>
+  <li>Add libvirt-cim/sblim-sfcb support to ovirt-node</li>
+  <li>Various stateless fixes</li>
+  <li>Various Small TUI fixes</li>
+  <li>Add keyboard selection support</li>
+  <li>Add ovirt-node-iso rpm</li>
+</ul>
+
+<h3 id="known-issues-for-230">Known Issues for 2.3.0</h3>
+
+<ul>
+  <li>See Current Backlog for other issues <a href="/node/backlog/">Node_Backlog</a></li>
+</ul>
+
+<h2 id="release-notes-12">2.2.3 Release Notes</h2>
+
+<ul>
+  <li>Add kickstarts for F18</li>
+  <li>Configuring networking even if autoinstall fails</li>
+  <li>Small build enhancements</li>
+  <li>Added archipel configuration</li>
+  <li>Limited stateless support introduced</li>
+</ul>
+
+<h3 id="known-issues-for-223">Known Issues for 2.2.3</h3>
+
+<ul>
+  <li>See Current Backlog for other issues <a href="/node/backlog/">Node_Backlog</a></li>
+</ul>
+
+<h2 id="release-notes-13">2.2.2 Release Notes</h2>
+
+<ul>
+  <li>UEFI installation should be fixed <a href="https://bugzilla.redhat.com/show_bug.cgi?id=761540">Bug 761540</a></li>
+  <li>Spec file cleanup</li>
+  <li>Build process enhancements</li>
+  <li>Automatically log out sessions that are idle for 15 minutes</li>
+  <li>Validate iscsi iqn name</li>
+  <li>Persist Manually added dns entries when using DHCP</li>
+  <li>Fix display of bootproto when using vlans</li>
+</ul>
+
+<h3 id="known-issues-for-222">Known Issues for 2.2.2</h3>
+
+<ul>
+  <li>See Current Backlog for other issues <a href="/node/backlog/">Node_Backlog</a></li>
+</ul>
+
+<h2 id="release-notes-14">2.2.1 Release Notes</h2>
+
+<ul>
+  <li>UEFI installation does not work with internal drives, only usb drives <a href="https://bugzilla.redhat.com/show_bug.cgi?id=761540">Bug 761540</a></li>
+  <li>Registration directly from ovirt-node will fail <a href="https://bugzilla.redhat.com/show_bug.cgi?id=782663">Bug 782663</a></li>
+  <li>Adding oVirt Node through the engine interface will fail <a href="https://bugzilla.redhat.com/show_bug.cgi?id=782660">Bug 782660</a>
+    <ul>
+      <li>There is a workaround available in this <a href="http://gerrit.ovirt.org/#change,1117">patch</a></li>
+      <li>Needs to be applied on the ovirt-engine server to vds_installer.py in /usr/share/ovirt-engine/scripts/</li>
+    </ul>
+  </li>
+  <li>Some hardware seems to fail to boot the Node correctly
+    <ul>
+      <li>Fails to load the TUI when booting the first time</li>
+      <li>Seen on IBM x3650 Servers</li>
+      <li>Cannot reproduce on desktop hardware or virtual machines</li>
+    </ul>
+  </li>
+  <li>See Current Backlog for other issues <a href="/node/backlog/">Node_Backlog</a></li>
+</ul>
+
+<h2 id="release-notes-15">2.2.0 Release Notes</h2>
+
+<ul>
+  <li>Registration with oVirt Engine is non-functional due to vdsm bugs
+    <ul>
+      <li><a href="https://bugzilla.redhat.com/show_bug.cgi?id=752464">Bug 752464</a></li>
+    </ul>
+  </li>
+  <li>This release is intended to be used for testing installation</li>
+</ul>
+
+<category:node>
+</category:node>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

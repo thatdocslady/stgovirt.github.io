@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+ubuntu &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>ubuntu</td>
+</tr>
+<tr>
+<th>category</th>
+<td>debian</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>dneary, lhornyak, vfeenstr</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Debian</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Ovirt build on debian/ubuntu</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>4</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-11-21</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Ovirt_build_on_debian/ubuntu' target='_blank'>
+Ovirt build on debian/ubuntu
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="ubuntu">ubuntu</h1>
+
+<h3 id="building-ovirt-on-debianubuntu">Building ovirt on debian/ubuntu</h3>
+
+<p>If you have questions about these notes ask xTs_w in #ovirt on OFTC (irc.oftc.net)</p>
+
+<p>Depends:</p>
+
+<ul>
+  <li>postgresql-9.1</li>
+  <li>openjdk-6-jre</li>
+  <li>postgresql-contrib-9.1</li>
+</ul>
+
+<p>Build-Depends: maven2, openjdk6-jdk It looks like postgres-8.4 is too old, so I'm increasing it to 9.1</p>
+
+<h3 id="building-ovirt-engine-for-debian">Building ovirt-engine (for Debian)</h3>
+
+<p>Following: <a href="/documentation/draft/building-engine/">Building oVirt engine</a> (changes to make are documented below) Changes: Installing JBoss AS Get JBoss from jboss.org or build the package. wget <a href="http://sourceforge.net/projects/jboss/files/JBoss/JBoss-5.1.0.GA/jboss-5.1.0.GA-jdk6.zip/download">http://sourceforge.net/projects/jboss/files/JBoss/JBoss-5.1.0.GA/jboss-5.1.0.GA-jdk6.zip/download</a> Building JBoss 5.1.0GA with Debian Squeeze: <a href="http://wiki.debian.org/JBossPackaging#Building_the_packages_from_vcs">http://wiki.debian.org/JBossPackaging#Building_the_packages_from_vcs</a> Build the package (but be aware that the package is n ot fully debian policy conform and no security patches get applied!)</p>
+
+<p>Creating the database</p>
+
+<ul>
+  <li>create a different user (for packaging: do this) or</li>
+  <li>add in /etc/postgresql/9.1/main/pg_hba.conf: host all postgres 127.0.0.1/32 trust</li>
+</ul>
+
+<p>when executing ./create_db_devel.sh you'll get some error about uuid-ossp because the script searches in the wrong path. Use ./create_db_devel.sh -f /usr/share/postgresql/8.4/contrib/uuid-ossp.sql With Postgres 9.1 this is done automatically</p>
+
+<h2 id="packaging">Packaging</h2>
+
+<p>There is a Makefile now which should make packaging pretty easy. Notes: In the fedora package there are several scripts executed after copying the files. This is done by the program "engine-setup". This has to be done for debian somehow, too. It enables the SSL support and the support for the keystore file that you need to save passwords (for the power management). VDSM Building vdsm Depends: python, libvirt-bin, open-iscsi(&gt;= 2.0.872), multipath-tools, python-ethtool, python-libvirt (&gt;= 0.9.6-1), policycoreutils, sudo, bridge-utils, e2fsprogs (&gt;=1.42), lvm2, python-apt (&gt;=0.7.9), ifenslave-2.6, cman Build-Depends: automake, pyflakes Notes</p>
+
+<ul>
+  <li>requires python-ethtool, which is not in debian. Can be easily built from the ubuntu sources</li>
+  <li>Debian/Squeeze is too old. Try at least Wheezy(testing).</li>
+  <li>vdsm will run without cgroups but it'll throw an exception.</li>
+</ul>
+
+<h3 id="packaging-notes">Packaging notes</h3>
+
+<p>Multibinary-Package?</p>
+
+<ul>
+  <li>vdsmd</li>
+  <li>vdms-client</li>
+  <li>vdms-bootstrap</li>
+  <li>vdms-reg</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>init-Script: needs cleanup for packaging (or rewriting. Shouldn't be too hard)</li>
+  <li>cron.d/vdsm-libvirt-logrotate really needed? Normally not -&gt; Not needed, but vdsm creates a lot of debug output and therefore big log files)</li>
+  <li>cron.hourly/vdsm-*: same as above</li>
+  <li>logrotate.d/vdsm: cleanup needed (cores?!)</li>
+  <li>change xz to gzip</li>
+  <li>ovirt-commandline.d: ?</li>
+  <li>ovirt-config-boot.d: ?</li>
+  <li>pki: Debian just knows /etc/ssl/</li>
+  <li>rc.d/: No rc.d in debian. What's its function in RH?</li>
+  <li>like init.d</li>
+  <li>rwtab.d: Really needed? -&gt; just for the node (makes part of the read-only root-fs writeable)</li>
+  <li>sudoers.d/ -&gt; changes are needed in the sudoers file (see below)</li>
+  <li>udev/rules.d/12-vdsm-lvm.rules: What's the function of this? Looks like a workaround</li>
+  <li>it is kind of a workaround. It sets the correct permissions of the lvm-volumes that get created for the storage of the VMs. It is needed to set the permissions correctly after a reboot. But the priority is too high. Set it to 95 and it will work correctly</li>
+  <li>vdsm/: provide an example vdsm.conf that is installed in /etc/vdsm/</li>
+  <li>vdsm-reg/: belongs to vdsm-reg and the question is, if this is really needed.</li>
+</ul>
+
+<p>vdsm wont run as root. You need to start it as user (name it "vdsm") and copy the sudoers config file to /etc/sudoers.d to run it. Or edit METADATA_USER in vdsm/constants.py (for testing purpose only!)</p>
+
+<ul>
+  <li>vdsm creates a directory /rhev/data-center. Would fit better in /var/lib/vdsm/ (is configurable!)</li>
+  <li>vdsm listens on the IP of "default_bridge" (in vdsm.conf). Default is engine. Needs to be configured by preinst-Scripts somehow (or in /etc/default a script that disables vdsm by default, so the user can add the bridge and enable vdsm afterwards)</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>needs module "cpuid" loaded</li>
+  <li>User vdsm must be in group libvirt supervdsmServer.pyc doesn't exist and wont get created.</li>
+  <li>in order to run vdsm the following changes are needed:</li>
+  <li>change in supervdsm.py: supervdsmServer.pyc to supervdsmServer.py</li>
+  <li>change the sudoers file accordingly</li>
+  <li>/etc/iscsi/initiatorname.iscsi has normally rights 600, but needs to be readable by vdsm. sudo might be a solution here</li>
+  <li>seems to be fixed in wheezy</li>
+  <li>not fixed. Right after installation of open-iscsi file has 644, but after a reboot 600</li>
+  <li>vdsm needs to run with uid 36 currently or something that maps to uid 36 on a nfs share (afaik this is not hard coded. Any uid will do, but has to be used on all systems then)</li>
+  <li>this is not hardcoded, but has something to do with nfs shares. So if you use nfs somewhere, be sure that vdsm runs as the same user everywhere or map the uids</li>
+  <li>in vdsm/constants.py: DISKIMAGE_GROUP and QEMU_PROCESS_USER need to be set to kvm and user libvirt-qemu (or whatever users exist)</li>
+  <li>the sudoers file has to be changed accordingly. (chown!)</li>
+  <li>libvirtd needs some config (if ssl=false):</li>
+  <li>listen_tcp=1</li>
+  <li>auth_tcp="none"</li>
+  <li>spice_tls=0</li>
+  <li>init-Script should check this</li>
+</ul>
+
+<p>For the record: vdsm runs without any options, with a proper config file, started by hand without an init script. (don't forget to load the cpuid and the kvm module!) A few things need fixes:</p>
+
+<ul>
+  <li>vdsm looks in /etc/default/version for the version. Patch needed for upstream.</li>
+  <li>Upstream Debian support needs discussion but is in the works</li>
+  <li><a href="https://bugzilla.redhat.com/show_bug.cgi?id=768919">https://bugzilla.redhat.com/show_bug.cgi?id=768919</a></li>
+  <li>in constants.py change EXT_SERVICE to '/usr/sbin/invoke-rc.d'</li>
+  <li>in sudoers file: replace "/usr/sbin/service" with "/usr/sbin/invoke-rc.d"m</li>
+  <li>utils::595::Storage.Misc.excCmd::(execCmd) '/bin/rpm -q –qf "%{NAME}\t%{VERSION}\t%{RELEASE}\t%{BUILDTIME}\n" qemu-kvm' (cwd None)</li>
+</ul>
+
+<p>wont work, because we're using dpkg</p>
+
+<ul>
+  <li>in vdsm/storage/multipath.py change multipathd to multipath-tools change sudoers file accordingly</li>
+</ul>
+
+<h3 id="spice">SPICE</h3>
+
+<p>A spice-xpi package for debian/ubuntu would be nice, too. See here: <a href="http://www.spice-space.org/">http://www.spice-space.org/</a> <span class='broken-link link-error' data-href='http://www.spice-space.org/download.html' title='Broken link: original pointed to: http://www.spice-space.org/download.html'>http://www.spice-space.org/download.html</span> -&gt; spice-xpi</p>
+
+<p>There is an ubuntu package here: <a href="https://launchpad.net/~gekkio/+archive/spice">https://launchpad.net/~gekkio/+archive/spice</a> libspice-server1 is in Debian/Testing already and is a dependency of libvirt-bin</p>
+
+<category:debian> <category:ubuntu>
+</category:ubuntu></category:debian>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

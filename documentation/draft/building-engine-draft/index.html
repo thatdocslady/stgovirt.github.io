@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Building Engine Draft &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Building Engine Draft</td>
+</tr>
+<tr>
+<th>category</th>
+<td>draft-documentation</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>alonbl, jhernand, vszocs</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Draft documentation</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Building Engine Draft</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>112</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-05-12</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Building_Engine_Draft' target='_blank'>
+Building Engine Draft
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="building-engine-draft">Building Engine Draft</h1>
+
+<p><big><font color="lightgray" style="background-color: darkred">ATTENTION: This page is obsoleted for &gt;=ovirt-engine-3.3 by [oVirt Engine Development Environment](OVirt_Engine_Development_Environment)</font></big></p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>This is a draft of updated building instructions. Please refer to <a href="/documentation/draft/building-engine/">Building oVirt engine</a> for the current official version.</p>
+
+<p>Follow these instructions to successfully build and install the oVirt Engine project in your development environment. Installation and configuration of all required tools to complete the build is also covered. For instructions on obtaining and building VDSM, the package required to turn existing systems into oVirt Nodes, see <a href="/vdsm/developers/">Vdsm Developers</a>. Alternatively some binary VDSM builds are available <a href="http://fsimonce.fedorapeople.org/vdsm/">here</a>.</p>
+
+<p>Please note that in this instructions you will be asked to run several commands. Be careful with the user that you use to run them, we will indicate with different prompts in the page what type of user should be used for each command:</p>
+
+<ul>
+  <li><code>#</code> at the beginning of the command stands for execution as <code>root</code>.</li>
+  <li><code>$</code> at the beginning of the command stands for execution as your normal unprivileged user.</li>
+</ul>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ol>
+  <li>Linux based operating system with support for OpenJDK 1.7.0, Maven 3 and PostgreSQL 8.4.8 (or higher).</li>
+  <li>An Internet connection.</li>
+</ol>
+
+<p>Note that while this guide was written and tested using Fedora 18 other Linux Distributions can and have been used to build the ovirt-engine project. Where distribution specific packaging commands are specified in this guide use the syntax that applies for your distribution.</p>
+
+<p>If you plan to use Debian please take into account that the current stable distribution (squezze) doesn't contain the OpenJDK 1.7.0 or Maven 3 packages, so you will need to update to the current testing distribution (wheezy).</p>
+
+<h2 id="installing-build-tools">Installing Build Tools</h2>
+
+<h3 id="installing-openjdk">Installing OpenJDK</h3>
+
+<p>The supported Java development and runtime environments for the ovirt-engine project are provied by OpenJDK 1.7.0. Install the java-1.7.0-openjdk-devel package to obtain OpenJDK 1.7.0:</p>
+
+<p><strong>Fedora</strong></p>
+
+<pre class="highlight plaintext"><code># yum install -y java-1.7.0-openjdk-devel&#x000A;</code></pre>
+
+<p><strong>Debian</strong></p>
+
+<pre class="highlight plaintext"><code># apt-get install openjdk-7-jdk&#x000A;</code></pre>
+
+<h3 id="installing-git">Installing git</h3>
+
+<p>The ovirt-engine source code is stored in a GIT repository. As such GIT is required to obtain the latest source code.</p>
+
+<p><strong>Fedora</strong></p>
+
+<pre class="highlight plaintext"><code># yum install -y git&#x000A;</code></pre>
+
+<p><strong>Debian</strong></p>
+
+<pre class="highlight plaintext"><code># apt-get install git&#x000A;</code></pre>
+
+<h3 id="installing-maven">Installing maven</h3>
+
+<p>The engine build uses maven 3.</p>
+
+<p><strong>Fedora</strong></p>
+
+<pre class="highlight plaintext"><code># yum install -y maven&#x000A;</code></pre>
+
+<p><strong>Debian</strong></p>
+
+<pre class="highlight plaintext"><code># apt-get install maven&#x000A;</code></pre>
+
+<p><strong>Other</strong></p>
+
+<p>If your operating system doesn't have a package for maven 3 you can download it from the <a href="http://maven.apache.org/download.cgi">maven web site</a> and install it manually. First uncompress the downloaded file to your preferred directory, for example to your home directory:</p>
+
+<pre class="highlight plaintext"><code>cd&#x000A;wget ftp://ftp.mirrorservice.org/sites/ftp.apache.org/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz&#x000A;tar xvf apache-maven-3.0.5-bin.tar.gz&#x000A;</code></pre>
+
+<p>Make sure that the maven <code>bin</code> directory is the first in your path, otherwise you will be using the version of maven provided by your operating system:</p>
+
+<pre class="highlight plaintext"><code>PATH=$HOME/apache-maven-3.0.5/bin:$HOME&#x000A;export path&#x000A;</code></pre>
+
+<p>Once the installation is completed verify that the correct version of the <code>mvn</code> command is in the path:</p>
+
+<pre class="highlight plaintext"><code>$ mvn --version&#x000A;Apache Maven 3.0.5 ...&#x000A;</code></pre>
+
+<h2 id="installing-jboss-as">Installing JBoss AS</h2>
+
+<p>Note that in development environments you should install the application server using the zip files, not the distribution packages. The reason is that this allows the developer to use its own unprivileged user to run the application server without needing to use root privileges.</p>
+
+<h3 id="downloading-and-installing-the-application-server">Downloading and installing the application server</h3>
+
+<p>Download version 7.1.1 of JBoss AS 7 from <a href="http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip">here</a> then uncompress it in the <code>$HOME/ovirt-engine</code> directory:</p>
+
+<pre class="highlight plaintext"><code>$ mkdir -p $HOME/ovirt-engine&#x000A;$ cd $HOME/ovirt-engine&#x000A;$ wget http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip&#x000A;$ unzip jboss-as-7.1.1.Final.zip&#x000A;</code></pre>
+
+<p>The end result should be a <code>$HOME/ovirt-engine/jboss-as-7.1.1.Final</code> directory.</p>
+
+<h2 id="installing-postgresql">Installing PostgreSQL</h2>
+
+<p><a href="/documentation/installing-postgresql-db/">Installing_PostgreSQL_DB</a></p>
+
+<h2 id="building-ovirt-engine-from-source">Building oVirt-engine from source</h2>
+
+<h3 id="clone-ovirt-engine-codebase">Clone oVirt-engine codebase</h3>
+
+<p>Use the <code>git</code> command to clone the engine repository into the <code>ovirt-engine/repository</code> inside your home directory:</p>
+
+<pre class="highlight plaintext"><code>$ mkdir -p $HOME/ovirt-engine/repository&#x000A;$ cd $HOME/ovirt-engine&#x000A;$ git clone git://gerrit.ovirt.org/ovirt-engine repository&#x000A;</code></pre>
+
+<p><em><strong>Note:</strong> The above cloning is for read only, if you want to contribute see <a href="#Code_contribution:_Gerrit">this</a>.</em></p>
+
+<h3 id="creating-the-database">Creating the database</h3>
+
+<p>Create the <code>$HOME/.pgpass</code> file containing the password of the database administrator. The content should be the following:</p>
+
+<pre class="highlight plaintext"><code>*:*:*:postgres:YOUR_POSTGRES_PASSWORD&#x000A;</code></pre>
+
+<p>Note that this is relevant if you decided to configure your database with password authentication instead of with the <code>trust</code> method as suggested in the database installation instructions. In that case put in this file the password of the database administrator. If you are using <code>trust</code> as suggested then you don't need to create this file.</p>
+
+<p>Make sure that the permissions of the <code>/root/.pgpass</code> file are <code>0600</code>:</p>
+
+<pre class="highlight plaintext"><code>$ chmod 0600 $HOME/.pgpass&#x000A;</code></pre>
+
+<p>Now change into the directory where you cloned the <code>ovirt-engine</code> git repository, then change into the <code>backend/manager/dbscritps</code> directory and run the <code>create_db_devel.sh</code> script:</p>
+
+<pre class="highlight plaintext"><code>$ cd $HOME/ovirt-engine/repository/backend/manager/dbscripts&#x000A;$ ./create_db_devel.sh -u postgres&#x000A;</code></pre>
+
+<h3 id="build">Build</h3>
+
+<p>To build with the default options select the directory where you will install the engine (in these instructions we will use <code>$HOME/ovirt-engine/installation</code>, but you can use any other directory where you have write permission) and use the following commands:</p>
+
+<pre class="highlight plaintext"><code>$ cd $HOME/ovirt-engine/repository&#x000A;$ make PREFIX=$HOME/ovirt-engine/installation&#x000A;</code></pre>
+
+<p>Please note that the first time that you build maven will need to download a large amount of dependencies from the network, more than 200 MiB, so if you have an slow connection it will take a long time.</p>
+
+<p>By default the above commands will build the the GUI applications for all the browsers (all the <em>permutations</em> in GWT jargon). This consumes a lot of resources and can take a very long time. In you first build it can be interesting to build only for the browser that you will use to test. In order to do that add the following <code>EXTRA_BUILD_FLAGS</code> option to the make command:</p>
+
+<pre class="highlight plaintext"><code>$ cd $HOME/ovirt-engine/repository&#x000A;$ make PREFIX=$HOME/ovirt-engine/installation EXTRA_BUILD_FLAGS="-Dgwt.userAgent=gecko1_8"&#x000A;</code></pre>
+
+<p>This will build only for Firefox. For other browsers you can use the following values (separated by commas, if you want to specify several):</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Firefox (all versions)</td>
+      <td><code>gecko1_8</code></td>
+    </tr>
+    <tr>
+      <td>Safari and Chrome (both use the same rendering engine)</td>
+      <td><code>safari</code></td>
+    </tr>
+    <tr>
+      <td>Internet Explorer 6</td>
+      <td><code>ie6</code></td>
+    </tr>
+    <tr>
+      <td>Internet Explorer 8</td>
+      <td><code>ie8</code></td>
+    </tr>
+    <tr>
+      <td>Internet Explorer 9</td>
+      <td><code>ie9</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For example, if you want to build for Firefox and Chrome you can use the following commands:</p>
+
+<pre class="highlight plaintext"><code>$ cd $HOME/ovirt-engine/repository&#x000A;$ make PREFIX=$HOME/ovirt-engine/installation EXTRA_BUILD_FLAGS="-Dgwt.userAgent=gecko1_8,safari"&#x000A;</code></pre>
+
+<p>For advanced build notes, please visit <a href="/documentation/draft/advanced-engine-build-notes/">Advanced oVirt Engine Build Notes</a>.</p>
+
+<h3 id="install">Install</h3>
+
+<p>To install the engine use the <code>install</code> make target to perform the installation:</p>
+
+<pre class="highlight plaintext"><code>$ cd $HOME/ovirt-engine/repository&#x000A;$ make install PREFIX=$HOME/ovirt-engine/installation&#x000A;</code></pre>
+
+<p>Create the following directories where the engine will store state, logs and temporary files:</p>
+
+<pre class="highlight plaintext"><code>mkdir -p \&#x000A;$HOME/ovirt-engine/installation/var/lib/ovirt-engine/content \&#x000A;$HOME/ovirt-engine/installation/var/lib/ovirt-engine/deployments \&#x000A;$HOME/ovirt-engine/installation/var/run \&#x000A;$HOME/ovirt-engine/installation/var/cache/ovirt-engine \&#x000A;$HOME/ovirt-engine/installation/var/lock/ovirt-engine \&#x000A;$HOME/ovirt-engine/installation/var/log/ovirt-engine \&#x000A;$HOME/ovirt-engine/installation/var/tmp/ovirt-engine&#x000A;</code></pre>
+
+<p>Now you need to do some adjustments to the configuration file <code>$HOME/ovirt-engine/installation/etc/ovirt-engine/engine.conf</code>:</p>
+
+<ol>
+  <li>
+    <p>Adjust the location of the Java virtual machine:</p>
+
+    <p>JAVA_HOME=the_location_of_your_jvm</p>
+  </li>
+</ol>
+
+<p>You can find the location of the JVM by following the symlinks to the <code>java</code> command. For example, in Fedora 18:</p>
+
+<pre class="highlight plaintext"><code>$ which java&#x000A;/bin/java&#x000A;$ ls -l /bin/java&#x000A;lrwxrwxrwx. 1 root root 22 Jan 19 19:05 /bin/java -&gt; /etc/alternatives/java&#x000A;$ ls -l /etc/alternatives/java&#x000A;lrwxrwxrwx. 1 root root 46 Jan 19 19:05 /etc/alternatives/java -&gt; /usr/lib/jvm/jre-1.7.0-openjdk.x86_64/bin/java&#x000A;</code></pre>
+
+<p>So the value of the property should be <code>/usr/lib/jvm/jre-1.7.0-openjdk.x86_64</code>, without the <code>bin</code> directory:</p>
+
+<pre class="highlight plaintext"><code>JAVA_HOME=/usr/lib/jvm/jre-1.7.0-openjdk.x86_64&#x000A;</code></pre>
+
+<ol>
+  <li>
+    <p>Adjust the location of the JBoss application server:</p>
+
+    <p>JBOSS_HOME=the_location_of_jboss</p>
+  </li>
+  <li>
+    <p>Adjust the user and group. By default it uses the ovirt user and group but you will probably want to run the engine with your own user and group:</p>
+
+    <p>ENGINE_USER=your_user_name
+ ENGINE_GROUP=your_group_name</p>
+  </li>
+  <li>
+    <p>Enable the HTTP connector, as by default only the AJP connector is enabled (to use Apache as a proxy server):</p>
+
+    <p>ENGINE_PROXY_ENABLED=false
+ ENGINE_HTTP_ENABLED=true
+ ENGINE_HTTP_PORT=8700
+ ENGINE_HTTPS_ENABLED=false
+ ENGINE_AJP_ENABLED=false</p>
+  </li>
+  <li>
+    <p>Adjust the database connection details to use the <em>trust</em> mode and no password:</p>
+
+    <p>ENGINE_DB_USER=postgres
+ ENGINE_DB_PASSWORD=</p>
+  </li>
+  <li>
+    <p>In development environments it is also very useful to be able to connect to the Java virtual machine with your debugger. To enable that add the following parameter:</p>
+
+    <p>ENGINE_DEBUG_ADDRESS=0.0.0.0:8787</p>
+  </li>
+</ol>
+
+<p>Then you can connect with your debugger using port 8787.</p>
+
+<h2 id="testing">Testing</h2>
+
+<p>The script that starts the engine needs the <code>configobj</code> and <code>Cheetah.Template</code> modules, so before starting it you may need to isntall the packages containing them. In Fedora, for example, you can install them as follows:</p>
+
+<pre class="highlight plaintext"><code># yum install python-configobj python-cheetah&#x000A;</code></pre>
+
+<p>First you need to start the engine. Go to the directory where you installed it (we are assuming <code>$HOME/ovirt-engine/installation</code> in these instructions), then to the <code>bin</code> subdirectory and run the <code>engine-service</code> script as follows:</p>
+
+<pre class="highlight plaintext"><code>$ cd $HOME/ovirt-engine/installation/bin&#x000A;$ ./engine-service start&#x000A;</code></pre>
+
+<p>If everything went correctly you should be able to connect to <a href="http://localhost:8700">http://localhost:8700</a>, in that URL you will see the welcome page, with links to the administrator portal and user portal.</p>
+
+<p>The default user name and password created in development environments are <code>admin@internal</code> and <code>letmein!</code>.</p>
+
+<p>You can also access the REST API pointing your browser to <a href="http://localhost:8700/api">http://localhost:8700/api</a> or with a command line tool like <code>wget</code>:</p>
+
+<pre class="highlight plaintext"><code>$ wget -O - \&#x000A;--debug \&#x000A;--auth-no-challenge \&#x000A;--http-user=admin@internal \&#x000A;--http-password='letmein!' \&#x000A;head='Accept: application/xml' \&#x000A;http://localhost:8700/api/&#x000A;</code></pre>
+
+<p>Note that when using a browser to connect to the REST API you have to enter the user name followed by @ and the domain name (by default <code>admin@internal</code>) in the pop-up windows that the browser will present.</p>
+
+<h2 id="i-have-made-a-change-into-ovirt-engine-code-how-can-i-deploy-it">I have made a change into ovirt engine code, how can I deploy it?</h2>
+
+<p>First stop the engine if it is running:</p>
+
+<pre class="highlight plaintext"><code>$ cd $HOME/ovirt-engine/installation/bin&#x000A;$ ./engine-service stop&#x000A;</code></pre>
+
+<p>Then run the install target again:</p>
+
+<pre class="highlight plaintext"><code>$ cd $HOME/ovirt-engine/repository&#x000A;$ make install PREFIX=$HOME/ovirt-engine/installation&#x000A;</code></pre>
+
+<p>And finally start the engine:</p>
+
+<pre class="highlight plaintext"><code>$ cd $HOME/ovirt-engine/installation/bin&#x000A;$ ./engine-service start&#x000A;</code></pre>
+
+<h2 id="copying-vdsm-bootstrap-files-optional">Copying vdsm bootstrap files (optional)</h2>
+
+<p>With the default installation for development environments the engine will assume that hypervisors have VDSM already installed, and will not try to configure them. If you want the engine to do full bootstrap installation of hypervisors (setting configuration parameter <code>InstallVds</code> to <code>true</code> in the database) these steps will be required, otherwise they can be ignored.</p>
+
+<p>Some of the scripts that the engine uses to install and configure hypervisors are part of the VDSM project, so you will need to clone the VDSM repository and build it:</p>
+
+<pre class="highlight plaintext"><code>$ git clone git://gerrit.ovirt.org/vdsm&#x000A;$ cd vdsm&#x000A;$ ./autogen.sh --system &amp;&amp; make&#x000A;</code></pre>
+
+<p>Once VDSM is built you will need to copy the scripts to the directory <code>/usr/share/vdsm-bootstrap</code> where the engine expects them:</p>
+
+<pre class="highlight plaintext"><code># mkdir -p /usr/share/vdsm-bootstrap&#x000A;# cp vdsm_reg/deployUtil.py /usr/share/vdsm-bootstrap&#x000A;# cp vds_bootstrap/vds_bootstrap_complete.py /usr/share/vdsm-bootstrap&#x000A;# cp vds_bootstrap/vds_bootstrap.py /usr/share/vdsm-bootstrap&#x000A;</code></pre>
+
+<p><em><strong>Note:</strong> This is not necessary if you installed the <code>vdsm-bootstrap</code> package, as it already contains the <code>/usr/share/vdsm-bootstrap</code> directory and the required files.</em></p>
+
+<p><em><strong>Note:</strong> If you need to use a directory other than <code>/usr/share/vdsm-bootstrap</code> you will need to update accordingly the deployment descriptor (the file <code>web.xml</code>) of the root web application.</em></p>
+
+<p>Update the database to reflect the actual URL where the bootstrap files can be downloaded by the hypervisors:</p>
+
+<pre class="highlight plaintext"><code>$ psql engine postgres -c "update vdc_options set option_value = 'http://YOUR_ENGINE_HOST_HERE:8700/Components/vds' where option_name = 'VdcBootStrapUrl';"&#x000A;</code></pre>
+
+<h2 id="setting-public-key-environment-optional-recommended-to-ovirt-node-environment">Setting Public Key environment (optional, recommended to oVirt node environment)</h2>
+
+<p>Follow this page: <a href="wiki/Engine_Node_Integration#Engine_core_machine">http://www.ovirt.org/wiki/Engine_Node_Integration#Engine_core_machine</a></p>
+
+<h2 id="enable-ssl-port-8701-optional">Enable SSL port 8701 (optional)</h2>
+
+<p>Generate a self signed certificate for the application server (remember to replace <code>engine.example.com</code> with the fully qualified DNS name of your machine, and <code>mypass</code> with your preferred password):</p>
+
+<pre class="highlight plaintext"><code>$ keytool \&#x000A;-genkey \&#x000A;-storetype pkcs12 \&#x000A;-keystore $HOME/ovirt-engine/installation/etc/pki/ovirt-engine/keys/jboss.p12 \&#x000A;-alias 1 \&#x000A;-keyalg RSA \&#x000A;-keysize 2048 \&#x000A;-validity 3650 \&#x000A;-dname CN=engine.example.com \&#x000A;-storepass mypass \&#x000A;-keypass mypass&#x000A;</code></pre>
+
+<p><em><strong>Note:</strong> Take into account that the keystore uses two passwords: one to protect the integrity of the keystore (the <code>-storepass</code> option) and another one to protect te confidentiality of the private key (the <code>-keypass</code> option). Both have to be equal, or the application server will not be able to use the keystore.</em></p>
+
+<p>Once the keystore is created the engine has to be configured to enable the SSL connector, adding the following to the <code>$HOME/ovirt-engine/installation/etc/ovirt-engine/engine.conf</code> file:</p>
+
+<pre class="highlight plaintext"><code>ENGINE_HTTPS_ENABLED=true&#x000A;ENGINE_HTTPS_PORT=8701&#x000A;</code></pre>
+
+<p>After doing this change stop the engine server and start it again, then you should be able to connect to using HTTPS and port 8701.</p>
+
+<h2 id="advanced-features">Advanced features</h2>
+
+<ul>
+  <li>Registering an oVirt Node
+    <ul>
+      <li>By default development setup works with hosts based on base distro's such as Fedora.</li>
+      <li>In order to be able to work with oVirt Node, you'll need to setup a Public Key environment.</li>
+      <li>More details on Engine and oVirt Node integration can be found here: <a href="/node/engine-node-integration/">Engine_Node_Integration</a>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="code-contribution-gerrit">Code contribution: Gerrit</h2>
+
+<ul>
+  <li>oVirt-engine is working with Gerrit for code contribution.
+* More detail can be found in <a href="/documentation/internal/working-with-gerrit/">Working_with_oVirt_Gerrit</a>.</li>
+</ul>
+
+<h2 id="getting-latest">Getting latest</h2>
+
+<p>If you have a working development environment and after a while you want
+to update the code and take latest, you need to do:</p>
+
+<ol>
+  <li>git fetch -v</li>
+  <li>git rebase origin/master</li>
+  <li>Compile the code</li>
+  <li>Upgrade your DB schema</li>
+</ol>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>$ cd $HOME/ovirt-engine/backend/manager/dbscripts&#x000A;$ ./upgrade.sh -u postgres&#x000A;</code></pre>
+
+<h2 id="is-there-an-ide">Is there an IDE?</h2>
+
+<p>Yes! Take a look in: <a href="/engine/building/ide/">Building_Ovirt_Engine/IDE</a></p>
+
+<h2 id="more-information">More information</h2>
+
+<ul>
+  <li>Engine setup on Gentoo can be found here: <a href="https://wiki.gentoo.org/wiki/OVirt">https://wiki.gentoo.org/wiki/OVirt</a></li>
+  <li><a href="/distributions/debian/ubuntu/">Ovirt build on debian/ubuntu</a></li>
+</ul>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<h3 id="host-non-responsive">Host Non-Responsive</h3>
+
+<ul>
+  <li>Make sure you have both (vdsm and ovirt-engine) with ssl disabled or enabled.</li>
+  <li>If you have enabled ssl anytime and want move to ssl=false, you must reconfigure vdsm and start the daemon again.</li>
+</ul>
+
+<p>Example setting ssl false:</p>
+
+<ul>
+  <li>
+    <p>(ovirt Node side)</p>
+
+    <p> $ vi /etc/vdsm/vdsm.conf
+   ssl = false
+   
+   $ /lib/systemd/systemd-vdsmd reconfigure
+   $ sudo service vdsmd start</p>
+  </li>
+  <li>
+    <p>(ovirt Engine side)</p>
+
+    <p> $ psql engine -U postgres -c "UPDATE vdc_options set option_value = 'false' where option_name = 'SSLEnabled'"
+   $ psql engine -U postgres -c "UPDATE vdc_options set option_value = 'false' where option_name = 'UseSecureConnectionWithServers'"
+   $ sudo service jboss-as restart</p>
+  </li>
+</ul>
+
+<h3 id="install-failed">Install Failed</h3>
+
+<p>Actions:</p>
+
+<ul>
+  <li>
+    <p>Host side:</p>
+
+    <p> Look /tmp/vds* files</p>
+  </li>
+  <li>
+    <p>Engine side:</p>
+
+    <p> Look $JBOSS_HOME/standalone/log/engine/engine.log</p>
+  </li>
+  <li>
+    <p>Have you created /var/lock/ovirt-engine/.openssl.exclusivelock with 777 perm ?</p>
+  </li>
+</ul>
+
+<h3 id="logs">Logs</h3>
+
+<ul>
+  <li>
+    <p>(oVirt Node)</p>
+
+    <p> /var/log/vdsm/vdsm.log
+   /var/log/vdsm-reg/vdsm-reg.log</p>
+  </li>
+  <li>
+    <p>(Fedora/Any other distro)</p>
+
+    <p> /tmp/vds* (bootstrap)
+   /var/log/vdsm/vdsm.log
+   /var/log/vdsm-reg/vdsm-reg.log</p>
+  </li>
+  <li>
+    <p>(oVirt Engine side)</p>
+
+    <p> $JBOSS_HOME/standalone/log/server.log
+   $JBOSS_HOME/standalone/log/engine/engine.log</p>
+  </li>
+</ul>
+
+<p><a href="/documentation/draft-documentation/">Category:Draft documentation</a> <category:engine> [Category:How to](Category:How to)</category:engine></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

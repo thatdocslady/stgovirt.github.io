@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+NetworkingApi &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>NetworkingApi</td>
+</tr>
+<tr>
+<th>category</th>
+<td>api</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>moti</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Networking</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Features/NetworkingApi</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>17</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-09-03</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Features/NetworkingApi' target='_blank'>
+Features/NetworkingApi
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="networking-api">Networking Api</h1>
+
+<h2 id="using-ovirt-networking-api">Using oVirt Networking API</h2>
+
+<p>The following are request samples of the <a href="/feature/network/hostnetworkingapi/">host networking api</a>.</p>
+
+<h3 id="add-network-to-a-network-interface-with-dhcp-boot-protocol">Add network to a network interface with DHCP boot protocol</h3>
+
+<p>POST to /api/hosts/{host:id}/nics/{nic:id}/networkattachments</p>
+
+<p><code> </code><network_attachment>
+`   `<network id="..."></network>
+`   `<ip_configuration>
+`     `<ipv4s>
+`       `<ipv4>
+               `<boot_protocol>`DHCP`</boot_protocol>` 
+`       `</ipv4>
+`     `</ipv4s>
+`   `</ip_configuration>
+` `</network_attachment></p>
+
+<h3 id="remove-a-network-from-a-network-interface">Remove a network from a network interface</h3>
+
+<p>DELETE to /api/hosts/{host:id}/nics/{nic:id}/networkattachments/{networkattachment:id}</p>
+
+<h3 id="change-boot-protocol-of-a-network-configured-on-a-network-interface">Change boot protocol of a network configured on a network interface</h3>
+
+<p>PUT to /api/hosts/{host:id}/nics/{nic:id}/networkattachments/{networkattachment:id}</p>
+
+<p><code> </code><network_attachment>
+`   `<ip_configuration>
+`     `<ipv4s>
+`       `<boot_protocol>`static`</boot_protocol>
+`       `<ipv4>
+`         `<primary>`true`</primary>
+               </ipv4></ipv4s></ip_configuration></network_attachment></p>
+
+<address>
+  <p>10.0.0.15</p>
+
+</address>
+<pre class="highlight plaintext"><code>           `&lt;netmask&gt;`255.255.255.0`&lt;/netmask&gt;`  `         `&lt;gateway&gt;`10.0.0.254`&lt;/gateway&gt; `       `&lt;/ipv4&gt; `     `&lt;/ipv4s&gt; `   `&lt;/ip_configuration&gt; ` `&lt;/network_attachment&gt;&#x000A;</code></pre>
+
+<h3 id="add-a-vlan-network-to-a-network-interface">Add a vlan network to a network interface</h3>
+
+<p>POST to /api/hosts/{host:id}/nics/{nic:id}/networkattachments</p>
+
+<p><code> </code><network_attachment>
+`   `<network id="..."></network>
+` `</network_attachment></p>
+
+<p>Where nic:id represents a nic or a bond and the network id refers to a vlan network.
+Many requests could be followed with a different vlan networks to the same base interface.</p>
+
+<h3 id="sync-network-on-a-network-interface">Sync network on a network interface</h3>
+
+<p>PUT to /api/hosts/{host:id}/nics/{nic:id}/networkattachments/{networkattachment:id}</p>
+
+<p><code> </code><network_attachment>
+`   `<override_configuration>`true`</override_configuration>
+` `</network_attachment></p>
+
+<p>Where networkattachment:id is associated with the out-of-sync network.
+Sync network can be achieved also via the setup nics, using the same override_configuration element.</p>
+
+<h3 id="create-a-bond-device">Create a bond device</h3>
+
+<p>POST to /api/hosts/{host:id}/nics Where slaves can be identified either by id or by name (as long as they are nics).</p>
+
+<p><code> </code><host_nic>
+`   `<name>`bond0`</name>
+`   `<link_aggregation>
+`     `<options>
+             
+`       `<option>
+`         `<name>`module`</name>
+`         `<value>`bonding`</value>
+`       `</option>
+             
+`       `<option>
+`         `<name>`mode`</name>
+`         `<value>`1`</value>
+`         `<type>`Active-Backup`</type>
+`       `</option>
+`       `<option>
+`         `<name>`miimon`</name>
+`         `<value>`100`</value>
+`       `</option>
+`     `</options>
+`     `<slaves>
+`       `<host_nic id="833ebaeb-0988-4bd5-b860-e00bcc3f576a"></host_nic>
+`       `<host_nic id="782e8199-984e-407f-b242-3d6c7dc2f7b7"></host_nic>
+`     `</slaves>
+`   `</link_aggregation>
+` `</host_nic></p>
+
+<h3 id="delete-bond-device">Delete bond device</h3>
+
+<p>DELETE to /api/hosts/{host:id}/nics/{nic:id}
+where nic:id represents the bond device. Any network attachment configured on the bond will be removed.</p>
+
+<h3 id="adding-a-slave-to-a-bond-and-change-bonding-options">Adding a slave to a bond and change bonding options</h3>
+
+<p>PUT to /api/hosts/{host:id}/nics/{nic:id}</p>
+
+<p><code> </code><host_nic>
+`   `<name>`bond0`</name>
+`   `<bonding>
+`     `<options>
+`       `<option>
+`         `<name>`mode`</name>
+`         `<value>`2`</value>
+`       `</option>
+`     `</options>
+`     `<slaves>
+`       `<host_nic id="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"></host_nic>
+`       `<host_nic id="bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"></host_nic>
+`       `<host_nic id="cccccccc-cccc-cccc-cccc-cccccccccccc"></host_nic>
+`     `</slaves>
+`   `</bonding>
+` `</host_nic></p>
+
+<p>Where nic:id represents an existing bonding device.</p>
+
+<h3 id="move-a-network-from-one-network-interface-to-another">Move a network from one network interface to another</h3>
+
+<p>Shares the same semantics as setupNetorks, except instead of specifying the network element, a network attachments should be provided.
+PUT to /api/hosts/{host:id}/networkattachments/{networkattachment:id}</p>
+
+<p><code> </code><network_attachment>
+         `<host_nic id="target-nic-id"></host_nic>`  
+` `</network_attachment></p>
+
+<p>Or by POST to /api/hosts/{host:id}/setupnetworks</p>
+
+<p><code> </code><action>
+`     `<network_attachments id="...">
+`         `<host_nic id="target-nic-id"></host_nic>
+`     `</network_attachments>
+       `</action>`  </p>
+
+<h3 id="create-bond-and-configure-networks">Create bond and configure networks</h3>
+
+<p>Configuration prior to the request:</p>
+
+<pre class="highlight plaintext"><code>   eth0 ---- network aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa&#x000A;   eth1 ---- network bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb&#x000A;</code></pre>
+
+<p>Desired configuration after the request:</p>
+
+<pre class="highlight plaintext"><code>   eth0 ---|             |-- network aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa&#x000A;           +--- bond0 ---+&#x000A;   eth1 ---|             |-- network bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb&#x000A;</code></pre>
+
+<p>POST to /api/hosts/{host:id}/setupnetworks</p>
+
+<p><code> </code><action>
+`   `<bonds>
+`     `<host_nic>
+`       `<name>`bond0`<name>
+`       `<link_aggregation>
+`         `<options>
+`           `<option>
+`             `<name>`module`</name>
+`             `<value>`bonding`</value>
+`           `</option>
+`           `<option>
+`             `<name>`mode`</name>
+`             `<value>`1`</value>
+`             `<type>`Active-Backup`</type>
+`           `</option>
+`           `<option>
+`             `<name>`miimon`</name>
+`             `<value>`100`</value>
+`           `</option>
+`         `</options>
+`         `<slaves>
+`           `<host_nic>
+`             `<name>`eth0`<name>
+`           `&lt;/host_nic&gt;
+`           `<host_nic>
+`             `<name>`eth1`<name>
+`           `&lt;/host_nic&gt;
+`         `&lt;/slaves&gt;
+`       `&lt;/link_aggregation&gt;
+`     `&lt;/host_nic&gt;
+`   `&lt;/bonds&gt;
+`   `<network_attachments>
+`     `<network_attachment>
+`       `<network id="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"></network>
+`       `<host_nic>
+`         `<name>`bond0`<name>
+`       `&lt;/host_nic&gt;
+`     `&lt;/network_attachment&gt;
+`     `<network_attachment>
+`       `<network id="bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"></network>
+`       `<host_nic>
+`         `<name>`bond0`<name>
+`       `&lt;/host_nic&gt;
+`     `&lt;/network_attachment&gt;
+`   `&lt;/network_attachments&gt;
+       `&lt;/action&gt;`  </name></name></host_nic></network_attachment></name></name></host_nic></network_attachment></network_attachments></name></name></host_nic></name></name></host_nic></slaves></link_aggregation></name></name></host_nic></bonds></action></p>
+
+<h3 id="break-bond-and-configure-its-networks-among-its-slaves">Break bond and configure its networks among its slaves</h3>
+
+<p>Configuration prior to the request:</p>
+
+<pre class="highlight plaintext"><code>   eth0 ---|             |-- network aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa&#x000A;           +--- bond0 ---+&#x000A;   eth1 ---|             |-- network bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb&#x000A;</code></pre>
+
+<p>Desired configuration after the request:</p>
+
+<pre class="highlight plaintext"><code>   eth0 ---- network aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa&#x000A;   eth1 ---- network bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb&#x000A;</code></pre>
+
+<p>POST to /api/hosts/{host:id}/setupnetworks</p>
+
+<p><code> </code><action>
+`     `<network_attachments>
+`       `<network_attachment>
+`         `<network id="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"></network>
+`         `<host_nic>
+`           `<name>`eth0`<name>
+`         `&lt;/host_nic&gt;
+`       `&lt;/network_attachment&gt;
+`       `<network_attachment>
+`         `<network id="bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"></network>
+`         `<host_nic>
+`           `<name>`eth1`<name>
+`         `&lt;/host_nic&gt;
+`       `&lt;/network_attachment&gt;
+`     `&lt;/network_attachments&gt;
+`     `<removed_bonds>
+`       `<host_nic>
+`         `<name>`bond0`<name>
+`       `&lt;/host_nic&gt;
+           `<removed_bonds>` 
+       `&lt;/action&gt;`  </removed_bonds></name></name></host_nic></removed_bonds></name></name></host_nic></network_attachment></name></name></host_nic></network_attachment></network_attachments></action></p>
+
+<p>or alternatively use the network attachment id:</p>
+
+<p><code> </code><action>
+`     `<network_attachments>
+`       `<network_attachment id="...">
+`         `<host_nic>
+`           `<name>`eth0`<name>
+`         `&lt;/host_nic&gt;
+`       `&lt;/network_attachment&gt;
+`       `<network_attachment id="...">
+`         `<host_nic>
+`           `<name>`eth1`<name>
+`         `&lt;/host_nic&gt;
+`       `&lt;/network_attachment&gt;
+`     `&lt;/network_attachments&gt;
+`     `<removed_bonds>
+`       `<host_nic>
+`         `<name>`bond0`<name>
+`       `&lt;/host_nic&gt;
+           `<removed_bonds>` 
+` `&lt;/action&gt;</removed_bonds></name></name></host_nic></removed_bonds></name></name></host_nic></network_attachment></name></name></host_nic></network_attachment></network_attachments></action></p>
+
+<h3 id="removing-networks-from-a-host">Removing networks from a host</h3>
+
+<p>POST to /api/hosts/{host:id}/setupnetworks</p>
+
+<p><code> </code><action>
+`   `<removed_network_attachments>
+`     `<network_attachment id="..."></network_attachment>
+`     `<network_attachment id="..."></network_attachment>
+`     `<network_attachment id="..."></network_attachment>
+`   `</removed_network_attachments>
+` `</action></p>
+
+<category:networking>
+</category:networking>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

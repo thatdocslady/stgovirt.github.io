@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Changing Engine Hostname &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Changing Engine Hostname</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>didi</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Changing Engine Hostname</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>4</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-01-29</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Changing_Engine_Hostname' target='_blank'>
+Changing Engine Hostname
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="changing-engine-hostname">Changing Engine Hostname</h1>
+
+<h2 id="changing-the-hostname-of-an-ovirt-managerengine">Changing the hostname of an oVirt Manager/engine</h2>
+
+<h3 id="how-to">How to</h3>
+
+<ol>
+  <li>Prepare relevant DNS and/or /etc/hosts records for the new name.</li>
+  <li>If using DHCP, update the DHCP server's configuration.</li>
+  <li>Change the hostname. This is usually done by editing /etc/hostname and rebooting. There are other options and details which are not in the scope of this document.</li>
+  <li>
+    <p>Run the script ovirt-engine-rename:</p>
+
+    <p>   # /usr/share/ovirt-engine/setup/bin/ovirt-engine-rename</p>
+  </li>
+</ol>
+
+<p>It's otopi-based. This means, among other things, that it looks similar to the new engine-setup/cleanup, and provides similar logging, options, etc.</p>
+
+<p>Options specific to it:</p>
+
+<p><code>   --newname=</code><newname></newname></p>
+
+<p>An example run, which does everything in batch and does not ask questions, if possible:</p>
+
+<pre class="highlight plaintext"><code>     # /usr/share/ovirt-engine/setup/bin/ovirt-engine-rename \&#x000A;     --newname=ovirte1n.home.local \&#x000A;     --otopi-environment="OSETUP_RENAME/forceIgnoreAIAInCA=bool:'True' \&#x000A;     OVESETUP_CORE/engineStop=bool:'True' \&#x000A;     OSETUP_RENAME/confirmForceOverwrite=bool:'False'"&#x000A;</code></pre>
+
+<h3 id="discussion">Discussion</h3>
+
+<p>When running engine-setup on a clean system, one of the things it does is create the following set of keys and certs:</p>
+
+<ol>
+  <li>A CA (certificate authority) key and a self-signed cert for it</li>
+  <li>A key for httpd, the admin web server, and a CA-signed certificate for it. This is used for https access to the admin site.</li>
+  <li>A key for the engine, the jboss application managing the oVirt database and system, and a CA-signed certificate for it.</li>
+</ol>
+
+<p>All three certificates (CA, httpd, engine) are for the Common Name (CN) whose value is the hostname entered during engine-setup, which is supposed to be the hostname of the engine's machine, exist in the dns (forward and reverse records), and point to an IP address of the engine's machine.</p>
+
+<p>Later, when adding hosts to oVirt, these hosts also get certificates signed by the CA. The engine and VDSM can thus verify each others' identity.</p>
+
+<p>Currently, the script ovirt-engine-rename does not touch the CA's or the engine's certificate. It does create a new certificate for the httpd web server. This means that when you rename the host using this script, and then login using the admin interface to the new hostname, you'll get in your browser a certificate for the new hostname, signed by the CA, accompanied by the certificate of the CA, which is for the old hostname.</p>
+
+<p>This means that if/when the old hostname is gone, it will not be possible anymore to try and verify the entire "trust path" from the root (CA) to the services - httpd and the engine. Is this a concern? For the web server, it's not too big of a concern. At most, you'll get some extra warnings from your web browser when trying to connect to the admin interface, which you can ignore.</p>
+
+<p>The bigger concern is with the engine's certificate. Currently, to the best of our knowledge, there is no component that actually checks this trust. But it's possible, that in some future version of one of the relevant tools - vdsm, libvirt, etc. - such a check will actually be made, and even prevent connections. If this happens, the engine might not be able to connect to the hosts, and the worst case is that they will have to be reinstalled, thus loosing all the configuration and data accumulated by then.</p>
+
+<p>Certificates can include an optional extension called Authority Information Access. In oVirt releases up to and including 3.2, the CA certificate included this extension, pointing at the engine hostname. In 3.3 and later, this extension is no longer included. Systems installed with 3.2 or before, and upgraded to 3.3, will still include this extension. That's why it's safer to rename such systems by running cleanup and setup again if possible.</p>
+
+<p>See also <a href="/feature/infra/pki/">Features/PKI</a>.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

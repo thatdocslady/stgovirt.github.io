@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+How to create a Ubuntu Virtual Machine &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>How to create a Ubuntu Virtual Machine</td>
+</tr>
+<tr>
+<th>category</th>
+<td>howto</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>nkesick</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>How to create a Ubuntu Virtual Machine</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>1</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-12-14</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/How_to_create_a_Ubuntu_Virtual_Machine' target='_blank'>
+How to create a Ubuntu Virtual Machine
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="how-to-create-a-ubuntu-virtual-machine">How to create a Ubuntu Virtual Machine</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>In your current configuration, you should have at least one host available for running virtual machines, and uploaded the required installation images to your ISO domain. This section guides you through the creation of a Ubuntu virtual server. You will perform a normal attended installation using a virtual DVD.</p>
+
+<h2 id="creating-a-ubuntu-vm">Creating a Ubuntu VM</h2>
+
+<ol>
+  <li>From the navigation tabs, select Virtual Machines. On the Virtual Machines tab, click New VM.
+    <ol>
+      <li><img alt="" title="fig:Navigation_Tabs.jpg" src="/images/wiki/Navigation_Tabs.png?1447607916" /></li>
+      <li>Figure 1.2: The navigation tabs</li>
+    </ol>
+  </li>
+  <li>The “New Virtual Machine” popup appears.
+    <ol>
+      <li><img alt="" title="fig:New_VM_Ubuntu.jpg" src="/images/wiki/New_VM_Ubuntu.png?1447607916" /></li>
+      <li>Figure 1.2: Create new Linux virtual machine</li>
+    </ol>
+  </li>
+  <li>Under General, your default Cluster and Template will be fine.</li>
+  <li>For Operating System, choose a relevant Operating System Name</li>
+  <li>Under Optimized For, choose Desktop if you are creating a desktop VM, or Server if you are creating a server VM.</li>
+  <li>Add a Name (required) and a comment or description (optional).</li>
+  <li>Finally, attach a Network Interface (optional) to the VM by selecting one from the dropdown.</li>
+  <li>Click OK
+    <ol>
+      <li>Note: By clicking “Additional Options” you can configure other details such as memory and CPU resources. You can change these after creating a VM as well,</li>
+    </ol>
+  </li>
+  <li>A New Virtual Machine - Guide Me window opens. This allows you to add storage disks to the virtual machine.
+    <ol>
+      <li><img alt="" title="fig:Guide_Me.jpg" src="/images/wiki/Guide_Me.png?1447607916" /></li>
+      <li>Figure 1.3. New Virtual Machine – Guide Me</li>
+    </ol>
+  </li>
+  <li>Click Configure Virtual Disks to add storage to the virtual machine.</li>
+  <li>Enter a Size for the disk.</li>
+  <li>Click OK
+    <ol>
+      <li>The parameters in the following figure such as Interface and Allocation Policy are recommended, but can be edited as necessary.</li>
+      <li><img alt="" title="fig:Add_Virtual_Disk_Ubuntu.jpg" src="/images/wiki/Add_Virtual_Disk_Ubuntu.png?1447607917" /></li>
+      <li>Figure 1.4. Add Virtual Disk configurations</li>
+    </ol>
+  </li>
+  <li>Close the Guide Me window by clicking Configure Later. Your new Ubuntu virtual machine will display in the Virtual Machines tab.</li>
+</ol>
+
+<p>You have now created your Ubuntu virtual machine. Before you can use your virtual machine, install an operating system on it.</p>
+
+<h2 id="installing-an-operating-system">Installing an Operating System</h2>
+
+<ol>
+  <li>Right click the virtual machine and select Run Once.</li>
+  <li>Check “Attach CD” and choose a disk from the list
+    <ol>
+      <li>Note: If you do not have any in the list, you need to upload one.</li>
+    </ol>
+  </li>
+  <li>Click Ok
+    <ol>
+      <li><img alt="" title="fig:Run_Once_Ubuntu.jpg" src="/images/wiki/Run_Once_Ubuntu.png?1447607916" /></li>
+      <li>Figure 2.1. Run once menu</li>
+      <li>Retain the default settings for the other options and click OK to start the virtual machine.</li>
+    </ol>
+  </li>
+  <li>Select the virtual machine and click the Console ( ) icon. This displays a window to the virtual machine, where you will be prompted to begin installing the operating system. For further instructions, see the <a href="https://help.ubuntu.com/">Official Ubuntu Documentation</a>. Select your version, and then Installing Ubuntu.</li>
+  <li>After the installation has completed, shut down the virtual machine and reboot from the hard drive.</li>
+</ol>
+
+<p>You can now connect to your Ubuntu virtual machine and start using it.</p>
+
+<h2 id="post-install-additions">Post Install Additions</h2>
+
+<p>Adding a few guest tools may improve your experience.</p>
+
+<ul>
+  <li>oVirt Guest Agent allows oVirt to show the Memory and Network utilization of the VM, the IP address of the VM, the installed Applications, Enable Single Sign On (SSO) and more.</li>
+  <li>Spice-vdagent allows for copy and paste support (text &amp; image), better mouse functionality, and automatic adjustment of the screen resolution based on the size of your window.</li>
+</ul>
+
+<ol>
+  <li>Add the oVirt Guest Agent by following the directions at <a href="/howto/install-the-guest-agent-in-ubuntu/">How to install the guest agent in Ubuntu</a></li>
+  <li>Add the Spice-vdagent by following the directions at «UNWRITTEN»</li>
+</ol>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+VDSM-Hooks &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>VDSM-Hooks</td>
+</tr>
+<tr>
+<th>category</th>
+<td>vdsm</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>dyasny, ovedo, sandrobonazzola</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>VDSM-Hooks</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>6</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-07-11</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/VDSM-Hooks' target='_blank'>
+VDSM-Hooks
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="vdsm-hooks">VDSM-Hooks</h1>
+
+<p>VDSM Hooks are a means to insert arbitrary commands and scripts at certain point in a VM's lifecycle as well as in VDSM daemon's lifecycle. VDSM, when entering a certain checkpoint in a VM's execution cycle, will check whether there is a hook present for that point, and if a hook is found, it will be executed.</p>
+
+<p><a href="/vdsm/hooks-catalogue/">VDSM-Hooks Catalogue</a></p>
+
+<p>The current repository of built hooks can be found at:</p>
+
+<p>Fedora 19: <a href="http://resources.ovirt.org/pub/ovirt-3.4/rpm/fc19/noarch/">http://resources.ovirt.org/pub/ovirt-3.4/rpm/fc19/noarch/</a></p>
+
+<p>Fedora 20: <a href="http://resources.ovirt.org/pub/ovirt-3.4/rpm/fc20/noarch/">http://resources.ovirt.org/pub/ovirt-3.4/rpm/fc20/noarch/</a></p>
+
+<p>EL6: <a href="http://resources.ovirt.org/pub/ovirt-3.4/rpm/el6/noarch/">http://resources.ovirt.org/pub/ovirt-3.4/rpm/el6/noarch/</a></p>
+
+<p>The hooks reside on every host in /usr/libexec/vdsm/hooks/ A hook can be any executable (bash/python/perl/binary/etc).</p>
+
+<p>Here is the complete list:</p>
+
+<p><em>before_vdsm_start</em> <em>after_vdsm_stop</em> These can be used to insert additional command sets before the vdsmd daemon starts and after it stops, this hook is not related specifically to VMs.</p>
+
+<p><em>before_vm_start</em> <em>after_vm_start</em> These are executed before vdsmd passes a VM start command to libvirt, and afterwards. The flow is as follows: Engine is ordered to start a VM, it gathers the required parameters, and passed a createVM command to vdsmd on a host vdsmd gathers the parameters provided by Engine, and then executes the before_vm_start hook. At this point it is possible to alter the VM configuration on the fly, that will be discussed later on. After the hook is done running, vdsmd will start the VM by passing the parameters down to libvirt. Once the VM is started, vdsmd can execute an after_vm_start hook, usually a good place to finalize VM startup flows</p>
+
+<p><em>before_vm_destroy</em> <em>after_vm_destroy</em> When Engine stops a VM, it passes a vmStop command to vdsmd, which receives the command, executes the before_vm_stop hooks, and then sends the VM a stop command. After the VM is down, after_vm_destroy hooks are called.</p>
+
+<p><em>before_vm_pause</em> <em>after_vm_pause</em> When Engine pauses a VM, vdsmd will receive the pause command, execute the before_vm_pause hooks, and pause the VM. After the VM is paused, the after_vm_pause hooks will be called.</p>
+
+<p><em>before_vm_cont</em> <em>after_vm_cont</em> When Engine unpauses (continues) a VM, vdsmd will receive the continue command, execute the before_vm_cont hooks, and un-pause the VM. After the VM is up and running, the after_vm_cont hooks will be called.</p>
+
+<p><em>before_vm_hibernate</em> <em>after_vm_hibernate</em> When Engine sends a command to hibernate a VM, vdsmd will receive the hibernate command, execute the before_vm_hibernate hooks, and place the VM in hibernation mode. After the VM is hibernating, the after_vm_hibernate hooks will be called.</p>
+
+<p>''before_vm_dehibernate '' <em>after_vm_dehibernate</em> When Engine sends a command to dehibernate a VM, vdsmd will receive the dehibernate command, execute the before_vm_dehibernate hooks, and then take the VM out of hibernation. After the VM is up and running, the after_vm_hibernate hooks will be called.</p>
+
+<p><em>before_vm_migrate_source</em> <em>after_vm_migrate_source</em> These are called on the source migration host. Before the VM is live-migrated, before_vm_migrate_source hooks are called, and only then will vdsmd start the VM migration process. After the process is complete, after_vm_migrate_source hooks are executed</p>
+
+<p><em>before_vm_migrate_destination</em> <em>after_vm_migrate_destination</em> These are called on the destination migration host. Before the VM is live-migrated, before_vm_migrate_destination hooks are called, and only then will vdsmd start receiving the migrating VM from the migration source host. After the process is complete, after_vm_migrate_destination hooks are executed</p>
+
+<hr />
+
+<p>Besides a simple script execution, there is a mechanism that allows us to connect specific VMs to hooks. This is done by using the vdsm hooking module, through which the VM runtime parameters can be obtained, parsed and acted upon. It is possible to either execute specific scripts if specific standard VM parameters (like VM name or VM UUID) are detected, or by looking for VM's custom properties, and acting upon those. A custom property can be defined in RHEV-M and attached to a VM. It can be just a property as such (and a hook will simply check for it's existence) or it can contain it's own parameters (and the hook can take the property and it's paramaters, parse them and perform actions specific to these custom parameters).</p>
+
+<p>VMs are defined by an XML-formatted property list Example:</p>
+
+<domain type="kvm" id="1">
+` `<name>`myvm`</name>
+` `<uuid>`3573e29e-5de9-468a-9fae-16050c6b3dcc`</uuid>
+` `<memory unit="KiB">`524288`</memory>
+` `<currentmemory unit="KiB">`524288`</currentmemory>
+` `<vcpu placement="static">`1`</vcpu>
+` `<cputune>
+`   `<shares>`1020`</shares>
+` `</cputune>
+` `<sysinfo type="smbios">
+`   `<system>
+`     `<entry name="manufacturer">`Red Hat`</entry>
+`     `<entry name="product">`RHEV Hypervisor`</entry>
+`     `<entry name="version">`6Server-6.3.0.3.el6`</entry>
+`     `<entry name="serial">`C0F9945F-3F73-B601-CE49-001A647A9462_00:1A:64:7A:94:62`</entry>
+`     `<entry name="uuid">`3573e29e-5de9-468a-9fae-16050c6b3dcc`</entry>
+`   `</system>
+` `</sysinfo>
+` `<os>
+`   `<type arch="x86_64" machine="rhel6.2.0">`hvm`</type>
+`   `<boot dev="hd" />
+`   `<smbios mode="sysinfo" />
+` `</os>
+` `<features>
+`   `<acpi />
+` `</features>
+` `<cpu mode="custom" match="exact">
+`   `<model fallback="allow">`Conroe`</model>
+`   `<topology sockets="1" cores="1" threads="1" />
+` `</cpu>
+` `<clock offset="variable" adjustment="0">
+`   `<timer name="rtc" tickpolicy="catchup" />
+` `</clock>
+` `<on_poweroff>`destroy`</on_poweroff>
+` `<on_reboot>`restart`</on_reboot>
+` `<on_crash>`destroy`</on_crash>
+` `<devices>
+`   `<emulator>`/usr/libexec/qemu-kvm`</emulator>
+`   `<disk type="block" device="disk">
+`     `<driver name="qemu" type="raw" cache="none" error_policy="stop" io="native" />
+           
+
+`     `<target dev="vda" bus="virtio" />
+`     `<serial>`07-b0fa-4aaa66515a31`</serial>
+`     `<alias name="virtio-disk0" />
+           
+
+<address type="pci" domain="0x0000" bus="0x00" slot="0x07" function="0x0" />
+`   `</disk>
+`   `<disk type="file" device="cdrom">
+`     `<driver name="qemu" type="raw" />
+`     `<target dev="hdc" bus="ide" />
+`     `<readonly />
+`     `<alias name="ide0-1-0" />
+           
+
+<address type="drive" controller="0" bus="1" target="0" unit="0" />
+`   `</disk>
+`   `<controller type="virtio-serial" index="0" ports="16">
+`     `<alias name="virtio-serial0" />
+           
+
+<address type="pci" domain="0x0000" bus="0x00" slot="0x06" function="0x0" />
+`   `</controller>
+`   `<controller type="ide" index="0">
+`     `<alias name="ide0" />
+           
+
+<address type="pci" domain="0x0000" bus="0x00" slot="0x01" function="0x1" />
+`   `</controller>
+`   `<controller type="usb" index="0">
+`     `<alias name="usb0" />
+           
+
+<address type="pci" domain="0x0000" bus="0x00" slot="0x01" function="0x2" />
+`   `</controller>
+`   `<interface type="bridge">
+`     `<mac address="00:1a:4a:23:18:01" />
+           
+
+`     `<target dev="vnet0" />
+`     `<model type="virtio" />
+`     `<alias name="net0" />
+           
+
+<address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x0" />
+`   `</interface>
+`   `<interface type="bridge">
+`     `<mac address="00:1a:4a:23:18:02" />
+           
+
+`     `<target dev="vnet1" />
+`     `<model type="virtio" />
+`     `<alias name="net1" />
+           
+
+<address type="pci" domain="0x0000" bus="0x00" slot="0x04" function="0x0" />
+`   `</interface>
+`   `<interface type="bridge">
+`     `<mac address="00:1a:4a:23:18:03" />
+           
+
+`     `<target dev="vnet2" />
+`     `<model type="virtio" />
+`     `<alias name="net2" />
+           
+
+<address type="pci" domain="0x0000" bus="0x00" slot="0x05" function="0x0" />
+`   `</interface>
+`   `<channel type="unix">
+           
+
+`     `<target type="virtio" name="com.redhat.rhevm.vdsm" />
+`     `<alias name="channel0" />
+           
+
+<address type="virtio-serial" controller="0" bus="0" port="1" />
+`   `</channel>
+`   `<channel type="spicevmc">
+`     `<target type="virtio" name="com.redhat.spice.0" />
+`     `<alias name="channel1" />
+           
+
+<address type="virtio-serial" controller="0" bus="0" port="2" />
+`   `</channel>
+`   `<input type="mouse" bus="ps2" />
+`   `<graphics type="spice" port="5900" tlsport="5901" autoport="yes" listen="0" keymap="en-us" passwdvalidto="1970-01-01T00:00:01">
+`     `<listen type="address" address="0" />
+`     `<channel name="main" mode="secure" />
+`     `<channel name="inputs" mode="secure" />
+`   `</graphics>
+         
+
+<video>
+`     `<model type="qxl" vram="65536" heads="1" />
+`     `<alias name="video0" />
+           
+
+<address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x0" />
+</video>
+`   `<memballoon model="none">
+`     `<alias name="balloon0" />
+`   `</memballoon>
+` `</devices>
+` `<seclabel type="dynamic" model="selinux" relabel="yes">
+`   `<label>`system_u:system_r:svirt_t:s0:c183,c514`</label>
+`   `<imagelabel>`system_u:object_r:svirt_image_t:s0:c183,c514`</imagelabel>
+` `</seclabel>
+</domain>
+
+<p>This xml can be changed in order to alter the VM settings in ways ovirt-engine doesn't support directly.</p>
+
+<p><strong>NOTE</strong>: Only the before_vm_start hooks are actually able to alter the VM's xml definitions, this is due to the fact that once the xml definitions are passed to libvirt, they cannot be changed as long as the VM is running. All other VM related hooks can access the VM's xml definitions, but in read-only mode.</p>
+
+<p><strong>Writing VDSM hooks:</strong></p>
+
+<p>Currently, the hooking module only exists in python. Here is an example of a simple vdsm hook that blocks a VM's live migration: 50_cant_migrate.py placed in before_VM_migrate_source. This hook looks for a custom property calles "cantmigrate" and if it is found, will block the VM from migrating. This can be useful for VMs that rely on a specific resource found only locally on a specific host (like a passed through USB license dongle or a TBU)</p>
+
+<pre class="highlight python"><code>  <span class="c">#!/usr/bin/python</span>&#x000A;  <span class="n">import</span><span class="err"> </span><span class="n">os</span>&#x000A;  <span class="n">import</span><span class="err"> </span><span class="n">sys</span><span class="err"> </span>&#x000A;  <span class="k">if</span><span class="err"> </span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s">'cantmigrate'</span><span class="p">):</span>&#x000A;  <span class="err">   </span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'cantmigrate: before_vm_migrate_source: cannot migrate this VM</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>&#x000A;  <span class="err">   </span><span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>&#x000A;</code></pre>
+
+<p>This script does not use the hooking module, because it does not need to actually act upon the VM's specific XML.</p>
+
+<p>And this is an example that uses the Hooking module to read a custom property that defines CPU pinning for a VM, and alters the VM's XML accordingly:</p>
+
+<pre class="highlight plaintext"><code>  #!/usr/bin/python &#x000A;  import os&#x000A;  import sys&#x000A;  import hooking&#x000A;  import traceback&#x000A;  **\1**&#x000A;  if os.environ.has_key('pincpu'):&#x000A;      try: `       domxml = hooking.read_domxml()   `**`#here` `we` `read` `the` `VM` `XML` `into` `the` `domxml` `variable`** `       vcpu = domxml.getElementsByTagName('vcpu')[0] `**`#find` `and` `read` `the` `CPU` `definition` `in` `the` `VM` `XML`**&#x000A;         if not vcpu.hasAttribute('cpuset'): `           sys.stderr.write('pincpu: pinning cpu to: %s\n' % os.environ['pincpu'])  `**`#sys.stderr.write` `is` `caught` `by` `vdsm` `and` `logged` `into` `vdsm.log` `for` `debugging`** `           vcpu.setAttribute('cpuset', os.environ['pincpu'])  `**`#change` `an` `attribute` `here`** `           hooking.write_domxml(domxml)                       `**`#and` `write` `to` `the` `altered` `domxml`**&#x000A;         else:&#x000A;             sys.stderr.write('pincpu: cpuset attribute is present in vcpu, doing nothing\n')&#x000A;     except:&#x000A;         sys.stderr.write('pincpu: [unexpected error]: %s\n' % traceback.format_exc())&#x000A;         sys.exit(2)&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

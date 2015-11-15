@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Developers All In One &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Developers All In One</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>aglitke, amureini, smizrahi, ykaplan</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Developers All In One</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>50</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-11-25</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Developers_All_In_One' target='_blank'>
+Developers All In One
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="developers-all-in-one">Developers All In One</h1>
+
+<h3 id="disclaimer">Disclaimer:</h3>
+
+<p>Currently compatible for working in non-secure mode only.</p>
+
+<h2 id="all-in-one-developers-environment-installation-step-by-step">All In One Developer's Environment Installation step by step</h2>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ol>
+  <li>Linux based operating system with support for OpenJDK 1.6.0, Maven and PostgreSQL 8.4.8 (or higher).</li>
+  <li>An Internet connection.</li>
+</ol>
+
+<h2 id="installation-flow">Installation flow</h2>
+
+<p><strong>From now on work under your personal user.</strong></p>
+
+<pre class="highlight plaintext"><code>  $&gt; mkdir ~/dev/&#x000A;  $&gt; cd ~/dev/&#x000A;</code></pre>
+
+<h3 id="installing-vdsm">Installing vdsm</h3>
+
+<pre class="highlight plaintext"><code>  $&gt; git clone http://gerrit.ovirt.org/p/vdsm&#x000A;  $&gt; yum install pyflakes python-pep8 automake autoconf python-devel python-nose&#x000A;  $&gt; ./autogen.sh --system &amp;&amp; ./configure&#x000A;  $&gt; make rpm&#x000A;  $&gt; yum localinstall ~/rpmbuild/RPMS/x86_64/vdsm ~/rpmbuild/RPMS/x86_64/vdsm_python ~/rpmbuild/RPMS/noarch/vdsm_cli ~/rpmbuild/RPMS/noarch/vdsm_xmlrpc ~/rpmbuild/RPMS/noarch/vdsm_bootstrap&#x000A;</code></pre>
+
+<h3 id="installing-ovirt-engine">Installing ovirt-engine</h3>
+
+<p><strong>follow the steps in <a href="wiki/Building_Ovirt_Engine">http://ovirt.org/wiki/Building_Ovirt_Engine</a>:</strong></p>
+
+<ul>
+  <li>Installing OpenJDK</li>
+  <li>Installing git</li>
+  <li>Installing maven</li>
+  <li>
+    <p>under Maven personal settings (under your personal user):</p>
+
+    <profile>
+      <id>oVirtEnvSettings</id>
+          <properties>
+              <jbosshome>/usr/share/jboss-as-7.1.1.Final</jbosshome>
+              <java_1_6_home>/usr/lib/jvm/java-1.6.0-openjdk.x86_64</java_1_6_home>
+              <forktests>always</forktests>
+              <workdir>~/dev/jboss</workdir>
+          </properties>
+  </profile>
+  </li>
+  <li>Please notice that when using F17 you should update to java 7</li>
+</ul>
+
+<p><strong>Installing JBoss AS - Manually (From Zips)</strong></p>
+
+<pre class="highlight plaintext"><code>  $&gt; cd /usr/share `$&gt; wget `[`http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.tar.gz`](http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.tar.gz)&#x000A;  $&gt; tar zxvf jboss-as-7.1.1.Final.tar.gz&#x000A;  $&gt; ln -s /usr/share/jboss-as-7.1.1.Final /usr/share/jboss-as&#x000A;  $&gt; # Change the JBOSS_HOME environment variable to the new location:&#x000A;  $&gt; echo "export JBOSS_HOME=/usr/share/jboss-as-7.1.1.Final" &gt;&gt; ~/.bashrc&#x000A;  $&gt; su - -c 'chmod -R 777 /usr/share/jboss-as*'&#x000A;  $&gt; mkdir ~/dev/jboss&#x000A;</code></pre>
+
+<h3 id="working-with-jboss-profiles">Working with jboss profiles</h3>
+
+<p>In essence it is a matter of creating a copy of the configuration and starting AS from that copy.</p>
+
+<pre class="highlight plaintext"><code>   $&gt; cp -a $JBOSS_HOME/standalone ~/dev/jboss/standalone&#x000A;   $&gt; vi dev/ovirt-engine/pom.xml&#x000A;</code></pre>
+
+<p>Search for "jbossServer" and change the line to:</p>
+
+<pre class="highlight plaintext"><code>  &lt;jbossServer&gt;${workDir}/standalone&lt;/jbossServer&gt;&#x000A;</code></pre>
+
+<p><strong>To start the jboss-as in standalone mode:</strong> $&gt; $JBOSS_HOME/bin/standalone.sh -Djboss.server.base.dir=$GIT_HOME/standalone # make sure to change $GIT_HOMR to your user's directory</p>
+
+<ul>
+  <li>Clone oVirt-engine codebase into: ~/dev/ovirt/</li>
+  <li>Installing the database (http://ovirt.org/wiki/Installing_PostgreSQL_DB)</li>
+  <li>Creating the database</li>
+  <li>Build (mvn2 clean install -Pgwt-admin,gwt-user -DskipTests=true)</li>
+  <li>Deploy</li>
+  <li>Deploying engine-config &amp; engine-manage-domains</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Install ovirt_engine_sdk rpm</li>
+  <li>
+    <p>set vds install to false:</p>
+
+    <p>$&gt; psql -U postgres -d engine
+  # update vdc_options set option_value='false' where option_name='InstallVds';</p>
+  </li>
+</ul>
+
+<p><strong>\1</strong></p>
+
+<ul>
+  <li>
+    <p>Set engine-ovirt secure mode to false:</p>
+
+    <p>$&gt; psql -U postgres -d engine
+  # update vdc_options set option_value='false' where option_name='UseSecureConnectionWithServers';</p>
+  </li>
+  <li>Change the following files in your host so they contain the following lines:</li>
+  <li>
+    <p>/etc/vdsm/vdsm.conf</p>
+
+    <p>[vars]</p>
+
+    <p>ssl=false</p>
+  </li>
+  <li>
+    <p>/etc/libvirt/qemu.conf</p>
+
+    <p>dynamic_ownership=0</p>
+
+    <p>spice_tls=0</p>
+
+    <p>lock_manager = "sanlock"</p>
+  </li>
+  <li>
+    <p>/etc/libvirt/libvirtd.conf</p>
+
+    <p>listen_addr="0.0.0.0"
+  unix_sock_group="kvm"
+  unix_sock_rw_perms="0770"
+  auth_unix_rw="sasl"
+  save_image_format="lzop"
+  log_outputs="1:file:/var/log/libvirtd.log"
+  log_filters="1:libvirt 3:event 3:json 1:util 1:qemu"
+  auth_tcp="none"
+  listen_tcp=1
+  listen_tls=0</p>
+  </li>
+  <li>
+    <p>Try:</p>
+
+    <p>$&gt; vdsClient 0 getVdsCaps</p>
+  </li>
+</ul>
+
+<p>If it works then vdsm is in non-secure mode.</p>
+
+<h3 id="create-the-bridge">Create the bridge</h3>
+
+<pre class="highlight plaintext"><code>  $&gt; brctl addbr ovirtmgmt&#x000A;  $&gt; service vdsmd restart&#x000A;</code></pre>
+
+<p>verify the creation of the bridge:</p>
+
+<pre class="highlight plaintext"><code>  $&gt; ifconfig -a&#x000A;</code></pre>
+
+<ul>
+  <li>Switch jboss on:</li>
+</ul>
+
+<p>/usr/share/jboss-as-7.1.1.Final/bin/standalone.sh -Djboss.server.base.dir=/home/ykaplan/dev/jboss/standalone</p>
+
+<ul>
+  <li>Add new host:</li>
+</ul>
+
+<p>with local IP (127.0.0.1) and check that the host status is: Up.</p>
+
+<p><strong>Congratulations, you're good to go!</strong></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

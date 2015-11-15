@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+How to Connect to SPICE Console Without Portal &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>How to Connect to SPICE Console Without Portal</td>
+</tr>
+<tr>
+<th>category</th>
+<td>howto</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>amuller, apuimedo, djasa</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Documentation</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>How to Connect to SPICE Console Without Portal</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>3</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-11-26</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/How_to_Connect_to_SPICE_Console_Without_Portal' target='_blank'>
+How to Connect to SPICE Console Without Portal
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="how-to-connect-to-spice-console-without-portal">How to Connect to SPICE Console Without Portal</h1>
+
+<p>Sometimes User or Admin Portal isn't the best way to launch a SPICE console, or worse, it doesn't work at all. For these cases (or for debugging), there are alternative ways to launch the console. This article will describe them, ordered from cleanest to hackier ones.</p>
+
+<h2 id="under-the-hood">Under the Hood</h2>
+
+<p>So what happens when you hit the "Console" button?</p>
+
+<ol>
+  <li>ovirt-engine sets a new password and it's expiry time (by default 120 s) which compose together a ticket</li>
+  <li>ovirt-engine looks up other connection details (more on them later) in its database</li>
+  <li>ovirt-engine passes all the connection info to the portal</li>
+  <li>portal sets variables on spice-xpi object</li>
+  <li>spice-xpi launches spice client and passes variables to it via unix socket</li>
+  <li>spice client connects directly to a host using data given to it by the portal</li>
+</ol>
+
+<h2 id="assumptions-and-prerequisities">Assumptions and Prerequisities</h2>
+
+<ul>
+  <li>client used: <code>remote-viewer</code>, in Fedora/RHEL included in <code>virt-viewer</code> package. The old client is goo'ol' spicec which uses slightly different CLI syntax</li>
+  <li>the whole ovirt setup is TLS-secured</li>
+  <li>the ovirt-engine, the hypervisor and the client you're connecting from are distinct computers. If some of them are the same, things get somewhat simpler
+    <ul>
+      <li>assuming Fedora/RHEL hypervisor, things might be slightly different for ovirt-node</li>
+    </ul>
+  </li>
+  <li>some variables used troughout the article:
+    <ul>
+      <li><code>CA_FILE</code>: file with ovirt CA certificate file - you'll have to choose it's location and name (it may end in .pem, .cer and .crt extension, prefer .pem for consistency)</li>
+      <li><code>OVIRT</code>: name/IP of the ovirt engine</li>
+      <li><code>USER</code>, <code>PASS</code>: self-explaining, user in form of <code>user@domain</code></li>
+      <li><code>VM_NAME</code>, <code>VM_UUID</code>: self-explaining</li>
+      <li><code>HOST</code>, <code>HOST_UUID</code>: hypervisor name/IP and UUID</li>
+      <li><code>PORT</code>: non-tls port qemu is listening on</li>
+      <li><code>SPORT</code>: tls port qemu is listening on</li>
+      <li><code>SUBJECT</code>: host subject of the hypervisor. More on last three later</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="getting-ovirt-engine-ca">Getting ovirt-engine CA</h2>
+
+<p>You should do this only over trustworthy network (or have ssh keys verified…)! If you are connecting over an insecure network (internet), you should either already have oVirt CA cert on your client or replace oVirt's root CA with an intermediate CA signed by root CA which you already have on the disk!</p>
+
+<ul>
+  <li>from the web: <code>wget -O ${CA_FILE} http://${OVIRT}/ca.crt</code></li>
+  <li>from the engine via ssh: <code>scp root@${OVIRT}:/etc/pki/ovirt-engine/ca.pem ${CA_FILE}</code></li>
+  <li>from the host via ssh: <code>scp root@${HOST}:/etc/pki/vdsm/libvirt-spice/ca-cert.pem ${CA_FILE}</code></li>
+</ul>
+
+<h2 id="clean-methods">Clean Methods</h2>
+
+<p>All of these are supported and encouraged to be used in production whenever they fit. They don't require any direct actions on the hosts, all your communication (apart from actual client lauch) is with ovirt-engine.</p>
+
+<h3 id="connecting-using-ovirt-shell-automatically">Connecting Using ovirt-shell "automatically"</h3>
+
+<p>Install ovirt-shell on the client if not present. On Fedora:</p>
+
+<p><code> root@client# </code><strong><code>yum</code> <code>install</code> <code>ovirt-engine-cli</code></strong></p>
+
+<p>run ovirt-shell and connect to the VM from it:</p>
+
+<pre class="highlight plaintext"><code>   bash$ ovirt-shell&#x000A;   [oVirt shell (disconnected)]# connect `[`https://`](https://)`${OVIRT}/ ${USER} ${PASS} &#x000A;   [oVirt shell (connected)]# console ${VM_NAME}&#x000A;</code></pre>
+
+<p>client window should pop-up</p>
+
+<h3 id="connecting-using-ovirt-shell-manually">Connecting Using ovirt-shell "manually"</h3>
+
+<p>If the steps above don't work, you can lauch the client manually based on info ovirt-shell gives you:</p>
+
+<p><code> client$ </code><strong><code>ovirt-shell</code></strong>
+<code> [oVirt shell (disconnected)]# </code><strong><code>connect</code> <a href="https://"><code>https://</code></a><code>${OVIRT}/</code> <code>${USER}</code> <code>${PASS}</code></strong>
+<code> [oVirt shell (connected)]# </code><strong><code>show</code> <code>vm</code> <code>${VM_NAME}</code></strong>
+       …
+       display-address           : <code>**</code>10.34.58.4<code>**</code>        # HOST is in bold
+       …
+       display-port              : <code>**</code>5914<code>**</code>              # PORT
+       display-secure_port       : <code>**</code>5915<code>**</code>              # SPORT
+       …
+       host-id                   : <code>**</code>f35dd7be-51b6-11e1-9275-0016365acdc4<code>**</code>      # HOST_UUID</p>
+
+<p>Now get last remaining bit of info about host:</p>
+
+<p><code> [oVirt shell (connected)]# </code><strong><code>show</code> <code>host</code> <code>${HOST_UUID}</code></strong>
+       …
+       certificate-subject                  : <code>**</code>O=organization<code> </code>name,<code> </code>CN=common-name<code>**</code>         # SUBJECT</p>
+
+<p>The host subject has to be stripped of spaces after commas, in this case it will look like this: <code>O=organization name,CN=common-name</code></p>
+
+<p>And set the ticket:</p>
+
+<p><code> [oVirt shell (connected)]# </code><strong><code>action</code> <code>vm</code> <code>${VM_NAME}</code> <code>ticket</code></strong>
+<code> ticket-value : </code><strong><code>YvwK2U403JXk</code></strong></p>
+
+<p>Now you can connect to the VM (you'll be asked for password in a modal window):</p>
+
+<pre class="highlight plaintext"><code>   bash$ remote-viewer --spice-ca-file ${CA_FILE} --spice-host-subject "${SUBJECT}" spice://${HOST}/?port=${PORT}\&amp;tls-port=${SPORT}&#x000A;   &#x000A;</code></pre>
+
+<h3 id="connecting-using-rest-api">Connecting Using REST API</h3>
+
+<p>ovirt-shell is in fact nothing more than nicely wrapped up oVirt REST API, so if you don't have it installed, you can get the same info using just <code>curl</code>:</p>
+
+<pre class="highlight plaintext"><code>   # find your VM: ` client$ `**`curl` `--cacert` `${CA_FILE}` `-u` `${USER}:${PASS}` `-H` `"Content-Type:` `application/xml"` `-X` `GET` `"`[`https://`](https://)`${OVIRT}/api/vms"`**&#x000A;   ... lots of xml `     `&lt;vm href="**\1**" id="**\1**"&gt; `         `&lt;name&gt;`${VM_NAME}`&lt;/name&gt;&#x000A;</code></pre>
+
+<p>In XML of this VM, look up necessary info:</p>
+
+<ul>
+  <li>URI to post to when you'll set the ticket:</li>
+</ul>
+
+<p><code>             </code><link href="/api/vms/${VM_UUID}/ticket" rel="ticket" /></p>
+
+<p>Client connection details (HOST, PORT and SPORT):</p>
+
+<p><code>         </code><display>
+`             `<type>`spice`</type>
+                   </display></p>
+
+<address>
+  <p><strong>10.34.58.4</strong></p>
+
+</address>
+<p><code>             </code><port>**`5914`**</port>
+<code>             </code><secure_port>**`5915`**</secure_port>
+                   
+<code>         </code>&lt;/display&gt;</p>
+
+<p>Host UUID:</p>
+
+<p><code>         </code><host href="**\1**" id="${HOST_UUID}"></host></p>
+
+<p>Now look up host hubject of the host (and delete the space after comma again):</p>
+
+<p><code> client$ </code><strong><code>curl</code> <code>--cacert</code> <code>${CA_FILE}</code> <code>-u</code> <code>${USER}:${PASS}</code> <code>-H</code> <code>"Content-Type:</code> <code>application/xml"</code> <code>-X</code> <code>GET</code> <code>"</code><a href="https://"><code>https://</code></a><code>${OVIRT}/api/hosts/${HOST_UUID}"</code></strong>
+<code>         </code><subject>`O=some organization, CN=common-name`</subject></p>
+
+<p>Set the ticket:</p>
+
+<p><code> client$ </code><strong><code>curl</code> <code>--cacert</code> <code>${CA_FILE}</code> <code>-u</code> <code>${USER}:${PASS}</code> <code>-H</code> <code>"Content-Type:</code> <code>application/xml"</code> <code>-X</code> <code>POST</code> <code>-d</code> <code>'</code><action><ticket><expiry>`120`</expiry></ticket></action><code>'</code> <code>"</code><a href="https://"><code>https://</code></a><code>${OVIRT}/api/vms/${VM_UUID}/ticket"</code></strong>
+       …
+<code>         </code><value>**`6BOZ+27RAWrt`**</value></p>
+
+<p>Connect to the client again (again, r-v will ask for the password in a pop-up window):</p>
+
+<p><code> bash$ </code><strong><code>remote-viewer</code> <code>--spice-ca-file</code> <code>${CA_FILE}</code> <code>--spice-host-subject</code> <code>"${SUBJECT}"</code> <code>spice://${HOST}/?port=${PORT}\&amp;tls-port=${SPORT}</code></strong>
+       </p>
+
+<h2 id="hacky-methods">Hacky Methods</h2>
+
+<p>Actually only one method will be described. Other methods exist but you won't need them as long as your goal is to have Vms managed by oVirt…</p>
+
+<h3 id="set-ticket-using-vdsclient">Set Ticket using vdsClient</h3>
+
+<p>First you'll have to pinpoint on which host the VM is running in Admin Portal, ovirt-shell or REST API. Then you have to get VM_UUID and pid of qemu process that runs your VM (QEMU_PID):</p>
+
+<p><code> bash$ </code><strong><code>ssh</code> <code>root@${HOST}</code></strong>
+<code> root@HOST# </code><strong><code>vdsClient</code> <code>-s</code> <code>0</code> <code>list</code> <code>table</code></strong>
+       <code>**</code>${VM_UUID}<code>**</code>    <code>**</code>${QEMU_PID}<code>**</code>     ${VM_NAME}      ${VM_STATUS}</p>
+
+<p>find out ports where qemu is listening:</p>
+
+<p><code> root@HOST# </code><strong><code>ps</code> <code>-f</code> <code>${QEMU_PID}</code></strong>
+       qemu     ${QEMU_PID}     1  1 Jul17 ?        Sl   513:33 /usr/libexec/qemu-kvm … -spice port=<code>**</code>5914<code>**</code>,tls-port=<code>**</code>5915<code>**</code>,… …</p>
+
+<p>find out host subject and do the usual space-after-comma deletion:</p>
+
+<p><code> root@HOST# </code><strong><code>openssl</code> <code>x509</code> <code>-in</code> <code>/etc/pki/vdsm/libvirt-spice/server-cert.pem</code> <code>-noout</code> <code>-text</code> <code>|</code> <code>grep</code> <code>Subject:</code></strong>
+<code>         Subject: </code><strong><code>O=some</code> <code>organization,</code> <code>CN=common-name</code></strong></p>
+
+<p>set the ticket. You have to set both password and its time validity:</p>
+
+<p><code> root@HOST# </code><strong><code>vdsClient</code> <code>-s</code> <code>0</code> <code>setVmTicket</code> <code>${VM_UUID}</code> <code>${PASS}</code> <code>${VALIDITY}</code></strong></p>
+
+<p>Now you can log out from the host and connect with a spice client:</p>
+
+<pre class="highlight plaintext"><code>   bash$ **\1**&#x000A;</code></pre>
+
+<h2 id="it-still-doesnt-work">It Still Doesn't work!</h2>
+
+<p>Well, check that:</p>
+
+<ul>
+  <li>
+    <p>your host's display interface is reachable from the client:</p>
+
+    <p>   root@client# nmaps -sS -p ${PORT},${SPORT} ${HOST}
+     …
+     PORT     STATE SERVICE
+     5914/tcp <code>**</code>open<code>**</code>  unknown
+     5915/tcp <code>**</code>open<code>**</code>  unknown</p>
+  </li>
+  <li>verify that host subject exposed by REST API is the same as the one in <code>/etc/pki/vdsm/libvirt-spice/server-cert.pem</code> on respective host</li>
+  <li>verify that host subject does not contain spaces after commas, so it should look like this: <code>O=org,CN=common-name</code>, not like this <code>O=org, CN=common-name</code></li>
+</ul>
+
+<category:documentation> <category:how_to>
+</category:how_to></category:documentation>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

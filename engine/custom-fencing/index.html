@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Custom Fencing &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Custom Fencing</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>emesika</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Custom Fencing</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>10</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2015-02-22</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Custom_Fencing' target='_blank'>
+Custom Fencing
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="custom-fencing">Custom Fencing</h1>
+
+<p>Here are detailed instructions how to add a custom agent:</p>
+
+<h2 id="pre-ovirt-35-releases">Pre oVirt 3.5 releases</h2>
+
+<p>a) Add your new agent to VdsFenceType option_value in vdc_options table for the relevant cluster version
+b) Add agent options mappings to VdsFenceOptionMapping option_value in vdc_options table for the relevant cluster version
+c) If the agent maps actually to another agent , add that to FenceAgentMapping option_value in vdc_options
+ Example :</p>
+
+<pre class="highlight plaintext"><code>    Adding zzz agent support for version 3.3 that maps internally to ipmi and have just port setting (from: port, slot, secure) that maps to the fencing script ipport&#x000A;    a) VdsFenceType for 3.3 becomes "apc,apc_snmp,bladecenter,cisco_ucs,drac5,eps,ilo,ilo2,ilo3,ilo4,ipmilan,rsa,rsb,wti,zzz"&#x000A;     b) VdsFenceOptionMapping for 3.3 becomes "apc:secure=secure,port=ipport,slot=port;apc_snmp:port=port;bladecenter:secure=secure,port=ipport,slot=port;cisco_ucs:secure=ssl,slot=port; drac5:secure=secure,slot=port;eps:slot=port;ilo:secure=ssl,port=ipport;ipmilan:;ilo2:secure=ssl,port=ipport;ilo3:;ilo4:;rsa:secure=secure,port=ipport;rsb:;wti:secure=secure,port=ipport,slot=port;zzz:port=ipport"&#x000A;     c) FenceAgentMapping becomes "ilo2=ilo,ilo3=ipmilan,ilo4=ipmilan,zzz=ipmilan"&#x000A;</code></pre>
+
+<p>NOTES</p>
+
+<p>1) Please backup your database
+2) You should restart the engine for this to take place
+3) Custom definitions will be overridden in your next upgrade , for the long run please fill RFE so it will be part of the supported agents</p>
+
+<h2 id="ovirt-35">oVirt 3.5</h2>
+
+<p>In oVirt 3.5 we had added custom fence configuration keys :</p>
+
+<pre class="highlight plaintext"><code>  CustomFenceAgentMapping - Maps a fencing agent to other agent implicitly. &#x000A;     Format : ((\\w)+[=](\\w)+[,]{0,1})+. &#x000A;     Example: agent1=agent2,agent3=agent4&#x000A;  CustomFenceAgentDefaultParams - Default parameters per agent. &#x000A;     Format ([\\w]+([=][\\w]+){0,1}[,]{0,1})+. &#x000A;     Example: agent1=key1=val1,flag;key2=val2&#x000A;  CustomVdsFenceOptionMapping - secure/port/slot mapping support per agent. &#x000A;     Format ([\\w]+[:]([\\w]*[=][\\w]*[,]{0,1}[;]{0,1}){0,3}[;]{0,1})+. &#x000A;     Example: agent1:secure=secure;agent2:port=ipport,slot=slot&#x000A;  CustomVdsFenceType - Fence agents types. &#x000A;     Format ((\\w)+[,]{0,1})+. &#x000A;     Example: agent1,agent2&#x000A;  CustomFencePowerWaitParam - Maps a fencing agent to the param for delay on/off actions. &#x000A;     Format : ((\\w)+[=](\\w)+[,]{0,1})+. &#x000A;     Example: agent1=power_wait,agent2=delay&#x000A;</code></pre>
+
+<p>Those keys are accessible from the engine-config util</p>
+
+<p>Example 1 : Adding zzz agent support for version 3.5 that maps internally to ipmi and have just port setting (from: port, slot, secure) that maps to the fencing script ipport</p>
+
+<pre class="highlight plaintext"><code>    engine-config -s CustomVdsFenceType="zzz"&#x000A;    engine-config -s CustomFenceAgentMapping="zzz=ipmilan"&#x000A;    engine-config -s CustomVdsFenceOptionMapping="zzz:port=ipport"&#x000A;    engine-config -s CustomFencePowerWaitParam="zzz=power_wait"&#x000A;</code></pre>
+
+<p>Example 2: Adding a new custom fencing device 'yyy' that have just port setting (from: port, slot, secure) that maps to the fencing script ipport First you have to insure that you have a script named fence_yyy in /usr/sbin directory of all servers that might be selected as proxy host for fencing operations</p>
+
+<pre class="highlight plaintext"><code>    engine-config -s CustomVdsFenceType="yyy"&#x000A;    engine-config -s CustomVdsFenceOptionMapping="yyy:port=ipport"&#x000A;    engine-config -s CustomFencePowerWaitParam="yyy=power_wait"&#x000A;</code></pre>
+
+<p>NOTE : if you have a power management card that needs no other parameters to be set, you still have to set it mapping as empty example</p>
+
+<pre class="highlight plaintext"><code>   engine-config -s CustomVdsFenceOptionMapping="zzz:"&#x000A;</code></pre>
+
+<p>In this case those changes remains valid after oVirt upgrades as well, so please use that method from oVirt 3.5 and on.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

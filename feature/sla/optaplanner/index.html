@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Optaplanner &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Optaplanner</td>
+</tr>
+<tr>
+<th>category</th>
+<td>feature</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>adahms, msivak</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Feature</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Features/Optaplanner</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>55</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2015-01-21</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Features/Optaplanner' target='_blank'>
+Features/Optaplanner
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<section class='feature'>
+<section class='feature-sidebar col-md-4'>
+<h1>Features</h1>
+<form class='hide' id='feature-search'>
+<div class='form-group'>
+<input autocomplete='off' class='form-control' id='feature-search-input' placeholder='Filter features'>
+<div class='checkbox'>
+<label>
+</label>
+</div>
+</div>
+</form>
+<h2>Unclassified</h2>
+<ul class='feature-list'>
+<li class=' status-development'>
+<a href='/feature/affinity-rules-enforcement-manager' title='Status: Development'>Affinity Rules Enforcement Manager</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/backupawareness' title='Status: NEW'>Adding Backup Awareness to oVirt</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/boot' title='Status: WIP'>Boot oVirt.org</a>
+
+</li>
+<li class=' status-developement'>
+<a href='/feature/cinderglance-docker-integration' title='Status: Developement'>Cinder and Glance integration via Docker</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/copy-disks' title='Status: Unknown'>Copy Disks</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/debian-support-for-hosts' title='Status: NEW'>Debian support for hosts</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/extension-tester-tool' title='Status: Unknown'>Extension tester tool</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/feature-template' title='Status: Released'>Your feature name</a>
+
+</li>
+<li class=' status-merged'>
+<a href='/feature/genericregistration' title='Status: Merged'>Generic Registration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/heapplianceflow' title='Status: WIP'>oVirt hosted-engine appliance flow</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/hosted-engine-add-hosts-with-web-ui' title='Status: NEW'>Hosted Engine: add hosts with Web UI</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/hosted-engine-configuration-on-shared-storage' title='Status: NEW'>Hosted Engine configuration on shared storage</a>
+
+</li>
+<li class=' status-design-&amp;-research'>
+<a href='/feature/hosted-engine-vm-management' title='Status: Design-&amp;-research'>Hosted engine VM management enhancements</a>
+
+</li>
+<li class=' status-implementation'>
+<a href='/feature/image-upload' title='Status: Implementation'>Image Upload</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/iothreads-support' title='Status: Unknown'>IOThreads Support</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/ip-on-role-network' title='Status: design'>IP address configuration on role bearing NICs</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/katellointegration' title='Status: Development'>Katello Integration</a>
+
+</li>
+<li class=' status-qa'>
+<a href='/feature/live-rebase-on-centos-7' title='Status: QA'>oVirt Live Rebase on CentOS 7</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/lun-resize' title='Status: Design'>Refresh LUN Size</a>
+
+</li>
+<li class=' status-draft'>
+<a href='/feature/memorybasedbalancing' title='Status: Draft'>CPU and Memory based cluster auto balancing</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/numaawareksmsupport' title='Status: Design'>NUMA aware KSM support</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/patternfly-tooltips' title='Status: Development'>PatternFly tooltips</a>
+
+</li>
+<li class=' status-draft'>
+<a href='/feature/pendingresourcemanager' title='Status: Draft'>Pending Resource Manager</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/scheduler-policies' title='Status: Unknown'>oVirt Scheduler Policies</a>
+
+</li>
+<li class=' status-planning'>
+<a href='/feature/splash' title='Status: Planning'>Backup Awareness UI - Splash Screen</a>
+
+</li>
+<li class=' status-planning'>
+<a href='/feature/ui' title='Status: Planning'>Backup Awareness UI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vmdevices-rework' title='Status: Unknown'>VMDevices rework</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/vmpinningtomultiplehosts' title='Status: Development'>VM pinning to multiple hosts</a>
+
+</li>
+</ul>
+<h2>Cloud</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/cloud/addingkeystoneurltoexternalproviders' title='Status: Unknown'>Adding Keystone URL To External Providers</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/cloud/cloud-init-integration' title='Status: Unknown'>Cloud-Init Integration</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/cloud/neutronvirtualappliance' title='Status: Completed'>Neutron Virtual Appliance</a>
+
+</li>
+</ul>
+<h2>Engine</h2>
+<ul class='feature-list'>
+<li class=' status-planning'>
+<a href='/feature/engine/avoid-ip-spoofing' title='Status: Planning'>Avoid IP Spoofing</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/better-vurti' title='Status: Unknown'>Better vurti</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/cluster-parameters-override' title='Status: Design'>Cluster parameters override</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/engine/commandcoordinator' title='Status: Completed'>Introduce CommandCoordinator Framework and Ability To Persist Commands in Database</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/cumulative-rx-tx-statistics' title='Status: Design'>Cumulative Network Usage Statistics</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/engine-backup' title='Status: Released'>oVirt engine backup</a>
+
+</li>
+<li class=' status-partial'>
+<a href='/feature/engine/engine-cleanup' title='Status: Partial'>Engine</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/engine-config-utilities' title='Status: Unknown'>Engine Config Utilities</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/engine-high-availability' title='Status: Unknown'>Engine High Availability</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/engine-nic-health-check' title='Status: Released'>Engine NIC health check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/engine-snmp' title='Status: Unknown'>engine snmp</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/engine-support-for-ppc64' title='Status: Released'>Engine support for PPC64</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/feature-level-support' title='Status: Unknown'>Feature Level Support</a>
+
+</li>
+<li class=' status-wontfix'>
+<a href='/feature/engine/fedora-21-support' title='Status: WONTFIX'>Fedora 21 Support</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/engine/fedora-22-support' title='Status: NEW'>Fedora 22 Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/fence-kdump' title='Status: Unknown'>Fence kdump</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/fenceagents' title='Status: Unknown'>Fence Agents</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/fencing-refactoring' title='Status: Design'>Fencing refactoring</a>
+
+</li>
+<li class=' status-proposed'>
+<a href='/feature/engine/get-route' title='Status: Proposed'>Get Route</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/guest-reboot' title='Status: Unknown'>Guest Reboot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/hostdeployprotocol' title='Status: Unknown'>Host Deploy Protocol</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/hostdev-passthrough' title='Status: Unknown'>hostdev passthrough</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/engine/hosted-engine' title='Status: WIP'>Node Hosted Engine</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/importunregisteredentities' title='Status: Released'>Detach/Attach Storage Domain with entities</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/integrating-libosinfo-with-engine' title='Status: Released'>Integrating libosinfo with oVirt engine</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/migration-of-local-dwh-reports-to-remote' title='Status: Design'>Migrating local DWH and Reports to remote</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/orm' title='Status: Unknown'>ORM</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/reportguestdiskslogicaldevicename' title='Status: Design'>Report Guest Disks Logical Device Name</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/self-hosted-engine-fc-support' title='Status: design'>Self Hosted Engine FC Support</a>
+
+</li>
+<li class=' status-post'>
+<a href='/feature/engine/self-hosted-engine-gluster-support' title='Status: POST'>Self Hosted Engine Gluster Support</a>
+
+</li>
+<li class=' status-post'>
+<a href='/feature/engine/self-hosted-engine-hyper-converged-gluster-support' title='Status: POST'>Self Hosted Engine Hyper Converged Gluster Support</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/engine/self-hosted-engine-iscsi-support' title='Status: Completed'>Self Hosted Engine iSCSI Support</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/self-hosted-engine-maintenance-flows' title='Status: Released'>Hosted Engine Maintenance Flow Unification</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/self-hosted-engine' title='Status: Released'>Self Hosted Engine</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/separate-dwh-host' title='Status: Design'>Separate DWH Host</a>
+
+</li>
+<li class=' status-qe'>
+<a href='/feature/engine/separate-reports-host' title='Status: QE'>Separate Reports Host</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/serial-console' title='Status: Unknown'>Serial Console</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/sr-iov' title='Status: Design'>SR_IOV</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/upgrademanager' title='Status: Released'>Upgrade Manager</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/vm-icons' title='Status: Design'>VM Icons</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/watchdog-engine-support' title='Status: Released'>Watchdog engine support</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/windows-guest-tools' title='Status: Released'>oVirt Windows Guest Tools ISO</a>
+
+</li>
+</ul>
+<h2>Foreman</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/foreman/advancedforemanintegration' title='Status: Unknown'>Advanced Foreman Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/foreman/foremanintegration' title='Status: Unknown'>Foreman Integration</a>
+
+</li>
+</ul>
+<h2>Infra</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/infra/aaa-jdbc' title='Status: Unknown'>AAA JDBC</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/aaa' title='Status: Unknown'>AAA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/api' title='Status: Unknown'>API</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/asynctaskmanagerchanges-3.3' title='Status: Unknown'>AsyncTaskManagerChanges 3.3</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/asynctaskmanagerchanges-3.3detailed' title='Status: Unknown'>AsyncTaskManagerChanges 3.3Detailed</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/asynctaskmanagerchanges' title='Status: Unknown'>Async Task Manager Changes</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/authentication-rewrite' title='Status: Unknown'>Authentication Rewrite</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/bootstrap-improvements' title='Status: Unknown'>Bootstrap Improvements</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/cli' title='Status: Unknown'>CLI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/clonevmfromsnapshot' title='Status: Unknown'>Clone VM From Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/custompropertiessheet' title='Status: Unknown'>Custom Properties Sheet</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/dbschemaversioncheck' title='Status: Unknown'>DB Schema Version Check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedclonevmfromsnapshot' title='Status: Unknown'>Detailed Clone VM From Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedhostpmproxypreferences' title='Status: Unknown'>Detailed Host PM Proxy Preferences</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedlockmechanism' title='Status: Unknown'>Detailed Lock Mechanism</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedpmhealthcheck' title='Status: Unknown'>Detailed PM Health Check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/drbd' title='Status: Unknown'>DRBD</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/entity-comment' title='Status: Unknown'>Entity comment</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/entity-configuration-management' title='Status: Unknown'>Entity Configuration Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/externalevents' title='Status: Unknown'>External Events</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/externaltasks' title='Status: Unknown'>External Tasks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/fullapplicationslist' title='Status: Unknown'>Full Applications List</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/hostpmproxypreferences' title='Status: Unknown'>Host PM Proxy Preferences</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/hsm-async-tasks' title='Status: Unknown'>HSM Async Tasks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/java-sdk' title='Status: Unknown'>Java sdk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/kerberos-support-in-sdks-and-cli' title='Status: Unknown'>Kerberos Support in SDKs and CLI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/microthreading' title='Status: Unknown'>Microthreading</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/nagios-integration' title='Status: Unknown'>Nagios Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/ntpsupport' title='Status: Unknown'>NTP Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/one-certificate-key-pair-per-nic' title='Status: Unknown'>One certificate-key pair per NIC</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pki-improvements' title='Status: Unknown'>PKI Improvements</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pki' title='Status: Unknown'>PKI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pkireduce' title='Status: Unknown'>PKI Reduce</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pmhealthcheck' title='Status: Unknown'>PM Health Check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/python-sdk' title='Status: Unknown'>Python sdk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/reloadableconfiguration' title='Status: Unknown'>Reloadable Configuration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/restsessionmanagement' title='Status: Unknown'>REST Session Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/rsdl-schema' title='Status: Unknown'>RSDL schema</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/rsdl' title='Status: Unknown'>RSDL</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/runningcommandsonendactionfailure' title='Status: Unknown'>Running Commands On End Action Failure</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/ssh-abilities' title='Status: Unknown'>SSH Abilities</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/sso-method-control' title='Status: Unknown'>SSO Method Control</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/sso' title='Status: Unknown'>SSO</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/taskmanager' title='Status: Unknown'>Task Manager</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/taskmanagercanceltask' title='Status: Unknown'>Task Manager Cancel Task</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/taskmanagerdetailed' title='Status: Unknown'>Task Manager Detailed</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/testingframework' title='Status: Unknown'>Testing Framework</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/uniformssosupport' title='Status: Unknown'>Uniform SSO Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/user-portal-permissions' title='Status: Unknown'>User Portal Permissions</a>
+
+</li>
+</ul>
+<h2>Infra / Reloadable Configuration</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/infra/reloadable-configuration/keys-table' title='Status: Unknown'>keys table</a>
+
+</li>
+</ul>
+<h2>Infra / User Portal Permissions</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/infra/user-portal-permissions/writing-a-new-user-query' title='Status: Unknown'>Writing A New User Query</a>
+
+</li>
+</ul>
+<h2>Integration</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/integration/allinone' title='Status: Released'>All in One</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/integration/otopi-infra-migration' title='Status: Unknown'>Otopi Infra Migration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/integration/ovirtappliance' title='Status: WIP'>oVirt Appliance</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/integration/remotedb' title='Status: Unknown'>Remote DB</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/integration/websocketproxy-on-a-separate-host' title='Status: completed'>WebSocketProxy on a separate host</a>
+
+</li>
+</ul>
+<h2>Network</h2>
+<ul class='feature-list'>
+<li class=' status-qa'>
+<a href='/feature/network/apidatacenternetworks' title='Status: QA'>API Data Center Networks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/arbitraryvlandevicename' title='Status: Unknown'>Arbitrary VLAN Device Name</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/bridgeless-networking' title='Status: Unknown'>Bridgeless Networking</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/bridgeless-networks' title='Status: Unknown'>Bridgeless Networks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/compatibilityversion' title='Status: Unknown'>compatibility Version</a>
+
+</li>
+<li class=' status-implementation'>
+<a href='/feature/network/detailed-host-network-qos' title='Status: Implementation'>Host Network QoS</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/detailed-osn-integration' title='Status: Unknown'>Detailed OSN Integration</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/detailedhostnetworkingapi' title='Status: Design'>Host Networking API</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/network/detailedmanagementnetworkasarole' title='Status: WIP'>Management network as a role - Detailed</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/detailednetworklinking' title='Status: Unknown'>Detailed Network Linking</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/detailedreportingvnicinformation' title='Status: Unknown'>Detailed Reporting Vnic Information</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/device-custom-properties' title='Status: Unknown'>Device Custom Properties</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/directhostaddress' title='Status: Unknown'>Direct Host Address</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/ethtool-options' title='Status: Released'>Device ethtool options</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/get-route-device' title='Status: Unknown'>Get Route Device</a>
+
+</li>
+<li class=' status-implementation'>
+<a href='/feature/network/host-network-qos' title='Status: Implementation'>Host Network QoS</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/hostnetworkingapi' title='Status: Design'>Host Networking API</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/hotplugnic' title='Status: Released'>Hotplug/Hotunplug of Network Interface Cards</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/isolatednetworks' title='Status: Design'>Isolated Network</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/management-network-as-a-role' title='Status: design'>Management network as a role</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/migration-network' title='Status: Unknown'>Migration Network</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/multihostnetworkconfiguration' title='Status: Unknown'>Multi Host Network Configuration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/multiple-gateways' title='Status: Unknown'>Multiple Gateways</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/network-custom-properties' title='Status: Released'>Network Custom Properties</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/network-labels' title='Status: Unknown'>Network Labels</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/network-qos-detailed-design' title='Status: Unknown'>Network QoS - detailed design</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkfiltering' title='Status: Unknown'>Network Filtering</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/networklabels' title='Status: Released'>Network Labels</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networklinking' title='Status: Unknown'>Network Linking</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkmaintab' title='Status: Unknown'>Network Main Tab</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkmanager-support' title='Status: Unknown'>NetworkManager Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkpermissions' title='Status: Unknown'>Network Permissions</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkreloaded' title='Status: Unknown'>Network Reloaded</a>
+
+</li>
+<li class=' status-dormant'>
+<a href='/feature/network/nicless-network' title='Status: Dormant'>Nic-less Network</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/normalized-ovirtmgmt-initialization' title='Status: Unknown'>Normalized oVirtmgmt Initialization</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/osn-integration' title='Status: Unknown'>OSN Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/portmirroring' title='Status: Unknown'>Port Mirroring</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/predictable-vnic-order' title='Status: Released'>Predictable vNIC Order</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/reportingvnicinformation' title='Status: Unknown'>Reporting Vnic Information</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/required-networks' title='Status: Unknown'>Required Networks</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/select-network-for-gluster' title='Status: Design'>Select Network for Gluster traffic</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/setupnetworks' title='Status: Unknown'>Setup Networks</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/ucs-integration' title='Status: Released'>Cisco UCS integration</a>
+
+</li>
+<li class=' status-proposed'>
+<a href='/feature/network/unrestricted-network-names' title='Status: Proposed'>Unrestricted Network Names</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/update-device-hooks' title='Status: Unknown'>Update device hooks</a>
+
+</li>
+</ul>
+<h2>Node</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/node/buildtoolmigration' title='Status: Unknown'>Buildtool Migration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/node/cockpit' title='Status: WIP'>Cockpit</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/node/dbusbackend' title='Status: WIP'>D-Bus Backend</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/diagnostic-page' title='Status: Unknown'>Node Diagnostic Page</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/docker-integration' title='Status: Unknown'>Docker Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/featurepublishing' title='Status: Unknown'>Feature Publishing</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/glusterfs-support' title='Status: Unknown'>Node GlusterFS Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/ipv6-support' title='Status: Unknown'>IPv6 support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/kimchiplugin' title='Status: Unknown'>Kimchi Plugin</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/nic-bonding' title='Status: Unknown'>NIC Bonding</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/node/node.next' title='Status: New'>Node.next</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/nodeautomation' title='Status: Unknown'>Node Automation</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/openvswitchsupport' title='Status: Unknown'>Open V Switch Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/packagerefactoring' title='Status: Unknown'>Package Refactoring</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/pluginliveinstall' title='Status: Unknown'>Plugin Live Install</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/plugins' title='Status: Unknown'>Node plugins</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/puppet-plugin' title='Status: Unknown'>Node Puppet Plugin</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/software-iscsi-root' title='Status: Unknown'>Node software iscsi root</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/storageandinstallermodulerewrite' title='Status: Unknown'>Storage And Installer Module Rewrite</a>
+
+</li>
+<li class=' status-review'>
+<a href='/feature/node/subpackages' title='Status: Review'>subpackages</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/tuiredesign' title='Status: Unknown'>TU Iredesign</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/universal-image' title='Status: Unknown'>Universal Image</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/upgrade-tool' title='Status: Unknown'>Node upgrade tool</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/urwid-tui' title='Status: Unknown'>Urwid TUI</a>
+
+</li>
+</ul>
+<h2>Plugins</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/plugins/plugins' title='Status: Unknown'>Plugins</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/plugins/uipluginsoriginaldesignnotes' title='Status: Unknown'>UI Plugins Original Design Notes</a>
+
+</li>
+</ul>
+<h2>SLA</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/sla/aggregate-qos' title='Status: Unknown'>aggregate QoS</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/automatic-scaling' title='Status: Unknown'>Automatic scaling</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/autorecovery' title='Status: Unknown'>Autorecovery</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/blkio-support' title='Status: Unknown'>blkio support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/cpu-host-support' title='Status: Unknown'>CPU-host Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/cpu-sla' title='Status: Unknown'>CPU SLA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/cpu-thread-handling' title='Status: Unknown'>CPU thread handling</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/detailed-numa-and-virtual-numa' title='Status: Unknown'>Detailed NUMA and Virtual NUMA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/detailedquota' title='Status: Unknown'>Detailed Quota</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/drools-planner-scheduler' title='Status: Unknown'>drools planner scheduler</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/even-vm-count-distribution' title='Status: Unknown'>Even VM Count Distribution</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/external-scheduling-proxy' title='Status: Unknown'>oVirt External Scheduling Proxy</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ha-vm-reservation-detaileddesign' title='Status: Unknown'>HA VM reservation detailedDesign</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ha-vm-reservation' title='Status: Unknown'>HA VM reservation</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/hostpowermanagementpolicy' title='Status: Unknown'>Host Power Management Policy</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/memory-hotplug' title='Status: Unknown'>Memory Hotplug</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/minimum-guaranteed-memory' title='Status: Unknown'>Minimum guaranteed memory</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/momintegration' title='Status: Unknown'>Mom Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/numa-and-virtual-numa' title='Status: Unknown'>NUMA and Virtual NUMA</a>
+
+</li>
+<li class='selected status-unknown'>
+<a href='/feature/sla/optaplanner' title='Status: Unknown'>Optaplanner</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ovirtscheduler' title='Status: Unknown'>o Virt Scheduler</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ovirtschedulerapi' title='Status: Unknown'>o Virt Scheduler API</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/performance-and-scalability' title='Status: Unknown'>Performance And Scalability</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/quota' title='Status: Unknown'>Quota</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/sla-mom-ballooning-tp' title='Status: Unknown'>SLA mom ballooning tp</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/sla-mom' title='Status: Unknown'>SLA mom</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/trusted-compute-pools' title='Status: Unknown'>Trusted compute pools</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/vm-affinity' title='Status: Unknown'>VM Affinity</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/vm-coredump' title='Status: Unknown'>VM coredump</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/vnic-profiles' title='Status: Unknown'>Vnic Profiles</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/xbzrle-and-auto-convergence' title='Status: Unknown'>XBZRLE and Auto-Convergence</a>
+
+</li>
+</ul>
+<h2>Storage</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/storage/advancednfsoptions' title='Status: Released'>Advanced Nfs Options</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/backup-provider' title='Status: Unknown'>Backup Provider</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/backup-restore-api-integration' title='Status: Unknown'>Backup-Restore API Integration</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/storage/cinder-integration' title='Status: Design'>Cinder Integration</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/connectionreferences' title='Status: Released'>Connection References</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/decommission-master-domain-and-spm' title='Status: Unknown'>Decommission Master Domain and SPM</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/design-for-multiple-storage-domains' title='Status: Released'>Manage storage connections</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/detailed-gluster-geo-rep' title='Status: Unknown'>Detailed Gluster Geo Rep</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/detailed-gluster-volume-asynchronous-tasks-management' title='Status: Unknown'>Detailed Gluster Volume Asynchronous Tasks Management</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/detailedfloatingdisk' title='Status: Released'>Floating Disk</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/detailedhotplug' title='Status: Released'>Disk Hot Plug</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/detailedsharedrawdisk' title='Status: Released'>Shared Raw Disk</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/direct-lun' title='Status: Released'>Direct LUN</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/disk-hooks' title='Status: Released'>Disk Hooks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/diskalignment' title='Status: Unknown'>Disk Alignment</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/diskpermissions' title='Status: Released'>Disk Permissions</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/domain-scan' title='Status: Released'>Domain Scan</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/floatingdisk' title='Status: Released'>Floating Disk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/glance-integration' title='Status: Unknown'>Glance Integration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/storage/gluster-dashboard' title='Status: WIP'>Gluster Dashboard</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/storage/gluster-geo-replication' title='Status: WIP'>Geo replication</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/gluster-hooks-management' title='Status: Released'>Gluster Hooks management</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/gluster-import-existing-cluster' title='Status: Released'>Import cluster</a>
+
+</li>
+<li class=' status-complete'>
+<a href='/feature/storage/gluster-support' title='Status: Complete'>Gluster management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-swift-management' title='Status: Unknown'>Gluster Swift Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-sync-configuration-with-cli' title='Status: Unknown'>Gluster Sync Configuration With CLI</a>
+
+</li>
+<li class=' status-complete'>
+<a href='/feature/storage/gluster-volume-asynchronous-tasks-management' title='Status: Complete'>Gluster tasks management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-volume-capacity' title='Status: Unknown'>Gluster Volume Capacity</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-volume-performance-statistics' title='Status: Unknown'>Gluster Volume Performance Statistics</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/glusterfs-hyperconvergence' title='Status: Unknown'>GlusterFS Hyperconvergence</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/glusterfs-storage-domain' title='Status: Released'>GlusterFS Storage Domain</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/storage/glusterhostdiskmanagement' title='Status: WIP'>Host Device Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/glustervolumeadvanceddetails' title='Status: Unknown'>Gluster Volume Advanced Details</a>
+
+</li>
+<li class=' status-not-started'>
+<a href='/feature/storage/glustervolumequota' title='Status: Not-Started'>Gluster Volume Quota</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/hotplug' title='Status: Released'>Disk Hot Plug</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/importmorethanonce' title='Status: Released'>Import VM or Template More than Once</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/importstoragedomain' title='Status: Released'>Import Storage Domain</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/ioprocess' title='Status: Unknown'>ioprocess</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/iscsi-multipath' title='Status: Released'>Configure iSCSI Multipathing</a>
+
+</li>
+<li class=' status-stabilization'>
+<a href='/feature/storage/live-merge' title='Status: Stabilization'>Live Merge</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/manage-storage-connections' title='Status: Released'>Manage storage connections</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/mixed-types-data-center' title='Status: Unknown'>Mixed Types Data Center</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/move-disk-two-phase-commit' title='Status: Unknown'>Move Disk Two Phase Commit</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/moveascopyanddelete' title='Status: Unknown'>Move As Copy And Delete</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/multiplestoragedomains' title='Status: Released'>Manage storage connections</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/nfsv4' title='Status: Released'>NFSv4</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/online-virtual-drive-resize' title='Status: Released'>Online Virtual Drive Resize</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/orphaned-images' title='Status: Unknown'>Orphaned Images</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/ovfautoupdater' title='Status: Unknown'>Ovf Auto Updater</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/ovfonanydomain' title='Status: Unknown'>Ovf On Any Domain</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/posixfsconnection' title='Status: Released'>PosixFS Connection</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/read-only-disk' title='Status: Released'>Read-Only Disks</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/storage/sanlock-fencing' title='Status: Design'>Sanlock Fencing</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/serial-execution-of-asynchronous-tasks-detailed-design' title='Status: Unknown'>Serial Execution of Asynchronous Tasks Detailed Design</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/serial-execution-of-asynchronous-tasks' title='Status: Released'>Serial Execution of Asynchronous Tasks</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/sharedrawdisk' title='Status: Released'>Shared Raw Disk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/single-disk-snapshot' title='Status: Unknown'>Single Disk Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/snapshots-overview' title='Status: Unknown'>Snapshots Overview</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/spmpriority' title='Status: Released'>SPM Priority</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/storagedomainliveupgrade' title='Status: Unknown'>Storage Domain Live Upgrade</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/storagepool-metadata-removal' title='Status: Unknown'>StoragePool Metadata Removal</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/virtio-scsi' title='Status: Unknown'>Virtio SCSI</a>
+
+</li>
+</ul>
+<h2>UX</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/ux/branding' title='Status: Released'>Branding</a>
+
+</li>
+<li class=' status-proposal'>
+<a href='/feature/ux/cssgrids' title='Status: Proposal'>CSS Grids</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedexternalevents' title='Status: Unknown'>Detailed External Events</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedexternaltasks' title='Status: Unknown'>Detailed External Tasks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedhostpmmultipleagents' title='Status: Unknown'>Detailed Host PM Multiple Agents</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedhotplugnic' title='Status: Unknown'>Detailed Hot Plug NIC</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedstabledeviceaddresses' title='Status: Unknown'>Detailed Stable Device Addresses</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/entityhealthstatus' title='Status: Unknown'>Entity Health Status</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/foreign-menu-using-rest' title='Status: Unknown'>Foreign Menu Using REST</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/ux/frontendrefactor' title='Status: Released'>Frontend Refactoring</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/glustergeoreplication' title='Status: Unknown'>Gluster Geo Replication</a>
+
+</li>
+<li class=' status-inception'>
+<a href='/feature/ux/glustervolumesnapshots' title='Status: Inception'>Gluster Volume Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/gwt-platform-upgrade' title='Status: Unknown'>GWT Platform Upgrade</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/hostbiosinfo' title='Status: Unknown'>Host Bios Info</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/hosthardwareinfo' title='Status: Unknown'>Host Hardware Info</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/hostpmmultipleagents' title='Status: Unknown'>Host PM Multiple Agents</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/i18n' title='Status: Unknown'>I18N</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/jasper-in-webadmin' title='Status: Unknown'>jasper in webadmin</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/ux/lowerresolutionsupport' title='Status: Released'>Low Resolution Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/memory-aware-even-distribution-policy' title='Status: Unknown'>Memory-aware Even-distribution Policy</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/ux/newlookandfeelpatternflyphase1' title='Status: Development'>New Look and Feel based on PatternFly -- Phase 1</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/quota-3.2' title='Status: Unknown'>Quota 3.2</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/reports-dashboard' title='Status: Unknown'>Reports Dashboard</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/sla-for-storage-io-bandwidth' title='Status: Unknown'>SLA for storage io bandwidth</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/uiplugins' title='Status: Unknown'>UI Plugins</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/ux/uirefreshsynchronization' title='Status: Released'>Refresh Synchronization</a>
+
+</li>
+</ul>
+<h2>UX / Design</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/glusterhostdiskmanagement' title='Status: Unknown'>Gluster Host Disk Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/jsonrpc3.5' title='Status: Unknown'> JSON RPC 3.5</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/livemerge' title='Status: Unknown'>Live Merge</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/stabledeviceaddresses' title='Status: Unknown'>Stable Device Addresses</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/storagehelpers' title='Status: Unknown'>Storage Helpers</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/storagelivemigration' title='Status: Unknown'>Storage Live Migration</a>
+
+</li>
+</ul>
+<h2>UX / Design / Network</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/network/jumbo-frames' title='Status: Unknown'>Jumbo frames</a>
+
+</li>
+</ul>
+<h2>VDSM</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/vdsm/for-ppc64' title='Status: Released'>VDSM for PPC64</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/hostconfiguration' title='Status: Unknown'>Host Configuration</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/vdsm/jsonrpc' title='Status: Development'>Introduce Messaged communication to VDSM using  JSON-RPC on top of various transport protocols</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/libvdsm' title='Status: Unknown'>libVDSM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/measurements' title='Status: Unknown'>Measurements</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/python3-compatibility' title='Status: Unknown'>VDSM python3 compatibility</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/supervdsm-service' title='Status: Unknown'>SuperVDSM service</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/vdsm-plugin' title='Status: Unknown'>Node VDSM plugin</a>
+
+</li>
+<li class=' status-proposed'>
+<a href='/feature/vdsm/vdsm-vm-query-api' title='Status: Proposed'>VDSM VM Data Query API</a>
+
+</li>
+</ul>
+<h2>Virt</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/virt/blank-to-defaults' title='Status: Unknown'>Blank to Defaults</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/clone-vm' title='Status: Unknown'>Clone VM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/cluster-emulation-modes' title='Status: Unknown'>Cluster emulation modes</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/console-connection-settings-dialog-in-portals' title='Status: Unknown'>Console connection settings dialog in portals</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/detailed-exit-reason' title='Status: Unknown'>Detailed Exit Reason</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/display-address-override' title='Status: Unknown'>Display Address Override</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/edit-running-vm' title='Status: Unknown'>Edit Running VM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/expose-vm-devices' title='Status: Unknown'>Expose VM Devices</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/guestagent' title='Status: Unknown'>Guest Agent</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentdebian' title='Status: Done'>oVirt Guest Agent on Debian</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentopensuse' title='Status: Done'>oVirt Guest Agent on OpenSUSE</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentsles' title='Status: Done'>oVirt Guest Agent on SLE(S)</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentubuntu' title='Status: Done'>oVirt Guest Agent on Ubuntu</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/virt/hostusb' title='Status: Released'>Expose Host attached USB to a Node</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/hot-plug-cpu' title='Status: Unknown'>Hot plug CPU</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/instance-types' title='Status: Unknown'>Instance Types</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/intial-run-vm-tab' title='Status: Unknown'>Intial Run VM tab</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/multiple-consoles' title='Status: Unknown'>Multiple Consoles</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/multiple-graphic-servers' title='Status: Unknown'>Multiple Graphic Servers</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/multiplemonitors' title='Status: Unknown'>Multiple Monitors</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/non-plugin-console-invocation' title='Status: Unknown'>Non plugin console invocation</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/novnc-console' title='Status: Unknown'>noVNC console</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/virt/os-info' title='Status: Released'>OS info</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/prestartedvm' title='Status: Unknown'>Prestarted VM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/ram-snapshots' title='Status: Unknown'>RAM Snapshots</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/resourceusagegraph' title='Status: Unknown'>Resource Usage Graph</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/s3-suspend' title='Status: Unknown'>S3 suspend</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/smartcard-support' title='Status: Unknown'>Smartcard support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/spice-proxy' title='Status: Unknown'>Spice Proxy</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/spicehtml5' title='Status: Unknown'>Spice HTML5</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/spicerelatedfeatures' title='Status: Unknown'>SPICE Related Features</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/template-versions' title='Status: Unknown'>Template Versions</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/virt/virt-v2v-integration' title='Status: Design'>Extended import of Virtual Machines</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/vm-init-persistent' title='Status: Unknown'>VM init persistent</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/vmpayload' title='Status: Unknown'>VM Payload</a>
+
+</li>
+</ul>
+</section>
+<section class='feature-info col-md-8'>
+<div class='well'>
+<h2>At a glance</h2>
+No feature info available. Please contact
+<span class='author-name' title='adahms'>Andrew Dahms</span> or <span class='author-name' title='msivak'>Martin</span>
+to fix.
+</div>
+<h1 id="optaplanner-integration-with-scheduling">Optaplanner integration with scheduling</h1>
+
+<h3 id="owner">Owner</h3>
+
+<ul>
+  <li>Feature Owner: Martin Sivák: <span class='broken-link link-mediawiki' data-href='User:msivak' title='Special MediaWiki link: original pointed to: User:msivak'>msivak</span></li>
+  <li>Email: <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#115;&#105;&#118;&#097;&#107;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#109;&#115;&#105;&#118;&#097;&#107;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a></li>
+</ul>
+
+<h3 id="current-status">Current status</h3>
+
+<ul>
+  <li>Tech preview release - 0.3 - will be part of oVirt 3.5 RC2</li>
+  <li>Last updated: – by <span class='broken-link link-mediawiki' data-href='User:{{urlencode:{{REVISIONUSER}}' title='Special MediaWiki link: original pointed to: User:{{urlencode:{{REVISIONUSER}}'> WIKI}}</span></li>
+  <li>Tracking BZs: <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1093051">rhbz#1093051</a></li>
+</ul>
+
+<h3 id="use-cases">Use Cases</h3>
+
+<ul>
+  <li>A virtual machine fails to start due to insufficient resources, and the user wants to know if there is a way to fit the virtual machine</li>
+  <li>The user wants to rebalance the cluster to achieve an "optimal" state</li>
+</ul>
+
+<h3 id="benefit-to-ovirt">Benefit to oVirt</h3>
+
+<p>Our users will get hints about how to utilize their hardware better.</p>
+
+<h1 id="goals"><strong>Goals</strong></h1>
+
+<ul>
+  <li>We want to write a service that takes a snapshot of a cluster (list of hosts and Vms) and computes an optimized Vm to Host assignment solution.</li>
+  <li>Optimization will be done on per Cluster basis.</li>
+  <li>We intend to implement the service using rules on top of <a href="http://www.optaplanner.com">Optaplanner</a> engine.</li>
+  <li>The administrator should then be able to use that as a hint to tweak the situation in the cluster to better utilize resources.</li>
+  <li>The idea is to have the service free-running in an infinite loop and improve the solution over time while adapting to changes in the cluster.</li>
+  <li>The service will be separated from the ovirt-engine to not endanger the datacenter by using too much memory or cpu. It will talk to the engine using an API.</li>
+</ul>
+
+<h1 id="deployment-manual">Deployment manual</h1>
+
+<p>Two hosts (or virtual machines) are needed - one will host the ovirt-engine and the other will contain the ovirt-optimizer service. Your ovirt-engine must already be installed and configured before you perform the following steps.</p>
+
+<p>Four packages are currently available (the latest build is available from <a href="http://jenkins.ovirt.org/job/ovirt-optimizer_master_create-rpms_merged/">http://jenkins.ovirt.org/job/ovirt-optimizer_master_create-rpms_merged/</a>):</p>
+
+<ul>
+  <li>ovirt-optimizer-0.3-3.fc19.noarch.rpm</li>
+  <li>ovirt-optimizer-ui-0.3-3.fc19.noarch.rpm</li>
+  <li>ovirt-optimizer-jboss7-0.3-3.fc19.noarch.rpm</li>
+  <li>ovirt-optimizer-jetty-0.3-3.fc19.noarch.rpm</li>
+</ul>
+
+<p>There are also packages for CentOS 6 and Fedora 20. Fedora 20 provides Jetty deployment only, because Fedora 20 ships with WildFly, which is not supported at the moment.</p>
+
+<h3 id="installing-the-ovirt-optimizer-machine">Installing the ovirt-optimizer machine</h3>
+
+<ul>
+  <li>Install the ovirt-optimizer-jetty or ovirt-optimizer-jboss7 package depending on which application server you want to use.</li>
+  <li>Edit the /etc/ovirt-optimizer/ovirt-optimizer.properties file and set the address of your ovirt-engine instance and the credentials for the REST API.</li>
+  <li>Check if the firewall allows external access to the port where your application server runs (8080 on TCP if you are using Jetty).</li>
+  <li>If you performed a fresh installation of Jetty on Fedora 19, you must remove the demonstration configuration file for Jetty to start - /usr/share/jetty/start.d/900-demo.ini</li>
+  <li>Start the application server - both Jetty and Jboss should detect and deploy the ovirt-optimizer service automatically.</li>
+  <li>Check the logs (depends on the application server configuration) and you should see that ovirt-optimizer detected some cluster and tries to compute a solution.</li>
+</ul>
+
+<h3 id="installing-the-ui">Installing the UI</h3>
+
+<ul>
+  <li>Switch to your ovirt-engine machine.</li>
+  <li>Install the ovirt-optimizer-ui package.</li>
+  <li>Configure the user interface plug-in by updating /etc/ovirt-engine/ui-plugins/ovirt-optimizer-config.json - you must put the address and port of the ovirt-optimizer service there.</li>
+  <li>Restart the ovirt-engine service and reload the Administration Portal.</li>
+  <li>Log in to the Administration Portal, navigate to the main Cluster tab and select a cluster. You will now see the oVirt Optimizer subtab in the lower half of the page.</li>
+  <li>When you switch to the subtab, it should load some data (might take couple of seconds).</li>
+</ul>
+
+<h3 id="present-features">Present Features</h3>
+
+<ul>
+  <li>Each cluster has a new subtab - Optimizer results - that shows the proposed optimized solution (both the final state and the steps to get there) and makes it possible to start a migration by clicking the relevant buttons.</li>
+  <li>Each virtual machine has two new elements in their context menu - Optimize start and Cancel start optimization. These elements are designed to be used with stopped virtual machines (status Down) and tell the optimizer to identify a solution when the selected virtual machine are started. The cancel menu item cancels this request. You can select multiple virtual machines this way. Sadly, there is no indication in the user interface of the currently optimized virtual machines. However, the result subtab provides a list of virtual machines that are supposed to be started together with the solution details.</li>
+  <li>The solution should obey the cluster policy to some extent - OptimalForEvenDistribution, OptimalForEvenGuestDistribution and OptimalForPowerSaving will be computed using the memory assignments though (the engine uses CPU load)</li>
+</ul>
+
+<h3 id="missing-features">Missing Features</h3>
+
+<ul>
+  <li>Some hard constraint rules are missing so the solution might not be applicable because of the current scheduling policy.</li>
+  <li>Balancing check is missing so the engine might decide to touch the cluster in the middle of your optimization steps - you can disable automatic balancing in the scheduling policy to prevent this.</li>
+  <li>No CPU load based rules, the optimizer tries to use the hosts' memory in an even way (engine uses CPU load in the balanced rule).</li>
+</ul>
+
+<h1 id="known-issues">Known issues</h1>
+
+<h3 id="data-refresh-failed-undefined">Data refresh failed: undefined</h3>
+
+<p>Check your Firefox (or other browser) version. There is a chance that your browser is new enough and enforces mixed content security rules. That blocks the request to get results from the optimizer. See <a href="https://developer.mozilla.org/en-US/docs/Security/MixedContent">https://developer.mozilla.org/en-US/docs/Security/MixedContent</a> for details.</p>
+
+<p>You can work around this in Firefox by going to <about:config> page and setting security.mixed_content.block_active_content to false.</about:config></p>
+
+<h3 id="javalangoutofmemoryerror">java.lang.OutOfMemoryError</h3>
+
+<p>Please check the amount of memory available to the application server.</p>
+
+<p>Jboss is configured in /usr/share/jbossas/bin/standalone.conf (or the respective file in /usr/share/ovirt-engine-jboss-as) and look for the -Xmx option in JAVA_OPTS.</p>
+
+<pre class="highlight plaintext"><code>     example: JAVA_OPTS="-Xms2048m -Xmx8192m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true"&#x000A;</code></pre>
+
+<h1 id="detailed-description---internals">Detailed Description - Internals</h1>
+
+<p>This feature will allow the user to get a solution to his scheduling needs. Computing the solution might take a long time so an <a href="http://www.optaplanner.org">Optaplanner</a> based service will run outside of the engine and will apply a set of rules to the current cluster's situation to get an optimized VM to Host assignments.</p>
+
+<h3 id="getting-the-cluster-situation-to-optaplanner">Getting the cluster situation to Optaplanner</h3>
+
+<p>This will be based on REST API after the missing entities for Cluster policy are implemented. In the worst case we might consider to utilize direct database access to get missing data.</p>
+
+<p>The following information is needed:</p>
+
+<ul>
+  <li>List of hosts in the cluster with information about provided resources</li>
+  <li>List of all VMs running in the cluster with information about required resources (probably without statistics data for now)</li>
+  <li>The currently selected cluster policy is needed together with the custom parameters</li>
+  <li>The configuration of the cluster policy - list of filters, weights and coefficients</li>
+</ul>
+
+<p>The ideal situation would be if it was possible to get the described data in an atomic snapshot way. Which means that all the data will be valid at one single exactly defined moment in time.</p>
+
+<p>The Optaplanner service will use Java SDK to get the data and the idea is to get the data once and then (cache and) reuse them during the whole optimization run.</p>
+
+<h3 id="representing-the-solution-in-optaplanner">Representing the solution in Optaplanner</h3>
+
+<p>Optaplanner requires at least two java classes to be implemented:</p>
+
+<ul>
+  <li>Solution description – a set of all VMs with assigned Hosts.</li>
+  <li>Mutable entity for the optimization algorithm to update – the VM itself, the mutable field is the Host assignment</li>
+</ul>
+
+<p>The VM and Host classes can be represented in couple of ways:</p>
+
+<ul>
+  <li>SDK's Host and VM classes</li>
+  <li>Engine internal Vds and Vm classes</li>
+</ul>
+
+<p>The selected representation will depend on the way our Optaplanner service will define the rules for the optimization algorithm (see the next sections).</p>
+
+<h3 id="reporting-the-result-of-optimization">Reporting the result of optimization</h3>
+
+<p>The result will be presented using an UI plugin in the engine's webadmin. That way the user will have comfortable access to the results from a UI he is used to. Also the authentication and access management to REST will be provided by the webadmin. The disadvantage is that the UI plugin will have to use some kind of new protocol (REST, plain HTTP, …) to talk to the Optaplanner service. Also the UI plugin will have to authenticate to the Optaplanner service, but we are probably not implementing that in the tech preview phase.</p>
+
+<p>There is also a question of how to represent the solution:</p>
+
+<ul>
+  <li>The first prototype will just show a table (graph, image) of the "optimal" VM to Host assignments in a dialog window</li>
+  <li>in the future we might be even able to tell the user the order of steps he should perform (migrate A to B…) to reach the state we are showing him</li>
+</ul>
+
+<h3 id="rules-to-select-the-optimal-solution-high-level-overview">Rules to select the optimal solution (high level overview)</h3>
+
+<p>All optimization tasks need to know how does a possible solution look like and how to select the best one. The main task we are trying to accomplish is:</p>
+
+<ol>
+  <li>consolidate the free resources – It should do a defragmentation of free memory or spare cpu cycles so more or big VMs can be started. The extreme case is our Power Saving policy as its side-effect is that a lot of hosts end up totally free of VMs. But we do not want to load the hosts that much. The actual rules that will describe this are yet to be determined, but we are currently looking into using only the hard constraints (filters) of the currently selected cluster policy.</li>
+</ol>
+
+<p>There are two situations that should be avoided in the computed solution:</p>
+
+<ol>
+  <li>Unstable cluster – what I mean here is that once the user performs the changes to get the cluster to the "optimal" state, the engine's internal balancing kicks in and rearranges the cluster differently. It would mean that the output of the optimization algorithm was not as smart as we wanted it to be. This might be mitigated a bit by using the result of balancer as part of the scoring mechanism.</li>
+  <li>Impossible solution – if the user gets a solution from the optimization algorithm and then finds out that the cluster policy prevents him from reaching it, we will have an issue that the theoretical solution can be useless to the user. We will probably start by telling the user to disable load balancing while he is trying to reach "a better" state.</li>
+</ol>
+
+<p>In the case where no solution can be found (for example to the start VM case) we should inform the user that there is no solution with the current cluster policy rules, but that solution to the optimization can still be found if the rules are relaxed a bit.</p>
+
+<p>It is my opinion that the cluster policy rules reflect the actual user's requirements and we should obey them and make sure all solutions are valid in that context.</p>
+
+<h3 id="future-enhancements">Future enhancements</h3>
+
+<p>There are couple of other optimization tasks for us to consider in the future. We might then even allow the user to select the desired task from a list, if we later decide that more than one is useful:</p>
+
+<ol>
+  <li>score according to the currently selected cluster policy – The rationale here is that when VMs are started one by one then the assignment might be suboptimal, because the scheduling algorithm has no knowledge about the VMs that are yet to start. (<a href="#Example_of_suboptimal_balancing_as_a_result_of_starting_VMs_one_by_one">Example</a>) If we base our rules on the current cluster policy we might be able to compute a solution that takes all running VMs into account at once. This approach will then use:
+    <ul>
+      <li>filters as source for hard constraint score</li>
+      <li>weights for the soft constraint score</li>
+      <li>balancers can be possibly added to the scoring system to detect if the solution is stable (no migration will be triggered in that state) or not (engine will want to migrate something)</li>
+      <li>Another metric we should use here is the necessary number of actions to change the current situation to the computed "optimal" solution.</li>
+    </ul>
+  </li>
+  <li>find a place for new VM – This should try to rebalance a cluster in such a way that a VM that is not running can be started. It is closely related to the first option except it needs to know what resources should be reserved or ideally what VM is supposed to be started (we may offer a list of stopped VMs for the user to select from).</li>
+</ol>
+
+<h3 id="implementation-details">Implementation details</h3>
+
+<p>We implemented the engine using Drools rule language. The other two options are here only to document the design process.</p>
+
+<h4 id="reusing-the-existing-engines-policyunits">Reusing the existing engine's PolicyUnits</h4>
+
+<p>This approach will use the existing ovirt-engine rpm on the OptaPlanner machine (just the files, no daemon or engine-setup necessary). The OptaPlanner service will then be implemented as Jboss module that requires some of the engine modules (rest mappers, common, bll, scheduling). The scheduling classes will be decoupled from the DbFacade using interface (DaoProviderInterface, see <a href="http://gerrit.ovirt.org/#/c/26199/">http://gerrit.ovirt.org/#/c/26199/</a> and <a href="http://gerrit.ovirt.org/#/c/26200/">http://gerrit.ovirt.org/#/c/26200/</a>) and so will be reusable in the scoring mechanism of OptaPlanner.</p>
+
+<p>We already have a template to base this on. Our engine-config and engine-manage-domains tools use this approach.</p>
+
+<p>Advantages are:</p>
+
+<ul>
+  <li>scoring uses exactly the same code as the scheduling in engine and that guarantees that the solution is 100% valid in the engine as well</li>
+  <li>no code duplication, the PolicyUnits are already implemented and in use</li>
+  <li>PolicyUnits can be easily enabled/disabled in the scoring function depending on the cluster policy</li>
+</ul>
+
+<p>Disadvantages are:</p>
+
+<ul>
+  <li>Users might be used to Drools rule language and might not be willing to use Java for extending the functionality</li>
+  <li>A REST to common mapping will have to be prepared (already part of the engine though) to map Java SDK classes to Vds, Vm and other classes that are used in PolicyUnits</li>
+  <li>Java modules have lower performance than drools' rule files</li>
+  <li>Installing the ovirt-engine RPM file can pull unnecessary dependencies (yum install jboss-ass on CentOS 6 pulls 246MB and ovirt-engine additional 211MB of packages)</li>
+  <li>If somebody renames the classes in the chain (Vds, VM, REST mappers, …) the scoring app will have to be updated (but only if the ovirt-engine RPM changes on the Optaplanner machine)</li>
+</ul>
+
+<h4 id="writing-the-rules-in-the-drools-rule-language">Writing the rules in the Drools rule language</h4>
+
+<p>This approach will require that we copy the logic from our Java code to drools rules as exactly as possible. Any difference might cause the found solution to not be applicable to the actual cluster. The rules will have to follow strict naming scheme so we can enable/disable them according to the currently selected cluster policy.</p>
+
+<p>Advantages:</p>
+
+<ul>
+  <li>Users might already be using Drools for other business logic purposes</li>
+  <li>Better performance</li>
+  <li>Can probably use Java SDK classes directly</li>
+  <li>Smaller footprint (does not need the ovirt-engine)</li>
+</ul>
+
+<p>Disadvantages:</p>
+
+<ul>
+  <li>Code duplication – the rules will have to be kept in sync with engine's PolicyUnits or we might compromise the fitness of computed solutions</li>
+  <li>Enabling/disabling rules according to cluster policy might not be easy</li>
+</ul>
+
+<h4 id="using-the-external-scheduler-infrastructure-for-scoring">Using the external scheduler infrastructure for scoring</h4>
+
+<p>This idea is based on our ovirt-scheduler-proxy infrastructure. It would require us to implement our PolicyUnits in python and decouple them from the REST API to be able to pass the cached data there. OptaPlanner would then have to be able to execute the Python filters and weights to perform scoring.</p>
+
+<p>Advantages:</p>
+
+<ul>
+  <li>We would get fully working external scheduling for future use</li>
+  <li>Python is easy to write and read</li>
+  <li>It would also support scheduling plugins provided by the customer</li>
+</ul>
+
+<p>Disadvantages:</p>
+
+<ul>
+  <li>Code duplication again</li>
+  <li>Decoupling the plugins from REST is not trivial, there is no API to pass the required information to the proxy together with the scheduling task</li>
+  <li>Lower performance</li>
+  <li>If the user is not using Python modules only, then the optimization won't find the proper solution. This is an issue, because we need some information (pending memory) that is currently not exposed by the SDK</li>
+</ul>
+
+<h1 id="examples-and-demostrations">Examples and demostrations</h1>
+
+<h3 id="example-of-suboptimal-balancing-as-a-result-of-starting-vms-one-by-one">Example of suboptimal balancing as a result of starting VMs one by one</h3>
+
+<p>This example uses just a single resource and evenly balanced policy. At the end all the Hosts should be providing the same amount of that resource to the VMs.</p>
+
+<p>There are 4 VMs and 2 hosts:</p>
+
+<ol>
+  <li>Vm_A: 330MB of memory</li>
+  <li>Vm_B: 330MB of memory</li>
+  <li>Vm_C: 330MB of memory</li>
+  <li>Vm_D: 1000MB of memory</li>
+</ol>
+
+<p>Now lets investigate what happens when the starting order is A,B,C,D:</p>
+
+<p><img alt="" title="Abcd_1.png" src="/images/wiki/Abcd_1.png?1447607917" /></p>
+
+<p><img alt="" title="Abcd_2.png" src="/images/wiki/Abcd_2.png?1447607917" /></p>
+
+<p><img alt="" title="Abcd_3.png" src="/images/wiki/Abcd_3.png?1447607917" /></p>
+
+<p><img alt="" title="Abcd_4.png" src="/images/wiki/Abcd_4.png?1447607917" /></p>
+
+<p>And as a second case D, C, B, A:</p>
+
+<p><img alt="" title="Dcba_1.png" src="/images/wiki/Dcba_1.png?1447607916" /></p>
+
+<p><img alt="" title="Dcba_2.png" src="/images/wiki/Dcba_2.png?1447607916" /></p>
+
+<p><img alt="" title="Dcba_3.png" src="/images/wiki/Dcba_3.png?1447607916" /></p>
+
+<p><img alt="" title="Dcba_4.png" src="/images/wiki/Dcba_4.png?1447607916" /></p>
+
+<p>Notice that the second case is much better with regards to equal balancing, but has less free space for a new VM. It is necessary to determine the priorities without guessing to select the proper solution according to user's needs.</p>
+
+<h3 id="screenshots-of-the-ui-plugin-in-version-03">Screenshots of the UI plugin in version 0.3</h3>
+
+<p>When there is nothing that needs to be done in the cluster, you will see something similar to this:</p>
+
+<p><img alt="" title="No-actions.png" src="/images/wiki/No-actions.png?1447607916" /></p>
+
+<p>After a VM start is requested, the display will reflect that a VM is being scheduled and give you the chance to start the VM on the computed dectination host:</p>
+
+<p><img alt="" title="Start-vm.png" src="/images/wiki/Start-vm.png?1447607916" /></p>
+
+<p>Starting the VM changes the status (the icon is missing here, but will be present in the version):</p>
+
+<p><img alt="" title="Starting-vm-1.png" src="/images/wiki/Starting-vm-1.png?1447607916" /></p>
+
+<p>VM started successfully. It is still visible here, but will disappear from the list after the next result refresh (the optimizer needs some time to update the solution with the new state):</p>
+
+<p><img alt="" title="Vm-up.png" src="/images/wiki/Vm-up.png?1447607916" /></p>
+
+<h3 id="compute-a-complicated-start-vm-solution">Compute a "complicated" start VM solution</h3>
+
+<p>This demonstration shows a situation where the starting VM does not directly fit to any host. The first picture shows that all hosts are partially occupied and there is no host with 1.5 GB of free RAM that is needed for the VM we are about to start.</p>
+
+<p><img alt="" title="Before-solution.png" src="/images/wiki/Before-solution.png?1447607917" /></p>
+
+<p>When optimizer kicks in the following solution is found. One of the small VMs is migrated and the freed space is used to start the big VM.</p>
+
+<p><img alt="" title="Start-solution.png" src="/images/wiki/Start-solution.png?1447607916" /></p>
+
+<h1 id="comments-and-discussion">Comments and Discussion</h1>
+
+<ul>
+  <li>Refer to <talk:optaplanner></talk:optaplanner></li>
+</ul>
+
+<category:feature> <category:sla>
+</category:sla></category:feature>
+
+</section>
+</section>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>
+<script>
+  (function() {
+    var $featureItems, $featureLists, $featureSidebar, $form, $headers, $input, clearField, showAll, updateHeaders, updateList;
+  
+    $featureSidebar = $('.feature-sidebar');
+  
+    $form = $('#feature-search');
+  
+    $input = $('#feature-search-input');
+  
+    $featureLists = $('.feature-list');
+  
+    $featureItems = $('li', $featureLists);
+  
+    $headers = $('.feature-sidebar h2');
+  
+    clearField = function() {
+      return $input.val('');
+    };
+  
+    showAll = function() {
+      return $featureItems.filter('.hide').removeClass('hide');
+    };
+  
+    updateHeaders = function() {
+      var $emptyList;
+      $('h2.hide', $featureSidebar).removeClass('hide');
+      $emptyList = $headers.filter(function(i, el) {
+        return $(el).next('ul').find('li:visible').length === 0;
+      });
+      return $emptyList.addClass('hide');
+    };
+  
+    updateList = function() {
+      var $hide, searchStr;
+      searchStr = $input.val();
+      showAll();
+      $hide = $featureItems.not(function(i, el) {
+        return $(el).text().toLowerCase().match(searchStr.toLowerCase());
+      });
+      $hide.addClass('hide');
+      return updateHeaders();
+    };
+  
+    $(function() {
+      var statuses;
+      $input.focus();
+      statuses = ["in development", "new", "wip", "developement", "unclassified", "released", "merged", "design & research", "implementation", "design", "development", "on_qa", "draft", "planning", "completed", "partial", "to be released", "wontfix", "proposed", "in progress", "post", "qe", "dormant", "partially released", "patch in review", "complete", "not started", "stabilization", "proposal", "inception", "done"];
+      console.log(statuses);
+      return $form.removeClass('hide').on('submit', function(e) {
+        return e.preventDefault();
+      }).on('keyup', function(e) {
+        switch (e.key) {
+          case 'Escape':
+            clearField();
+            showAll();
+            return updateHeaders();
+          default:
+            return updateList();
+        }
+      });
+    });
+  
+  }).call(this);
+</script>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Ovirt faq &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Ovirt faq</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>humble, sandrobonazzola</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Ovirt faq</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>2</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-05-15</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Ovirt_faq' target='_blank'>
+Ovirt faq
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="ovirt-faq">oVirt FAQ</h1>
+
+<p><strong>1) Which network ports should be enabled when setting up oVirt environment?</strong></p>
+
+<pre class="highlight plaintext"><code>   54321                                : vdsm&#x000A;   22                                   : ssh&#x000A;   5634 - 6166                          : guest console access ports&#x000A;   49152 - 49216                        : VM migration port range&#x000A;   32023                                : Spice  usb redirection&#x000A;</code></pre>
+
+<p><strong>2) How can I change "vdsm" logging format or level?</strong></p>
+
+<p>Edit  #/etc/vdsm/logger.conf </p>
+
+<p><strong>3) Which files are persisted by default with ovirt-node?</strong></p>
+
+<p>The files inside <code>"/config/files"</code> are persisted by default.</p>
+
+<p><strong>4) What would be the maximum boot time for ovirt node/hypervisor for <em>not</em> to be marked as "NON RESPONSIVE" in oVirt GUI?</strong></p>
+
+<p>oVirt-engine will wait for two minutes before declaring ovirt-node as <code>"Non responsive"</code>.</p>
+
+<p><strong>5) Vdsm/kvm does not detect "Full virtualization" even-though there are flags ( SVM or VMX) appreared in <code>/proc/cpuinfo</code> file, What should I do ?</strong></p>
+
+<p>You may notice <code>"kvm is disabled in BIOS"</code> message in dmesg. Make sure that, you have done <code>"FULL POWER CYCLING"</code> after enabling <code>"Virtualization"</code> in BIOS of the system.</p>
+
+<p><strong>6) What is the difference between <code>'Non responsive"</code> and <code>"Non operational"</code> hypervisor status in oVirt GUI?</strong></p>
+
+<p><em>'Non operational:'</em></p>
+
+<p>Something is wrong with the configuration of the oVirt Node.  The oVirt engine can still communicate with the ovirt-node, though.</p>
+
+<p>It can be a failure in the connectivity of ovirt-node to any of the cluster components.  So make sure ovirt-node is capable of working with all the components defined for a cluster.</p>
+
+<p><em>'Non responsive:'</em></p>
+
+<p>The ovirt-engine cannot communicate with the ovirt-node via vdsm. In simple terms, there is a break in ovirt-engine-&gt;vdsm communcation path. It may be due to network split, dead vdsm, firewall, etc.</p>
+
+<p><strong>7) How can I add more space in oVirt storage?</strong></p>
+
+<p>It is better to assign new LUN from FC/ISCSI and "Edit" storage domain to make use of the new space. It is <em>not</em> supported when expanding LUN from SAN as ovirt-engine is not capable of updating itself with the change.</p>
+
+<p><strong>8) What is meant by <code>"Image Locked"</code> status in oVirt GUI?</strong></p>
+
+<p>All storage operations, such as create/delete VM/Template/Snapshot, will lock the VM image to perform the same. If the <code>"VM"</code> is continuing in <code>"Image Locked"</code> status for long time (it depends on the operation) it could be something wrong with it.</p>
+
+<p><strong>9) I am getting errors when doing <code>"virt-v2v"</code> process, how to get more logs?</strong></p>
+
+<pre class="highlight plaintext"><code>export LIBGUESTFS_TRACE=1&#x000A;export LIBGUESTFS_DEBUG=1&#x000A;</code></pre>
+
+<p><em>The above <code>'env'</code> variables can produce hell lot of logs for the virt-v2v process Use it accordingly.</em></p>
+
+<p><strong>10) What are different values listed under <code>"status"</code> field of VM in the oVirt DB?</strong></p>
+
+<pre class="highlight plaintext"><code>   Unassigned = -1,&#x000A;   Down = 0,&#x000A;   Up = 1,&#x000A;   PoweringUp = 2,&#x000A;   PoweredDown = 3,&#x000A;   Paused = 4,&#x000A;   MigratingFrom = 5,&#x000A;   MigratingTo = 6,&#x000A;   Unknown = 7,&#x000A;   NotResponding = 8,&#x000A;   WaitForLaunch = 9,&#x000A;   RebootInProgress = 10,&#x000A;   SavingState = 11,&#x000A;   RestoringState = 12,&#x000A;   Suspended = 13,&#x000A;   ImageIllegal = 14,&#x000A;   ImageLocked = 15,&#x000A;   PoweringDown = 16&#x000A;</code></pre>
+
+<p><strong>11) What are different values listed under <code>"status"</code> field of VDS (Hypervisor) in the oVirt DB?</strong></p>
+
+<pre class="highlight plaintext"><code>  Unassigned = 0,&#x000A;  Down = 1,&#x000A;  Maintenance = 2,&#x000A;  Up = 3,&#x000A;  NonResponsive = 4,&#x000A;  Error=5,&#x000A;  Installing=6,&#x000A;  InstallFailed=7,&#x000A;  Reboot=8,&#x000A;  PreparingForMaintenance-9,&#x000A;  NonOperational=10,&#x000A;  PendingApproval=11,&#x000A;  Initializing=12,&#x000A;  Problematic=13&#x000A;</code></pre>
+
+<p><strong>12) What actions <code>"vdsbootstrapper"</code> performs at the time of registration?</strong></p>
+
+<p>Steps to perform:</p>
+
+<p>1. Check VT/SVM<br />
+2. OS name + version<br />
+3. Kernel version<br />
+4. Check missing RPMs, install or update if needed<br />
+5. Check missing VDS packages, install or update if needed<br />
+6. Check switch configuration<br />
+7. Initiate Certificate Initalization<br />
+  a. Generate certificate and sign request<br />
+  b. Submit sign request<br />
+  c. Wait until signed certificate returns from VDC<br />
+  d. Install certificate and keys for vdsm use.<br />
+8. Reboot</p>
+
+<p><strong>13) What are different table types available with oVirt DB?</strong></p>
+
+<p>Static: static entity's data<br />
+Dynamic: dynamic data<br />
+Statistics: statistics info for History DB</p>
+
+<p><strong>14) Will it cause an issue if I am restarting "vdsmd" in my ovirt-node?</strong></p>
+
+<p>Running <code>service vdsmd restart</code> without placing the host on 'maintenance' mode on ovirt GUI, can cause following scenario:<br />
+vdsmd restart on a host takes time, especially when the host is an SPM (Storage Pool Manager) - it should disconnect the storage, restart, and reconnect.<br />
+ovirt-engine checks for a host aliveness each <code>"X" * "Y"</code> seconds </p>
+
+<p>Where <code>X= "ConfigurationTool.Hosts.Timeout_before_reset_Host" seconds</code> and <code>"Y" =  &lt;ConfigurationTool.Hosts.Attempts_before_reset_Host&gt;</code> times.</p>
+
+<p>If the host is found not responsive (and it is such during vdsmd restart), ovirt-engine believes there is something wrong with the host and sends it a restart command.</p>
+
+<p>The restart event is send to the host's fencing device.</p>
+
+<p><strong>15) What are the requirements need to be met for detecting a LUN in oVirt GUI?</strong></p>
+
+<p>1. The LUN should be raw (no filesystem, no LVM, no data)</p>
+
+<p>2. The LUN should be larger than 10Gb in size</p>
+
+<p>3. The LUN should be r/w accessible from the SPM host.</p>
+
+<p><strong>16) How would I check whether <code>"KSM"</code> is active in my oVirt environment?</strong></p>
+
+<p>KSM will come to action only when it satisfy below threshold:</p>
+
+<pre class="highlight plaintext"><code>(phys - committed) &lt; ksm_thres_coef percent * physical_mem&#x000A;</code></pre>
+
+<p>or</p>
+
+<pre class="highlight plaintext"><code>(phys - committed) &lt;  ksm_thres_const (in Mb)&#x000A;</code></pre>
+
+<p>Example:</p>
+
+<pre class="highlight plaintext"><code>ksm_thres_coef=20&#x000A;ksm_thres_const=2048&#x000A;</code></pre>
+
+<p><strong>17) What are the default mount options used when oVirt node mounts a NFS storage or when configuring a NFS storage domain?</strong></p>
+
+<pre class="highlight plaintext"><code>  soft,timeo=10,retrans=6&#x000A;</code></pre>
+
+<p><strong>18) How would I read storage domain metadata in oVirt?</strong></p>
+
+<p>The metadata has been added as volume groups "tags" in oVirt.  Use <code>vgs -o +tags</code> to check the metadata of storage domain.</p>
+
+<p><strong>19) How may I remove an host in non responsive state from the manager if the host doesn't exist anymore?</strong>
+      You need to do "confirm host has been rebooted" since the host is not reachable and the engine can't connect to it and he doesn't know what's the status of the VMs that ran on it before rebooting. After that manual fence for host will start. You'll be able to remove the host once fencing finishes, it may take about five minutes.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

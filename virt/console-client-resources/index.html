@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Console Client Resources &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Console Client Resources</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>fkobzik</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Console Client Resources</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>6</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-01-17</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Console_Client_Resources' target='_blank'>
+Console Client Resources
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="console-clients-resources">Console Clients Resources</h1>
+
+<p>oVirt provides several ways to connect to remote virtual machines. This page describes user requirements of them.</p>
+
+<h3 id="spice-protocol">SPICE Protocol</h3>
+
+<ul>
+  <li>Browser Plugin</li>
+</ul>
+
+<p>Browser plugin is supported on Firefox/Linux. On Fedora-like systems, you can install the plugin using yum package manager: 'yum install spice-xpi'.</p>
+
+<ul>
+  <li>Native Client</li>
+</ul>
+
+<p>This way make use of locally installed virt-viewer application. You can install the application using your package manager or download it from <a href="http://virt-manager.org/download/">http://virt-manager.org/download/</a> for various platforms.</p>
+
+<ul>
+  <li>spice-html5</li>
+</ul>
+
+<p>For using web-browser-based console clients, the certificate authority must be imported in your browser since the communication is secured. You can download the certificate authority by navigating '<a href="https://">https://</a><your engine="" address="">/ca.crt'.</your></p>
+
+<ul>
+  <li>SPICE Drivers</li>
+</ul>
+
+<p>For making the best use of SPICE features install SPICE vdagent and SPICE QXL video drivers on your guests. They are available for download on <span class='broken-link link-error' data-href='http://www.spice-space.org/download.html' title='Broken link: original pointed to: http://www.spice-space.org/download.html'>http://www.spice-space.org/download.html</span> (in the "Guest" section). If you use GNU/Linux, your distribution may contain QXL video driver package.</p>
+
+<h3 id="vnc-protocol">VNC Protocol</h3>
+
+<ul>
+  <li>Native Client</li>
+</ul>
+
+<p>The requirements are the same as for Native Client for SPICE protocol.</p>
+
+<ul>
+  <li>noVNC</li>
+</ul>
+
+<p>The requirements are the same as spice-html5.</p>
+
+<h3 id="rdp-protocol">RDP Protocol</h3>
+
+<ul>
+  <li>Native</li>
+</ul>
+
+<p>Client application capable of parsing an RDP file and invoking console session (e.g. mstsc.exe on MS Windows).</p>
+
+<ul>
+  <li>Plugin</li>
+</ul>
+
+<p><b>(MS Internet Explorer only)</b> Usage of the plugin doesn't require user intervention and is invoked automatically.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

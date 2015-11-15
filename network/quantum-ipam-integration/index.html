@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Quantum IPAM Integration &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Quantum IPAM Integration</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>danken, lpeer, mkolesni</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Quantum IPAM Integration</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>36</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-11-29</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Quantum_IPAM_Integration' target='_blank'>
+Quantum IPAM Integration
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="quantum-ipam-integration">Quantum IPAM integration</h1>
+
+<h3 id="overview">Overview</h3>
+
+<p>Quantum offers layer 3 Network services which are not yet available in oVirt.</p>
+
+<p>This page is a proposal for oVirt-Quantum integration focused on leveraging the IP Address Management service offered by Quantum.</p>
+
+<h3 id="how-it-works-in-quantum">How it works in Quantum</h3>
+
+<p><img alt="Quantum IPAM general overview" title="Quantum IPAM general overview" src="/images/wiki/QuantumDHCPOverview.png?1447607916" /></p>
+
+<p><strong>Modules</strong></p>
+
+<ul>
+  <li>Quantum service - The management module for the networking configuration.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>DHCP Agent - The module responsible to configure dnsmasq per network.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Interface driver - The module responsible to connect the DHCP to the network locally on the host.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Queues - There are two of them, one is used for the DHCP Agent to get notifications and the other is used to sync the DHCP Agent and the Quantum service configuration upon startup/error.</li>
+</ul>
+
+<h4 id="port-creation-dynamics">Port creation dynamics</h4>
+
+<p>V2 API: <a href="http://wiki.openstack.org/Quantum/APIv2-specification#Create_Port">http://wiki.openstack.org/Quantum/APIv2-specification#Create_Port</a></p>
+
+<p>When a port (e.g. virtual NIC of a VM) is created it is assigned to a network.</p>
+
+<p>The MAC address of the port can either be specified or generated automatically by Quantum Service.</p>
+
+<p>If the network has subnets then the port will be assigned an IP on the subnet:</p>
+
+<ul>
+  <li>Automatically on some subnet if no subnet id is specified</li>
+  <li>Directly on a specific subnet if the subnet id is specified</li>
+  <li>Directly on a subnet &amp; with a given IP if both subnet id &amp; IP are specified</li>
+</ul>
+
+<p>The port is then stored in the quantum service, and can be seen when calling the API.</p>
+
+<p>Summary:</p>
+
+<ul>
+  <li>The port MAC &amp; IP are determined/known by the user, before the VM is up.</li>
+</ul>
+
+<h4 id="dhcp-agent-dynamics">DHCP Agent dynamics</h4>
+
+<p><img alt="Quantum DHCP Agent notification handling" title="fig:Quantum DHCP Agent notification handling" src="/images/wiki/QuantumDHCPNotifications.png?1447607916" /> Quantum's DHCP Agent syncs with the network/subnet/port state on it's start from the Quantum service.</p>
+
+<p>For each Network with DHCP enabled and defined subnet(s), the DHCP Agent:</p>
+
+<ul>
+  <li>Submits a network plug-in request to the interface driver, which creates a tap device which will be plugged to the network by the L2 agent.</li>
+  <li>Write port definitions (MAP + IP) to a conf file</li>
+  <li>Spawn a dnsmasq instance with the defined ranges (CIDRs) and the conf file</li>
+</ul>
+
+<p>After the initial sync, the DHCP Agent is getting notifications from the quantum service on each network/subnet and port change. In case of an error the DHCP initiates new sync process.</p>
+
+<p>This process occurs for <strong>ALL</strong> networks defined in the quantum service.</p>
+
+<p>Notes:</p>
+
+<ul>
+  <li>The dnsmasq is a lightweight DHCP server, which can lease DHCP addresses.</li>
+  <li>According to the DHCP protocol, there can be several DHCP servers active in a network without interfering with each other.</li>
+</ul>
+
+<p>Summary:</p>
+
+<ul>
+  <li>One or more Quantum DHCP Agents can run simultaneously for each network, serving the addresses defined in Quantum Service.</li>
+</ul>
+
+<h3 id="integrating-with-ovirt">Integrating with oVirt</h3>
+
+<h5 id="difference-in-architecture">Difference in architecture</h5>
+
+<p>Whereas Quantum is designed for the homogeneous hardware use-case, to manage one physical network on which multiple virtual networks are created by tenants, oVirt is designed to also support the heterogeneous hardware use-case which means:</p>
+
+<ul>
+  <li>Not all the virtual networks share the same physical layer</li>
+  <li>Not all networks are available on all hosts</li>
+  <li>Not all virtual networks are implemented using the same technology.</li>
+</ul>
+
+<h5 id="other-points-to-consider">Other points to consider</h5>
+
+<p>The asynchronous nature of Quantum Service &amp; Quantum DHCP Agent communication can result in a race between the VM start and the DHCP server ability to serve the VM it's IP address.</p>
+
+<p>When port is created, the quantum service allocates ip for that port sends a notification for the DHCP Agent and returns. The DHCP receives the port-create notification asynchronously, updates the dnsmasq configuration file and reloads the configuration.</p>
+
+<p>If the VM was able to start before the dnsmasq is updated then the vNIC might fail to acquire an IP from the DHCP.</p>
+
+<p>This means that in order to gain IPAM capabilities, <a href="http://memegenerator.net/instance/30762058">One does not simply integrate Quantum into oVirt</a></p>
+
+<h4 id="integration-path">Integration Path</h4>
+
+<h5 id="one-host-to-rule-them-all">One host to rule them all</h5>
+
+<p>The first option we considered and seemed to be the simple one is to have the Quantum Service and the DHCP agent sit in oVirt with a "fake plugin" that will not change anything in the physical network.</p>
+
+<p>The downsides to this approach:</p>
+
+<ul>
+  <li>All the networks that require the IPAM capability will have to be connected to this host.</li>
+  <li>We cannot have multiple DHCP servers running for HA, so if for some reason the DHCP fails then we can't allocate IP addresses.</li>
+</ul>
+
+<p>The downsides above seems to be too critical for us to overlook, so we were looking for another integration option.</p>
+
+<h5 id="dhcp-agent-running-on-the-host">DHCP Agent running on the host</h5>
+
+<p>A general outline of the approach:</p>
+
+<p><img alt="" title="QuantumIPAMIntegration.png" src="/images/wiki/QuantumIPAMIntegration.png?1447607916" /></p>
+
+<p>oVirt engine and Quantum Service with the "oVirt plugin" are running on a single host. The Quantum DHCP agent is running on the host with access to the network they want to allocate IP addresses on. We can have multiple DHCP Agents deployed on the various hosts in the data center.</p>
+
+<p>The oVirt Plugin will be a simple plugin that saves the entities created on quantum, but doesn't do the actual network provisioning (since that is already supplied by oVirt). It might be that the oVirt plugin won't use a DB to save the data locally, but will instead use the oVirt API to query the network/subnet/port data. (This way, it is not duplicating networking information, but still adheres to Quantum architecture and can be swapped out for another plugin)</p>
+
+<p>The Quantum DHCP agent uses an interface driver. The driver is responsible for creating the interface that connects to the network interface which the DHCP server should be on. We'll create oVirt driver which will make the call if a DHCP Agent for a given network is required on the specific host. It will also be responsible to connect the interface that the DHCP consumes to the underlying network implementation that oVirt is using. The driver will use a file written by VDSM to determine if the network should have DHCP on this host or not and act accordingly.</p>
+
+<p>A new VDSM verb will allow to set for which networks the DHCP server should be active.</p>
+
+<p>setDHCP(List&lt;networkName, networkQuantumId&gt;)</p>
+
+<p>The method will work as follows:</p>
+
+<ul>
+  <li>If list is not empty:
+    <ul>
+      <li>Save list items (id + net name) to a file.</li>
+      <li>(Re)Start the Quantum DHCP Agent.</li>
+    </ul>
+  </li>
+  <li>If list is empty:
+    <ul>
+      <li>Stop Quantum DHCP Agent.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>In the oVirt engine there would be a DHCPManager which is responsible for the management of the DHCP servers.</p>
+
+<ul>
+  <li>If a DHCP server is needed (Host went offline for some reason) then start one on another host with this network.</li>
+  <li>If a DHCP server is no longer needed then stop it from a host.</li>
+</ul>
+
+<p>For each network it would be possible to configure at least one DHCP servers.</p>
+
+<p>The downsides to this approach:</p>
+
+<ul>
+  <li>The DHCP Agent requires a knowledge of the Quantum Service URI in order to communicate with it.</li>
+  <li>In case Run VM is performed right after Setup Networks on the same host, The DHCP Agent might not be started in time, which might cause a VM's vNIC not acquire an IP lease.</li>
+</ul>
+
+<p><img alt="Flow of oVirt operations mapped to Quantum actions" title="Flow of oVirt operations mapped to Quantum actions" src="/images/wiki/OVirtQuantumFlow.png?1447607916" /></p>
+
+<h6 id="notes">Notes</h6>
+
+<ul>
+  <li>For this architecture to work we need to submit a patch to quantum that in case the interface driver does not return a device name the dhcp server won't be started.
+    <ul>
+      <li>There is a better plan upstream in Quantum to have DHCP Agent level filtering, need to follow that.</li>
+    </ul>
+  </li>
+  <li>As suggested, The oVirt plugin is not planned to have a dedicated DB but use the existing oVirt API for querying and setting information from/to the DB.
+    <ul>
+      <li>Need to handle port creation for the DHCP server itself (save in DB, IP allocation).</li>
+    </ul>
+  </li>
+</ul>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

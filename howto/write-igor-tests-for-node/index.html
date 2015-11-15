@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+How to write Igor tests for Node &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>How to write Igor tests for Node</td>
+</tr>
+<tr>
+<th>category</th>
+<td>howto</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>fabiand</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Node</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>How to write Igor tests for Node</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>2</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-03-20</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/How_to_write_Igor_tests_for_Node' target='_blank'>
+How to write Igor tests for Node
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="how-to-write-igor-tests-for-node">How to write Igor tests for Node</h1>
+
+<p>A good introduction how testing of Node works is given in <a href="/node/testing/">Node Testing</a>. This page focuses on getting started with Igor tests and Node.</p>
+
+<h3 id="terminology">Terminology</h3>
+
+<p>The following terms are described to explicitly define their meaning in the context of igor.</p>
+
+<ul>
+  <li>Testcase: A script which is run on the system under test</li>
+  <li>Testset: A list of testcases</li>
+  <li>Testsuite: A list of testsets</li>
+  <li>Job: A tuple which ties a (testsuite, host, profile) together. These three components are required to run a job on igor.</li>
+  <li>Testplan: A list of job specifications</li>
+  <li>Profile: Is basically a ISO or kernel+initramfs+kargs which is used to provision a host.</li>
+  <li>Host: Either a VM or a real host</li>
+</ul>
+
+<h3 id="concept">Concept</h3>
+
+<p>Igor takes job specs which define what "testcase" is run on which "host" with what kind of "profile". This three information bits for a job specification. Igor takes a job spec and will provision the given host with the given profile and will run the testsuite on it. In reality igor is just provisioning and launching the host, the testsuite is initiated by a service which is run on the host and injected into the ISO which is used to created the profile. Setting up igor is outside of the scope of this document and is described elsewhere.</p>
+
+<h3 id="writing-a-new-igor-testcase">Writing a new Igor testcase</h3>
+
+<p>Writing a new testcase is easy. Just create a script (bash or python) in the <em>ovirt-node</em> <code>tests/igor/tcs</code> directory. As an example we can create a testcase (<code>tests/igor/tcs/selinux-denials.sh</code>) which checks for any SELinux denials.</p>
+
+<pre class="highlight shell"><code><span class="c">#!/bin/bash -x</span>&#x000A;<span class="c">#</span>&#x000A;<span class="c"># A simple testcase which checks for denials in the audit.log</span>&#x000A;<span class="c">#</span>&#x000A;&#x000A;grep denied /var/log/audit/audit.log&#x000A;<span class="nv">RETVAL</span><span class="o">=</span><span class="nv">$?</span>&#x000A;&#x000A;<span class="c"># Failed if there are any denied entries</span>&#x000A;<span class="o">[[</span> <span class="nv">$RETVAL</span> !<span class="o">=</span> 0 <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">exit </span>1&#x000A;&#x000A;<span class="c"># Otherwise this testcases passes</span>&#x000A;<span class="nb">exit </span>0&#x000A;</code></pre>
+
+<p>One thing to note is that all output to stderr and stdout is logged by the igor service and fed back to the igor server.</p>
+
+<p><em><strong>Note:</strong> Python unit tests can also be testcases (in the igor sense) an be run at runtime. This makes sense because many functions which are part of Node's codebase require runtime informations</em></p>
+
+<h3 id="referencing-an-igor-testcase">Referencing an Igor testcase</h3>
+
+<p>The testcase above won't be run yet, because it is not referenced in any testset and testsuite. To run the testcase it has to be referenced in a testset - which is the later referenced in a testsuite, and can be used in a job specification. You can use one of the existing testsets (given in <code>tests/igor/sets</code>) or create your own testset.</p>
+
+<p><em><strong>Note:</strong> Testsets and Testsuites use the yaml syntax to define a testset or testsuite.</em></p>
+
+<h4 id="referencing-a-testcase-in-a-testset">Referencing a testcase in a testset</h4>
+
+<p>For now we assume that a <code>tests/igor/sets/selinux.set</code> testset exists where we add our new testcase. The testset file could look like the following snippet:</p>
+
+<pre class="highlight plaintext"><code>---&#x000A;description: 'Does some basic selinux checks'&#x000A;libs: ['../libs/common']&#x000A;searchpath: '../tcs'&#x000A;---&#x000A;filename: 'selinux-denials.sh'&#x000A;---&#x000A;</code></pre>
+
+<p>The first "document" (the lines between a pair of <code>---</code>) defines some testset metadata ("description", "libs", "searchpath"). All following "documents" reference a testcase.</p>
+
+<p>A testcase is referenced by adding a "document" with a "filename" line, pointing to the appropriate testcase. The filename must be relative to the testset file or relative to the path given with the "searchpath" line in the testset header.</p>
+
+<h4 id="referencing-a-testset-in-a-testsuite">Referencing a testset in a testsuite</h4>
+
+<p>Now this testset needs to be referenced by a "testsuite" so it can be run. A testsuite definition resides in <code>tests/igor/suites</code> and looks like the following snippet:</p>
+
+<pre class="highlight plaintext"><code>---&#x000A;description: 'Automated installation without TUI tests.'&#x000A;---&#x000A;# Where to look for testsets.&#x000A;# By default it's the dirname of this file&#x000A;searchpath: '../sets/'&#x000A;sets:&#x000A;  - 'after_auto_install.set'&#x000A;  - 'basic.set'&#x000A;  - 'reboot.set'&#x000A;  - 'services.set'&#x000A;  - 'selinux.set'&#x000A;  - 'after_testing.set'&#x000A;---&#x000A;</code></pre>
+
+<p>The "selinux.set" is referenced in the "sets:" section of that testsuite specification. Wrapping all this up means that the <code>check-selinux.sh</code> testcase will be run, when the testuite above is submitted to igor.</p>
+
+<h1 id="common-and-advanced-stuff">Common and advanced stuff</h1>
+
+<h3 id="annotations">Annotations</h3>
+
+<p>Annotations can be used to add more high level informations to a testcase run. TBD</p>
+
+<h3 id="artifcats">Artifcats</h3>
+
+<p>Artifacts can be used to archive files during a testcase run. TBD</p>
+
+<h3 id="libraries">Libraries</h3>
+
+<p>Libraries can be part of testsets which can be referenced by testcases. This is usefull if something isn't packaged for Fedora but you need it during the testrun. TBD</p>
+
+<h1 id="weblinks">Weblinks</h1>
+
+<ul>
+  <li><a href="http://gerrit.ovirt.org/gitweb?p=ovirt-node.git;a=tree;f=tests/igor/docs;hb=HEAD">oVirt Node specific documentation for Igor</a></li>
+  <li><a href="http://gerrit.ovirt.org/gitweb?p=ovirt-node.git;a=tree;f=tests/igor;hb=HEAD">oVirt Node Igor tests</a></li>
+  <li><a href="https://gitorious.org/ovirt/igord/trees/master/docs">Documentation provided by Igor</a></li>
+</ul>
+
+<category:node> [Category: Testing](Category: Testing) <category:automation>
+</category:automation></category:node>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

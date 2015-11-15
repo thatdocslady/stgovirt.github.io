@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Guest agent proposals &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Guest agent proposals</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>abaron, mdroth</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Guest agent proposals</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>5</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2011-11-17</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Guest_agent_proposals' target='_blank'>
+Guest agent proposals
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="guest-agent-proposals">Guest Agent Proposals</h1>
+
+<p>Summary of discussions from the ovirt workshop, and the qemu-devel and vdsm-devel mailing lists (http://thread.gmane.org/gmane.comp.emulators.ovirt.vdsm.devel/93/focus=93) regarding guest agents for oVirt.</p>
+
+<h3 id="considerations">Considerations</h3>
+
+<p>VDSM/oVirt currently relies on the ovirt-guest-agent (http://www.ovirt.org/wiki/Ovirt_guest_agent) as the mechanism for servicing host-initiated commands and data collection within a guest. QEMU relies on qemu-ga (http://wiki.qemu.org/Features/QAPI/GuestAgent) for similar purposes.</p>
+
+<p>Additionally, there are a number of domain-specific agents, such as vdagent for Spice, and Matahari for virtualization-aware systems management.</p>
+
+<p>Currently, ovirt-guest-agent and qemu-ga are the primary candidates under consideration. The purpose of this wiki page is to gather the oVirt requirements for a guest agent, along with the guest agent requirements for related projects, and outline the pros/cons of the existing proposals.</p>
+
+<h3 id="requirements">Requirements</h3>
+
+<h4 id="ovirt">oVirt</h4>
+
+<ol>
+  <li>Assistance in VM life-cycle:
+    <ol>
+      <li>"desktopShutdown" - Shuts the VM down gracefully from within the guest.</li>
+      <li>"quiesce" - does not exist today. This is definitely a requirement for us.</li>
+    </ol>
+  </li>
+  <li>SSO support for spice sessions (automatically login into guest OS using provided credentials):
+    <ol>
+      <li>"desktopLock" - lock current session, used when spice session gets disconnected / before giving a new user access to spice session</li>
+      <li>"desktopLogin"</li>
+      <li>"desktopLogoff"</li>
+      <li>reporting of relevant info (currently active user, session state)</li>
+    </ol>
+  </li>
+  <li>Monitoring and inventory:
+    <ol>
+      <li>memory usage</li>
+      <li>NICs info (name, hw, inet, inet6)</li>
+      <li>appslist (list of installed apps / rpms)</li>
+      <li>OS type</li>
+      <li>guest hostname</li>
+      <li>internal file systems info (path, fs type, total space, used space)</li>
+      <li>potentially, user-defined statistics via WMI/collectd</li>
+    </ol>
+  </li>
+</ol>
+
+<h4 id="qemu">QEMU</h4>
+
+<ol>
+  <li>first-class agent (same repo, available via QMP management interface, distributable via ISO, upgradeable via hypervisor push)</li>
+  <li>guest reboot/shutdown, filesystem freeze for live snapshots</li>
+  <li>project-agnostic primitives (file open/read/write/exec) to build higher-level interfaces (hypervisor-deployable scripts/binaries/executables, arbitrary data collection, etc)</li>
+</ol>
+
+<h4 id="spice">Spice</h4>
+
+<ol>
+  <li>User/session-level and system-level guest agent (particularly for copy/paste)</li>
+  <li>Paravirtual mouse (needed to get mouse coordinates right with multi monitor setups)</li>
+  <li>Send client monitor configuration, so that the guest os can adjust its resolution (and number and place of monitors) to match the client</li>
+  <li>Copy and paste in a platform neutral manner, if anyone wishes to add this to another agent contact Spice team (specifically, hdegoede at redhat.com) first. This is easy to get wrong (went through 2 revisions of the protocol for this)</li>
+  <li>Allow the client to request the guest to tone down the bling (for low spec clients)</li>
+  <li>client &lt;-&gt; guest communication vs. host &lt;-&gt; guest communication (i.e. per-session "channel" and state rather than multiplexing a single QMP-session)</li>
+</ol>
+
+<h3 id="proscons">Pros/Cons</h3>
+
+<h4 id="ovirt-guest-agent">ovirt-guest-agent</h4>
+
+<ul>
+  <li>pros
+    <ul>
+      <li>Has been around for a long time (~5 years) - considered stable</li>
+      <li>Started as rhevm specific but evolved a lot since then</li>
+      <li>Currently the only fully functional guest agent available for ovirt</li>
+      <li>Written in python</li>
+      <li>Some VDI related sub components are written in C &amp; C++</li>
+      <li>Supports a well defined list of message types / protocol [3]</li>
+      <li>Supports the folowing guest OSs, Linux: RHEL5, RHEL6 F15, F16(soon), Windows: xp, 2k3 (32/64), w7 (32/64), 2k8 (32/64/R2)</li>
+    </ul>
+  </li>
+  <li>cons
+    <ul>
+      <li>Not designed to be made consumable by QMP/QEMU directly</li>
+      <li>No session-level agent</li>
+      <li>Deployment complexity: The more complex the guest agent is, the more often it will need to be updated (bug/security fixes, distro compatibility, new features). Rolling out guest agent updates does not scale well in large environments (especially when the guest and host administrators are not the same person).</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="qemu-ga">qemu-ga</h4>
+
+<ul>
+  <li>pros
+    <ul>
+      <li>Qemu specific - it was aimed for specific qemu needs (mainly quiesce guest I/O and reliable guest shutdown)</li>
+      <li>project agnostic by design: supports file open/read/write/close, and when exec functionality is added will have the ability to deploy/exec abitrary code as well as upgrade itself</li>
+      <li>So far linux only, windows port in the works</li>
+      <li>written in C</li>
+      <li>Re-uses QMP transport and command schema, will be made transparent to QMP users once replacement QMP server is merged upstream</li>
+      <li>Patches for libvirt integration available on list, plans for default installation on Fedora 17 guests</li>
+    </ul>
+  </li>
+  <li>cons
+    <ul>
+      <li>No plans for native high-level functionality: management tools extend functionality by deploying/executing scripts/binaries in guest, collect state by similar mechanisms, or reading files, etc.</li>
+      <li>No session-level agent</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="proposals">Proposals</h3>
+
+<h4 id="leverage-ovirt-guest-agent-out-of-band-where-appropriate-use-qemu-ga-via-qmp-where-appropriate">Leverage ovirt-guest-agent out-of-band where appropriate, use qemu-ga via QMP where appropriate</h4>
+
+<ul>
+  <li>currently viable, but lots of wasted resources (duplication of efforts, extra packages, etc)</li>
+</ul>
+
+<h4 id="drop-qemu-ga-consolidate-around-ovirt-guest-agent">Drop qemu-ga, consolidate around ovirt-guest-agent</h4>
+
+<ul>
+  <li>
+    <p>blocker: Requires that ovirt-guest-agent be proxied through QMP management interface, subsumes existing qemu-ga commands. Also requires qemu.git submobule to access ovirt-guest-agent command schema to generate marshalling code for proxied commands.</p>
+
+    <p>The need to converge is obvious, and now that ovirt-guest-agent is opensourced 
+  under the ovirt stack, and since it already produces value for enterprise 
+  installations, and is cross platform, I offer to join hands around ovirt-
+  guest-agent and formalize a single code base that will serve us all.</p>
+
+    <p>git @ git://gerrit.ovirt.org/ovirt-guest-agent</p>
+
+    <p>Thoughts ?</p>
+
+    <p>Thanks
+  Barak Azulay</p>
+  </li>
+</ul>
+
+<h4 id="make-ovirt-guest-agent-functionality-available-via-an-executable-or-a-set-of-scripts-and-have-hypervisor-deployexec-the-functionality-via-qemu-ga-file-writeexec-interfaces">Make ovirt-guest-agent functionality available via an executable or a set of scripts, and have hypervisor deploy+exec the functionality via qemu-ga file write/exec interfaces.</h4>
+
+<ul>
+  <li>
+    <p>blocker: Requires exec support to be added (planned). Requires careful evaluation of security model.</p>
+
+    <p>Today qemu-ga supports the following verbs: sync ping info shutdown
+  file-open file-close file-read file-write file-seek file-flush fsfreeze-status
+  fsfreeze-freeze fsfreeze-thaw.  If we add a generic execute mechanism, then the
+  agent can provide everything needed by oVirt to deploy SSO.</p>
+
+    <p>Let's assume that we have already agreed on some sort of security policy for the
+  write-file and exec primitives.  Consensus is possible on this issue but I
+  don't want to get bogged down with that here.</p>
+
+    <p>With the above primitives, SSO could be deployed automatically to a guest with
+  the following sequence of commands:</p>
+
+    <p>file-open "<exec-dir>/sso-package.bin" "w"
+  file-write <fh> <buf>
+  file-close <fh>
+  file-open "<exec-dir>/sso-package.bin" "x"
+  file-exec <fh> <args>
+  file-close <fh></fh></args></fh></exec-dir></fh></buf></fh></exec-dir></p>
+
+    <p>At this point, the package is installed.  It can contain whatever existing logic
+  exists in the ovirt-guest-agent today.  To perform a user login, we'll assume
+  that sso-package.bin contains an executable 'sso/do-user-sso':</p>
+
+    <p>file-open "<exec-dir>/sso/do-user-sso" "x"
+  exec <fh> <args>
+  file-close <fh></fh></args></fh></exec-dir></p>
+
+    <p>At this point the user would be logged in as before.</p>
+
+    <p>Obviously, this type of approach could be made easier by providing a well
+  designed exec API that returns command exit codes and (optionally) command
+  output.  We could also formalize the install of additional components into some
+  sort of plugin interface.  These are all relatively easy problems to solve.</p>
+
+    <p>If we go in this direction, we would have a simple, general-purpose agent with
+  low-level primitives that everyone can use.  We would also be able to easily
+  extend the agent based on the needs of individual deployments (not the least of
+  which is an oVirt environment).  If certain plugins become popular enough, they
+  can always be promoted to first-order API calls in future versions of the API.</p>
+
+    <p>– 
+  Adam Litke <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#097;&#103;&#108;&#064;&#117;&#115;&#046;&#105;&#098;&#109;&#046;&#099;&#111;&#109;">&#097;&#103;&#108;&#064;&#117;&#115;&#046;&#105;&#098;&#109;&#046;&#099;&#111;&#109;</a>
+  IBM Linux Technology Center</p>
+  </li>
+</ul>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Build and Install Engine RPM &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Build and Install Engine RPM</td>
+</tr>
+<tr>
+<th>category</th>
+<td>documentation</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>alonbl, quaid, ranglust, sejeff</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Documentation</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Build and Install Engine RPM</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>7</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-05-12</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Build_and_Install_Engine_RPM' target='_blank'>
+Build and Install Engine RPM
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="build-and-install-engine-rpm">Build and Install Engine RPM</h1>
+
+<p><big><font color="lightgray" style="background-color: darkred">ATTENTION: This page is obsoleted for &gt;=ovirt-engine-3.3 by [oVirt Engine Development Environment](OVirt_Engine_Development_Environment)</font></big></p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ol>
+  <li>Fedora 15 and up x86-64 OS</li>
+  <li>Internet connection</li>
+</ol>
+
+<h2 id="installing-jdk">Installing JDK</h2>
+
+<p>OpenJDK</p>
+
+<pre class="highlight plaintext"><code>  $&gt; sudo yum install -y java-1.6.0-openjdk-devel&#x000A;</code></pre>
+
+<ul>
+  <li>
+    <p>Verify that javac linked to openjdk-1.6.0's javac properly.</p>
+
+    <p>$&gt; alternatives –display javac</p>
+  </li>
+</ul>
+
+<h2 id="installing-tools">Installing tools</h2>
+
+<h3 id="installing-git">Installing git</h3>
+
+<pre class="highlight plaintext"><code>     yum install -y git&#x000A;</code></pre>
+
+<h3 id="installing-maven">Installing maven</h3>
+
+<p>oVirt engine is using maven version 2.2.x, maven 3.x will not work.
+ yum install -y maven2</p>
+
+<p>Add Maven to Path:</p>
+
+<pre class="highlight plaintext"><code>  echo "PATH=$PATH:/usr/share/maven2/bin" &gt;&gt; ~/.bashrc&#x000A;</code></pre>
+
+<ul>
+  <li>Please validate maven path, as it will change on maven3.</li>
+</ul>
+
+<h5 id="maven-personal-settings">Maven personal settings</h5>
+
+<p>Copy paste the content of the file below into ~/.m2/settings.xml</p>
+
+<pre class="highlight plaintext"><code>  &lt;?xml version="1.0"?&gt;&#x000A;&#x000A;  &lt;settings xmlns="http://maven.apache.org/POM/4.0.0"&#x000A;            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&#x000A;            xsi:schemaLocation="http://maven.apache.org/POM/4.0.0&#x000A;            http://maven.apache.org/xsd/settings-1.0.0.xsd"&gt;&#x000A;&#x000A;  &lt;!--**************************** PROFILES ****************************--&gt;&#x000A;&#x000A;          &lt;activeProfiles&gt;&#x000A;                  &lt;activeProfile&gt;oVirtEnvSettings&lt;/activeProfile&gt;&#x000A;          &lt;/activeProfiles&gt;&#x000A;&#x000A;          &lt;profiles&gt;&#x000A;                  &lt;profile&gt;&#x000A;                          &lt;id&gt;oVirtEnvSettings&lt;/id&gt;&#x000A;                          &lt;properties&gt;&#x000A;                                  &lt;jbossHome&gt;/usr/local/jboss-5.1.0.GA&lt;/jbossHome&gt;&#x000A;                                  &lt;JAVA_1_6_HOME&gt;/usr/lib/jvm/java-1.6.0-openjdk.x86_64&lt;/JAVA_1_6_HOME&gt;&#x000A;                          &lt;/properties&gt;&#x000A;                          &lt;repositories&gt;&#x000A;                                   &lt;repository&gt;&#x000A;                                      &lt;id&gt;jboss-public-repository-group&lt;/id&gt;&#x000A;                                      &lt;name&gt;JBoss Public Maven Repository Group&lt;/name&gt;&#x000A;                                      &lt;url&gt;https://repository.jboss.org/nexus/content/groups/public&lt;/url&gt;&#x000A;                                      &lt;layout&gt;default&lt;/layout&gt;&#x000A;                                      &lt;releases&gt;&#x000A;                                         &lt;enabled&gt;true&lt;/enabled&gt;&#x000A;                                         &lt;updatePolicy&gt;never&lt;/updatePolicy&gt;&#x000A;                                      &lt;/releases&gt;&#x000A;                                      &lt;snapshots&gt;&#x000A;                                         &lt;enabled&gt;true&lt;/enabled&gt;&#x000A;                                         &lt;updatePolicy&gt;never&lt;/updatePolicy&gt;&#x000A;                                      &lt;/snapshots&gt;&#x000A;                                  &lt;/repository&gt;&#x000A;                                  &lt;repository&gt;&#x000A;                                      &lt;id&gt;repository.jboss.org&lt;/id&gt;&#x000A;                                      &lt;url&gt;http://repository.jboss.org/maven2&lt;/url&gt;&#x000A;                                      &lt;releases&gt;&#x000A;                                      &lt;/releases&gt;&#x000A;                                      &lt;snapshots&gt;&#x000A;                                         &lt;enabled&gt;false&lt;/enabled&gt;&#x000A;                                      &lt;/snapshots&gt;&#x000A;                                  &lt;/repository&gt;&#x000A;&#x000A;                                  &lt;repository&gt;&#x000A;                                      &lt;id&gt;jboss-deprecated-repository-group&lt;/id&gt;&#x000A;                                      &lt;name&gt;JBoss Deprecated Maven Repository Group&lt;/name&gt;&#x000A;                                      &lt;url&gt;https://repository.jboss.org/nexus/content/repositories/deprecated/&lt;/url&gt;&#x000A;                                      &lt;releases&gt;&#x000A;                                         &lt;enabled&gt;true&lt;/enabled&gt;&#x000A;                                         &lt;updatePolicy&gt;never&lt;/updatePolicy&gt;&#x000A;                                      &lt;/releases&gt;&#x000A;                                      &lt;snapshots&gt;&#x000A;                                         &lt;enabled&gt;true&lt;/enabled&gt;&#x000A;                                         &lt;updatePolicy&gt;never&lt;/updatePolicy&gt;&#x000A;                                      &lt;/snapshots&gt;&#x000A;                                  &lt;/repository&gt;&#x000A;                          &lt;/repositories&gt;&#x000A;&#x000A;                          &lt;pluginRepositories&gt;&#x000A;                                  &lt;pluginRepository&gt;&#x000A;                                     &lt;id&gt;jboss-public-repository-group&lt;/id&gt;&#x000A;                                     &lt;name&gt;JBoss Public Maven Repository Group&lt;/name&gt;&#x000A;                                     &lt;url&gt;https://repository.jboss.org/nexus/content/groups/public-jboss/&lt;/url&gt;&#x000A;                                     &lt;layout&gt;default&lt;/layout&gt;&#x000A;                                     &lt;releases&gt;&#x000A;                                        &lt;enabled&gt;true&lt;/enabled&gt;&#x000A;                                        &lt;updatePolicy&gt;never&lt;/updatePolicy&gt;&#x000A;                                     &lt;/releases&gt;&#x000A;                                     &lt;snapshots&gt;&#x000A;                                        &lt;enabled&gt;true&lt;/enabled&gt;&#x000A;                                        &lt;updatePolicy&gt;never&lt;/updatePolicy&gt;&#x000A;                                     &lt;/snapshots&gt;&#x000A;                                  &lt;/pluginRepository&gt;&#x000A;                          &lt;/pluginRepositories&gt;&#x000A;                  &lt;/profile&gt;&#x000A;          &lt;/profiles&gt;&#x000A;  &lt;/settings&gt;&#x000A;</code></pre>
+
+<ul>
+  <li>Do not omit the active-profiles element in the above xml, it is crucial.</li>
+</ul>
+
+<h2 id="installing-postgresql">Installing PostgreSQL</h2>
+
+<p><a href="/documentation/installing-postgresql-db/">Installing_PostgreSQL_DB</a></p>
+
+<h2 id="installing-jboss-for-ovirt">Installing jboss for ovirt</h2>
+
+<p>Download the following rpm and install it:</p>
+
+<pre class="highlight plaintext"><code>  --- still missing rpm link ---&#x000A;</code></pre>
+
+<h2 id="ovirt-engine-source">oVirt-engine Source</h2>
+
+<h4 id="clone-ovirt-engine-codebase">Clone oVirt-engine codebase</h4>
+
+<p>Choose a directory where you want to keep oVirt sources and 'cd' to it</p>
+
+<pre class="highlight plaintext"><code>  $&gt; git clone git://gerrit.ovirt.org/ovirt-engine&#x000A;</code></pre>
+
+<ul>
+  <li>Let $OVIRT_HOME be <your_chosen_source_location>/ovirt-engine</your_chosen_source_location></li>
+</ul>
+
+<p><strong>Note:</strong> the above cloning is for read only, if you want to contribute you might want to skip to the section on gerrit before moving to the next steps.</p>
+
+<h4 id="build-ovirt-engine">Build ovirt-engine</h4>
+
+<p>execute the following commands:</p>
+
+<pre class="highlight plaintext"><code>  make&#x000A;  make test&#x000A;   &#x000A;</code></pre>
+
+<p>and as root execute:</p>
+
+<pre class="highlight plaintext"><code>  make install&#x000A;   &#x000A;</code></pre>
+
+<p>Alternatively, you can run:</p>
+
+<pre class="highlight plaintext"><code>  make rpm&#x000A;   &#x000A;</code></pre>
+
+<p>Which will build the rpm set for ovirt-engine</p>
+
+<h2 id="installing-ovirt-engine-from-rpm-file-set">Installing ovirt-engine from rpm file set</h2>
+
+<p>install the rpm file set by executing:</p>
+
+<pre class="highlight plaintext"><code>  yum --nogpg localinstall /path/to/rpms/*.rpm&#x000A;   &#x000A;</code></pre>
+
+<p>and executes the following:</p>
+
+<pre class="highlight plaintext"><code>  cd /usr/share/ovirt-engine/dbscripts/&#x000A;  ./create_db_devel.sh -u postgres&#x000A;  service jboss restart&#x000A;   &#x000A;</code></pre>
+
+<p>ovirt-engine is now available by accessing: <a href="http://host:8080/webadmin">http://host:8080/webadmin</a></p>
+
+<category:documentation> <category:engine> <category:rpm>
+</category:rpm></category:engine></category:documentation>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

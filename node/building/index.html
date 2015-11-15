@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Node Building &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Node Building</td>
+</tr>
+<tr>
+<th>category</th>
+<td>node</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>dcaroest, dougsland, fabiand, mburns, pmyers, quaid, rbarry</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Node</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Node Building</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>36</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2015-01-28</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Node_Building' target='_blank'>
+Node Building
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="node-building">Node Building</h1>
+
+<h2 id="build-process-for-ovirt-node">Build Process for oVirt Node</h2>
+
+<p>Currently, we're heavily reliant on Fedora. The build process consists of two phases:</p>
+
+<ol>
+  <li>Building the <em>ovirt-node</em> packages</li>
+  <li>Building the ISO image using Fedora packages and the previously build <em>ovirt-node</em> packages</li>
+</ol>
+
+<h3 id="from-git">From Git</h3>
+
+<h4 id="get-the-source">Get the Source</h4>
+
+<p>The code resides in <a href="http://gerrit.ovirt.org/gitweb?p=ovirt-node.git;a=summary">oVirt's gerrit</a> and can be pulled using git:</p>
+
+<pre class="highlight plaintext"><code># The ovirt-node package, which contains Node specififc code, TUI and tools&#x000A;$ git clone http://gerrit.ovirt.org/p/ovirt-node.git&#x000A;&#x000A;# This package is used to build the ISO&#x000A;$ git clone http://gerrit.ovirt.org/p/ovirt-node-iso.git&#x000A;&#x000A;# Let's operate from this base&#x000A;$ export OVIRT_NODE_BASE=$PWD&#x000A;</code></pre>
+
+<h4 id="setup-a-build-environment">Setup a Build Environment</h4>
+
+<ul>
+  <li>Recommend minimum F18 build host
+    <ul>
+      <li>Otherwise there are problems with systemd, selinux, …</li>
+    </ul>
+  </li>
+  <li>Create an ovirt-cache directory (defaults to ~/ovirt-cache</li>
+  <li>Create an RPM build environment
+    <ul>
+      <li>If you're on the right version, then no need for .rpmmacros</li>
+      <li>If not running on the version of Fedora you want to build with, create a ~/.rpmmacros file with
+        <ul>
+          <li>%dist .fc18</li>
+          <li>%fedora 18</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>set <code>OVIRT_CACHE_DIR</code> and <code>OVIRT_LOCAL_REPO</code> environment variables
+    <ul>
+      <li><code> $ export OVIRT_CACHE_DIR=~/ovirt-cache</code></li>
+      <li><code> $ export OVIRT_LOCAL_REPO=file://${OVIRT_CACHE_DIR}/ovirt </code></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="install-dependencies">Install Dependencies</h4>
+
+<p>You will need (at least):</p>
+
+<ul>
+  <li>
+    <ul>
+      <li>sudo access to livecd-creator (preferably passwordless)</li>
+      <li>In addition, all packages listed under <a href="http://fedoraproject.org/wiki/Packaging:Guidelines#Exceptions_2">Exceptions</a> in the Fedora Packaging guidelines should also be installed.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>This boils (on a fresh and minimal Fedora 18) down to:</p>
+
+<pre class="highlight plaintext"><code>$ visudo&#x000A;$ yum install livecd-tools appliance-tools-minimizer fedora-packager python-devel rpm-build createrepo \&#x000A;  selinux-policy-doc checkpolicy selinux-policy-devel hardlink autoconf ltrace automake python-mock pykickstart python-lockfile&#x000A;</code></pre>
+
+<h4 id="build-ovirt-node-packages">Build ovirt-node packages</h4>
+
+<p>Now that the source and build environment is setup you can build the <em>ovirt-node</em> packages:</p>
+
+<pre class="highlight plaintext"><code># Go to base ovirt-node location&#x000A;$ cd $OVIRT_NODE_BASE&#x000A;$ cd ovirt-node&#x000A;&#x000A;# Optional: Do any changes you want and commit them (important)&#x000A;$ edit some/file.py&#x000A;$ commit -as&#x000A;&#x000A;# EXTRA_RELEASE is picked up by ovirt-node's build system&#x000A;# Needs to be adjusted for an official build&#x000A;# Also, you may need to tweak this if you have an invalid character in your user name (like - )&#x000A;$ export EXTRA_RELEASE=.$USER$(date +%s)&#x000A;&#x000A;$ ./autogen.sh --with-image-minimizer&#x000A;&#x000A;# Copies the packages to $OVIRT_CACHE_DIR (FIXME or $OVIRT_LOCAL_REPO?)&#x000A;$ make publish&#x000A;</code></pre>
+
+<h4 id="workarounds-for-rpms-not-included-in-fedora">Workarounds for RPMs not included in Fedora</h4>
+
+<p>Sometimes some packages are missing in Fedora's official repos (e.g. because they are not yet released or generally not available in Fedora). If this is the case the following workaround can be used to include the packages in oVirt Node:</p>
+
+<pre class="highlight plaintext"><code># Go into the local package cache&#x000A;$ cd $OVIRT_CACHE_DIR/ovirt&#x000A;&#x000A;# Copy all custom packages into the cache&#x000A;$ cp -v /path/with/custom/rpms/*.rpm .&#x000A;&#x000A;# Recreate the repodata&#x000A;$ createrepo .&#x000A;</code></pre>
+
+<h4 id="build-the-image">Build the image</h4>
+
+<p>Now that the <em>ovirt-node</em> package and (optional) other 3rd party packages are in place, we can build the ISO:</p>
+
+<pre class="highlight plaintext"><code>$ cd $OVIRT_NODE_BASE&#x000A;$ cd ovirt-node-iso&#x000A;&#x000A;# /path/to/ovirt-node/recipe/directory is typically $OVIRT_NODE_BASE/ovirt-node/recipe&#x000A;$ ./autogen.sh --with-recipe=/path/to/ovirt-node/recipe/directory --with-build-number=&lt;build_number&gt;&#x000A;&#x000A;# Build and compress the iso&#x000A;$ make iso publish&#x000A;</code></pre>
+
+<p>Variables:</p>
+
+<ul>
+  <li>–with-recipe
+    <ul>
+      <li>defaults to /usr/share/ovirt-node-tools</li>
+      <li>not needed if ovirt-node-tools rpm is installed</li>
+      <li>otherwise point to ovirt-node/recipe</li>
+    </ul>
+  </li>
+  <li>–with-build-number
+    <ul>
+      <li>Will set the XX value in the following NVR</li>
+      <li>ovirt-node-iso-2.3.0-1.XX.fc16</li>
+      <li>Can be overridden at in the make iso and/or make publish steps by adding BUILD_NUMBER=<buildnumber></buildnumber></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="jenkins--nightly-builds">Jenkins / Nightly Builds</h2>
+
+<p>The oVirt project is using <a href="http://www.jenkins-ci.org">Jenkins</a> for CI.</p>
+
+<p>There are <a href="http://jenkins.ovirt.org/view/Master%20branch%20per%20project/view/ovirt-node/">several jobs related to Node</a> which also build per-commit and nightly builds.</p>
+
+<h2 id="adding-a-plugin-to-a-build">Adding a plugin to a build</h2>
+
+<p>Plugins are a way to extend oVirt Node ISOs. To add a plugin to an existing image proceed like this:</p>
+
+<ol>
+  <li>Prepare or get the plugin rpm</li>
+  <li>Download the prepared repo files
+    <ol>
+      <li>fedora: <a href="http://resources.ovirt.org/releases/node-base/edit-node.repo">http://resources.ovirt.org/releases/node-base/edit-node.repo</a></li>
+      <li>el6: <a href="http://resources.ovirt.org/releases/node-base/edit-node-el6.repo">http://resources.ovirt.org/releases/node-base/edit-node-el6.repo</a></li>
+    </ol>
+  </li>
+  <li>Edit the ISO using `edit-node`:
+    <ol>
+      <li>`ovirt-node/tools/edit-node –repo edit-node.repo –install <package-name> <iso-name>\`</iso-name></package-name></li>
+    </ol>
+  </li>
+</ol>
+
+<p><strong>Note</strong>: `edit-node` must be run on the same OS which is used within the image. So an Fedora image must be edited on a Fedora host.</p>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>$ ovirt-node/tools/edit-node \&#x000A;    --repo edit-node.repo \&#x000A;    --install ovirt-node-plugin-vdsm \&#x000A;    ovirt-node-iso-3.0.2-1.0.0.fc19.iso&#x000A;</code></pre>
+
+<h2 id="where-to-go-from-now">Where to go from now</h2>
+
+<p>Now that you've got an oVirt Node ISO you can use</p>
+
+<ul>
+  <li><a href="/node/pxe/"> Deploy it with PXE</a> to get it onto real hardware or into a VM for testing purposes</li>
+  <li><a href="/feature/node/plugins/">Node plugins</a> to add 3rd party plugins</li>
+  <li><a href="/node/automation/"> Use igor</a> to setup automated tests for oVirt Node in your environment</li>
+  <li><a href="/node/contributing-to-the-node-project/"> Contribute</a> to make Node even more solid</li>
+</ul>
+
+<category:node> <category:documentation>
+</category:documentation></category:node>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+OVirt Engine Development Environment &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>OVirt Engine Development Environment</td>
+</tr>
+<tr>
+<th>category</th>
+<td>engine</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>alonbl, amureini, arik, didi, dougsland, ecohen, gchaplik, gshereme, mkolesni, moolit, msivak, nsoffer, ofri, roy, smizrahi, tsaban, vered, vitordelima, vszocs, yair zaslavsky, ykleinbe</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Engine</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>OVirt Engine Development Environment</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>89</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2015-02-23</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/OVirt_Engine_Development_Environment' target='_blank'>
+OVirt Engine Development Environment
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="ovirt-engine-development-environment">OVirt Engine Development Environment</h1>
+
+<h2 id="development-environment">Development Environment</h2>
+
+<p><b>Please notice:</b> Most updated certified documentation is available within source tree at <a href="http://gerrit.ovirt.org/gitweb?p=ovirt-engine.git;a=blob;f=README.developer;hb=HEAD">README.developer</a>.</p>
+
+<p>This page is mostly to absorb community experience into the certified procedures.</p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<h4 id="rpm-based">RPM based</h4>
+
+<h5 id="set-up-snapshot-repository">Set up snapshot repository</h5>
+
+<h6 id="automatically">Automatically</h6>
+
+<p><code># yum install </code><a href="http://resources.ovirt.org/pub/yum-repo/ovirt-releaseXY.rpm"><code>http://resources.ovirt.org/pub/yum-repo/ovirt-releaseXY.rpm</code></a></p>
+
+<p>This will not work for master, as it is available after release.</p>
+
+<h6 id="manually">Manually</h6>
+
+<p>Create <code>/etc/yum.repos.d/ovirt-snapshots.repo</code>, replace <code>@distro@</code> with <code>fc</code> for Fedora or <code>el</code> for RHEL or equivalent distribution.</p>
+
+<pre class="highlight plaintext"><code>  [ovirt-snapshots]&#x000A;  name=local&#x000A;  baseurl=http://resources.ovirt.org/pub/ovirt-master-snapshot/rpm/@distro@$releasever&#x000A;  enabled=1&#x000A;  gpgcheck=0&#x000A;  priority=10&#x000A;  [ovirt-snapshots-static]&#x000A;  name=local&#x000A;  baseurl=http://resources.ovirt.org/pub/ovirt-master-snapshot-static/rpm/@distro@$releasever&#x000A;  enabled=1&#x000A;  gpgcheck=0&#x000A;  priority=10&#x000A;</code></pre>
+
+<h5 id="setup-patternfly-repository">Setup PatternFly repository</h5>
+
+<p>Create <code>/etc/yum.repos.d/patternfly.repo</code> and copy/paste the contents of correct file for your distro from <a href="https://copr.fedoraproject.org/coprs/patternfly/patternfly1">PatternFly Repos on copr</a>.</p>
+
+<h5 id="install-3rd-party-packages">Install 3rd party packages</h5>
+
+<pre class="highlight plaintext"><code>  # yum install git java-devel maven openssl postgresql-server \&#x000A;      m2crypto python-psycopg2 python-cheetah python-daemon libxml2-python \&#x000A;      unzip patternfly1&#x000A;</code></pre>
+
+<h6 id="fedora">Fedora</h6>
+
+<pre class="highlight plaintext"><code>  # yum install jboss-as&#x000A;</code></pre>
+
+<p>ovirt-engine doesn't work with jboss-as &gt;= 8.0 (wildfly) on Fedora 20. To work around this issue, when using Fedora 20, do the following instead:</p>
+
+<pre class="highlight plaintext"><code>  # wget http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip&#x000A;  # unzip jboss-as-7.1.1.Final -d /usr/share&#x000A;</code></pre>
+
+<h6 id="rhel">RHEL</h6>
+
+<p>Option 1, setup jboss channel, and install downstream jboss, JBOSS_HOME will be /usr/share/jbossas.</p>
+
+<pre class="highlight plaintext"><code>  # yum install jbossas-standalone jbossas-bundles jbossas-modules-eap&#x000A;</code></pre>
+
+<p>Option 2, setup jboss upstream, download jboss-as-7.1.1 from <a href="http://www.jboss.org/jbossas/downloads/">jboss site</a> and extract to $HOME. JBOSS_HOME will be ${HOME}/jboss-as-<version>...</version></p>
+
+<h5 id="install-ovirt-packages">Install ovirt packages</h5>
+
+<pre class="highlight plaintext"><code>  # yum install ovirt-host-deploy&#x000A;</code></pre>
+
+<h5 id="setup-java">Setup Java</h5>
+
+<p>Make sure openjdk is the java preferred:</p>
+
+<pre class="highlight plaintext"><code>  # alternatives --config java&#x000A;  # alternatives --config javac&#x000A;</code></pre>
+
+<p>Note: javassit used in some of the unit tests hits a regression introduced in java-1.7.0-openjdk-1.7.0.65. In order to avoid this issue, you can downgrade to java-1.7.0-openjdk-1.7.0.60.</p>
+
+<h4 id="debian-based">Debian based</h4>
+
+<p>Install 3rd party packages:</p>
+
+<pre class="highlight plaintext"><code>  # apt-get install git openjdk-7-jdk maven openssl postgresql \&#x000A;      python-m2crypto python-psycopg2 python-cheetah python-daemon \&#x000A;      jboss-as unzip&#x000A;</code></pre>
+
+<p>Download PatternFly from <a href="https://github.com/patternfly/patternfly/releases/tag/v1.0.5">PatternFly releases</a> and extract to $HOME/patternfly</p>
+
+<p>Download jboss-as-7.1.1 from <a href="http://www.jboss.org/jbossas/downloads/">jboss site</a> and extract to $HOME.</p>
+
+<p>Install ovirt packages:</p>
+
+<pre class="highlight plaintext"><code>   TODO&#x000A;</code></pre>
+
+<p>Make sure openjdk is the java preferred:</p>
+
+<pre class="highlight plaintext"><code>  # update-alternatives --config java&#x000A;</code></pre>
+
+<h4 id="database">Database</h4>
+
+<p>Based on your distribution it may be that you require to initialize the database.</p>
+
+<pre class="highlight plaintext"><code>  Fedora: # postgresql-setup initdb&#x000A;  RHEL:   # /etc/init.d/postgresql initdb&#x000A;  Gentoo: # emerge --config postgresql-server&#x000A;</code></pre>
+
+<p>Configure PostgreSQL to accept network connection by locating <code>pg_hba.conf</code> file, locations includes:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Fedora,RHEL</td>
+      <td>/var/lib/pgsql/data/pg_hba.conf</td>
+    </tr>
+    <tr>
+      <td>Debian</td>
+      <td>/etc/postgresql/*/main/pg_hba.conf</td>
+    </tr>
+    <tr>
+      <td>Gentoo</td>
+      <td>/etc/postgresql-*/pg_hba.conf</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Locate: 127.0.0.1/32 and ::1/128 and allow "password" authentication for IPv4 and IPv6 connections.</p>
+
+<pre class="highlight plaintext"><code>  # IPv4 local connections:&#x000A;  host    all             all             127.0.0.1/32            password&#x000A;  # IPv6 local connections:&#x000A;  host    all             all             ::1/128                 password&#x000A;</code></pre>
+
+<p>Configure PostgreSQL to support at least 150 concurrent connections - find <code>postgresql.conf</code> file, usually in the same location of <code>pg_hba.conf</code>, locate 'max_connections' and set it to 150.</p>
+
+<p>Restart PostgreSQL service for definitions to take effect:</p>
+
+<p>You may consider set the postgresql service to start at boot.</p>
+
+<p>Create database and user, usually using the following commands as root:</p>
+
+<pre class="highlight plaintext"><code>  su - postgres -c "psql -d template1 -c "create user engine password 'engine';""&#x000A;  su - postgres -c "psql -d template1 -c "create database engine owner engine template template0 encoding 'UTF8' lc_collate 'en_US.UTF-8' lc_ctype 'en_US.UTF-8';""&#x000A;</code></pre>
+
+<p>It basically logins into PostgreSQL database using privileged user, creates a user and creates a database owned by the user.</p>
+
+<h4 id="source">Source</h4>
+
+<p>Checkout source:</p>
+
+<pre class="highlight plaintext"><code>  mkdir -p "$HOME/git"&#x000A;  cd "$HOME/git"&#x000A;  $ git clone git://gerrit.ovirt.org/ovirt-engine&#x000A;</code></pre>
+
+<h3 id="usage">Usage</h3>
+
+<p>&lt;font color=red&gt;<b>WARNING:</b> DO NOT RUN ENVIRONMENT UNDER ROOT ACCOUNT&lt;/font&gt;</p>
+
+<p>Once prerequisites are in place, you are ready to build and use ovirt-engine.</p>
+
+<p>Build product and install at <code>$HOME/ovirt-engine</code>, execute the following as unprivileged user while residing within source repository:</p>
+
+<pre class="highlight plaintext"><code>  $ make install-dev PREFIX="$HOME/ovirt-engine"&#x000A;</code></pre>
+
+<p>on Debian, include</p>
+
+<pre class="highlight plaintext"><code>  PATTERNFLY_HOME="$HOME/patternfly"&#x000A;</code></pre>
+
+<p>Build may be customized, refer to <a href="http://gerrit.ovirt.org/gitweb?p=ovirt-engine.git;a=blob;f=README.developer;hb=HEAD">README.developer</a> for further information.</p>
+
+<p>Setup product by executing the following command and replying to questions, if you followed the database creation above then your database user is 'engine', its password is 'engine' and the database name is 'engine':</p>
+
+<pre class="highlight plaintext"><code>  $ $HOME/ovirt-engine/bin/engine-setup&#x000A;</code></pre>
+
+<p>If jboss is installed at alternate location, add the following while JBOSS_HOME contains the location: <code>--jboss-home="${JBOSS_HOME}"</code></p>
+
+<p>When product is successfully set up, execute the ovirt-engine service:</p>
+
+<pre class="highlight plaintext"><code>  $ $HOME/ovirt-engine/share/ovirt-engine/services/ovirt-engine/ovirt-engine.py start&#x000A;</code></pre>
+
+<p>The service will not exit as long as engine is up, to stop press <ctrl>C.</ctrl></p>
+
+<p>Access your engine using:</p>
+
+<ul>
+  <li><a href="http://localhost:8080">http://localhost:8080</a></li>
+  <li><a href="https://localhost:8443">https://localhost:8443</a></li>
+</ul>
+
+<p>Debug port is available via port <code>8787</code>, to be used by Eclipse or any other debugger.</p>
+
+<p>When performing code change which do not touch modify database, there is no need to re-execute the setup, just execute:</p>
+
+<pre class="highlight plaintext"><code>  $ make install-dev PREFIX="$HOME/ovirt-engine"&#x000A;</code></pre>
+
+<p>And start the engine service.</p>
+
+<p>To rebuild everything use:</p>
+
+<pre class="highlight plaintext"><code>  make clean install-dev PREFIX="$HOME/ovirt-engine" &#x000A;</code></pre>
+
+<p>To rebuild a single artifact, for example utils:</p>
+
+<pre class="highlight plaintext"><code>  make clean install-dev PREFIX=$HOME/ovirt-engine \&#x000A;      EXTRA_BUILD_FLAGS="-pl org.ovirt.engine.core:utils"&#x000A;</code></pre>
+
+<p>Now make a single artifact that resides within the ear (bll,etc):</p>
+
+<pre class="highlight plaintext"><code>  make clean install-dev PREFIX=$HOME/ovirt-engine \&#x000A;      EXTRA_BUILD_FLAGS="-pl org.ovirt.engine.core:bll,org.ovirt.engine:engine-server-ear"&#x000A;</code></pre>
+
+<p>Now your updated artifact is in place.</p>
+
+<h3 id="advanced-usage">Advanced Usage</h3>
+
+<h4 id="enable-debug-log">Enable DEBUG log</h4>
+
+<p>There is a file share/ovirt-engine/services/ovirt-engine/ovirt-engine.xml.in in the deployed engine environment. Open it and look for <subsystem xmlns="urn:jboss:domain:logging:1.1"> section. This section contains all output handlers (server.log, engine.log and console output) with associated level filters.</subsystem></p>
+
+<file-handler name="ENGINE" autoflush="true">
+` `<level name="DEBUG" />
+` `<formatter>
+`  `<pattern-formatter pattern="%d %-5p [%c] (%t) %s%E%n" />
+` `</formatter>
+` `<file path="$getstring('ENGINE_LOG')/engine.log" />
+` `<append value="true" />
+</file-handler>
+
+<p>To actually get the DEBUG messages to those handlers add the following to the end of the subsystem section:</p>
+
+<logger category="org.ovirt._package_you_are_interested_in">
+`  `<level name="DEBUG" />
+</logger>
+
+<p>To enable full database DEBUG logging to engine.log change the level to DEBUG in the following snippet:</p>
+
+<logger category="org.ovirt.engine.core.dal.dbbroker.PostgresDbEngineDialect$PostgresJdbcTemplate">
+`  `<level name="WARN" />
+</logger>
+
+<p>Restart the Jboss instance and you should see the logs.</p>
+
+<h4 id="enable-query-by-query-postgresql-log">Enable query by query postgresql log</h4>
+
+<p>Go to /var/lib/pgsql/data/postgresql.conf and change <em>log_statement</em> to 'all'. You can then find the logs in /var/lib/pgsql/data/pg_log/.</p>
+
+<h4 id="enable-unit-tests">Enable Unit Tests</h4>
+
+<pre class="highlight plaintext"><code>  $ make install-dev PREFIX="$HOME/ovirt-engine" BUILD_UT=1&#x000A;</code></pre>
+
+<h4 id="enable-dao-tests">Enable DAO Tests</h4>
+
+<p><em>Optional:</em> Create database, provided the user is engine, password engine:</p>
+
+<pre class="highlight plaintext"><code>  # su - postgres -c "psql -d template1 -c "create database engine_dao_tests owner engine;""&#x000A;  $ PGPASSWORD=engine ./packaging/dbscripts/schema.sh -d engine_dao_tests -u engine -c apply&#x000A;</code></pre>
+
+<p>Build with tests:</p>
+
+<pre class="highlight plaintext"><code>  $ make maven BUILD_GWT=0 BUILD_UT=1 EXTRA_BUILD_FLAGS="-P enable-dao-tests \&#x000A;      -D engine.db.username=engine \&#x000A;      -D engine.db.password=engine \&#x000A;      -D engine.db.url=jdbc:postgresql://localhost/engine_dao_tests"&#x000A;</code></pre>
+
+<h4 id="gwt-debug">GWT Debug</h4>
+
+<pre class="highlight plaintext"><code>  $ make install-dev PREFIX="$HOME/ovirt-engine" `$ make gwt-debug DEBUG_MODULE=`&lt;module&gt;&#x000A;</code></pre>
+
+<p>While <module> is webadmin or userportal-gwtp.</module></p>
+
+<p>Debug port is 8000, detailed instructions for GWT debugging are <a href="http://wiki.ovirt.org/DebugFrontend">here</a>.</p>
+
+<p>GWT debug URLs, provided components running on same machine:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>:{</td>
+      <td> </td>
+      <td>-</td>
+      <td>WebAdmin</td>
+      <td> </td>
+      <td><a href="http://127.0.0.1:8080/ovirt-engine/webadmin/WebAdmin.html?gwt.codesvr=127.0.0.1:9997">http://127.0.0.1:8080/ovirt-engine/webadmin/WebAdmin.html?gwt.codesvr=127.0.0.1:9997</a></td>
+      <td>-</td>
+      <td>UserPortal</td>
+      <td> </td>
+      <td><a href="http://127.0.0.1:8080/ovirt-engine/userportal/UserPortal.html?gwt.codesvr=127.0.0.1:9997">http://127.0.0.1:8080/ovirt-engine/userportal/UserPortal.html?gwt.codesvr=127.0.0.1:9997</a></td>
+      <td>}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="packaging">Packaging</h2>
+
+<h3 id="rpm-packaging">RPM packaging</h3>
+
+<p>Build system supports standard RPM packaging out of source tarball.</p>
+
+<p>Create source tarball by executing:</p>
+
+<pre class="highlight plaintext"><code>  $ make dist&#x000A;</code></pre>
+
+<p>Install build dependencies, replacing <code>@x@</code> with file names, this should be executed second time only if build dependencies are changed:</p>
+
+<pre class="highlight plaintext"><code>  $ rpmbuild -ts @tarball@&#x000A;  # yum-builddep @srpm@&#x000A;</code></pre>
+
+<p>Build RPMS:</p>
+
+<pre class="highlight plaintext"><code>  $ rpmbuild -tb @tarball@&#x000A;</code></pre>
+
+<p>RPM customization is supported refer to <a href="http://gerrit.ovirt.org/gitweb?p=ovirt-engine.git;a=blob;f=ovirt-engine.spec.in;hb=HEAD">ovirt-engine.spec.in</a>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Default</th>
+      <th>Description</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ovirt_build_quick</td>
+      <td>0</td>
+      <td>build as quickly as we can</td>
+      <td>syntax checks</td>
+    </tr>
+    <tr>
+      <td>ovirt_build_minimal</td>
+      <td>0</td>
+      <td>minimal build</td>
+      <td>development fully functional for firefox only</td>
+    </tr>
+    <tr>
+      <td>ovirt_build_gwt</td>
+      <td>1</td>
+      <td>gwt enablement</td>
+      <td>build or skip</td>
+    </tr>
+    <tr>
+      <td>ovirt_build_locales</td>
+      <td>1</td>
+      <td>build extra locales</td>
+      <td>production build</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example:</p>
+
+<pre class="highlight plaintext"><code>  rpmbuild -D"ovirt_build_minimal 1" -tb @tarball@&#x000A;</code></pre>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<h3 id="before-you-begin">Before you begin</h3>
+
+<p>Check if all prerequisites are installed, refer to <a href="#Prerequisites">prerequisites</a></p>
+
+<h3 id="ibm-jdk">IBM JDK</h3>
+
+<p>There is <a href="https://code.google.com/p/google-web-toolkit/issues/detail?id=7530">issues</a> when building oVirt engine using the IBM JDK.</p>
+
+<p>The workaround to this problem is removing all the .gwtar files that are inside the gwt-user.jar package and building the project using <code>EXTRA_BUILD_FLAGS="-Dgwt.usearchives=false"</code>.</p>
+
+<p>Author: –<span class='broken-link link-mediawiki' data-href='User:Alonbl' title='Special MediaWiki link: original pointed to: User:Alonbl'>Alon Bar-Lev</span> (<a href="User talk:Alonbl">talk</a>) 02:25, 1 July 2014 (GMT)</p>
+
+<category:engine> [Category:How to](Category:How to) [Category:Development environment](Category:Development environment)
+</category:engine>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+IPAM &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>IPAM</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>mkolesni</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>IPAM</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>3</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-12-05</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/IPAM' target='_blank'>
+IPAM
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="ipam">IPAM</h1>
+
+<h2 id="wip">WIP</h2>
+
+<p>WIP,. do not take anything in this document as a declaration of intent, it is merely a textual representation of some design ideas..</p>
+
+<h2 id="expectation">Expectation</h2>
+
+<p>We expect to have a capability of IP Address Management (IPAM) in oVirt, meaning that:</p>
+
+<ul>
+  <li>VM networks can have IPAM enabled</li>
+  <li>There can be one or more subnets in each network</li>
+  <li>Each vNIC on an IPAM enabled network can reserve an IP on one of the subnets of that network</li>
+  <li>The vNIC will receive the reserved IP through DHCP</li>
+</ul>
+
+<h2 id="enabling-ipam-in-ovirt">Enabling IPAM in oVirt</h2>
+
+<h3 id="related-entities">Related entities</h3>
+
+<h4 id="network">Network</h4>
+
+<p>The IPAM capability will be available on a per-network basis - For each network you can choose to enable IPAM or not. The network entity will have these new fields:</p>
+
+<ul>
+  <li>IPAM enabled</li>
+  <li>IPAM servers count (perhaps a general configuration value at first)</li>
+</ul>
+
+<h4 id="subnet">Subnet</h4>
+
+<p>If IPAM is enabled for a network, one ore more subnets can be defined on it. A subnet has the following properties:</p>
+
+<ul>
+  <li>Subnet IP</li>
+  <li>Netmask (must be valid)</li>
+  <li>Gateway IP</li>
+  <li>Optionally provide DNS, NTP properties</li>
+</ul>
+
+<h4 id="vms-vnic">VM's vNIC</h4>
+
+<p>A vNIC will have an option to belong to a certain subnet on the network.</p>
+
+<ul>
+  <li>If a vNIC doesn't belong to any subnet, it will not receive IPAM service.</li>
+  <li>If a vNIC belongs to a subnet:
+    <ul>
+      <li>It will get a dynamic IP from the subnet upon start of the vNIC (VM start. Plug, Re-link, etc).</li>
+      <li>It will release it's IP back to the subnet upon stop of the vNIC (VM stop, Unplug, Re-link, etc).</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="general-behaviour">General behaviour</h3>
+
+<p>IPAM capability can be split to two sections:</p>
+
+<ul>
+  <li>Managing IP assignments</li>
+  <li>Delivering the IP assignments to the VM guest OS</li>
+</ul>
+
+<p>The focus initially will be on providing both:</p>
+
+<ul>
+  <li>IP assignment will be managed internally by oVirt.</li>
+  <li>IP delivery to VM will be provided by DHCP (explanation later on).</li>
+</ul>
+
+<h4 id="management-module">Management Module</h4>
+
+<p>There will be an IPAM management module which is responsible on managing the service in an engine-level.</p>
+
+<ul>
+  <li>Once a network with IPAM enabled has at least one subnet defined, the IPAM management module will pick it up and attempt to provision it by making sure there are IPAM servers running for the network.
+    <ul>
+      <li>The management module will seek out applicable hosts (they must have the network set-up already) and command them to serve IPAM capabilities for the network.</li>
+    </ul>
+  </li>
+  <li>If a host that is serving as IPAM server goes down, the manager should attempt to stop it from serving as an IPAM server (best effort). and start another IPAM server on an applicable host.</li>
+</ul>
+
+<p>This leads to the following requirements:</p>
+
+<ul>
+  <li>We need a way to mark &amp; identify a host as an IPAM server.</li>
+  <li>The IPAM data should be persistent to recover from crash of the engine.
+    <ul>
+      <li>i.e. it would be unhealthy to swap all IPAM servers upon service start, we need a way to keep track of them instead.</li>
+    </ul>
+  </li>
+  <li>The DHCP servers should run in a "restricted" mode: They shouldn't allocate IP to a lease request, unless it is known to the server.</li>
+</ul>
+
+<h4 id="dhcp-ipam-provider">DHCP IPAM Provider</h4>
+
+<p>The DHCP IPAM providers have to support certain functionality:</p>
+
+<ul>
+  <li>Allow to start/stop a DHCP server for a number of networks on a given host.</li>
+  <li>Allow to reserve/release IPs.</li>
+</ul>
+
+<p>The DHCP provider is responsible for the proliferation of reservations to the DHCP servers it is managing. When a new host is added, the reservations for the networks this host will provide IPAM for should be proliferated by the provider itself (i.e. there is no need to re-reserve the IP via an explicit call).</p>
+
+<h3 id="pseudo-code">Pseudo Code</h3>
+
+<h4 id="interface-of-a-ipam-dhcp-provider">Interface of a IPAM DHCP provider</h4>
+
+<pre class="highlight plaintext"><code>  /**&#x000A;   * An IPAM (IP Address Management) DHCP provider can provide IP allocations on a host for one or more networks. The IP&#x000A;   * distribution is done via DHCP which is configured to provide only the allocations it knows about.&#x000A;   */ **`interface` `IpamDhcpProvider` `{`**&#x000A;      /**&#x000A;       * Provide IPAM on the given host to the given networks.&#x000A;        * If the networks list is empty then IPAM provisioning on will be turned off on this host.&#x000A;       *&#x000A;       * @param host&#x000A;       *            The host to provide IPAM on.&#x000A;       * @param networks&#x000A;       *            The list of networks to provide IPAM for, on this host. Each network should contain the desired&#x000A;       *            subnets for which the IPs will be provided.&#x000A;       */ `    `**`void` `provide(Host` `host,` `List`&lt;Network&gt; `networks);`**&#x000A;      /**&#x000A;       * Stop providing IPAM on the given host. Same as calling {@link IpamDhcpProvider#provide(Host, List)} with an empty&#x000A;       * networks list.&#x000A;       *&#x000A;       * @param host&#x000A;       *            The host to stop providing IPAM for.&#x000A;       */ `    `**`void` `dontProvide(Host` `host);`**&#x000A;      /**&#x000A;       * Add a reservation for the given MAC on the subnet. The provider will choose an available IP address.&#x000A;       *&#x000A;       * @param subnet&#x000A;       *            The subnet to reserve on.&#x000A;       * @param mac&#x000A;       *            The MAC to reserve for.&#x000A;       * @return The IP that was reserved.&#x000A;       */ `    `**`IP` `addReservation(Subnet` `subnet,` `MAC` `mac);`**&#x000A;      /**&#x000A;       * Add a reservation of the given IP for the given MAC on the subnet.&#x000A;       *&#x000A;       * @param subnet&#x000A;       *            The subnet to reserve on.&#x000A;       * @param mac&#x000A;       *            The MAC to reserve for.&#x000A;       * @param ip&#x000A;       *            The IP to reserve.&#x000A;       */ `    `**`void` `addReservation(Subnet` `subnet,` `MAC` `mac,` `IP` `ip);`**&#x000A;      /**&#x000A;       * Remove the given IP reservation from the given subnet.&#x000A;       *&#x000A;       * @param subnet&#x000A;       *            The subnet to remove from.&#x000A;       * @param ip&#x000A;       *            The IP reservation to remove.&#x000A;       */ `    `**`void` `removeReservation(Subnet` `subnet,` `IP` `ip);`**&#x000A;  }&#x000A;</code></pre>
+
+<h4 id="class-that-manages-the-ipam-per-network">Class that manages the IPAM per network</h4>
+
+<pre class="highlight plaintext"><code>  public class IpamManager {&#x000A;      private IpamDhcpProvider provider;&#x000A;      @OnTimer&#x000A;      public void manage() {&#x000A;          for (Network net : getAllNetworks()) {&#x000A;              if (net.isIpamEnabled() &amp;&amp; !net.getSubnets().isEmpty()) {&#x000A;                  /*&#x000A;                   * Balance number of hosts running IPAM for the network:&#x000A;                   *  * If a host that is tracked as running IPAM is not up, attempt to stop the IPAM on it.&#x000A;                   *  * Make sure that the amount of hosts providing IPAM for the network is running.&#x000A;                   */&#x000A;              } else {&#x000A;                  /* Stop IPAM for this network on all hosts that are running it (if there are any). */&#x000A;              }&#x000A;          }&#x000A;      }&#x000A;      /**&#x000A;       * Stop managing IPAM on the given host.&#x000A;       *&#x000A;       * @param host&#x000A;       *            The host to stop managing.&#x000A;       */&#x000A;      public void stopManaging(Host host) {&#x000A;          /* ... */&#x000A;      }&#x000A;  }&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

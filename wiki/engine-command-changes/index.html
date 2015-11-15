@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Engine Command changes &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Engine Command changes</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>ovedo, rnori, yair zaslavsky</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Wiki/Engine Command changes</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>8</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-07-08</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Wiki/Engine_Command_changes' target='_blank'>
+Wiki/Engine Command changes
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="engine-commands-infrastructure-changes-for-35">Engine commands infrastructure changes for 3.5</h1>
+
+<h3 id="context-changes">Context changes</h3>
+
+<p>Version 3.5 introduced the usage of engine session ID through all over the engine flows.</p>
+
+<p>Instead of holding the session ID on thread local, The commandContext object is used in order to propgate context through engine flow, including the engine session Id.</p>
+
+<p>EngineContext is introduced In addition to the Lock , Execution context and compensation context that existed in version 3.4 .</p>
+
+<p>EngineContext is a context that should exist throughout the engine flow , currently holding the engineSessionId.</p>
+
+<p>In order to invoke an internal command, and pass the context of the calling command, one past perform the following steps:</p>
+
+<ol>
+  <li>Add a CTOR to the internal command, cotaning the "CommandContext commandContext" argument as the last argument.</li>
+</ol>
+
+<p>For example:
+ public CreateSnapshotCommand(T parameters, CommandContext cmdContext) {</p>
+
+<pre class="highlight plaintext"><code>                super(parameters, cmdContext);      &#x000A;                setSnapshotName(parameters.getDescription());&#x000A;        }&#x000A;</code></pre>
+
+<ol>
+  <li>
+    <p>From commands, instead of using getBackend().runInternalAction or Backend.getInstance().runInternalAction use</p>
+
+    <p>      runInternalAction       
+   This method was introduced at CommandBase, and is responsible for propagating the context.</p>
+  </li>
+</ol>
+
+<p>For example:</p>
+
+<pre class="highlight plaintext"><code>             VdcReturnValueBase returnValue = runInternalAction(VdcActionType.HotPlugDiskToVm, params);       &#x000A;</code></pre>
+
+<ol>
+  <li>
+    <p>Invoke internal commands properly from classes that are not commands In case a command is using a helper (a class that does not extend CommandBase, and usually holds some functionality that is shared for several commands who are not of the same inheritance sub tree) , or another class which is not a command - the syntax of</p>
+
+    <p>           Backend.getInstance().runInternalAction(…) should be used. </p>
+  </li>
+</ol>
+
+<p>In this case, the caller might or might not pass the command context as a parameter to the call.</p>
+
+<p>If command context is not passed, the Command class should have a CTOR without a command context.</p>
+
+<p>If command context is passed, the Command class should have a CTOR with a command context.</p>
+
+<p>For example: LiveSnapshotTaskHandler.execute invokes an internal action:</p>
+
+<pre class="highlight plaintext"><code>    VdcReturnValueBase vdcReturnValue =&#x000A;                     Backend.getInstance().runInternalAction(VdcActionType.CreateAllSnapshotsFromVm,&#x000A;                     getCreateSnapshotParameters(),&#x000A;                     ExecutionHandler.createInternalJobContext());&#x000A;</code></pre>
+
+<p>The CTOR of the internal action is:</p>
+
+<pre class="highlight plaintext"><code>     public CreateAllSnapshotsFromVmCommand(T parameters, CommandContext commandContext) {&#x000A;         super(parameters, commandContext);&#x000A;         //....&#x000A;     }&#x000A;</code></pre>
+
+<ol>
+  <li>Handle command context propagation</li>
+</ol>
+
+<p>In order to properly propagate context , the command context should be duplicated when calling a command.</p>
+
+<p>This can be done either by using the clone method of the CommandContext object, or by calling CommandBase.cloneContext which will return a clone of the calling command's context.</p>
+
+<p>In some cases, we may want to alter fields of the duplicated context - for example, reset the compensation context (so the internal command will create its own compensation context).</p>
+
+<p>In order to perform this, the following withXXX and withoutXXX methods were introduced to commandContext - withLock(EngineLock), withExecutionContext(ExecutionContext), withCompensationContext(CompensationContext), withEngineContext(EngineContext),</p>
+
+<p>withoutLock(), withoutExecutionCOntext(, withoutCompensationContext()</p>
+
+<p>for example -</p>
+
+<pre class="highlight plaintext"><code>     cloneContext().withExecutionContext(runVmContext).withoutLock().withoutCompensationContext());&#x000A;</code></pre>
+
+<p>will clone the context, , set on it the runVM execution context, and reset both the lock and the compensation context.</p>
+
+<p>It is also possible to use the CommandBase.cloneContextAndDetachFromParent in order to perform context cloning and "detach" from all the detachable components of the context which are the lock , the execution context and the compensation context.</p>
+
+<p>In the case a command context should be duplicated and should have an execution context for tasks monitoring it is possible to use the method CommandBase.runInternalActionWithTasksContext</p>
+
+<ol>
+  <li>Propagate engine context to queries</li>
+</ol>
+
+<p>Similar to command context propgation it is required to propagate the engine context to internal queries.</p>
+
+<p>CommandBase.runInternalQuery and QueriesCommandBase.runInternalQuery were introruced and can be used to run an internal query with the engine context associated with the current context.</p>
+
+<p>Internal queries that are invoked using these methods should have a CTOR with engine context. For example:</p>
+
+<pre class="highlight plaintext"><code>      runInternalQuery(VdcQueryType.GetAllFromExportDomain, params);&#x000A;</code></pre>
+
+<p>and</p>
+
+<pre class="highlight plaintext"><code>      public GetAllFromExportDomainQuery(P parameters, EngineContext engineContext) {&#x000A;            super(parameters, engineContext);&#x000A;       }&#x000A;</code></pre>
+
+<h3 id="lock-mechanism-changes">Lock Mechanism changes</h3>
+
+<p>In 3.5 the attribute LockIdNameAttribute has been removed and commands that need exclusive locking need to override a method defined in CommandBase. By default the lock scope has been set to none and the wait is set to false as shown below</p>
+
+<pre class="highlight plaintext"><code>     @Override&#x000A;     protected LockProperties applyLockProperties(LockProperties lockProperties) {&#x000A;         return lockProperties.withScope(Scope.None).withWait(false);&#x000A;     }&#x000A;</code></pre>
+
+<p>Any command that needs a different locking mechanism needs to override the above method to set the appropriate properties on the LockProperties object. Below is an example of the method overridden in a command that extends CommandBase. In the example the scope has been set to Execution, so the lock is released at the end of command execution. The code is equivalent to what was achieved using the annotation @LockIdNameAttribute.</p>
+
+<pre class="highlight plaintext"><code>     @Override&#x000A;     protected LockProperties applyLockProperties(LockProperties lockProperties) {&#x000A;         return lockProperties.withScope(Scope.Execution);&#x000A;     }&#x000A;</code></pre>
+
+<p>The scope defines when lock is released.</p>
+
+<pre class="highlight plaintext"><code>     public static enum Scope {&#x000A;         /**&#x000A;          * Lock is release at the end of the command execution&#x000A;          */&#x000A;         Execution,&#x000A;         /**&#x000A;          * Lock is not release at the of command execution, used when&#x000A;          * child command uses the lock of the parent. Child should&#x000A;          * not release the lock, the parent will take care of releasing&#x000A;          * the lock&#x000A;          */&#x000A;         Command,&#x000A;         /**&#x000A;          * No lock is required for the command execution&#x000A;          */&#x000A;         None&#x000A;     }&#x000A;</code></pre>
+
+<p>To obtain a lock with wait in 3.4 the command had to be annotated with @LockIdNameAttribute(isWait = true). In 3.5 the same can be achieved by calling the withWait method on the lock properties</p>
+
+<pre class="highlight plaintext"><code>     @Override&#x000A;     protected LockProperties applyLockProperties(LockProperties lockProperties) {&#x000A;         return lockProperties.withScope(Scope.Execution).withWait(true);&#x000A;     }&#x000A;</code></pre>
+
+<p>When a child command uses the lock passed by the parent and does not release the lock, the scope "Command" is used to specify the scope of the lock.</p>
+
+<pre class="highlight plaintext"><code>     @Override&#x000A;     protected LockProperties applyLockProperties(LockProperties lockProperties) {&#x000A;         return lockProperties.withScope(Scope.Command);&#x000A;     }&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

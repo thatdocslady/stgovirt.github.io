@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+VDSM on Ubuntu &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>VDSM on Ubuntu</td>
+</tr>
+<tr>
+<th>category</th>
+<td>vdsm</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>danken, zhshzhou</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Vdsm</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>VDSM on Ubuntu</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>9</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-03-18</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/VDSM_on_Ubuntu' target='_blank'>
+VDSM on Ubuntu
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="vdsm-on-ubuntu">VDSM on Ubuntu</h1>
+
+<p>This page describes Ubuntu imcompabilities that must be fixed to run VDSM. With the workaround, it is possible to build VDSM on Ubuntu and run some functional tests. The last section presents a code repository containing the modified VDSM to be run on Ubuntu. This is a working VDSM snapshot with the following workarounds. If you are interested, please pick a workaround and create long term solution patch for it, then paste the Gerrit link beside the workdaround.</p>
+
+<p>Targeted Ubuntu Version: <strong>Ubuntu Server 12.10</strong></p>
+
+<h2 id="dependency-deb-packages">Dependency deb Packages</h2>
+
+<ul>
+  <li>For accessing the git repo</li>
+</ul>
+
+<p>git git-email git-completion git-review git-man git-doc</p>
+
+<ul>
+  <li>For Packaging</li>
+</ul>
+
+<p>autoconf automake genisoimage gcc gdb make libtool libguestfs-tools policycoreutils sasl2-bin sysv-rc</p>
+
+<ul>
+  <li>Python related</li>
+</ul>
+
+<p>python-parted python-nose pep8 pyflakes python-libvirt python-dev python-ethtool python-pip python-m2crypto python-selinux python-rpm python-libguestfs</p>
+
+<ul>
+  <li>Security</li>
+</ul>
+
+<p>selinux-utils</p>
+
+<ul>
+  <li>Other dependencies</li>
+</ul>
+
+<p>fence-agents ntp iproute nfs-server nfs-client lvm2 e2fsprogs open-iscsi psmisc bridge-utils dosfstools glusterfs-client glusterfs-common multipath-tools libsanlock-dev sanlock qemu-kvm-spice qemu-kvm qemu-utils guntls-bin python-rtslib</p>
+
+<p><strong>Workaround</strong>: install them manually through apt-get</p>
+
+<h3 id="dependency-problems">Dependency Problems</h3>
+
+<ul>
+  <li>Missing dependencies</li>
+</ul>
+
+<p>mom sos policycoreutils-python vhostmd</p>
+
+<p><strong>Workaround</strong>: ignore or skip the related feature.</p>
+
+<ul>
+  <li>python-pthreading is not available through apt-get</li>
+</ul>
+
+<p><strong>Workaround</strong>: use pip to install it.</p>
+
+<ul>
+  <li>sanlock-python is not available through neither apit-get nor pip</li>
+</ul>
+
+<p><strong>Workaround</strong>: compile and install sanlock from the source. GCC 4.7 requires all link flags comes after source file names, should adjust the Makefile in the sanlock git to avoid symbol not defined error. Firstly install Ubuntu's sanlock and libsanlock-dev to get the init files, then compile and install sanlock from source but do not install the init files. The init files in the sanlock source is not compatible with Ubuntu.</p>
+
+<ul>
+  <li>/usr/lib/libvirt/lock-driver/sanlock.so is not available</li>
+</ul>
+
+<p><strong>Workaround</strong>: disable sanlock in qemu.conf of libvirt</p>
+
+<ul>
+  <li>python-rtslib is not fresh enough</li>
+</ul>
+
+<p><strong>Workaround</strong>: install python-rtslib from pip</p>
+
+<h2 id="failed-unit-tests">Failed Unit Tests</h2>
+
+<ul>
+  <li>Exception in ssl test</li>
+</ul>
+
+<p>M2Crypto API differs between versions. Ubuntu and Fedora have different versions of M2Crypto .</p>
+
+<p><strong>Workaround</strong>: Modify M2Crypto related VDSM code of the SSL wrapper and add the missing API adapter</p>
+
+<ul>
+  <li>AlignmentScanTests.test_aligned_image and AlignmentScanTests.test_nonaligned_image fails with the same error</li>
+</ul>
+
+<p>libguestfs is not in vdsm dependency, after installing it, should run update-guestfs-appliance</p>
+
+<p>The libguestfs-test-tool fails as well, the default path of guest appliance is wrong</p>
+
+<p><strong>Workaround</strong>: ln -s /usr/lib/guestfs /usr/lib/x86_64-linux-gnu/guestfs</p>
+
+<ul>
+  <li>AlignmentScanTests sometimes cause the CPU stuck</li>
+</ul>
+
+<p><strong>Workaround</strong>: Ubuntu should provide new kernel version with better nested KVM support. Now just skip the test.</p>
+
+<ul>
+  <li>testMethodMissingMethod</li>
+</ul>
+
+<p><strong>Workaround</strong>: Fail in both Fedora and Ubuntu, just skip it</p>
+
+<h2 id="packaging">Packaging</h2>
+
+<ul>
+  <li>chkconfig is not in 12.10. It's called in vdsmd and the post installation script in rpm.</li>
+</ul>
+
+<p><strong>Workaround</strong>: use update-rc.d or sysv-rc-conf, but they do not respect the runlevel and start sequence in the chkconfig header. So the start sequence must be defined manually when adding a service.</p>
+
+<ul>
+  <li>Different Service names</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fedora</th>
+      <th>Ubuntu</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>libvirtd</td>
+      <td>libvirt-bin</td>
+    </tr>
+    <tr>
+      <td>iscsid</td>
+      <td>open-iscsi</td>
+    </tr>
+    <tr>
+      <td>multipathd</td>
+      <td>multipath-tools</td>
+    </tr>
+    <tr>
+      <td>ntpd</td>
+      <td>ntp</td>
+    </tr>
+    <tr>
+      <td>network</td>
+      <td>networking</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Workaround</strong>: edit vdsmd.init to change the service name</p>
+
+<ul>
+  <li>Ubuntu has no /etc/init.d/functions, should use /lib/lsb/init-functions in the init scripts.</li>
+</ul>
+
+<p><strong>Workaround</strong>: edit vdsmd.init to change the service name</p>
+
+<ul>
+  <li>/etc/init.d/functions v.s. /lib/lsb/init-functions</li>
+</ul>
+
+<p>Fedora has daemon util function definition in /etc/init.d/functions, Ubuntu has start_daemon, the options are different, no equivalent to –user option in Fedora.</p>
+
+<p>If we can not define the running user, vdsm main programme will detect it and exit immediately</p>
+
+<p><strong>Workaround</strong>: use /usr/sbin/sudo -u vdsm to start respawn in the init script instead of start respawn directly</p>
+
+<p>The killproc() function in /etc/init.d/functions supports "-d delay" option, /lib/lsb/init-functions does not.</p>
+
+<p><strong>Workaround</strong>: delete "-d" option from all invocation of killproc() in vdsmd.init.in.</p>
+
+<ul>
+  <li>Some functions namely "success" and "failure" do not exist in /lib/lsb/init-functions</li>
+</ul>
+
+<p><strong>Workaround</strong>: write empty "success" and "failure" functions in vdsmd.init.</p>
+
+<h2 id="file-system-hierachy">File System Hierachy</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fedora</th>
+      <th>Ubuntu</th>
+      <th><strong>Workaround</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>/sbin/nologin</td>
+      <td>/usr/sbin/nologin</td>
+      <td>change the path in the code and script</td>
+    </tr>
+    <tr>
+      <td>/sbin/service</td>
+      <td>/usr/sbin/service</td>
+      <td>change the path in the code and script</td>
+    </tr>
+    <tr>
+      <td>/var/lock/subsys/</td>
+      <td>/var/lock/</td>
+      <td>change the path in the code and script</td>
+    </tr>
+    <tr>
+      <td>/etc/sysconfig/libvirtd</td>
+      <td>/etc/default/libvirt-bin</td>
+      <td>change the path in the code and script</td>
+    </tr>
+    <tr>
+      <td>/usr/lib/udev/scsi_id</td>
+      <td>/lib/udev/scsi_id</td>
+      <td>change the path in the code and script <a href="http://gerrit.ovirt.org/#/c/13086/">Patch</a></td>
+    </tr>
+    <tr>
+      <td>/sys/class/cpuid/</td>
+      <td>equivalent not found</td>
+      <td>change the code to use os.sysconf('SC_NPROCESSORS_ONLN') <a href="http://gerrit.ovirt.org/#/c/12815/">Patch</a></td>
+    </tr>
+    <tr>
+      <td>/etc/iscsi/initiatorname.iscsi 644</td>
+      <td>same file but permission is 600, vdsm cannot read it</td>
+      <td>chmod in the installation script</td>
+    </tr>
+    <tr>
+      <td>/boot/initramfs-kernelVer.img</td>
+      <td>/boot/initrd.img-kernelVer</td>
+      <td>change the path in the code and script</td>
+    </tr>
+    <tr>
+      <td>/var/lib/libvirt/qemu/channels vdsm:kvm</td>
+      <td>owner is root:root</td>
+      <td>chmod in the installation script</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>User and Group</li>
+</ul>
+
+<p>Fedora qemu process started by libvirt is qemu:qemu</p>
+
+<p>Ubuntu qemu process started by libvirt is libvirt-qemu:kvm, and there is no group name qemu, only group kvm</p>
+
+<p><strong>Workaround</strong>: some code and scripts are changed to use the path and group in Ubuntu.</p>
+
+<p><a href="http://gerrit.ovirt.org/12915">Patch</a></p>
+
+<ul>
+  <li>Ubuntu does not mount configfs by default.</li>
+</ul>
+
+<p><strong>Workaround</strong>: configfs is used by LIO target, LIO target is used by iSCSI functional test, the user should mount the filesystem manually mount -t configfs configfs /sys/kernel/config/ .Now I modprobe the iscsi target module and mount configfs in run_tests.sh.in .</p>
+
+<h2 id="differences-of-the-underlying-tools">Differences of the Underlying Tools</h2>
+
+<ul>
+  <li>Ubuntu uses apparmor not selinux by default, apparmor prevents qemu from binding unix socket, and maybe prevent other things that affect vdsm.</li>
+</ul>
+
+<p><strong>Workaround</strong>: disable apparmor in the install script</p>
+
+<ul>
+  <li>No –copy option in Ubuntu sed</li>
+</ul>
+
+<p><strong>Workaround</strong>: delete this option in the script</p>
+
+<ul>
+  <li>bug in Ubuntu kill, parsing kill -9 -xxx will go wrong</li>
+</ul>
+
+<p><strong>Workaround</strong>: must use kill -9 – -xxx</p>
+
+<p><a href="http://gerrit.ovirt.org/#/c/12817/">Patch</a></p>
+
+<ul>
+  <li>udev problem</li>
+</ul>
+
+<p>There is a 85-lvm2.rules under Ubuntu /lib/udev/rules.d/, it sets the owner group of LV to "disk', preventing VDSM from chown-ing, reading, writing the LV. VDSM will chown the LV in the code and 12-vdsm-lvm.rules does this as well. However 85-lvm2.rules are run after 12-vdsm-lvm.rules, so the owner is always set by 85-lvm2.rules "root:disk" finally. In Fedora, there is no such 85-lvm2.rules, so there is no such problem.</p>
+
+<p><strong>Workaround</strong>:rename 12-vdsm-lvm.rules to 86-vdsm-lvm.rules, so that VDSM udev rules run after the default lvm rules.</p>
+
+<p><a href="http://gerrit.ovirt.org/#/c/12816/">Patch</a></p>
+
+<h2 id="upstart-vs-systemd">upstart vs. systemd</h2>
+
+<p>As <a href="https://wiki.ubuntu.com/systemd">https://wiki.ubuntu.com/systemd</a> says, systemd is very incompatible with upstart, we should create upstart jobs for vdsm. We should not run systemd within or instead of upstart. since upstats can run traditional sysv services, we can use vdsdm.init directly, just with some necessary modifications</p>
+
+<p>DK: it would be highly advises to break the nasty SysV service to something smaller, that makes calls to vdsm-tool commands. Then, a port to upstart could become much simpler.</p>
+
+<h2 id="existing-effort">Existing Effort</h2>
+
+<ul>
+  <li><a href="/distributions/debian/ubuntu/">Ovirt build on debian/ubuntu</a></li>
+  <li><a href="/developer/porting-ovirt/">Porting oVirt</a></li>
+</ul>
+
+<h2 id="code">Code</h2>
+
+<p>Most of the workarounds needs to modify the source code and scripts. The modified VDSM source code is as follow. After resolve the dependencies manually as mentioned in the first section of this WIKI, you can clone the code, and run ./ubuntuInstall.sh to build, run unit tests and install VDSM. After the installation you can use "service vdsmd start" to start VDSM daemon.</p>
+
+<p>To run functional tests, cd to /usr/share/vdsm/tests and ./run_tests.sh functional/xmlrpcTests.py . Currently we can run VM creation tests with iSCSI and LOCALFS storage.</p>
+
+<p><a href="https://github.com/edwardbadboy/vdsm-ubuntu">https://github.com/edwardbadboy/vdsm-ubuntu</a></p>
+
+<p>Contact: zhshzhou AT linux DOT vnet DOT ibm DOT com</p>
+
+<category:vdsm>
+</category:vdsm>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

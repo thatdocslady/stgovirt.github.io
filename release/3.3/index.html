@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+OVirt 3.3 release notes &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>OVirt 3.3 release notes</td>
+</tr>
+<tr>
+<th>category</th>
+<td>documentation</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>alonbl, dneary, doron, fsimonce, jbrooks, lvernia, mburns, michael pasternak, mkolesni, yair zaslavsky</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Documentation</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>OVirt 3.3 release notes</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>35</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-10-02</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/OVirt_3.3_release_notes' target='_blank'>
+OVirt 3.3 release notes
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="ovirt-33-release-notes">OVirt 3.3 release notes</h1>
+
+<p>The oVirt Project is pleased to announce the availability of its fourth formal release, oVirt 3.3.</p>
+
+<p>oVirt is an open source alternative to VMware vSphere, and provides an awesome KVM management interface for multi-node virtualization.</p>
+
+<p>To find out more about features which were added in previous oVirt releases, check out the <a href="/release/3.2/">oVirt 3.2 release notes</a> and <a href="/release/3.1/">oVirt 3.1 release notes</a>. For a general overview of oVirt, read <a href="/release/3.0/feature-guide/"> the oVirt 3.0 feature guide</a> and the <a href="/documentation/about-ovirt/">about oVirt</a> page.</p>
+
+<h2 id="whats-new-in-33">What's New in 3.3?</h2>
+
+<h3 id="openstack-integration">OpenStack Integration</h3>
+
+<ul>
+  <li><a href="Features/Quantum_Integration">Neutron Integration</a> adds support for using OpenStack Neutron as an external network provider, which can provide networking capabilities for consumption by oVirt hosts and/or virtual machines. For more information, watch this deep dive <a href="http://www.youtube.com/watch?v=S16AfFylcHk">presentation on oVirt / Neutron integration</a>.</li>
+  <li><a href="/feature/storage/glance-integration/">Glance Integration</a> allows oVirt users to consume, export and share images with Glance. These images are exposed as oVirt Templates. For more information, watch this deep dive <a href="http://www.youtube.com/watch?v=_Nyi1xyiQnY">presentation on oVirt / Glance integration</a>.</li>
+  <li><a href="/feature/cloud/cloud-init-integration/">Cloud-Init Integration</a> facilitates provisioning of virtual machines by enabling oVirt to perform initial setup (including networking, SSH keys, timezone, user data injection, and more) of guest instances configured with cloud-init.</li>
+</ul>
+
+<h3 id="enhanced-gluster-support">Enhanced Gluster Support</h3>
+
+<ul>
+  <li><a href="/feature/storage/glusterfs-storage-domain/">GlusterFS Storage Domain</a> is a new storage domain and data center type which uses gluster as the storage backend. VMs created using this domain take advantage of QEMU's gluster block backend for improved performance.
+    <ul>
+      <li>
+        <div class="alert alert-info">
+          <p>This feature is currently only available on Fedora 19. We're working on a solution for EL6 and hope to have it available soon.</p>
+
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li><a href="/feature/storage/gluster-hooks-management/">Gluster Hooks Management</a> allows users to manage Gluster hooks (Volume lifecycle extensions) from oVirt Engine. Read more about Gluster hooks at the <a href="http://www.gluster.org/community/documentation/index.php/Features/Hooks">Gluster project site</a>.</li>
+</ul>
+
+<h3 id="more-extensibility-options">More Extensibility Options</h3>
+
+<ul>
+  <li><a href="Features/Scheduling_API">oVirt Scheduler API</a> allows users to implement their own private optimized schedulers y extending or modifying the default oVirt scheduler.
+    <ul>
+      <li>
+        <div class="alert alert-info">
+          <p>This feature is not included in oVirt 3.3, but will be added in an upcoming release during the 3.3 release cycle</p>
+
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li><a href="/feature/network/device-custom-properties/">Device Custom Properties</a> allow administrators to define special parameters per VM virtual device, and pass them down to vdsm hooks, as has previously been possible on a per VM basis. Device custom properties will allow, for instance, for users to connect vNICs to non-standard host networks.</li>
+  <li><a href="/feature/infra/externaltasks/">External Tasks Support</a> makes it possible for a third-party plugin to inject tasks into oVirt Engine using the REST API, to change task statuses and allow them to be tracked from the UI.</li>
+  <li><a href="/feature/storage/backup-restore-api-integration/">Backup-Restore API Integration</a> provides the ability for ISVs to backup and restore VMs. A new set of APIs will be introduced in oVirt to facilitate taking full VM backup, as well as full or file level restore of VMs.</li>
+  <li>Support for Branding the oVirt Management Console</li>
+  <li><a href="Features/Java_SDK">Java-SDK</a> is an auto-generated software development kit for the oVirt engine api.</li>
+  <li><a href="/feature/storage/disk-hooks/">Disk Hooks</a> adds VDSM hooking points before and after disk hot plug and hot unplug events, enabling the running of guest-level operations on the disks when they're plugged/unplugged.</li>
+</ul>
+
+<h3 id="other-enhancements">Other Enhancements</h3>
+
+<h4 id="virt">Virt</h4>
+
+<ul>
+  <li><a href="/feature/virt/ram-snapshots/">RAM Snapshots</a> enable users to save (and later restore) the memory state of a VM when creating a live snapshot.</li>
+  <li><a href="/feature/virt/novnc-console/">noVNC console</a> integration makes it possible to connect to VM consoles using the HTML 5 VNC client called "noVNC" in browsers supporting websockets and the HTML5 postMessage function (webkit browsers, Firefox, IE &gt; 10).</li>
+</ul>
+
+<h4 id="infra">Infra</h4>
+
+<ul>
+  <li><a href="/feature/vdsm/supervdsm-service/">SuperVDSM Service</a> enables Vdsm to be run as an unprivileged daemon, thereby simplifying the handling of crashes and the process of re-establishing communication between Vdsm and Supervdsm after failures.</li>
+  <li><a href="/feature/infra/ssh-abilities/">Public Key SSH Authentication</a> is now available as a means of conducting authentication for host-deploy and node upgrade operations, supplementing the existing user/password mechanism.</li>
+  <li><a href="Features/JavaSDK">Java SDK (Software Development Kit)</a> is now available.</li>
+</ul>
+
+<h4 id="networking">Networking</h4>
+
+<ul>
+  <li><a href="/feature/network/migration-network/">Migration Networks</a> enable administrators to assign networks for carrying migration data.</li>
+  <li><a href="/feature/network/normalized-ovirtmgmt-initialization/">Normalized ovirtmgmt Initialization</a> involves generating the ovirtmgmt network based on DC definitions using the setupNetworks function, rather than during new host deployment.</li>
+  <li><a href="/feature/network/networkreloaded/">Feature/NetworkReloaded</a> reimplementation of configNetwork in vdsm. Should have zero (0) effect on users, but required for future support for ovs/NM</li>
+  <li><a href="/feature/network/multiple-gateways/">Multiple Gateways</a> allows users to define a gateway per logical network, where, previously, the gateway defined on the ovirtmgmt logical network had been treated as the host-wide default gateway.</li>
+</ul>
+
+<h4 id="storage">Storage</h4>
+
+<ul>
+  <li><a href="/feature/storage/online-virtual-drive-resize/">Online Virtual Drive Resize</a> allows oVirt users to resize virtual disks while they are in use by one or more virtual machines without the need of pausing, hibernating or rebooting the guests.</li>
+  <li><a href="/feature/storage/virtio-scsi/">Virtio-SCSI</a> is a new para-virtualized SCSI controller device which provides the same performance as the virtio-blk device, while improving scalability, supporting standard SCSI command sets and device naming, allowing for SCSI device passthrough.</li>
+  <li><a href="/feature/storage/read-only-disk/"> Read Only Disk</a> enables users to assign a read-only property to the VM-Disk relationship when adding/attaching a disk to a vm through the oVirt engine.</li>
+  <li><a href="Features/Edit_Connection_Properties">Manage Storage Connections</a> adds the ability to add, edit and delete storage connections. The new connection details must match those of the original connection. For example, an NFS storage connection cannot be edited to point to iSCSI.</li>
+  <li><a href="/feature/storage/moveascopyanddelete/">MoveAsCopyAndDelete</a> splits disk moving operations in oVirt into separate copy and delete operations, where, previously, they had been carried out by vdsm in a single operation. This change improves availability and error-handling.</li>
+  <li>Allow resign/force re-election of SPM</li>
+  <li><a href="/feature/storage/diskalignment/">Disks Block Alignment</a> provides a way in oVirt to find virtual disks with misaligned partitions.</li>
+</ul>
+
+<h4 id="sla--scheduling">SLA &amp; Scheduling</h4>
+
+<ul>
+  <li><a href="Features/oVirt_scheduler">Features/oVirt_scheduler</a> Wrapping scheduling functionalities as a separate package</li>
+  <li><a href="/feature/engine/watchdog-engine-support/">Watchdog Engine Support</a> adds support for watchdog devices to oVirt Engine.</li>
+  <li><a href="/sla/network-qos/">Network QoS</a> allows users to limit the inbound and outbound network traffic at the virtual NIC level.</li>
+  <li><a href="/feature/sla/trusted-compute-pools/">Trusted Compute Pools</a> provide a way for administrators to deploy VMs on trusted hosts.</li>
+</ul>
+
+<h4 id="node">Node</h4>
+
+<ul>
+  <li><a href="/feature/node/universal-image/">Universal Node Image</a> converts the oVirt Node image into a generic image that can be customized for many different projects using Node Plugins.</li>
+  <li><a href="/feature/vdsm/vdsm-plugin/">Node VDSM Plugin</a> converts the generic oVirt Node image into an image customized use with oVirt Engine.</li>
+  <li>oVirt Node works on a different asynchronous release schedule from the rest of oVirt.
+    <ul>
+      <li>At the time of the oVirt 3.3 release, the current version of ovirt-node will be 3.0.1.</li>
+      <li>Feature for oVirt node 3.0.0 can be found on the <a href="/node/3.0-release-management/">oVirt Node 3.0.0 release page</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="integration">Integration</h4>
+
+<ul>
+  <li><a href="/feature/integration/otopi-infra-migration/">Otopi Infra Migration</a> involves a complete rewrite of the engine-setup, engine-cleanup, engine-upgrade and All-in-One plugin using otopi.</li>
+  <li><a href="/feature/engine/self-hosted-engine/">Self Hosted Engine</a> enables administrators to run the Engine as a VM on the hosts that are managed by this Engine, in an HA configuration, when the Engine VM can start on any of the hosts.
+    <ul>
+      <li>
+        <div class="alert alert-info">
+          <p>This feature is not included in oVirt 3.3, but will be added in an upcoming release</p>
+
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="ux-enhancements">UX Enhancements</h4>
+
+<ul>
+  <li>User Portal performance improvements for IE8</li>
+  <li><a href="/feature/ux/frontendrefactor/">Frontend Clean-up/Refactoring</a></li>
+</ul>
+
+<h3 id="deep-dives">Deep dives</h3>
+
+<p>In anticipation of the 3.3 release, a number of deep dive presentations into 3.3 features are being prepared.</p>
+
+<ul>
+  <li>Deep Dive Into Host Power Management <img alt=" slides" title="fig: slides" src="/images/PM-deep-dive.odp" /> <a href="https://sas.elluminate.com/p.jnlp?psid=2013-07-29.0638.M.0095240B0C736D2B11BF860A1F0376.vcr&amp;sid=819">recording</a></li>
+  <li>OpenStack Glance (Image) Integration Deep Dive <img alt="Slides" title="fig:Slides" src="/images/Ovirt-2013-glance-integration-deep-dive.pdf" /> <a href="https://sas.elluminate.com/p.jnlp?psid=2013-07-30.0631.M.46676CB153495B16DF1807973906F0.vcr&amp;sid=819">Recording</a></li>
+  <li>OpenStack Neutron (Network) Integration Deep Dive <img alt="" title="fig:Ovirt-neutron-integration-deep-dive-2013.pdf" src="/images/Ovirt-neutron-integration-deep-dive-2013.pdf" /> <a href="https://sas.elluminate.com/p.jnlp?psid=2013-07-31.0603.M.EE511E1083BCFC4B7C7A2454800447.vcr&amp;sid=819">Recording</a></li>
+  <li>Async Task Manager changes for oVirt 3.3 Deep Dive <img alt="" title="fig:Async_task_mgr_23_july_2013_ovirt_final.odp" src="/images/Async_task_mgr_23_july_2013_ovirt_final.odp" /></li>
+  <li>Network QoS / vNIC Profiles presentation <img alt="" title="fig:VNIC_Profiles.odp" src="/images/wiki/List_of_vNic_profiles.png?1447607916" /></li>
+  <li>Scheduling in oVirt 3.3 deep dive <img alt="" title="fig:Scheduler-Deep-Dive-oVirt.pdf" src="/images/Scheduler-Deep-Dive-oVirt.pdf" /></li>
+  <li>Hosted engine deep dive <img alt="" title="fig:Hosted Engine Deep Dive.pdf" src="/images/HostedEngineDeepDive.pdf" /></li>
+  <li>Packaging <img alt="" title="fig:ovirt 3.3 - packaging.pdf" src="/images/ovirt3.3-packaging.pdf" /></li>
+</ul>
+
+<category:documentation> <category:releases>
+</category:releases></category:documentation>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

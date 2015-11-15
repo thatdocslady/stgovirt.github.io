@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Profiling JavaScript &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Profiling JavaScript</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>gshereme</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Profiling JavaScript</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>4</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-11-11</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Profiling_JavaScript' target='_blank'>
+Profiling JavaScript
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="profiling-javascript">Profiling JavaScript</h1>
+
+<h2 id="how-to-use-javascript-profilers-to-debug-admin-or-user-portal-performance-issues">How to use JavaScript profilers to debug Admin or User Portal performance issues</h2>
+
+<h3 id="audience">Audience</h3>
+
+<p>This post is intended for frontend developers working on oVirt. You should be familiar with GWT and building ovirt-engine. See <a href="/engine/engine-development-environment/">OVirt_Engine_Development_Environment</a> for help with building ovirt-engine.</p>
+
+<h3 id="background">Background</h3>
+
+<p>Chrome and Firefox have built-in JavaScript profilers that can help us easily debug browser performance issues. This post will walk you through using them to find the source of a "non-responsive script" dialog. We'll use a real example we encountered in oVirt.</p>
+
+<h3 id="draft-mode-compile">Draft mode compile</h3>
+
+<p>First, we must compile ovirt-engine in "draft mode." By default, the GWT compiler obfuscates both the JavaScript and CSS that it generates. Draft mode disables this obfuscation, making the JavaScript and CSS human-readable.</p>
+
+<pre class="highlight plaintext"><code>  make clean install-dev PREFIX=$HOME/ovirt-engine DEV_EXTRA_BUILD_FLAGS_GWT_DEFAULTS="-Dgwt.userAgent=gecko1_8,safari" DEV_BUILD_GWT_DRAFT=1 BUILD_UT=0 DEV_EXTRA_BUILD_FLAGS="-Dgwt.compiler.localWorkers=1"&#x000A;</code></pre>
+
+<p>Now start ovirt-engine.</p>
+
+<pre class="highlight plaintext"><code>  ~/ovirt-engine/share/ovirt-engine/services/ovirt-engine/ovirt-engine.py start&#x000A;</code></pre>
+
+<h3 id="profiling">Profiling</h3>
+
+<p>Let's use Chrome. Firefox behaves almost the same way, so once you can do this in Chrome, it's easy to replicate in Firefox.</p>
+
+<p>Start Chrome and hit F12. Click the Profile tab. Since we're debugging JavaScript performance, we'll use Collect JavaScript CPU Profile.</p>
+
+<p><img alt="" title="Collect_javascript_cpu.png" src="/images/wiki/Collect_javascript_cpu.png?1447607916" /></p>
+
+<p>It's best to start profiling right before we do the problematic operation in our application – that way, there will be less noise in our profiler data.</p>
+
+<p>Browse to the application. Browse to the part of the application that is having problems. Don't start the problematic operation just yet.</p>
+
+<p>Click the record button in the Chrome profiler. It's now profiling. Do the problematic operation. Hit the Stop button when you're done. Wait a few seconds for the profiler to compile its data.</p>
+
+<p><img alt="" title="Profiler_recording.png" src="/images/wiki/Profiler_recording.png?1447607916" /></p>
+
+<h3 id="viewing-the-profiler-data">Viewing the profiler data</h3>
+
+<p>There are a few ways to view the data. If you just want to see where the most time was spent, use the Heavy view.</p>
+
+<p><img alt="" title="Profiler_data.png" src="/images/wiki/Profiler_data.png?1447607916" /></p>
+
+<p>When running my example, the browser hung for about 2 seconds. Looking at my profiler data, it looks like the JavaScript engine spent a lot of time in the functions named "isSelected", "resolveChanges". The root cause appears to be a slow "toPowerOfTwoString" function.</p>
+
+<p><img alt="" title="Nasty_function.png" src="/images/wiki/Nasty_function.png?1447607916" /></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

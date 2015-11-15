@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+OVirt 3.3.3 release notes &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>OVirt 3.3.3 release notes</td>
+</tr>
+<tr>
+<th>category</th>
+<td>documentation</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>bproffitt, dougsland, sandrobonazzola</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Documentation</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>OVirt 3.3.3 release notes</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>18</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-02-03</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/OVirt_3.3.3_release_notes' target='_blank'>
+OVirt 3.3.3 release notes
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="ovirt-333-release-notes">OVirt 3.3.3 release notes</h1>
+
+<p>The oVirt Project is pleased to announce the availability of oVirt 3.3.3 release</p>
+
+<p>oVirt is an open source alternative to VMware vSphere, and provides an awesome KVM management interface for multi-node virtualization.</p>
+
+<p>To find out more about features that were added in previous oVirt releases, check out the <a href="/release/3.3.2/">oVirt 3.3.2 release notes</a>, <a href="/release/3.3.1/">oVirt 3.3.1 release notes</a>, <a href="/release/3.3/">oVirt 3.3 release notes</a>, <a href="/release/3.2/">oVirt 3.2 release notes</a>, and <a href="/release/3.1/">oVirt 3.1 release notes</a>.</p>
+
+<p>For a general overview of oVirt, read <a href="/release/3.0/feature-guide/"> the oVirt 3.0 feature guide</a> and the <a href="/documentation/about-ovirt/">about oVirt</a> page.</p>
+
+<h2 id="install--upgrade-from-previous-versions">Install / Upgrade from previous versions</h2>
+
+<h3 id="fedora--centos--rhel">Fedora / CentOS / RHEL</h3>
+
+<p>If you're installing oVirt 3.3.3 on a clean host you should read our <a href="/documentation/quick-start/quick-start-guide/">Quick Start Guide</a></p>
+
+<p><strong>IMPORTANT NOTE:</strong> If you're upgrading from a previous version please update ovirt-release to latest version (10) and ensure you've <strong>ovirt-3.3.3</strong> and <strong>ovirt-stable</strong> repository enabled.</p>
+
+<pre class="highlight plaintext"><code>  # yum update ovirt-release&#x000A;  # yum repolist enabled&#x000A;</code></pre>
+
+<p>If you're upgrading from oVirt 3.3, you should just execute:</p>
+
+<pre class="highlight plaintext"><code>  # yum update ovirt-engine-setup&#x000A;  # engine-setup&#x000A;</code></pre>
+
+<p>If you're upgrading from oVirt 3.2, you should read <a href="/release/3.2/to-3.3-upgrade/">oVirt 3.2 to 3.3 upgrade</a></p>
+
+<p>If you're upgrading from oVirt 3.1, you should upgrade to 3.2 before upgrading to 3.3.3. Please read <a href="/release/3.1/to-3.2-upgrade/">oVirt 3.1 to 3.2 upgrade</a> before starting the upgrade.
+ On CentOS and RHEL: For upgrading to 3.2 you'll need the 3.2 stable repository.
+So, the first step is disable 3.3 / stable repository and enable 3.2 in /etc/yum.repos.d/ovirt.repo:</p>
+
+<pre class="highlight plaintext"><code>  [ovirt-32]&#x000A;  name=Stable builds of the oVirt 3.2 project `baseurl=`[`http://ovirt.org/releases/3.2/rpm/EL/$releasever/`](http://ovirt.org/releases/3.2/rpm/EL/$releasever/)&#x000A;  enabled=1&#x000A;  skip_if_unavailable=1&#x000A;  gpgcheck=0&#x000A;</code></pre>
+
+<p>Then</p>
+
+<pre class="highlight plaintext"><code>  # yum update ovirt-engine-setup&#x000A;</code></pre>
+
+<p>should install ovirt-engine-setup-3.2.3-1.el6.noarch.rpm
+if you have already updated to 3.3.x please use distro-sync or downgrade instead of update.
+Then:</p>
+
+<pre class="highlight plaintext"><code>  # engine-upgrade&#x000A;</code></pre>
+
+<p>this will upgrade your system to latest 3.2.
+Once you've all working on 3.2, enable 3.3/stable repository, then just</p>
+
+<pre class="highlight plaintext"><code>  # yum update ovirt-engine-setup&#x000A;  # engine-setup&#x000A;</code></pre>
+
+<p>will upgrade to latest 3.3.</p>
+
+<h2 id="whats-new-in-333">What's New in 3.3.3?</h2>
+
+<h2 id="known-issues">Known issues</h2>
+
+<ul>
+  <li>EL &gt;= 6.5 or cloud-init &gt;= 0.7.2 are needed for cloud-init feature support ()</li>
+</ul>
+
+<h2 id="bugs-fixed">Bugs fixed</h2>
+
+<h3 id="ovirt-engine">oVirt Engine</h3>
+
+<ul>
+  <li>[RHEVM-RHS] Remove rebalance and replace-brick actions from REST API</li>
+  <li>[es_ES] change spanish translation for "poweroff", at the moment it is the same word "apagar"</li>
+  <li>[RHEVM-RHS] Should check for gluster capabilities when moving host from virt to gluster cluster</li>
+  <li>(PENDING RC BUILD) PRD33 - set marketplace link/icon</li>
+  <li>[oVirt] [provider] Add button shouldn't appear on specific provider</li>
+  <li>cloud-init integration - REST API</li>
+  <li>[rhevm] Webadmin - Events - Search box with value "Events: Templates =*" gives error (Exception message is StatementCallback)</li>
+  <li>[GlusterFS] Default option on GlusterFS Data Center in Storage Type is ISO/ POSIX compliant FS</li>
+  <li>When run multiple vms then filter don't check correctly free resources.</li>
+  <li>[RHEVM] cannot upgrade RHEVM 3.2 to RHEVM 3.3 because of rhevm-tools-3.3.0-0.22.master.el6ev.noarch Requires: rhevm-notification-service = 3.2.3-0.43.el6ev</li>
+  <li>Fencing flow fails to get to secondary PM (primary is deliberately configured with wrong params)</li>
+  <li>The $action and the $type aren't set in the change cd command.</li>
+  <li>optimize scheduling for speed</li>
+  <li>Scheduling: allow overbooking resources</li>
+  <li>async between masterVersion : can't connect to StoragePool</li>
+  <li>Plaintext user passwords in async_tasks database</li>
+  <li>CPU pinning option is not available for the VMs running on "Local on Host" type DataCenter.</li>
+  <li>engine-setup incorrectly directs users to use firewall-cmd on RHEL when it's only available on Fedora</li>
+  <li>engine-setup after 'engine-backup –mode=restore' does not fix everything</li>
+  <li>[RHSC][scale-test] Create Volume Results In "Error while executing action"</li>
+  <li>[engine-backend] LSM fails due to another operation (attaching the disk snapshot to another VM), which was started after it and managed to take the lock on the disk</li>
+  <li>[ovirt-setup] engine-setup does not configure firewall properly on upgrade</li>
+  <li>CpuOverCommitDuration not working correctly in cluster policies</li>
+  <li>Incorrect error message when trying to import network with invalid name from network provider</li>
+  <li>NPE: CanDoActionFailure - Import a vm that has memory state snapshot</li>
+  <li>Trying to add VNIC profile from "Edit Logical Network" window fails with error message</li>
+  <li>It is possible to create several VNIC profile with the same name for the specific network</li>
+  <li>[REST-API] XSD schema validation error: 'vnic_profile': Missing child element(s)</li>
+  <li>[REST-API] XSD schema validation error: Element 'payload': Missing child element(s).</li>
+  <li>[upgrade] upgrade 3.2 =&gt; 3.3 failed - password authentication failed for user "rhevm"</li>
+  <li>VM stays locked, in being migrated state, even after migration failed.</li>
+  <li>Issues during database cleanup after upgrade</li>
+  <li>[RHEVM] setup should be more tolerant detecting available memory</li>
+  <li>Upgrade fails if postgres owned temporary table exists in engine database</li>
+  <li>limitation for maximum VirtIO-SCSI disks should be removed</li>
+  <li>[scale-test] Create Volume Results In "Error while executing action"</li>
+  <li>Path to image under glance storage domain not correct</li>
+  <li>rhevm-manage-domains fails to update ldapServers entries when using action=edit</li>
+  <li>[RHEVM][backend] cannot add vNIC with custom MAC address to VM if there is no adresses left in MAC Address Pool.</li>
+  <li>Spelling correction</li>
+  <li>[Admin Portal] [java.lang.NullPointerException] No msg/event when prestarted pooled VM cannot be started because of low memory</li>
+  <li>Setting shmmax on F19 is not enough for starting postgres</li>
+  <li>Pending memory is not decremented during VM migration</li>
+  <li>Even distribution policy selects the same host where there is no CPU load on the host</li>
+  <li>Power Managment with cisco_ucs problem</li>
+  <li>NIC selection shows but it is not part of VM creation.</li>
+  <li>An attempt to create a vnic profile is made each time a vm network is being updated</li>
+  <li>RPM packages built without .pyc/.pyo files</li>
+  <li>Webadmin &amp; User Portal: set secure-channels property in .vv files</li>
+  <li>[RHEVM] user is not forced to unplug vNIC when switching to profile without port mirroring</li>
+  <li>Cannot add hypervisor host when use chinese support</li>
+  <li>[RHEV-RHS] Disable 'rebalance' from RHEVM UI, as its partial in implementation</li>
+  <li>[engine-backend] guest alignment scan fails on file storage</li>
+  <li>[REST-API] misleading error message, for moving hosts between clusters</li>
+  <li>[engine-backend] deadlock in postgres during multiple AddVmFromTemplate threads</li>
+  <li>[oVirt] Disabled Balloon in Add Vm</li>
+  <li>Rollback of setup seems to remove several configuration files when upgrade is ran again setup will prompt for hostname and other data</li>
+  <li>upgrade from 3.2 with remote db user 'postgres' is not recognized as an upgrade</li>
+  <li>Storage and dc are up although there is no host</li>
+</ul>
+
+<h3 id="vdsm">VDSM</h3>
+
+<h3 id="ovirt-node-plugin-vdsm">ovirt-node-plugin-vdsm</h3>
+
+<ul>
+  <li>Use Management class to pass informations</li>
+</ul>
+
+<category:documentation> <category:releases>
+</category:releases></category:documentation>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Networks &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Networks</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>mkolesni</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Networks</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>6</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-11-28</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Networks' target='_blank'>
+Networks
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="networks">Networks</h1>
+
+<p>Networking in oVirt comprises of several layers:</p>
+
+<ul>
+  <li>The logical network definition (Data center + cluster network)</li>
+  <li>The actual implementation (The host level)</li>
+  <li>The usage of the network (vNIC profiles + vNICs)</li>
+</ul>
+
+<p>This document will try to cover the various networking aspects and some basic usages.</p>
+
+<h2 id="the-logical-network-definitions">The Logical Network Definitions</h2>
+
+<h3 id="the-data-center-networks">The Data Center Networks</h3>
+
+<p>The first and foremost container of a network is the data center. The data center's networks are modelled under the data center (in the system tree and main tabs). In this scope, each network must have a unique name and a unique VLAN tag (if it's used).</p>
+
+<p>The availabke fields of a network entity represent the L2 properties that can be set on the network:</p>
+
+<ul>
+  <li>Name
+    <ul>
+      <li>Used to identify the network (propogates to the hosts)</li>
+    </ul>
+  </li>
+  <li>VLAN tag
+    <ul>
+      <li>If selected, the specific VLAN tag to use, otherwise traffic is untagged (No 802.1Q field in the frame header)</li>
+    </ul>
+  </li>
+  <li>VM network
+    <ul>
+      <li>If selected, the network can be consumed by VMs (via vNIC profiles), otherwise it is not consumable by VMs</li>
+      <li>Non-VM networks are implemented without a bridge, so:
+        <ul>
+          <li>Their performance is faster</li>
+          <li>They can be combined with VLAN networks on the same NIC (more on this in the hosts section)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>MTU
+    <ul>
+      <li>If specified, this MTU will be used, otherwise the OS default (usually 1500) of the host is used</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Optionally, it's possible to export the network to an external provider upon creation. This topic is covered by the <a href="/feature/network/detailed-osn-integration/">Features/Detailed_OSN_Integration</a> feature and includes extra configuration to work.</p>
+
+<h3 id="the-attachment-of-a-network-to-a-cluster">The Attachment of a Network to a Cluster</h3>
+
+<p>In order to be able to actually use the network, you must attach it to the cluster first. Once a network is attached to the cluster, you can use it in VMs and templates, and set it up on the hosts. The attachment also denotes special roles this network has (by default the management network performs all these, but oVirt offers flexibility to separate them).</p>
+
+<p>The cluster attachment allows these usages of a network:</p>
+
+<ul>
+  <li>Required/Non-Required
+    <ul>
+      <li>Required networks cause the hosts to go to Non-Operational state if they don't have the network, while Not-Required networks are more flexible.
+        <ul>
+          <li>This behaviour happens only if the network state is "Operational" which is reached once all hosts in the cluster have it (so that when deploying new network, all existing hosts will not turn non-operational).</li>
+        </ul>
+      </li>
+      <li>However, if the network is used by a VM and is marked as non required, only those hosts in the cluster that have the network will be able to run it.</li>
+    </ul>
+  </li>
+  <li>Display Network
+    <ul>
+      <li>This network will be used to transfer the display (VNC/Spice) data from the VMs.
+        <ul>
+          <li>The network must exist on a host AND have an IP in order to run VMs, otherwise the host won't be able to run VMs.</li>
+        </ul>
+      </li>
+      <li>If no network is selected on a cluster, the management network is used.</li>
+    </ul>
+  </li>
+  <li>Migration Network
+    <ul>
+      <li>This network will be used to transfer the migration data when a VM is live-migrating.
+        <ul>
+          <li>If network doesn't exist on source or destination host, the management network will be used.</li>
+        </ul>
+      </li>
+      <li>If no network is selected on a cluster, the management network is used.</li>
+    </ul>
+  </li>
+</ul>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+SSO &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>SSO</td>
+</tr>
+<tr>
+<th>category</th>
+<td>feature</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>alonbl</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Feature</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Features/SSO</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>30</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-07-01</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Features/SSO' target='_blank'>
+Features/SSO
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<section class='feature'>
+<section class='feature-sidebar col-md-4'>
+<h1>Features</h1>
+<form class='hide' id='feature-search'>
+<div class='form-group'>
+<input autocomplete='off' class='form-control' id='feature-search-input' placeholder='Filter features'>
+<div class='checkbox'>
+<label>
+</label>
+</div>
+</div>
+</form>
+<h2>Unclassified</h2>
+<ul class='feature-list'>
+<li class=' status-development'>
+<a href='/feature/affinity-rules-enforcement-manager' title='Status: Development'>Affinity Rules Enforcement Manager</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/backupawareness' title='Status: NEW'>Adding Backup Awareness to oVirt</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/boot' title='Status: WIP'>Boot oVirt.org</a>
+
+</li>
+<li class=' status-developement'>
+<a href='/feature/cinderglance-docker-integration' title='Status: Developement'>Cinder and Glance integration via Docker</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/copy-disks' title='Status: Unknown'>Copy Disks</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/debian-support-for-hosts' title='Status: NEW'>Debian support for hosts</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/extension-tester-tool' title='Status: Unknown'>Extension tester tool</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/feature-template' title='Status: Released'>Your feature name</a>
+
+</li>
+<li class=' status-merged'>
+<a href='/feature/genericregistration' title='Status: Merged'>Generic Registration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/heapplianceflow' title='Status: WIP'>oVirt hosted-engine appliance flow</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/hosted-engine-add-hosts-with-web-ui' title='Status: NEW'>Hosted Engine: add hosts with Web UI</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/hosted-engine-configuration-on-shared-storage' title='Status: NEW'>Hosted Engine configuration on shared storage</a>
+
+</li>
+<li class=' status-design-&amp;-research'>
+<a href='/feature/hosted-engine-vm-management' title='Status: Design-&amp;-research'>Hosted engine VM management enhancements</a>
+
+</li>
+<li class=' status-implementation'>
+<a href='/feature/image-upload' title='Status: Implementation'>Image Upload</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/iothreads-support' title='Status: Unknown'>IOThreads Support</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/ip-on-role-network' title='Status: design'>IP address configuration on role bearing NICs</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/katellointegration' title='Status: Development'>Katello Integration</a>
+
+</li>
+<li class=' status-qa'>
+<a href='/feature/live-rebase-on-centos-7' title='Status: QA'>oVirt Live Rebase on CentOS 7</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/lun-resize' title='Status: Design'>Refresh LUN Size</a>
+
+</li>
+<li class=' status-draft'>
+<a href='/feature/memorybasedbalancing' title='Status: Draft'>CPU and Memory based cluster auto balancing</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/numaawareksmsupport' title='Status: Design'>NUMA aware KSM support</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/patternfly-tooltips' title='Status: Development'>PatternFly tooltips</a>
+
+</li>
+<li class=' status-draft'>
+<a href='/feature/pendingresourcemanager' title='Status: Draft'>Pending Resource Manager</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/scheduler-policies' title='Status: Unknown'>oVirt Scheduler Policies</a>
+
+</li>
+<li class=' status-planning'>
+<a href='/feature/splash' title='Status: Planning'>Backup Awareness UI - Splash Screen</a>
+
+</li>
+<li class=' status-planning'>
+<a href='/feature/ui' title='Status: Planning'>Backup Awareness UI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vmdevices-rework' title='Status: Unknown'>VMDevices rework</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/vmpinningtomultiplehosts' title='Status: Development'>VM pinning to multiple hosts</a>
+
+</li>
+</ul>
+<h2>Cloud</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/cloud/addingkeystoneurltoexternalproviders' title='Status: Unknown'>Adding Keystone URL To External Providers</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/cloud/cloud-init-integration' title='Status: Unknown'>Cloud-Init Integration</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/cloud/neutronvirtualappliance' title='Status: Completed'>Neutron Virtual Appliance</a>
+
+</li>
+</ul>
+<h2>Engine</h2>
+<ul class='feature-list'>
+<li class=' status-planning'>
+<a href='/feature/engine/avoid-ip-spoofing' title='Status: Planning'>Avoid IP Spoofing</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/better-vurti' title='Status: Unknown'>Better vurti</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/cluster-parameters-override' title='Status: Design'>Cluster parameters override</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/engine/commandcoordinator' title='Status: Completed'>Introduce CommandCoordinator Framework and Ability To Persist Commands in Database</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/cumulative-rx-tx-statistics' title='Status: Design'>Cumulative Network Usage Statistics</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/engine-backup' title='Status: Released'>oVirt engine backup</a>
+
+</li>
+<li class=' status-partial'>
+<a href='/feature/engine/engine-cleanup' title='Status: Partial'>Engine</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/engine-config-utilities' title='Status: Unknown'>Engine Config Utilities</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/engine-high-availability' title='Status: Unknown'>Engine High Availability</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/engine-nic-health-check' title='Status: Released'>Engine NIC health check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/engine-snmp' title='Status: Unknown'>engine snmp</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/engine-support-for-ppc64' title='Status: Released'>Engine support for PPC64</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/feature-level-support' title='Status: Unknown'>Feature Level Support</a>
+
+</li>
+<li class=' status-wontfix'>
+<a href='/feature/engine/fedora-21-support' title='Status: WONTFIX'>Fedora 21 Support</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/engine/fedora-22-support' title='Status: NEW'>Fedora 22 Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/fence-kdump' title='Status: Unknown'>Fence kdump</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/fenceagents' title='Status: Unknown'>Fence Agents</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/fencing-refactoring' title='Status: Design'>Fencing refactoring</a>
+
+</li>
+<li class=' status-proposed'>
+<a href='/feature/engine/get-route' title='Status: Proposed'>Get Route</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/guest-reboot' title='Status: Unknown'>Guest Reboot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/hostdeployprotocol' title='Status: Unknown'>Host Deploy Protocol</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/hostdev-passthrough' title='Status: Unknown'>hostdev passthrough</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/engine/hosted-engine' title='Status: WIP'>Node Hosted Engine</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/importunregisteredentities' title='Status: Released'>Detach/Attach Storage Domain with entities</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/integrating-libosinfo-with-engine' title='Status: Released'>Integrating libosinfo with oVirt engine</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/migration-of-local-dwh-reports-to-remote' title='Status: Design'>Migrating local DWH and Reports to remote</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/orm' title='Status: Unknown'>ORM</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/reportguestdiskslogicaldevicename' title='Status: Design'>Report Guest Disks Logical Device Name</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/self-hosted-engine-fc-support' title='Status: design'>Self Hosted Engine FC Support</a>
+
+</li>
+<li class=' status-post'>
+<a href='/feature/engine/self-hosted-engine-gluster-support' title='Status: POST'>Self Hosted Engine Gluster Support</a>
+
+</li>
+<li class=' status-post'>
+<a href='/feature/engine/self-hosted-engine-hyper-converged-gluster-support' title='Status: POST'>Self Hosted Engine Hyper Converged Gluster Support</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/engine/self-hosted-engine-iscsi-support' title='Status: Completed'>Self Hosted Engine iSCSI Support</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/self-hosted-engine-maintenance-flows' title='Status: Released'>Hosted Engine Maintenance Flow Unification</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/self-hosted-engine' title='Status: Released'>Self Hosted Engine</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/separate-dwh-host' title='Status: Design'>Separate DWH Host</a>
+
+</li>
+<li class=' status-qe'>
+<a href='/feature/engine/separate-reports-host' title='Status: QE'>Separate Reports Host</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/serial-console' title='Status: Unknown'>Serial Console</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/sr-iov' title='Status: Design'>SR_IOV</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/upgrademanager' title='Status: Released'>Upgrade Manager</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/vm-icons' title='Status: Design'>VM Icons</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/watchdog-engine-support' title='Status: Released'>Watchdog engine support</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/windows-guest-tools' title='Status: Released'>oVirt Windows Guest Tools ISO</a>
+
+</li>
+</ul>
+<h2>Foreman</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/foreman/advancedforemanintegration' title='Status: Unknown'>Advanced Foreman Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/foreman/foremanintegration' title='Status: Unknown'>Foreman Integration</a>
+
+</li>
+</ul>
+<h2>Infra</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/infra/aaa-jdbc' title='Status: Unknown'>AAA JDBC</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/aaa' title='Status: Unknown'>AAA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/api' title='Status: Unknown'>API</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/asynctaskmanagerchanges-3.3' title='Status: Unknown'>AsyncTaskManagerChanges 3.3</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/asynctaskmanagerchanges-3.3detailed' title='Status: Unknown'>AsyncTaskManagerChanges 3.3Detailed</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/asynctaskmanagerchanges' title='Status: Unknown'>Async Task Manager Changes</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/authentication-rewrite' title='Status: Unknown'>Authentication Rewrite</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/bootstrap-improvements' title='Status: Unknown'>Bootstrap Improvements</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/cli' title='Status: Unknown'>CLI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/clonevmfromsnapshot' title='Status: Unknown'>Clone VM From Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/custompropertiessheet' title='Status: Unknown'>Custom Properties Sheet</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/dbschemaversioncheck' title='Status: Unknown'>DB Schema Version Check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedclonevmfromsnapshot' title='Status: Unknown'>Detailed Clone VM From Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedhostpmproxypreferences' title='Status: Unknown'>Detailed Host PM Proxy Preferences</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedlockmechanism' title='Status: Unknown'>Detailed Lock Mechanism</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedpmhealthcheck' title='Status: Unknown'>Detailed PM Health Check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/drbd' title='Status: Unknown'>DRBD</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/entity-comment' title='Status: Unknown'>Entity comment</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/entity-configuration-management' title='Status: Unknown'>Entity Configuration Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/externalevents' title='Status: Unknown'>External Events</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/externaltasks' title='Status: Unknown'>External Tasks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/fullapplicationslist' title='Status: Unknown'>Full Applications List</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/hostpmproxypreferences' title='Status: Unknown'>Host PM Proxy Preferences</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/hsm-async-tasks' title='Status: Unknown'>HSM Async Tasks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/java-sdk' title='Status: Unknown'>Java sdk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/kerberos-support-in-sdks-and-cli' title='Status: Unknown'>Kerberos Support in SDKs and CLI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/microthreading' title='Status: Unknown'>Microthreading</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/nagios-integration' title='Status: Unknown'>Nagios Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/ntpsupport' title='Status: Unknown'>NTP Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/one-certificate-key-pair-per-nic' title='Status: Unknown'>One certificate-key pair per NIC</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pki-improvements' title='Status: Unknown'>PKI Improvements</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pki' title='Status: Unknown'>PKI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pkireduce' title='Status: Unknown'>PKI Reduce</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pmhealthcheck' title='Status: Unknown'>PM Health Check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/python-sdk' title='Status: Unknown'>Python sdk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/reloadableconfiguration' title='Status: Unknown'>Reloadable Configuration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/restsessionmanagement' title='Status: Unknown'>REST Session Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/rsdl-schema' title='Status: Unknown'>RSDL schema</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/rsdl' title='Status: Unknown'>RSDL</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/runningcommandsonendactionfailure' title='Status: Unknown'>Running Commands On End Action Failure</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/ssh-abilities' title='Status: Unknown'>SSH Abilities</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/sso-method-control' title='Status: Unknown'>SSO Method Control</a>
+
+</li>
+<li class='selected status-unknown'>
+<a href='/feature/infra/sso' title='Status: Unknown'>SSO</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/taskmanager' title='Status: Unknown'>Task Manager</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/taskmanagercanceltask' title='Status: Unknown'>Task Manager Cancel Task</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/taskmanagerdetailed' title='Status: Unknown'>Task Manager Detailed</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/testingframework' title='Status: Unknown'>Testing Framework</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/uniformssosupport' title='Status: Unknown'>Uniform SSO Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/user-portal-permissions' title='Status: Unknown'>User Portal Permissions</a>
+
+</li>
+</ul>
+<h2>Infra / Reloadable Configuration</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/infra/reloadable-configuration/keys-table' title='Status: Unknown'>keys table</a>
+
+</li>
+</ul>
+<h2>Infra / User Portal Permissions</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/infra/user-portal-permissions/writing-a-new-user-query' title='Status: Unknown'>Writing A New User Query</a>
+
+</li>
+</ul>
+<h2>Integration</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/integration/allinone' title='Status: Released'>All in One</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/integration/otopi-infra-migration' title='Status: Unknown'>Otopi Infra Migration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/integration/ovirtappliance' title='Status: WIP'>oVirt Appliance</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/integration/remotedb' title='Status: Unknown'>Remote DB</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/integration/websocketproxy-on-a-separate-host' title='Status: completed'>WebSocketProxy on a separate host</a>
+
+</li>
+</ul>
+<h2>Network</h2>
+<ul class='feature-list'>
+<li class=' status-qa'>
+<a href='/feature/network/apidatacenternetworks' title='Status: QA'>API Data Center Networks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/arbitraryvlandevicename' title='Status: Unknown'>Arbitrary VLAN Device Name</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/bridgeless-networking' title='Status: Unknown'>Bridgeless Networking</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/bridgeless-networks' title='Status: Unknown'>Bridgeless Networks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/compatibilityversion' title='Status: Unknown'>compatibility Version</a>
+
+</li>
+<li class=' status-implementation'>
+<a href='/feature/network/detailed-host-network-qos' title='Status: Implementation'>Host Network QoS</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/detailed-osn-integration' title='Status: Unknown'>Detailed OSN Integration</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/detailedhostnetworkingapi' title='Status: Design'>Host Networking API</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/network/detailedmanagementnetworkasarole' title='Status: WIP'>Management network as a role - Detailed</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/detailednetworklinking' title='Status: Unknown'>Detailed Network Linking</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/detailedreportingvnicinformation' title='Status: Unknown'>Detailed Reporting Vnic Information</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/device-custom-properties' title='Status: Unknown'>Device Custom Properties</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/directhostaddress' title='Status: Unknown'>Direct Host Address</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/ethtool-options' title='Status: Released'>Device ethtool options</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/get-route-device' title='Status: Unknown'>Get Route Device</a>
+
+</li>
+<li class=' status-implementation'>
+<a href='/feature/network/host-network-qos' title='Status: Implementation'>Host Network QoS</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/hostnetworkingapi' title='Status: Design'>Host Networking API</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/hotplugnic' title='Status: Released'>Hotplug/Hotunplug of Network Interface Cards</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/isolatednetworks' title='Status: Design'>Isolated Network</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/management-network-as-a-role' title='Status: design'>Management network as a role</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/migration-network' title='Status: Unknown'>Migration Network</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/multihostnetworkconfiguration' title='Status: Unknown'>Multi Host Network Configuration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/multiple-gateways' title='Status: Unknown'>Multiple Gateways</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/network-custom-properties' title='Status: Released'>Network Custom Properties</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/network-labels' title='Status: Unknown'>Network Labels</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/network-qos-detailed-design' title='Status: Unknown'>Network QoS - detailed design</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkfiltering' title='Status: Unknown'>Network Filtering</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/networklabels' title='Status: Released'>Network Labels</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networklinking' title='Status: Unknown'>Network Linking</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkmaintab' title='Status: Unknown'>Network Main Tab</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkmanager-support' title='Status: Unknown'>NetworkManager Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkpermissions' title='Status: Unknown'>Network Permissions</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkreloaded' title='Status: Unknown'>Network Reloaded</a>
+
+</li>
+<li class=' status-dormant'>
+<a href='/feature/network/nicless-network' title='Status: Dormant'>Nic-less Network</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/normalized-ovirtmgmt-initialization' title='Status: Unknown'>Normalized oVirtmgmt Initialization</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/osn-integration' title='Status: Unknown'>OSN Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/portmirroring' title='Status: Unknown'>Port Mirroring</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/predictable-vnic-order' title='Status: Released'>Predictable vNIC Order</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/reportingvnicinformation' title='Status: Unknown'>Reporting Vnic Information</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/required-networks' title='Status: Unknown'>Required Networks</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/select-network-for-gluster' title='Status: Design'>Select Network for Gluster traffic</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/setupnetworks' title='Status: Unknown'>Setup Networks</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/ucs-integration' title='Status: Released'>Cisco UCS integration</a>
+
+</li>
+<li class=' status-proposed'>
+<a href='/feature/network/unrestricted-network-names' title='Status: Proposed'>Unrestricted Network Names</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/update-device-hooks' title='Status: Unknown'>Update device hooks</a>
+
+</li>
+</ul>
+<h2>Node</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/node/buildtoolmigration' title='Status: Unknown'>Buildtool Migration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/node/cockpit' title='Status: WIP'>Cockpit</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/node/dbusbackend' title='Status: WIP'>D-Bus Backend</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/diagnostic-page' title='Status: Unknown'>Node Diagnostic Page</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/docker-integration' title='Status: Unknown'>Docker Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/featurepublishing' title='Status: Unknown'>Feature Publishing</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/glusterfs-support' title='Status: Unknown'>Node GlusterFS Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/ipv6-support' title='Status: Unknown'>IPv6 support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/kimchiplugin' title='Status: Unknown'>Kimchi Plugin</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/nic-bonding' title='Status: Unknown'>NIC Bonding</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/node/node.next' title='Status: New'>Node.next</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/nodeautomation' title='Status: Unknown'>Node Automation</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/openvswitchsupport' title='Status: Unknown'>Open V Switch Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/packagerefactoring' title='Status: Unknown'>Package Refactoring</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/pluginliveinstall' title='Status: Unknown'>Plugin Live Install</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/plugins' title='Status: Unknown'>Node plugins</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/puppet-plugin' title='Status: Unknown'>Node Puppet Plugin</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/software-iscsi-root' title='Status: Unknown'>Node software iscsi root</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/storageandinstallermodulerewrite' title='Status: Unknown'>Storage And Installer Module Rewrite</a>
+
+</li>
+<li class=' status-review'>
+<a href='/feature/node/subpackages' title='Status: Review'>subpackages</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/tuiredesign' title='Status: Unknown'>TU Iredesign</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/universal-image' title='Status: Unknown'>Universal Image</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/upgrade-tool' title='Status: Unknown'>Node upgrade tool</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/urwid-tui' title='Status: Unknown'>Urwid TUI</a>
+
+</li>
+</ul>
+<h2>Plugins</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/plugins/plugins' title='Status: Unknown'>Plugins</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/plugins/uipluginsoriginaldesignnotes' title='Status: Unknown'>UI Plugins Original Design Notes</a>
+
+</li>
+</ul>
+<h2>SLA</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/sla/aggregate-qos' title='Status: Unknown'>aggregate QoS</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/automatic-scaling' title='Status: Unknown'>Automatic scaling</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/autorecovery' title='Status: Unknown'>Autorecovery</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/blkio-support' title='Status: Unknown'>blkio support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/cpu-host-support' title='Status: Unknown'>CPU-host Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/cpu-sla' title='Status: Unknown'>CPU SLA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/cpu-thread-handling' title='Status: Unknown'>CPU thread handling</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/detailed-numa-and-virtual-numa' title='Status: Unknown'>Detailed NUMA and Virtual NUMA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/detailedquota' title='Status: Unknown'>Detailed Quota</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/drools-planner-scheduler' title='Status: Unknown'>drools planner scheduler</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/even-vm-count-distribution' title='Status: Unknown'>Even VM Count Distribution</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/external-scheduling-proxy' title='Status: Unknown'>oVirt External Scheduling Proxy</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ha-vm-reservation-detaileddesign' title='Status: Unknown'>HA VM reservation detailedDesign</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ha-vm-reservation' title='Status: Unknown'>HA VM reservation</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/hostpowermanagementpolicy' title='Status: Unknown'>Host Power Management Policy</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/memory-hotplug' title='Status: Unknown'>Memory Hotplug</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/minimum-guaranteed-memory' title='Status: Unknown'>Minimum guaranteed memory</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/momintegration' title='Status: Unknown'>Mom Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/numa-and-virtual-numa' title='Status: Unknown'>NUMA and Virtual NUMA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/optaplanner' title='Status: Unknown'>Optaplanner</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ovirtscheduler' title='Status: Unknown'>o Virt Scheduler</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ovirtschedulerapi' title='Status: Unknown'>o Virt Scheduler API</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/performance-and-scalability' title='Status: Unknown'>Performance And Scalability</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/quota' title='Status: Unknown'>Quota</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/sla-mom-ballooning-tp' title='Status: Unknown'>SLA mom ballooning tp</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/sla-mom' title='Status: Unknown'>SLA mom</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/trusted-compute-pools' title='Status: Unknown'>Trusted compute pools</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/vm-affinity' title='Status: Unknown'>VM Affinity</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/vm-coredump' title='Status: Unknown'>VM coredump</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/vnic-profiles' title='Status: Unknown'>Vnic Profiles</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/xbzrle-and-auto-convergence' title='Status: Unknown'>XBZRLE and Auto-Convergence</a>
+
+</li>
+</ul>
+<h2>Storage</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/storage/advancednfsoptions' title='Status: Released'>Advanced Nfs Options</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/backup-provider' title='Status: Unknown'>Backup Provider</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/backup-restore-api-integration' title='Status: Unknown'>Backup-Restore API Integration</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/storage/cinder-integration' title='Status: Design'>Cinder Integration</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/connectionreferences' title='Status: Released'>Connection References</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/decommission-master-domain-and-spm' title='Status: Unknown'>Decommission Master Domain and SPM</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/design-for-multiple-storage-domains' title='Status: Released'>Manage storage connections</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/detailed-gluster-geo-rep' title='Status: Unknown'>Detailed Gluster Geo Rep</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/detailed-gluster-volume-asynchronous-tasks-management' title='Status: Unknown'>Detailed Gluster Volume Asynchronous Tasks Management</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/detailedfloatingdisk' title='Status: Released'>Floating Disk</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/detailedhotplug' title='Status: Released'>Disk Hot Plug</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/detailedsharedrawdisk' title='Status: Released'>Shared Raw Disk</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/direct-lun' title='Status: Released'>Direct LUN</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/disk-hooks' title='Status: Released'>Disk Hooks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/diskalignment' title='Status: Unknown'>Disk Alignment</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/diskpermissions' title='Status: Released'>Disk Permissions</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/domain-scan' title='Status: Released'>Domain Scan</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/floatingdisk' title='Status: Released'>Floating Disk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/glance-integration' title='Status: Unknown'>Glance Integration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/storage/gluster-dashboard' title='Status: WIP'>Gluster Dashboard</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/storage/gluster-geo-replication' title='Status: WIP'>Geo replication</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/gluster-hooks-management' title='Status: Released'>Gluster Hooks management</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/gluster-import-existing-cluster' title='Status: Released'>Import cluster</a>
+
+</li>
+<li class=' status-complete'>
+<a href='/feature/storage/gluster-support' title='Status: Complete'>Gluster management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-swift-management' title='Status: Unknown'>Gluster Swift Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-sync-configuration-with-cli' title='Status: Unknown'>Gluster Sync Configuration With CLI</a>
+
+</li>
+<li class=' status-complete'>
+<a href='/feature/storage/gluster-volume-asynchronous-tasks-management' title='Status: Complete'>Gluster tasks management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-volume-capacity' title='Status: Unknown'>Gluster Volume Capacity</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-volume-performance-statistics' title='Status: Unknown'>Gluster Volume Performance Statistics</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/glusterfs-hyperconvergence' title='Status: Unknown'>GlusterFS Hyperconvergence</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/glusterfs-storage-domain' title='Status: Released'>GlusterFS Storage Domain</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/storage/glusterhostdiskmanagement' title='Status: WIP'>Host Device Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/glustervolumeadvanceddetails' title='Status: Unknown'>Gluster Volume Advanced Details</a>
+
+</li>
+<li class=' status-not-started'>
+<a href='/feature/storage/glustervolumequota' title='Status: Not-Started'>Gluster Volume Quota</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/hotplug' title='Status: Released'>Disk Hot Plug</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/importmorethanonce' title='Status: Released'>Import VM or Template More than Once</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/importstoragedomain' title='Status: Released'>Import Storage Domain</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/ioprocess' title='Status: Unknown'>ioprocess</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/iscsi-multipath' title='Status: Released'>Configure iSCSI Multipathing</a>
+
+</li>
+<li class=' status-stabilization'>
+<a href='/feature/storage/live-merge' title='Status: Stabilization'>Live Merge</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/manage-storage-connections' title='Status: Released'>Manage storage connections</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/mixed-types-data-center' title='Status: Unknown'>Mixed Types Data Center</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/move-disk-two-phase-commit' title='Status: Unknown'>Move Disk Two Phase Commit</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/moveascopyanddelete' title='Status: Unknown'>Move As Copy And Delete</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/multiplestoragedomains' title='Status: Released'>Manage storage connections</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/nfsv4' title='Status: Released'>NFSv4</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/online-virtual-drive-resize' title='Status: Released'>Online Virtual Drive Resize</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/orphaned-images' title='Status: Unknown'>Orphaned Images</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/ovfautoupdater' title='Status: Unknown'>Ovf Auto Updater</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/ovfonanydomain' title='Status: Unknown'>Ovf On Any Domain</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/posixfsconnection' title='Status: Released'>PosixFS Connection</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/read-only-disk' title='Status: Released'>Read-Only Disks</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/storage/sanlock-fencing' title='Status: Design'>Sanlock Fencing</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/serial-execution-of-asynchronous-tasks-detailed-design' title='Status: Unknown'>Serial Execution of Asynchronous Tasks Detailed Design</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/serial-execution-of-asynchronous-tasks' title='Status: Released'>Serial Execution of Asynchronous Tasks</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/sharedrawdisk' title='Status: Released'>Shared Raw Disk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/single-disk-snapshot' title='Status: Unknown'>Single Disk Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/snapshots-overview' title='Status: Unknown'>Snapshots Overview</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/spmpriority' title='Status: Released'>SPM Priority</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/storagedomainliveupgrade' title='Status: Unknown'>Storage Domain Live Upgrade</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/storagepool-metadata-removal' title='Status: Unknown'>StoragePool Metadata Removal</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/virtio-scsi' title='Status: Unknown'>Virtio SCSI</a>
+
+</li>
+</ul>
+<h2>UX</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/ux/branding' title='Status: Released'>Branding</a>
+
+</li>
+<li class=' status-proposal'>
+<a href='/feature/ux/cssgrids' title='Status: Proposal'>CSS Grids</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedexternalevents' title='Status: Unknown'>Detailed External Events</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedexternaltasks' title='Status: Unknown'>Detailed External Tasks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedhostpmmultipleagents' title='Status: Unknown'>Detailed Host PM Multiple Agents</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedhotplugnic' title='Status: Unknown'>Detailed Hot Plug NIC</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedstabledeviceaddresses' title='Status: Unknown'>Detailed Stable Device Addresses</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/entityhealthstatus' title='Status: Unknown'>Entity Health Status</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/foreign-menu-using-rest' title='Status: Unknown'>Foreign Menu Using REST</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/ux/frontendrefactor' title='Status: Released'>Frontend Refactoring</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/glustergeoreplication' title='Status: Unknown'>Gluster Geo Replication</a>
+
+</li>
+<li class=' status-inception'>
+<a href='/feature/ux/glustervolumesnapshots' title='Status: Inception'>Gluster Volume Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/gwt-platform-upgrade' title='Status: Unknown'>GWT Platform Upgrade</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/hostbiosinfo' title='Status: Unknown'>Host Bios Info</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/hosthardwareinfo' title='Status: Unknown'>Host Hardware Info</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/hostpmmultipleagents' title='Status: Unknown'>Host PM Multiple Agents</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/i18n' title='Status: Unknown'>I18N</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/jasper-in-webadmin' title='Status: Unknown'>jasper in webadmin</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/ux/lowerresolutionsupport' title='Status: Released'>Low Resolution Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/memory-aware-even-distribution-policy' title='Status: Unknown'>Memory-aware Even-distribution Policy</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/ux/newlookandfeelpatternflyphase1' title='Status: Development'>New Look and Feel based on PatternFly -- Phase 1</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/quota-3.2' title='Status: Unknown'>Quota 3.2</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/reports-dashboard' title='Status: Unknown'>Reports Dashboard</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/sla-for-storage-io-bandwidth' title='Status: Unknown'>SLA for storage io bandwidth</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/uiplugins' title='Status: Unknown'>UI Plugins</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/ux/uirefreshsynchronization' title='Status: Released'>Refresh Synchronization</a>
+
+</li>
+</ul>
+<h2>UX / Design</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/glusterhostdiskmanagement' title='Status: Unknown'>Gluster Host Disk Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/jsonrpc3.5' title='Status: Unknown'> JSON RPC 3.5</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/livemerge' title='Status: Unknown'>Live Merge</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/stabledeviceaddresses' title='Status: Unknown'>Stable Device Addresses</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/storagehelpers' title='Status: Unknown'>Storage Helpers</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/storagelivemigration' title='Status: Unknown'>Storage Live Migration</a>
+
+</li>
+</ul>
+<h2>UX / Design / Network</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/network/jumbo-frames' title='Status: Unknown'>Jumbo frames</a>
+
+</li>
+</ul>
+<h2>VDSM</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/vdsm/for-ppc64' title='Status: Released'>VDSM for PPC64</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/hostconfiguration' title='Status: Unknown'>Host Configuration</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/vdsm/jsonrpc' title='Status: Development'>Introduce Messaged communication to VDSM using  JSON-RPC on top of various transport protocols</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/libvdsm' title='Status: Unknown'>libVDSM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/measurements' title='Status: Unknown'>Measurements</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/python3-compatibility' title='Status: Unknown'>VDSM python3 compatibility</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/supervdsm-service' title='Status: Unknown'>SuperVDSM service</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/vdsm-plugin' title='Status: Unknown'>Node VDSM plugin</a>
+
+</li>
+<li class=' status-proposed'>
+<a href='/feature/vdsm/vdsm-vm-query-api' title='Status: Proposed'>VDSM VM Data Query API</a>
+
+</li>
+</ul>
+<h2>Virt</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/virt/blank-to-defaults' title='Status: Unknown'>Blank to Defaults</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/clone-vm' title='Status: Unknown'>Clone VM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/cluster-emulation-modes' title='Status: Unknown'>Cluster emulation modes</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/console-connection-settings-dialog-in-portals' title='Status: Unknown'>Console connection settings dialog in portals</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/detailed-exit-reason' title='Status: Unknown'>Detailed Exit Reason</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/display-address-override' title='Status: Unknown'>Display Address Override</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/edit-running-vm' title='Status: Unknown'>Edit Running VM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/expose-vm-devices' title='Status: Unknown'>Expose VM Devices</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/guestagent' title='Status: Unknown'>Guest Agent</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentdebian' title='Status: Done'>oVirt Guest Agent on Debian</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentopensuse' title='Status: Done'>oVirt Guest Agent on OpenSUSE</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentsles' title='Status: Done'>oVirt Guest Agent on SLE(S)</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentubuntu' title='Status: Done'>oVirt Guest Agent on Ubuntu</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/virt/hostusb' title='Status: Released'>Expose Host attached USB to a Node</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/hot-plug-cpu' title='Status: Unknown'>Hot plug CPU</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/instance-types' title='Status: Unknown'>Instance Types</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/intial-run-vm-tab' title='Status: Unknown'>Intial Run VM tab</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/multiple-consoles' title='Status: Unknown'>Multiple Consoles</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/multiple-graphic-servers' title='Status: Unknown'>Multiple Graphic Servers</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/multiplemonitors' title='Status: Unknown'>Multiple Monitors</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/non-plugin-console-invocation' title='Status: Unknown'>Non plugin console invocation</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/novnc-console' title='Status: Unknown'>noVNC console</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/virt/os-info' title='Status: Released'>OS info</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/prestartedvm' title='Status: Unknown'>Prestarted VM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/ram-snapshots' title='Status: Unknown'>RAM Snapshots</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/resourceusagegraph' title='Status: Unknown'>Resource Usage Graph</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/s3-suspend' title='Status: Unknown'>S3 suspend</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/smartcard-support' title='Status: Unknown'>Smartcard support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/spice-proxy' title='Status: Unknown'>Spice Proxy</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/spicehtml5' title='Status: Unknown'>Spice HTML5</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/spicerelatedfeatures' title='Status: Unknown'>SPICE Related Features</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/template-versions' title='Status: Unknown'>Template Versions</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/virt/virt-v2v-integration' title='Status: Design'>Extended import of Virtual Machines</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/vm-init-persistent' title='Status: Unknown'>VM init persistent</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/vmpayload' title='Status: Unknown'>VM Payload</a>
+
+</li>
+</ul>
+</section>
+<section class='feature-info col-md-8'>
+<div class='well'>
+<h2>At a glance</h2>
+No feature info available. Please contact
+<span class='author-name' title='alonbl'>Alon Bar-Lev</span>
+to fix.
+</div>
+<h1 id="sso">SSO</h1>
+
+<h2 id="ovirt-sso">oVirt SSO</h2>
+
+<h3 id="the-challenge">The challenge</h3>
+
+<p>Acquire ability to automatically login a user into the console of a virtual machine.</p>
+
+<p>Console login is assumed to be local, there is no standard way to pass credential via a protocol as no network is involved.</p>
+
+<p>There are solution to automate the login process via API, this implies that with cooperation of a component running on system it is possible to automate the login process.</p>
+
+<h3 id="why-dont-we-use-the-network-login-capabilities-of-the-system">Why don't we use the network login capabilities of the system?</h3>
+
+<p>In theory there should be no need to hijack remote system console, as every modern operating system supports remote login protocol and graphics redirection, in other words there is no need for spice protocols, as we could use native system remote desktop capabilities.</p>
+
+<p>In practice there are no mature Windows based solutions for graphics redirection leveraging the local and remote GPUs.</p>
+
+<p>Within Linux using ssh + x11 + mesa is possible, but is somewhat difficult to establish, as X11 does not support multiple window managers.</p>
+
+<p>The other challenge is to reach virtual machine user interface via network protocol when there is no network available or via side-band, this can be solved by tunneling stream over virtual io channel into localhost at specific port, for example ssh.</p>
+
+<h3 id="current-ovirt-implementation-33">Current oVirt Implementation (3.3)</h3>
+
+<p>Automatic login is enabled only in user portal.</p>
+
+<p>Automatic login is always enabled in user portal for VMs that run guest agent.</p>
+
+<p>The domain, user and password that it used are the credentials used to login into the web interface.</p>
+
+<h4 id="players">Players</h4>
+
+<table>
+  <tbody>
+    <tr>
+      <td>ovirt-engine</td>
+      <td>management server</td>
+    </tr>
+    <tr>
+      <td>vdsm</td>
+      <td>host managers</td>
+    </tr>
+    <tr>
+      <td>libvirt</td>
+      <td>qemu access layer</td>
+    </tr>
+    <tr>
+      <td>qemu</td>
+      <td>virtualization provider</td>
+    </tr>
+    <tr>
+      <td>guest agent</td>
+      <td>software that runs within vm operating system</td>
+    </tr>
+    <tr>
+      <td>websocket proxy</td>
+      <td>websocket protocol proxy</td>
+    </tr>
+    <tr>
+      <td>desktop</td>
+      <td>end-user desktop</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="use-diagram">Use diagram</h4>
+
+<pre class="highlight plaintext"><code>  vdsm control:            ovirt-engine --HTTPS(mutual authentication)--&gt; vdsm&#x000A;  qemu control:            vdsm --API----&gt; libvirt --usock--------------&gt; qemu&#x000A;  guest agent:             vdsm --usock--&gt; qemu    --virtual serial-----&gt; guest agent&#x000A;  user: ovirt user portal: browser --HTTPS-----------&gt; ovirt-engine&#x000A;  user: spice/novnc        native  --SSL(vnc/spice)--&gt;  qemu&#x000A;  user  novnc/spice-html5: browser --SSL(webscoket)--&gt; websocket proxy --TCP(vnc/spice)--&gt; qemu&#x000A;</code></pre>
+
+<h4 id="auto-login-sequence">Auto login sequence</h4>
+
+<pre class="highlight plaintext"><code>       Desktop    ovirt-engine    vdsm    libvirt    qemu     guest-agent  Guest OS&#x000A;   1.     ---HTTPS---&gt; login&#x000A;   2.     ---HTTPS---&gt; Start Graphical&#x000A;   3.&#x000A;   4.                ---HTTPS(m.auth)--&gt;---usock---&gt;Ticket&#x000A;   5.                ---HTTPS(m.auth)--&gt;---usock---&gt;---serial--&gt;user/password&#x000A;   6.                                                            --------------&gt;&#x000A;   7.     &lt;--HTTPS- Execute spice/vnc client with Ticket, host, port&#x000A;   8.     ---SSL-----------------------------------&gt;Ticket&#x000A;   9.                           &lt;--usock--------- disconnect&#x000A;  10                            ---usock-----------&gt;---serial--&gt;lock-screen&#x000A;  11.                           ---usock-----------&gt;Ticket&#x000A;</code></pre>
+
+<ol>
+  <li>User login into ovirt-engine user portal.</li>
+  <li>User request graphical session to a VM within user portal.</li>
+  <li>ovirt-engine generates random "ticket".</li>
+  <li>ovirt-engine via vdsm sends the ticket to qemu with hard coded validity period of 120 seconds.</li>
+  <li>ovirt-egnine via vdsm sends desktop login command along with domain, user, password to guest agent running within the virtual machine, this is done via the side band vdsm&lt;-&gt;guest agent channel.</li>
+  <li>guest agent uses the credentials to automate login sequence using one of various methods.</li>
+  <li>ovirt-engine trigger execution of spice/vnc at client machine passing the ticket.</li>
+  <li>spice/vnc at client connects to qemu passing the ticket and establish connection.</li>
+  <li>when spice/vnc session disconnects qemu will issue disconnection event to vdsm.</li>
+  <li>vdsm sends lock-screen command to guest agent.</li>
+  <li>vdsm will revive ticket so it will be valid again in case of virtual migration, to enable client re-connection.</li>
+</ol>
+
+<p>* in case of webscoket proxy another ticket is issued signed by engine key and validated against engine public key at websocket proxy, ticket contains destination ip and port to establish communication with.</p>
+
+<h4 id="guest-agent-commands">Guest agent commands</h4>
+
+<p>Available more commands than actually used.</p>
+
+<ul>
+  <li>refresh - Send misc information back.</li>
+  <li>login - Perform login, triggered by engine command, can also be used to unlock. Accepts: username[@domain], password</li>
+  <li>lock-screen - Lock console, used by:
+    <ol>
+      <li>vdsm save vm state sequence (before saving).</li>
+      <li>libvirt event GRAPHICS phase: GRAPHICS_DISCONNECT</li>
+    </ol>
+  </li>
+  <li>log-off - Force logoff user from console, triggered by engine command, not actually used anywhere.</li>
+  <li>shutdown - Gracefully shutdown system, used by vdsm VM shutdown sequence before using other more intrusive means.</li>
+</ul>
+
+<h3 id="problems-in-current-implementations">Problems in current implementations</h3>
+
+<ul>
+  <li>
+    <p>Inability to support single signon or non password based authentication (example: OpenID)
+The assumption that the password used to login into the ovirt web interface is available or can be used in order to login into guest is incorrect. Authentication using kerberos, SSL certificate, OpenID or any password based SSO will not provide usable password to the engine.</p>
+  </li>
+  <li>
+    <p>Always enable automatic login when guest agent is available may cause user lockout
+If password on guest differs, the lock reference of the user will be incremented at any attempt (should be solved in 3.4).</p>
+  </li>
+  <li>Webadmin does not support automatic login</li>
+  <li>
+    <p>No mutual authentication between client and virtual machine
+The user credentials are passed directly to VM using the engine-&gt;vdsm channel, the user login takes place without even the user is involved. User does not need to connect to the VM in order to establish login.</p>
+  </li>
+  <li>
+    <p>vdsm&lt;-&gt;guest agent protocol does not support negotiation
+No protocol version is exchanged between components, components are unaware of what features are supported by peer.</p>
+  </li>
+  <li>
+    <p>vdsm&lt;-&gt;guest protocol does not support peer restart message
+If vdsm is restarted (upgraded for example) or guest agent is restarted (upgraded for example) the peer do not know of the event in order to enable new features or handle state pull.</p>
+  </li>
+  <li>
+    <p>websocket proxy does not use SSL protocol toward qemu
+Should be solved separately.</p>
+  </li>
+  <li>The guest agent uses thread to send periodic status but does not use locking, so channel may become corrupted
+Should be solved separately.</li>
+</ul>
+
+<h3 id="requirements">Requirements</h3>
+
+<ol>
+  <li>Establish single signin friendly environment.</li>
+  <li>Provide Linux end-to-end and firefox based solution of kerberos based end-to-end SSO.</li>
+  <li>Decouple solution from oVirt specific implementation as much as possible.</li>
+  <li>Windows guests are out of scope for now, there are multiple issues with Windows as CredSSP<a href="http://msdn.microsoft.com/en-us/library/cc226764.aspx">1</a> violates SSO by require access to user's master password, and there is no [documented] way to load TGT into LSA.</li>
+</ol>
+
+<h3 id="proposed-solution">Proposed solution</h3>
+
+<h4 id="outline">Outline</h4>
+
+<p>Establish a channel between client and guest and transfer credentials using stream protocol on top of the channel. The protocol may be based on SASL to exchange credentials information.</p>
+
+<p>This solution can be used outside of the oVirt project scope, so it should be relatively easy to push missing bits into spice upstream.</p>
+
+<p>This solution unlikely to support spice-html5/novnc.</p>
+
+<h5 id="design-principals">Design principals</h5>
+
+<ul>
+  <li>Make solution usable to non-oVirt projects.</li>
+  <li>Tight component - each component should do one task and only one.</li>
+  <li>Decoupling - components should share the minimum required implementation with each other.</li>
+  <li>Interfaces - interaction between components should be done via well defined interfaces.</li>
+  <li>Reuse - any effort invested should be reused for similar cases.</li>
+</ul>
+
+<h5 id="implementation-summary">Implementation Summary</h5>
+
+<p>This section is written mostly for spice developers to understand the reasoning.</p>
+
+<ul>
+  <li>The current spice client is monolithic, a new functionality cannot be added without modifying the code. Establishing a stream channel between client and guest is usable for many solutions:
+    <ul>
+      <li>Credentials delegation (aka SSO), this initiative.</li>
+      <li>Private key usage delegation, solutions such as gpg-agent, ssh-agent forwarding.</li>
+      <li>Access to other client side agents, such as gnome-keyring.</li>
+      <li>Client software execution, such as stream URLs.</li>
+      <li>Biometric.</li>
+    </ul>
+  </li>
+  <li>serial&lt;-&gt;usock proxy - instead of implementing the SSO initiative within the current monolithic implementation, this solution recommends to support serial device delegation into unix domain socket and implement the logic within separate component, this meets design principals:
+    <ul>
+      <li>Tight components - the spice client core is "Remote Desktop" while "SSO" is, well, "SSO", two different unrelated tasks.</li>
+      <li>Decoupling - there is nothing common between "SSO" and the logic of how to implement remote devices except of that the "SSO" component requires to establish a stream channel over the protocol into the guest. "SSO" component may be usable for other setups, such as vnc or direct tcp connection.</li>
+      <li>Interfaces - there is no programmatic usage between "SSO", or any similar solution, and the spice implementation, except of tunneling a stream between client and guest. Unix domain socket is an interface that provides all required interaction between components:
+        <ul>
+          <li>Both sides can detect that the channel is alive.</li>
+          <li>Bidirectional full duplex communication.</li>
+          <li>Async IO support.</li>
+          <li>In-process and out-of-process support.</li>
+          <li>Windows name pipe is similar to unix domain sockets in this regard.</li>
+        </ul>
+      </li>
+      <li>Reuse - implementation of serial&lt;-&gt;usock proxy will enable other components such as those which are outlined above to be implemented with zero effort.</li>
+    </ul>
+  </li>
+  <li>spice-client-sso - once serial&lt;-&gt;usock proxy is available, the client component aka spice-client-sso can be implemented to interact with guest and delegate credentials.
+    <ul>
+      <li>The author of this component can be completely detached from spice-gtk implementation considerations, hence we add more potential contributers.</li>
+      <li>The author of this component can know nothing about spice nor its protocol, hence we add more potential contributers.</li>
+      <li>The component can be reused with any stream channel such as vnc or plain tcp connection.</li>
+      <li>The component can be managed/maintained/reside at spice project or as standalone project.</li>
+      <li>If the protocol is designed properly, various of guest agent implementation may reuse this component for establishing SSO.</li>
+      <li>Easier to debug, and perform integration tests.</li>
+    </ul>
+  </li>
+  <li>sso-guest-agent - guest agent is responsible of accepting the credentials, it is the most complex piece of software in this solution.
+    <ul>
+      <li>pam module.</li>
+      <li>gdm2 plugin.</li>
+      <li>gdm1 plugin.</li>
+      <li>kde greeter.</li>
+      <li>windows credprov</li>
+      <li>gina</li>
+      <li>agent logic.</li>
+      <li>Credentials accept, interacts with spice-client-sso to acquire credentials.</li>
+    </ul>
+  </li>
+  <li>ovirt-guest-agent is the most complete agent to provide the sso-guest-agent functionality, there is no point in re-inventing the wheel. The addition of credentials accept is minor compared to the other required functionality. The functionality of the sso-guest-agent can be reused and split out of the ovirt-guest-agent when we have a working solution, to enable component reuse at other projects.</li>
+</ul>
+
+<p>Regardless this design comes from the oVirt project it had been written as if spice team is to implement the functionality regardless of oVirt. The same principals and arguments had been introduced as well and the conclusion had been the same. Modularity is better than monolithic, reuse of effort invested for future component implementation to extend the eco-system of spice is important.</p>
+
+<p>I would like to separate the argument of who is maintaining the spice-client-sso component from the discussion, as it should not impact the resource allocation.</p>
+
+<p>Open up the spice implementation for external component does not imply losing control of the components nor fragmentation of these. Forbidding external components damage innovation and limiting the size of the eco-system. Please keep in mind that nothing prevents the spice team to maintain the spice-client-sso as separate component in-tree, out-of-tree or at letting 3rd party maintain it.</p>
+
+<p>Also be aware that spice client side SSO solution is the least work in maintaining a solution, most of the work is at guest agent. As far as I want to perceive the solution the spice-client-sso has far more in common with the guest agent than with the spice client, both in term of code and knowledge. Unlike supporting remote desktop, the SSO is derived from IT infrastructure, and far from being stable, every day we witness new technologies and there should be flexible method for people to provide a solution that is synced not between the guest agent and client but between the guest agent and the spice-client-sso component.</p>
+
+<p>In term of packaging it would be something like the following:</p>
+
+<ul>
+  <li>Install the following at guest: xxxagent-sso.</li>
+  <li>Install the following at client: spice-gtk, xxxagent-spice-sso.</li>
+</ul>
+
+<p>The xxxagent can as well be vdagent, however per the tight and decoupling design principals, there is nothing common between the current vdagent which is used for core interaction (display, mouse, clipboard) and SSO, both in term of functionality and knowledge required to maintain each component. BTW: I believe that in future at least the clipboard integration can be implemented using the same approach of usock&lt;-&gt;serial channel quite easily.</p>
+
+<h5 id="preparations">Preparations</h5>
+
+<ul>
+  <li>mod_auth_kerb5 is installed at engine to enable kerberos SSO.</li>
+  <li>Issue kerberos credentials to all VMs.</li>
+</ul>
+
+<h5 id="sequence">Sequence</h5>
+
+<pre class="highlight plaintext"><code>       Desktop    ovirt-engine    vdsm    libvirt    qemu     guest-agent  Guest OS&#x000A;   1.&#x000A;   2.     ---HTTPS---&gt; login&#x000A;   3.     ---HTTPS---&gt; Start Graphical&#x000A;   4.                ---HTTPS(m.auth)--&gt;---usock---&gt;---serial--&gt;get SPN&#x000A;   5.&#x000A;   6.                ---HTTPS(m.auth)--&gt;---usock---&gt;Ticket&#x000A;   7.     &lt;--HTTPS- Execute spice/vnc client with Ticket, host, port, SPN&#x000A;   8.     ---SSL-----------------------------------&gt;Ticket&#x000A;   9.     ---SSL-----------------------------------&gt;---serial--&gt;SASL&#x000A;  10.                                                             -----------&gt;&#x000A;</code></pre>
+
+<ol>
+  <li>User login into his desktop using kerberos.</li>
+  <li>User access ovirt-engine user portal.</li>
+  <li>User requests graphic session.</li>
+  <li>ovirt-engine queries guest agent for its service principal name.</li>
+  <li>ovirt-engine generates random "ticket".</li>
+  <li>ovirt-engine via vdsm sends the ticket to qemu with hard coded validity period of 120 seconds. NOTE: in standalone mode this can be replaced with SASL negotiation.</li>
+  <li>ovirt-engine trigger execution of spice/vnc at client machine passing the ticket and the service principal name.</li>
+  <li>spice/vnc at client connects to qemu passing the ticket and establish connection.</li>
+  <li>spice/vnc client negotiate using SASL directly with the guest agent delegating TGT or other credentials.</li>
+  <li>guest agent uses the credentials to automate login sequence using one of various methods.</li>
+</ol>
+
+<h4 id="components-major-changes">Components' major changes</h4>
+
+<h5 id="spice-client"><strong>Spice client</strong></h5>
+
+<p>It turns out<a href="http://lists.freedesktop.org/archives/spice-devel/2013-November/015504.html">2</a> the spice client is monolithic software, design that should not happen in the 21th century… but ovirt-engine and vdsm are aligned in this sense. So it won't be that easy to introduce new functionality.</p>
+
+<p>There is an existing project named vd_agent<a href="http://cgit.freedesktop.org/spice/linux/vd_agent">3</a> which is guest agent. It implements mouse offload and X server helper. The guest agent already interacts with the spice client using virtual serial device.</p>
+
+<p>The easiest implementation is probably to push more code into spice client and the vd_agent projects. However, this will not be productive for future maintenance of the functionality, nor it will help the spice project to be able to support similar efforts in future.</p>
+
+<p>There are two options of implementation to help the spice project to open up:</p>
+
+<ul>
+  <li>Modularizing the interface at client side, allowing to dynamically load components that can serve spice channels. This will require much resources and will likely be a long process to complete.</li>
+  <li>Modularizing only the spice port at client side implementation, this will provide a solution to any stream based implementation including our own, while splitting the work between spice developer and agent developer.</li>
+</ul>
+
+<p>I suggest to focus on modularizing only the spice port at client side, the solution will be to fork a process attaching usock to its stdin/stdout and proxy the spice port stream into the usock. Once this mechanism is in place the implementation of the software that interact with the agent is quite simple and completely detached from spice internals.</p>
+
+<p>Spice client should accept the following additional parameters:</p>
+
+<ul>
+  <li>port name.</li>
+  <li>executable to run. The path should be relative to some pre-defined spice plugin folder, example ${libdir}/spice/, so that only approved plugins will be allowed to be loaded.</li>
+  <li>parameters to pass.</li>
+</ul>
+
+<p>Once spice client connects, if port exists on remote, it will fork the process with parameters and usock as stdin/stdout, and proxy all data. It should be generic implementation.</p>
+
+<h5 id="spice-sso-client"><strong>spice-sso-client</strong></h5>
+
+<p>A new component to be loaded by spice-client for the sso channel to interact with the guest agent for credentials delegation and refresh.</p>
+
+<p>At qemu side, define spice port for the interaction:</p>
+
+<pre class="highlight plaintext"><code>  -device virtio-serial-pci&#x000A;  -device virtserialport,chardev=spicesso,name=spice.sso.0&#x000A;  -chardev spicevmc,id=myappl,name=spicesso&#x000A;</code></pre>
+
+<p>At guest a serial device at /dev/virtio-ports/spice.sso.0 will be available for guest agent use.</p>
+
+<p>At client configure spice client to execute spice-sso-client for spice.sso.0 spice port, the parameters it accept are:</p>
+
+<ul>
+  <li>Optional: Remote service principal name.</li>
+  <li>Trust any service principal name (disabled per default)</li>
+  <li>Offer TGT to untrusted for delegation services (disabled per default).</li>
+  <li>Perform password authentication (disabled per default)</li>
+  <li>Optional: User/password.</li>
+</ul>
+
+<h6 id="protocol-highlights">Protocol highlights</h6>
+
+<ul>
+  <li>SIGNATURE - sent by guest agent when connected or reseted.</li>
+  <li>SIGNATURE - sent by spice-client-sso to reset guest agent in case of inability for guest to detect disconnect of spice port.</li>
+  <li>startTLS - sent by spice-client-sso to start TLS negotiation over the channel, optional.</li>
+  <li>startSASL - sent by spice-client-sso to start SASL negotiation over the channel, optional.</li>
+  <li>credentials type blob - sent by spice-client-sso to delegate credentials, blob is encoded using base64.</li>
+  <li>authenticate type type type… - sent by guest agent when credentials are required, while specifying supported types.</li>
+  <li>info attr - sent by spice-client-sso to retrieve information, example 'spn' or 'time'.</li>
+  <li>ok</li>
+  <li>error code string</li>
+</ul>
+
+<h6 id="sequence-1">Sequence</h6>
+
+<pre class="highlight plaintext"><code>        Client                                       Guest&#x000A;   1.1    &lt;---SIGNATURE---------------------------------&#x000A;   1.2.1  ---SIGNATURE---------------------------------&gt;&#x000A;   1.2.2  &lt;---SIGNATURE---------------------------------&#x000A;   2.     &lt;--authenticate kerberos password-------------&#x000A;   3.     ---error 300, delay--------------------------&gt;&#x000A;   4.     ---startTLS----------------------------------&gt;&#x000A;   5.     &lt;--error 400, unsupported -------------------&gt;&#x000A;   6.     ---startSASL---------------------------------&gt;&#x000A;   7.     &lt;--ok-----------------------------------------&#x000A;   8.     &lt;--------------SASL negotiation--------------&gt;&#x000A;   9      &lt;---SIGNATURE---------------------------------&#x000A;  10.1    &lt;--authenticate kerberos password-------------&#x000A;  10.2    ---ok----------------------------------------&gt;&#x000A;  10.3    ---credentials kerberos AAEK12DS==-----------&gt;&#x000A;  10.4    &lt;--ok-----------------------------------------&#x000A;</code></pre>
+
+<ol>
+  <li>Signature exchange
+    <ol>
+      <li>Guest detect new client connection and sends signature.</li>
+      <li>In case we cannot detect connection at guest and/or at client
+        <ol>
+          <li>Client will send signature to reset guest state.</li>
+          <li>Guest was rested so it sends signature when reseted.</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Guest asks for authentication using kerberos or password.</li>
+  <li>Client delay this request.</li>
+  <li>Client tries to initiate TLS.</li>
+  <li>Guest does not support TLS.</li>
+  <li>Client tries to initiate SASL</li>
+  <li>Guest support SASL.</li>
+  <li>SASL negotiation
+    <ol>
+      <li>If no spn given in command-line acquire spn from guest (weak), if not trust all spn parameter set prompt user for acknowledge spn.</li>
+      <li>Acquire service ticket by using the service principal name.</li>
+      <li>If TGT is forwardable forward TGT using SASL negotiation, guest will extract TGT out of negotiation.</li>
+      <li>If TGT is not forwardable perform plain SASL negotiation.</li>
+    </ol>
+  </li>
+  <li>Guest sends signature.</li>
+  <li>In case ticket was not forwardable and configuration allows passing TGT
+    <ol>
+      <li>Guest asks for authentication using kerberos or password.</li>
+      <li>Client support types.</li>
+      <li>Client sends kerberos TGT.</li>
+      <li>Guest accepts.</li>
+    </ol>
+  </li>
+</ol>
+
+<h5 id="vnc-client"><strong>vnc client</strong></h5>
+
+<p>Needs support of stream between client and guest in similar manner as spice.</p>
+
+<h5 id="virt-viewer"><strong>virt-viewer</strong></h5>
+
+<p>Support of new features of spice client within its configuration file format.</p>
+
+<h5 id="vdsm"><strong>vdsm</strong></h5>
+
+<ul>
+  <li>Forward libvirt GRAPHICS event phase INITIALIZE into new guest agent 'client-connect' command.</li>
+  <li>Add 'get-spn' command to acquire service principal name of the guest agent.</li>
+</ul>
+
+<p>Optional:</p>
+
+<ul>
+  <li>Add version command vdsm-&gt;guest agent with minimum and maximum supported versions.</li>
+  <li>Add version command guest agent-&gt;vdsm with minimum and maximum supported versions.</li>
+  <li>If not received assumes version=0 (current) is supported</li>
+  <li>Add connect vdsm-&gt;guest agent command to be used when vdsm is started.</li>
+  <li>Add connect guest agent-&gt;vdsm command to be used when guest agent is started.</li>
+  <li>Add command to return guest agent protocol version of an active vm to engine so engine be aware of new features availability.</li>
+</ul>
+
+<p>Note: Sending unknown commands in current implementation will issue error within logs of both components, no other side effect.</p>
+
+<h5 id="guest-agent"><strong>guest agent</strong></h5>
+
+<ul>
+  <li>Add get-spn command to return service principal name of guest agent.</li>
+  <li>If 'client-connect' is received try to detect SASL VDI.</li>
+  <li>Implement the spice-client-sso protocol.</li>
+  <li>If console is locked, user must patch current logged on user.</li>
+</ul>
+
+<h5 id="ovirt-engine"><strong>ovirt-engine</strong></h5>
+
+<ul>
+  <li>If kerberos SSO is enabled.</li>
+  <li>Acquire VM machine service principal name via guest agent.</li>
+  <li>Send service principal name to virtviewer instructing it to enable the spice-client-sso component.</li>
+</ul>
+
+<h3 id="resource-estimation">Resource Estimation</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <th>Task</th>
+      <th>Estimation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Spice developer</td>
+      <td>Implement the spice-port&lt;-&gt;usock proxy</td>
+      <td>4w</td>
+    </tr>
+    <tr>
+      <td>AAA developer</td>
+      <td>Implement the spice-client-sso and guest agent component, verify TGT</td>
+      <td>8w</td>
+    </tr>
+    <tr>
+      <td>Guest agent developer</td>
+      <td>Wrap all up, handle local login, tests</td>
+      <td>4w</td>
+    </tr>
+    <tr>
+      <td>AAA developer</td>
+      <td>Setup environment at rhev office</td>
+      <td>3d</td>
+    </tr>
+    <tr>
+      <td>Virt developer</td>
+      <td>Setup environment at rhev office</td>
+      <td>3d</td>
+    </tr>
+    <tr>
+      <td>Virt developer</td>
+      <td>Implement sequence within vdsm, ovirt-engine</td>
+      <td>1w</td>
+    </tr>
+    <tr>
+      <td>QE</td>
+      <td>Test</td>
+      <td>2w</td>
+    </tr>
+    <tr>
+      <td>Manager</td>
+      <td>Overhead</td>
+      <td>1w</td>
+    </tr>
+    <tr>
+      <td>Peers</td>
+      <td>Review</td>
+      <td>2w</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Author: –<span class='broken-link link-mediawiki' data-href='User:Alonbl' title='Special MediaWiki link: original pointed to: User:Alonbl'>Alon Bar-Lev</span> (<a href="User talk:Alonbl">talk</a>) 02:25, 1 July 2014 (GMT)</p>
+
+<category:feature>
+</category:feature>
+
+</section>
+</section>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>
+<script>
+  (function() {
+    var $featureItems, $featureLists, $featureSidebar, $form, $headers, $input, clearField, showAll, updateHeaders, updateList;
+  
+    $featureSidebar = $('.feature-sidebar');
+  
+    $form = $('#feature-search');
+  
+    $input = $('#feature-search-input');
+  
+    $featureLists = $('.feature-list');
+  
+    $featureItems = $('li', $featureLists);
+  
+    $headers = $('.feature-sidebar h2');
+  
+    clearField = function() {
+      return $input.val('');
+    };
+  
+    showAll = function() {
+      return $featureItems.filter('.hide').removeClass('hide');
+    };
+  
+    updateHeaders = function() {
+      var $emptyList;
+      $('h2.hide', $featureSidebar).removeClass('hide');
+      $emptyList = $headers.filter(function(i, el) {
+        return $(el).next('ul').find('li:visible').length === 0;
+      });
+      return $emptyList.addClass('hide');
+    };
+  
+    updateList = function() {
+      var $hide, searchStr;
+      searchStr = $input.val();
+      showAll();
+      $hide = $featureItems.not(function(i, el) {
+        return $(el).text().toLowerCase().match(searchStr.toLowerCase());
+      });
+      $hide.addClass('hide');
+      return updateHeaders();
+    };
+  
+    $(function() {
+      var statuses;
+      $input.focus();
+      statuses = ["in development", "new", "wip", "developement", "unclassified", "released", "merged", "design & research", "implementation", "design", "development", "on_qa", "draft", "planning", "completed", "partial", "to be released", "wontfix", "proposed", "in progress", "post", "qe", "dormant", "partially released", "patch in review", "complete", "not started", "stabilization", "proposal", "inception", "done"];
+      console.log(statuses);
+      return $form.removeClass('hide').on('submit', function(e) {
+        return e.preventDefault();
+      }).on('keyup', function(e) {
+        switch (e.key) {
+          case 'Escape':
+            clearField();
+            showAll();
+            return updateHeaders();
+          default:
+            return updateList();
+        }
+      });
+    });
+  
+  }).call(this);
+</script>

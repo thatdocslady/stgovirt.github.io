@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Node Stateless &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Node Stateless</td>
+</tr>
+<tr>
+<th>category</th>
+<td>node</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>mburns, pmyers</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Node Stateless</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>24</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-05-29</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Node_Stateless' target='_blank'>
+Node Stateless
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="node-stateless">Node Stateless</h1>
+
+<h2 id="goals">Goals</h2>
+
+<ul>
+  <li>Be able to run a node image without installing to local disk</li>
+  <li>No configuration is persisted</li>
+  <li>Provide some sort of security for communications</li>
+</ul>
+
+<h2 id="high-level-design">High Level Design</h2>
+
+<ul>
+  <li>Machine boots with regular kernel commandline params + stateless</li>
+  <li>Machine does regular boot process including autoinstall for all args passed</li>
+  <li>Machine launches Configuration TUI after complete for additional config if needed</li>
+  <li>Machine runs normally</li>
+</ul>
+
+<h2 id="details">Details</h2>
+
+<h3 id="todo-list">TODO List</h3>
+
+<ul>
+  <li>Check for admin user password
+    <ul>
+      <li>If set, don't set it to expire and continue</li>
+      <li>If not, check for nopwprompt command line option
+        <ul>
+          <li>If it exists, continue</li>
+          <li>If not, provide TUI screen to set password only
+            <ul>
+              <li>DESIGN: Extract tui screen from install setup for this</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Swap/local storage disk handling
+    <ul>
+      <li>Provide a method for admin to allocate swap</li>
+      <li>Provide method for admin to designate disk as local data domain</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="boot-process">Boot Process</h3>
+
+<ul>
+  <li>Makes the most sense in a pxe environment, but can be done with usb or CD/DVD</li>
+  <li>Machine boots the image – <strong>DONE</strong></li>
+  <li>Image comes up and processes command line options – <strong>DONE</strong>
+    <ul>
+      <li>If not stateless, then continue with existing stateful functionality – <strong>DONE</strong></li>
+    </ul>
+  </li>
+  <li>Process all commandline arguments as if this is auto-install – <strong>DONE</strong></li>
+  <li>persist functions do nothing in these cases – <strong>DONE</strong></li>
+  <li>Check for admin user password
+    <ul>
+      <li>If set, don't set it to expire and continue</li>
+      <li>If not, check for nopwprompt command line option
+        <ul>
+          <li>If it exists, continue</li>
+          <li>If not, provide TUI screen to set password only
+            <ul>
+              <li>DESIGN: Extract tui screen from install setup for this</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>after all steps are complete, provide login prompt</li>
+  <li>Once configuration TUI is running, functions just like regular node – <strong>DONE</strong></li>
+</ul>
+
+<h3 id="offline-password-setting">Offline Password Setting</h3>
+
+<p><strong>This is part of Plugins, but stateless depends on it.</strong></p>
+
+<ul>
+  <li>Goal: Provide a way to set the admin password offline</li>
+  <li>Reasoning: Insecure to set the password on the kernel commandline</li>
+  <li>Design
+    <ul>
+      <li>Use Plugin Methodology</li>
+      <li>Plugin will take commandline arguments, crack open the ISO, and set the password</li>
+      <li>Version 1: non-interactive, command line only, admin password only
+        <ul>
+          <li>Handles clear-text passwords and pre-encrypted passwords</li>
+          <li>Possibly use password file instead of passing the password on the command line where it would show up in shell history</li>
+        </ul>
+      </li>
+      <li>Version n: simple UI, can set admin and root passwords, interactively set passwords</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="open-issues">Open Issues</h3>
+
+<ul>
+  <li>Engine Registration process
+    <ul>
+      <li>Not currently able to handle stateless</li>
+      <li>Would currently require the admin to go into engine, manually remove the host, then re-add the host and approve it with *every* boot</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="security-considerations">Security Considerations</h2>
+
+<p>How do we authenticate a node with the engine?</p>
+
+<ul>
+  <li>Multiple levels that could be done</li>
+  <li>USB drive that contains some certificate or key for encrypting and decrypting the bundle</li>
+  <li>Single key embedded in the pxe image</li>
+  <li>TPM module to contain unique key per machine <strong>DEFERRED to future</strong>
+    <ul>
+      <li>motherboard upgrades would require a node to be re-registered and configured in this case</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Because Engine doesn't have a way to support stateless nodes, they need to be removed manually, then re-added
+    <ul>
+      <li>The nodes thus need to be re-approved by the engine admin, making these concerns an issue when Engine supports stateless, but not an issue currently.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="upgrades">Upgrades</h2>
+
+<ul>
+  <li>Should be as simple as updating the PXE image (or usb stick or CD/DVD)</li>
+</ul>
+
+<h2 id="storage">Storage</h2>
+
+<p>Since it's stateless, we probably don't want to touch HostVG at all. Instead, we can leverage AppVG which is already setup for supporting Swap and Data storage.</p>
+
+<h3 id="to-swap-or-not-to-swap">To Swap or Not To Swap</h3>
+
+<ul>
+  <li>In order to overcommit a host, you need to have swap space to support it</li>
+  <li>First implementation will probably disable swap</li>
+  <li>Future implementation may allow the system to configure a local disk as swap space</li>
+</ul>
+
+<h3 id="local-storage">Local Storage</h3>
+
+<ul>
+  <li>In order to support local storage domains, we need to partition and allocate a disk</li>
+  <li>Need to support some method for re-creating the local storage during boot</li>
+  <li>Provide a TUI screen for storage config</li>
+</ul>
+
+<h2 id="future-features">Future features</h2>
+
+<ul>
+  <li>TPM/TXT Support for security</li>
+</ul>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

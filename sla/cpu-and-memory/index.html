@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+cpu-and-memory &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>cpu-and-memory</td>
+</tr>
+<tr>
+<th>category</th>
+<td>sla</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>doron, lvroyce</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>SLA</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Sla/cpu-and-memory</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>10</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-09-06</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Sla/cpu-and-memory' target='_blank'>
+Sla/cpu-and-memory
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="cpu-and-memory">cpu-and-memory</h1>
+
+<p>ovirt flow: Use case1:</p>
+
+<pre class="highlight plaintext"><code>   Assign Resource proportion(e.g.a customer buy 20%CPU)&#x000A;   1.find a VM&#x000A;   2.limited the CPU consumption to be 30% host CPU&#x000A;</code></pre>
+
+<p>Use case2:</p>
+
+<pre class="highlight plaintext"><code>   Cluster Policy based Cgroup control&#x000A;   1.Config a cluster's policy is to be: best utilization/best performance/best balance&#x000A;   2.Engine config MOM to be different policy:None/medium/aggressive about all resources&#x000A;</code></pre>
+
+<p>Use case3:</p>
+
+<pre class="highlight plaintext"><code>   Resource tendency:&#x000A;   1.Config a VM to be:compute node/ftp server/mail server/http server/general...&#x000A;     Will have different resource tendency&#x000A;   2.Engine will translate some resource(mem/cpu/io/bandwith) as rigid level of every vm&#x000A;   e.g.:VM1(mem:strong/cpu:medium/bandwith:weak),VM2(mem:medium/cpu:weak/bandwith:strong)&#x000A;   3.Engine config Mom of these policy of different resources&#x000A;   4.Mom will tune VMs according to the policy&#x000A;</code></pre>
+
+<p>Use case 4:</p>
+
+<pre class="highlight plaintext"><code>   User discrimination&#x000A;   1.Config VM to have different credit on engine&#x000A;   2.Engine config MOM&#x000A;   3.restrain resource according to different credit&#x000A;   e.g.:Gold VM restrain 10% CPU resource, Silver VM restrain 20% CPU resource&#x000A;</code></pre>
+
+<h2 id="relevant-ovirt-projects">Relevant oVirt Projects</h2>
+
+<ul>
+  <li>oVirt engine</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>VDSM</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>MoM</li>
+</ul>
+
+<h2 id="cpu">CPU</h2>
+
+<p>Stats vdsm needs to be collected:</p>
+
+<pre class="highlight plaintext"><code>   1.host cpu usage: flags of host cpu pressure and flag of tuning, when cpu utilization rise, action will be tune or migrate.via libvirt&#x000A;   2.host perspective guest usage: guest use of host resource,  flag of how much has allocated actually via libvirt&#x000A;   3.guest perspective guest usage: flag of how much potential the overcommitment can be&#x000A;</code></pre>
+
+<p>Controlls vdsm needs to perform:</p>
+
+<pre class="highlight plaintext"><code>   1.via cpu cgroup&#x000A;   2.via pin cpu&#x000A;   3.via hibernate/stop vm&#x000A;   4.via numad&#x000A;</code></pre>
+
+<p>Policies:</p>
+
+<pre class="highlight plaintext"><code>   1.QOS: &#x000A;     (1)high prior guests demand should be satisefied&#x000A;     (2)VM's feature demand should be satisefied(compute node's cpu demand has higher priority)&#x000A;     e.g.:Golden Vm are assigned to a larger quota as original value,&#x000A;      compute node are pinned to a specific cpu.&#x000A;&#x000A;   2.Overcommit:&#x000A;   When:&#x000A;     (1)host cpu pressure rise,&#x000A;     (2)import guest or cpu demanding guest demands cpu resource&#x000A;    it tries to get cpu from:&#x000A;     (1)non important guest&#x000A;     (2)non cpu demanding guest&#x000A;     (3)guest already got very high host usage but with comparatively low priority&#x000A;</code></pre>
+
+<p>Numad Integration</p>
+
+<hr />
+
+<p>vdsm API should perform: (1)Add domain processes to Numad and the Numactl (2)Remove cpu pin from vdsm</p>
+
+<p>Should MOM control numad parameters? OR use default parameter for numad?</p>
+
+<h2 id="memory">Memory</h2>
+
+<p>int virDomainSetMemoryParameters (virDomainPtr domain,</p>
+
+<pre class="highlight plaintext"><code>                      virTypedParameterPtr params, &#x000A;                      int nparams, &#x000A;                      unsigned int flags)&#x000A;</code></pre>
+
+<ul>
+  <li>Guarenteed</li>
+  <li>Hard Limits</li>
+  <li>Soft Limits</li>
+</ul>
+
+<category:sla>
+</category:sla>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

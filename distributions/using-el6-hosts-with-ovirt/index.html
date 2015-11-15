@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Using EL6 hosts with Ovirt &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Using EL6 hosts with Ovirt</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>deadhorseconsulting, sandrobonazzola</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Using EL6 hosts with Ovirt</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>16</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-09-26</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Using_EL6_hosts_with_Ovirt' target='_blank'>
+Using EL6 hosts with Ovirt
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="using-el6-hosts-with-ovirt">Using EL6 hosts with Ovirt</h1>
+
+<p><big><strong>WARNING: THIS PAGE REFERS TO OBSOLETE AND UNSUPPORTED VERSIONS OF OVIRT. IGNORE THIS PAGE IF YOU'RE INSTALLING A CURRENT RELEASE</strong></big></p>
+
+<p>How to use EL6 based hosts with Ovirt-Engine 3.1+</p>
+
+<h2 id="assumptions-and-prerequisities">Assumptions and Prerequisities</h2>
+
+<p><big><strong>WARNING: THIS PAGE REFERS TO OBSOLETE AND UNSUPPORTED VERSIONS OF OVIRT. IGNORE THIS PAGE IF YOU'RE INSTALLING A CURRENT RELEASE</strong></big></p>
+
+<ul>
+  <li>An installed and running instance of ovirt-engine See: <a href="/engine/installing-engine-from-rpm/">Installing_ovirt-engine_from_rpm</a></li>
+  <li>You will need to do the following on the system running your ovirt-engine to make it handle EL6 nodes instead of Fedora nodes:</li>
+</ul>
+
+<p>For ovirt-engine 3.0</p>
+
+<pre class="highlight plaintext"><code>   psql -U postgres -d engine -c "update vdc_options set option_value='rhel6.2.0' where option_name='EmulatedMachine' and version='3.0';"&#x000A;</code></pre>
+
+<p>For ovirt-engine 3.1</p>
+
+<pre class="highlight plaintext"><code>   psql -U postgres -d engine -c "update vdc_options set option_value='rhel6.3.0' where option_name='EmulatedMachine' and version='3.1';"&#x000A;</code></pre>
+
+<ul>
+  <li>A system or VM loaded with some flavor of EL6 EG: RHEL, CentOS, SL, OEL (Best practice is to use the one you intend to use for the node)
+    <ul>
+      <li>At minimum the following from the Development package group should be installed:
+        <ul>
+          <li>Development tools</li>
+          <li>Additional Development</li>
+          <li>Server Platform Development</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>An active webserver to host a package repository and the kickstart (EG: An EL6 or Fedora box with httpd loaded and running)</li>
+  <li><strong>At this point in time getting an EL6 host to work and play nicely with ovirt-engine is not trivial</strong></li>
+</ul>
+
+<h2 id="building-the-needed-packages">Building the Needed Packages</h2>
+
+<ul>
+  <li>Some packages need to be built which will work with and are needed for VDSM</li>
+  <li>Some of these packages are not yet in EL6 or out of date for what upstream VDSM requires</li>
+  <li>Tend to stick with newer versions to match upstream VDSM</li>
+</ul>
+
+<h3 id="building-logrotate">Building logrotate</h3>
+
+<ul>
+  <li>Pull the latest logrotate source rpm from the Fedora 17 stable or updates repositories (use the newest)</li>
+  <li>Optionally if you don't mind living on the edge a bit you can pull the newest logrotate source RPM from the Rawhide repositories</li>
+  <li>PackageName: logrotate-<version>.fc<releasever>.src.rpm</releasever></version></li>
+  <li>The following packages are BuildRequires for logrotate
+    <ul>
+      <li>libselinux-devel</li>
+      <li>popt-devel</li>
+      <li>libacl-devel</li>
+    </ul>
+  </li>
+  <li>
+    <p>To build logrotate:</p>
+
+    <p> rpmbuild –rebuild logrotate-<code>&lt;version&gt;</code>.fc<code>&lt;releasever&gt;</code>.src.rpm</p>
+  </li>
+  <li>Resulting RPMS:
+    <ul>
+      <li>logrotate-<version>.el6.x86_64.rpm</version></li>
+      <li>logrotate-debuginfo-<version>.el6.x86_64.rpm</version></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="building-sanlock">Building sanlock</h3>
+
+<ul>
+  <li>Pull the latest sanlock source rpm from the Fedora 17 stable or updates repositories (use the newest)</li>
+  <li>Optionally if you don't mind living on the edge a bit you can pull the newest sanlock source RPM from the Rawhide repositories</li>
+  <li>PackageName: sanlock-<version>.fc<releasever>.src.rpm</releasever></version></li>
+  <li>The following packages are BuildRequires for sanlock
+    <ul>
+      <li>libblkid-devel</li>
+      <li>libaio-devel</li>
+      <li>python python-devel</li>
+    </ul>
+  </li>
+  <li>
+    <p>To build logrotate:</p>
+
+    <p> rpmbuild –rebuild sanlock-<code>&lt;version&gt;</code>.fc<code>&lt;releasever&gt;</code>.src.rpm</p>
+  </li>
+  <li>Resulting RPMS:
+    <ul>
+      <li>sanlock-<version>.el6.x86_64.rpm</version></li>
+      <li>sanlock-debuginfo-<version>.el6.x86_64.rpm</version></li>
+      <li>sanlock-devel-<version>.el6.x86_64.rpm</version></li>
+      <li>sanlock-lib-<version>.el6.x86_64.rpm</version></li>
+      <li>sanlock-python-<version>.el6.x86_64.rpm</version></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="building-glusterfs">Building Glusterfs</h3>
+
+<ul>
+  <li>Pull the latest glusterfs source from <a href="http://download.gluster.org/pub/gluster/glusterfs/LATEST/">Glusterfs LATEST</a></li>
+  <li>Source is a tar.gz and is named glusterfs-<version>.tar.gz</version></li>
+  <li>The following packages are BuildRequires for glusterfs
+    <ul>
+      <li>bison</li>
+      <li>flex</li>
+      <li>gcc</li>
+      <li>make</li>
+      <li>automake</li>
+      <li>libtool</li>
+      <li>ncurses-devel</li>
+      <li>readline-devel</li>
+      <li>openssl-devel</li>
+      <li>libxml2-devel</li>
+      <li>python-ctypes</li>
+      <li>python-devel</li>
+      <li>libibverbs-devel</li>
+    </ul>
+  </li>
+  <li>
+    <p>To build glusterfs:</p>
+
+    <p> rpmbuild -tb glusterfs-<code>&lt;version&gt;</code>.tar.gz</p>
+  </li>
+  <li>Resulting RPMS:
+    <ul>
+      <li>glusterfs-<version>.el6.x86_64.rpm</version></li>
+      <li>glusterfs-debuginfo-<version>.el6.x86_64.rpm</version></li>
+      <li>glusterfs-devel-<version>.el6.x86_64.rpm</version></li>
+      <li>glusterfs-fuse-<version>.el6.x86_64.rpm</version></li>
+      <li>glusterfs-geo-replication-<version>.el6.x86_64.rpm</version></li>
+      <li>glusterfs-rdma-<version>.el6.x86_64.rpm</version></li>
+      <li>glusterfs-server-<version>.el6.x86_64.rpm</version></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="building-vdsm">Building VDSM</h3>
+
+<ul>
+  <li>Get the latest VDSM sources from GIT:</li>
+</ul>
+
+<p><code> git clone </code><a href="http://gerrit.ovirt.org/p/vdsm"><code>http://gerrit.ovirt.org/p/vdsm</code></a></p>
+
+<ul>
+  <li>The following packages are BuildRequires for VDSM
+    <ul>
+      <li>python</li>
+      <li>python-devel</li>
+      <li>pyflakes</li>
+      <li>python-nose</li>
+      <li>python-pep8</li>
+      <li>python-ethtool</li>
+      <li>libvirt-python</li>
+      <li>sanlock-python &gt;= 2.3</li>
+      <li>genisoimage</li>
+      <li>qemu-img (not in the vdsm.spec but seems to be needed by the vdsm-tests)</li>
+    </ul>
+  </li>
+  <li>NOTE for the build requirement of sanlock-python you will need to install the following sanlock rpms you built prior:
+    <ul>
+      <li>sanlock-<version>.el6.x86_64.rpm</version></li>
+      <li>sanlock-lib-<version>.el6.x86_64.rpm</version></li>
+      <li>sanlock-python-<version>.el6.x86_64.rpm</version></li>
+    </ul>
+  </li>
+  <li>Change directory into the resulting vdsm git source tree</li>
+  <li>Do the following to build VDSM</li>
+</ul>
+
+<p>Run autogen.sh</p>
+
+<pre class="highlight plaintext"><code>   ./autogen.sh&#x000A;</code></pre>
+
+<p>Run make</p>
+
+<pre class="highlight plaintext"><code>   make&#x000A;</code></pre>
+
+<p>Make the rpms</p>
+
+<pre class="highlight plaintext"><code>   make rpm&#x000A;</code></pre>
+
+<ul>
+  <li>Resulting RPMS:
+    <ul>
+      <li>vdsm-<version>.el6.x86_64.rpm</version></li>
+      <li>vdsm-debuginfo-<version>.el6.x86_64.rpm</version></li>
+      <li>vdsm-python-<version>.el6.x86_64.rpm</version></li>
+      <li>vdsm-bootstrap-<version>.el6.noarch.rpm</version></li>
+      <li>vdsm-cli-<version>.el6.noarch.rpm</version></li>
+      <li>vdsm-debug-plugin-<version>.el6.noarch.rpm</version></li>
+      <li>vdsm-gluster-<version>.el6.noarch.rpm</version></li>
+      <li>vdsm-hook-faqemu-<version>.el6.noarch.rpm</version></li>
+      <li>vdsm-hook-qemucmdline-<version>.el6.noarch.rpm</version></li>
+      <li>vdsm-hook-vhostmd-<version>.el6.noarch.rpm</version></li>
+      <li>vdsm-reg-<version>.el6.noarch.rpm</version></li>
+      <li>vdsm-rest-<version>.el6.noarch.rpm</version></li>
+      <li>vdsm-tests-<version>.el6.noarch.rpm</version></li>
+      <li>vdsm-xmlrpc-<version>.el6.noarch.rpm</version></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="deploying-the-rpms-via-a-yum-repository">Deploying the RPMS via a yum repository</h2>
+
+<h3 id="hosting-the-repository">Hosting the repository</h3>
+
+<ul>
+  <li>The easiest way to do this is to load a system with Fedora or EL6 and use an apache webserver to host the repository.</li>
+  <li>Setting up an apache webserver under EL6 is covered in depth here: <a href="http://access.redhat.com/knowledge/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/ch-Web_Servers.html#s1-The_Apache_HTTP_Server">Apache HTTP Server</a></li>
+  <li>Setting up an apache webserver under FC17 is covered in depth here: <a href="http://docs.fedoraproject.org/en-US/Fedora/17/html/System_Administrators_Guide/ch-Web_Servers.html#s1-The_Apache_HTTP_Server">Apache HTTP Server</a></li>
+</ul>
+
+<h3 id="creating-the-repository">Creating the repository</h3>
+
+<ul>
+  <li>Create a directory on the webserver at the desired location which will hold the rpms and the repository data.
+    <ul>
+      <li>Example for httpd on EL6:</li>
+    </ul>
+
+    <p> mkdir /var/www/html/sl6v</p>
+  </li>
+  <li>Thus given the above location and assuming a webserver FQDN of ovirt.azeroth.net the URL for the repository would be:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code> http://ovirt.azeroth.net/sl6v/&#x000A;</code></pre>
+
+<ul>
+  <li>You will now need to copy some of the rpms built previously into that hosted directory you created</li>
+  <li>Copy the following RPMS into the directory
+    <ul>
+      <li>logrotate-<version>.el6.x86_64.rpm</version></li>
+      <li>sanlock-<version>.el6.x86_64.rpm</version></li>
+      <li>sanlock-lib-<version>.el6.x86_64.rpm</version></li>
+      <li>sanlock-python-<version>.el6.x86_64.rpm</version></li>
+      <li>glusterfs-<version>.el6.x86_64.rpm</version></li>
+      <li>glusterfs-fuse-<version>.el6.x86_64.rpm</version></li>
+      <li>glusterfs-geo-replication-<version>.el6.x86_64.rpm</version></li>
+      <li>glusterfs-rdma-<version>.el6.x86_64.rpm</version></li>
+      <li>glusterfs-server-<version>.el6.x86_64.rpm</version></li>
+      <li>vdsm-<version>.el6.x86_64.rpm</version></li>
+      <li>vdsm-python-<version>.el6.x86_64.rpm</version></li>
+      <li>vdsm-cli-<version>.el6.noarch.rpm</version></li>
+      <li>vdsm-gluster-<version>.el6.noarch.rpm</version></li>
+      <li>vdsm-reg-<version>.el6.noarch.rpm</version></li>
+      <li>vdsm-xmlrpc-<version>.el6.noarch.rpm</version></li>
+    </ul>
+  </li>
+  <li>Now we need to turn the directory into a yum repository to do this we will use createrepo</li>
+  <li>
+    <p>If createrepo is not installed on the system install it via:</p>
+
+    <p> yum -y install createrepo</p>
+  </li>
+  <li>
+    <p>Descend into the directory where you just copied the RPMS to and issue the following command:</p>
+
+    <p> createrepo -d .</p>
+  </li>
+  <li>You now have yum repository hosting the needed rpms built prior</li>
+</ul>
+
+<h2 id="kickstarting-things">Kickstarting Things</h2>
+
+<ul>
+  <li>The best way to load a system to use as an ovirt VM host is to load it from a kickstart.</li>
+  <li>This allows for the following:
+    <ul>
+      <li>Automates the load and install process</li>
+      <li>Loads a minimal amount of packages (only what is needed and nothing more)</li>
+      <li>Reduces the install size and footprint</li>
+      <li>Saves time loading hosts</li>
+      <li>Makes it easier to reload hosts</li>
+    </ul>
+  </li>
+  <li>Benefits over a stateless host
+    <ul>
+      <li>Can easily load or update drivers or custom 3rd party drivers</li>
+      <li>Configurations and data can be easily customized</li>
+      <li>Allows for loading of any additional software/packaged required for whatever reason</li>
+      <li>Easier to enable/disable services</li>
+      <li>Easier to enable/disable iptables or selinux</li>
+      <li>Easier to custom VDSM hooks</li>
+      <li>Easier to make customizations to networking</li>
+      <li>Easier to make customizations or changes via core libvirt where needed EG: virsh, libvirt networks, storage, etc</li>
+    </ul>
+  </li>
+  <li>Kickstarting the load is best done via:
+    <ul>
+      <li>Booting from the DVD medi</li>
+      <li>PXE boot and install</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="building-the-kickstart">Building the Kickstart</h3>
+
+<ul>
+  <li>Building a kickstart for EL6 is covered more in depth here: <a href="http://access.redhat.com/knowledge/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Installation_Guide/ch-kickstart2.html">Kickstart Installations</a></li>
+  <li>Included below is an example kickstart generated for using with Scientfic Linux 6.3</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Things you might want to customize in the below kickstart:
+    <ul>
+      <li>Disk partitioning sizes and layout - the below load will wipe the partition tables and lay down a swap and "/" partition only</li>
+      <li>Enable the firewall if so desired</li>
+      <li>Enable selinux if so desired</li>
+      <li>Change the default system language</li>
+      <li>Change the default system keyboard layout</li>
+      <li>Change the timezone</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Things you do want to change:
+    <ul>
+      <li>The #version=
+        <ul>
+          <li>Below we use SL so we call it SL6V for short for Scientific Linux 6.x Hypervisor</li>
+        </ul>
+      </li>
+      <li>The root password</li>
+      <li>The repository definition for your distro
+        <ul>
+          <li>Below we are using SL so the repo definition for the base OS looks like:</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Example:</p>
+
+<pre class="highlight plaintext"><code> repo --name="Scientific Linux 6.3 - x86_64" --baseurl="http://ftp.scientificlinux.org/linux/scientific/6.3/x86_64/os/" &#x000A;</code></pre>
+
+<ul>
+  <li>The repository definition for the additional rpms</li>
+</ul>
+
+<p>Example:</p>
+
+<pre class="highlight plaintext"><code> repo --name="sl6v" --baseurl="http://ovirt.azeroth.net/sl6v/" &#x000A;</code></pre>
+
+<ul>
+  <li>The package <distroname>-release
+</distroname>    <ul>
+      <li>Below we are using SL so it is sl-release change it whatever you are using EG: centos-release or redhat-release</li>
+    </ul>
+  </li>
+  <li>Included in the below example kickstart is the package epel-release which SL includes yum repository definitions for <a href="http://fedoraproject.org/wiki/EPEL">EPEL</a>
+    <ul>
+      <li>SL includes the EPEL repository defintions package</li>
+      <li>CentOS does not include it</li>
+      <li>RHEL does not include it</li>
+      <li>OEL does not include it</li>
+    </ul>
+  </li>
+  <li>Thus in the case of the three EL6 distros which do not natively contain the EPEL repository definitions RPM you would need to add that RPM to the yum repository you created prior to hold the extra RPMS built above.</li>
+  <li>The EPEL repository definitions RPM can be found here: <a href="http://dl.fedoraproject.org/pub/epel/6/x86_64/">EPEL x86_64 Repo</a> and is named: epel-release-<version>.noarch.rpm</version></li>
+  <li>Alternatively you can choose to remove the epel-release package from the package list in the example kickstart below.</li>
+</ul>
+
+<p>Example EL6 Kickstart to load a minimal ovirt VM host:</p>
+
+<pre class="highlight plaintext"><code>#platform=x86, AMD64, or Intel EM64T&#x000A;#version=SL6V&#x000A;# Firewall configuration&#x000A;firewall --disabled&#x000A;# Install OS instead of upgrade&#x000A;install&#x000A;# Use CDROM installation media&#x000A;cdrom&#x000A;# Root password&#x000A;rootpw --plaintext &lt;your password goes here&gt;&#x000A;# System authorization information&#x000A;auth  --useshadow  --passalgo=sha512&#x000A;# Use text mode install&#x000A;text&#x000A;# System keyboard&#x000A;keyboard us&#x000A;# System language&#x000A;lang en_US&#x000A;# SELinux configuration&#x000A;selinux --disabled&#x000A;# Do not configure the X Window System&#x000A;skipx&#x000A;# Installation logging level&#x000A;logging --level=info&#x000A;# Reboot after installation&#x000A;reboot&#x000A;# System timezone&#x000A;timezone  America/Chicago&#x000A;# System bootloader configuration&#x000A;bootloader --append="elevator=deadline processor.max_cstate=1" --location=mbr&#x000A;# Clear the Master Boot Record&#x000A;zerombr&#x000A;# Partition clearing information&#x000A;clearpart --all --initlabel &#x000A;# Disk partitioning information&#x000A;part swap --fstype="swap" --size=4096&#x000A;part / --fstype="ext4" --grow --size=1&#x000A;&#x000A;repo --name="Scientific Linux 6.3 - x86_64" --baseurl="http://ftp.scientificlinux.org/linux/scientific/6.3/x86_64/os/"&#x000A;repo --name="your-repo-name" --baseurl="http://&lt;url_to_the_server_hosting_your_rpms&gt;/therpms/"&#x000A;&#x000A;%packages --nobase&#x000A;@ Core&#x000A;ConsoleKit-libs&#x000A;MAKEDEV&#x000A;PyPAM&#x000A;PyXML&#x000A;SDL&#x000A;acl&#x000A;acpid&#x000A;aic94xx-firmware&#x000A;alsa-lib&#x000A;attr&#x000A;audit&#x000A;audit-libs&#x000A;audit-libs-python&#x000A;augeas&#x000A;augeas-libs&#x000A;avahi-libs&#x000A;basesystem&#x000A;bash&#x000A;bc&#x000A;bfa-firmware&#x000A;bind-libs&#x000A;bind-utils&#x000A;binutils&#x000A;biosdevname&#x000A;bridge-utils&#x000A;btrfs-progs&#x000A;busybox&#x000A;bzip2&#x000A;bzip2-libs&#x000A;ca-certificates&#x000A;celt051&#x000A;chkconfig&#x000A;cim-schema&#x000A;coreutils&#x000A;coreutils-libs&#x000A;cpio&#x000A;cracklib&#x000A;cracklib-dicts&#x000A;cracklib-python&#x000A;cronie&#x000A;cronie-anacron&#x000A;crontabs&#x000A;cryptsetup-luks&#x000A;cryptsetup-luks-libs&#x000A;curl&#x000A;cyrus-sasl&#x000A;cyrus-sasl-gssapi&#x000A;cyrus-sasl-lib&#x000A;cyrus-sasl-md5&#x000A;dash&#x000A;db4&#x000A;db4-utils&#x000A;dbus&#x000A;dbus-glib&#x000A;dbus-libs&#x000A;dbus-python&#x000A;device-mapper&#x000A;device-mapper-event&#x000A;device-mapper-event-libs&#x000A;device-mapper-libs&#x000A;device-mapper-multipath&#x000A;device-mapper-multipath-libs&#x000A;dhclient&#x000A;dhcp-common&#x000A;diffutils&#x000A;dmidecode&#x000A;dmraid&#x000A;dnsmasq&#x000A;dosfstools&#x000A;dracut&#x000A;dracut-fips&#x000A;dracut-kernel&#x000A;dracut-network&#x000A;e2fsprogs&#x000A;e2fsprogs-libs&#x000A;ebtables&#x000A;efibootmgr&#x000A;eggdbus&#x000A;eject&#x000A;elfutils-libelf&#x000A;elfutils-libs&#x000A;epel-release&#x000A;ethtool&#x000A;expat&#x000A;fence-agents&#x000A;file&#x000A;file-libs&#x000A;filesystem&#x000A;findutils&#x000A;fipscheck&#x000A;fipscheck-lib&#x000A;flac&#x000A;fuse&#x000A;fuse-libs&#x000A;gawk&#x000A;gdb&#x000A;gdbm&#x000A;genisoimage&#x000A;glib2&#x000A;glibc&#x000A;glibc-common&#x000A;glusterfs&#x000A;glusterfs-fuse&#x000A;glusterfs-geo-replication&#x000A;glusterfs-rdma&#x000A;glusterfs-server&#x000A;gmp&#x000A;gnutls&#x000A;gnutls-utils&#x000A;gpgme&#x000A;gpxe-roms-qemu&#x000A;grep&#x000A;groff&#x000A;grub&#x000A;grubby&#x000A;gzip&#x000A;hal&#x000A;hal-info&#x000A;hal-libs&#x000A;hivex&#x000A;hmaccalc&#x000A;hwdata&#x000A;info&#x000A;initscripts&#x000A;ipmitool&#x000A;iproute&#x000A;iptables&#x000A;iptables-ipv6&#x000A;iputils&#x000A;irqbalance&#x000A;iscsi-initiator-utils&#x000A;kbd&#x000A;kbd-misc&#x000A;kernel&#x000A;kernel-firmware&#x000A;kexec-tools&#x000A;keyutils&#x000A;keyutils-libs&#x000A;kpartx&#x000A;krb5-libs&#x000A;krb5-workstation&#x000A;less&#x000A;libICE&#x000A;libSM&#x000A;libX11&#x000A;libX11-common&#x000A;libXau&#x000A;libXext&#x000A;libXi&#x000A;libXtst&#x000A;libacl&#x000A;libaio&#x000A;libasyncns&#x000A;libattr&#x000A;libblkid&#x000A;libcap&#x000A;libcap-ng&#x000A;libcgroup&#x000A;libcmpiutil&#x000A;libcom_err&#x000A;libconfig&#x000A;libcurl&#x000A;libdrm&#x000A;libedit&#x000A;libevent&#x000A;libffi&#x000A;libgcc&#x000A;libgcrypt&#x000A;libgcrypt-devel&#x000A;libgomp&#x000A;libgpg-error&#x000A;libgpg-error-devel&#x000A;libgssglue&#x000A;libgudev1&#x000A;libguestfs&#x000A;libguestfs-tools-c&#x000A;libguestfs-winsupport&#x000A;libibverbs&#x000A;libidn&#x000A;libjpeg&#x000A;libmlx4&#x000A;libnih&#x000A;libnl&#x000A;libogg&#x000A;libpcap&#x000A;libpciaccess&#x000A;libselinux&#x000A;libselinux-python&#x000A;libselinux-utils&#x000A;libsemanage&#x000A;libsepol&#x000A;libsndfile&#x000A;libss&#x000A;libssh2&#x000A;libstdc++&#x000A;libsysfs&#x000A;libtasn1&#x000A;libtirpc&#x000A;libudev&#x000A;libusb&#x000A;libusb1&#x000A;libuser&#x000A;libuser-python&#x000A;libutempter&#x000A;libuuid&#x000A;libvirt&#x000A;libvirt-cim&#x000A;libvirt-client&#x000A;libvirt-lock-sanlock&#x000A;libvirt-python&#x000A;libvorbis&#x000A;libxcb&#x000A;libxml2&#x000A;libxml2-python&#x000A;libxslt&#x000A;lm_sensors-libs&#x000A;logrotate&#x000A;lsof&#x000A;lsscsi&#x000A;ltrace&#x000A;lua&#x000A;lvm2&#x000A;lvm2-libs&#x000A;lzo&#x000A;lzop&#x000A;m2crypto&#x000A;m4&#x000A;man&#x000A;mdadm&#x000A;mesa-libGLU&#x000A;mingetty&#x000A;module-init-tools&#x000A;nc&#x000A;ncurses&#x000A;ncurses-base&#x000A;ncurses-libs&#x000A;net-snmp&#x000A;net-snmp-libs&#x000A;net-snmp-utils&#x000A;net-tools&#x000A;netcf-libs&#x000A;newt&#x000A;newt-python&#x000A;nfs-utils&#x000A;nfs-utils-lib&#x000A;nspr&#x000A;nss&#x000A;nss-softokn&#x000A;nss-softokn-freebl&#x000A;nss-sysinit&#x000A;nss-tools&#x000A;nss-util&#x000A;ntp&#x000A;ntpdate&#x000A;numactl&#x000A;numad&#x000A;openldap&#x000A;openssh&#x000A;openssh-clients&#x000A;openssh-server&#x000A;openssl&#x000A;pam&#x000A;parted&#x000A;passwd&#x000A;patch&#x000A;pciutils&#x000A;pciutils-libs&#x000A;pcre&#x000A;perl-libs&#x000A;pexpect&#x000A;pinentry&#x000A;pixman&#x000A;pkgconfig&#x000A;plymouth&#x000A;plymouth-core-libs&#x000A;plymouth-scripts&#x000A;policycoreutils&#x000A;policycoreutils-python&#x000A;polkit&#x000A;popt&#x000A;procps&#x000A;psmisc&#x000A;pth&#x000A;pulseaudio-libs&#x000A;pyOpenSSL&#x000A;pygobject2&#x000A;pygpgme&#x000A;pyparted&#x000A;python&#x000A;python-decorator&#x000A;python-dmidecode&#x000A;python-ethtool&#x000A;python-gudev&#x000A;python-hivex&#x000A;python-iniparse&#x000A;python-libguestfs&#x000A;python-libs&#x000A;python-pycurl&#x000A;python-setuptools&#x000A;python-simplejson&#x000A;python-suds&#x000A;python-urlgrabber&#x000A;python-virtinst&#x000A;qemu-img&#x000A;qemu-kvm&#x000A;qemu-kvm-tools&#x000A;ql2100-firmware&#x000A;ql2200-firmware&#x000A;ql23xx-firmware&#x000A;ql2400-firmware&#x000A;ql2500-firmware&#x000A;radvd&#x000A;readline&#x000A;redhat-logos&#x000A;rootfiles&#x000A;rpcbind&#x000A;rpm&#x000A;rpm-libs&#x000A;rpm-python&#x000A;rsync&#x000A;rsyslog&#x000A;sanlock&#x000A;sanlock-lib&#x000A;sanlock-python&#x000A;sblim-sfcb&#x000A;scrub&#x000A;seabios&#x000A;sed&#x000A;selinux-policy&#x000A;selinux-policy-targeted&#x000A;setools-console&#x000A;setup&#x000A;sg3_utils&#x000A;sg3_utils-libs&#x000A;sgabios-bin&#x000A;shadow-utils&#x000A;slang&#x000A;sl-release&#x000A;sos&#x000A;spice-server&#x000A;sqlite&#x000A;strace&#x000A;sudo&#x000A;sysfsutils&#x000A;sysstat&#x000A;system-config-keyboard-base&#x000A;systemtap-runtime&#x000A;sysvinit-tools&#x000A;tar&#x000A;tcp_wrappers-libs&#x000A;tcpdump&#x000A;telnet&#x000A;traceroute&#x000A;tree&#x000A;tzdata&#x000A;udev&#x000A;unzip&#x000A;upstart&#x000A;usbredir&#x000A;usbutils&#x000A;ustr&#x000A;util-linux-ng&#x000A;vconfig&#x000A;vgabios&#x000A;vim-minimal&#x000A;virt-what&#x000A;virt-who&#x000A;wget&#x000A;which&#x000A;xz&#x000A;xz-libs&#x000A;xz-lzma-compat&#x000A;yajl&#x000A;zlib&#x000A;-NetworkManager&#x000A;%end&#x000A;</code></pre>
+
+<h3 id="hosting-the-kickstart">Hosting the Kickstart</h3>
+
+<ul>
+  <li>We can also use the same apache webserver we created for hosting the extra RPMS built prior to host the kickstart</li>
+  <li>Create another directory on the webserver to hold the kickstart:</li>
+</ul>
+
+<p>Example for httpd on EL6:</p>
+
+<pre class="highlight plaintext"><code>   mkdir /var/www/html/ks&#x000A;</code></pre>
+
+<ul>
+  <li>Copy the kickstart file to the newly created directory</li>
+</ul>
+
+<p>Example using sl6v.ks as the name of the kickstart file</p>
+
+<pre class="highlight plaintext"><code>   cp sl6v.ks /var/www/html/ks/&#x000A;</code></pre>
+
+<ul>
+  <li>Thus given the above location and assuming a webserver FQDN of ovirt.azeroth.net the URL for the kickstart would be:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>http://ovirt.azeroth.net/ks/sl6v.ks&#x000A;</code></pre>
+
+<ul>
+  <li>This remotely accessible Kickstart can now be fed into a DVD or PXE install</li>
+</ul>
+
+<h3 id="booting-and-installing-via-dvd">Booting and installing via DVD</h3>
+
+<ul>
+  <li>Booting and installing from the DVD media is the simplest method which works easily with most modern servers via their respective remote DVD media redirection capabilties:
+    <ul>
+      <li>Sun Oracle ILOM</li>
+      <li>Dell DRAC</li>
+      <li>HP ILO</li>
+    </ul>
+  </li>
+  <li>EL6 Kickstart options are covered in depth here: <a href="http://access.redhat.com/knowledge/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Installation_Guide/s1-kickstart2-startinginstall.html">Starting a Kickstart Installation</a></li>
+  <li>Assuming one of the above server media redirection methods attach the ISO of your choosen EL6 flavor to the remote re-direction console/media re-direct method.</li>
+  <li>Boot the server and choose to boot from the redirected media</li>
+  <li>Once at the initial grub boot menu of the install media highlight the "Install or upgrade an existing system " choice (this is the default in the case of all the EL6 distros)</li>
+  <li>Hit the tab key</li>
+  <li>Using the above URL to the kickstart you created and copied to your webserver add the following boot option</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code> ks=http://url-to-your-webserver/kickstart-directory/name-of-you-kickstart-file&#x000A;</code></pre>
+
+<ul>
+  <li>Next we need to tell it which network card to activate DHCP on and use to communicate on the network</li>
+  <li>
+    <p>Assuming the cable is plugged into the servers first ethernet port and that port will be "eth0" add the following boot option</p>
+
+    <p> ksdevice=eth0</p>
+  </li>
+  <li>Hit enter to start the install</li>
+  <li>If all goes well anaconda will find the kickstart and begin the automated install</li>
+</ul>
+
+<h3 id="booting-and-installing-via-pxe">Booting and installing via PXE</h3>
+
+<ul>
+  <li>Setting up PXE boot and install under EL6 is covered in depth here: <a href="http://access.redhat.com/knowledge/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Installation_Guide/ap-install-server.html">Setting Up an Installation Server</a></li>
+  <li>Setting up PXE boot and install under Fedora is covered in depth here: <a href="http://docs.fedoraproject.org/en-US/Fedora/17/html/Installation_Guide/sn-pxe-server-manual.html">Manually configure a PXE server</a></li>
+  <li>EL6 Kickstart options are covered in depth here: <a href="http://access.redhat.com/knowledge/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Installation_Guide/s1-kickstart2-startinginstall.html">Starting a Kickstart Installation</a></li>
+  <li>Assuming a PXE boot and install server has been setup per the above documentation</li>
+  <li>Assuming that a copy of your respective distro's pxeboot "vmlinuz" has been copied to a directory in /var/lib/tftpboot/ called "boot" EG: /var/lib/tftpboot/boot</li>
+  <li>Assuming that a copy of your respective distro's pxeboot "initrd" has been copied to a directory in /var/lib/tftpboot/ called "boot" EG: /var/lib/tftpboot/boot</li>
+  <li>Edit /var/lib/tftpboot/pxelinux.cfg/default and add the following:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>  label somelabel-goes-here&#x000A;  kernel boot/vmlinuz&#x000A;  append ks initrd=boot/initrd.img ramdisk_size=100000 ksdevice=eth0  repo=http://url-to-your-distros-base-install/ ks=http://url-to-your-webserver/kickstart-directory/name-of-you-kickstart-file&#x000A;</code></pre>
+
+<ul>
+  <li>Given the above example eth0 is assumed as the ethernet port on the server which has an active link to the network</li>
+</ul>
+
+<p>Where you are specifying that you copied the installation media or mirrored the install data for your choosen distro to:</p>
+
+<pre class="highlight plaintext"><code> repo=http://url-to-your-distros-base-install &#x000A;</code></pre>
+
+<p>Example Using SL:</p>
+
+<pre class="highlight plaintext"><code>http://ftp.scientificlinux.org/linux/scientific/6.3/x86_64/os/&#x000A;</code></pre>
+
+<p>Where you specified that you copied the kickstart file created above:</p>
+
+<pre class="highlight plaintext"><code>ks=http://url-to-your-webserver/kickstart-directory/name-of-you-kickstart-file&#x000A;</code></pre>
+
+<p>Example using the above kickstart:</p>
+
+<pre class="highlight plaintext"><code>http://ovirt.azeroth.net/ks/sl6v.ks&#x000A;</code></pre>
+
+<ul>
+  <li>Assuming all the configuration is correct boot your server via PXE
+    <ul>
+      <li>Usually F12 in most modern servers</li>
+      <li>OR Set the servers bootdev/order via the respective remote management method (ILOM, DRAC, ILO)</li>
+      <li>OR set the chassis bootdev to PXE via ipmitool to the respective remote BMC (ILOM, DRAC)</li>
+    </ul>
+  </li>
+  <li>If all is well with the configuration the server will obtain an IP address from the ISC DHCP server you configured prior as part of the PXE server configuration</li>
+  <li>Once booted to the PXE server menu (assuming you have configured a menu, see EL6/Fedora documentation on this topic) type whatever label name you choose and hit return.</li>
+  <li>Alternatively you could have configured the PXE server to automatically kicked into your choosen label name (see EL6/Fedora documentation on this topic).</li>
+  <li>If all goes well the server will find the base repo fire up anaconda which will find the kickstart and begin the automated install</li>
+</ul>
+
+<h2 id="setting-up-the-host">Setting up the Host</h2>
+
+<ul>
+  <li>Provided all went well and you now have a cleanly loaded host via kickstart the system will now need some configuration.</li>
+</ul>
+
+<h3 id="configure-networking">Configure Networking</h3>
+
+<ul>
+  <li>Need to configure networking on the system by editing/creating the following files</li>
+  <li>Below example configurations use:</li>
+  <li>A system named orgrimmar.azeroth.net (FQDN)</li>
+  <li>Uses eth0 and the according assigned physical ethernet port to talk to the ovirt-engine</li>
+  <li>Uses the IP/mask 192.168.1.1/24</li>
+  <li>Uses a default Gateway of 192.168.1.254</li>
+  <li>Uses the DNS domain of azeroth.net</li>
+  <li>Uses a DNS server at 192.168.1.100 for name resolution</li>
+  <li>Substitute your own values for the parameters in the below examples</li>
+</ul>
+
+<p>Edit: /etc/hosts</p>
+
+<pre class="highlight plaintext"><code>   127.0.0.1     localhost localhost.localdomain localhost4 localhost4.localdomain4&#x000A;   ::1           localhost6 localhost6.localdomain6&#x000A;   192.168.1.1    durotar durotar.azeroth.net&#x000A;</code></pre>
+
+<p>Edit: /etc/resolv.conf</p>
+
+<pre class="highlight plaintext"><code>   search azeroth.net&#x000A;   domain azeroth.net&#x000A;   nameserver 192.168.1.100&#x000A;</code></pre>
+
+<p>Edit: /etc/sysconfig/network</p>
+
+<pre class="highlight plaintext"><code>   NETWORKING=yes&#x000A;   NETWORKING_IPV6=no&#x000A;   HOSTNAME=durotar.azeroth.net&#x000A;   GATEWAY=192.168.1.254&#x000A;</code></pre>
+
+<p>Edit /etc/sysconfig/network-scripts/ifcfg-eth0</p>
+
+<pre class="highlight plaintext"><code>   DEVICE=eth0 ` HWADDR=`&lt;HW MAC Address of eth0&gt;&#x000A;   ONBOOT=yes&#x000A;   BOOTPROTO=none&#x000A;   IPV6INIT=no&#x000A;   BRIDGE=ovirtmgmt&#x000A;   PEERDNS=no&#x000A;</code></pre>
+
+<p>Create: /etc/sysconfig/network-scripts/ifcfg-ovirtmgmt</p>
+
+<pre class="highlight plaintext"><code>   DEVICE=ovirtmgmt&#x000A;   ONBOOT=yes&#x000A;   BOOTPROTO=none&#x000A;   IPV6INIT=no&#x000A;   TYPE=Bridge&#x000A;   STP=off&#x000A;   DELAY=0&#x000A;   IPADDR=192.168.1.1&#x000A;   PREFIX=24&#x000A;   PEERDNS=no&#x000A;</code></pre>
+
+<ul>
+  <li>
+    <p>Once networking is configured restart the network service</p>
+
+    <p> service network restart</p>
+  </li>
+</ul>
+
+<h3 id="configure-ntp">Configure NTP</h3>
+
+<ul>
+  <li>NTP needs to be configured and the host should talk to the same NTP server as the ovirt-engine which manages it.</li>
+  <li>The ovirt-engine and nodes need to be in sync with each other time wise</li>
+  <li>Also the ntpd service is required to be configured and running by VDSM</li>
+  <li>We use the example ntp server address of 192.168.101</li>
+  <li>Again substitute your own value for ntp server address</li>
+</ul>
+
+<p>Edit: /etc/ntp.conf</p>
+
+<pre class="highlight plaintext"><code>   driftfile /var/lib/ntp/drift&#x000A;   includefile /etc/ntp/crypto/pw&#x000A;   keys /etc/ntp/keys&#x000A;   server 192.168.1.101&#x000A;</code></pre>
+
+<h3 id="optional-configurations">Optional Configurations</h3>
+
+<ul>
+  <li>Change the ISCSI initiator name</li>
+</ul>
+
+<p>Edit: /etc/iscsi/initiatorname.iscsi</p>
+
+<pre class="highlight plaintext"><code>   InitiatorName=iqn.2012-08.net.azeroth:durotar&#x000A;</code></pre>
+
+<ul>
+  <li>Perhaps more depending on how much you want to customize/modify</li>
+</ul>
+
+<h3 id="add-yum-repository-containing-the-extra-rpms">Add yum repository containing the extra rpms</h3>
+
+<ul>
+  <li>We need to add a repository definition for the repo containing the extra rpms built prior</li>
+  <li>Uses the same values for the repo definition you defined in the kickstart</li>
+  <li>create a file in /etc/yum.repos.d/<your-repo-name>.repo</your-repo-name></li>
+</ul>
+
+<p>Example using the same examples in the above kickstart:</p>
+
+<pre class="highlight plaintext"><code>[your-repo-name]&#x000A;name=your-repo-name&#x000A;baseurl=http://&lt;url_to_the_server_hosting_your_rpms&gt;/therpms/&#x000A;enabled=1&#x000A;gpgcheck=0&#x000A;</code></pre>
+
+<p>Actual Example with values (substitute in your own values):</p>
+
+<pre class="highlight plaintext"><code>[sl6v]&#x000A;name=Scientific Linux 6.3 Hypervisor&#x000A;baseurl=http://ovirt.azeroth.net/sl6v/&#x000A;enabled=1&#x000A;gpgcheck=0&#x000A;</code></pre>
+
+<h3 id="bring-things-up-to-date">Bring things up to date</h3>
+
+<ul>
+  <li>You will want to bring things up to date updates wise</li>
+  <li>In SL ensure both the security and fastbugs yum repositories are enabled
+    <ul>
+      <li>in /etc/yum.repos.d/sl.repo both "sl" and "sl-security" should be enabled (EG: enabled=1 for both)</li>
+      <li>in /etc/yum.repos.d/sl-other sl-fastbugs should be enabled (EG: enabled=1)</li>
+    </ul>
+  </li>
+  <li>In CentOS both the base and updates repositories should be enabled
+    <ul>
+      <li>The CentOS fasttrack should also be enabled in /etc/yum.repos.d/CentOS-fasttrack.repo (EG: enabled=1)</li>
+    </ul>
+  </li>
+  <li>In OEL ensure that ol6_latest and ol6_UEK_latest are enabled
+    <ul>
+      <li>in /etc/public-yum-ol6-.repo ol6_latest and ol6_UEK_latest should be enabled (EG: enabled=1 for both)</li>
+    </ul>
+  </li>
+  <li>In RHEL the sytem should be subscribed and able to talk to RHN</li>
+  <li>
+    <p>Once the you ensure the proper yum repositories are enabled update the system via yum</p>
+
+    <p> yum -y update</p>
+  </li>
+  <li>Once the system is updated, reboot it</li>
+  <li>The system is now ready for assimilation into your ovirt-engine collective</li>
+</ul>
+
+<h2 id="adding-the-host-to-ovirt">Adding the Host to Ovirt</h2>
+
+<ul>
+  <li>Assuming system has now been updated and configured</li>
+</ul>
+
+<h3 id="disable-un-needed-services">Disable un-needed services</h3>
+
+<ul>
+  <li>Disable some services which will not be needed or will conflict:</li>
+  <li>
+    <p>libvirt-guests</p>
+
+    <p> chkconfig libvirt-guests off</p>
+  </li>
+  <li>glusterd</li>
+  <li>
+    <p>Currently used by Fedora hosts but with this setup could be used by your EL6 hosts too</p>
+
+    <p> chkconfig glusterd off </p>
+  </li>
+</ul>
+
+<h3 id="optional-services-to-enabledisable">Optional services to enable/disable</h3>
+
+<ul>
+  <li>Firewall can be optionally enabled or disabled</li>
+  <li>If it is enabled ports will need to be opened for SSH and VDSM (EG: 22 and 54321)</li>
+</ul>
+
+<p>Enable the firewall:</p>
+
+<pre class="highlight plaintext"><code>   chkconfig iptables on&#x000A;   chkconfig ip6tables on&#x000A;</code></pre>
+
+<p>Disable the firewall:</p>
+
+<pre class="highlight plaintext"><code>   chkconfig iptables off&#x000A;   chkconfig ip6tables off&#x000A;</code></pre>
+
+<ul>
+  <li>Enable or disable kernel core dumping</li>
+</ul>
+
+<p>Enable kdump:</p>
+
+<pre class="highlight plaintext"><code>   chkconfig kdump on&#x000A;</code></pre>
+
+<p>Disable kdump:</p>
+
+<pre class="highlight plaintext"><code>   chkconfig kdump off&#x000A;</code></pre>
+
+<ul>
+  <li>Any other services you may want enabled or disabled</li>
+</ul>
+
+<h3 id="enable-needed-services">Enable needed services</h3>
+
+<ul>
+  <li>ntpd</li>
+  <li>iscsi</li>
+  <li>mutltipathd</li>
+  <li>Check the following services they should already be enabled and running
+    <ul>
+      <li>libvirtd</li>
+      <li>sanlock</li>
+      <li>sshd</li>
+      <li>wdmd</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="configure-ssh">Configure SSH</h3>
+
+<ul>
+  <li>Currently the deployutil.py in vdsm-bootstrap and vdsm-reg either fails to:
+    <ul>
+      <li>Copy the engine's SSH RSA key to EL6 based hosts authorized_keys file to EL6 based hosts authorized_keys file</li>
+      <li>Improperly copies the engines SSH RSA key to EL6 based hosts authorized_keys file to EL6 based hosts authorized_keys file</li>
+      <li>Or the deployutil.py getAuthKeysFile() function outright fails to run altogether when dealing with EL6 based hosts</li>
+    </ul>
+  </li>
+  <li>Given the prior we can simply do the needful manually assuming we will be using vdsm-reg to add the host</li>
+  <li>ssh to the host from the ovirt-engine server and create the file /root/.ssh/authorized_keys</li>
+  <li>copy the contents of the file /etc/pki/ovirt-engine/keys/engine.ssh.key.txt to the file you just created on the host</li>
+</ul>
+
+<p>Example;</p>
+
+<pre class="highlight plaintext"><code>   mkdir /root/.ssh&#x000A;   cat engine.ssh.key.txt &gt;&gt; /root/.ssh/authorized_keys&#x000A;</code></pre>
+
+<ul>
+  <li>
+    <p>If adding the host via vds_bootstrap.py one can also just comment out the codeblock in the file (since we copied the key manually):</p>
+
+    <p> if not oDeploy.setSSHAccess(iurl, engine_ssh_key):
+   logging.error('setSSHAccess test failed')
+   return False</p>
+  </li>
+</ul>
+
+<h3 id="install-vdsm">Install VDSM</h3>
+
+<ul>
+  <li>Now you will need to install the VDSM rpms from your extra RPMS repository</li>
+  <li>Ensure you added (per the above) the repository definition for the repository you created which contains the VDSM RPMS you built and placed there previously</li>
+</ul>
+
+<p>Install the neccesary VDSM RPMS:</p>
+
+<pre class="highlight plaintext"><code>   yum -y install vdsm vdsm-python vdsm-cli vdsm-gluster vdsm-reg vdsm-xmlrpc&#x000A;</code></pre>
+
+<ul>
+  <li>If this fails something is not right in your setup and you will want to trace back a few steps</li>
+  <li>
+    <p>Once the VDSM RPMS are installed you will want to turn off the vdsm-reg service (we will be manually invoking it)</p>
+
+    <p> chkconfig vdsm-reg off</p>
+  </li>
+</ul>
+
+<h3 id="configure-vdsm">Configure VDSM</h3>
+
+<ul>
+  <li>Now that VDSM in installed we need to create a configuration for it</li>
+  <li>VDSM stores it's configuration file in /etc/vdsm/</li>
+</ul>
+
+<p>Create: /etc/vdsm/vdsm.conf and add the following content to the file:</p>
+
+<pre class="highlight plaintext"><code>   [vars]&#x000A;   trust_store_path = /usr/local/etc/pki/vdsm&#x000A;   ssl = true&#x000A;   [addresses]&#x000A;   management_port = 54321&#x000A;</code></pre>
+
+<h3 id="configure-vdsm-reg">Configure VDSM-reg</h3>
+
+<ul>
+  <li>We will use vdsm-reg to assimilate the host into your ovirt-engine collective</li>
+  <li>We need to edit the configuration file for vdsm-reg stored in /etc/vdsm-reg/vdsm-reg.conf</li>
+  <li>In the below example configuration uses an ovirt-engine instance named ovirt.azeroth.net (FQDN)</li>
+  <li>You will need to substitute the FQDN of your ovirt-engine instance</li>
+</ul>
+
+<p>Edit: /etc/vdsm-reg/vdsm-reg.conf</p>
+
+<pre class="highlight plaintext"><code>[vars]&#x000A;reg_req_interval = 5&#x000A;vdsm_conf_file=/etc/vdsm/vdsm.conf&#x000A;pidfile=/var/run/vdsm-reg.pid&#x000A;logger_conf=/etc/vdsm-reg/logger.conf&#x000A;vdc_host_name=ovirt.azeroth.net&#x000A;vdc_host_port=443&#x000A;vdc_reg_uri=/OvirtEngineWeb/register&#x000A;#upgrade_iso_file=/data/updates/ovirt-node-image.iso&#x000A;#upgrade_mount_point=/live&#x000A;ticket=&#x000A;</code></pre>
+
+<ul>
+  <li>Now that the ssh, vdsm, and vdsm-reg configurations are in place it's time to notify the ovirt-engine about our host</li>
+</ul>
+
+<p>Start the vdsm-reg service</p>
+
+<pre class="highlight plaintext"><code>   service vdsm-reg start&#x000A;</code></pre>
+
+<ul>
+  <li>The vdsm-reg service will stop once it has successfully registered the host with your ovirt-engine instance</li>
+  <li>If registration was successful with your ovirt-engine instance you will see the host listed in the ovirt webadmin portal hosts tab and pending approval</li>
+</ul>
+
+<h3 id="approve-the-host">Approve the host</h3>
+
+<ul>
+  <li>Now that the host is registered go to the hosts tab in the ovirt webadmin portal</li>
+  <li>Click on the host and click approve</li>
+  <li>A dialog will pop up where you can configure
+    <ul>
+      <li>Choose a data center to assign the host to</li>
+      <li>Choose a cluster to assign the host to</li>
+      <li>Change or modify the name that ovirt refers to the host as</li>
+      <li>power management options (Note must have at least one other active host to do this)</li>
+      <li>the SPM priority of the host</li>
+    </ul>
+  </li>
+  <li>If the host addition is successful the status of the host will change to "Up"</li>
+  <li>
+    <p>If all was successful the log entries should look something like:</p>
+
+    <p> <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> Host cluster Horde was updated by system 
+   <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> Detected new Host orgrimmar Host state was set to Up. 
+   <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> Host orgrimmar was successfully approved. 
+   <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> Installing Host orgrimmar Step: RHEV_INSTALL. 
+   <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> Installing Host orgrimmar Step: Restart; Details: Restarting vdsmd service. 
+   <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> Installing Host orgrimmar Step: VDS Configuration. 
+   <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> Installing Host orgrimmar Step: cleanAll. 
+   <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> Installing Host orgrimmar Step: CoreDump. 
+   <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> Installing Host orgrimmar Step: instCert. 
+   <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> Installing Host orgrimmar Step: RHEV_INSTALL. 
+   <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> Installing Host orgrimmar Step: Encryption setup. 
+   <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> Installing Host orgrimmar Step: RHEV_INSTALL; Details: Connected to Host 192.168.1.1 with SSH key fingerprint: <code>&lt;the SSH fingerprint&gt;</code>. 
+   <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> orgrimmar.azeroth.net parameters were updated by admin@internal. 
+   <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> Power Management is not configured for Host orgrimmar 
+   <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> Host orgrimmar.azeroth.net  registered. 
+   <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> Host orgrimmar.azeroth.net  was added by UserName. 
+   <code>&lt;date&gt;</code>, <code>&lt;time&gt;</code> Power Management is not configured for Host orgrimmar.azeroth.net</p>
+  </li>
+  <li>After the approval and registration some junk from the failed ssh key exchange issues will be left in the authorized_keys file of the :</li>
+</ul>
+
+<p>Usually looks like this:</p>
+
+<pre class="highlight html"><code><span class="cp">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;</span>&#x000A;<span class="nt">&lt;html&gt;&lt;head&gt;</span>&#x000A;<span class="nt">&lt;title&gt;</span>400 Bad Request<span class="nt">&lt;/title&gt;</span>&#x000A;<span class="nt">&lt;/head&gt;&lt;body&gt;</span>&#x000A;<span class="nt">&lt;h1&gt;</span>Bad Request<span class="nt">&lt;/h1&gt;</span>&#x000A;<span class="nt">&lt;p&gt;</span>Your browser sent a request that this server could not understand.<span class="nt">&lt;br</span> <span class="nt">/&gt;</span>&#x000A;Reason: You're speaking plain HTTP to an SSL-enabled server port.<span class="nt">&lt;br</span> <span class="nt">/&gt;</span>&#x000A;Instead use the HTTPS scheme to access this URL, please.<span class="nt">&lt;br</span> <span class="nt">/&gt;</span>&#x000A;<span class="nt">&lt;blockquote&gt;</span>Hint: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://ovirt.azeroth.net/"</span><span class="nt">&gt;&lt;b&gt;</span>https://ovirt.azeroth.net/<span class="nt">&lt;/b&gt;&lt;/a&gt;&lt;/blockquote&gt;&lt;/p&gt;</span>&#x000A;<span class="nt">&lt;hr&gt;</span>&#x000A;<span class="nt">&lt;address&gt;</span>Apache/2.2.22 (Fedora) Server at ovirt.azeroth.net Port 443<span class="nt">&lt;/address&gt;</span>&#x000A;<span class="nt">&lt;/body&gt;&lt;/html&gt;</span>&#x000A;</code></pre>
+
+<ul>
+  <li>Delete the everything but the engine's SSH RSA key that you copied in previously in the hosts authorized_keys file</li>
+</ul>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

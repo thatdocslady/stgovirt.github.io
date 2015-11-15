@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+mom-balloon.policy &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>mom-balloon.policy</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>aglitke</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Sla/autoballooning-howto/mom-balloon.policy</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>2</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-02-21</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Sla/autoballooning-howto/mom-balloon.policy' target='_blank'>
+Sla/autoballooning-howto/mom-balloon.policy
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="mom-balloonpolicy">mom-balloon.policy</h1>
+
+<p>Copy the contents of the box below to /etc/vdsm/mom-balloon.policy on the hypervisor host.</p>
+
+<pre class="highlight plaintext"><code>### KSM ########################################################################&#x000A;&#x000A;### Constants&#x000A;# The number of pages to add when increasing pages_to_scan&#x000A;(defvar ksm_pages_boost 300)&#x000A;&#x000A;# The number of pages to subtract when decreasing pages_to_scan&#x000A;(defvar ksm_pages_decay -50)&#x000A;&#x000A;# The min and max number of pages to scan per cycle when ksm is activated&#x000A;(defvar ksm_npages_min 64)&#x000A;(defvar ksm_npages_max 1250)&#x000A;&#x000A;# The number of ms to sleep between ksmd scans for a 16GB system.  Systems with&#x000A;# more memory will sleep less, while smaller systems will sleep more.&#x000A;(defvar ksm_sleep_ms_baseline 10)&#x000A;&#x000A;# A virtualization host tends to use most of its memory for running guests but&#x000A;# a certain amount is reserved for the host OS, non virtualization-related work,&#x000A;# and as a failsafe.  When free memory (including memory used for caches) drops&#x000A;# below this parcentage of total memory, the host is deemed under pressure. and&#x000A;# KSM will be started to try and free up some memory.&#x000A;(defvar ksm_free_percent 0.20)&#x000A;&#x000A;### Helper functions&#x000A;(def change_npages (delta)&#x000A;{&#x000A;    (defvar newval (+ Host.ksm_pages_to_scan delta))&#x000A;    (if (&gt; newval ksm_npages_max) (set newval ksm_npages_max) 1)&#x000A;    (if (&lt; newval ksm_npages_min) (set newval ksm_npages_min) 0)&#x000A;    (Host.Control "ksm_pages_to_scan" newval)&#x000A;})&#x000A;&#x000A;### Main Script&#x000A;# Methodology: Since running KSM does incur some overhead, try to run it only &#x000A;# when necessary.  If the amount of committed KSM shareable memory is high or if&#x000A;# free memory is low, enable KSM to try to increase free memory.  Large memory&#x000A;# machines should scan more often than small ones.  Likewise, machines under&#x000A;# memory pressure should scan more aggressively then more idle machines.&#x000A;&#x000A;(defvar ksm_pressure_threshold (* Host.mem_available ksm_free_percent))&#x000A;(defvar ksm_committed Host.ksm_shareable)&#x000A;&#x000A;(if (and (&lt; (+ ksm_pressure_threshold ksm_committed) Host.mem_available)&#x000A;         (&gt; (Host.StatAvg "mem_free") ksm_pressure_threshold))&#x000A;    (Host.Control "ksm_run" 0)&#x000A;    {        # else&#x000A;        (Host.Control "ksm_run" 1)&#x000A;        (Host.Control "ksm_sleep_millisecs"&#x000A;            (/ (* ksm_sleep_ms_baseline 16777216) Host.mem_available))&#x000A;       (if (&lt; (Host.StatAvg "mem_free") ksm_pressure_threshold)&#x000A;            (change_npages ksm_pages_boost)&#x000A;           (change_npages ksm_pages_decay))&#x000A;    }&#x000A;)&#x000A;### Auto-Balloon ###############################################################&#x000A;&#x000A;### Constants&#x000A;# If the percentage of host free memory drops below this value&#x000A;# then we will consider the host to be under memory pressure&#x000A;(defvar pressure_threshold 0.20)&#x000A;&#x000A;# If pressure threshold drops below this level, then the pressure&#x000A;# is critical and more aggressive ballooning will be employed.&#x000A;(defvar pressure_critical 0.05)&#x000A;&#x000A;# This is the minimum percentage of free memory that an unconstrained&#x000A;# guest would like to maintain&#x000A;(defvar min_guest_free_percent 0.20)&#x000A;&#x000A;# Don't change a guest's memory by more than this percent of total memory&#x000A;(defvar max_balloon_change_percent 0.05)&#x000A;&#x000A;# Only ballooning operations that change the balloon by this percentage&#x000A;# of current guest memory should be undertaken to avoid overhead&#x000A;(defvar min_balloon_change_percent 0.0025)&#x000A;&#x000A;### Helper functions&#x000A;# Check if the proposed new balloon value is a large-enough&#x000A;# change to justify a balloon operation.  This prevents us from&#x000A;# introducing overhead through lots of small ballooning operations&#x000A;(def change_big_enough (guest new_val)&#x000A;{&#x000A;    (if (&gt; (abs (- new_val guest.balloon_cur))&#x000A;           (* min_balloon_change_percent guest.balloon_cur))&#x000A;        1 0)&#x000A;})&#x000A;&#x000A;(def shrink_guest (guest)&#x000A;{&#x000A;    # Determine the degree of host memory pressure&#x000A;    (if (&lt;= host_free_percent pressure_critical)&#x000A;        # Pressure is critical:&#x000A;        #   Force guest to swap by making free memory negative&#x000A;        (defvar guest_free_percent (+ -0.05 host_free_percent))&#x000A;        # Normal pressure situation&#x000A;        #   Scale the guest free memory back according to host pressure&#x000A;        (defvar guest_free_percent (* min_guest_free_percent&#x000A;                                    (/ host_free_percent pressure_threshold))))&#x000A;&#x000A;    # Given current conditions, determine the ideal guest memory size&#x000A;    (defvar guest_used_mem (- (guest.StatAvg "balloon_cur")&#x000A;                              (guest.StatAvg "mem_unused")))&#x000A;    (defvar balloon_min (+ guest_used_mem&#x000A;                           (* guest_free_percent guest.balloon_cur)))&#x000A;    # But do not change it too fast&#x000A;    (defvar balloon_size (* guest.balloon_cur&#x000A;                            (- 1 max_balloon_change_percent)))&#x000A;    (if (&lt; balloon_size balloon_min)&#x000A;        (set balloon_size balloon_min)&#x000A;        0)&#x000A;    # Set the new target for the BalloonController.  Only set it if the&#x000A;    # value makes sense and is a large enough change to be worth it.   &#x000A;    (if (and (&lt;= balloon_size guest.balloon_cur)&#x000A;            (change_big_enough guest balloon_size))&#x000A;        (guest.Control "balloon_target" balloon_size)&#x000A;        0)&#x000A;})&#x000A;&#x000A;(def grow_guest (guest)&#x000A;{&#x000A;    # There is only work to do if the guest is ballooned&#x000A;    (if (&lt; guest.balloon_cur guest.balloon_max) {&#x000A;        # Minimally, increase so the guest has its desired free memory&#x000A;        (defvar guest_used_mem (- (guest.StatAvg "balloon_cur")&#x000A;                                  (guest.StatAvg "mem_unused")))&#x000A;        (defvar balloon_min (+ guest_used_mem (* min_guest_free_percent&#x000A;                                                 guest.balloon_max)))&#x000A;        # Otherwise, increase according to the max balloon change&#x000A;        (defvar balloon_size (* guest.balloon_cur&#x000A;                                (+ 1 max_balloon_change_percent)))&#x000A;&#x000A;        # Determine the new target for the BalloonController.  Only set&#x000A;        # if the value is a large enough for the change to be worth it. &#x000A;        (if (&gt; balloon_size guest.balloon_max)&#x000A;            (set balloon_size guest.balloon_max) 0)&#x000A;        (if (&lt; balloon_size balloon_min)&#x000A;            (set balloon_size balloon_min) 0)&#x000A;        (if (change_big_enough guest balloon_size)&#x000A;            (guest.Control "balloon_target" balloon_size) 0)&#x000A;    } 0)&#x000A;})&#x000A;&#x000A;### Main script&#x000A;# Methodology: The goal is to shrink all guests fairly and by an amount&#x000A;# scaled to the level of host memory pressure.  If the host is under&#x000A;# severe pressure, scale back more aggressively.  We don't yet handle&#x000A;# symptoms of over-ballooning guests or try to balloon idle guests more&#x000A;# aggressively.  When the host is not under memory pressure, slowly&#x000A;# deflate the balloons.&#x000A;&#x000A;(defvar host_free_percent (/ (Host.StatAvg "mem_free") Host.mem_available))&#x000A;(if (&lt; host_free_percent pressure_threshold)&#x000A;    (with Guests guest (shrink_guest guest))&#x000A;    (with Guests guest (grow_guest guest)))&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

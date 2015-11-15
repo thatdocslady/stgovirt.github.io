@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Rethinking the Architecture breakout - oVirt workshop November 2011 &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Rethinking the Architecture breakout - oVirt workshop November 2011</td>
+</tr>
+<tr>
+<th>category</th>
+<td>event/workshop</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>dannfrazier</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Rethinking the Architecture breakout - oVirt workshop November 2011</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>1</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2011-11-05</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Rethinking_the_Architecture_breakout_-_oVirt_workshop_November_2011' target='_blank'>
+Rethinking the Architecture breakout - oVirt workshop November 2011
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="rethinking-the-architecture-breakout---ovirt-workshop-november-2011">Rethinking the Architecture breakout - oVirt workshop November 2011</h1>
+
+<p>libvirt is designed to be a hypervisor agnostic layer. For lots of hypervisors this is pretty straightforward as they offer APIs for vm ops (create/destroy/ etc). No such layer exists for kvm, so libvirt has a lot of kvm-specific code to supplement. VDSM sits on top of libvirt to make use of functionality which would normally be in this mid-layer. This is a layering design defect.</p>
+
+<p>Perhaps we could create a "kvmd" layer which manipulates qemu directly. libvirt would then be free to rebase upon this new midlayer, if desired. Alternatively, maybe the "extra" code in libvirt can be extracted to create this midlayer. People like the virtualbox UI - that too could be ported on top of "kvmd".</p>
+
+<p>VDSM maybe well suited to become the "kvmd" components.</p>
+
+<p>What interface would "kvmd" present? What about using the ESXi API vs. reinventing the wheel? RHEV-M team looked at it in the past - the API is very big, they didn't understand all of it, lots of ESX-specific stuff.</p>
+
+<p>Karl suggests that we should concentrate on the API to the host - we can switch out/relayer components internally - but we want an API that people can start using now and maintain. Internals can change organically.</p>
+
+<p>We still want to have a data definition file that is generic; don't want to always require usage of oVirt engine to have a self-contained VM description. An OVF for KVM. Why not use the existing ovirt OVF as a standard?</p>
+
+<p>SuSE studio would like to use such a format; they have comparable formats for other hypervisor types.</p>
+
+<p>If kvm VM creation builds an OVF file (vs. just exporting it) it might help increase the adoption of this as a standard.</p>
+
+<p>Let's not forget there are advantages that libvirt brings to oVirt; hooks rely heavily on libvirt modules for example.</p>
+
+<p>how does ovirt-engine relate to nova? similar; but different goals.</p>
+
+<p>what about subservices of nova? e.g. placement service?</p>
+
+<p>per-user kvmd, don't run as root, a lot of benefits - security, selinux, quotas, SLAs-per-user</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

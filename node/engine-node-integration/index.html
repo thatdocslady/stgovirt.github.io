@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Engine Node Integration &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Engine Node Integration</td>
+</tr>
+<tr>
+<th>category</th>
+<td>node</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>doron, dougsland, fsimonce, roy</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Engine Node Integration</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>42</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-02-21</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Engine_Node_Integration' target='_blank'>
+Engine Node Integration
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="engine-node-integration">Engine Node Integration</h1>
+
+<p>oVirt Engine and oVirt Node Integration.</p>
+
+<p>This is a work in progress for</p>
+
+<ul>
+  <li>integrating oVirt Node with the engine</li>
+  <li>making oVirt engine and vdsm to run on any linux machine</li>
+</ul>
+
+<h2 id="host-machine">Host Machine</h2>
+
+<h3 id="ubunto--gentoo--others">Ubunto / Gentoo / others</h3>
+
+<p>No experience yet. Can start by building an rpm and extract its artifacts or alternatively convert the rpm to deb using alien? <a href="http://www.howtoforge.com/converting_rpm_to_deb_with_alien">http://www.howtoforge.com/converting_rpm_to_deb_with_alien</a> - please fill in if the details you have it working</p>
+
+<h3 id="fedora--other-rpm-and-yum-based-host">Fedora / other RPM and yum based host</h3>
+
+<ul>
+  <li>the process started on Fedora 14 machine which was updated by yum to Fedora 16</li>
+</ul>
+
+<p>clone the latest vdsm from gerrit.ovirt.org/vdsm</p>
+
+<p><code>git clone </code><a href="git://gerrit.ovirt.org/vdsm"><code>git://gerrit.ovirt.org/vdsm</code></a></p>
+
+<p>rpm it</p>
+
+<pre class="highlight plaintext"><code>  ./autogen.sh --system &amp;&amp; ./configure&#x000A;  make clean &amp;&amp; make rpm&#x000A;  cd /root/rpmbuild/RPM/noarch&#x000A;  yum localinstall *.rpm&#x000A;</code></pre>
+
+<p>rpm deps:</p>
+
+<ul>
+  <li>autogen</li>
+  <li>rpm-build</li>
+  <li>redhat-rpm-config</li>
+</ul>
+
+<h2 id="engine-core-machine">Engine core machine</h2>
+
+<ul>
+  <li>The engine core was built on fedora 14 but all stages applies for later versions and other distro's as well.</li>
+  <li>The engine was built from sources and installed via maven on a pre-installed jboss 7.</li>
+  <li>Follow these steps(link the installation process from the wiki).</li>
+</ul>
+
+<p>engine sources folder: ~/src/git/ovirt-engine</p>
+
+<p>clone the engine sources</p>
+
+<pre class="highlight plaintext"><code>  cd ~/src/git `git clone `[`git://gerrit.ovirt.org/ovirt-engine`](git://gerrit.ovirt.org/ovirt-engine)&#x000A;</code></pre>
+
+<p>Create /etc/pki/ovirt-engine/ca</p>
+
+<pre class="highlight plaintext"><code>  $ mkdir -p /etc/pki/ovirt-engine/ca&#x000A;  $ sudo chmod -R 777 /etc/pki/ovirt-engine/&#x000A;</code></pre>
+
+<p>Creating OpenSSH convertor: compile pubkey2ssh</p>
+
+<pre class="highlight plaintext"><code>  cd backend/manager/3rdparty/pub2ssh/src&#x000A;  gcc -o pubkey2ssh pubkey2ssh.c -lcrypto&#x000A;  cp pubkey2ssh /etc/pki/ovirt-engine/ca/&#x000A;</code></pre>
+
+<p>Create relevant Engine folders</p>
+
+<pre class="highlight plaintext"><code>  $ sudo mkdir -p /var/lock/ovirt-engine /usr/share/engine/backend/manager/conf/&#x000A;  $ touch /var/lock/ovirt-engine/.openssl.exclusivelock&#x000A;  $ sudo chmod 777 /var/lock/ovirt-engine/.openssl.exclusivelock&#x000A;</code></pre>
+
+<p>Put vds_installer.py in place (the config entry of 'DataDir')</p>
+
+<pre class="highlight plaintext"><code>  $ cp ~/src/git/ovirt-engine/backend/manager/conf/vds_installer.py /usr/share/engine/backend/manager/conf/&#x000A;</code></pre>
+
+<p>Create CA and certs</p>
+
+<pre class="highlight plaintext"><code>  cd backend/manager/conf/ca&#x000A;  ` ./installCA_dev.sh `pwd` /etc/pki/ovirt-engine `&#x000A;</code></pre>
+
+<p>Starting JBOSS7, you need to create a root context:</p>
+
+<pre class="highlight plaintext"><code>  cp -a ~/src/git/ovirt-engine/packaging/fedora/setup/resources/jboss/ROOT.war /usr/share/jboss-as/standalone/deployments/&#x000A;</code></pre>
+
+<p>Copy cert to Jboss root dir</p>
+
+<pre class="highlight plaintext"><code>  $ cp /etc/pki/ovirt-engine/ca/keys/engine.ssh.key.txt /usr/share/jboss-as/welcome-content/&#x000A;  $ cp /etc/pki/ovirt-engine/ca/ca.pem /usr/share/jboss-as/welcome-content/ca.crt&#x000A;  (Note: previous versions of jboss used: /usr/share/jboss-as/standalone/deployments/ROOT.war)&#x000A;</code></pre>
+
+<p>DB updates:</p>
+
+<pre class="highlight plaintext"><code>  psql engine postgres -c "update vdc_options set option_value = '/etc/pki/ovirt-engine/ca/certs/engine.cer' where option_name = 'CertificateFileName';"&#x000A;  psql engine postgres -c "update vdc_options set option_value = '/etc/pki/ovirt-engine/ca/.keystore' where option_name = 'TruststoreUrl';"&#x000A;  psql engine postgres -c "update vdc_options set option_value = '/etc/pki/ovirt-engine/ca/' where option_name = 'CABaseDirectory';"&#x000A;  psql engine postgres -c "update vdc_options set option_value = 'ca.pem' where option_name  = 'CACertificatePath';"&#x000A;  psql engine postgres -c "update vdc_options set option_value = '/etc/pki/ovirt-engine/ca/.keystore' where option_name = 'keystoreUrl';"&#x000A;  psql engine postgres -c "update vdc_options set option_value = '/etc/pki/ovirt-engine/ca/private/ca.pem' where option_name = 'CAEngineKey';"&#x000A;</code></pre>
+
+<p>Additional Configuration: These 2 steps are currently required due to bugs, they will be changed/removed once the patches that will fix them will be merged. Change the default emulated VM type by executing:</p>
+
+<pre class="highlight plaintext"><code>  psql -U postgres engine -c "update vdc_options set option_value='pc-0.14' where option_name='EmulatedMachine' and version='3.0';"&#x000A;</code></pre>
+
+<p>If you wish to change the default password for admin (letmein!), execute the following command:</p>
+
+<pre class="highlight plaintext"><code>  psql -U postgres engine -c "update vdc_options set option_value='NEWPASSWORD' where option_name='AdminPassword';"&#x000A;</code></pre>
+
+<p><strong>TODO</strong> - patch is needed to run the sql's above in the installCA.sh script</p>
+
+<p>Restart jboss to reload the database changes</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+OVirt 3.0 release notes &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>OVirt 3.0 release notes</td>
+</tr>
+<tr>
+<th>category</th>
+<td>documentation</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>danken, dneary, lpeer, mburns, michael pasternak, oschreib, sandrobonazzola, sgordon, yaniv dary</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Documentation</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>OVirt 3.0 release notes</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>46</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2015-01-16</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/OVirt_3.0_release_notes' target='_blank'>
+OVirt 3.0 release notes
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="ovirt-30-release-notes">OVirt 3.0 release notes</h1>
+
+<p>The oVirt Project is pleased to announce the availability of its first formal release, oVirt 3.0.</p>
+
+<h2 id="software-development-kit">Software Development Kit</h2>
+
+<p>The oVirt Engine Software Development Kit provides an enhanced Python environment to support the development of custom software utilizing the APIs exposed by the engine.</p>
+
+<h3 id="features">Features</h3>
+
+<ul>
+  <li>This is the initial formal release of the oVirt Engine SDK.</li>
+</ul>
+
+<h3 id="resolved-issues">Resolved Issues</h3>
+
+<ul>
+  <li>Use direct URI on get(id=x) rather than search pattern.</li>
+  <li>Extension to support the addition of new clusters (<a href="https://bugzilla.redhat.com/782707">BZ#782707</a>).</li>
+  <li>Added connectivity check and disconnect methods (<a href="https://bugzilla.redhat.com/781820">BZ#781820</a>).</li>
+</ul>
+
+<h3 id="known-issues">Known Issues</h3>
+
+<ul>
+  <li>An application can only create one proxy to the API.</li>
+</ul>
+
+<h3 id="known-issues-1">Known Issues</h3>
+
+<p>The following items are not yet supported, but are on the roadmap:</p>
+
+<ul>
+  <li>Command history.</li>
+  <li>Command auto completion.</li>
+</ul>
+
+<h2 id="engine">Engine</h2>
+
+<p>The oVirt Engine is a feature-rich server virtualization management system that provides advanced capabilities for managing open virtualization infrastructure.</p>
+
+<h4 id="features-1">Features</h4>
+
+<ul>
+  <li>The engine is now running on Jboss AS7 as the application server</li>
+  <li><a href="/feature/infra/detailedlockmechanism/"> Locking mechanism </a></li>
+  <li><a href="/feature/storage/spmpriority/"> SPM Priority </a></li>
+  <li>Added maintenance Storage Domain Status (<a href="http://bugzilla.redhat.com/593244">BZ 593244</a>).</li>
+</ul>
+
+<h4 id="resolved-issues-1">Resolved Issues</h4>
+
+<ul>
+  <li><a href="https://bugzilla.redhat.com/785671">BZ#785671 after trying to add a snapshot while a snapshot is created and getting an error vm CreateAllSnapshotsFromVmCommand will fail to aquire lock forever</a></li>
+  <li>Unified VM and VM_TEMPLATE tables in the database.</li>
+</ul>
+
+<h2 id="packaging--installer">Packaging &amp; Installer</h2>
+
+<p>The packaging &amp; install subproject deals with the creation of the packages for the oVirt Engine and associated subcomponents. This subproject also delivers the <em>engine-setup</em> and <em>engine-cleanup</em> utilities. The <em>engine-setup</em> utilitiy is used to configure oVirt Engine while the <em>engine-cleanup</em> utility is used to remove it.</p>
+
+<h3 id="features-2">Features</h3>
+
+<ul>
+  <li>Support for JBoss AS7 on Fedora 16</li>
+</ul>
+
+<h3 id="resolved-issues-2">Resolved Issues</h3>
+
+<ul>
+  <li><a href="https://bugzilla.redhat.com/show_bug.cgi?id=771590">BZ#771590 "/var/lock/ovirt-engine" is missing during engine-setup =&gt; fail to create CA</a></li>
+</ul>
+
+<h3 id="known-issues-2">Known Issues</h3>
+
+<ul>
+  <li>No upgrade procedure is currently available, to upgrade between releases, both nightlies and stable, it is necessary to run <em>engine-cleanup</em> and reinstall oVirt Engine.</li>
+  <li>As JBoss AS7 does not follow symlinks, some files are currently copied in the %post section of the ovirt-engine package.(<a href="https://bugzilla.redhat.com/show_bug.cgi?id=782567">BZ#782567</a>)</li>
+</ul>
+
+<h2 id="node">Node</h2>
+
+<p>The oVirt Node is distributed as a compact image for use on a variety of installation media. It provides a minimal Linux installation including all the packages necessary to register and communicate with the oVirt Engine while functioning as a virtualization host. For a more detailed release note for this component see please see the <a href="/node/release-notes/">Node_Release_Notes</a> page. Some highlights are included here.</p>
+
+<h3 id="features-3">Features</h3>
+
+<ul>
+  <li>Support for UEFI has been added.</li>
+  <li>Node now successfully registers and functions with oVirt Engine.</li>
+</ul>
+
+<h3 id="resolved-issues-3">Resolved Issues</h3>
+
+<ul>
+  <li>Automatically log out sessions that are inactive for 15 min</li>
+  <li>validate the iscsi iqn name</li>
+  <li>persist dns entries correctly when adding manually and also using dhcp</li>
+  <li>various spec file cleanup</li>
+</ul>
+
+<h3 id="known-issues-3">Known Issues</h3>
+
+<ul>
+  <li>Bugzilla queries listing known outstanding issues and feature requests relevant to the oVirt Node are listed at <a href="/node/backlog/">Node_Backlog</a>.</li>
+</ul>
+
+<h2 id="vdsm">VDSM</h2>
+
+<p>The VDSM service is used by a virtualization manager to interface with Linux based virtualization hosts. VDSM manages and monitors the host's storage, memory and networks as well as virtual machine creation, other host administration tasks, statistics gathering, and log collection. This initial oVirt Project release provides and supports vdsm-4.9.3.3.</p>
+
+<p>It is important to use your most up-to-date Fedora, with `iscsi-initiator-utils-6.2.0.872-16.fc16.x86_64` or later.</p>
+
+<h3 id="features-4">Features</h3>
+
+<ul>
+  <li>It is now possible to install VDSM on existing Fedora instances, providing an alternative to consuming it as deployed with <em>ovirt-node</em>.</li>
+  <li>It is now possible to successfully register VDSM hosts with <em>ovirt-engine</em>, instead of just Red Hat Enterprise Virtualization Manager as was previously the case.</li>
+  <li>The mount subsysttem has been refactored, adding support for generic filesystem storage servers (not only NFSv3).</li>
+  <li>A new verb, migrateCancel, has been added.</li>
+</ul>
+
+<h3 id="resolved-issues-4">Resolved Issues</h3>
+
+<ul>
+  <li><a href="http://bugzilla.redhat.com/754445">BZ#754445 Separate granting from callback emitting</a></li>
+  <li><a href="http://bugzilla.redhat.com/767111">BZ#767111 Extend volume size must be in Megabytes</a></li>
+  <li><a href="http://bugzilla.redhat.com/716573">BZ#716573 make `ulimit -u` configurable, too</a></li>
+  <li><a href="http://bugzilla.redhat.com/747917">BZ#747917 Don't get information about mountpoints</a></li>
+  <li><a href="http://bugzilla.redhat.com/736034">BZ#736034 Add metadataignore switch to pvcreate.</a></li>
+  <li><a href="http://bugzilla.redhat.com/769179">BZ#769179 Omit getSessionList from vdsClient and its dependent files</a></li>
+  <li><a href="http://bugzilla.redhat.com/674010">BZ#674010 Fix name error in vdsClient - 'commands' not found</a></li>
+  <li><a href="http://bugzilla.redhat.com/772591">BZ#772591 Specify which user/group should be used for core dumps rotation</a></li>
+  <li><a href="http://bugzilla.redhat.com/772670">BZ#772670 network is not set after using boot params</a></li>
+  <li><a href="http://bugzilla.redhat.com/772556">BZ#772556 bootstrap: ignore restorecon errors</a></li>
+  <li><a href="http://bugzilla.redhat.com/773666">BZ#773666 Fix HSM flows should not change rw permissions.</a></li>
+  <li><a href="http://bugzilla.redhat.com/771686">BZ#771686 fix MAX_VLAN_ID</a></li>
+  <li><a href="http://bugzilla.redhat.com/771329">BZ#771329 Use a copy of the domainsToUpgrade</a></li>
+  <li><a href="http://bugzilla.redhat.com/781317">BZ#781317 adjust getos() to print real node type</a></li>
+  <li><a href="http://bugzilla.redhat.com/781970">BZ#781970 kaxmlrpclib: fix plaintext transport in Python 2.7</a></li>
+  <li><a href="http://bugzilla.redhat.com/782348">BZ#782348 Ignore empty lines in ifcfg-*</a></li>
+  <li><a href="http://bugzilla.redhat.com/773371">BZ#773371 call `vdsmd reconfigure` after bootstrap</a></li>
+  <li><a href="http://bugzilla.redhat.com/785557">BZ#785557 bootstrap: do not mark ifcfg as NM_CONTROLLED</a></li>
+</ul>
+
+<h2 id="data-warehouse-and-reports">Data Warehouse and Reports</h2>
+
+<p>No packaging for the components will be released as part of the inital oVirt Project release.</p>
+
+<category:documentation> <category:releases>
+</category:releases></category:documentation>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+How to change engine host name &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>How to change engine host name</td>
+</tr>
+<tr>
+<th>category</th>
+<td>howto</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>adrian15, daejohnson, jbrooks, jhernand, sven</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>How to change engine host name</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>8</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-01-29</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/How_to_change_engine_host_name' target='_blank'>
+How to change engine host name
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="how-to-change-engine-host-name">How to change engine host name</h1>
+
+<p><strong>This procedure is obsoleted by <a href="/howto/changing-engine-hostname/">Changing_Engine_Hostname</a> since oVirt 3.3.0 (http://gerrit.ovirt.org/17408)</strong></p>
+
+<p><strong>Manual procedure to change the host name of the machine where the engine runs (in release 3.1):</strong></p>
+
+<p><em>initiated in oVirt user list thread at:</em> <a href="http://lists.ovirt.org/pipermail/users/2012-October/004167.html">http://lists.ovirt.org/pipermail/users/2012-October/004167.html</a></p>
+
+<ol>
+  <li>
+    <p>Make a backup copy of the /etc/pki/ovirt-engine directory.</p>
+  </li>
+  <li>
+    <p>Regenerate the engine certificate signing request preserving the existing private key (this is very important in order to avoid having to decrypt/encrypt passwords stored in the database):</p>
+
+    <p>openssl req \
+ -new \
+ -subj '/C=US/O=Example Inc./CN=f17.example.com' \
+ -key /etc/pki/ovirt-engine/keys/engine_id_rsa \
+ -out /etc/pki/ovirt-engine/requests/engine.req</p>
+  </li>
+</ol>
+
+<p>Replace "Example Inc." with the value that you provided during the installation. If you don't forgot them they can be extracted from the current engine certificate:</p>
+
+<pre class="highlight plaintext"><code>openssl x509 \&#x000A;-in /etc/pki/ovirt-engine/certs/engine.cer \&#x000A;-noout \&#x000A;-subject&#x000A;</code></pre>
+
+<p>And *VERY IMPORTANT*, replace "f17.example.com" with the new fully qualified host name.</p>
+
+<ol>
+  <li>
+    <p>Sign again the engine certificate, to simplify this the SignReq.sh script should be used:</p>
+
+    <p>cd /etc/pki/ovirt-engine
+ ./SignReq.sh \
+ engine.req \
+ engine.cer \
+ 1800 \
+ /etc/pki/ovirt-engine \
+ <code>date -d yesterday +%y%m%d%H%M%S+0000</code> \
+ NoSoup4U</p>
+  </li>
+</ol>
+
+<p>Double check that the generated certificate is correct, visually and with the following command:</p>
+
+<pre class="highlight plaintext"><code>openssl verify \&#x000A;-CAfile /etc/pki/ovirt-engine/ca.pem \&#x000A;/etc/pki/ovirt-engine/certs/engine.cer&#x000A;</code></pre>
+
+<ol>
+  <li>
+    <p>Generate also a DER encoded version of the certificate:</p>
+
+    <p>openssl x509 \
+ -in /etc/pki/ovirt-engine/certs/engine.cer \
+ -out /etc/pki/ovirt-engine/certs/engine.der \
+ -outform der</p>
+  </li>
+  <li>
+    <p>Export the engine private key and certificate to a PKCS12 file:</p>
+
+    <p>openssl pkcs12 \
+ -export \
+ -name engine \
+ -inkey /etc/pki/ovirt-engine/keys/engine_id_rsa \
+ -in /etc/pki/ovirt-engine/certs/engine.cer \
+ -out /etc/pki/ovirt-engine/keys/engine.p12 \
+ -passout pass:NoSoup4U</p>
+  </li>
+  <li>
+    <p>Regenerate the keystore used by the engine, importing the old CA certificate and the new engine certificate:</p>
+
+    <p>rm -f /etc/pki/ovirt-engine/.keystore</p>
+
+    <p>keytool \
+ -keystore /etc/pki/ovirt-engine/.keystore \
+ -import \
+ -alias cacert \
+ -storepass mypass \
+ -noprompt \
+ -file /etc/pki/ovirt-engine/ca.pem</p>
+
+    <p>keytool \
+ -keystore /etc/pki/ovirt-engine/.keystore \
+ -importkeystore \
+ -srckeystore /etc/pki/ovirt-engine/keys/engine.p12 \
+ -srcalias engine \
+ -srcstoretype PKCS12 \
+ -srcstorepass NoSoup4U \
+ -srckeypass NoSoup4U \
+ -destalias engine \
+ -deststorepass mypass \
+ -destkeypass mypass</p>
+  </li>
+  <li>
+    <p>Restart the httpd and ovirt-engine services:</p>
+
+    <p>service ovirt-engine restart
+ service httpd restart</p>
+  </li>
+  <li>
+    <p>If using ovirt-node as the hypervisors then for each of then check and fix the "vdc_host_name" parameter in the "/etc/vdsm-reg/vdsm-reg.conf" file.</p>
+  </li>
+</ol>
+
+<p>Note that this procedure will leave a small trace: the CA certificate will still contain the URL of the old host. That is a minor inconvenience, but to solve it *all* certificates would need to be replaced.</p>
+
+<ol>
+  <li>
+    <p>Edit the "/etc/ovirt-engine/web-conf.js" file and replace the old host name with the new one. This is used to generate the links in the landing page.</p>
+  </li>
+  <li>
+    <p>You may find some references to the old domain name in entries in the option_id table. Particularly, VdcBootStrapUrl and VirtualMachineDomainName. <em>I do not know the implications, but it can't not hurt to clean them up. Can it? –<span class='broken-link link-mediawiki' data-href='user:daejohnson' title='Special MediaWiki link: original pointed to: user:daejohnson'>daej</span></em></p>
+  </li>
+</ol>
+
+<p>VdcBootStrapUrl needs to be updated so that you can add new hosts without having problems. (oVirt 3.1 only, not needed in oVirt 3.2)</p>
+
+<pre class="highlight plaintext"><code>  engine-config -s VdcBootStrapUrl='http://f17.example.com:80/Components/vds/' &#x000A;</code></pre>
+
+<p>Adjust the port if needed.</p>
+
+<p>Not sure if updating VirtualMachineDomainName is needed at all for normal oVirt Manager usage. If it was needed you could change it with:</p>
+
+<pre class="highlight plaintext"><code>  engine-config -s VdcBootStrapUrl='f17.example.com' &#x000A;</code></pre>
+
+<p>And *VERY IMPORTANT*, replace "f17.example.com" with the new fully qualified host name.</p>
+
+<ol>
+  <li>You may find references to the old domain name in the storage_server_connections table if you had, for example, a ISO storage domain setup on the engine. Editing such entries manually and restarting the engine will clear things up and stop any related warnings when activating hosts that are trying to access the old domain name.</li>
+</ol>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

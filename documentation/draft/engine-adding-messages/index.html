@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Engine Adding Messages &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Engine Adding Messages</td>
+</tr>
+<tr>
+<th>category</th>
+<td>draft-documentation</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>amureini, asaf, ecohen, moti, msalem, ofrenkel</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Draft documentation</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Engine Adding Messages</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>13</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-03-22</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Engine_Adding_Messages' target='_blank'>
+Engine Adding Messages
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="engine-adding-messages">Engine Adding Messages</h1>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>This page contains instructions how to add new messages to oVirt engine.</p>
+
+<p>This document contains information how to handle both <em>Backend</em> and <em>Frontend</em> modules with regards to messages in order to keep them synchronized.</p>
+
+<p>In order to add/edit a message in oVirt, please follow <strong>all</strong> instructions below in both <em>Backend</em> and <em>Frontend</em> sections.</p>
+
+<h2 id="audit-log-messages">Audit Log Messages</h2>
+
+<ul>
+  <li>For any Audit Log message:
+    <ul>
+      <li>A corresponding key should be added to AuditLogType enum.</li>
+      <li>A corresponding key should be added to VdcActionType enum.</li>
+      <li>Need to add a severity for the message in AuditLogDirector.</li>
+      <li>Add the message to <em>OVIRT_ENGINE/backend/manager/modules/dal/src/main/resources/bundles/AuditLogMessages.properties</em>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="other-messages">Other Messages</h2>
+
+<h3 id="backend">Backend</h3>
+
+<ul>
+  <li>
+    <p>Any message that shall be exposed by the backend internal API (RunQuery / RunAction) must be delcared as a key/value pair in <em>OVIRT_ENGINE/backend/manager/modules/dal/src/main/resources/bundles/AppErrors.properties</em>.</p>
+
+    <p>* A corresponding key should be added to VdcBllMessages enum</p>
+  </li>
+  <li>
+    <p>For VDSM errors, every message must be declared as a key/value pair in <em>OVIRT_ENGINE/backend/manager/modules/dal/src/main/resources/bundles/VdsmErrors.properties</em>.</p>
+
+    <p>* A corresponding key should be added to VdcBllErrors enum</p>
+  </li>
+</ul>
+
+<h3 id="frontend">Frontend</h3>
+
+<p>For every key/value pair that was added to Backend's <em>AppErrors</em> and <em>VdsmErrors</em>, the following changes <strong>must</strong> be done for the <em>WebAdmin</em> and <em>UserPortal</em> projects:</p>
+
+<h4 id="apperrorsproperties">AppErrors.properties</h4>
+
+<ul>
+  <li>Another entry must be added to:
+    <ul>
+      <li><em>frontend/webadmin/modules/webadmin/src/main/resources/org/ovirt/engine/ui/frontend/AppErrors.properties</em></li>
+      <li><em>frontend/webadmin/modules/userportal-gwtp/src/main/resources/org/ovirt/engine/ui/frontend/AppErrors.properties</em></li>
+    </ul>
+  </li>
+</ul>
+
+<p>The key must be the same as the key that was added to backend file, the message may be different.</p>
+
+<h4 id="vdsmerrorsproperties">VdsmErrors.properties</h4>
+
+<ul>
+  <li>Another entry must be added to:
+    <ul>
+      <li><em>frontend/webadmin/modules/webadmin/src/main/resources/org/ovirt/engine/ui/frontend/VdsmErrors.properties</em></li>
+      <li><em>frontend/webadmin/modules/userportal-gwtp/src/main/resources/org/ovirt/engine/ui/frontend/VdsmErrors.properties</em></li>
+    </ul>
+  </li>
+</ul>
+
+<p>The key must be the same as the key that was added to backend file, the message may be different.</p>
+
+<h4 id="ui-resource">UI Resource</h4>
+
+<p>While backend manages it's resource files as properties files only, the UI module requires that the key will also be added to a java interface as well:</p>
+
+<ul>
+  <li>An interface signature must be added to <em>frontend/webadmin/modules/frontend/src/main/java/org/ovirt/engine/ui/frontend/AppErrors.java</em> (or VdsmErrors.java), the method signature must consist of the message key with '();' suffix a return type of type String, here's an example:</li>
+</ul>
+
+<p>For a message key:</p>
+
+<pre class="highlight plaintext"><code>  VM_NAME_CANNOT_BE_EMPTY&#x000A;</code></pre>
+
+<p>the method signature in <strong>AppErrors.java</strong> will be:</p>
+
+<pre class="highlight plaintext"><code>  String VM_NAME_CANNOT_BE_EMPTY();&#x000A;</code></pre>
+
+<h3 id="notes">Notes</h3>
+
+<p>Please consider the following notes:</p>
+
+<ul>
+  <li>For UI modules, a different message description can be specified per project.</li>
+  <li>Keys must be UPPERCASE (Only [A-Z][0-9] should be used!), words must be separated by underscore (i.e VM_CANNOT_RUN_STATELESS_HA).</li>
+  <li>Particularly a dot(".") and space(" ") characters are forbidden.</li>
+  <li>For messages that are split across multiple lines, a line break can be added by using \n\.</li>
+  <li>It is recommended to build the entire project after adding new messages to make sure the UI modules pass compilation (this is done by adding <em>gwt-user</em> &amp; <em>gwt-admin</em> Maven profiles to the build command)</li>
+  <li>When changing messages, do not change the translation files (e.g., AppErrors_es.properties), just the original English files. The translated files are handled in bulk before each release.</li>
+</ul>
+
+<p><a href="/documentation/draft-documentation/">Category:Draft documentation</a> <category:engine> [Category:How to](Category:How to)</category:engine></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+OVirt-database-upgrade-procedure &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>OVirt-database-upgrade-procedure</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>emesika, ovedo</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>OVirt-database-upgrade-procedure</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>10</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-05-06</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/OVirt-database-upgrade-procedure' target='_blank'>
+OVirt-database-upgrade-procedure
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="o-virt-database-upgrade-procedure">O Virt-database-upgrade-procedure</h1>
+
+<h2 id="upgrade-procedure">Upgrade Procedure</h2>
+
+<p>In order to handle DB upgrades, we will maintain a fixed schema plus initial data and from that point on All schema &amp; data changes will be done via upgrade scripts.</p>
+
+<p>Each upgrade change should be in a separate file formatted by MM_mm_nnnn_[Name].sql where:</p>
+
+<pre class="highlight plaintext"><code>       MM  indicates Major Version number&#x000A;       mm indicates Minor Version number&#x000A;       nnnn are numbers starting from 0010, each having an offset of 10 from previous script(i.e 0010 0020 ....)&#x000A;       [Name] is a short descriptive name for the script.(Please do not put your BZ # as part of the Name)&#x000A;</code></pre>
+
+<h3 id="assumptions">Assumptions</h3>
+
+<pre class="highlight plaintext"><code>  * The following assumes that there are no schema changes in Z-stream. Exception description will follow.&#x000A;  * From now on , since upgrade run only new scripts, upgrade scripts do not need to be re-entrant.&#x000A;  * This assumption requires that new upgrade scripts should be pushed into git with a higher version than the latest script.&#x000A;</code></pre>
+
+<h3 id="schemaversion-table">schema_version table</h3>
+
+<p>We now have a schema_version table that hold the db upgrade history and current version The upgrade script checks for the current version and run only new upgrade scripts. The current upgrade schema is updated on each upgrade run and available as one file named .schema</p>
+
+<h3 id="configuration-changes">Configuration changes</h3>
+
+<p>All changes to the configuration stored in the vdc_options table will be done using one script named
+<strong>config.sql</strong> under <strong>dbscripts/upgrade/pre_upgrade</strong> directory.
+<strong>config.sql</strong> script file is categorized to the following sections:</p>
+
+<pre class="highlight plaintext"><code>     Add Section&#x000A;     Update section (w/o overriding current value)&#x000A;     Delete section&#x000A;     Simple upgrades not available using a fn_db* function call&#x000A;     Complex upgrades using temporary functions&#x000A;</code></pre>
+
+<p><strong>Please note that the config.sql is now re-entrant.</strong></p>
+
+<p>The pre_upgrade directory hosts hook scripts that are executed before the upgrade executes
+Scripts in the pre_upgrade directory are executed lexicography.
+ This change implies also that all upgrade scrips that modify vdc_options will be squashed to config_sql
+Squashing is actually taking all the content of upgrade scripts that handle configuration and inserting it to config.sql in the same order
+After doing so, the original upgrade scripts will be removed from the schema_version table leaving holes in the numbering (so we could have 0070 and after it 0100 for example).
+This removal will be done using a regular upgrade script in order to execute it only once.</p>
+
+<p>The pre_upgrade directory will be used only to resolve cases as we have already upstream where patch 0130 was installed (for 3.1) and after that 0250 was cherry picked, blocking the possibility of the upgrade procedure to install patches 0140 to 0240. In this case we will add a script to the pre_upgrade directory that will remove the 0250 entry from schema_version, since 0250 is a configuration patch we have no problems with it, but we should avoid such situation following this :</p>
+
+<h3 id="version-squashing">Version Squashing</h3>
+
+<p>To avoid high number of upgrade script files we can squash each version files to a single file after it is published.
+Since upgrade scripts contains both schema and data changes, this issue is open for suggestion and will be implemented in future.</p>
+
+<h3 id="temporary-functions-in-upgrade-scripts">Temporary Functions in Upgrade scripts</h3>
+
+<p>Temporary functions in upgrade scripts should be renamed <em>_temp</em><name> This is in order to distinguish them from real persistent functions and preventing the chance to drop such a function by mistake in an upgrade script.</name></p>
+
+<h2 id="where-are-upgrade-scripts-located-">Where are upgrade scripts located ?</h2>
+
+<p>All changes should be located under the upgrade/ directory</p>
+
+<p>In which order upgrade scripts are called ? Upgrade scripts are sorted and executed alphabetically, that's why it is important to follow the upgrade script naming convention.</p>
+
+<h2 id="when-upgrade-scripts-are-called-">When upgrade scripts are called ?</h2>
+
+<p>Clean Install In clean install this is done after initial (default) data is inserted to the database This makes sure that default data is inserted on initial schema before any upgrade script change it.</p>
+
+<p>Upgrade In upgrade we first drop all SPs &amp; Views and then run all upgrade scripts and finally restore views &amp; SPs</p>
+
+<h2 id="which-files-should-not-be-changed">Which files should not be changed?</h2>
+
+<pre class="highlight plaintext"><code>   create_tables.sql&#x000A;   insert_data.sql&#x000A;   insert_predefined_roles.sql&#x000A;   fill_config.sql&#x000A;</code></pre>
+
+<h2 id="what-should-i-do-if-i-have-to-">What should I do if I have to ?</h2>
+
+<pre class="highlight plaintext"><code>   Add or change a column                      Add an upgrade script&#x000A;   Add/Delete/Modify/Split configuration values     Modify config.sql script in pre_upgrade directory using common fn_db* functions&#x000A;   Add/Delete/Modify any default data              Add an upgrade script&#x000A;   Add/Delete/Modify a SP                      Change only the relevant *_sp.sql file&#x000A;   Add/Delete/Modify a View                    Change only the relevant code in create_views.sql file&#x000A;</code></pre>
+
+<p>Please note that if you change configuration value it is safer to use fn_db_update_default_config_value rather than fn_db_update_config_value
+onsider the following example:</p>
+
+<pre class="highlight plaintext"><code>   1) we have a comma delimited configuration value for key X "a,b,c"&#x000A;    2) user u1 creates an upgrade script adding d using fn_db_update_config_value =&gt; value in db is "a,b,c,d"&#x000A;    3) user u2 creates an upgrade script adding e using fn_db_update_config_value =&gt; value in db is "a,b,c,e" , "d" is lost.&#x000A;  calling fn_db_update_default_config_value in 2) &amp; 3) will result with 2) success and 3)fail&#x000A;</code></pre>
+
+<p>since 3) will look for "a,b,c" that was already updated by 2) to "a,b,c,d"
+Then the writer of 3) (u2) will check the script failure and update it to include the correct value :</p>
+
+<pre class="highlight plaintext"><code>   select fn_db_update_default_config_value('X', 'a,b,c,d', 'a,b,c,d,e', '`&lt;version&gt;`');&#x000A;</code></pre>
+
+<h2 id="what-are-the-helper-functions-i-can-use-in-my-upgrade-scripts">What are the helper functions I can use in my upgrade scripts?</h2>
+
+<pre class="highlight plaintext"><code>   fn_db_add_column                  Adds a column to a table&#x000A;   fn_db_change_column_type          Changes a column type,decimal precision etc. (Several formats)&#x000A;   fn_db_add_config_value            Adds a new value to vdc_options&#x000A;   fn_db_update_default_config_value     Updates the value of an option in vdc_options if given default was not   changed.You can also define if your condition is case-sensitive or not&#x000A;   fn_db_delete_config_value             Deletes an option from vdc_options&#x000A;   fn_db_split_config_value          Given general configuration entry, creates new entries for each old cluster version, with the old value, and a new entry for the newest cluster version with the input value&#x000A;     &#x000A;</code></pre>
+
+<h2 id="examples">Examples</h2>
+
+<pre class="highlight plaintext"><code>   select fn_db_add_column('users', 'group_ids', 'VARCHAR(2048)');&#x000A;   select fn_db_change_column_type('storage_pool','storage_pool_format_type','integer','varchar(50)');&#x000A;   select fn_db_change_column_type('users','age','int2','int4 not null default 0');&#x000A;   select fn_db_change_column_type('vm_statistics','cpu_user',18,0,'decimal(18,3)');-- change decimal scale.&#x000A;   select fn_db_add_config_value('VdcVersion','3.0.0.0','general');&#x000A;   select fn_db_update_config_value('DBEngine','Postgres','general');&#x000A;   select fn_db_update_default_config_value('LDAPSecurityAuthentication','GSSAPI','default:GSSAPI','general',false);&#x000A;   select fn_db_delete_config_value('ENMailEnableSsl','general');&#x000A;   select fn_db_split_config_value('SpiceSecureChannels','all');&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

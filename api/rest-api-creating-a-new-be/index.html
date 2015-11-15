@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+REST API Creating a new BE &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>REST API Creating a new BE</td>
+</tr>
+<tr>
+<th>category</th>
+<td>api</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>emesika</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>REST API Creating a new BE</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>10</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-07-24</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/REST_API_Creating_a_new_BE' target='_blank'>
+REST API Creating a new BE
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="rest-api---adding-a-new-be">REST API - Adding a new BE</h1>
+
+<p>In this wiki we will introduce all the steps needed in the REST API side in order to add a new Business Entity
+Examples on each step are based on work done in <a href="http://gerrit.ovirt.org/#/c/16159">patch</a> for the Extrenal Tasks <a href="/feature/infra/externaltasks/">RFE</a></p>
+
+<h3 id="creating-be-in-apixsd">Creating BE in api.xsd</h3>
+
+<p>First, we will have do define the new BE in the api.xsd
+This is a XML meta-data file that helps to generate the new BE classes.
+In the example we will see a new <em>Job</em> entity and a new "Step" entity
+There is an heirarchy between "Job" and "Step" , A "Job" can contain several tests.
+Also, keep in mind that steps can be nested, we will get to that later.</p>
+
+<p>The following is a type definition for all relevants parts that may appear in the URI
+/api/jobs /api/jobs/<job_id> /api/jobs/<job_id>/steps /api/jobs/<job_id>/steps/<steps_id></steps_id></job_id></job_id></job_id></p>
+
+<xs:element name="jobs" type="Jobs" />
+
+<xs:element name="job" type="Job" />
+
+<xs:element name="steps" type="Steps" />
+<p><code> </code></p>
+<xs:element name="step" type="Step" />
+
+<p>This is the "Step"definition</p>
+
+<xs:complextype name="Step">
+`   `<xs:annotation>
+`     `<xs:appinfo>
+`        `<jaxb:class name="Step" />
+`     `</xs:appinfo>
+`   `</xs:annotation>
+`   `<xs:complexcontent>
+`     `<xs:extension base="BaseResource">
+`       `<xs:sequence>
+`         `<xs:element name="parent_step" type="Step" minoccurs="0" maxoccurs="1" />
+`         `<xs:element name="job" type="Job" minoccurs="0" maxoccurs="1" />
+`         `<xs:element name="type" type="xs:string" minoccurs="0" maxoccurs="1" />
+`         `<xs:element name="number" type="xs:int" minoccurs="0" maxoccurs="1" />
+`         `<xs:element ref="status" minoccurs="0" maxoccurs="1" />
+`         `<xs:element name="start_time" type="xs:dateTime" minoccurs="0" maxoccurs="1" />
+`         `<xs:element name="end_time" type="xs:dateTime" minoccurs="0" maxoccurs="1" />
+`         `<xs:element name="external" type="xs:boolean" minoccurs="0" maxoccurs="1" />
+`       `</xs:sequence>
+`     `</xs:extension>
+`   `</xs:complexcontent>
+` `</xs:complextype>
+
+<p>This is the "Step" collection definition</p>
+
+<xs:complextype name="Steps">
+`   `<xs:complexcontent>
+`     `<xs:extension base="BaseResources">
+`       `<xs:sequence>
+`         `<xs:annotation>
+`           `<xs:appinfo>
+`               `<jaxb:property name="Steps" />
+`           `</xs:appinfo>
+`         `</xs:annotation>
+`         `<xs:element ref="step" minoccurs="0" maxoccurs="unbounded" />
+`       `</xs:sequence>
+`     `</xs:extension>
+`   `</xs:complexcontent>
+</xs:complextype>
+
+<p>This is the "job" definition</p>
+<xs:complextype name="Job">
+
+`   `<xs:annotation>
+`     `<xs:appinfo>
+`        `<jaxb:class name="Job" />
+`     `</xs:appinfo>
+`   `</xs:annotation>
+`   `<xs:complexcontent>
+`     `<xs:extension base="BaseResource">
+`       `<xs:sequence>
+`         `<xs:element ref="status" minoccurs="0" maxoccurs="1" />
+`         `<xs:element name="owner" type="User" minoccurs="0" maxoccurs="1" />
+`         `<xs:element name="start_time" type="xs:dateTime" minoccurs="0" maxoccurs="1" />
+`         `<xs:element name="end_time" type="xs:dateTime" minoccurs="0" maxoccurs="1" />
+`         `<xs:element name="last_updated" type="xs:dateTime" minoccurs="0" maxoccurs="1" />
+`         `<xs:element name="external" type="xs:boolean" minoccurs="0" maxoccurs="1" />
+`         `<xs:element name="auto_cleared" type="xs:boolean" minoccurs="0" maxoccurs="1" />
+`       `</xs:sequence>
+`     `</xs:extension>
+`   `</xs:complexcontent>
+` `</xs:complextype>
+
+<p>This is the "Job" collection definition</p>
+<xs:complextype name="Jobs">
+
+`   `<xs:complexcontent>
+`     `<xs:extension base="BaseResources">
+`       `<xs:sequence>
+`         `<xs:annotation>
+`           `<xs:appinfo>
+`               `<jaxb:property name="Jobs" />
+`           `</xs:appinfo>
+`         `</xs:annotation>
+`         `<xs:element ref="job" minoccurs="0" maxoccurs="unbounded" />
+`       `</xs:sequence>
+`     `</xs:extension>
+`   `</xs:complexcontent>
+</xs:complextype>
+
+<h3 id="working-with-nested-entities-ie-disks-under-a-vm--steps-under-a-job-etc">Working with nested entities (i.e disks under a vm , steps under a job etc.)</h3>
+
+<h3 id="adding-mappers">Adding Mappers</h3>
+
+<h4 id="adding-tests">Adding tests</h4>
+
+<h3 id="adding-resource-classes-for-single-entity">Adding resource classes for single entity</h3>
+
+<h4 id="adding-tests-1">Adding tests</h4>
+
+<h3 id="adding-resource-classed-for-entity-collections">Adding resource classed for entity collections</h3>
+
+<h4 id="adding-tests-2">Adding tests</h4>
+
+<h3 id="enabling-parameter-passing-in-the-url">Enabling parameter passing in the URL</h3>
+
+<h4 id="adding-tests-3">Adding tests</h4>
+
+<h3 id="handling-root-resources">Handling root resources</h3>
+
+<h3 id="adding-permissions">Adding Permissions</h3>
+
+<h3 id="adding-enums-to-capabilities">Adding enums to capabilities</h3>
+
+<h3 id="defining-new-be-api-in-the-rsdl">Defining new BE API in the RSDL</h3>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

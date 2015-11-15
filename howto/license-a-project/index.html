@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+How to license a project &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>How to license a project</td>
+</tr>
+<tr>
+<th>category</th>
+<td>howto</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>cctrieloff, quaid</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>How to</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>How to license a project</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>3</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-03-22</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/How_to_license_a_project' target='_blank'>
+How to license a project
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="how-to-license-a-project">How to license a project</h1>
+
+<h2 id="licensing-best-practice-cheat-sheet">Licensing best practice cheat sheet.</h2>
+
+<p><strong>1. A COPYING or LICENSE file should be added to the top level of the tree containing the full license text.</strong></p>
+
+<p>If there are multiple licenses for code in the repo, then add multiple LICENSE.XXXX files, and add a master LICENSE file listing which LICENSE.XXXX file applies to which bits of the tree.</p>
+
+<p><strong>2. Every single .java, .sh, .py, .sql file should have license + copyright boilerplate text added. It should take general format:</strong></p>
+
+<pre class="highlight plaintext"><code>  /*&#x000A;  *   Copyright [yyyy] [name of copyright owner]&#x000A;  *&#x000A;  *   Licensed under the Apache License, Version 2.0 (the "License");&#x000A;  *   you may not use this file except in compliance with the License.&#x000A;  *   You may obtain a copy of the License at&#x000A;  * `*   `[`http://www.apache.org/licenses/LICENSE-2.0`](http://www.apache.org/licenses/LICENSE-2.0)&#x000A;  *&#x000A;  *   Unless required by applicable law or agreed to in writing, software&#x000A;  *   distributed under the License is distributed on an "AS IS" BASIS,&#x000A;  *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#x000A;  *   See the License for the specific language governing permissions and&#x000A;  *  limitations under the License.&#x000A;  */&#x000A;</code></pre>
+
+<p>For the Copyright license,</p>
+
+<ul>
+  <li>Note that the [name of copyright owner] will either be the original authors name or their organization's name. Any additions / changes and the copyright on those can be determined from the GIT history logs.</li>
+  <li>it will suffice to just use '2011' {or the current} as the year for initial publishing, even if the code is older than that for projects that are open sourcing code to an oVirt project.</li>
+</ul>
+
+<p>Adding a filename is useful in case people include your code in another project, so it is clear where it originally came from.</p>
+
+<p><strong>3. For Java, the Maven POM format allows a section for license information</strong></p>
+
+<p><code>    </code><a href="https://maven.apache.org/pom.html#More_Project_Information"><code>https://maven.apache.org/pom.html#More_Project_Information</code></a></p>
+
+<p>This should be added to all the pom.xml files in the tree.</p>
+
+<p><strong>4. Unrelated to licensing, add a README file to the top level directory.</strong></p>
+
+<p>This should contain</p>
+
+<ul>
+  <li>A short paragraph or two describing what the code does</li>
+  <li>A list of licenses the code is under, referring people to the LICENSE or COPYING file(s) for full details</li>
+  <li>A link to the mailing lists, or other relevant developer contact information</li>
+  <li>A link to the bug tracker, or other relevant bug reporting contact information</li>
+  <li>A summary of any relevant external software dependencies that will be required in order to build the software.</li>
+  <li>A quick summary of how to build the software. If the instructions are long &amp; hard, then create a separate INSTALL file with the details instead of cluttering up the README.</li>
+</ul>
+
+<p><strong>5. provide a public record of the authors, This will be posted on the oVirt site, however it does not hurt to also include an AUTHORS file with details of maintainers &amp; contributors, so people know whom the subject matter experts are.</strong></p>
+
+<p>(Edited from source material from Dan Berrange)</p>
+
+<p><a href="Category:How to">Category:How to</a> <category:licensing></category:licensing></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

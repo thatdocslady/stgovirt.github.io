@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+NetworkManager Summit Oct 2012 &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>NetworkManager Summit Oct 2012</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>apuimedo</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>NetworkManager Summit Oct 2012</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>7</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-09-19</td>
+</tr>
+<tr>
+<th>wiki_warnings</th>
+<td>references</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/NetworkManager_Summit_Oct_2012' target='_blank'>
+NetworkManager Summit Oct 2012
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="networkmanager-summit-oct-2012">NetworkManager Summit Oct 2012</h1>
+
+<h2 id="vdsm-current-network-configuration">VDSM current network configuration</h2>
+
+<p>The Virtual Desktop and Server Management daemon currently handles the host network configuration by means of manually editing the Red Hat style network configuration scripts. To achieve this purpose, we have a dedicated module that handles:</p>
+
+<ul>
+  <li>Configuration generation: Addition of vlans, bridges and bonds with the possibility of specifying custom settings, mainly MTU. (please mention STP, bond modes and options, ).</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Configuration modification: Bond splitting, network interface removal from bridge, etc.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Configuration rollback: In case of loss of connectivity, we have the ability of rolling back the network configuration to the last known working set of configuration files.</li>
+</ul>
+
+<p>This setup relies on the network scripts setting the variable NM_CONTROLLED to No. The reason behind this setting is that currently NetworkManager lacks a few features that are indispensable for the network configuration use cases that oVirt currently supports, namely:</p>
+
+<ul>
+  <li>Bridging,</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Virtual LANs,</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Bonding,</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Persistence of temporary connections.</li>
+</ul>
+
+<p>The fact that oVirt currently does not use an external network configuration management layer imposes VDSM a big hurdle towards supporting multiple GNU/Linux distributions that rely on different network configuration systems. To bridge the current network compatibility gap, oVirt wants to leverage the experience and capabilities of NetworkManager in supporting network configuration in multiple distributions</p>
+
+<h2 id="networkmanager-possible-work-flows">NetworkManager possible work-flows</h2>
+
+<p>NetworkManager currently has four interfaces:</p>
+
+<ol>
+  <li>Distribution-independent keyfiles[1] plus nmcli: This is the most similar to VDSM's current approach of ad-hoc writing and managing network configuration scripts and then using command line interface commands for starting and stopping[2] the connections.</li>
+  <li>D-BUS: Allows to access all the features of NetworkManager: Create, edit, delete connections as well as registering for events.</li>
+  <li>Glib: Two convenience GObject wrap-around NM's D-BUS libraries exist: libnm-util and libnm-glib.</li>
+  <li>Nm-applet: Graphical user interface present in all major desktop environments. It is of no consequence to VDSM because of the headless nature of most oVirt deployments.</li>
+</ol>
+
+<h2 id="vdsm-networkmanager-usage">VDSM NetworkManager usage</h2>
+
+<p>The usage that VDSM would do of NetworkManager is:</p>
+
+<ol>
+  <li>Defining temporary networks that can be persisted and made temporary back again[3].</li>
+  <li>Creating/Adding/removing network interfaces to bridges[4].</li>
+  <li>Creating/Adding/removing network interfaces to bonds[5].</li>
+  <li>Setting/unsetting variables such as MTU (already possible)</li>
+  <li>Adding removing vlans to the above kinds of networks[6].</li>
+  <li>Register to the connections for detecting changes (already possible).</li>
+  <li>Retrieving network and network interfaces information and statistics.</li>
+  <li>Backup keyfiles for performing networking rollbacks on cases of connectivity loss or for changing to a previous configuration.</li>
+</ol>
+
+<h2 id="open-questions-for-the-network-manager-team">Open questions for the Network Manager team</h2>
+
+<ol>
+  <li>Are keyfiles a supported and stable way to interface with Network Manager? Are they bound to follow the D-BUS API speed, meaning that additions to the API will be immediately supported as keyfiles?</li>
+  <li>Network Manager has a plugin for RHEL ifcfg files. Is there a supported way to convert ifcfg keyfiles so as to offer a clear upgrade path for current RHEL configuration?</li>
+  <li>Are the following items supported both in keyfiles as in the API:
+    <ul>
+      <li>ipaddr,</li>
+      <li>dhcp,</li>
+      <li>netmask,</li>
+      <li>STP,</li>
+      <li>Delay,</li>
+      <li>MTU,</li>
+      <li>Bonding options such as mode and miimon.</li>
+    </ul>
+  </li>
+  <li>In regards to gateways, how is Network Manager going to handle routing? Currently oVirt uses only one gateway per network.</li>
+  <li>Currently oVirt relies on 'tc' for port mirroring which makes us need to be able to get device names. Are device names available for all device types supported in NM?</li>
+  <li>Is it possible or planned in the short/medium term to gather statistics (speed, tx/rx/drop rate) of the NM supported (nics and vlans) or soon to be supported (bonds and bridges) devices.</li>
+  <li>Is it possible to alter the network configuration of network interfaces that are being used? Do the changes happen instantly?</li>
+  <li>How does the inter-device dependency management work when starting/stopping a device? E.g. What are the implications of editing a single network while there are other networks dependant on it).</li>
+  <li>Is there support or are there plans for Transactional network managment, i.e., is it going to be possible via the D-BUS API to change the configuration of several networks and apply all the changes in an all-or-nothing way?</li>
+  <li>oVirt depends heavily on libvirt, which uses NetCF to perform network interface configuration and in NetCF webpage it states that Network Manager also needs this functionality. Does NM currently use, or are there any plans to use, NetCF as a backend for network interface configuration? It seems that it could be benefitial to share infrastructure.</li>
+</ol>
+
+<h2 id="references">References</h2>
+
+<references />
+
+<p>[1] NetworkManager can work with both its own kind of file, named keyfiles and distribution specific files like Red Hat-like and debian-like distributions. A priori, it seems the most reasonable approach is to be as distribution-independent as possible (a counter argument is that adding another type of configuration file instead of using existing standards, causes proliferation of almost-equal files duplicated).</p>
+
+<p>[2] There is a bug/feature proposal at <a href="https://bugzilla.gnome.org/show_bug.cgi?id=682056">https://bugzilla.gnome.org/show_bug.cgi?id=682056</a> that works towards a full NetworkManager control interface through nmcli, that would eliminate the need of ad-hoc edition and management of the keyfiles</p>
+
+<p>[3] There is currently a proposal for supporting this in <a href="http://bugzilla.gnome.org/show_bug.cgi?id=682872">http://bugzilla.gnome.org/show_bug.cgi?id=682872</a>.</p>
+
+<p>[4] There are some branches with work towards proper bridging as told by <a href="https://bugzilla.gnome.org/show_bug.cgi?id=546197">https://bugzilla.gnome.org/show_bug.cgi?id=546197</a>.</p>
+
+<p>[5] According to <a href="https://bugzilla.gnome.org/show_bug.cgi?id=540995">https://bugzilla.gnome.org/show_bug.cgi?id=540995</a> there is bonding support but it may fail to start due to some dependency issues (also affecting the branches with bridge support) as described in <a href="https://bugzilla.gnome.org/show_bug.cgi?id=682618">https://bugzilla.gnome.org/show_bug.cgi?id=682618</a>.</p>
+
+<p>[6] It is supported but according to <a href="https://bugzilla.gnome.org/show_bug.cgi?id=681109">https://bugzilla.gnome.org/show_bug.cgi?id=681109</a> might suffers of the same dependency issues as in the above footnote.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

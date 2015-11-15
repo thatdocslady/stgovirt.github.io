@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+dbupgrade &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>dbupgrade</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>emesika, moolit</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>OVirt-DB-Issues/dbupgrade</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>17</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-12-29</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/OVirt-DB-Issues/dbupgrade' target='_blank'>
+OVirt-DB-Issues/dbupgrade
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="upgrade">Upgrade</h1>
+
+<p>We have here our home-made infrastructures based on concepts of an existing tool named <a href="http://flywaydb.org/">Flyway</a>, however, Flyway has it own limitations and is also bundled with a relatively big set of other dependant libraries that makes it hard to integrate &amp; customise to our needs. In order to handle DB upgrades, we maintain a fixed schema plus initial data and from that point on All schema &amp; data changes will be done via upgrade scripts.</p>
+
+<p>Since upgrade run only new scripts, upgrade scripts do not need to be re-entrant. New upgrade scripts should be pushed into git with a higher version than the latest script.</p>
+
+<pre class="highlight plaintext"><code>  ovirt=# \d schema_version&#x000A;                                      Table "public.schema_version"&#x000A;     Column    |            Type             |                        Modifiers                         &#x000A;  --------------+-----------------------------+----------------------------------------------------------&#x000A;  id           | integer                     | not null default nextval('schema_version_seq'::regclass)&#x000A;  version      | character varying(10)       | not null&#x000A;  script       | character varying(255)      | not null&#x000A;  checksum     | character varying(128)      | &#x000A;  installed_by | character varying(30)       | not null&#x000A;  started_at   | timestamp without time zone | default now()&#x000A;  ended_at     | timestamp without time zone | &#x000A;  state        | character varying(15)       | not null&#x000A;  current      | boolean                     | not null&#x000A;  comment      | text                        | default ''::text&#x000A;  Indexes:&#x000A;     "schema_version_primary_key" PRIMARY KEY, btree (id)&#x000A;</code></pre>
+
+<p><strong>NOTE : If you are testing upgrade, you must compile the origin and upgraded branch to the same PREFIX.</strong></p>
+
+<p>In production, you should</p>
+
+<pre class="highlight plaintext"><code>   1. install ovirt-engine with remote database&#x000A;   2. reinstall machine&#x000A;   3. install ovirt-engine with database of (1)&#x000A;</code></pre>
+
+<p>or:</p>
+
+<pre class="highlight plaintext"><code>   1. install ovirt-engine&#x000A;   2. execute engine-cleanup without cleaning up database&#x000A;   3. install ovirt-engine reuse database&#x000A;</code></pre>
+
+<h3 id="what-is-my-database-version">What is my database version?</h3>
+
+<pre class="highlight plaintext"><code>   select version,script,current from schema_version order by id desc limit 1;&#x000A;</code></pre>
+
+<h3 id="what-are-the-upgrade-script-naming-conventions">What are the upgrade script naming conventions?</h3>
+
+<p>Each upgrade change should be in a separate file formatted by MM_mm_nnnn_[Name].sql where:</p>
+
+<pre class="highlight plaintext"><code>       MM  indicates Major Version number&#x000A;       mm indicates Minor Version number&#x000A;       nnnn are numbers starting from 0010, each having an offset of 10 from previous script(i.e 0010 0020 ....)&#x000A;       [Name] is a short descriptive name for the script.(Please do not put your BZ # as part of the Name)&#x000A;</code></pre>
+
+<p>Upgrade scripts are sorted and executed lexicography, that's why it is important to follow the upgrade script naming convention.</p>
+
+<p>Temporary functions in upgrade scripts should be renamed <em>_temp</em><name> This is in order to distinguish them from real persistent functions and preventing the chance to drop such a function by mistake in an upgrade script.</name></p>
+
+<h3 id="when-upgrade-scripts-are-called-">When upgrade scripts are called ?</h3>
+
+<p><em>Clean Install</em>
+In clean install this is done after initial (default) data is inserted to the database
+This makes sure that default data is inserted on initial schema before any upgrade script change it.
+ <em>Upgrade</em>
+In upgrade we first drop all SPs &amp; Views and then run all upgrade scripts and finally restore views &amp; SPs</p>
+
+<h3 id="what-is-done-in-the-pre-upgrade-step">What is done in the pre-upgrade step?</h3>
+
+<pre class="highlight plaintext"><code>   configuration changes&#x000A;   schema_version table changes&#x000A;   special fixes&#x000A;</code></pre>
+
+<h3 id="what-is-done-in-the-post-upgrade-step">What is done in the post-upgrade step?</h3>
+
+<pre class="highlight plaintext"><code>   Modifications that are using views/stored procedures&#x000A;   Example:&#x000A;     Object column white list&#x000A;</code></pre>
+
+<h3 id="how-does-the-upgrade-script-works">How does the upgrade script works</h3>
+
+<p>validates scripts for changes &amp; version duplication
+drops views &amp; stored procedures
+runs pre-upgrade scripts
+checks for gaps
+check for already installed scripts
+run the upgrade script
+updates schema_version
+restore views &amp; stored procedures
+run post upgrade scripts
+generate .schema file</p>
+
+<h3 id="how-do-i-upgrade-db-configuration">How do I upgrade db configuration?</h3>
+
+<p>All changes to the configuration stored in the vdc_options table will be done using one script named
+<strong>config.sql</strong> under <strong>dbscripts/upgrade/pre_upgrade</strong> directory.
+<strong>config.sql</strong> script file is categorized to the following sections:</p>
+
+<pre class="highlight plaintext"><code>     Add Section&#x000A;     Update section (w/o overriding current value)&#x000A;     Delete section&#x000A;     Simple upgrades not available using a fn_db* function call&#x000A;     Complex upgrades using temporary functions&#x000A;</code></pre>
+
+<p><strong>Please note that the config.sql is re-entrant.</strong></p>
+
+<h3 id="how-do-i-upgrade-db-schema">How do I upgrade db schema?</h3>
+
+<p>When the DB schema is changed (using DDL), the change must be introduced via an upgrade script. That means that the create_tables.sql is stable and all modifications are done using upgrade scripts.</p>
+
+<h3 id="how-do-i-upgrade-db-data">How do I upgrade db data?</h3>
+
+<p>When the DB data is changed (using DML), the change must be introduced via an upgrade script.</p>
+
+<h3 id="how-do-i-cherry-pick-a-commit-from-upstream-to">How do I cherry-pick a commit from upstream to?</h3>
+
+<p>Assume upstream installed patches 0010 0020 0030 0040 0050 0060 and z-stream installed 0010 and 0020 when 0030 0040 0050 belongs to f1 feature and 0060 belongs to f2 feature Now , we would like to merge f2 changes to Z-stream There can be two cases here :</p>
+
+<pre class="highlight plaintext"><code>  In case that f2 depends on f1 , we will have to insert both f1 &amp; f2 patches (0030 - 0060)&#x000A;  In case that f2 is independent , we will add 0060 as 0021 in Z-stream&#x000A;</code></pre>
+
+<p>When we will add f1 to Z-stream it will run without any problem since it version is bigger than the last installed version.</p>
+
+<p>When we will add the real f2 to Z-stream , the upgrade will compare its checksum with existing scripts and it will be skipped (and will be marked as SKIPPED in the schema_version table)</p>
+
+<p>This assumes of course that f2 script were not changed from the time it was cherry-picked to the time the real script is taken.</p>
+
+<h3 id="how-to-prevent-script-collisions">How to prevent script collisions?</h3>
+
+<p>Upgrade scripts have the MM_mm_nnnn prefix, this uniquely defines the upgrade script
+The <em>upgrade.sh</em> script check for such duplications and fails with a detailed error pointing on the duplicate version if found.
+In addition we have a <em>pom.xml</em> under <em>dbscripts</em> that uses the <em>Maven Exec Plugin</em> to run a script that checks for duplications each time the engine is compiled
+In short , please follow
+ verify that your upgrade script is running OK</p>
+
+<pre class="highlight plaintext"><code>     compile &#x000A;     In case that you messed up, `*`Jenkins`*` will find the duplicate script and will send you a nice note.&#x000A;</code></pre>
+
+<h3 id="what-helper-functions-can-i-use-in-upgrade-scripts">What helper functions can I use in upgrade scripts</h3>
+
+<pre class="highlight plaintext"><code>   fn_db_add_column                  Adds a column to a table&#x000A;   fn_db_change_column_type          Changes a column type,decimal precision etc. (Several formats)&#x000A;   fn_db_add_config_value            Adds a new value to vdc_options&#x000A;   fn_db_update_default_config_value     Updates the value of an option in vdc_options if given default was not   changed.You can also define if your condition is case-sensitive or not&#x000A;   fn_db_delete_config_value     Deletes an option from vdc_options&#x000A;   fn_db_split_config_value          Given general configuration entry, creates new entries for each old cluster version, with the old value, &#x000A;   and a new entry for the newest cluster version with the input  value&#x000A;   fn_db_create_constraint             Creates a constraint&#x000A;   fn_db_drop_constraint                Drops a constraint&#x000A;</code></pre>
+
+<p>Examples:</p>
+
+<pre class="highlight plaintext"><code>   select fn_db_add_column('users', 'group_ids', 'VARCHAR(2048)');&#x000A;   select fn_db_change_column_type('storage_pool','storage_pool_format_type','integer','varchar(50)');&#x000A;   select fn_db_change_column_type('users','age','int2','int4 not null default 0');&#x000A;   select fn_db_change_column_type('vm_statistics','cpu_user',18,0,'decimal(18,3)');-- change decimal scale.&#x000A;   select fn_db_add_config_value('VdcVersion','3.0.0.0','general');&#x000A;   select fn_db_update_config_value('DBEngine','Postgres','general');&#x000A;   select fn_db_update_default_config_value('LDAPSecurityAuthentication','GSSAPI','default:GSSAPI','general',false);&#x000A;   select fn_db_delete_config_value('ENMailEnableSsl','general');&#x000A;   select fn_db_split_config_value('SpiceSecureChannels','all');&#x000A;  select fn_db_create_constraint('vds_static', 'vds_static_vds_name_unique', 'UNIQUE(vds_name)');&#x000A;  select fn_db_drop_constraint ( 'vds_static_vds_name_unique');&#x000A;</code></pre>
+
+<h3 id="what-should-i-do-if-i-have-to-">What should I do if I have to ?</h3>
+
+<pre class="highlight plaintext"><code>   Add or change a column                      Add an upgrade script&#x000A;   Add/Delete/Modify/Split configuration values     Modify config.sql script in pre_upgrade directory using common fn_db* functions&#x000A;   Add/Delete/Modify any default data              Add an upgrade script&#x000A;   Add/Delete/Modify a SP                      Change only the relevant *_sp.sql file&#x000A;   Add/Delete/Modify a View                    Change only the relevant code in create_views.sql file&#x000A;</code></pre>
+
+<h3 id="i-need-to-run-a-shell-script-as-an-upgrade-step-is-this-possible">I need to run a shell script as an upgrade step, is this possible?</h3>
+
+<p>Yes, just:</p>
+
+<p><code>write </code><mm_mm_nnnn_your_script.sh>
+      keep in mind that script follows same naming conventions and numbering as SQL upgrade script.
+`chmod +x `<mm_mm_nnnn_your_script.sh></mm_mm_nnnn_your_script.sh></mm_mm_nnnn_your_script.sh></p>
+
+<p>The ability to run shell scripts cover also the content of the pre/post upgrade directories.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

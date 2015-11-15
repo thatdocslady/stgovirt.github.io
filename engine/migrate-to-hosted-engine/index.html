@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Migrate to Hosted Engine &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Migrate to Hosted Engine</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>didi</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Migrate to Hosted Engine</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>8</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-12-03</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Migrate_to_Hosted_Engine' target='_blank'>
+Migrate to Hosted Engine
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="migrate-to-hosted-engine">Migrate to Hosted Engine</h1>
+
+<p>An example showing how to migrate an existing engine installation to <a href="/feature/engine/self-hosted-engine/"> Self Hosted Engine</a>, using <a href="/feature/engine/engine-backup/"> backup/restore</a>.</p>
+
+<h2 id="preparations">Preparations</h2>
+
+<p>I had in the dns an A record 'ovirttest.home.local' and a CNAME record my-engine.home.local pointing to ovirttest.</p>
+
+<p>I installed fedora 19 on a host (actually a VM) with hostname 'ovirttest'.</p>
+
+<p>I installed, using the nightly repo, ovirt-engine on ovirttest, ran 'engine-setup', and input as FQDN for the engine 'my-engine.home.local'.</p>
+
+<p>Now I wanted to migrate this installation to hosted engine.</p>
+
+<h2 id="hosted-engine-deploy---part-one">Hosted engine deploy - part one</h2>
+
+<p>I installed a new host with fedora 19, gave it hostname 'didi-box1.home.local'.</p>
+
+<p>Installed on it hosted engine. On didi-box1, added the nightly repos, and then:</p>
+
+<pre class="highlight plaintext"><code>  # yum install ovirt-hosted-engine-setup&#x000A;</code></pre>
+
+<p>Now deploy it. On didi-box1:</p>
+
+<pre class="highlight plaintext"><code>  # hosted-engine --deploy&#x000A;  [ INFO  ] Stage: Initializing&#x000A;            Continuing will configure this host for serving as hypervisor and create a VM where oVirt Engine will be installed afterwards.&#x000A;            Are you sure you want to continue? (Yes, No)[Yes]:&#x000A;  [ INFO  ] Generating a temporary VNC password.&#x000A;  [ INFO  ] Stage: Environment setup&#x000A;            Configuration files: []&#x000A;            Log file: /var/log/ovirt-hosted-engine-setup/ovirt-hosted-engine-setup-20131111142620.log&#x000A;            Version: otopi-1.2.0_master (otopi-1.2.0-0.0.master.20131105.git6a17a76.fc19)&#x000A;  [ INFO  ] Hardware supports virtualization&#x000A;  [ INFO  ] Stage: Environment packages setup&#x000A;  [ INFO  ] Stage: Programs detection&#x000A;  [ INFO  ] Stage: Environment setup&#x000A;  [ INFO  ] Stage: Environment customization&#x000A;            --== STORAGE CONFIGURATION ==--&#x000A;            During customization use CTRL-D to abort.&#x000A;            Please specify the storage you would like to use (glusterfs, nfs)[nfs]:&#x000A;            Please specify the full shared storage connection path to use (example: host:/path): didi-lap:/vm/he1&#x000A;  [ INFO  ] Installing on first host&#x000A;            Please provide storage domain name [hosted_storage]:&#x000A;            Local storage datacenter name [hosted_datacenter]:&#x000A;            --== SYSTEM CONFIGURATION ==--&#x000A;            --== NETWORK CONFIGURATION ==--&#x000A;            Please indicate a nic to set ovirtmgmt bridge on: (em1) [em1]:&#x000A;            iptables was detected on your computer, do you wish setup to configure it? (Yes, No)[Yes]:&#x000A;            Please indicate a pingable gateway IP address: 10.0.0.138&#x000A;            --== VM CONFIGURATION ==--&#x000A;            Please specify the device to boot the VM from (cdrom, disk, pxe) [cdrom]:&#x000A;            The following CPU types are supported by this host:&#x000A;                   - model_Westmere: Intel Westmere Family&#x000A;                   - model_Nehalem: Intel Nehalem Family&#x000A;                   - model_Penryn: Intel Penryn Family&#x000A;                   - model_Conroe: Intel Conroe Family&#x000A;            Please specify the CPU type to be used by the VM [model_Westmere]:&#x000A;            Please specify path to installation media you would like to use [None]: /iso/Fedora-18-x86_64-netinst.iso&#x000A;            Please specify the number of virtual CPUs for the VM [Defaults to minimum requirement: 2]:&#x000A;            Please specify the disk size of the VM in GB [Defaults to minimum requirement: 25]:&#x000A;            Please specify the memory size of the VM in MB [Defaults to minimum requirement: 4096]:&#x000A;            Please specify the console type you would like to use to connect to the VM (vnc, spice) [vnc]:&#x000A;            --== HOSTED ENGINE CONFIGURATION ==--&#x000A;            Enter the name which will be used to identify this host inside the Administrator Portal [hosted_engine_1]:&#x000A;            Enter 'admin@internal' user password that will be used for accessing the Administrator Portal:&#x000A;            Confirm 'admin@internal' user password:&#x000A;            Please provide the FQDN for the engine you would like to use. This needs to match the FQDN that you will use for the engine installation within the VM: my-engine.home.local&#x000A;  [ INFO  ] Stage: Setup validation&#x000A;            --== CONFIGURATION PREVIEW ==--&#x000A;            Bridge interface                   : em1&#x000A;            Engine FQDN                        : my-engine.home.local&#x000A;            Bridge name                        : ovirtmgmt&#x000A;            SSH daemon port                    : 22&#x000A;            Firewall manager                   : iptables&#x000A;            Gateway address                    : 10.0.0.138&#x000A;            Host name for web application      : hosted_engine_1&#x000A;            Host ID                            : 1&#x000A;            Image size GB                      : 25&#x000A;            Storage connection                 : didi-lap:/vm/he1&#x000A;            Console type                       : vnc&#x000A;            Memory size MB                     : 4096&#x000A;            Boot type                          : cdrom&#x000A;            Number of CPUs                     : 2&#x000A;            ISO image (for cdrom boot)         : /iso/Fedora-18-x86_64-netinst.iso&#x000A;            CPU Type                           : model_Westmere&#x000A;            Please confirm installation settings (Yes, No)[No]: yes&#x000A;  [ INFO  ] Generating answer file '/etc/ovirt-hosted-engine/answers.conf'&#x000A;  [ INFO  ] Stage: Transaction setup&#x000A;  [ INFO  ] Stage: Misc configuration&#x000A;  [ INFO  ] Stage: Package installation&#x000A;  [ INFO  ] Stage: Misc configuration&#x000A;  [ INFO  ] Configuring libvirt&#x000A;  [ INFO  ] Generating VDSM certificates&#x000A;  [ INFO  ] Configuring VDSM&#x000A;  [ INFO  ] Starting vdsmd&#x000A;  [ INFO  ] Waiting for VDSM hardware info&#x000A;  [ INFO  ] Configuring the management bridge&#x000A;  [ INFO  ] Creating Storage Domain&#x000A;  [ INFO  ] Creating Storage Pool&#x000A;  [ INFO  ] Connecting Storage Pool&#x000A;  [ INFO  ] Verifying sanlock lockspace initialization&#x000A;  [ INFO  ] Initializing sanlock lockspace&#x000A;  [ INFO  ] Initializing sanlock metadata&#x000A;  [ INFO  ] Creating VM Image&#x000A;  [ INFO  ] Disconnecting Storage Pool&#x000A;  [ INFO  ] Start monitoring domain&#x000A;  [ INFO  ] Configuring VM&#x000A;  [ INFO  ] Updating hosted-engine configuration&#x000A;  [ INFO  ] Stage: Transaction commit&#x000A;  [ INFO  ] Stage: Closing up&#x000A;  [ INFO  ] Creating VM&#x000A;            You can now connect to the VM with the following command:&#x000A;                  /bin/remote-viewer vnc://localhost:5900&#x000A;            Use temporary password "0494DEVS" to connect to vnc console.&#x000A;            Please note that in order to use remote-viewer you need to be able to run graphical applications.&#x000A;            This means that if you are using ssh you have to supply the -Y flag (enables trusted X11 forwarding).&#x000A;            Otherwise you can run the command from a terminal in your preferred desktop environment.&#x000A;            If you cannot run graphical applications you can connect to the graphic console from another host or connect to the console using the following command:&#x000A;            virsh -c qemu+tls://didi-box1/system console HostedEngine&#x000A;            If you need to reboot the VM you will need to start it manually using the command:&#x000A;            hosted-engine --vm-start&#x000A;            You can then set a temporary password using the command: `          hosted-engine --add-console-password=`&lt;password&gt;&#x000A;            Please install the OS on the VM.&#x000A;            When the installation is completed reboot or shutdown the VM: the system will wait until then&#x000A;</code></pre>
+
+<p>At this point I connected to the console of the new machine, using:</p>
+
+<pre class="highlight plaintext"><code>  % remote-viewer vnc://didi-box1:5900&#x000A;</code></pre>
+
+<p>and the temporary password shown above, and continued the installation of fedora 19 on the new VM. I configured its hostname to be 'he1vm.home.local'. When the installation finished, I pressed 'Reboot', and then, on the console where I ran 'hosted-engine –deploy' on didi-box1, I continued:</p>
+
+<pre class="highlight plaintext"><code>            Has the OS installation been completed successfully?&#x000A;            Answering no will allow you to reboot from the previously selected boot media. (Yes, No)[Yes]:  &#x000A;  [ INFO  ] Creating VM&#x000A;            You can now connect to the VM with the following command:&#x000A;                  /bin/remote-viewer vnc://localhost:5900&#x000A;            Use temporary password "0494DEVS" to connect to vnc console.&#x000A;            Please note that in order to use remote-viewer you need to be able to run graphical applications.&#x000A;            This means that if you are using ssh you have to supply the -Y flag (enables trusted X11 forwarding).&#x000A;            Otherwise you can run the command from a terminal in your preferred desktop environment.&#x000A;            If you cannot run graphical applications you can connect to the graphic console from another host or connect to the console using the following command:&#x000A;            virsh -c qemu+tls://didi-box1/system console HostedEngine&#x000A;            If you need to reboot the VM you will need to start it manually using the command:&#x000A;            hosted-engine --vm-start&#x000A;            You can then set a temporary password using the command: `          hosted-engine --add-console-password=`&lt;password&gt;&#x000A;            Please install the engine in the VM, hit enter when finished.&#x000A;</code></pre>
+
+<h2 id="hosted-engine-deploy---part-two">hosted engine deploy - part two</h2>
+
+<p>Now I connected to the vm with:</p>
+
+<pre class="highlight plaintext"><code>  % ssh root@he1vm.home.local&#x000A;</code></pre>
+
+<p>On he1vm, after enabling the ovirt nightly repo:</p>
+
+<pre class="highlight plaintext"><code>  # yum install ovirt-engine&#x000A;</code></pre>
+
+<h3 id="the-cutoff-point">The cutoff point</h3>
+
+<p>Now suppose we are ready to do the cutoff. We stop the engine on the old machine, backup, restore on the new machine, and setup there. Note that running backup does not require the engine to be down, but we do not want users to make changes in the old machine that will not be copied to the new one. We also do not want both the old and the new engines to try and manage the same existing hosts and VMs.</p>
+
+<p>On ovirttest, we stop the engine:</p>
+
+<pre class="highlight plaintext"><code>  # service ovirt-engine stop&#x000A;</code></pre>
+
+<p>We should also prevent the service from starting on a reboot. This can be done with</p>
+
+<pre class="highlight plaintext"><code>  # service ovirt-engine disable&#x000A;</code></pre>
+
+<p>for fedora 19, or, for el6 machines, with</p>
+
+<pre class="highlight plaintext"><code>  # chkconfig ovirt-engine off&#x000A;</code></pre>
+
+<p>We update our dns to point the name 'my-engine.example.com' to the IP address of the new VM 'he1vm'. Alternatively, if we did not have separate dns entries 'ovirttest' and 'my-engine', but just e.g. 'my-engine', we'll probably want to change the entry 'my-engine' to 'old-my-engine' and create a new entry 'my-engine' pointing at the address of 'he1vm'.</p>
+
+<p>Then we backup, still on ovirttest:</p>
+
+<pre class="highlight plaintext"><code>  # engine-backup --mode=backup --file=backup1 --log=backup1.log&#x000A;</code></pre>
+
+<p>Copy backup1 from ovirttest to oe1vm. E.g., on ovirttest:</p>
+
+<pre class="highlight plaintext"><code>  # scp -p backup1 he1vm:&#x000A;</code></pre>
+
+<p>Then restore the backup using a database we already created on another machine. On he1vm:</p>
+
+<pre class="highlight plaintext"><code>  # engine-backup --mode=restore --file=backup1 --log=backup1-restore.log --change-db-credentials --db-host=didi-lap --db-user=engine --db-password --db-name=engine&#x000A;</code></pre>
+
+<p>This will require manual preparation work of configuring postgresql and creating a user/database if using a local database, which is the default. For more details see <a href="/feature/engine/engine-backup/"> backup/restore</a>.</p>
+
+<p>This restores files and the database, but still does not start the service nor does other stuff which is normally done by setup.</p>
+
+<p>Note that you can also create a local database and restore to it. You'll then still need to manually enable postgresql to start on reboot and open the firewall to be able to access it.</p>
+
+<p>Next, run engine-setup. It will identify the existing files and database and do an "upgrade", including fixing around stuff that restore does not do. Still on he1vm:</p>
+
+<pre class="highlight plaintext"><code>  # engine-setup&#x000A;  [ INFO  ] Stage: Initializing&#x000A;  [ INFO  ] Stage: Environment setup&#x000A;            Configuration files: ['/etc/ovirt-engine-setup.conf.d/10-packaging.conf', '/etc/ovirt-engine-setup.conf.d/20-setup-ovirt-post.conf']&#x000A;            Log file: /var/log/ovirt-engine/setup/ovirt-engine-setup-20131111102015.log&#x000A;            Version: otopi-1.2.0_master (otopi-1.2.0-0.0.master.20131105.git6a17a76.fc18)&#x000A;  [ INFO  ] Stage: Environment packages setup&#x000A;  [ INFO  ] Stage: Programs detection&#x000A;  [ INFO  ] Stage: Environment setup&#x000A;  [ INFO  ] Stage: Environment customization&#x000A;            --== PACKAGES ==--&#x000A;  [ INFO  ] Checking for product updates...&#x000A;  [ INFO  ] No product updates found&#x000A;            --== NETWORK CONFIGURATION ==--&#x000A;            --== DATABASE CONFIGURATION ==--&#x000A;            Using existing credentials&#x000A;            --== OVIRT ENGINE CONFIGURATION ==--&#x000A;            Skipping storing options as database already prepared&#x000A;            --== PKI CONFIGURATION ==--&#x000A;            PKI is already configured&#x000A;            --== APACHE CONFIGURATION ==--&#x000A;            --== SYSTEM CONFIGURATION ==--&#x000A;            --== END OF CONFIGURATION ==--&#x000A;  [ INFO  ] Stage: Setup validation&#x000A;  [WARNING] Less than 16384MB of memory is available&#x000A;  [ INFO  ] Cleaning stale zombie tasks&#x000A;            --== CONFIGURATION PREVIEW ==--&#x000A;            Database name                      : engine&#x000A;            Database secured connection        : False&#x000A;            Database host                      : didi-lap&#x000A;            Database user name                 : engine&#x000A;            Database host name validation      : False&#x000A;            Datbase port                       : 5432&#x000A;            NFS setup                          : False&#x000A;            Firewall manager                   : firewalld&#x000A;            Configure WebSocket Proxy          : False&#x000A;            Host FQDN                          : my-engine.home.local&#x000A;            Set application as default page    : True&#x000A;            Configure Apache SSL               : True&#x000A;            Please confirm installation settings (OK, Cancel) [OK]:&#x000A;  [ INFO  ] Cleaning async tasks and compensations&#x000A;  [ INFO  ] Checking the DB consistency&#x000A;  [ INFO  ] Stage: Transaction setup&#x000A;  [ INFO  ] Stopping engine service&#x000A;  [ INFO  ] Stopping websocket-proxy service&#x000A;  [ INFO  ] Stage: Misc configuration&#x000A;  [ INFO  ] Fixing DB inconsistencies&#x000A;  [ INFO  ] Stage: Package installation&#x000A;  [ INFO  ] Stage: Misc configuration&#x000A;  [ INFO  ] Backing up database to '/var/lib/ovirt-engine/backups/engine-20131111102210.hRulo6.sql'.&#x000A;  [ INFO  ] Updating database schema&#x000A;  [ INFO  ] Generating post install configuration file '/etc/ovirt-engine-setup.conf.d/20-setup-ovirt-post.conf'&#x000A;  [ INFO  ] Stage: Transaction commit&#x000A;  [ INFO  ] Stage: Closing up&#x000A;            --== SUMMARY ==--&#x000A;  [WARNING] Less than 16384MB of memory is available&#x000A;            SSH fingerprint: A8:9D:9F:B0:0A:2A:35:FF:9C:D7:6D:92:1E:0B:4A:B4&#x000A;            Internal CA A4:D1:D1:B0:97:02:5F:1D:08:ED:F0:43:F6:96:2F:54:03:AD:30:4A&#x000A;            Web access is enabled at: `              `[`http://my-engine.home.local:80/ovirt-engine`](http://my-engine.home.local:80/ovirt-engine) `              `[`https://my-engine.home.local:443/ovirt-engine`](https://my-engine.home.local:443/ovirt-engine)&#x000A;            --== END OF SUMMARY ==--&#x000A;  [ INFO  ] Starting engine service&#x000A;  [ INFO  ] Restarting httpd&#x000A;  [ INFO  ] Generating answer file '/var/lib/ovirt-engine/setup/answers/20131111102241-upgrade.conf'&#x000A;  [ INFO  ] Stage: Clean up&#x000A;            Log file is located at /var/log/ovirt-engine/setup/ovirt-engine-setup-20131111102015.log&#x000A;  [ INFO  ] Stage: Pre-termination&#x000A;  [ INFO  ] Stage: Termination&#x000A;  [ INFO  ] Execution of upgrade completed successfully&#x000A;</code></pre>
+
+<p>Then we go back to the console where we ran 'hosted-engine –deploy', on didi-box1:</p>
+
+<pre class="highlight plaintext"><code>            Please install the engine in the VM, hit enter when finished.&#x000A;  [ INFO  ] Engine replied: DB Up!Welcome to Health Status!&#x000A;  [ INFO  ] Waiting for the host to become operational in the engine. This may take several minutes...&#x000A;  [ INFO  ] The VDSM Host is now operational&#x000A;            Please shutdown the VM allowing the system to launch it as a monitored service.&#x000A;            The system will wait until the VM is down.&#x000A;</code></pre>
+
+<p>Now we go back to he1vm and reboot it. On he1vm:</p>
+
+<pre class="highlight plaintext"><code>  # reboot&#x000A;</code></pre>
+
+<p>Then, on the console where we ran 'hosted-engine –deploy', on didi-box1:</p>
+
+<pre class="highlight plaintext"><code>            The system will wait until the VM is down.&#x000A;  [ INFO  ] Enabling and starting HA services&#x000A;            Hosted Engine successfully set up&#x000A;  [ INFO  ] Stage: Clean up&#x000A;  [ INFO  ] Stage: Pre-termination&#x000A;  [ INFO  ] Stage: Termination&#x000A;</code></pre>
+
+<p>That's it. If we now point a browser at <a href="https://my-engine.home.local/ovirt-engine/">https://my-engine.home.local/ovirt-engine/</a> , we can login to the web admin interface, and in addition to our existing data, we'll find also a host called 'hosted_engine_1' and a VM called 'HostedEngine'.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

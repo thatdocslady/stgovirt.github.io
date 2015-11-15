@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+How to install the guest agent in Ubuntu &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>How to install the guest agent in Ubuntu</td>
+</tr>
+<tr>
+<th>category</th>
+<td>howto</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>nkesick</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>How to install the guest agent in Ubuntu</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>10</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2015-01-19</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/How_to_install_the_guest_agent_in_Ubuntu' target='_blank'>
+How to install the guest agent in Ubuntu
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="how-to-install-the-guest-agent-in-ubuntu">How to install the guest agent in Ubuntu</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Installing the Guest Agent in a Ubuntu virtual machine is fairly simple and will provide the oVirt-engine with additional information about the VM. The process has two main steps which is adding an install source and installing the ovirt-guest-agent package. Presently the ovirt-guest-agent package for Ubuntu is not in the official repos, but is available through evilissimo who currently maintains the package.</p>
+
+<h2 id="using-apt-get-via-terminal-to-install-the-ovirt-guest-tools">Using apt-get via terminal to install the oVirt Guest Tools</h2>
+
+<h3 id="for-ubuntu-1204">For Ubuntu 12.04</h3>
+
+<ol>
+  <li>From a terminal session, type the following</li>
+</ol>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># sudo nano -w /etc/apt/sources.list.d/ovirt-guest-agent.list&#x000A;</code></pre>
+
+<ol>
+  <li>Paste in the following source.</li>
+</ol>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>deb http://download.opensuse.org/repositories/home:/evilissimo:/ubuntu:/12.04/xUbuntu_12.04/ /&#x000A;</code></pre>
+
+<ol>
+  <li>
+    <p>Press CTRL + O (enter) to save and CTRL + X to exit</p>
+  </li>
+  <li>
+    <p>Then, continuing in the terminal session, type the following:</p>
+  </li>
+</ol>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># wget http://download.opensuse.org/repositories/home:/evilissimo:/ubuntu:/12.04/xUbuntu_12.04/Release.key&#x000A;# sudo apt-key add - &lt; Release.key  &#x000A;# sudo apt-get update&#x000A;# sudo apt-get install ovirt-guest-agent&#x000A;</code></pre>
+
+<p>The above will install ovirt-guest-agent. Accept the prompt to install <strong>ovirt-guest-agent</strong> and any required dependencies.</p>
+
+<h3 id="for-ubuntu-1310">For Ubuntu 13.10</h3>
+
+<ol>
+  <li>From a terminal session, type the following</li>
+</ol>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># sudo nano -w /etc/apt/sources.list.d/ovirt-guest-agent.list&#x000A;</code></pre>
+
+<ol>
+  <li>Paste in the following source.</li>
+</ol>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>deb http://download.opensuse.org/repositories/home:/evilissimo:/ubuntu:/13.10/xUbuntu_13.10/ /&#x000A;</code></pre>
+
+<ol>
+  <li>
+    <p>Press CTRL + O (enter) to save and CTRL + X to exit</p>
+  </li>
+  <li>
+    <p>Then, continuing in the terminal session, type the following:</p>
+  </li>
+</ol>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># wget http://download.opensuse.org/repositories/home:/evilissimo:/ubuntu:/13.10/xUbuntu_13.10/Release.key&#x000A;# sudo apt-key add - &lt; Release.key  &#x000A;# sudo apt-get update&#x000A;# sudo apt-get install ovirt-guest-agent&#x000A;</code></pre>
+
+<p>The above will install ovirt-guest-agent. Accept the prompt to install <strong>ovirt-guest-agent</strong> and any required dependencies.</p>
+
+<h3 id="for-ubuntu-1404">For Ubuntu 14.04</h3>
+
+<ol>
+  <li>From a terminal session, type the following</li>
+</ol>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># sudo nano -w /etc/apt/sources.list.d/ovirt-guest-agent.list&#x000A;</code></pre>
+
+<ol>
+  <li>Paste in the following source.</li>
+</ol>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>deb http://download.opensuse.org/repositories/home:/evilissimo:/ubuntu:/14.04/xUbuntu_14.04/ /&#x000A;</code></pre>
+
+<ol>
+  <li>
+    <p>Press CTRL + O (enter) to save and CTRL + X to exit</p>
+  </li>
+  <li>
+    <p>Then, continuing in the terminal session, type the following:</p>
+  </li>
+</ol>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># wget http://download.opensuse.org/repositories/home:/evilissimo:/ubuntu:/14.04/xUbuntu_14.04//Release.key&#x000A;# sudo apt-key add - &lt; Release.key  &#x000A;# sudo apt-get update&#x000A;# sudo apt-get install ovirt-guest-agent&#x000A;</code></pre>
+
+<p>The above will install ovirt-guest-agent. Accept the prompt to install <strong>ovirt-guest-agent</strong> and any required dependencies.</p>
+
+<h2 id="starting-the-service">Starting the service</h2>
+
+<p>The install will automatically start ovirt-guest-agent and set it to automatically start on boot.</p>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>The web admin interface may take some time to start displaying the memory usage and other types of information. If you find that after some time this information has not been populated, restart the VM by performing a shut down or power off, power on, and verify that the service is started by running. A reboot of the virtual machine did not seem to resolve the issue.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Ovirt cluster level test &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Ovirt cluster level test</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>markwu</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Ovirt cluster level test</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>2</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-03-25</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Ovirt_cluster_level_test' target='_blank'>
+Ovirt cluster level test
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="ovirt-cluster-level-test">oVirt cluster level test</h1>
+
+<p><strong>oVirt cluster level test work flow</strong> <img alt="" title="fig:Ovirt-test.png" src="/images/wiki/Ovirt-test.png?1447607916" /></p>
+
+<p><strong>Explanations about the flow chart.</strong></p>
+
+<p><big>Initial Setup:</big></p>
+
+<p>1 Configure igor with the following given stuff:</p>
+
+<ul>
+  <li>kickstart files for engine and vdsm host based on Fedora or RHEL.</li>
+  <li>installation medias for Fedora/RHEL or oVirt-node/RHEV-H</li>
+  <li>oVirt test packages repo.</li>
+</ul>
+
+<p>2.Igor updates cobbler with stuff above except ISOs for oVirt-node/RHEV-H because they're going to be edited on each test plan. Igor also adds a few different profiles to cobbler and creates some VM as templates.</p>
+
+<p><big>Jenkins triggers a new testsuite:</big></p>
+
+<ol>
+  <li>
+    <p>Jenkins updates the oVirt test repo with new built packages including ovirt-engine, vdsm, test cases etc.</p>
+  </li>
+  <li>
+    <p>Jenkins submits a test plan to Igor. The test plan describes testsuites and the spec of the test environment.</p>
+  </li>
+  <li>
+    <p>Igor prepares test hosts: both virtual machines and physical hosts can be used as test hosts. For virtual machines, they're based on nested KVM technology. And the new vm for test can be cloned from existing templates. For oVirt-node and RHEV-H, igor needs to edit the ISO image and add it to cobbler before creating new vm.</p>
+  </li>
+  <li>
+    <p>Igor setups the required resource of storage and network according to the description in test plan.</p>
+  </li>
+  <li>
+    <p>Igor updates oVirt related packages via ssh commands to guests (ssh public keys are injected during installation via kickstart's post script). And then invoke an igor client script inside the oVirt engine host. It will run the testsuite based on oVirt engine SDK on oVirt engine host and report result back to Igor</p>
+  </li>
+  <li>
+    <p>Igor reports the test result back to Jenkins.</p>
+  </li>
+</ol>
+
+<p>Reference:</p>
+
+<ul>
+  <li><a href="https://gitorious.org/ovirt/igord/blobs/master/docs/Testing_process_overview.rst">https://gitorious.org/ovirt/igord/blobs/master/docs/Testing_process_overview.rst</a></li>
+</ul>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

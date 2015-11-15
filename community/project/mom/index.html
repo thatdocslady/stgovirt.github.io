@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+MoM &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>MoM</td>
+</tr>
+<tr>
+<th>category</th>
+<td>project</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>aglitke, doron, lhornyak</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Project</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>MoM</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>9</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-02-19</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/MoM' target='_blank'>
+MoM
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="mo-m">Mo M</h1>
+
+<p>MOM is a policy-driven tool that can be used to manage overcommitment on KVM hosts. Using either libvirt or vdsm, MOM keeps track of active virtual machines on a host. At a regular collection interval, data is gathered about the host and guests. Data can come from multiple sources (eg. the /proc interface, vdsm API calls, libvirt API calls, a client program connected to a guest, etc). Once collected, the data is organized for use by the policy evaluation engine. When started, MOM accepts a user-supplied overcommitment policy. This policy is regularly evaluated using the latest collected data. In response to certain conditions, the policy may trigger reconfiguration of the system’s overcommitment mechanisms. Currently MOM supports control of memory ballooning and KSM but the architecture is designed to accommodate new mechanisms such as cgroups.</p>
+
+<h2 id="name">Name</h2>
+
+<p>Mom – Memory Overcommitment Manager</p>
+
+<h2 id="important-mom-wiki-pages">Important MoM wiki pages</h2>
+
+<ul>
+  <li>How Mom is being used to implement <a href=":Category:SLA">:Category:SLA</a> features in oVirt</li>
+  <li>Mom project proposal [:Project_Proposal_-<em>MOM](:Project_Proposal</em>-_MOM) and Integration <a href=":SLA-mom">:SLA-mom</a></li>
+  <li>integrated Mom work cycle <a href=":Architecture#MOM_integration">:Architecture#MOM_integration</a></li>
+  <li>mom policy explained <a href=":Sla/host-mom-policy">:Sla/host-mom-policy</a></li>
+  <li>Ballooning feature design <a href=":Features/Design/memory-balloon">:Features/Design/memory-balloon</a> and Mom ballooning tech preview <a href=":SLA-mom-ballooning-tp">:SLA-mom-ballooning-tp</a></li>
+</ul>
+
+<h2 id="external-links">External Links</h2>
+
+<ul>
+  <li>There is some <a href="https://github.com/aglitke/mom/wiki">old documentation</a> that needs to be updated and migrated to this wiki.</li>
+  <li>A <a href="http://www.linux-kvm.org/wiki/images/e/e8/2010-forum-litke-kvmforum2010.pdf">presentation</a> on overcommitment policy.</li>
+  <li>A <a href="http://www.ibm.com/developerworks/library/l-overcommit-kvm-resources/">paper</a> on the same topic.</li>
+</ul>
+
+<h2 id="additional-project-information">Additional project information</h2>
+
+<p>Our git repository sits on oVirt's Gerrit server. Development takes place on mostly in vdsm mailing lists: vdsm-patches for submitting new patches, and vdsm-devel for general discussions on where Vdsm development should go. On the latter one, users and potential users should feel comfortable to seek help, ask questions, and get answers about Vdsm.</p>
+
+<h2 id="irc">IRC</h2>
+
+<p>There is <a href="IRC">#ovirt</a> on oftc.</p>
+
+<h2 id="requirements">Requirements</h2>
+
+<pre class="highlight plaintext"><code>     Under construction..... &#x000A;</code></pre>
+
+<p>Caveats</p>
+
+<pre class="highlight plaintext"><code>     Under construction..... &#x000A;</code></pre>
+
+<category:project>
+</category:project>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

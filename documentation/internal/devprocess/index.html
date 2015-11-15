@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+DevProcess &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>DevProcess</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>amureini, gina, granha, ovedo, roy, snmishra, ybronhei</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>DevProcess</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>13</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2015-05-20</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/DevProcess' target='_blank'>
+DevProcess
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="dev-process">Dev Process</h1>
+
+<h2 id="development-process">Development Process</h2>
+
+<p>The code you write, and the way you present it, are crucial for understanding and maintaining the source code. Please read the following sections for guidelines on Git, Gerrit, patch management and more.</p>
+
+<h3 id="patch-review-process-goals">Patch Review Process Goals</h3>
+
+<p>The patch review process goals are:</p>
+
+<ol>
+  <li>Improving code quality</li>
+  <li>Design improvements</li>
+  <li>Openness, transparency, community</li>
+  <li>Usable revision history</li>
+  <li>Archived discussions</li>
+  <li>Patches which can be cherry-picked</li>
+</ol>
+
+<p>The oVirt project uses gerrit in order to review patches. For more on Gerrit and how to use it see <a href="/documentation/internal/working-with-gerrit/">Working with oVirt Gerrit</a></p>
+
+<h3 id="basic-principles">Basic Principles</h3>
+
+<h4 id="review-process">Review Process</h4>
+
+<ol>
+  <li>Patches sent to Gerrit for review</li>
+  <li>A peer thoughtfully reviews the patch</li>
+  <li>Feedback gratefully received</li>
+  <li>All discussions on the patch must be done on Gerrit</li>
+  <li>Consensus formed, ACK or NAK agreed</li>
+</ol>
+
+<h4 id="coding-standards">Coding standards</h4>
+
+<ul>
+  <li>all coding standards for the project can be found at <a href="/java/backend-coding-standards/">Backend Coding Standards</a></li>
+</ul>
+
+<h5 id="whos-my-reviewer">who's my reviewer?</h5>
+
+<p>if you don't know who is should review your patch you can either -</p>
+
+<ul>
+  <li>ping the engine-devel@ovirt.org mailing list with the link to gerrits request</li>
+  <li>
+    <p>git blame your code and trace recent users who committed code that you changed</p>
+
+    <p>git blame HEAD~1 path/to/file -L {start},{end}</p>
+  </li>
+</ul>
+
+<h4 id="patch-format">Patch Format</h4>
+
+<ul>
+  <li>ovirt-engine patch format</li>
+</ul>
+
+<p>use the project template for a commit message</p>
+
+<pre class="highlight plaintext"><code>  git commit -s -t config/engine-commit-template.txt&#x000A;</code></pre>
+
+<ul>
+  <li>
+    <p>other patch format (VDSM)</p>
+
+    <p>short summary under 80 chars</p>
+
+    <p> Longer description.
+   With multiple paragraphs if necessary. 
+   Wrapped at ~80 chars.</p>
+
+    <p>Bug-Url: https://bugzilla.redhat.com/XXXXXX
+  Signed-off-by: full name <mail></mail></p>
+
+    <p> </p>
+  </li>
+</ul>
+
+<h4 id="sending-a-patch-for-work-in-progress">Sending a Patch For Work In Progress</h4>
+
+<p>Use gerrit's draft capabilities.</p>
+
+<p>Patches in draft are blocked from being merged until they are "published"</p>
+
+<p>To push a patch to drafts:</p>
+
+<pre class="highlight plaintext"><code>  git push origin HEAD:refs/drafts/master&#x000A;   &#x000A;</code></pre>
+
+<h4 id="describe-your-changes-properly">Describe your changes properly</h4>
+
+<ol>
+  <li>Not just “what”, but “why”</li>
+  <li>Makes patches easier to review</li>
+  <li>Incredibly useful to future developers, and for you as well (don't trust your own memory)</li>
+</ol>
+
+<h4 id="separate-your-changes">Separate your changes</h4>
+
+<ol>
+  <li>Each commits contain a single logical change</li>
+  <li>Keep refactoring separate from bug fixes</li>
+</ol>
+
+<h4 id="focus-on-details">Focus on details</h4>
+
+<ol>
+  <li>Adhere to coding style</li>
+  <li>Adhere to commit message format</li>
+  <li>Make your code beautiful</li>
+  <li>Refactor if necessary</li>
+  <li>Use whitespaces and not tabs</li>
+  <li>Prefer understandable code over comments</li>
+</ol>
+
+<h4 id="patch-queues">Patch queues</h4>
+
+<ol>
+  <li>Each topic branch is a patch queue</li>
+  <li>Send each branch as a series of patches</li>
+  <li>Gives reviewers an easy story to follow</li>
+</ol>
+
+<h4 id="git-guidelines">Git guidelines</h4>
+
+<h5 id="merge-commits">Merge commits</h5>
+
+<ol>
+  <li>Don't use 'git merge' or 'git pull'</li>
+  <li>Use 'git rebase' and 'git fetch' instead</li>
+  <li>A merge commit is rarely what you want</li>
+</ol>
+
+<h5 id="topic-branches">Topic branches</h5>
+
+<p>Create a branch for everything you work on. It can be done by either postfixing the topic to the push link</p>
+
+<pre class="highlight plaintext"><code>  push origin HEAD:refs/publish/master/{NAME_OF_YOUR_TOPIC}&#x000A;</code></pre>
+
+<p>or using gerrit's review page directly by clicking on the topic</p>
+
+<h5 id="interactive-rebase">Interactive Rebase</h5>
+
+<p>You can also interactive rebase. It is very useful when you would like to re-write your own commit objects before pushing them somewhere. It is an easy way to split, merge or re-order commits before sharing them with others. You can also use it to clean up commits you've pulled from someone when applying them locally.</p>
+
+<p>For more information on using interactive rebase see <a href="http://book.git-scm.com/4_interactive_rebasing.html">http://book.git-scm.com/4_interactive_rebasing.html</a></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

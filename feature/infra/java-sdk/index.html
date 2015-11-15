@@ -1,0 +1,2108 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Java-sdk &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Java-sdk</td>
+</tr>
+<tr>
+<th>category</th>
+<td>sdk</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>adahms, michael pasternak, moti</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>SDK</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Java-sdk</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>73</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-07-24</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Java-sdk' target='_blank'>
+Java-sdk
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<section class='feature'>
+<section class='feature-sidebar col-md-4'>
+<h1>Features</h1>
+<form class='hide' id='feature-search'>
+<div class='form-group'>
+<input autocomplete='off' class='form-control' id='feature-search-input' placeholder='Filter features'>
+<div class='checkbox'>
+<label>
+</label>
+</div>
+</div>
+</form>
+<h2>Unclassified</h2>
+<ul class='feature-list'>
+<li class=' status-development'>
+<a href='/feature/affinity-rules-enforcement-manager' title='Status: Development'>Affinity Rules Enforcement Manager</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/backupawareness' title='Status: NEW'>Adding Backup Awareness to oVirt</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/boot' title='Status: WIP'>Boot oVirt.org</a>
+
+</li>
+<li class=' status-developement'>
+<a href='/feature/cinderglance-docker-integration' title='Status: Developement'>Cinder and Glance integration via Docker</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/copy-disks' title='Status: Unknown'>Copy Disks</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/debian-support-for-hosts' title='Status: NEW'>Debian support for hosts</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/extension-tester-tool' title='Status: Unknown'>Extension tester tool</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/feature-template' title='Status: Released'>Your feature name</a>
+
+</li>
+<li class=' status-merged'>
+<a href='/feature/genericregistration' title='Status: Merged'>Generic Registration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/heapplianceflow' title='Status: WIP'>oVirt hosted-engine appliance flow</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/hosted-engine-add-hosts-with-web-ui' title='Status: NEW'>Hosted Engine: add hosts with Web UI</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/hosted-engine-configuration-on-shared-storage' title='Status: NEW'>Hosted Engine configuration on shared storage</a>
+
+</li>
+<li class=' status-design-&amp;-research'>
+<a href='/feature/hosted-engine-vm-management' title='Status: Design-&amp;-research'>Hosted engine VM management enhancements</a>
+
+</li>
+<li class=' status-implementation'>
+<a href='/feature/image-upload' title='Status: Implementation'>Image Upload</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/iothreads-support' title='Status: Unknown'>IOThreads Support</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/ip-on-role-network' title='Status: design'>IP address configuration on role bearing NICs</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/katellointegration' title='Status: Development'>Katello Integration</a>
+
+</li>
+<li class=' status-qa'>
+<a href='/feature/live-rebase-on-centos-7' title='Status: QA'>oVirt Live Rebase on CentOS 7</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/lun-resize' title='Status: Design'>Refresh LUN Size</a>
+
+</li>
+<li class=' status-draft'>
+<a href='/feature/memorybasedbalancing' title='Status: Draft'>CPU and Memory based cluster auto balancing</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/numaawareksmsupport' title='Status: Design'>NUMA aware KSM support</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/patternfly-tooltips' title='Status: Development'>PatternFly tooltips</a>
+
+</li>
+<li class=' status-draft'>
+<a href='/feature/pendingresourcemanager' title='Status: Draft'>Pending Resource Manager</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/scheduler-policies' title='Status: Unknown'>oVirt Scheduler Policies</a>
+
+</li>
+<li class=' status-planning'>
+<a href='/feature/splash' title='Status: Planning'>Backup Awareness UI - Splash Screen</a>
+
+</li>
+<li class=' status-planning'>
+<a href='/feature/ui' title='Status: Planning'>Backup Awareness UI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vmdevices-rework' title='Status: Unknown'>VMDevices rework</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/vmpinningtomultiplehosts' title='Status: Development'>VM pinning to multiple hosts</a>
+
+</li>
+</ul>
+<h2>Cloud</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/cloud/addingkeystoneurltoexternalproviders' title='Status: Unknown'>Adding Keystone URL To External Providers</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/cloud/cloud-init-integration' title='Status: Unknown'>Cloud-Init Integration</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/cloud/neutronvirtualappliance' title='Status: Completed'>Neutron Virtual Appliance</a>
+
+</li>
+</ul>
+<h2>Engine</h2>
+<ul class='feature-list'>
+<li class=' status-planning'>
+<a href='/feature/engine/avoid-ip-spoofing' title='Status: Planning'>Avoid IP Spoofing</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/better-vurti' title='Status: Unknown'>Better vurti</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/cluster-parameters-override' title='Status: Design'>Cluster parameters override</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/engine/commandcoordinator' title='Status: Completed'>Introduce CommandCoordinator Framework and Ability To Persist Commands in Database</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/cumulative-rx-tx-statistics' title='Status: Design'>Cumulative Network Usage Statistics</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/engine-backup' title='Status: Released'>oVirt engine backup</a>
+
+</li>
+<li class=' status-partial'>
+<a href='/feature/engine/engine-cleanup' title='Status: Partial'>Engine</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/engine-config-utilities' title='Status: Unknown'>Engine Config Utilities</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/engine-high-availability' title='Status: Unknown'>Engine High Availability</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/engine-nic-health-check' title='Status: Released'>Engine NIC health check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/engine-snmp' title='Status: Unknown'>engine snmp</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/engine-support-for-ppc64' title='Status: Released'>Engine support for PPC64</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/feature-level-support' title='Status: Unknown'>Feature Level Support</a>
+
+</li>
+<li class=' status-wontfix'>
+<a href='/feature/engine/fedora-21-support' title='Status: WONTFIX'>Fedora 21 Support</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/engine/fedora-22-support' title='Status: NEW'>Fedora 22 Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/fence-kdump' title='Status: Unknown'>Fence kdump</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/fenceagents' title='Status: Unknown'>Fence Agents</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/fencing-refactoring' title='Status: Design'>Fencing refactoring</a>
+
+</li>
+<li class=' status-proposed'>
+<a href='/feature/engine/get-route' title='Status: Proposed'>Get Route</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/guest-reboot' title='Status: Unknown'>Guest Reboot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/hostdeployprotocol' title='Status: Unknown'>Host Deploy Protocol</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/hostdev-passthrough' title='Status: Unknown'>hostdev passthrough</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/engine/hosted-engine' title='Status: WIP'>Node Hosted Engine</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/importunregisteredentities' title='Status: Released'>Detach/Attach Storage Domain with entities</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/integrating-libosinfo-with-engine' title='Status: Released'>Integrating libosinfo with oVirt engine</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/migration-of-local-dwh-reports-to-remote' title='Status: Design'>Migrating local DWH and Reports to remote</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/orm' title='Status: Unknown'>ORM</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/reportguestdiskslogicaldevicename' title='Status: Design'>Report Guest Disks Logical Device Name</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/self-hosted-engine-fc-support' title='Status: design'>Self Hosted Engine FC Support</a>
+
+</li>
+<li class=' status-post'>
+<a href='/feature/engine/self-hosted-engine-gluster-support' title='Status: POST'>Self Hosted Engine Gluster Support</a>
+
+</li>
+<li class=' status-post'>
+<a href='/feature/engine/self-hosted-engine-hyper-converged-gluster-support' title='Status: POST'>Self Hosted Engine Hyper Converged Gluster Support</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/engine/self-hosted-engine-iscsi-support' title='Status: Completed'>Self Hosted Engine iSCSI Support</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/self-hosted-engine-maintenance-flows' title='Status: Released'>Hosted Engine Maintenance Flow Unification</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/self-hosted-engine' title='Status: Released'>Self Hosted Engine</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/separate-dwh-host' title='Status: Design'>Separate DWH Host</a>
+
+</li>
+<li class=' status-qe'>
+<a href='/feature/engine/separate-reports-host' title='Status: QE'>Separate Reports Host</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/serial-console' title='Status: Unknown'>Serial Console</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/sr-iov' title='Status: Design'>SR_IOV</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/upgrademanager' title='Status: Released'>Upgrade Manager</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/vm-icons' title='Status: Design'>VM Icons</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/watchdog-engine-support' title='Status: Released'>Watchdog engine support</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/windows-guest-tools' title='Status: Released'>oVirt Windows Guest Tools ISO</a>
+
+</li>
+</ul>
+<h2>Foreman</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/foreman/advancedforemanintegration' title='Status: Unknown'>Advanced Foreman Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/foreman/foremanintegration' title='Status: Unknown'>Foreman Integration</a>
+
+</li>
+</ul>
+<h2>Infra</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/infra/aaa-jdbc' title='Status: Unknown'>AAA JDBC</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/aaa' title='Status: Unknown'>AAA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/api' title='Status: Unknown'>API</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/asynctaskmanagerchanges-3.3' title='Status: Unknown'>AsyncTaskManagerChanges 3.3</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/asynctaskmanagerchanges-3.3detailed' title='Status: Unknown'>AsyncTaskManagerChanges 3.3Detailed</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/asynctaskmanagerchanges' title='Status: Unknown'>Async Task Manager Changes</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/authentication-rewrite' title='Status: Unknown'>Authentication Rewrite</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/bootstrap-improvements' title='Status: Unknown'>Bootstrap Improvements</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/cli' title='Status: Unknown'>CLI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/clonevmfromsnapshot' title='Status: Unknown'>Clone VM From Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/custompropertiessheet' title='Status: Unknown'>Custom Properties Sheet</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/dbschemaversioncheck' title='Status: Unknown'>DB Schema Version Check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedclonevmfromsnapshot' title='Status: Unknown'>Detailed Clone VM From Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedhostpmproxypreferences' title='Status: Unknown'>Detailed Host PM Proxy Preferences</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedlockmechanism' title='Status: Unknown'>Detailed Lock Mechanism</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedpmhealthcheck' title='Status: Unknown'>Detailed PM Health Check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/drbd' title='Status: Unknown'>DRBD</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/entity-comment' title='Status: Unknown'>Entity comment</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/entity-configuration-management' title='Status: Unknown'>Entity Configuration Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/externalevents' title='Status: Unknown'>External Events</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/externaltasks' title='Status: Unknown'>External Tasks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/fullapplicationslist' title='Status: Unknown'>Full Applications List</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/hostpmproxypreferences' title='Status: Unknown'>Host PM Proxy Preferences</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/hsm-async-tasks' title='Status: Unknown'>HSM Async Tasks</a>
+
+</li>
+<li class='selected status-unknown'>
+<a href='/feature/infra/java-sdk' title='Status: Unknown'>Java sdk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/kerberos-support-in-sdks-and-cli' title='Status: Unknown'>Kerberos Support in SDKs and CLI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/microthreading' title='Status: Unknown'>Microthreading</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/nagios-integration' title='Status: Unknown'>Nagios Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/ntpsupport' title='Status: Unknown'>NTP Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/one-certificate-key-pair-per-nic' title='Status: Unknown'>One certificate-key pair per NIC</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pki-improvements' title='Status: Unknown'>PKI Improvements</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pki' title='Status: Unknown'>PKI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pkireduce' title='Status: Unknown'>PKI Reduce</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pmhealthcheck' title='Status: Unknown'>PM Health Check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/python-sdk' title='Status: Unknown'>Python sdk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/reloadableconfiguration' title='Status: Unknown'>Reloadable Configuration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/restsessionmanagement' title='Status: Unknown'>REST Session Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/rsdl-schema' title='Status: Unknown'>RSDL schema</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/rsdl' title='Status: Unknown'>RSDL</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/runningcommandsonendactionfailure' title='Status: Unknown'>Running Commands On End Action Failure</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/ssh-abilities' title='Status: Unknown'>SSH Abilities</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/sso-method-control' title='Status: Unknown'>SSO Method Control</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/sso' title='Status: Unknown'>SSO</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/taskmanager' title='Status: Unknown'>Task Manager</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/taskmanagercanceltask' title='Status: Unknown'>Task Manager Cancel Task</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/taskmanagerdetailed' title='Status: Unknown'>Task Manager Detailed</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/testingframework' title='Status: Unknown'>Testing Framework</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/uniformssosupport' title='Status: Unknown'>Uniform SSO Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/user-portal-permissions' title='Status: Unknown'>User Portal Permissions</a>
+
+</li>
+</ul>
+<h2>Infra / Reloadable Configuration</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/infra/reloadable-configuration/keys-table' title='Status: Unknown'>keys table</a>
+
+</li>
+</ul>
+<h2>Infra / User Portal Permissions</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/infra/user-portal-permissions/writing-a-new-user-query' title='Status: Unknown'>Writing A New User Query</a>
+
+</li>
+</ul>
+<h2>Integration</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/integration/allinone' title='Status: Released'>All in One</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/integration/otopi-infra-migration' title='Status: Unknown'>Otopi Infra Migration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/integration/ovirtappliance' title='Status: WIP'>oVirt Appliance</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/integration/remotedb' title='Status: Unknown'>Remote DB</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/integration/websocketproxy-on-a-separate-host' title='Status: completed'>WebSocketProxy on a separate host</a>
+
+</li>
+</ul>
+<h2>Network</h2>
+<ul class='feature-list'>
+<li class=' status-qa'>
+<a href='/feature/network/apidatacenternetworks' title='Status: QA'>API Data Center Networks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/arbitraryvlandevicename' title='Status: Unknown'>Arbitrary VLAN Device Name</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/bridgeless-networking' title='Status: Unknown'>Bridgeless Networking</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/bridgeless-networks' title='Status: Unknown'>Bridgeless Networks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/compatibilityversion' title='Status: Unknown'>compatibility Version</a>
+
+</li>
+<li class=' status-implementation'>
+<a href='/feature/network/detailed-host-network-qos' title='Status: Implementation'>Host Network QoS</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/detailed-osn-integration' title='Status: Unknown'>Detailed OSN Integration</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/detailedhostnetworkingapi' title='Status: Design'>Host Networking API</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/network/detailedmanagementnetworkasarole' title='Status: WIP'>Management network as a role - Detailed</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/detailednetworklinking' title='Status: Unknown'>Detailed Network Linking</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/detailedreportingvnicinformation' title='Status: Unknown'>Detailed Reporting Vnic Information</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/device-custom-properties' title='Status: Unknown'>Device Custom Properties</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/directhostaddress' title='Status: Unknown'>Direct Host Address</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/ethtool-options' title='Status: Released'>Device ethtool options</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/get-route-device' title='Status: Unknown'>Get Route Device</a>
+
+</li>
+<li class=' status-implementation'>
+<a href='/feature/network/host-network-qos' title='Status: Implementation'>Host Network QoS</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/hostnetworkingapi' title='Status: Design'>Host Networking API</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/hotplugnic' title='Status: Released'>Hotplug/Hotunplug of Network Interface Cards</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/isolatednetworks' title='Status: Design'>Isolated Network</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/management-network-as-a-role' title='Status: design'>Management network as a role</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/migration-network' title='Status: Unknown'>Migration Network</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/multihostnetworkconfiguration' title='Status: Unknown'>Multi Host Network Configuration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/multiple-gateways' title='Status: Unknown'>Multiple Gateways</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/network-custom-properties' title='Status: Released'>Network Custom Properties</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/network-labels' title='Status: Unknown'>Network Labels</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/network-qos-detailed-design' title='Status: Unknown'>Network QoS - detailed design</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkfiltering' title='Status: Unknown'>Network Filtering</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/networklabels' title='Status: Released'>Network Labels</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networklinking' title='Status: Unknown'>Network Linking</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkmaintab' title='Status: Unknown'>Network Main Tab</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkmanager-support' title='Status: Unknown'>NetworkManager Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkpermissions' title='Status: Unknown'>Network Permissions</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkreloaded' title='Status: Unknown'>Network Reloaded</a>
+
+</li>
+<li class=' status-dormant'>
+<a href='/feature/network/nicless-network' title='Status: Dormant'>Nic-less Network</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/normalized-ovirtmgmt-initialization' title='Status: Unknown'>Normalized oVirtmgmt Initialization</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/osn-integration' title='Status: Unknown'>OSN Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/portmirroring' title='Status: Unknown'>Port Mirroring</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/predictable-vnic-order' title='Status: Released'>Predictable vNIC Order</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/reportingvnicinformation' title='Status: Unknown'>Reporting Vnic Information</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/required-networks' title='Status: Unknown'>Required Networks</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/select-network-for-gluster' title='Status: Design'>Select Network for Gluster traffic</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/setupnetworks' title='Status: Unknown'>Setup Networks</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/ucs-integration' title='Status: Released'>Cisco UCS integration</a>
+
+</li>
+<li class=' status-proposed'>
+<a href='/feature/network/unrestricted-network-names' title='Status: Proposed'>Unrestricted Network Names</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/update-device-hooks' title='Status: Unknown'>Update device hooks</a>
+
+</li>
+</ul>
+<h2>Node</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/node/buildtoolmigration' title='Status: Unknown'>Buildtool Migration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/node/cockpit' title='Status: WIP'>Cockpit</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/node/dbusbackend' title='Status: WIP'>D-Bus Backend</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/diagnostic-page' title='Status: Unknown'>Node Diagnostic Page</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/docker-integration' title='Status: Unknown'>Docker Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/featurepublishing' title='Status: Unknown'>Feature Publishing</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/glusterfs-support' title='Status: Unknown'>Node GlusterFS Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/ipv6-support' title='Status: Unknown'>IPv6 support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/kimchiplugin' title='Status: Unknown'>Kimchi Plugin</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/nic-bonding' title='Status: Unknown'>NIC Bonding</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/node/node.next' title='Status: New'>Node.next</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/nodeautomation' title='Status: Unknown'>Node Automation</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/openvswitchsupport' title='Status: Unknown'>Open V Switch Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/packagerefactoring' title='Status: Unknown'>Package Refactoring</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/pluginliveinstall' title='Status: Unknown'>Plugin Live Install</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/plugins' title='Status: Unknown'>Node plugins</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/puppet-plugin' title='Status: Unknown'>Node Puppet Plugin</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/software-iscsi-root' title='Status: Unknown'>Node software iscsi root</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/storageandinstallermodulerewrite' title='Status: Unknown'>Storage And Installer Module Rewrite</a>
+
+</li>
+<li class=' status-review'>
+<a href='/feature/node/subpackages' title='Status: Review'>subpackages</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/tuiredesign' title='Status: Unknown'>TU Iredesign</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/universal-image' title='Status: Unknown'>Universal Image</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/upgrade-tool' title='Status: Unknown'>Node upgrade tool</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/urwid-tui' title='Status: Unknown'>Urwid TUI</a>
+
+</li>
+</ul>
+<h2>Plugins</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/plugins/plugins' title='Status: Unknown'>Plugins</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/plugins/uipluginsoriginaldesignnotes' title='Status: Unknown'>UI Plugins Original Design Notes</a>
+
+</li>
+</ul>
+<h2>SLA</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/sla/aggregate-qos' title='Status: Unknown'>aggregate QoS</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/automatic-scaling' title='Status: Unknown'>Automatic scaling</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/autorecovery' title='Status: Unknown'>Autorecovery</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/blkio-support' title='Status: Unknown'>blkio support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/cpu-host-support' title='Status: Unknown'>CPU-host Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/cpu-sla' title='Status: Unknown'>CPU SLA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/cpu-thread-handling' title='Status: Unknown'>CPU thread handling</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/detailed-numa-and-virtual-numa' title='Status: Unknown'>Detailed NUMA and Virtual NUMA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/detailedquota' title='Status: Unknown'>Detailed Quota</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/drools-planner-scheduler' title='Status: Unknown'>drools planner scheduler</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/even-vm-count-distribution' title='Status: Unknown'>Even VM Count Distribution</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/external-scheduling-proxy' title='Status: Unknown'>oVirt External Scheduling Proxy</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ha-vm-reservation-detaileddesign' title='Status: Unknown'>HA VM reservation detailedDesign</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ha-vm-reservation' title='Status: Unknown'>HA VM reservation</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/hostpowermanagementpolicy' title='Status: Unknown'>Host Power Management Policy</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/memory-hotplug' title='Status: Unknown'>Memory Hotplug</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/minimum-guaranteed-memory' title='Status: Unknown'>Minimum guaranteed memory</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/momintegration' title='Status: Unknown'>Mom Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/numa-and-virtual-numa' title='Status: Unknown'>NUMA and Virtual NUMA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/optaplanner' title='Status: Unknown'>Optaplanner</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ovirtscheduler' title='Status: Unknown'>o Virt Scheduler</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ovirtschedulerapi' title='Status: Unknown'>o Virt Scheduler API</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/performance-and-scalability' title='Status: Unknown'>Performance And Scalability</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/quota' title='Status: Unknown'>Quota</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/sla-mom-ballooning-tp' title='Status: Unknown'>SLA mom ballooning tp</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/sla-mom' title='Status: Unknown'>SLA mom</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/trusted-compute-pools' title='Status: Unknown'>Trusted compute pools</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/vm-affinity' title='Status: Unknown'>VM Affinity</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/vm-coredump' title='Status: Unknown'>VM coredump</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/vnic-profiles' title='Status: Unknown'>Vnic Profiles</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/xbzrle-and-auto-convergence' title='Status: Unknown'>XBZRLE and Auto-Convergence</a>
+
+</li>
+</ul>
+<h2>Storage</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/storage/advancednfsoptions' title='Status: Released'>Advanced Nfs Options</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/backup-provider' title='Status: Unknown'>Backup Provider</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/backup-restore-api-integration' title='Status: Unknown'>Backup-Restore API Integration</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/storage/cinder-integration' title='Status: Design'>Cinder Integration</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/connectionreferences' title='Status: Released'>Connection References</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/decommission-master-domain-and-spm' title='Status: Unknown'>Decommission Master Domain and SPM</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/design-for-multiple-storage-domains' title='Status: Released'>Manage storage connections</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/detailed-gluster-geo-rep' title='Status: Unknown'>Detailed Gluster Geo Rep</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/detailed-gluster-volume-asynchronous-tasks-management' title='Status: Unknown'>Detailed Gluster Volume Asynchronous Tasks Management</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/detailedfloatingdisk' title='Status: Released'>Floating Disk</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/detailedhotplug' title='Status: Released'>Disk Hot Plug</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/detailedsharedrawdisk' title='Status: Released'>Shared Raw Disk</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/direct-lun' title='Status: Released'>Direct LUN</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/disk-hooks' title='Status: Released'>Disk Hooks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/diskalignment' title='Status: Unknown'>Disk Alignment</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/diskpermissions' title='Status: Released'>Disk Permissions</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/domain-scan' title='Status: Released'>Domain Scan</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/floatingdisk' title='Status: Released'>Floating Disk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/glance-integration' title='Status: Unknown'>Glance Integration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/storage/gluster-dashboard' title='Status: WIP'>Gluster Dashboard</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/storage/gluster-geo-replication' title='Status: WIP'>Geo replication</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/gluster-hooks-management' title='Status: Released'>Gluster Hooks management</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/gluster-import-existing-cluster' title='Status: Released'>Import cluster</a>
+
+</li>
+<li class=' status-complete'>
+<a href='/feature/storage/gluster-support' title='Status: Complete'>Gluster management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-swift-management' title='Status: Unknown'>Gluster Swift Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-sync-configuration-with-cli' title='Status: Unknown'>Gluster Sync Configuration With CLI</a>
+
+</li>
+<li class=' status-complete'>
+<a href='/feature/storage/gluster-volume-asynchronous-tasks-management' title='Status: Complete'>Gluster tasks management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-volume-capacity' title='Status: Unknown'>Gluster Volume Capacity</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-volume-performance-statistics' title='Status: Unknown'>Gluster Volume Performance Statistics</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/glusterfs-hyperconvergence' title='Status: Unknown'>GlusterFS Hyperconvergence</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/glusterfs-storage-domain' title='Status: Released'>GlusterFS Storage Domain</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/storage/glusterhostdiskmanagement' title='Status: WIP'>Host Device Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/glustervolumeadvanceddetails' title='Status: Unknown'>Gluster Volume Advanced Details</a>
+
+</li>
+<li class=' status-not-started'>
+<a href='/feature/storage/glustervolumequota' title='Status: Not-Started'>Gluster Volume Quota</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/hotplug' title='Status: Released'>Disk Hot Plug</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/importmorethanonce' title='Status: Released'>Import VM or Template More than Once</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/importstoragedomain' title='Status: Released'>Import Storage Domain</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/ioprocess' title='Status: Unknown'>ioprocess</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/iscsi-multipath' title='Status: Released'>Configure iSCSI Multipathing</a>
+
+</li>
+<li class=' status-stabilization'>
+<a href='/feature/storage/live-merge' title='Status: Stabilization'>Live Merge</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/manage-storage-connections' title='Status: Released'>Manage storage connections</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/mixed-types-data-center' title='Status: Unknown'>Mixed Types Data Center</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/move-disk-two-phase-commit' title='Status: Unknown'>Move Disk Two Phase Commit</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/moveascopyanddelete' title='Status: Unknown'>Move As Copy And Delete</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/multiplestoragedomains' title='Status: Released'>Manage storage connections</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/nfsv4' title='Status: Released'>NFSv4</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/online-virtual-drive-resize' title='Status: Released'>Online Virtual Drive Resize</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/orphaned-images' title='Status: Unknown'>Orphaned Images</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/ovfautoupdater' title='Status: Unknown'>Ovf Auto Updater</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/ovfonanydomain' title='Status: Unknown'>Ovf On Any Domain</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/posixfsconnection' title='Status: Released'>PosixFS Connection</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/read-only-disk' title='Status: Released'>Read-Only Disks</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/storage/sanlock-fencing' title='Status: Design'>Sanlock Fencing</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/serial-execution-of-asynchronous-tasks-detailed-design' title='Status: Unknown'>Serial Execution of Asynchronous Tasks Detailed Design</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/serial-execution-of-asynchronous-tasks' title='Status: Released'>Serial Execution of Asynchronous Tasks</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/sharedrawdisk' title='Status: Released'>Shared Raw Disk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/single-disk-snapshot' title='Status: Unknown'>Single Disk Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/snapshots-overview' title='Status: Unknown'>Snapshots Overview</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/spmpriority' title='Status: Released'>SPM Priority</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/storagedomainliveupgrade' title='Status: Unknown'>Storage Domain Live Upgrade</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/storagepool-metadata-removal' title='Status: Unknown'>StoragePool Metadata Removal</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/virtio-scsi' title='Status: Unknown'>Virtio SCSI</a>
+
+</li>
+</ul>
+<h2>UX</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/ux/branding' title='Status: Released'>Branding</a>
+
+</li>
+<li class=' status-proposal'>
+<a href='/feature/ux/cssgrids' title='Status: Proposal'>CSS Grids</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedexternalevents' title='Status: Unknown'>Detailed External Events</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedexternaltasks' title='Status: Unknown'>Detailed External Tasks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedhostpmmultipleagents' title='Status: Unknown'>Detailed Host PM Multiple Agents</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedhotplugnic' title='Status: Unknown'>Detailed Hot Plug NIC</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedstabledeviceaddresses' title='Status: Unknown'>Detailed Stable Device Addresses</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/entityhealthstatus' title='Status: Unknown'>Entity Health Status</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/foreign-menu-using-rest' title='Status: Unknown'>Foreign Menu Using REST</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/ux/frontendrefactor' title='Status: Released'>Frontend Refactoring</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/glustergeoreplication' title='Status: Unknown'>Gluster Geo Replication</a>
+
+</li>
+<li class=' status-inception'>
+<a href='/feature/ux/glustervolumesnapshots' title='Status: Inception'>Gluster Volume Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/gwt-platform-upgrade' title='Status: Unknown'>GWT Platform Upgrade</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/hostbiosinfo' title='Status: Unknown'>Host Bios Info</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/hosthardwareinfo' title='Status: Unknown'>Host Hardware Info</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/hostpmmultipleagents' title='Status: Unknown'>Host PM Multiple Agents</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/i18n' title='Status: Unknown'>I18N</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/jasper-in-webadmin' title='Status: Unknown'>jasper in webadmin</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/ux/lowerresolutionsupport' title='Status: Released'>Low Resolution Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/memory-aware-even-distribution-policy' title='Status: Unknown'>Memory-aware Even-distribution Policy</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/ux/newlookandfeelpatternflyphase1' title='Status: Development'>New Look and Feel based on PatternFly -- Phase 1</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/quota-3.2' title='Status: Unknown'>Quota 3.2</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/reports-dashboard' title='Status: Unknown'>Reports Dashboard</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/sla-for-storage-io-bandwidth' title='Status: Unknown'>SLA for storage io bandwidth</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/uiplugins' title='Status: Unknown'>UI Plugins</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/ux/uirefreshsynchronization' title='Status: Released'>Refresh Synchronization</a>
+
+</li>
+</ul>
+<h2>UX / Design</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/glusterhostdiskmanagement' title='Status: Unknown'>Gluster Host Disk Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/jsonrpc3.5' title='Status: Unknown'> JSON RPC 3.5</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/livemerge' title='Status: Unknown'>Live Merge</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/stabledeviceaddresses' title='Status: Unknown'>Stable Device Addresses</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/storagehelpers' title='Status: Unknown'>Storage Helpers</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/storagelivemigration' title='Status: Unknown'>Storage Live Migration</a>
+
+</li>
+</ul>
+<h2>UX / Design / Network</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/network/jumbo-frames' title='Status: Unknown'>Jumbo frames</a>
+
+</li>
+</ul>
+<h2>VDSM</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/vdsm/for-ppc64' title='Status: Released'>VDSM for PPC64</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/hostconfiguration' title='Status: Unknown'>Host Configuration</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/vdsm/jsonrpc' title='Status: Development'>Introduce Messaged communication to VDSM using  JSON-RPC on top of various transport protocols</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/libvdsm' title='Status: Unknown'>libVDSM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/measurements' title='Status: Unknown'>Measurements</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/python3-compatibility' title='Status: Unknown'>VDSM python3 compatibility</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/supervdsm-service' title='Status: Unknown'>SuperVDSM service</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/vdsm-plugin' title='Status: Unknown'>Node VDSM plugin</a>
+
+</li>
+<li class=' status-proposed'>
+<a href='/feature/vdsm/vdsm-vm-query-api' title='Status: Proposed'>VDSM VM Data Query API</a>
+
+</li>
+</ul>
+<h2>Virt</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/virt/blank-to-defaults' title='Status: Unknown'>Blank to Defaults</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/clone-vm' title='Status: Unknown'>Clone VM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/cluster-emulation-modes' title='Status: Unknown'>Cluster emulation modes</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/console-connection-settings-dialog-in-portals' title='Status: Unknown'>Console connection settings dialog in portals</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/detailed-exit-reason' title='Status: Unknown'>Detailed Exit Reason</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/display-address-override' title='Status: Unknown'>Display Address Override</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/edit-running-vm' title='Status: Unknown'>Edit Running VM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/expose-vm-devices' title='Status: Unknown'>Expose VM Devices</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/guestagent' title='Status: Unknown'>Guest Agent</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentdebian' title='Status: Done'>oVirt Guest Agent on Debian</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentopensuse' title='Status: Done'>oVirt Guest Agent on OpenSUSE</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentsles' title='Status: Done'>oVirt Guest Agent on SLE(S)</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentubuntu' title='Status: Done'>oVirt Guest Agent on Ubuntu</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/virt/hostusb' title='Status: Released'>Expose Host attached USB to a Node</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/hot-plug-cpu' title='Status: Unknown'>Hot plug CPU</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/instance-types' title='Status: Unknown'>Instance Types</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/intial-run-vm-tab' title='Status: Unknown'>Intial Run VM tab</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/multiple-consoles' title='Status: Unknown'>Multiple Consoles</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/multiple-graphic-servers' title='Status: Unknown'>Multiple Graphic Servers</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/multiplemonitors' title='Status: Unknown'>Multiple Monitors</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/non-plugin-console-invocation' title='Status: Unknown'>Non plugin console invocation</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/novnc-console' title='Status: Unknown'>noVNC console</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/virt/os-info' title='Status: Released'>OS info</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/prestartedvm' title='Status: Unknown'>Prestarted VM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/ram-snapshots' title='Status: Unknown'>RAM Snapshots</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/resourceusagegraph' title='Status: Unknown'>Resource Usage Graph</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/s3-suspend' title='Status: Unknown'>S3 suspend</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/smartcard-support' title='Status: Unknown'>Smartcard support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/spice-proxy' title='Status: Unknown'>Spice Proxy</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/spicehtml5' title='Status: Unknown'>Spice HTML5</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/spicerelatedfeatures' title='Status: Unknown'>SPICE Related Features</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/template-versions' title='Status: Unknown'>Template Versions</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/virt/virt-v2v-integration' title='Status: Design'>Extended import of Virtual Machines</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/vm-init-persistent' title='Status: Unknown'>VM init persistent</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/vmpayload' title='Status: Unknown'>VM Payload</a>
+
+</li>
+</ul>
+</section>
+<section class='feature-info col-md-8'>
+<div class='well'>
+<h2>At a glance</h2>
+No feature info available. Please contact
+<span class='author-name' title='adahms'>Andrew Dahms</span>, <span class='author-name' title='michael pasternak'>Michael Pasternak</span>, or <span class='author-name' title='moti'>Moti Asayag</span>
+to fix.
+</div>
+<h1 id="java-sdk">Java-sdk</h1>
+
+<p>The oVirt Java-SDK is an automatically generated software development kit for the oVirt engine API. This software development kit allows you to develop Java-based applications for automating a variety of complex administrative tasks in oVirt.</p>
+
+<p><strong>TOC</strong></p>
+
+<h2 id="concepts">Concepts</h2>
+
+<ul>
+  <li>Auto-Generated</li>
+  <li>Complete protocol abstraction.</li>
+  <li>Full compliance with the oVirt api architecture.</li>
+  <li>Self descriptive.</li>
+  <li>Intuitive and easy to use.</li>
+</ul>
+
+<h2 id="ide-examples">IDE Examples</h2>
+
+<h3 id="creating-the-proxy">Creating the proxy:</h3>
+
+<hr />
+
+<p><img alt="" title="0-1jdk.jpg" src="/images/wiki/0-1jdk.png?1447607916" /></p>
+
+<h4 id="authenticating-using-user-name-and-password">Authenticating using user name and password:</h4>
+
+<p><img alt="" title="0-1-1jdk.jpg" src="/images/wiki/0-1-1jdk.png?1447607916" /></p>
+
+<h4 id="authenticating-using-sessionid">Authenticating using sessionid:</h4>
+
+<p><img alt="" title="0-1-2jdk.jpg" src="/images/wiki/0-1-2jdk.png?1447607916" /></p>
+
+<h3 id="listing-all-collections">Listing all collections:</h3>
+
+<hr />
+
+<p><img alt="" title="1jsdk.jpg" src="/images/wiki/0-1jsdk.png?1447607916" /></p>
+
+<h3 id="listing-the-methods-of-a-collection">Listing the methods of a collection:</h3>
+
+<hr />
+
+<p><img alt="" title="2jdk.jpg" src="/images/wiki/0-1-2jdk.png?1447607916" /></p>
+
+<h3 id="querying-a-collection-using-a-ovirt-search-engine-query-and-custom-constraints">Querying a collection using a oVirt search engine query and custom constraints:</h3>
+
+<hr />
+
+<p><img alt="" title="3jdk.jpg" src="/images/wiki/3jdk.png?1447607916" /></p>
+
+<h3 id="accessing-resource-methods-and-properties">Accessing resource methods and properties:</h3>
+
+<hr />
+
+<p><img alt="" title="4jdk.jpg" src="/images/wiki/4jdk.png?1447607916" /></p>
+
+<h3 id="creating-a-resource">Creating a resource:</h3>
+
+<hr />
+
+<p><img alt="" title="5jdk.jpg" src="/images/wiki/5jdk.png?1447607916" /></p>
+
+<h3 id="accessing-resource-properties-and-sub-collections">Accessing resource properties and sub-collections:</h3>
+
+<hr />
+
+<p><img alt="" title="6jdk.jpg" src="/images/wiki/6jdk.png?1447607916" /></p>
+
+<h3 id="accessing-sub-collection-methods">Accessing sub-collection methods:</h3>
+
+<hr />
+
+<p><img alt="" title="7jdk.jpg" src="/images/wiki/7jdk.png?1447607916" /></p>
+
+<h3 id="querying-a-sub-collection-using-custom-constraints">Querying a sub-collection using custom constraints:</h3>
+
+<hr />
+
+<p>TBD</p>
+
+<h3 id="retrieving-a-sub-collection-resource">Retrieving a sub-collection resource:</h3>
+
+<hr />
+
+<p><img alt="" title="8jdk.jpg" src="/images/wiki/8jdk.png?1447607917" /></p>
+
+<h3 id="accessing-sub-collection-resource-properties-and-methods">Accessing sub-collection resource properties and methods:</h3>
+
+<hr />
+
+<p><img alt="" title="9jdk.jpg" src="/images/wiki/9jdk.png?1447607917" /></p>
+
+<h2 id="examples">Examples</h2>
+
+<h3 id="create-proxy">create proxy</h3>
+
+<pre class="highlight plaintext"><code>     // #1 - import&#x000A;     import org.ovirt.engine.sdk.Api;&#x000A;&#x000A;     // #2 - create proxy&#x000A;     Api api = new Api("`[`http://localhost:8080/api`](http://localhost:8080/api)`", "user@domain", "password");&#x000A;</code></pre>
+
+<h3 id="list-entities">list entities</h3>
+
+<pre class="highlight plaintext"><code>     // #1 - list resources&#x000A;     List`&lt;VM&gt;` vms = api.getVMs().list();&#x000A;</code></pre>
+
+<h3 id="update-resource">update resource</h3>
+
+<pre class="highlight plaintext"><code>     // #1 - fetch resource&#x000A;     VM vm = api.getVMs().get("test");&#x000A;&#x000A;     // #2 - modify it&#x000A;     vm.setDescription("java_sdk");&#x000A;&#x000A;     // #3 - update it&#x000A;     VM newVM = vm.update();&#x000A;</code></pre>
+
+<h3 id="get-resource-by-name">get resource by name</h3>
+
+<pre class="highlight plaintext"><code>     // #1 - fetch resource using name&#x000A;     VM vm = api.getVMs().get("test");&#x000A;</code></pre>
+
+<h3 id="get-resource-by-id">get resource by id</h3>
+
+<pre class="highlight plaintext"><code>     // #1 - fetch resource using id&#x000A;     VM vm = api.getVMs().get(UUID.fromString("5a89a1d2-32be-33f7-a0d1-f8b5bc974ff6"));&#x000A;</code></pre>
+
+<h3 id="add-resource">add resource</h3>
+
+<pre class="highlight plaintext"><code>     // #1 - create parameters&#x000A;     org.ovirt.engine.sdk.entities.VM vmParams = new org.ovirt.engine.sdk.entities.VM();&#x000A;     vmParams.setName("myVm");&#x000A;     vmParams.setCluster(api.getClusters().get("myCluster"));&#x000A;     vmParams.setTemplate(api.getTemplates().get("myTemplate"));&#x000A;&#x000A;     // #2 - add resource&#x000A;     VM vm = api.getVMs().add(vmParams);&#x000A;&#x000A;     or&#x000A;&#x000A;     // #1 - create parameters&#x000A;     org.ovirt.engine.sdk.entities.VM vmParams = new org.ovirt.engine.sdk.entities.VM();&#x000A;     vmParams.setName("myVm");&#x000A;     org.ovirt.engine.sdk.entities.Cluster clusterParam = new Cluster();&#x000A;     clusterParam.setName("myCluster");&#x000A;     vmParams.setCluster(clusterParam);&#x000A;     org.ovirt.engine.sdk.entities.Template templateParam = new Template();&#x000A;     templateParam.setName("myTemplate");&#x000A;     vmParams.setTemplate(templateParam);&#x000A;&#x000A;     // #2 - add resource&#x000A;     VM vm = api.getVMs().add(vmParams);&#x000A;</code></pre>
+
+<h3 id="perform-an-action-on-resource">perform an action on resource</h3>
+
+<pre class="highlight plaintext"><code>     // #1 - fetch resource&#x000A;     VM vm = api.getVMs().get("test");&#x000A;&#x000A;     // #2 - create params&#x000A;     Action actionParam = new Action();&#x000A;     org.ovirt.engine.sdk.entities.VM vmParam = new org.ovirt.engine.sdk.entities.VM();&#x000A;     actionParam.setVm(vmParam);&#x000A;&#x000A;     // #3 - perform an action&#x000A;     Action res = vm.start(actionParam);&#x000A;&#x000A;     or&#x000A;&#x000A;     // #1 - fetch resource&#x000A;     VM vm = api.getVMs().get("test");&#x000A;&#x000A;     // #2 - create params + perform an action&#x000A;     Action res = vm.start(new Action() {&#x000A;         {&#x000A;             setVm(new org.ovirt.engine.sdk.entities.VM());&#x000A;         }&#x000A;     });&#x000A;</code></pre>
+
+<h3 id="list-sub-resources">list sub-resources</h3>
+
+<pre class="highlight plaintext"><code>     // #1 - fetch resource&#x000A;     VM vm = api.getVMs().get("test");&#x000A;&#x000A;     // #2 - list sub-resources&#x000A;     List`&lt;VMDisk&gt;` disks = vm.getDisks().list();  &#x000A;</code></pre>
+
+<h3 id="get-sub-resource">get sub-resource</h3>
+
+<pre class="highlight plaintext"><code>     // #1 - fetch resource&#x000A;     VM vm = api.getVMs().get("test");&#x000A;&#x000A;     // #2 - fetch sub-resource&#x000A;     VMDisk disk = vm.getDisks().get("my disk");&#x000A;</code></pre>
+
+<h3 id="add-sub-resource-to-resource">add sub-resource to resource</h3>
+
+<pre class="highlight plaintext"><code>     // #1 - fetch resource&#x000A;     VM vm = api.getVMs().get("test");&#x000A;&#x000A;     // #2 - create parameters&#x000A;     Disk diskParam = new Disk();&#x000A;     diskParam.setProvisionedSize(1073741824L);&#x000A;     diskParam.setInterface("virtio");&#x000A;     diskParam.setFormat("cow");&#x000A;&#x000A;     // #3 - add sub-resource&#x000A;     Disk disk = vm.getDisks().add(diskParam);&#x000A;</code></pre>
+
+<h3 id="update-sub-resource">update sub-resource</h3>
+
+<pre class="highlight plaintext"><code>     // #1 - fetch resource&#x000A;     VM vm = api.getVMs().get("test");&#x000A;&#x000A;     // #2 - fetch sub-resource&#x000A;     VMDisk disk = vm.getDisks().get("test_Disk1");&#x000A;&#x000A;     // #3 - modify sub-resource&#x000A;     disk.setAlias("test_Disk1_updated");&#x000A;&#x000A;     // #4 - update it&#x000A;     VMDisk updateDisk = disk.update();&#x000A;</code></pre>
+
+<h3 id="run-action-on-sub-resource">run action on sub-resource</h3>
+
+<pre class="highlight plaintext"><code>     // #1 - fetch resource&#x000A;     VM vm = api.getVMs().get("test");&#x000A;&#x000A;     // #2 - fetch sub-resource&#x000A;     VMDisk disk = vm.getDisks().get("test_Disk1");&#x000A;&#x000A;     // #3 - create parameters&#x000A;     Action actionParam = new Action();&#x000A;&#x000A;     // #4 - run an action on sub-resource&#x000A;     Action result = disk.activate(actionParam);&#x000A;</code></pre>
+
+<h3 id="best-practices">Best Practices</h3>
+
+<p>The api should be shutdown in a finally block so daemon resources are freed:</p>
+
+<pre class="highlight plaintext"><code>   Api api = new Api(URL, USER, PASSWORD);&#x000A;   try {&#x000A;       api.api.getDataCenters().add(new DataCenter());&#x000A;       ...&#x000A;   } finally {&#x000A;       api.shutdown();&#x000A;   }&#x000A;</code></pre>
+
+<h2 id="working-with-ssl-secure-socket-layer">Working with SSL (Secure Socket Layer)</h2>
+
+<p>The oVirt Java software development kit provides full support for HTTP over Secure Sockets Layer (SSL) or IETF Transport Layer Security (TLS) protocols by leveraging the Java Secure Socket Extension (JSSE). JSSE has been integrated into the Java 2 platform as of version 1.4 and works with Java-SDK out of the box. On older Java 2 versions, JSSE must be manually installed and configured. Installation instructions can be found at <a href="http://java.sun.com/products/jsse/doc/guide/API_users_guide.html#Installation">here</a>.</p>
+
+<p>Once you have correctly installed JSSE, secure HTTP communication over SSL should be as simple as plain HTTP communication. However, you must supply the Java software development kit with a KeyStore containing the host CA certificate to validate the destination host identity:</p>
+
+<h3 id="generating-the-truststore">Generating the truststore</h3>
+
+<p>1 Download oVirt host CA certificate from</p>
+
+<p><code>   </code><a href="https://host:port/ca.crt"><code>https://host:port/ca.crt</code></a></p>
+
+<ol>
+  <li>
+    <p>Generate keystore</p>
+
+    <p>   keytool -import -alias "server.crt truststore" -file server.crt -keystore server.truststore</p>
+  </li>
+</ol>
+
+<h3 id="make-java-sdk-aware-of-the-keystore">Make Java-SDK aware of the keystore</h3>
+
+<p>this can be achieved in one of two ways:</p>
+
+<ol>
+  <li>
+    <p>Via default keystore lookup path</p>
+
+    <p>   mkdir ~/.ovirtsdk/
+      cp server.truststore ~/.ovirtsdk/ovirtsdk-keystore.truststore</p>
+  </li>
+</ol>
+
+<p>Once the ovirtsdk-keystore.truststore installed in the ~/.ovirtsdk, it will be used for host identity validation upon handshake with the destination host.</p>
+
+<ol>
+  <li>Via a custom truststore</li>
+</ol>
+
+<p>Use this signature: Api(String url, String username, String password, String keyStorePath)</p>
+
+<pre class="highlight plaintext"><code>     Api api = new Api(url, user, password, "/path/server.truststore");&#x000A;</code></pre>
+
+<h3 id="disable-host-identity-validation">Disable host identity validation</h3>
+
+<p>This method SHOULD NOT be used for productive systems due to security reasons, unless it is a conscious decision and you are perfectly aware of security implications of not validating host identity.</p>
+
+<p>use this signature: Api(String url, String username, String password, boolean noHostVerification)</p>
+
+<pre class="highlight plaintext"><code>     Api api = new Api(url, user, password, true);&#x000A;</code></pre>
+
+<h2 id="deployment">Deployment</h2>
+
+<h3 id="maven-deployment">Maven deployment</h3>
+
+<ol>
+  <li>add mvn-releases repository to your ~/.m2/settings.xml under <repositories></repositories></li>
+</ol>
+
+<p><code>   </code><repository>
+`       `<id>`mvn-releases`</id>
+`       `<url>[`https://oss.sonatype.org/content/repositories/releases`](https://oss.sonatype.org/content/repositories/releases)</url>
+`       `<releases>
+`       `</releases>
+`       `<snapshots>
+`           `<enabled>`false`</enabled>
+`       `</snapshots>
+`   `</repository></p>
+
+<ol>
+  <li>add sdk dependency to your project pom.xml</li>
+</ol>
+
+<p><code>   </code><dependency>
+`       `<groupid>`org.ovirt.engine.sdk`</groupid>
+`       `<artifactid>`ovirt-engine-sdk-java`</artifactid>
+`       `<version>`x.y.z.q-v`</version>
+`       `<type>`jar`</type>
+`       `<scope>`compile`</scope>
+`   `</dependency></p>
+
+<pre class="highlight plaintext"><code>         "x.y.z.q-v" is a latest sdk release (list of available releases can be found at `[`java-sdk-changelog`](java-sdk-changelog)`)&#x000A;</code></pre>
+
+<ol>
+  <li>
+    <p>deploy sdk dependencies and javadoc</p>
+
+    <p>     mvn dependency:resolve -Dclassifier=javadoc</p>
+  </li>
+  <li>
+    <p>compile</p>
+
+    <p>      mvn clean install</p>
+  </li>
+</ol>
+
+<h3 id="development-deployment">Development deployment</h3>
+
+<h4 id="code-generation">Code generation</h4>
+
+<pre class="highlight plaintext"><code>       1. pull + compile + deploy latest ovirt-engine sources&#x000A;       2. cd ovirt-engine-sdk-java-codegen&#x000A;       3. compile&#x000A;       4. run (this will generate sdk from the ovirt-engine)&#x000A;</code></pre>
+
+<h4 id="development">Development</h4>
+
+<pre class="highlight plaintext"><code>       all SDK development is done on the ovirt-engine-sdk-java-codegen project,&#x000A;       i.e if you have yet not supported funcionality in SDK, this is a place to add&#x000A;       support for it.&#x000A;</code></pre>
+
+<h2 id="todo-list">TODO list</h2>
+
+<ol>
+  <li>
+    <p>generate entry-point (/api) methods (done)</p>
+  </li>
+  <li>
+    <p>generate searchable list() methods (done)</p>
+  </li>
+  <li>
+    <p>generate method/s overloads using header/url params (done)</p>
+  </li>
+  <li>
+    <p>generate delete method/s overloads with body (done)</p>
+  </li>
+  <li>
+    <p>support persistent authentication (done)</p>
+  </li>
+  <li>
+    <p>implement SSL support (done)</p>
+  </li>
+  <li>
+    <p>implement SSL CA certificate validation (done)</p>
+  </li>
+  <li>
+    <p>implement client validation</p>
+  </li>
+  <li>
+    <p>allow setters generation for collection based fields in org.ovirt.engine.sdk.entities</p>
+  </li>
+  <li>
+    <p>implement in collection.get(name) search using engine.search</p>
+  </li>
+  <li>
+    <p>implement timeout in SDK constructor</p>
+  </li>
+  <li>
+    <p>implement sdk debug mode (done)</p>
+  </li>
+  <li>
+    <p>remove @SuppressWarnings("unused") from decorators</p>
+  </li>
+  <li>
+    <p>move get/list methods from the decorators to the parent classes</p>
+  </li>
+  <li>
+    <p>implement unique treatment for COLLECTION2ENTITY pattern exceptions (in-progress)</p>
+  </li>
+  <li>
+    <p>implement logger in codegen</p>
+  </li>
+  <li>
+    <p>add deployment capabilities (done)</p>
+  </li>
+  <li>
+    <p>upload artifacts to mvn repo (done)</p>
+  </li>
+  <li>
+    <p>Implement querying collections using custom constraint.</p>
+  </li>
+  <li>
+    <p>in doc change parameters format to javaDoc style (done)</p>
+  </li>
+  <li>
+    <p>make API.java thread safe (done)</p>
+  </li>
+</ol>
+
+<h2 id="change-log">Change Log</h2>
+
+<p><a href="/documentation/internal/java-sdk-changelog/">java-sdk-changelog</a></p>
+
+<h2 id="maintainers">Maintainers</h2>
+
+<p>Michael Pasternak: mishka8520@yahoo.com, Juan Hernandez: juan.hernandez@redhat.com</p>
+
+<category:sdk> <category:feature>
+</category:feature></category:sdk>
+
+</section>
+</section>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>
+<script>
+  (function() {
+    var $featureItems, $featureLists, $featureSidebar, $form, $headers, $input, clearField, showAll, updateHeaders, updateList;
+  
+    $featureSidebar = $('.feature-sidebar');
+  
+    $form = $('#feature-search');
+  
+    $input = $('#feature-search-input');
+  
+    $featureLists = $('.feature-list');
+  
+    $featureItems = $('li', $featureLists);
+  
+    $headers = $('.feature-sidebar h2');
+  
+    clearField = function() {
+      return $input.val('');
+    };
+  
+    showAll = function() {
+      return $featureItems.filter('.hide').removeClass('hide');
+    };
+  
+    updateHeaders = function() {
+      var $emptyList;
+      $('h2.hide', $featureSidebar).removeClass('hide');
+      $emptyList = $headers.filter(function(i, el) {
+        return $(el).next('ul').find('li:visible').length === 0;
+      });
+      return $emptyList.addClass('hide');
+    };
+  
+    updateList = function() {
+      var $hide, searchStr;
+      searchStr = $input.val();
+      showAll();
+      $hide = $featureItems.not(function(i, el) {
+        return $(el).text().toLowerCase().match(searchStr.toLowerCase());
+      });
+      $hide.addClass('hide');
+      return updateHeaders();
+    };
+  
+    $(function() {
+      var statuses;
+      $input.focus();
+      statuses = ["in development", "new", "wip", "developement", "unclassified", "released", "merged", "design & research", "implementation", "design", "development", "on_qa", "draft", "planning", "completed", "partial", "to be released", "wontfix", "proposed", "in progress", "post", "qe", "dormant", "partially released", "patch in review", "complete", "not started", "stabilization", "proposal", "inception", "done"];
+      console.log(statuses);
+      return $form.removeClass('hide').on('submit', function(e) {
+        return e.preventDefault();
+      }).on('keyup', function(e) {
+        switch (e.key) {
+          case 'Escape':
+            clearField();
+            showAll();
+            return updateHeaders();
+          default:
+            return updateList();
+        }
+      });
+    });
+  
+  }).call(this);
+</script>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Node Autoinstall &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Node Autoinstall</td>
+</tr>
+<tr>
+<th>category</th>
+<td>node</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>dougsland, mburns</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Node Autoinstall</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>8</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-10-04</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Node_Autoinstall' target='_blank'>
+Node Autoinstall
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="autoinstall">AutoInstall</h1>
+
+<p>oVirt Node provides the option to auto-install, for <strong>PXE environments</strong> or pressing <strong>TAB</strong> on the installation screen.</p>
+
+<p>At a minimum, the following parameters are required for an automated installation:</p>
+
+<h3 id="storageinit">storage_init</h3>
+
+<ul>
+  <li>Initialize a local storage device.</li>
+</ul>
+
+<h3 id="bootif">BOOTIF</h3>
+
+<ul>
+  <li>Specify the network interface which the Hypervisor uses to connect to the Engine. When using PXE boot, BOOTIF may be automatically supplied by pxelinux.</li>
+</ul>
+
+<hr />
+
+<p>If you want to use oVirt Node with oVirt Engine, you must also provide at least one of the following parameters:</p>
+
+<hr />
+
+<h3 id="adminpw">adminpw</h3>
+
+<ul>
+  <li>Sets an encrypted, temporary password for admin, change is forced on first login</li>
+  <li>Example: adminpw=ovonFQQPIAM9o (is ovirt string encrypted)</li>
+  <li>
+    <p>The recommended way to hash a password for use with this parameter is to run the following command:</p>
+
+    <p># openssl passwd -1</p>
+  </li>
+</ul>
+
+<h3 id="managementserver">management_server</h3>
+
+<ul>
+  <li>Specifies - the management server to be used.</li>
+  <li>Format: management_server=hostname:port</li>
+</ul>
+
+<h1 id="examples">Examples</h1>
+
+<p><img alt="" title="OvirtAutoInstall.png" src="/images/wiki/OvirtAutoInstall.png?1447607916" /></p>
+
+<h3 id="autoinstall-and-autoregister-the-node-still-require-admin-approval-on-ovirt-engine-side">AutoInstall and AutoRegister the Node (still require Admin approval on oVirt Engine side)</h3>
+
+<pre class="highlight plaintext"><code>  storage_init=/dev/sda BOOTIF=eth0 management_server=192.168.122.115:443 management_server_fingerprint=33:2B:79:D0:32:26:2A:08:5F:AF:F9:E9:FA:06:07:A6:6B:63:C4:8A adminpw=RHhwCLrQXB8zE &#x000A;</code></pre>
+
+<h1 id="other-parameters">Other Parameters</h1>
+
+<h3 id="managementserverfingerprint">management_server_fingerprint</h3>
+
+<ul>
+  <li>Specifies the management server fingerprint</li>
+</ul>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

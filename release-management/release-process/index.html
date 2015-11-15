@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Release process &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Release process</td>
+</tr>
+<tr>
+<th>category</th>
+<td>release-management</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>bproffitt, dneary, oschreib, quaid, sandrobonazzola</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Release management</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Release process</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>11</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2015-02-23</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Release_process' target='_blank'>
+Release process
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="release-process">Release process</h1>
+
+<h2 id="planning-phase">Planning Phase</h2>
+
+<p>This phase deciding if a feature is ready to be released.</p>
+
+<ul>
+  <li>After a new 3.<em>y</em>.0 release, a new 3.<em>y+1.0</em> release is tentatively scheduled after six months.</li>
+  <li>A new release management page is created (see <a href="/release/3.6/release-management/">oVirt 3.6 Release Management</a>)</li>
+  <li>Must have a clear schedule, like <a href="http://fedoraproject.org/wiki/Releases/21/Schedule">1</a></li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>A new tracker bug is created (e.g. )</li>
+  <li>A discussion is started on devel and users mailing list gathering ideas for next release features</li>
+  <li>Teams prepare a list of accepted features collecting / creating bug tracker, devel owner, qa owner, and feature page for each of them.
+    <ul>
+      <li>The QA owner should build a test suite that effectively covers what's indicated in the Features page.</li>
+      <li>The feature must contain enough documentation to be considered "a contract" between the feature owner and the feature tester / user.</li>
+    </ul>
+  </li>
+  <li>Several presentations will be scheduled by the teams presenting the accepted features</li>
+  <li>An alpha release is tentatively scheduled four months before GA</li>
+  <li>Feature freeze is tentatively scheduled three months before GA</li>
+  <li>A beta release is tentatively scheduled two months before GA, git tree is branched for stabilization</li>
+  <li>A release candidate is tentatively scheduled one month before GA</li>
+  <li>A string freeze is tentatively scheduled two weeks before RC</li>
+  <li>Test days are scheduled after every milestone release</li>
+</ul>
+
+<h2 id="feature-submission">Feature Submission</h2>
+
+<ul>
+  <li>Each feature must come with a set of test cases covering the functionality provided by the new feature.</li>
+  <li>Each feature must define a contingency plan, allowing either to disable the incomplete feature or ensuring that the feature code is isolated in a directory or package that can be easily dropped.</li>
+  <li>Those features that can't be done with a contingency plan should live in their own branch until they're finished and merged in the main tree just when completed.</li>
+</ul>
+
+<h2 id="feature-review---feature-submission-closed">Feature Review - Feature Submission Closed</h2>
+
+<p>Before Alpha Release, submitted features must be reviewed for inclusion in Alpha release.</p>
+
+<h3 id="ignoring-feature-submission-closure">Ignoring Feature Submission Closure</h3>
+
+<p>Introducing significant changes after Feature Submission Closure can result in your patch being reverted.</p>
+
+<p>These actions are allowed after Feature Submission Closure:</p>
+
+<ul>
+  <li>Adding code meant for automated testing of the feature</li>
+  <li>Adding bug fixes</li>
+  <li>Adding localization</li>
+  <li>Cleaning or optimizing the code without introducing new features</li>
+</ul>
+
+<p>These actions are not allowed after Feature Submission Closure:</p>
+
+<ul>
+  <li>Continuing to add new enhancements (note that supporting a new distribution is an enhancement)</li>
+  <li>Trying to cover new enhancements under bug fixes</li>
+  <li>Making changes that require other subprojects to make changes as well (API, ABI and configuration files included) if not absolutely required for fixing a bug</li>
+  <li>Make changes that require packages not yet available on supported distributions.</li>
+</ul>
+
+<h3 id="exceptions">Exceptions</h3>
+
+<p>A public vote on the exception is required.</p>
+
+<p>Exceptions should be asked for at least one week before Feature Submission Closure and voting on them should be closed by Feature Submission Closure date.</p>
+
+<p>This means that you're not allowed to open new features, but you can complete those that can't be completed for Feature Submission Closure if the vote allows it.</p>
+
+<h3 id="incomplete-features">Incomplete Features</h3>
+
+<p>Incomplete features will be reverted according to their contingency plan</p>
+
+<h2 id="development-phase">Development Phase</h2>
+
+<ul>
+  <li>Each subproject must list packages expected to be in the release.</li>
+  <li>All milestones releases are created by taking the latest nightly snapshot available after verifying that the build passes basic sanity test</li>
+  <li>Weekly status emails are sent starting three weeks before alpha release.</li>
+  <li>Release Manager updates the release notes pages starting from Alpha</li>
+  <li>Release Candidate will be postponed until all known blockers are fixed</li>
+  <li>Between RC and GA, release criteria are tested on the RC and if the release meets the criteria, a GA release will be built just updating the versioning code to drop master, git hash, and timestamp suffix from tarballs and rpms.</li>
+  <li>A new RC will be created and GA postponed by one week if release criteria are not met.</li>
+  <li>The whole test case suite must be verified on each release candidate.</li>
+  <li>Only patches fixing blockers bug must be allowed between RC and GA.</li>
+</ul>
+
+<h2 id="maintenance-phase">Maintenance Phase</h2>
+
+<p>Once a version is released it enters the maintenance mode. This means that the following revision releases only fix security and critical bug fixes commits are backported to the stable branch. The first release following GA may also include minor fixes for new features included with that release.</p>
+
+<h3 id="acceptance-criteria">Acceptance criteria</h3>
+
+<ul>
+  <li>The Bug is a Regression.</li>
+  <li>The Bug is a Security threat.</li>
+  <li>The Bug affects major functionality of the release.</li>
+  <li>The fix for the Bug won't introduce a major change in the code causing potential risk to the stability of the application.</li>
+</ul>
+
+<h3 id="release-planning">Release Planning</h3>
+
+<p>Maintenance releases are tentatively scheduled once per month.</p>
+
+<p><a href="/release-management/">Category:Release management</a></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

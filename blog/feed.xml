@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>oVirt</title>
+  <subtitle/>
+  <id>http://testovirt-jeb.rhcloud.com/blog/</id>
+  <link href="http://testovirt-jeb.rhcloud.com/blog/"/>
+  <link href="http://testovirt-jeb.rhcloud.com/blog/feed.xml" rel="self"/>
+  <updated>2013-11-06T09:20:00+00:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>hello world</title>
+    <link rel="alternate" href="http://testovirt-jeb.rhcloud.com/blog/2013/11/hello-world/"/>
+    <id>http://testovirt-jeb.rhcloud.com/blog/2013/11/hello-world/</id>
+    <published>2013-11-06T09:20:00+00:00</published>
+    <updated>2015-11-15T17:16:30+00:00</updated>
+    <author>
+      <name>Springboard</name>
+    </author>
+    <content type="html">&lt;p&gt;You can add another blog post with:&lt;/p&gt;
+
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;bundle exec middleman article "your article title"
+&lt;/code&gt;&lt;/pre&gt;
+
+</content>
+  </entry>
+</feed>

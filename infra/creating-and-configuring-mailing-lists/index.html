@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Creating and configuring mailing lists &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Creating and configuring mailing lists</td>
+</tr>
+<tr>
+<th>category</th>
+<td>infra</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>djorm, quaid, wikisysop</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Infrastructure documentation</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Creating and configuring mailing lists</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>15</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-06-25</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Creating_and_configuring_mailing_lists' target='_blank'>
+Creating and configuring mailing lists
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="creating-and-configuring-mailing-lists">Creating and configuring mailing lists</h1>
+
+<p>This standard operating procedure (SOP) describes how to create and configure a Mailman mailing list on lists.ovirt.org.</p>
+
+<h2 id="create-the-list">Create the list</h2>
+
+<ol>
+  <li>Run <code>sudo /usr/lib/mailman/bin/newlist $listname</code> to create a new list.
+    <ul>
+      <li>Fill out details as requested by Mailman, noting the password.
+        <ul>
+          <li>There appears to be a length of 12 characters for admin passwords in Mailman 2</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Add the sections Mailman outputs to <em>/etc/aliases</em> for each mailing list, then run <code>sudo newaliases</code>.</li>
+  <li>Add the list administrator password to the file <em>/root/passwords</em>.</li>
+  <li>Email the list owner(s) with the list password.
+    <ul>
+      <li>Do this before or after configuring the list, making sure to inform them of the special configuration details.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="configure-the-list">Configure the list</h2>
+
+<ol>
+  <li>Use the administrator password to log in to the admin web interface.</li>
+  <li>Add additional administrators, if applicable.</li>
+  <li>Configure the list as per the <a href="#Individual_list-type_configurations">#Individual list-type configurations</a> section.</li>
+</ol>
+
+<h3 id="individual-list-type-configurations">Individual list-type configurations</h3>
+
+<h4 id="configuration-for--commits-list">Configuration for -commits list</h4>
+
+<ul>
+  <li>Set <em>max_message_size</em> to 0</li>
+  <li>Set <em>accept_these_nonmembers</em> ???</li>
+</ul>
+
+<h4 id="configuration-for-a--patches-list">Configuration for a -patches list</h4>
+
+<ul>
+  <li>Set <em>max_message_size</em> to 4000</li>
+  <li>Set <em>private_roster</em> to <em>List members</em></li>
+  <li>Set <em>respond_to_post_requests</em> to <em>No</em>.</li>
+</ul>
+
+<h4 id="configuration-for--devel-discussion-list">Configuration for -devel (discussion) list:</h4>
+
+<ul>
+  <li>Archives public</li>
+  <li>Subscription confirmation-only</li>
+  <li>Set <em>respond_to_post_requests</em> to <em>No</em>.</li>
+</ul>
+
+<h4 id="configuration-for-a--private-list">Configuration for a -private list</h4>
+
+<ul>
+  <li>Archives set to private</li>
+  <li>Subscription requires approval</li>
+  <li>Must display in list-of-lists - it's private but not kept a secret</li>
+  <li>For private discussion lists, posts require approval if not from a list member
+    <ul>
+      <li>You may want to set <em>respond_to_post_requests</em> to <em>No</em> unless you specifically want posters to know they are held for moderation.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="configuration-for-a-no-archives--private-list">Configuration for a no-archives -private list</h4>
+
+<p>This is a rare configuration, usually reserved for security-related issues.</p>
+
+<ul>
+  <li>Archives disabled and set to private</li>
+  <li>Subscription requires approval</li>
+  <li>Must display in list-of-lists - it's private but not kept a secret</li>
+  <li>For private discussion lists, posts require approval if not from a list member</li>
+</ul>
+
+<h4 id="configuration-for-an-open-sender-list">Configuration for an open-sender list</h4>
+
+<ul>
+  <li>Set <em>Privacy</em> &gt; <em>Sender</em> &gt; <em>accept_these_nonmembers</em> to <code>^.*</code> - i.e., a regular expression meaning "every possible incoming email address."</li>
+  <li>Set <em>General</em> &gt; <em>respond_to_post_requests</em> to <em>No</em>.</li>
+</ul>
+
+<h4 id="configuration-for-an-announcement-mailing-list">Configuration for an announcement mailing list</h4>
+
+<ul>
+  <li><em>Privacy</em> &gt; <em>Sender</em> set 'default_member_moderation' to 'Yes'</li>
+  <li><em>Privacy</em> &gt; <em>Sender</em> set 'member_moderation_action' to 'Reject' and put in text in 'member_moderation_notice' that explains it is an announcement only list and gives at least one contact email address for questions and comments.
+    <ul>
+      <li>Set up the same thing for 'generic_nonmember_action' and 'nonmember_rejection_notice'.</li>
+    </ul>
+  </li>
+  <li><em>General</em> set 'max_message_size' to 150KB or more to allow for images and such in announcements.</li>
+</ul>
+
+<h4 id="configuration-for-closing-a-list-permanently">Configuration for closing a list permanently</h4>
+
+<p>If you need to close a mailing list, either to direct to a new location or because it is no longer needed, take these steps to hide the list (if needed) and notify senders of what to do. (You may also want to unsubscribe all members, if that is appropriate.)</p>
+
+<ul>
+  <li><a href="http://lists.ovirt.org/mailman/admin/LISTNAME/members">http://lists.ovirt.org/mailman/admin/LISTNAME/members</a> - bottom of this page set everyone's moderation bit. (There is also an emergency moderation bit on the general page, but that is an overriding setting rather than setting all current users to moderated - probably functionally the same, but I'm not sure what is better.)</li>
+  <li><a href="http://lists.ovirt.org/mailman/admin/LISTNAME/general">http://lists.ovirt.org/mailman/admin/LISTNAME/general</a> - set 'description' and 'info' to point to new URL, with brief text saying the list is closed.</li>
+  <li><a href="http://lists.ovirt.org/mailman/admin/LISTNAME/privacy/sender">http://lists.ovirt.org/mailman/admin/LISTNAME/privacy/sender</a> - in the top section for "Member filters", set 'default_member_moderation' to 'Yes', set 'member_moderation_action' to 'Reject', and then put in some text in 'member_moderation_notice' that points people at the new mailing list. Set up the same thing for 'generic_nonmember_action' and 'nonmember_rejection_notice'.</li>
+  <li><a href="http://lists.ovirt.org/mailman/admin/LISTINFO/privacy/subscribing">http://lists.ovirt.org/mailman/admin/LISTINFO/privacy/subscribing</a> - set 'advertized' to 'No', set 'subscribe_policy' to 'Require approval', and set 'private_roster' to 'List admin only'.</li>
+</ul>
+
+<p><a href="/infra/infrastructure-documentation/">Category:Infrastructure documentation</a> <a href="/infra/infrastructure-sop/">Category:Infrastructure SOP</a> <a href="Category:Mailing lists">Category:Mailing lists</a></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

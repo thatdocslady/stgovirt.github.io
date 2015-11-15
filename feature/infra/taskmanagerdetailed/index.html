@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+TaskManagerDetailed &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>TaskManagerDetailed</td>
+</tr>
+<tr>
+<th>category</th>
+<td>feature</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>lpeer, moti, sandrobonazzola</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Feature|TaskManager</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Features/TaskManagerDetailed</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>101</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2015-01-16</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Features/TaskManagerDetailed' target='_blank'>
+Features/TaskManagerDetailed
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<section class='feature'>
+<section class='feature-sidebar col-md-4'>
+<h1>Features</h1>
+<form class='hide' id='feature-search'>
+<div class='form-group'>
+<input autocomplete='off' class='form-control' id='feature-search-input' placeholder='Filter features'>
+<div class='checkbox'>
+<label>
+</label>
+</div>
+</div>
+</form>
+<h2>Unclassified</h2>
+<ul class='feature-list'>
+<li class=' status-development'>
+<a href='/feature/affinity-rules-enforcement-manager' title='Status: Development'>Affinity Rules Enforcement Manager</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/backupawareness' title='Status: NEW'>Adding Backup Awareness to oVirt</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/boot' title='Status: WIP'>Boot oVirt.org</a>
+
+</li>
+<li class=' status-developement'>
+<a href='/feature/cinderglance-docker-integration' title='Status: Developement'>Cinder and Glance integration via Docker</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/copy-disks' title='Status: Unknown'>Copy Disks</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/debian-support-for-hosts' title='Status: NEW'>Debian support for hosts</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/extension-tester-tool' title='Status: Unknown'>Extension tester tool</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/feature-template' title='Status: Released'>Your feature name</a>
+
+</li>
+<li class=' status-merged'>
+<a href='/feature/genericregistration' title='Status: Merged'>Generic Registration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/heapplianceflow' title='Status: WIP'>oVirt hosted-engine appliance flow</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/hosted-engine-add-hosts-with-web-ui' title='Status: NEW'>Hosted Engine: add hosts with Web UI</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/hosted-engine-configuration-on-shared-storage' title='Status: NEW'>Hosted Engine configuration on shared storage</a>
+
+</li>
+<li class=' status-design-&amp;-research'>
+<a href='/feature/hosted-engine-vm-management' title='Status: Design-&amp;-research'>Hosted engine VM management enhancements</a>
+
+</li>
+<li class=' status-implementation'>
+<a href='/feature/image-upload' title='Status: Implementation'>Image Upload</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/iothreads-support' title='Status: Unknown'>IOThreads Support</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/ip-on-role-network' title='Status: design'>IP address configuration on role bearing NICs</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/katellointegration' title='Status: Development'>Katello Integration</a>
+
+</li>
+<li class=' status-qa'>
+<a href='/feature/live-rebase-on-centos-7' title='Status: QA'>oVirt Live Rebase on CentOS 7</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/lun-resize' title='Status: Design'>Refresh LUN Size</a>
+
+</li>
+<li class=' status-draft'>
+<a href='/feature/memorybasedbalancing' title='Status: Draft'>CPU and Memory based cluster auto balancing</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/numaawareksmsupport' title='Status: Design'>NUMA aware KSM support</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/patternfly-tooltips' title='Status: Development'>PatternFly tooltips</a>
+
+</li>
+<li class=' status-draft'>
+<a href='/feature/pendingresourcemanager' title='Status: Draft'>Pending Resource Manager</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/scheduler-policies' title='Status: Unknown'>oVirt Scheduler Policies</a>
+
+</li>
+<li class=' status-planning'>
+<a href='/feature/splash' title='Status: Planning'>Backup Awareness UI - Splash Screen</a>
+
+</li>
+<li class=' status-planning'>
+<a href='/feature/ui' title='Status: Planning'>Backup Awareness UI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vmdevices-rework' title='Status: Unknown'>VMDevices rework</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/vmpinningtomultiplehosts' title='Status: Development'>VM pinning to multiple hosts</a>
+
+</li>
+</ul>
+<h2>Cloud</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/cloud/addingkeystoneurltoexternalproviders' title='Status: Unknown'>Adding Keystone URL To External Providers</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/cloud/cloud-init-integration' title='Status: Unknown'>Cloud-Init Integration</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/cloud/neutronvirtualappliance' title='Status: Completed'>Neutron Virtual Appliance</a>
+
+</li>
+</ul>
+<h2>Engine</h2>
+<ul class='feature-list'>
+<li class=' status-planning'>
+<a href='/feature/engine/avoid-ip-spoofing' title='Status: Planning'>Avoid IP Spoofing</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/better-vurti' title='Status: Unknown'>Better vurti</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/cluster-parameters-override' title='Status: Design'>Cluster parameters override</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/engine/commandcoordinator' title='Status: Completed'>Introduce CommandCoordinator Framework and Ability To Persist Commands in Database</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/cumulative-rx-tx-statistics' title='Status: Design'>Cumulative Network Usage Statistics</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/engine-backup' title='Status: Released'>oVirt engine backup</a>
+
+</li>
+<li class=' status-partial'>
+<a href='/feature/engine/engine-cleanup' title='Status: Partial'>Engine</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/engine-config-utilities' title='Status: Unknown'>Engine Config Utilities</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/engine-high-availability' title='Status: Unknown'>Engine High Availability</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/engine-nic-health-check' title='Status: Released'>Engine NIC health check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/engine-snmp' title='Status: Unknown'>engine snmp</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/engine-support-for-ppc64' title='Status: Released'>Engine support for PPC64</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/feature-level-support' title='Status: Unknown'>Feature Level Support</a>
+
+</li>
+<li class=' status-wontfix'>
+<a href='/feature/engine/fedora-21-support' title='Status: WONTFIX'>Fedora 21 Support</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/engine/fedora-22-support' title='Status: NEW'>Fedora 22 Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/fence-kdump' title='Status: Unknown'>Fence kdump</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/fenceagents' title='Status: Unknown'>Fence Agents</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/fencing-refactoring' title='Status: Design'>Fencing refactoring</a>
+
+</li>
+<li class=' status-proposed'>
+<a href='/feature/engine/get-route' title='Status: Proposed'>Get Route</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/guest-reboot' title='Status: Unknown'>Guest Reboot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/hostdeployprotocol' title='Status: Unknown'>Host Deploy Protocol</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/hostdev-passthrough' title='Status: Unknown'>hostdev passthrough</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/engine/hosted-engine' title='Status: WIP'>Node Hosted Engine</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/importunregisteredentities' title='Status: Released'>Detach/Attach Storage Domain with entities</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/integrating-libosinfo-with-engine' title='Status: Released'>Integrating libosinfo with oVirt engine</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/migration-of-local-dwh-reports-to-remote' title='Status: Design'>Migrating local DWH and Reports to remote</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/orm' title='Status: Unknown'>ORM</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/reportguestdiskslogicaldevicename' title='Status: Design'>Report Guest Disks Logical Device Name</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/self-hosted-engine-fc-support' title='Status: design'>Self Hosted Engine FC Support</a>
+
+</li>
+<li class=' status-post'>
+<a href='/feature/engine/self-hosted-engine-gluster-support' title='Status: POST'>Self Hosted Engine Gluster Support</a>
+
+</li>
+<li class=' status-post'>
+<a href='/feature/engine/self-hosted-engine-hyper-converged-gluster-support' title='Status: POST'>Self Hosted Engine Hyper Converged Gluster Support</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/engine/self-hosted-engine-iscsi-support' title='Status: Completed'>Self Hosted Engine iSCSI Support</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/self-hosted-engine-maintenance-flows' title='Status: Released'>Hosted Engine Maintenance Flow Unification</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/self-hosted-engine' title='Status: Released'>Self Hosted Engine</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/separate-dwh-host' title='Status: Design'>Separate DWH Host</a>
+
+</li>
+<li class=' status-qe'>
+<a href='/feature/engine/separate-reports-host' title='Status: QE'>Separate Reports Host</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/serial-console' title='Status: Unknown'>Serial Console</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/sr-iov' title='Status: Design'>SR_IOV</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/upgrademanager' title='Status: Released'>Upgrade Manager</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/vm-icons' title='Status: Design'>VM Icons</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/watchdog-engine-support' title='Status: Released'>Watchdog engine support</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/windows-guest-tools' title='Status: Released'>oVirt Windows Guest Tools ISO</a>
+
+</li>
+</ul>
+<h2>Foreman</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/foreman/advancedforemanintegration' title='Status: Unknown'>Advanced Foreman Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/foreman/foremanintegration' title='Status: Unknown'>Foreman Integration</a>
+
+</li>
+</ul>
+<h2>Infra</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/infra/aaa-jdbc' title='Status: Unknown'>AAA JDBC</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/aaa' title='Status: Unknown'>AAA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/api' title='Status: Unknown'>API</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/asynctaskmanagerchanges-3.3' title='Status: Unknown'>AsyncTaskManagerChanges 3.3</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/asynctaskmanagerchanges-3.3detailed' title='Status: Unknown'>AsyncTaskManagerChanges 3.3Detailed</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/asynctaskmanagerchanges' title='Status: Unknown'>Async Task Manager Changes</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/authentication-rewrite' title='Status: Unknown'>Authentication Rewrite</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/bootstrap-improvements' title='Status: Unknown'>Bootstrap Improvements</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/cli' title='Status: Unknown'>CLI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/clonevmfromsnapshot' title='Status: Unknown'>Clone VM From Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/custompropertiessheet' title='Status: Unknown'>Custom Properties Sheet</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/dbschemaversioncheck' title='Status: Unknown'>DB Schema Version Check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedclonevmfromsnapshot' title='Status: Unknown'>Detailed Clone VM From Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedhostpmproxypreferences' title='Status: Unknown'>Detailed Host PM Proxy Preferences</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedlockmechanism' title='Status: Unknown'>Detailed Lock Mechanism</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedpmhealthcheck' title='Status: Unknown'>Detailed PM Health Check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/drbd' title='Status: Unknown'>DRBD</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/entity-comment' title='Status: Unknown'>Entity comment</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/entity-configuration-management' title='Status: Unknown'>Entity Configuration Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/externalevents' title='Status: Unknown'>External Events</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/externaltasks' title='Status: Unknown'>External Tasks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/fullapplicationslist' title='Status: Unknown'>Full Applications List</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/hostpmproxypreferences' title='Status: Unknown'>Host PM Proxy Preferences</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/hsm-async-tasks' title='Status: Unknown'>HSM Async Tasks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/java-sdk' title='Status: Unknown'>Java sdk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/kerberos-support-in-sdks-and-cli' title='Status: Unknown'>Kerberos Support in SDKs and CLI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/microthreading' title='Status: Unknown'>Microthreading</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/nagios-integration' title='Status: Unknown'>Nagios Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/ntpsupport' title='Status: Unknown'>NTP Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/one-certificate-key-pair-per-nic' title='Status: Unknown'>One certificate-key pair per NIC</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pki-improvements' title='Status: Unknown'>PKI Improvements</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pki' title='Status: Unknown'>PKI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pkireduce' title='Status: Unknown'>PKI Reduce</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pmhealthcheck' title='Status: Unknown'>PM Health Check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/python-sdk' title='Status: Unknown'>Python sdk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/reloadableconfiguration' title='Status: Unknown'>Reloadable Configuration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/restsessionmanagement' title='Status: Unknown'>REST Session Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/rsdl-schema' title='Status: Unknown'>RSDL schema</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/rsdl' title='Status: Unknown'>RSDL</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/runningcommandsonendactionfailure' title='Status: Unknown'>Running Commands On End Action Failure</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/ssh-abilities' title='Status: Unknown'>SSH Abilities</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/sso-method-control' title='Status: Unknown'>SSO Method Control</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/sso' title='Status: Unknown'>SSO</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/taskmanager' title='Status: Unknown'>Task Manager</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/taskmanagercanceltask' title='Status: Unknown'>Task Manager Cancel Task</a>
+
+</li>
+<li class='selected status-unknown'>
+<a href='/feature/infra/taskmanagerdetailed' title='Status: Unknown'>Task Manager Detailed</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/testingframework' title='Status: Unknown'>Testing Framework</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/uniformssosupport' title='Status: Unknown'>Uniform SSO Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/user-portal-permissions' title='Status: Unknown'>User Portal Permissions</a>
+
+</li>
+</ul>
+<h2>Infra / Reloadable Configuration</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/infra/reloadable-configuration/keys-table' title='Status: Unknown'>keys table</a>
+
+</li>
+</ul>
+<h2>Infra / User Portal Permissions</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/infra/user-portal-permissions/writing-a-new-user-query' title='Status: Unknown'>Writing A New User Query</a>
+
+</li>
+</ul>
+<h2>Integration</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/integration/allinone' title='Status: Released'>All in One</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/integration/otopi-infra-migration' title='Status: Unknown'>Otopi Infra Migration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/integration/ovirtappliance' title='Status: WIP'>oVirt Appliance</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/integration/remotedb' title='Status: Unknown'>Remote DB</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/integration/websocketproxy-on-a-separate-host' title='Status: completed'>WebSocketProxy on a separate host</a>
+
+</li>
+</ul>
+<h2>Network</h2>
+<ul class='feature-list'>
+<li class=' status-qa'>
+<a href='/feature/network/apidatacenternetworks' title='Status: QA'>API Data Center Networks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/arbitraryvlandevicename' title='Status: Unknown'>Arbitrary VLAN Device Name</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/bridgeless-networking' title='Status: Unknown'>Bridgeless Networking</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/bridgeless-networks' title='Status: Unknown'>Bridgeless Networks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/compatibilityversion' title='Status: Unknown'>compatibility Version</a>
+
+</li>
+<li class=' status-implementation'>
+<a href='/feature/network/detailed-host-network-qos' title='Status: Implementation'>Host Network QoS</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/detailed-osn-integration' title='Status: Unknown'>Detailed OSN Integration</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/detailedhostnetworkingapi' title='Status: Design'>Host Networking API</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/network/detailedmanagementnetworkasarole' title='Status: WIP'>Management network as a role - Detailed</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/detailednetworklinking' title='Status: Unknown'>Detailed Network Linking</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/detailedreportingvnicinformation' title='Status: Unknown'>Detailed Reporting Vnic Information</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/device-custom-properties' title='Status: Unknown'>Device Custom Properties</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/directhostaddress' title='Status: Unknown'>Direct Host Address</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/ethtool-options' title='Status: Released'>Device ethtool options</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/get-route-device' title='Status: Unknown'>Get Route Device</a>
+
+</li>
+<li class=' status-implementation'>
+<a href='/feature/network/host-network-qos' title='Status: Implementation'>Host Network QoS</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/hostnetworkingapi' title='Status: Design'>Host Networking API</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/hotplugnic' title='Status: Released'>Hotplug/Hotunplug of Network Interface Cards</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/isolatednetworks' title='Status: Design'>Isolated Network</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/management-network-as-a-role' title='Status: design'>Management network as a role</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/migration-network' title='Status: Unknown'>Migration Network</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/multihostnetworkconfiguration' title='Status: Unknown'>Multi Host Network Configuration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/multiple-gateways' title='Status: Unknown'>Multiple Gateways</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/network-custom-properties' title='Status: Released'>Network Custom Properties</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/network-labels' title='Status: Unknown'>Network Labels</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/network-qos-detailed-design' title='Status: Unknown'>Network QoS - detailed design</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkfiltering' title='Status: Unknown'>Network Filtering</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/networklabels' title='Status: Released'>Network Labels</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networklinking' title='Status: Unknown'>Network Linking</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkmaintab' title='Status: Unknown'>Network Main Tab</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkmanager-support' title='Status: Unknown'>NetworkManager Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkpermissions' title='Status: Unknown'>Network Permissions</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkreloaded' title='Status: Unknown'>Network Reloaded</a>
+
+</li>
+<li class=' status-dormant'>
+<a href='/feature/network/nicless-network' title='Status: Dormant'>Nic-less Network</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/normalized-ovirtmgmt-initialization' title='Status: Unknown'>Normalized oVirtmgmt Initialization</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/osn-integration' title='Status: Unknown'>OSN Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/portmirroring' title='Status: Unknown'>Port Mirroring</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/predictable-vnic-order' title='Status: Released'>Predictable vNIC Order</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/reportingvnicinformation' title='Status: Unknown'>Reporting Vnic Information</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/required-networks' title='Status: Unknown'>Required Networks</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/select-network-for-gluster' title='Status: Design'>Select Network for Gluster traffic</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/setupnetworks' title='Status: Unknown'>Setup Networks</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/ucs-integration' title='Status: Released'>Cisco UCS integration</a>
+
+</li>
+<li class=' status-proposed'>
+<a href='/feature/network/unrestricted-network-names' title='Status: Proposed'>Unrestricted Network Names</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/update-device-hooks' title='Status: Unknown'>Update device hooks</a>
+
+</li>
+</ul>
+<h2>Node</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/node/buildtoolmigration' title='Status: Unknown'>Buildtool Migration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/node/cockpit' title='Status: WIP'>Cockpit</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/node/dbusbackend' title='Status: WIP'>D-Bus Backend</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/diagnostic-page' title='Status: Unknown'>Node Diagnostic Page</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/docker-integration' title='Status: Unknown'>Docker Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/featurepublishing' title='Status: Unknown'>Feature Publishing</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/glusterfs-support' title='Status: Unknown'>Node GlusterFS Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/ipv6-support' title='Status: Unknown'>IPv6 support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/kimchiplugin' title='Status: Unknown'>Kimchi Plugin</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/nic-bonding' title='Status: Unknown'>NIC Bonding</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/node/node.next' title='Status: New'>Node.next</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/nodeautomation' title='Status: Unknown'>Node Automation</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/openvswitchsupport' title='Status: Unknown'>Open V Switch Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/packagerefactoring' title='Status: Unknown'>Package Refactoring</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/pluginliveinstall' title='Status: Unknown'>Plugin Live Install</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/plugins' title='Status: Unknown'>Node plugins</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/puppet-plugin' title='Status: Unknown'>Node Puppet Plugin</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/software-iscsi-root' title='Status: Unknown'>Node software iscsi root</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/storageandinstallermodulerewrite' title='Status: Unknown'>Storage And Installer Module Rewrite</a>
+
+</li>
+<li class=' status-review'>
+<a href='/feature/node/subpackages' title='Status: Review'>subpackages</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/tuiredesign' title='Status: Unknown'>TU Iredesign</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/universal-image' title='Status: Unknown'>Universal Image</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/upgrade-tool' title='Status: Unknown'>Node upgrade tool</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/urwid-tui' title='Status: Unknown'>Urwid TUI</a>
+
+</li>
+</ul>
+<h2>Plugins</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/plugins/plugins' title='Status: Unknown'>Plugins</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/plugins/uipluginsoriginaldesignnotes' title='Status: Unknown'>UI Plugins Original Design Notes</a>
+
+</li>
+</ul>
+<h2>SLA</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/sla/aggregate-qos' title='Status: Unknown'>aggregate QoS</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/automatic-scaling' title='Status: Unknown'>Automatic scaling</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/autorecovery' title='Status: Unknown'>Autorecovery</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/blkio-support' title='Status: Unknown'>blkio support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/cpu-host-support' title='Status: Unknown'>CPU-host Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/cpu-sla' title='Status: Unknown'>CPU SLA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/cpu-thread-handling' title='Status: Unknown'>CPU thread handling</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/detailed-numa-and-virtual-numa' title='Status: Unknown'>Detailed NUMA and Virtual NUMA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/detailedquota' title='Status: Unknown'>Detailed Quota</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/drools-planner-scheduler' title='Status: Unknown'>drools planner scheduler</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/even-vm-count-distribution' title='Status: Unknown'>Even VM Count Distribution</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/external-scheduling-proxy' title='Status: Unknown'>oVirt External Scheduling Proxy</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ha-vm-reservation-detaileddesign' title='Status: Unknown'>HA VM reservation detailedDesign</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ha-vm-reservation' title='Status: Unknown'>HA VM reservation</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/hostpowermanagementpolicy' title='Status: Unknown'>Host Power Management Policy</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/memory-hotplug' title='Status: Unknown'>Memory Hotplug</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/minimum-guaranteed-memory' title='Status: Unknown'>Minimum guaranteed memory</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/momintegration' title='Status: Unknown'>Mom Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/numa-and-virtual-numa' title='Status: Unknown'>NUMA and Virtual NUMA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/optaplanner' title='Status: Unknown'>Optaplanner</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ovirtscheduler' title='Status: Unknown'>o Virt Scheduler</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ovirtschedulerapi' title='Status: Unknown'>o Virt Scheduler API</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/performance-and-scalability' title='Status: Unknown'>Performance And Scalability</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/quota' title='Status: Unknown'>Quota</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/sla-mom-ballooning-tp' title='Status: Unknown'>SLA mom ballooning tp</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/sla-mom' title='Status: Unknown'>SLA mom</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/trusted-compute-pools' title='Status: Unknown'>Trusted compute pools</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/vm-affinity' title='Status: Unknown'>VM Affinity</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/vm-coredump' title='Status: Unknown'>VM coredump</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/vnic-profiles' title='Status: Unknown'>Vnic Profiles</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/xbzrle-and-auto-convergence' title='Status: Unknown'>XBZRLE and Auto-Convergence</a>
+
+</li>
+</ul>
+<h2>Storage</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/storage/advancednfsoptions' title='Status: Released'>Advanced Nfs Options</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/backup-provider' title='Status: Unknown'>Backup Provider</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/backup-restore-api-integration' title='Status: Unknown'>Backup-Restore API Integration</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/storage/cinder-integration' title='Status: Design'>Cinder Integration</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/connectionreferences' title='Status: Released'>Connection References</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/decommission-master-domain-and-spm' title='Status: Unknown'>Decommission Master Domain and SPM</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/design-for-multiple-storage-domains' title='Status: Released'>Manage storage connections</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/detailed-gluster-geo-rep' title='Status: Unknown'>Detailed Gluster Geo Rep</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/detailed-gluster-volume-asynchronous-tasks-management' title='Status: Unknown'>Detailed Gluster Volume Asynchronous Tasks Management</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/detailedfloatingdisk' title='Status: Released'>Floating Disk</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/detailedhotplug' title='Status: Released'>Disk Hot Plug</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/detailedsharedrawdisk' title='Status: Released'>Shared Raw Disk</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/direct-lun' title='Status: Released'>Direct LUN</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/disk-hooks' title='Status: Released'>Disk Hooks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/diskalignment' title='Status: Unknown'>Disk Alignment</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/diskpermissions' title='Status: Released'>Disk Permissions</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/domain-scan' title='Status: Released'>Domain Scan</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/floatingdisk' title='Status: Released'>Floating Disk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/glance-integration' title='Status: Unknown'>Glance Integration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/storage/gluster-dashboard' title='Status: WIP'>Gluster Dashboard</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/storage/gluster-geo-replication' title='Status: WIP'>Geo replication</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/gluster-hooks-management' title='Status: Released'>Gluster Hooks management</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/gluster-import-existing-cluster' title='Status: Released'>Import cluster</a>
+
+</li>
+<li class=' status-complete'>
+<a href='/feature/storage/gluster-support' title='Status: Complete'>Gluster management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-swift-management' title='Status: Unknown'>Gluster Swift Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-sync-configuration-with-cli' title='Status: Unknown'>Gluster Sync Configuration With CLI</a>
+
+</li>
+<li class=' status-complete'>
+<a href='/feature/storage/gluster-volume-asynchronous-tasks-management' title='Status: Complete'>Gluster tasks management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-volume-capacity' title='Status: Unknown'>Gluster Volume Capacity</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-volume-performance-statistics' title='Status: Unknown'>Gluster Volume Performance Statistics</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/glusterfs-hyperconvergence' title='Status: Unknown'>GlusterFS Hyperconvergence</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/glusterfs-storage-domain' title='Status: Released'>GlusterFS Storage Domain</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/storage/glusterhostdiskmanagement' title='Status: WIP'>Host Device Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/glustervolumeadvanceddetails' title='Status: Unknown'>Gluster Volume Advanced Details</a>
+
+</li>
+<li class=' status-not-started'>
+<a href='/feature/storage/glustervolumequota' title='Status: Not-Started'>Gluster Volume Quota</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/hotplug' title='Status: Released'>Disk Hot Plug</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/importmorethanonce' title='Status: Released'>Import VM or Template More than Once</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/importstoragedomain' title='Status: Released'>Import Storage Domain</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/ioprocess' title='Status: Unknown'>ioprocess</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/iscsi-multipath' title='Status: Released'>Configure iSCSI Multipathing</a>
+
+</li>
+<li class=' status-stabilization'>
+<a href='/feature/storage/live-merge' title='Status: Stabilization'>Live Merge</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/manage-storage-connections' title='Status: Released'>Manage storage connections</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/mixed-types-data-center' title='Status: Unknown'>Mixed Types Data Center</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/move-disk-two-phase-commit' title='Status: Unknown'>Move Disk Two Phase Commit</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/moveascopyanddelete' title='Status: Unknown'>Move As Copy And Delete</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/multiplestoragedomains' title='Status: Released'>Manage storage connections</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/nfsv4' title='Status: Released'>NFSv4</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/online-virtual-drive-resize' title='Status: Released'>Online Virtual Drive Resize</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/orphaned-images' title='Status: Unknown'>Orphaned Images</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/ovfautoupdater' title='Status: Unknown'>Ovf Auto Updater</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/ovfonanydomain' title='Status: Unknown'>Ovf On Any Domain</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/posixfsconnection' title='Status: Released'>PosixFS Connection</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/read-only-disk' title='Status: Released'>Read-Only Disks</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/storage/sanlock-fencing' title='Status: Design'>Sanlock Fencing</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/serial-execution-of-asynchronous-tasks-detailed-design' title='Status: Unknown'>Serial Execution of Asynchronous Tasks Detailed Design</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/serial-execution-of-asynchronous-tasks' title='Status: Released'>Serial Execution of Asynchronous Tasks</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/sharedrawdisk' title='Status: Released'>Shared Raw Disk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/single-disk-snapshot' title='Status: Unknown'>Single Disk Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/snapshots-overview' title='Status: Unknown'>Snapshots Overview</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/spmpriority' title='Status: Released'>SPM Priority</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/storagedomainliveupgrade' title='Status: Unknown'>Storage Domain Live Upgrade</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/storagepool-metadata-removal' title='Status: Unknown'>StoragePool Metadata Removal</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/virtio-scsi' title='Status: Unknown'>Virtio SCSI</a>
+
+</li>
+</ul>
+<h2>UX</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/ux/branding' title='Status: Released'>Branding</a>
+
+</li>
+<li class=' status-proposal'>
+<a href='/feature/ux/cssgrids' title='Status: Proposal'>CSS Grids</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedexternalevents' title='Status: Unknown'>Detailed External Events</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedexternaltasks' title='Status: Unknown'>Detailed External Tasks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedhostpmmultipleagents' title='Status: Unknown'>Detailed Host PM Multiple Agents</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedhotplugnic' title='Status: Unknown'>Detailed Hot Plug NIC</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedstabledeviceaddresses' title='Status: Unknown'>Detailed Stable Device Addresses</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/entityhealthstatus' title='Status: Unknown'>Entity Health Status</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/foreign-menu-using-rest' title='Status: Unknown'>Foreign Menu Using REST</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/ux/frontendrefactor' title='Status: Released'>Frontend Refactoring</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/glustergeoreplication' title='Status: Unknown'>Gluster Geo Replication</a>
+
+</li>
+<li class=' status-inception'>
+<a href='/feature/ux/glustervolumesnapshots' title='Status: Inception'>Gluster Volume Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/gwt-platform-upgrade' title='Status: Unknown'>GWT Platform Upgrade</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/hostbiosinfo' title='Status: Unknown'>Host Bios Info</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/hosthardwareinfo' title='Status: Unknown'>Host Hardware Info</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/hostpmmultipleagents' title='Status: Unknown'>Host PM Multiple Agents</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/i18n' title='Status: Unknown'>I18N</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/jasper-in-webadmin' title='Status: Unknown'>jasper in webadmin</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/ux/lowerresolutionsupport' title='Status: Released'>Low Resolution Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/memory-aware-even-distribution-policy' title='Status: Unknown'>Memory-aware Even-distribution Policy</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/ux/newlookandfeelpatternflyphase1' title='Status: Development'>New Look and Feel based on PatternFly -- Phase 1</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/quota-3.2' title='Status: Unknown'>Quota 3.2</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/reports-dashboard' title='Status: Unknown'>Reports Dashboard</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/sla-for-storage-io-bandwidth' title='Status: Unknown'>SLA for storage io bandwidth</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/uiplugins' title='Status: Unknown'>UI Plugins</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/ux/uirefreshsynchronization' title='Status: Released'>Refresh Synchronization</a>
+
+</li>
+</ul>
+<h2>UX / Design</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/glusterhostdiskmanagement' title='Status: Unknown'>Gluster Host Disk Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/jsonrpc3.5' title='Status: Unknown'> JSON RPC 3.5</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/livemerge' title='Status: Unknown'>Live Merge</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/stabledeviceaddresses' title='Status: Unknown'>Stable Device Addresses</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/storagehelpers' title='Status: Unknown'>Storage Helpers</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/storagelivemigration' title='Status: Unknown'>Storage Live Migration</a>
+
+</li>
+</ul>
+<h2>UX / Design / Network</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/network/jumbo-frames' title='Status: Unknown'>Jumbo frames</a>
+
+</li>
+</ul>
+<h2>VDSM</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/vdsm/for-ppc64' title='Status: Released'>VDSM for PPC64</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/hostconfiguration' title='Status: Unknown'>Host Configuration</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/vdsm/jsonrpc' title='Status: Development'>Introduce Messaged communication to VDSM using  JSON-RPC on top of various transport protocols</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/libvdsm' title='Status: Unknown'>libVDSM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/measurements' title='Status: Unknown'>Measurements</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/python3-compatibility' title='Status: Unknown'>VDSM python3 compatibility</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/supervdsm-service' title='Status: Unknown'>SuperVDSM service</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/vdsm-plugin' title='Status: Unknown'>Node VDSM plugin</a>
+
+</li>
+<li class=' status-proposed'>
+<a href='/feature/vdsm/vdsm-vm-query-api' title='Status: Proposed'>VDSM VM Data Query API</a>
+
+</li>
+</ul>
+<h2>Virt</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/virt/blank-to-defaults' title='Status: Unknown'>Blank to Defaults</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/clone-vm' title='Status: Unknown'>Clone VM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/cluster-emulation-modes' title='Status: Unknown'>Cluster emulation modes</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/console-connection-settings-dialog-in-portals' title='Status: Unknown'>Console connection settings dialog in portals</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/detailed-exit-reason' title='Status: Unknown'>Detailed Exit Reason</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/display-address-override' title='Status: Unknown'>Display Address Override</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/edit-running-vm' title='Status: Unknown'>Edit Running VM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/expose-vm-devices' title='Status: Unknown'>Expose VM Devices</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/guestagent' title='Status: Unknown'>Guest Agent</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentdebian' title='Status: Done'>oVirt Guest Agent on Debian</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentopensuse' title='Status: Done'>oVirt Guest Agent on OpenSUSE</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentsles' title='Status: Done'>oVirt Guest Agent on SLE(S)</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentubuntu' title='Status: Done'>oVirt Guest Agent on Ubuntu</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/virt/hostusb' title='Status: Released'>Expose Host attached USB to a Node</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/hot-plug-cpu' title='Status: Unknown'>Hot plug CPU</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/instance-types' title='Status: Unknown'>Instance Types</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/intial-run-vm-tab' title='Status: Unknown'>Intial Run VM tab</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/multiple-consoles' title='Status: Unknown'>Multiple Consoles</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/multiple-graphic-servers' title='Status: Unknown'>Multiple Graphic Servers</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/multiplemonitors' title='Status: Unknown'>Multiple Monitors</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/non-plugin-console-invocation' title='Status: Unknown'>Non plugin console invocation</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/novnc-console' title='Status: Unknown'>noVNC console</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/virt/os-info' title='Status: Released'>OS info</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/prestartedvm' title='Status: Unknown'>Prestarted VM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/ram-snapshots' title='Status: Unknown'>RAM Snapshots</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/resourceusagegraph' title='Status: Unknown'>Resource Usage Graph</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/s3-suspend' title='Status: Unknown'>S3 suspend</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/smartcard-support' title='Status: Unknown'>Smartcard support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/spice-proxy' title='Status: Unknown'>Spice Proxy</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/spicehtml5' title='Status: Unknown'>Spice HTML5</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/spicerelatedfeatures' title='Status: Unknown'>SPICE Related Features</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/template-versions' title='Status: Unknown'>Template Versions</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/virt/virt-v2v-integration' title='Status: Design'>Extended import of Virtual Machines</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/vm-init-persistent' title='Status: Unknown'>VM init persistent</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/vmpayload' title='Status: Unknown'>VM Payload</a>
+
+</li>
+</ul>
+</section>
+<section class='feature-info col-md-8'>
+<div class='well'>
+<h2>At a glance</h2>
+No feature info available. Please contact
+<span class='author-name' title='lpeer'>lpeer</span>, <span class='author-name' title='moti'>Moti Asayag</span>, or <span class='author-name' title='sandrobonazzola'>Sandro Bonazzola</span>
+to fix.
+</div>
+<h2 id="task-manager">Task Manager</h2>
+
+<h3 id="summary">Summary</h3>
+
+<p>A Task Manager is a monitor which shows the current actions running in ovirt-engine and tracks their progress. It also capable of presenting completed commands for a period of time. The current design describes tasks monitoring.
+<a href="wiki/Features/TaskManager Task Manager feature page">http://ovirt.org/wiki/Features/TaskManager Task Manager feature page</a></p>
+
+<h3 id="owner">Owner</h3>
+
+<ul>
+  <li>Name: <span class='broken-link link-mediawiki' data-href='User:Moti' title='Special MediaWiki link: original pointed to: User:Moti'> Moti Asayag</span>
+    <ul>
+      <li>Email: <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#097;&#115;&#097;&#121;&#097;&#103;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#109;&#097;&#115;&#097;&#121;&#097;&#103;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a></li>
+    </ul>
+  </li>
+  <li>GUI Component owner: Gilad Chaplik <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#103;&#099;&#104;&#097;&#112;&#108;&#105;&#107;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#103;&#099;&#104;&#097;&#112;&#108;&#105;&#107;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a></li>
+  <li>REST Component owner: Michael Pasternak <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#112;&#097;&#115;&#116;&#101;&#114;&#110;&#097;&#107;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#109;&#112;&#097;&#115;&#116;&#101;&#114;&#110;&#097;&#107;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a></li>
+  <li>QA Owner: Yaniv Kaul &lt;ykaul@redhat.com</li>
+</ul>
+
+<h3 id="current-status">Current status</h3>
+
+<ul>
+  <li>Target Release: 3.1</li>
+  <li>Status: Coding ( Engine-done, UI-coding, API-Not started )</li>
+  <li>Last updated date: 01/01/2012</li>
+</ul>
+
+<h3 id="detailed-description">Detailed Description</h3>
+
+<p>A Task Manager is a monitor which shows the current actions running in ovirt-engine server. It provides transparency for the administrator regarding the actions, their progress and status.
+The actions will be presented in the WebAdmin a Tasks view, where the status and progress are monitored. The Task Manager will monitor actions and their synchronous and asynchronous tasks.</p>
+
+<h4 id="terminology">Terminology</h4>
+
+<ul>
+  <li>Command - An execution unit which performs a business logic.</li>
+  <li>Job - An action API (RunAction) running in the system. The Job may extend beyond the life cycle of the Command which is the entry point for the action.</li>
+  <li>Step - A meaningful part of the job which the user should be aware of.</li>
+  <li>Task - known as VDSM task, executed by VDSM.</li>
+</ul>
+
+<p>The job supports the following scenarios:</p>
+
+<ol>
+  <li>A simple command - a command which consists of 2 steps: validation (<em>CanDoAction</em>) and execution.
+    <ul>
+      <li>The job ends when the command of the job ends.</li>
+    </ul>
+  </li>
+  <li>A command with VDSM tasks - a command which consists of 3 steps: validation (<em>CanDoAction</em>), execution and finalization (<em>endAction</em>).
+    <ul>
+      <li>The job ends when the tasks are reported from VDSM as completed and the command <em>endAction</em> is invoked.</li>
+    </ul>
+  </li>
+  <li>A command which invokes internal commands
+    <ul>
+      <li>By default, the internal command will not be presented as a step of the parent command.</li>
+    </ul>
+  </li>
+  <li>A customized command - an asynchronous job which its termination is decided by an event other than tasks. There are few types of scenarios for it:
+    <ul>
+      <li>Commands which implements the <em>IVdcAsyncCommand</em> interface - triggered by <em>VDSBrokerFrontendImpl.RunAsyncVdsCommand</em>, the command instance is maintained with its context and finalized by the monitors (<em>VdsUpdateRuntimeInfo</em>).</li>
+      <li>Invocation of command in a detached thread, e.g <em>AddVdsCommand</em> which delegates job resolution to the internal command <em>InstallVdsCommand</em>.</li>
+      <li>The command execution is ended, but the resolution for the success of the Action is determined by other event in the system:
+        <ul>
+          <li>Other events which reported by the <em>monitors</em> (e.g. Host Maintenance reported by <em>VdsEventListener</em>).</li>
+          <li>Requires heuristic decision to select the correct Step for the Job by entity type and entity id associated with the Job.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Multiple Action Runner - describes multiple commands invocation in a single API call. Each command will be reflected as a single job.</li>
+</ol>
+
+<h4 id="requirements">Requirements</h4>
+
+<p>The requirements for feature are as follow (V2 refers to future version):
+# Provide a mechanism for jobs monitoring via UI (i.e - monitor job status and progress, monitor tasks of given action, jobs of a given entity).</p>
+
+<ol>
+  <li>Define a correlation-id which used to identify an action spread cross-layers (Client–&gt; Backend –&gt; VDSM).</li>
+  <li>Provide the admin the option to remove jobs from the monitoring view (Job execution continues without monitoring).</li>
+  <li>Provide a mechanism for tasks management: cancel task, stop all tasks of command, restart of failed command, setting priority for a task. (V2)</li>
+  <li>Define a task dependency/task chaining mechanism (Task B will not start before completion of Task A).(V2)</li>
+  <li>Provide a mechanism to invoke commands asynchronously. (V2)</li>
+  <li>Define a "best effort step" - The success of the parent command of this step will not depend on the result of a step).(V2)</li>
+  <li>Provide a permission mechanism for the task management.(V2)</li>
+</ol>
+
+<ul>
+  <li>The first version will include a default implementation for all commands and specific flow monitoring for the following commands:
+    <ol>
+      <li>AddVdsCommand</li>
+      <li>MaintenanceNumberOfVds</li>
+      <li>RunVmCommand</li>
+      <li>StopVmCommand</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="backend">Backend</h3>
+
+<p>This section describes the backend design for this feature.</p>
+
+<h4 id="entity-description">Entity Description</h4>
+
+<p>The following entities/components will be added:</p>
+
+<ul>
+  <li><strong>Job</strong> An entity which encapsulates a client action in the system. The <em>Job</em> contains a collection of steps which describes portions of the entire Job. A Job contains all of the information required for defining and running the client action: Using Job entity a concrete instance of <em>CommandBase</em>(Job's main command) could be created (by action type and parameters). The Job entity also capable to produce a descriptive tree of steps, reflecting the action parts to be delivered to UI for presentation.</li>
+  <li><strong>Step</strong> represents a meaningful phase of the Job. A Step could be a parent of other steps (e.g. step named EXECUTION could have a list of steps beneath it which are also part of the job).</li>
+  <li><strong>JobRepository</strong> is the persistence mechanism for <em>Job</em> and <em>Step</em> entities. It used for CRUD operations for Job and Step, when a Job is created, it is being persistent to the database in order to reflect immediate Job status to the user. The <em>JobRepository</em> is responsible to maintain obsolete jobs in the database.</li>
+  <li><strong>JobDao</strong> a DAO interface which defines the CRUD operations for the Job entities.</li>
+  <li><strong>JobDaoDbFacadeImpl</strong> an implementation of the <em>JobDao</em> interface.</li>
+  <li><strong>StepDao</strong> a DAO interface which defines the CRUD operations for the <em>Step</em> entities.</li>
+  <li><strong>StepDaoDbFacadeImpl</strong> an implementation of the <em>StepDao</em> interface.</li>
+  <li><strong>ExecutionContext</strong> an object which encapsulates the context in which an action should be executed. It determines level of command monitoring and a way to present a given command to the User (e.g. as a job, step). Providing <em>ExecutionContext</em> will override the default monitoring behavior of the Task Manager.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li><strong>GetModifiedJobsQuery</strong> a query which fetches only commands which were updated since a given time. It is designed to pull only tasks which where updated since the last query invoked by a client.</li>
+</ul>
+
+<h5 id="enumerators">Enumerators</h5>
+
+<p>''' New Enumerators <em>'
+*StepEnum'' specifies system's steps
+*ExecutionStatus</em> specifies which statuses are eligible for <em>Step</em> and <em>Job</em>
+ <strong>Updated Enumerators</strong>
+The <em>VdcActionType</em> will be used in a resource bundle to correlate between the action type to the description of a job.
+The resource bundle will contain description for both Jobs and Steps (combines <em>VdcActionType</em> and <em>StepEnum</em>):</p>
+
+<pre class="highlight plaintext"><code>job.RunVm=Running a VM&#x000A;job.AddVds=Add new Host&#x000A;step.EXECUTION=Executing&#x000A;step.VALIDATION=Validating&#x000A;</code></pre>
+
+<p><strong>Tentative:</strong>
+<em>ActionCategory</em> specifies categories of actions, e.g. storage, network, host maintenance…
+<em>VdcActionType</em> will be extended with a new field storing a list of categories (Set<actioncategory>) to which a specific action type belongs to.
+The *categories* field will enable filtering jobs by categories. An action type could be associated with multiple categories.</actioncategory></p>
+
+<h5 id="annotations">Annotations</h5>
+
+<p><em>@NonMonitored</em> declared on a successor of <em>CommandBase</em> clsas. Defines whether a command should not be monitored.</p>
+
+<h5 id="main-task-manager-class-diagram">Main Task Manager Class Diagram</h5>
+
+<p>The following class diagrams describes the entities participating in the the Task Manager feature:
+ <img alt="" title="fig:async-task-main-class-diagram.jpeg" src="/images/wiki/Async-task-main-class-diagram.jpeg?1447607917" /></p>
+
+<hr />
+
+<h5 id="command-entity-class-diagram">Command Entity Class Diagram</h5>
+
+<p>The following class diagram focuses on the <em>Job</em> and <em>Step</em> entities:
+<img alt="" title="fig:command-entity-class-diagram.jpeg" src="/images/wiki/Command-entity-class-diagram.jpeg?1447607917" /></p>
+
+<hr />
+
+<h5 id="async-vds-commands-class-diagram">Async Vds Commands Class Diagram</h5>
+
+<ul>
+  <li>By inheriting <em>IVdsAsyncCommand</em> commands are treated asynchronously, regardless having asynchronous tasks (e.g. VDSM task).</li>
+  <li>Async Commands are being registered to the <em>VDSBrokerFrontendImpl.AsyncRunningCommands</em>, and by relevant event of the monitor (processed by <em>VdsEventListener</em>) will be completed.</li>
+  <li>Since the delay between cycles of the <em>VdsUpdateRunTimeInfo</em> and possibly implications on synchronized <em>VDSCommand</em>s, an alternative for regenerating and processing the completion of the commands will be triggering events which will be processed asynchronously, detached from the flow of the monitor.</li>
+</ul>
+
+<p><img alt="" title="Async-Vds-Commands-class-diagram.jpeg" src="/images/wiki/Async-Vds-Commands-class-diagram.jpeg?1447607917" /></p>
+
+<hr />
+
+<h4 id="db-design">DB Design</h4>
+
+<p><span style="color:Teal"><strong>JOB</strong></span> represents the job entity:
+{|class="wikitable sortable" !border="1"| Column Name ||Column Type ||Null? / Default ||Definition |- |job_id ||UUID ||not null ||The job ID |- |command_id ||UUID ||not null ||The associated command ID |- |status ||String ||not null ||The status of the job |- |description ||String ||not null ||The step description |- |owner_id ||UUID ||not null ||The user which triggered the command |- |parameters ||text ||not null ||A JSON representation of the parameters associated with the command |- |action_type ||String ||not null ||The type of the command as defined by <em>VdcActionType</em> |- |visible ||bool ||default 'true' ||Describes if current entity should be presentable, overrides defaults visibility criteria of the job |- |start_time || Timestamp ||not null ||Job start time |- |end_time || Timestamp ||null ||Job end time |- |last_update_time || Timestamp ||not null ||Command last update time |- |correlation_id || String ||not null ||correlation identifier for cross system logging |- |}</p>
+
+<p><span style="color:Teal"><strong>STEP</strong></span> represents a step of a job:
+{|class="wikitable sortable" !border="1"| Column Name ||Column Type ||Null? / Default ||Definition |- |step_id ||UUID ||not null ||The step ID |- |parent_step_id ||UUID ||null ||The successor step, null if none. |- |job_id ||UUID ||not null ||The job ID which the step was created for |- |step_type ||String ||not null ||The step name, values taken from <em>StepEnum</em> |- |description ||String ||not null ||The step description |- |order ||Integer ||not null ||The step order in current job hierarchy level |- |status ||String ||not null ||The status of the step |- |start_time || Timestamp ||not null ||The step start time |- |end_time || Timestamp ||null ||The step end time |- |correlation_id || String ||not null ||correlation identifier for cross system logging |- |external_id || Guid ||null ||identifier of the step in external system (e.g. VSDM task-id) |- |external_system_type || String ||null ||The type of the external system (e.g. VSDM) |- |}</p>
+
+<p><span style="color:Teal"><strong>JOB_SUBJECT_ENTITIES_MAP</strong></span> Describes a relations between entities (VM, Host…) to a job:
+{|class="wikitable sortable" !border="1"| Column Name ||Column Type ||Null? / Default ||Definition |- |job_id ||UUID ||not null ||The job ID |- |entity_id ||UUID ||not null ||The entity id which was provided to the Job main command |- |entity_type ||String ||not null ||The type of the entity |- |}</p>
+
+<p><span style="color:Teal"><strong>AUDIT_LOG</strong></span> An extension to the existing table to denote the job which the event participate in:
+{|class="wikitable sortable" !border="1"| Column Name ||Column Type ||Null? / Default ||Definition |- |job_id ||UUID ||null ||The job ID |- |correlation_id ||UUID ||null ||The correlation ID provided from the client to identify the scope in which the event occurred |- |}</p>
+
+<p><span style="color:Teal"><strong>ASYNC_TASK</strong></span> An extension to the existing table to associate a task with its Step:
+{|class="wikitable sortable" !border="1"| Column Name ||Column Type ||Null? / Default ||Definition |- |step_id ||UUID ||null ||The job ID |- |}</p>
+
+<h5 id="crud">CRUD</h5>
+
+<p><strong>Stored procedures</strong></p>
+
+<ul>
+  <li><span style="color:#006400"><em>InsertJob</em></span> - insert job entity</li>
+  <li><span style="color:#006400"><em>GetJobByJobId</em></span> - returns a job entity by a job id</li>
+  <li><span style="color:#006400"><em>GetJobSubjectEntitiesByJobId</em></span> - returns a job subject entities by a job id</li>
+  <li><span style="color:#006400"><em>GetJobByCommandId</em></span> - returns a list of job entities by a job id</li>
+  <li><span style="color:#006400"><em>GetAllJobs</em></span> - returns a list of all jobs</li>
+  <li><span style="color:#006400"><em>GetAllJobsSinceDate</em></span> - returns a list of jobs with a last_update_date greater than a given date.</li>
+  <li><span style="color:#006400"><em>UpdateJob</em></span> - updates the entire entity</li>
+  <li><span style="color:#006400"><em>UpdateJob</em></span> - partial updates to the command entity
+    <ul>
+      <li>input: command entity id, status, last update date</li>
+    </ul>
+  </li>
+  <li><span style="color:#006400"><em>DeleteJobsOlderThanDate</em></span> - deletes job entities which are older than a given date.
+    <ul>
+      <li>input: a start datetime to delete commands which are older than</li>
+    </ul>
+  </li>
+  <li><span style="color:#006400"><em>DeleteJob</em></span> - deletes specific job entity</li>
+  <li><span style="color:#006400"><em>GetSteps</em></span> - returns a list of steps which associated with a job</li>
+  <li><span style="color:#006400"><em>InsertStep</em></span> - inserts step entity</li>
+  <li><span style="color:#006400"><em>DeleteStepsByJobId</em></span> - deletes steps associated with a specific job</li>
+  <li><span style="color:#006400"><em>GetStepByStepId</em></span> - returns a step by its ID</li>
+  <li><span style="color:#006400"><em>GetStepsByJobId</em></span> - returns a list of steps of a given Job by Job ID.</li>
+</ul>
+
+<h4 id="user-work-flows">User work-flows</h4>
+
+<p>When a user sends a request to the backend for running an action, the backend creates a command(s) according to the type and parameters provided by the client. A persisted Job entity is created to describe and monitor the command and the rest of the action, followed and referred in any step during the command's lifetime till job is completed. Once completed, the job will be cleared from database in respect to the maintenance configuration of the Jobs.</p>
+
+<p>The backend commands are divided into two categories:</p>
+
+<ol>
+  <li>Synchronous commands - the command ends when the <em>executeAction</em> ends.</li>
+  <li>Asynchronous commands
+    <ol>
+      <li>The command is ended when the <em>endAction</em> ends. The <em>endAction</em> is triggered by the <em>AsyncTaskManager</em> when the tasks created by the command are reported as completed.</li>
+      <li>The command ends, but the action is completed by the event listener.</li>
+    </ol>
+  </li>
+</ol>
+
+<p>The following sequence diagrams describe how the interaction of the new entities in the existing flow in order to support the monitoring:</p>
+
+<h5 id="simple-command-invocation-sequence-diagram">Simple Command Invocation Sequence Diagram</h5>
+
+<p><img alt="" title="fig:Sync-action-invocation-sequence-diagram.jpeg" src="/images/wiki/Sync-action-invocation-sequence-diagram.jpeg?1447607917" />
+<strong>The sequence above describes invocation of sync-action:</strong></p>
+
+<ul>
+  <li>The <em>Backend</em> receives a request from a client, provided by action type, parameters and optionally correlation-id (encapsulated by the parameters).
+    <ul>
+      <li>Correlation-ID is a pass-thru identifier of an action which the client defines.</li>
+      <li>A client can associate any action with that ID which will appear as part of the <em>Job</em> and its <em>Step</em>s in <em>Backend</em> for action related logging and in VDSM logs.</li>
+      <li>If the client does not provide a correlation-id, the Backend will generate one.</li>
+      <li>The correlation-ID is passed by Parameters of the Action (a successor of <em>VdcActionParameterBase</em>).</li>
+    </ul>
+  </li>
+  <li>The <em>Backend</em> uses the <em>CommandFactory</em> to create a concrete command instance.</li>
+  <li>The <em>Backend</em> creates a <em>Job</em> entity with the given parameters and bind it to the command.</li>
+  <li>A default implementation will be provided (A command with 2-3 tasks representing VALIDATION, EXECUTION and tentative FINALIZATION for <em>endAction</em>).
+    <ul>
+      <li>The new Job entity is created with status STARTED, command id, action type, parameters, correlation-id, start time, subject entities and the user which invoked the command. The <em>JobRepository</em> persists the <em>Job</em> to the database, letting the command queries be noticed about the new command in the system.</li>
+    </ul>
+  </li>
+  <li>The <em>CommandBase.executeAction()</em> adds new step for the job: VALIDATING step which created with status started and current time.
+    <ul>
+      <li>The <em>CommandBase.InternalCanDoAction()</em> determines how the validation step ends:</li>
+    </ul>
+
+    <ol>
+      <li>Upon failure, the VALIDATING <em>Step</em> is marked as failed and the <em>Job</em> is marked as failed as well.</li>
+      <li>Upon successful completion of validation step, the step is marked as FINISHED, and set the end-time.</li>
+    </ol>
+  </li>
+  <li>The <em>CommandBase.executeAction()</em> adds new step 'EXECUTING' with status STARTED.
+    <ol>
+      <li>Upon execution failure, the Step is marked as failed and the Job is marked as failed as well.</li>
+      <li>Upon successful execution, the command will verify there are no tasks for it. If no tasks, the Job is marked as completed successfully.</li>
+    </ol>
+  </li>
+  <li>A scheduler of the <em>JobRepository</em> will clear obsolete Job entities and their Steps.</li>
+</ul>
+
+<h5 id="async-command-invocation-sequence-diagram">Async Command Invocation Sequence Diagram</h5>
+
+<p><img alt="" title="fig:Async-action-type-invocation-sequence-diagram.jpeg" src="/images/wiki/Async-action-type-invocation-sequence-diagram.jpeg?1447607917" />
+* When command has tasks, it shares the same sequence as the previous sequence, except the last step. The async command will be resurrected by the <em>AsyncTaskManager</em> once there are no more active tasks for the command and will execute the <em>CommandBase.endAction()</em> for that command, in which the final state of the command will be set.</p>
+
+<ul>
+  <li>The tasks polling started after the command execution in ended.</li>
+</ul>
+
+<h5 id="multiple-action-sequence-diagram">Multiple Action Sequence Diagram</h5>
+
+<ul>
+  <li>When invoking Multiple Actions, the runner will be the responsible for creating a Job for each of the commands.</li>
+  <li>In multiple command execution the <em>canDoAction</em> of each command is executed explicitly prior to the command execution.</li>
+  <li>The Job will be created only for commands which pass the <em>canDoAction</em>.</li>
+</ul>
+
+<p><img alt="" title="Multiple-action-runner-sequence-diagram.jpeg" src="/images/wiki/Multiple-action-runner-sequence-diagram.jpeg?1447607917" /></p>
+
+<h4 id="job-description-by-command-types">Job Description by Command Types</h4>
+
+<h5 id="default-job-metadata-a-simple-command">Default job metadata (a simple command)</h5>
+
+<ul>
+  <li>The next example describes the default job metadata created for commands with default implementation.</li>
+  <li>The Job will represent the descriptive name of the action.</li>
+  <li>Short commands which follows this default behavior could be set for non-monitored since ended quickly.
+    <ul>
+      <li>login and logout command should be non-monitored</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>Job----Start time----End time----Status----[Entity Name----Entity Type]&#x000A;    |&#x000A;    ------ VALIDATION -----Start time----End time----Status&#x000A;    |&#x000A;    ------ EXECUTION -----Start time----End time----Status&#x000A;</code></pre>
+
+<h5 id="job-for-a-command-with-vdsm-tasks">Job for a command with VDSM tasks</h5>
+
+<p>The following skeleton describes the information which should be presented for a Job which describes a command with tasks. Each task will be presented as a step. By default the VDSM tasks will be added under the execution step, but this could be customized. Each step holds the id of the task it represents and the opposite. The mutual reference enables each completed VDSM task to update the Step with its status, and in the future to control from the Task Manager how the task should operate: change priority, cancel or other management action. The FINALIZATION step appears since some commands perform additional actions once all tasks are completed which we'd might like to reflect to the user.</p>
+
+<pre class="highlight plaintext"><code>Job----Start time----End time----Status----[Entity Name----Entity Type]&#x000A;    |&#x000A;    ------ VALIDATION -----Start time----End time----Status&#x000A;    |&#x000A;    ------ EXECUTION -----Start time----End time----Status&#x000A;    |          |&#x000A;    |          -----Task Step 1 ------Start time----End time----Status&#x000A;    |          |&#x000A;    |          -----Task Step 2 ------Start time----End time----Status&#x000A;    |&#x000A;    ------ FINALIZATION -----Start time----End time----Status&#x000A;</code></pre>
+
+<h5 id="job-which-describes-command-that-invokes-internal-commands">Job which describes command that invokes internal commands</h5>
+
+<p>By default, internal commands won't be presented as Steps of the Job, unless specified. Therefore the job description of a command which invokes internal commands is the same as the default one (or the one above if the main command has tasks). The only exceptions is commands which invoke internal commands which create VDSM tasks. In that case the default behavior will be to add only the VDSM tasks as steps under the Job EXECUTION step. It is possible to override this behavior either for not presenting internal commands VDSM tasks or for specifying other Step to which the VDSM tasks of the internal command should appear for.</p>
+
+<pre class="highlight plaintext"><code>Job----Start time----End time----Status----[Entity Name----Entity Type]&#x000A;    |&#x000A;    ------ VALIDATION -----Start time----End time----Status&#x000A;    |&#x000A;    ------ EXECUTION -----Start time----End time----Status&#x000A;    |          |&#x000A;    |          -----Main Command Task Step 1 ------Start time----End time----Status&#x000A;    |          |&#x000A;    |          -----Main Command Task Step 2 ------Start time----End time----Status&#x000A;    |          |&#x000A;    |          -----Internal Command Task Step 3 ------Start time----End time----Status&#x000A;    |          |&#x000A;    |          -----Internal Command Task Step 4 ------Start time----End time----Status&#x000A;    |&#x000A;    ------ FINALIZATION -----Start time----End time----Status&#x000A;</code></pre>
+
+<h5 id="job-for-customized-command-1">Job for customized command #1</h5>
+
+<ul>
+  <li>In the next example, a metadata creation for the <em>AddVdsCommand</em> will be described.</li>
+  <li>The <em>AddVdsCommand</em> has the default steps of VERIFICATION and EXECUTION.</li>
+  <li>In addition it has the TEST_POWER_MANAGEMENT task, a synchronous step invoked from the command itself and its status is determined immediately.</li>
+  <li>The last step is the INSTALL_HOST. This step is being executed in a new thread, detached from the <em>AddVdsCommand</em> thread. The completion of the INSTALL_HOST step will determine how the <em>AddVdsCommand</em> action ended. For that purpose the resolution of the action is delegated to the <em>InstallVdsCommand</em>. The <em>InstallVdsCommand</em> will update the task which represents it. Since this is the last step of the action, it notifies the completion of the entire job.</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>Add new host ----Start time----End time----Status----[Entity Name----Entity Type]&#x000A;    |&#x000A;    ------ VALIDATION -----Start time----End time----Status&#x000A;    |&#x000A;    ------ EXECUTION -----Start time----End time----Status&#x000A;                        |&#x000A;                        |------ TEST_POWER_MANAGEMENT-----Start time----End time----Status&#x000A;                        |&#x000A;                        |------ INSTALLING_HOST-----Start time----End time----Status&#x000A;</code></pre>
+
+<h5 id="job-for-customized-command-2">Job for customized command #2</h5>
+
+<ul>
+  <li>In the example below, the job of <em>MaintenanceNumberOfVdssCommand</em> is described.</li>
+  <li>A single Job will be created for several hosts.</li>
+  <li>Each host maintenance execution will be described as a step under the Job execution step.</li>
+  <li>Having entity-ids associated with the job will enable using the <em>IVdsAsyncCommand</em> interface to invoke the command once again upon completion or failure of the command. For example, reporting on migrated VMs:
+    <ul>
+      <li><em>VdsEventListner.RunningSucceeded</em> and <em>VdsEventListner.RemoveAsyncCommand</em> provides control over the <em>MigrateVm</em> commands hence for the steps they represents.</li>
+    </ul>
+  </li>
+  <li>When step ends, an event is triggered for the Job, to notify upon step completion.</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>     // Maintenance command metadata (each level should have also the Correlation-ID)&#x000A;     Job----Start time----End time----Status----[Entity Name----Entity Type]&#x000A;          |&#x000A;          ------ VALIDATION -----Start time----End time----Status&#x000A;          |&#x000A;          ------ EXECUTION -----Start time----End time----Status&#x000A;                     |&#x000A;                     ---- PREPARE_FOR_MAINTENANCE-----Start time----End time----Status&#x000A;                     |&#x000A;                     ---- MAINTENANCE_HOST_A -----Start time----End time----Status&#x000A;                     |    |&#x000A;                     |    ---- MIGRATION_OF_VM_X -----Start time----End time----Status&#x000A;                     |    |&#x000A;                     |    ---- MIGRATION_OF_VM_Y -----Start time----End time----Status&#x000A;                     |    |&#x000A;                     |    ---- DISCONNECT_FROM_STORAGE-----Start time----End time----Status&#x000A;                     |&#x000A;                     ---- MAINTENANCE_HOST_B -----Start time----End time----Status&#x000A;                     |&#x000A;                     ---- MIGRATION_OF_VM_Z -----Start time----End time----Status&#x000A;                     |&#x000A;                     ---- DISCONNECT_FROM_STORAGE-----Start time----End time----Status&#x000A;</code></pre>
+
+<h5 id="job-for-system-monitors">Job for System Monitors</h5>
+
+<p>System monitors are capable to invoke actions internally which the user might have interest in.
+Providing an <em>ExecutionContext</em> to the internal command invocation with monitoring flag will cause the internal command to be reflected as <em>Job</em>.
+The supported events are:</p>
+
+<ul>
+  <li>VM migrations</li>
+  <li>Host fencing</li>
+  <li>SPM election</li>
+</ul>
+
+<h5 id="maintenance-of-the-job">Maintenance of the Job</h5>
+
+<p>When Backend is initialized, the non-completed jobs are being examined for their statuses:</p>
+
+<ul>
+  <li>If the job represents a command with tasks, the tasks status is being examined and upon completion of tasks, the command will be finalized (by <em>CommandBase.endAction()</em>).</li>
+  <li>If the command has no tasks, the Job status should be set to UNKNOWN.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>A scheduler will be responsible for clearing obsolete Jobs and Steps from the database.</li>
+  <li>Two configuration values will determine the frequency of clearing completed jobs:
+    <ul>
+      <li><em>Time-to-keep-successful-jobs</em> - the duration for holding a successfully completed jobs in the database.
+        <ul>
+          <li>Default is 10 minutes.</li>
+          <li>-1 emphasis manual maintenance of the successful jobs.</li>
+        </ul>
+      </li>
+      <li><em>Time-to-keep-failed-jobs</em> - the duration for holding failed jobs in the database.
+        <ul>
+          <li>Default is 60 minutes.</li>
+          <li>-1 emphasis manual maintenance of the failed jobs.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Updating the Job information in the database will be executed in a new transaction.</li>
+</ul>
+
+<h4 id="events">Events</h4>
+
+<p>Event log will be extended with two fields:
+<em>job_id</em> field designed to describe the job which the current event is part of. Once the Job is cleared from the database, the job_id will point for non-existing job.
+<em>correlation_id</em> associates the event with the global identifier of the action, which the event participate in.</p>
+
+<h3 id="rest-api">REST API</h3>
+
+<p>No REST API support for Task Manager in v1.</p>
+
+<h3 id="user-experience">User Experience</h3>
+
+<p>A Tasks sub-view will be created in the Webadmin for presenting the Tasks. The following images mocks the Tasks sub-views:
+ <strong>General view of the Tasks:</strong>
+<img alt="" title="fig:Tasks-Sub-View-1.jpg" src="/images/wiki/Tasks-Sub-View-1.png?1447607916" /></p>
+
+<hr />
+
+<p><strong>Tasks sub-view for a specific entity:</strong>
+<img alt="" title="fig:Tasks-Sub-View-For-Specific-Entity.jpg" src="/images/wiki/Tasks-Sub-View-For-Specific-Entity.png?1447607916" /></p>
+
+<hr />
+
+<p><strong>Real layout of the Tasks sub-view:</strong>
+<img alt="" title="fig:Semi-real-mockup.png" src="/images/wiki/Semi-real-mockup.png?1447607916" /></p>
+
+<hr />
+
+<p><strong>Sorting Jobs in Tasks view by criteria of <em>started-time</em>, <em>last-update-time</em> and <em>status</em>:</strong>
+<img alt="" title="fig:Sorted-criteria-tasks-mockup.png" src="/images/wiki/Sorted-criteria-tasks-mockup.png?1447607916" /></p>
+
+<hr />
+
+<h3 id="installationupgrade">Installation/Upgrade</h3>
+
+<p>Describe how the feature will effect new installation or existing one.</p>
+
+<h3 id="dependencies--related-features-and-projects">Dependencies / Related Features and Projects</h3>
+
+<p>The Task Manager is depended on the Internal Locking Mechanism feature <a href="/feature/infra/detailedlockmechanism/">Features/DetailedLockMechanism</a>.</p>
+
+<h3 id="documentation--external-references">Documentation / External references</h3>
+
+<h3 id="comments-and-discussion">Comments and Discussion</h3>
+
+<h3 id="open-issues">Open Issues</h3>
+
+<ol>
+  <li>Search-Engine and command entity - should commands be searchable?</li>
+  <li>Paging - restriction of returned number of records.</li>
+  <li>Commands monitoring and permission model, adding Tasks view to users.</li>
+</ol>
+
+<p><a href="/feature/">TaskManager</a> <a href="/release/3.1/feature/">TaskManager</a></p>
+
+</section>
+</section>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>
+<script>
+  (function() {
+    var $featureItems, $featureLists, $featureSidebar, $form, $headers, $input, clearField, showAll, updateHeaders, updateList;
+  
+    $featureSidebar = $('.feature-sidebar');
+  
+    $form = $('#feature-search');
+  
+    $input = $('#feature-search-input');
+  
+    $featureLists = $('.feature-list');
+  
+    $featureItems = $('li', $featureLists);
+  
+    $headers = $('.feature-sidebar h2');
+  
+    clearField = function() {
+      return $input.val('');
+    };
+  
+    showAll = function() {
+      return $featureItems.filter('.hide').removeClass('hide');
+    };
+  
+    updateHeaders = function() {
+      var $emptyList;
+      $('h2.hide', $featureSidebar).removeClass('hide');
+      $emptyList = $headers.filter(function(i, el) {
+        return $(el).next('ul').find('li:visible').length === 0;
+      });
+      return $emptyList.addClass('hide');
+    };
+  
+    updateList = function() {
+      var $hide, searchStr;
+      searchStr = $input.val();
+      showAll();
+      $hide = $featureItems.not(function(i, el) {
+        return $(el).text().toLowerCase().match(searchStr.toLowerCase());
+      });
+      $hide.addClass('hide');
+      return updateHeaders();
+    };
+  
+    $(function() {
+      var statuses;
+      $input.focus();
+      statuses = ["in development", "new", "wip", "developement", "unclassified", "released", "merged", "design & research", "implementation", "design", "development", "on_qa", "draft", "planning", "completed", "partial", "to be released", "wontfix", "proposed", "in progress", "post", "qe", "dormant", "partially released", "patch in review", "complete", "not started", "stabilization", "proposal", "inception", "done"];
+      console.log(statuses);
+      return $form.removeClass('hide').on('submit', function(e) {
+        return e.preventDefault();
+      }).on('keyup', function(e) {
+        switch (e.key) {
+          case 'Escape':
+            clearField();
+            showAll();
+            return updateHeaders();
+          default:
+            return updateList();
+        }
+      });
+    });
+  
+  }).call(this);
+</script>

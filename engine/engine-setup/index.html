@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Engine Setup &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Engine Setup</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>didi</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Engine Setup</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>3</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2015-02-17</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Engine_Setup' target='_blank'>
+Engine Setup
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="engine-setup">Engine Setup</h1>
+
+<p>Some information about engine-setup and related tools - this currently includes engine-setup, engine-cleanup and <a href="/howto/changing-engine-hostname/">ovirt-engine-rename</a>.</p>
+
+<p>These tools are based on <a href="/engine/otopi/">Otopi</a>.</p>
+
+<h3 id="configuration">Configuration</h3>
+
+<p>These tools share the following:</p>
+
+<h4 id="etcovirt-engine-setupconfdconf">/etc/ovirt-engine-setup.conf.d/*.conf</h4>
+
+<p>All of these tools read all of the configuration files /etc/ovirt-engine-setup.conf.d/*.conf .</p>
+
+<p>Generally speaking, users should not touch these files. Some of them are shipped inside the rpm packages, and some are maintained by the tools themselves - keeping state needed between runs of these tools.</p>
+
+<h4 id="answer-files">Answer files</h4>
+
+<p>All of these tools generate upon completion an answer file, named '/var/lib/ovirt-engine/setup/answers/*.conf', and mention that in their output.</p>
+
+<p>The expected way to use these answer files is:</p>
+
+<ol>
+  <li>Have a system A in some state S0</li>
+  <li>Run one of the tools interactively, answer its questions as needed, let it create an answer file Ans1.</li>
+  <li>System A is now in state S1.</li>
+  <li>Have some other system B in state S0, that you want to bring to state S1.</li>
+  <li>Run there the same tool with –config-append=Ans1</li>
+</ol>
+
+<p>"S0" in this sense includes basically everything relevant - versions of relevant packages, enabled repos, history (such as previous runs of these tools, other data accumulated over time, etc), other manual configuration, etc.</p>
+
+<p>When used this way, the tools should run unattended. If they still ask questions, it's generally considered a bug.</p>
+
+<p>Manually editing such an answer file is generally not supported/expected and should not be needed. You might do that to achieve special non-standard goals. If you do that, you should thoroughly verify that it works for you, and use in a controlled environment - same known initial state, same versions of relevant stuff, etc.</p>
+
+<p>Just as an example for a simple and useful violation, if during testing you often run engine-setup on systems with little RAM, and want to get rid of the question if you want to continue with not enough RAM, you can create a file e.g. /etc/ovirt-engine-setup.conf.d/99-my-stuff.conf with content:</p>
+
+<pre class="highlight plaintext"><code>  [environment:default]&#x000A;  OVESETUP_SYSTEM/memCheckEnabled=bool:False&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

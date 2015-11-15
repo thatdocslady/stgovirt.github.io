@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Overlay Networks with Neutron Integration &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Overlay Networks with Neutron Integration</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>amuller</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Overlay Networks with Neutron Integration</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>25</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-12-23</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Overlay_Networks_with_Neutron_Integration' target='_blank'>
+Overlay Networks with Neutron Integration
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="overlay-networks-with-neutron-integration">Overlay Networks with Neutron Integration</h1>
+
+<p><img alt="" title="oVirt_Neutron_GRE.jpeg" src="/images/wiki/OVirt_Neutron_GRE.jpeg?1447607917" /></p>
+
+<h3 id="current-status">Current Status</h3>
+
+<ul>
+  <li>Adding hosts from the GUI uses hard-coded Quantum names (And so won't work for OpenStack Havana). This is fixed in oVirt 3.3.3</li>
+  <li>The oVirt GUI currently does not support GRE and VXLAN tenant networks, only VLAN. For this reason we will configure the compute nodes manually</li>
+</ul>
+
+<h3 id="the-ovirt-side">The oVirt Side</h3>
+
+<p><a href="/documentation/quick-start/quick-start-guide/">Install the engine on a host.</a> Setup a couple of RHEL 6.5 compatible hosts, run yum update. These will be used to host guests. You can use oVirt's GUI to add the hosts now. If you do, you can select 'reinstall' later to install the Neutron agents.</p>
+
+<h3 id="install-neutron-controller">Install Neutron Controller</h3>
+
+<p>On the RHEL 6.5 host that will be used as the Neutron server, L3 agent and DHCP agent - Install iproute 2 that supports namespaces (For example 2.6.32-130): <a href="https://brewweb.devel.redhat.com/buildinfo?buildID=297968">https://brewweb.devel.redhat.com/buildinfo?buildID=297968</a></p>
+
+<p>This host will now be known as the controller.</p>
+
+<p>On the controller:</p>
+
+<pre class="highlight plaintext"><code>yum install -y http://rdo.fedorapeople.org/openstack-havana/rdo-release-havana.rpm&#x000A;</code></pre>
+
+<p>No need for a yum update or reboot.</p>
+
+<p>"Due to the quantum/neutron rename, SELinux policies are currently broken for Havana, so SELinux must be disabled/permissive on machines running neutron services, edit /etc/selinux/config to set SELINUX=permissive."</p>
+
+<p>Install Neutron manuall, using Foreman or Packstack.</p>
+
+<p>Via packstack:</p>
+
+<pre class="highlight plaintext"><code>sudo yum install -y openstack-packstack&#x000A;</code></pre>
+
+<p>Make packstack generate an answer file:</p>
+
+<pre class="highlight plaintext"><code>packstack --gen-answer-file=&lt;file name&gt;&#x000A;</code></pre>
+
+<p>An answer file will be created in the current directory.</p>
+
+<p>Packstack supports GRE, but does not support VXLAN until <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1021778">https://bugzilla.redhat.com/show_bug.cgi?id=1021778</a> is resolved. Make the following changes both for GRE and VXLAN. For VXLAN an <strong>additional</strong> step will follow. Either way, since we're only using Packstack to install the Neutron server, configuring the compute nodes will be done manually until GRE/VXLAN support is added to oVirt.</p>
+
+<p>Edit it and change:</p>
+
+<p>Only install required services (Neutron only would be ideal but as of 17.10.13 Packstack fails if you don't select Nova as well)</p>
+
+<p>Make sure Neutron server IP is reachable from the host that will act as the oVirt engine</p>
+
+<p>From:</p>
+
+<pre class="highlight plaintext"><code>CONFIG_NEUTRON_OVS_TENANT_NETWORK_TYPE=local&#x000A;</code></pre>
+
+<p>To:</p>
+
+<pre class="highlight plaintext"><code>CONFIG_NEUTRON_OVS_TENANT_NETWORK_TYPE=gre&#x000A;</code></pre>
+
+<p>Change the tunnel ranges to something similar to:</p>
+
+<pre class="highlight plaintext"><code>CONFIG_NEUTRON_OVS_TUNNEL_RANGES=1:1000&#x000A;</code></pre>
+
+<p>Finally change:</p>
+
+<pre class="highlight plaintext"><code>CONFIG_NEUTRON_OVS_TUNNEL_IF=&lt;ethX&gt;&#x000A;</code></pre>
+
+<p>To the device which faces the compute nodes.</p>
+
+<p>Now run:</p>
+
+<pre class="highlight plaintext"><code>packstack --answer-file=&lt;file name&gt;&#x000A;</code></pre>
+
+<h3 id="ovirt-configuration">oVirt Configuration</h3>
+
+<p>On the machine that runs the oVirt engine:</p>
+
+<pre class="highlight plaintext"><code>engine-config --set KeystoneAuthUrl=http://&lt;host.fqdn&gt;:35357/v2.0&#x000A;engine-config --set OnlyRequiredNetworksMandatoryForVdsSelection=true&#x000A;</code></pre>
+
+<p>From the GUI, add Neutron as an external provider</p>
+
+<h3 id="hosts-configuration">Hosts Configuration</h3>
+
+<p>The next step is to add hosts to oVirt. It requires a few yum repositories.</p>
+
+<h4 id="repositories">Repositories</h4>
+
+<p>For VDSM: ovirt-stable for Fedora:</p>
+
+<pre class="highlight plaintext"><code>sudo yum install -y http://resources.ovirt.org/releases/ovirt-release-fedora.noarch.rpm&#x000A;</code></pre>
+
+<p>Or for RHEL:</p>
+
+<pre class="highlight plaintext"><code>sudo yum install -y http://resources.ovirt.org/releases/ovirt-release-el.noarch.rpm&#x000A;</code></pre>
+
+<p>Additionally, for the Open vSwitch layer 2 agent:</p>
+
+<pre class="highlight plaintext"><code>sudo yum install -y http://rdo.fedorapeople.org/openstack-havana/rdo-release-havana.rpm&#x000A;</code></pre>
+
+<h4 id="configuration">Configuration</h4>
+
+<p>oVirt can install the layer 2 agent on the host if external provider is selected during host install. However, GRE/VXLAN integration is not currently supported in 3.3. Until it is fixed, follow these manual steps on each host:</p>
+
+<p>To install layer 2 ovs agent follow the instructions on (If not using using oVirt 3.3.3+):</p>
+
+<p><a href="Features/Detailed_Quantum_Integration#OVS_Agent_installation_steps">http://www.ovirt.org/Features/Detailed_Quantum_Integration#OVS_Agent_installation_steps</a></p>
+
+<p>After installing the layer 2 ovs agent (Either manually or via oVirt's 3.3.3), please make the following additional modifications:</p>
+
+<p>Edit:</p>
+
+<p>/etc/neutron/neutron.conf</p>
+
+<p>Under [agent]</p>
+
+<p>Change:</p>
+
+<pre class="highlight plaintext"><code>root_helper = sudo quantum-rootwrap /etc/quantum/rootwrap.conf&#x000A;</code></pre>
+
+<p>To:</p>
+
+<pre class="highlight plaintext"><code>root_helper = sudo neutron-rootwrap /etc/neutron/rootwrap.conf&#x000A;</code></pre>
+
+<p>Edit:</p>
+
+<p>/etc/neutron/plugins/openvswitch/ovs_plugin.ini:</p>
+
+<pre class="highlight plaintext"><code>[ovs]&#x000A;tenant_network_type = (gre | vxlan)&#x000A;enable_tunneling = True&#x000A;tunnel_type = (gre | vxlan)&#x000A;tunnel_id_ranges = 1:1000&#x000A;local_ip = &lt;ip of nic that should bring up tunnels&gt;&#x000A;&#x000A;[agent]&#x000A;tunnel_types = (gre | vxlan)&#x000A;vxlan_udp_port = 8472 (Open this port on your network's firewalls for VXLAN)&#x000A;</code></pre>
+
+<p>Then eradicate the OVS db and restart the agent's service:</p>
+
+<pre class="highlight plaintext"><code>ovs-vsctl emer-reset &amp;&amp; service openstack-openvswitch-agent&#x000A;</code></pre>
+
+<h3 id="vdsm-hook">VDSM Hook</h3>
+
+<p>Finally install the oVirt VDSM hook that enables Neutron integration:</p>
+
+<pre class="highlight plaintext"><code>yum install vdsm-hook-openstacknet&#x000A;</code></pre>
+
+<h3 id="mtu">MTU</h3>
+
+<p>Resolve packet fragmentation (And increase throughput) via <strong>one</strong> of the following changes:</p>
+
+<ol>
+  <li>Decrease the MTU in all VMs to 1480~</li>
+  <li>Increase the MTU on all physical network devices to 1520~</li>
+</ol>
+
+<h3 id="enjoying-the-results">Enjoying the Results</h3>
+
+<ol>
+  <li>Create the desired networks in Neutron</li>
+  <li>From oVirt: Import those networks</li>
+  <li>Connect VMs to those networks</li>
+  <li>Start the VMs!</li>
+</ol>
+
+<p>The VMs should be able to connect to both oVirt and Neutron networks.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

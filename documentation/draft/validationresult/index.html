@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+ValidationResult &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>ValidationResult</td>
+</tr>
+<tr>
+<th>category</th>
+<td>draft-documentation</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>mkolesni</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Draft documentation</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>ValidationResult</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>2</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-03-17</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/ValidationResult' target='_blank'>
+ValidationResult
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="validation-result">Validation Result</h1>
+
+<h2 id="what-it-is">What it is?</h2>
+
+<ul>
+  <li>It's a container that is used to pass the result of some validation check performed in the "can do action".</li>
+  <li>The container can state if the result is valid or not, and if invalid it has a message of the error.
+    <ul>
+      <li>Optionally it can also contain replacements of variables in the message.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="some-examples">Some examples</h2>
+
+<h3 id="a-valid-result">A valid result</h3>
+
+<pre class="highlight plaintext"><code>  ValidationResult.VALID&#x000A;</code></pre>
+
+<ul>
+  <li>isValid() returns true</li>
+</ul>
+
+<h3 id="an-invalid-result">An invalid result</h3>
+
+<pre class="highlight plaintext"><code>  new ValidationResult(VdcBllMessages.NETWORK_NOT_EXISTS)&#x000A;</code></pre>
+
+<ul>
+  <li>isValid() returns false</li>
+  <li>getMessage() returns VdcBllMessages.NETWORK_NOT_EXISTS</li>
+</ul>
+
+<h3 id="an-invalid-result-containing-a-replacement">An invalid result containing a replacement</h3>
+
+<pre class="highlight plaintext"><code>  new ValidationResult(VdcBllMessages.ACTION_TYPE_FAILED_MANAGEMENT_NETWORK_REQUIRED,&#x000A;          String.format(NETWORK_NAME_REPLACEMENT, networkName))&#x000A;</code></pre>
+
+<ul>
+  <li>isValid() returns false</li>
+  <li>getMessage() returns VdcBllMessages.ACTION_TYPE_FAILED_MANAGEMENT_NETWORK_REQUIRED
+    <ul>
+      <li>The translation for it is:</li>
+      <li>ACTION_TYPE_FAILED_MANAGEMENT_NETWORK_REQUIRED=Cannot ${action} ${type}. The management network '${NetworkName}' must be required, please change the network to be required and try again.</li>
+    </ul>
+  </li>
+  <li>getVariableReplacements() returns "$NetworkName <networkname>" where <networkname> is the variable.
+</networkname></networkname>    <ul>
+      <li>We don't replace action/type since it's the command's responsibility and is done elsewhere.</li>
+      <li>We do replace whatever the validation is responsible for (in this case, the network name).</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="what-is-it-good-for">What is it good for?</h2>
+
+<ul>
+  <li>This way we can write method to validate that is decoupled from the logic of returning the values to the caller.
+    <ul>
+      <li>CommandBase has validate(ValidationResult) method which is responsible for this bit.</li>
+      <li>Replacements are provided by validating method, no code spilled outside.</li>
+    </ul>
+  </li>
+  <li>We can reuse the come more easily since it's decoupled from a specific command class.</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>The validation calls can be chained with &amp;&amp;/</td>
+          <td> </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>validate(something()) &amp;&amp; validate(somethingElse())</p>
+  </li>
+</ul>
+
+<h2 id="how-to-test-this">How to test this?</h2>
+
+<ul>
+  <li>Tests are really easy</li>
+  <li>
+    <p>You could test the result itself:</p>
+
+    <p>// Test that validation result is valid
+  assertEquals(ValidationResult.VALID, someValidation());
+  // Test that validation result is invalid
+  assertEquals(VdcBllMessages.SOME_ERROR, someValidation().getMessage());
+  // Test that validation result is invalid and has replacement
+  assertEquals(new ValidationResult(VdcBllMessages.SOME_ERROR, EXPECTED_REPLACEMENT), someValidation());</p>
+  </li>
+  <li>However, these tests aren't really good since they rely on implementation details, rather than the essence of the result itself.
+    <ul>
+      <li>You could, of course, do more thorough testing, but then you'd have test code duplication.</li>
+    </ul>
+  </li>
+  <li>
+    <p>This is why ValidationResultMatchers class was added, which allows testing using <a href="https://github.com/junit-team/junit/wiki/Matchers-and-assertthat">JUnit's assertThat syntax</a>:</p>
+
+    <p>// Test that validation result is valid
+  assertThat(someValidation(), isValid());
+  // Test that validation result is invalid
+  assertThat(someValidation(), failsWith(VdcBllMessages.SOME_ERROR));
+  // Test that validation result is invalid and has replacement
+  assertThat(someValidation(), both(failsWith(VdcBllMessages.SOME_ERROR)).and(replacements(hasItem(EXPECTED_REPLACEMENT))));</p>
+  </li>
+  <li>Although the syntax is a bit more verbose, these tests test the actual essence of the validation.
+    <ul>
+      <li>Additionally, the matcher syntax is much more flexible.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><a href="/documentation/draft-documentation/">Category:Draft documentation</a> <category:engine> [Category:How to](Category:How to)</category:engine></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

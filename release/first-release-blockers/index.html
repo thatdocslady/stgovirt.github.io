@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+First Release Blockers &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>First Release Blockers</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>danken, lpeer, mburns, mkublin, ofrenkel, oschreib, ovedo</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Releases/First Release Blockers</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>22</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-02-08</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Releases/First_Release_Blockers' target='_blank'>
+Releases/First Release Blockers
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h3 id="first-release-30-known-blockers">First Release (3.0) Known blockers</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Description</th>
+      <th>Bugzilla</th>
+      <th>Status</th>
+      <th>Notes</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td>Installer</td>
+      <td>NFS ISO domain couldn't be attached</td>
+      <td><a href="https://bugzilla.redhat.com/show_bug.cgi?id=782439">782439</a></td>
+      <td>Fixed</td>
+      <td>Merged into engine_3.0</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Engine+Installer</td>
+      <td>LDAP authenticities against domain URI instead of LDAP Server URI</td>
+      <td><a href="https://bugzilla.redhat.com/show_bug.cgi?id=783127">783127</a></td>
+      <td>Fixed</td>
+      <td>Merged into engine_3.0</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Installer</td>
+      <td>openssl lock file doesn't exist</td>
+      <td><a href="https://bugzilla.redhat.com/show_bug.cgi?id=771590">771590</a></td>
+      <td>Fixed</td>
+      <td>Merged into engine_3.0</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Engine</td>
+      <td>IPA - IPA does not perform login with UPN</td>
+      <td><a href="https://bugzilla.redhat.com/show_bug.cgi?id=783662">783662</a></td>
+      <td>Fixed</td>
+      <td>Merged into engine_3.0</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Engine</td>
+      <td>User already logged in error</td>
+      <td><a href="https://bugzilla.redhat.com/show_bug.cgi?id=784810">784810</a></td>
+      <td>Fixed</td>
+      <td>Merged into engine_3.0</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Node</td>
+      <td>Installation Error</td>
+      <td><a href="https://bugzilla.redhat.com/show_bug.cgi?id=785728">785728</a></td>
+      <td>Deferred</td>
+      <td>Not a blocker</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>VDSM</td>
+      <td>spice problems with tls</td>
+      <td><a href="https://bugzilla.redhat.com/show_bug.cgi?id=773371">773371</a></td>
+      <td>Fixed</td>
+      <td>vdsm-4.9.3.3</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>engine</td>
+      <td>Nodes cannot be registered</td>
+      <td><a href="https://bugzilla.redhat.com/show_bug.cgi?id=782663">782663</a></td>
+      <td>Fixed</td>
+      <td>Merged into engine_3.0</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>engine</td>
+      <td>Engine locking issue</td>
+      <td><a href="https://bugzilla.redhat.com/show_bug.cgi?id=785671">785671</a></td>
+      <td>Fixed</td>
+      <td>Merged into engine_3.0</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>VDSM/iscsid</td>
+      <td>iscsid service fails to start</td>
+      <td><a href="https://bugzilla.redhat.com/show_bug.cgi?id=786174">786174</a></td>
+      <td>Fixed</td>
+      <td>iscsi-initiator-utils-6.2.0.872-16.fc16.x86_64</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Enter</td>
+      <td>Your</td>
+      <td><a href="https://bugzilla.redhat.com/show_bug.cgi?id=XXXX">XXXX</a></td>
+      <td>BUG</td>
+      <td>HERE</td>
+    </tr>
+  </tbody>
+</table>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

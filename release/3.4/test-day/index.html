@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+OVirt 3.4 Test Day &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>OVirt 3.4 Test Day</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>amureini, apuimedo, awels, bproffitt, danken, doron, ecohen, eedri, emesika, fabiand, fromani, gchaplik, jmoskovc, mperina, msivak, netbulae, rnori, sandrobonazzola, yair zaslavsky, ybronhei</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>OVirt 3.4 Test Day</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>77</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-03-27</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/OVirt_3.4_Test_Day' target='_blank'>
+OVirt 3.4 Test Day
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="ovirt-34-test-day">OVirt 3.4 Test Day</h1>
+
+<h2 id="objective">Objective</h2>
+
+<ul>
+  <li>engage project users and stakeholders to a hands-on experiences with oVirt new release.</li>
+  <li>improve the quality of oVirt.</li>
+  <li>Introduce and validating new oVirt 3.4 features</li>
+  <li>3rd test day will focus on complete installations and GA readiness using the RC release.</li>
+</ul>
+
+<h2 id="what-i-should-do">What I should do</h2>
+
+<ul>
+  <li>Specific tasks can be found in the 3_4-testday-3 tab of the <a href="https://docs.google.com/spreadsheet/ccc?key=0AuAtmJW_VMCRdHJ6N1M3d1F1UTJTS1dSMnZwMF9XWVE&amp;usp=sharing">Google Doc</a></li>
+  <li>If you already have the hardware, verify if it meets the hardware requirement, refer information detail section below</li>
+  <li>Write down the configuration you used (HW, console, etc) and what you've tested in the <a href="http://etherpad.ovirt.org/p/3.4-testday-3">report etherpad</a> (<a href="http://etherpad.ovirt.org/p/3.4-testday-1">first test day report etherpad</a>, <a href="http://etherpad.ovirt.org/p/3.4-testday-2">second test day report etherpad</a>)</li>
+  <li>Go ahead and <a href="/release/3.4/test-day/#Installation_notes"> install ovirt </a></li>
+  <li>Follow the documentation to setup your environment, and test drive the new features.</li>
+  <li>Please remember we expect to see some issues, and anything you come up with will save a you when you'll install final release</li>
+  <li>Remember to try daily tasks you'd usually do in the engine, to see there are no regressions.</li>
+  <li>Accomplish the goals set in objective section , run the tests, update the test matrix.</li>
+  <li>Running into any issues?
+    <ul>
+      <li><a href="/community/"> Try to get help from the community </a> on #ovirt IRC channel or</li>
+      <li><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=oVirt">open a bugzilla</a> ticket or</li>
+      <li>Report it on the <a href="http://etherpad.ovirt.org/p/3.4-testday-3">report etherpad</a> (<a href="http://etherpad.ovirt.org/p/3.4-testday-1">first test day report etherpad</a>, <a href="http://etherpad.ovirt.org/p/3.4-testday-2">second test day report etherpad</a>)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="installation-notes">Installation notes</h2>
+
+<ul>
+  <li>Make sure you have either a Fedora 19 or CentOS 6.5 machine installed.</li>
+  <li>Install the release pkg:</li>
+</ul>
+
+<p><code>sudo yum localinstall </code><a href="http://resources.ovirt.org/releases/ovirt-release.noarch.rpm"><code>http://resources.ovirt.org/releases/ovirt-release.noarch.rpm</code></a>
+      sudo yum install yum-utils
+      sudo yum-config-manager –enable ovirt-3.4.0-prerelease</p>
+
+<p>(f19) you need to enable also fedora-virt-preview repo repository.</p>
+
+<pre class="highlight plaintext"><code>  sudo yum-config-manager --enable fedora-virt-preview&#x000A;</code></pre>
+
+<p>(el) you need to enable epel too</p>
+
+<pre class="highlight plaintext"><code>   sudo yum-config-manager --enable ovirt-epel&#x000A;   sudo yum install epel-release&#x000A;   if the above commands doesn't work you can install it manually: ` sudo yum install `[`http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm`](http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm)&#x000A;</code></pre>
+
+<ul>
+  <li>follow <a href="/release/3.4/"> Install instructions in release notes</a></li>
+  <li>guest agent rpms are available on <a href="http://evilissimo.fedorapeople.org/repos/ovirt-guest-agent/ovirt-3.4/beta1/">http://evilissimo.fedorapeople.org/repos/ovirt-guest-agent/ovirt-3.4/beta1/</a></li>
+  <li>the following oVirt Node ISO (based on CentOS 6.5 and oVirt 3.4 components) can be used for the Test Day. <strong>Important: If you run into problem first try to boot into SELinux permissive mode by appending enforcing=0 to the kernel when booting the ISO to prevent denials</strong></li>
+</ul>
+
+<p><a href="http://fedorapeople.org/~fabiand/node/3.0.4/ovirt-node-iso-3.0.4-1.0.201401291204.vdsm34.el6.iso"><code>http://fedorapeople.org/~fabiand/node/3.0.4/ovirt-node-iso-3.0.4-1.0.201401291204.vdsm34.el6.iso</code></a></p>
+
+<h3 id="known-issues">Known issues</h3>
+
+<ul>
+  <li>A Fedora 19 node goes to "non operational" state with the error "Host IPADDRESS is compatible with versions (3.0,3.1,3.2,3.3) and cannot join Cluster Default which is set to version 3.4.". The recommended fix is to enable the fedora-virt-preview repo, delivered with the ovirt-release , and to update libvirt from it. ()</li>
+  <li>Node
+    <ul>
+      <li>Should work in enforcing mode, but might be booted into permissive mode to debug denials. Permissive: Append <code>enforcing=0</code> to the kernel on boot</li>
+    </ul>
+  </li>
+  <li>Upgrade will fail if event_subscriber table is not empty Bug ()</li>
+</ul>
+
+<h2 id="ovirt-34-new-features---test-status-table">oVirt 3.4 New Features - Test Status Table</h2>
+
+<p>Please report test results on the <a href="http://etherpad.ovirt.org/p/3.4-testday-3">report etherpad</a> (<a href="http://etherpad.ovirt.org/p/3.4-testday-1">first test day report etherpad</a>, <a href="http://etherpad.ovirt.org/p/3.4-testday-2">second test day report etherpad</a>) or on the table below.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Functional team</td>
+      <td>Feature</td>
+      <td>Owner</td>
+      <td>Dev - Status</td>
+      <td>Test page</td>
+      <td>Tested By/ Distro</td>
+      <td>BZs</td>
+      <td>remarks</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>General</td>
+      <td>ovirt-live 3.4 (testing)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>General</td>
+      <td>upgrade from 3.3 (testing)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>General</td>
+      <td>ovirt-all-in-one (testing)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Gluster</td>
+      <td><a href="/feature/storage/gluster-volume-asynchronous-tasks-management/">Volume Asynchronous Tasks Management</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Sahina' title='Special MediaWiki link: original pointed to: User:Sahina'> Sahina Bose</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td><a href="/feature/engine/engine-snmp/">snmp &amp; snmp trap monitoring (will do only snmp trap as notification)</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:mtayer' title='Special MediaWiki link: original pointed to: User:mtayer'>Mooli Tayer</span></td>
+      <td>Orange - Work in Progress</td>
+      <td><a href="/feature/engine/engine-snmp/#Testing">http://www.ovirt.org/Features/engine-snmp#Testing</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td>Authentication Refactoring</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:juan' title='Special MediaWiki link: original pointed to: User:juan'> Juan Hernandez</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td><span class='broken-link link-mediawiki' data-href='User:amureini' title='Special MediaWiki link: original pointed to: User:amureini'> Allon Mureinik</span> / EL6</td>
+      <td>, , , , , , , , , , ,</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td>Add fence_hpblade as a Fence Agent</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:emesika' title='Special MediaWiki link: original pointed to: User:emesika'> Eli Mesika</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td>Allow to provide a password change URL on login failure when password expires</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:juan' title='Special MediaWiki link: original pointed to: User:juan'> Juan Hernandez</span></td>
+      <td>Orange - Work in Progress</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td>DWH: Add trigger to stop ETL connection via engine dB value</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:ydary' title='Special MediaWiki link: original pointed to: User:ydary'> Yaniv Dary</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td>Read only Admin role in AP</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:ovedo' title='Special MediaWiki link: original pointed to: User:ovedo'> Oved Ourfalli</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td>[RFE] Add new event notifiers for VM_DOWN_ERROR and VDS_INITIATED_RUN_VM_FAIL</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Aglitke' title='Special MediaWiki link: original pointed to: User:Aglitke'> Adam Litke</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td>Add JSON support to REST API</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:juan' title='Special MediaWiki link: original pointed to: User:juan'> Juan Hernandez</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td>Add drac7 fence agent support</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:emesika' title='Special MediaWiki link: original pointed to: User:emesika'> Eli Mesika</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td>collect the "created_by" field of a VM into it's configuration history</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:ydary' title='Special MediaWiki link: original pointed to: User:ydary'> Yaniv Dary</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td>engine-notifier to support STARTTLS</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:mperina' title='Special MediaWiki link: original pointed to: User:mperina'> Martin Perina</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>integration</td>
+      <td>ovirt-engine URI rework</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Alonbl' title='Special MediaWiki link: original pointed to: User:Alonbl'>Alon Bar-Lev</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td><span class='broken-link link-mediawiki' data-href='User:rnori' title='Special MediaWiki link: original pointed to: User:rnori'> Ravi Nori</span> / F19</td>
+      <td> </td>
+      <td>Works for me</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>integration</td>
+      <td><a href="/feature/integration/ovirtappliance/">virtual appliance image/rpm for ovirt</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:obasan' title='Special MediaWiki link: original pointed to: User:obasan'> Ohad Basan </span></td>
+      <td>Orange - Work in Progress</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>integration</td>
+      <td>DWH - migrate setup to otopi</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:SandroBonazzola' title='Special MediaWiki link: original pointed to: User:SandroBonazzola'> Sandro Bonazzola</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>integration</td>
+      <td>[REQUESTING EXCEPTION] reports - migrate setup to otopi</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:SandroBonazzola' title='Special MediaWiki link: original pointed to: User:SandroBonazzola'> Sandro Bonazzola</span></td>
+      <td>Orange - Work in Progress</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>integration</td>
+      <td>[REQUESTING EXCEPTION] reports - add support for Centos el6 arch</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:SandroBonazzola' title='Special MediaWiki link: original pointed to: User:SandroBonazzola'> Sandro Bonazzola</span></td>
+      <td>Orange - Work in Progress</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>network</td>
+      <td><a href="/feature/network/predictable-vnic-order/">nic ordering</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:ovedo' title='Special MediaWiki link: original pointed to: User:ovedo'> Oved Ourfalli</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>network</td>
+      <td><a href="/feature/network/detailed-osn-integration/">Neutron integration - security group support</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Mkolesni' title='Special MediaWiki link: original pointed to: User:Mkolesni'> Mike Kolesnik</span></td>
+      <td>Partial (migration missing)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>network</td>
+      <td><a href="/feature/network/detailed-osn-integration/">Neutron integration - security group support</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Mkolesni' title='Special MediaWiki link: original pointed to: User:Mkolesni'> Mike Kolesnik</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>network</td>
+      <td><a href="/feature/network/detailed-osn-integration/">Neutron integration - remove external networks</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Mkolesni' title='Special MediaWiki link: original pointed to: User:Mkolesni'> Mike Kolesnik</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>network</td>
+      <td><a href="/feature/network/detailed-host-network-qos/">Network level QoS</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:lvernia' title='Special MediaWiki link: original pointed to: User:lvernia'> Lior Vernia</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>network</td>
+      <td><a href="/feature/network/networkreloaded/">stabilize iproute2 configurator</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:APuimedo' title='Special MediaWiki link: original pointed to: User:APuimedo'> Antoni Segura Puimedon</span></td>
+      <td>Partial implementation</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>network</td>
+      <td><a href="/feature/network/multihostnetworkconfiguration/">Multi-Host Network Configuration</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:masayag' title='Special MediaWiki link: original pointed to: User:masayag'> Moti Asayag</span></td>
+      <td>Green</td>
+      <td><a href="/feature/network/multihostnetworkconfiguration/#Testing">http://www.ovirt.org/Features/MultiHostNetworkConfiguration#Testing</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>network</td>
+      <td><a href="/feature/network/networklabels/">Network Labels</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:masayag' title='Special MediaWiki link: original pointed to: User:masayag'> Moti Asayag</span></td>
+      <td>Green</td>
+      <td><a href="/feature/network/networklabels/#Testing">http://www.ovirt.org/Features/NetworkLabels#Testing</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ppc</td>
+      <td><a href="/feature/engine/engine-support-for-ppc64/">Architecture support when importing/exporting VM and Templates</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:lbianco' title='Special MediaWiki link: original pointed to: User:lbianco'> Leonardo Bianconi</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ppc</td>
+      <td><a href="/feature/engine/engine-support-for-ppc64/">Ability to specify architecture in the OSInfo file</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:lbianco' title='Special MediaWiki link: original pointed to: User:lbianco'> Leonardo Bianconi</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ppc</td>
+      <td><a href="/feature/engine/engine-support-for-ppc64/">Ability to specify supported video cards and display protocols in the OSInfo file</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:lbianco' title='Special MediaWiki link: original pointed to: User:lbianco'> Leonardo Bianconi</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ppc</td>
+      <td><a href="/feature/engine/engine-support-for-ppc64/">Ability to specify watch dog in the OSInfo file</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:gpedrosa' title='Special MediaWiki link: original pointed to: User:gpedrosa'> Gustavo Pedrosa</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ppc</td>
+      <td><a href="/feature/engine/engine-support-for-ppc64/">Ability to specify hotplug of nic and disk in the OSInfo file</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:gpedrosa' title='Special MediaWiki link: original pointed to: User:gpedrosa'> Gustavo Pedrosa</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ppc</td>
+      <td><a href="/feature/engine/engine-support-for-ppc64/">Ability to search by architecture</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:vdelima' title='Special MediaWiki link: original pointed to: User:vdelima'> Vitor de Lima</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ppc</td>
+      <td><a href="/feature/engine/engine-support-for-ppc64/">Create Cluster, VM and Templates for PPC64</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:lbianco' title='Special MediaWiki link: original pointed to: User:lbianco'> Leonardo Bianconi</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ppc</td>
+      <td><a href="/feature/engine/engine-support-for-ppc64/">Add PPC64 Hosts</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:vdelima' title='Special MediaWiki link: original pointed to: User:vdelima'> Vitor de Lima</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ppc</td>
+      <td><a href="/feature/engine/engine-support-for-ppc64/">Support for sPAPR VLAN and sPAPR VSCSI</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:vdelima' title='Special MediaWiki link: original pointed to: User:vdelima'> Vitor de Lima</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ppc</td>
+      <td><a href="/feature/vdsm/for-ppc64/">Run fake power hosts</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:vdelima' title='Special MediaWiki link: original pointed to: User:vdelima'> Vitor de Lima</span></td>
+      <td>Green</td>
+      <td><a href="/feature/vdsm/for-ppc64/#Testing_the_PPC64_support">http://www.ovirt.org/Features/Vdsm_for_PPC64#Testing_the_PPC64_support</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ppc</td>
+      <td><a href="/feature/vdsm/for-ppc64/">Ability to run power machines on x86 hosts</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:vdelima' title='Special MediaWiki link: original pointed to: User:vdelima'> Vitor de Lima</span></td>
+      <td>Green</td>
+      <td><a href="/feature/vdsm/for-ppc64/#Testing_the_PPC64_support">http://www.ovirt.org/Features/Vdsm_for_PPC64#Testing_the_PPC64_support</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ppc</td>
+      <td><a href="/feature/vdsm/for-ppc64/">Obtain capabilities of PPC64 hosts</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:vdelima' title='Special MediaWiki link: original pointed to: User:vdelima'> Vitor de Lima</span></td>
+      <td>Green</td>
+      <td><a href="/feature/vdsm/for-ppc64/#Testing_the_PPC64_support">http://www.ovirt.org/Features/Vdsm_for_PPC64#Testing_the_PPC64_support</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ppc</td>
+      <td><a href="/feature/vdsm/for-ppc64/">Obtain the CPU topology of PPC64 hosts</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:lbianco' title='Special MediaWiki link: original pointed to: User:lbianco'> Leonardo Bianconi</span></td>
+      <td>Green</td>
+      <td><a href="/feature/vdsm/for-ppc64/#Testing_the_PPC64_support">http://www.ovirt.org/Features/Vdsm_for_PPC64#Testing_the_PPC64_support</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ppc</td>
+      <td><a href="/feature/engine/engine-support-for-ppc64/">Block migration in ppc64 Vms</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:vdelima' title='Special MediaWiki link: original pointed to: User:vdelima'> Vitor de Lima</span></td>
+      <td>Under review</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ppc</td>
+      <td><a href="/feature/engine/engine-support-for-ppc64/">Block memory snapshots in ppc64 Vms</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:lbianco' title='Special MediaWiki link: original pointed to: User:lbianco'> Leonardo Bianconi</span></td>
+      <td>Under review</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>sla</td>
+      <td><a href="/feature/sla/vm-affinity/">positive/negative affinity between group of Vms</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:gchaplik' title='Special MediaWiki link: original pointed to: User:gchaplik'> Gilad Chaplik</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td><span class='broken-link link-mediawiki' data-href='User:apuimedo' title='Special MediaWiki link: original pointed to: User:apuimedo'> Antoni Segura Puimedon</span></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>sla</td>
+      <td><a href="/feature/sla/hostpowermanagementpolicy/">power saving policy powering off machines</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:msivak' title='Special MediaWiki link: original pointed to: User:msivak'> Martin Sivák</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>sla</td>
+      <td>High Availability flag should be included when exporting/importing from Export Domain</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:jmoskovc' title='Special MediaWiki link: original pointed to: User:jmoskovc'> Jiri Moskovcak</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>sla</td>
+      <td><a href="/feature/sla/even-vm-count-distribution/">Even Distribution Policy by number of Vms</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:jmoskovc' title='Special MediaWiki link: original pointed to: User:jmoskovc'> Jiri Moskovcak</span></td>
+      <td>Green</td>
+      <td><a href="/feature/sla/even-vm-count-distribution/#Testing">http://www.ovirt.org/Features/Even_VM_Count_Distribution#Testing</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>sla</td>
+      <td><a href="/feature/sla/ha-vm-reservation/">Make reservations for HA VMs to make sure there's enough capacity to start them if N hosts fail</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:kianku' title='Special MediaWiki link: original pointed to: User:kianku'>Kobi Ianko</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>sla</td>
+      <td>ovirt node support for hosted engine nodes</td>
+      <td> </td>
+      <td>Best effort, may slip</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>sla</td>
+      <td>hosted engine on san</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:gpadgett' title='Special MediaWiki link: original pointed to: User:gpadgett'> Greg Padgette</span></td>
+      <td>Best effort, may slip</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>sla</td>
+      <td><a href="/feature/engine/self-hosted-engine-maintenance-flows/">Unify maintenance path of hosted engine with host maintenance</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:gpadgett' title='Special MediaWiki link: original pointed to: User:gpadgett'> Greg Padgette</span></td>
+      <td>code</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>sla</td>
+      <td><a href="/howto/hosted-engine/">hosted engine on nfs</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:gpadgett' title='Special MediaWiki link: original pointed to: User:gpadgett'> Greg Padgette</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>storage</td>
+      <td><a href="/feature/storage/read-only-disk/">read only disks</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:sgotliv' title='Special MediaWiki link: original pointed to: User:sgotliv'> Sergey Gotliv</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td><span class='broken-link link-mediawiki' data-href='User:mperina' title='Special MediaWiki link: original pointed to: User:mperina'> Martin Perina</span> / F19</td>
+      <td>,</td>
+      <td>Works for me</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>storage</td>
+      <td><a href="/feature/storage/single-disk-snapshot/">single disk snapshots</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Derez' title='Special MediaWiki link: original pointed to: User:Derez'> Daniel Erez</span></td>
+      <td>Green</td>
+      <td><a href="/feature/storage/single-disk-snapshot/#Testing">http://www.ovirt.org/Features/Single_Disk_Snapshot#Testing</a></td>
+      <td> </td>
+      <td>, , , , , , ,</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>storage</td>
+      <td>Adding Disk to a VM which is not down adds a Disk that is not activated</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:tal' title='Special MediaWiki link: original pointed to: User:tal'>Tal Nisan</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>storage</td>
+      <td>[RFE] Handle iSCSI storage domain lun resize</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Derez' title='Special MediaWiki link: original pointed to: User:Derez'> Daniel Erez</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>storage</td>
+      <td>viable, ever-working vdsm functional tests</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:vvolansk' title='Special MediaWiki link: original pointed to: User:vvolansk'>Vered Volansky</span></td>
+      <td>coding (90% complete)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>storage</td>
+      <td>[REQUESTING EXCEPTION] [stretch] multiple storage domains (local/shared)</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:tal' title='Special MediaWiki link: original pointed to: User:tal'>Tal Nisan</span></td>
+      <td>merged upstream</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>storage</td>
+      <td><a href="/feature/storage/backup-restore-api-integration/">backup and restore api</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:laravot' title='Special MediaWiki link: original pointed to: User:laravot'>Liron Aravot</span></td>
+      <td>Green (3.3.2)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>storage</td>
+      <td>iSCSI EqualLogic SAN support or use standard iscsi tools/configuration</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:sgotliv' title='Special MediaWiki link: original pointed to: User:sgotliv'> Sergey Gotliv</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>storage</td>
+      <td>Store OVF on any domains</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:laravot' title='Special MediaWiki link: original pointed to: User:laravot'>Liron Aravot</span></td>
+      <td>code review (90% complete)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>storage</td>
+      <td><a href="/feature/storage/storagepool-metadata-removal/">Get rid of storage pool metadata on master storage domain</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Fsimonce' title='Special MediaWiki link: original pointed to: User:Fsimonce'> Federico Simoncelli</span></td>
+      <td>code review (90% complete)</td>
+      <td><a href="/feature/storage/storagepool-metadata-removal/#Testing">http://www.ovirt.org/Features/StoragePool_Metadata_Removal#Testing</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>storage</td>
+      <td>allow importing glance image as a template</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:ovedo' title='Special MediaWiki link: original pointed to: User:ovedo'> Oved Ourfalli</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ux</td>
+      <td><a href="/feature/ux/uirefreshsynchronization/">centralizing refresh logic</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:awels' title='Special MediaWiki link: original pointed to: User:awels'>Alexander Wels</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ux</td>
+      <td>case insensitive search</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:ovedo' title='Special MediaWiki link: original pointed to: User:ovedo'> Oved Ourfalli</span> (?)</td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ux</td>
+      <td><a href="/feature/ux/lowerresolutionsupport/">webadmin's layout is broken when using resolution 1024 by 768</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:awels' title='Special MediaWiki link: original pointed to: User:awels'>Alexander Wels</span></td>
+      <td>Green</td>
+      <td><a href="/feature/ux/lowerresolutionsupport/#Testing">http://www.ovirt.org/Features/Design/LowerResolutionSupport#Testing</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>ux</td>
+      <td>easily collapsible left-pane</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:awels' title='Special MediaWiki link: original pointed to: User:awels'>Alexander Wels</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td>[RFE] Allow searching by the description field</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Aglitke' title='Special MediaWiki link: original pointed to: User:Aglitke'> Adam Litke</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td>viable, ever-working vdsm functional tests</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Martin Polednik' title='Special MediaWiki link: original pointed to: User:Martin Polednik'> Martin Polednik</span></td>
+      <td>Partially</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td><a href="/feature/virt/spice-proxy/">spice proxy at cluster/pool level</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:tjelinek' title='Special MediaWiki link: original pointed to: User:tjelinek'> Tomas Jelinek</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td>Save user's console setting per pool - enhancements in Display Console Dialog (persistence per pool)</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Fkobzik' title='Special MediaWiki link: original pointed to: User:Fkobzik'>Frank Kobzik</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td>Make default VNC console mode configurable</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Fkobzik' title='Special MediaWiki link: original pointed to: User:Fkobzik'>Frank Kobzik</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td><a href="/feature/virt/hot-plug-cpu/">hotplug CPU</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:rgolan' title='Special MediaWiki link: original pointed to: User:rgolan'> Roy Golan</span></td>
+      <td>Green, backport in progress</td>
+      <td><a href="/feature/virt/hot-plug-cpu/#Testing">http://www.ovirt.org/Hot_plug_cpu#Testing</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td><a href="/feature/virt/vm-init-persistent/">cloud-init/sysprep customization, more options exposed, persistence</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Shaharh' title='Special MediaWiki link: original pointed to: User:Shaharh'> Shahar Havivi</span></td>
+      <td>Green, backport in progress</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td>Features/Guest Reboot</td>
+      <td>"reboot VM" functionality]]</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Mbetak' title='Special MediaWiki link: original pointed to: User:Mbetak'>Martin Betak</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td><span class='broken-link link-mediawiki' data-href='User:awels' title='Special MediaWiki link: original pointed to: User:awels'>Alexander Wels</span> / F19</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td><a href="/feature/virt/template-versions/">template versions (ability to update template of a pool)</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:ofrenkel' title='Special MediaWiki link: original pointed to: User:ofrenkel'> Omer Frenkel</span></td>
+      <td>Orange - Work in Progress</td>
+      <td><a href="/feature/virt/template-versions/#Testing">http://www.ovirt.org/Features/Template_Versions#Testing</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td><a href="/feature/virt/guestagentubuntu/">oVirt guest agent for Ubuntu</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Vfeenstr' title='Special MediaWiki link: original pointed to: User:Vfeenstr'> Vinzenz 'evilissimo' Feenstra</span></td>
+      <td>Green</td>
+      <td><a href="/feature/virt/guestagentubuntu/#Testing">http://www.ovirt.org/Feature/GuestAgentUbuntu#Testing</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td><a href="/feature/virt/guestagentopensuse/">oVirt guest agent for openSUSE</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Vfeenstr' title='Special MediaWiki link: original pointed to: User:Vfeenstr'> Vinzenz 'evilissimo' Feenstra</span></td>
+      <td>Green</td>
+      <td><a href="/feature/virt/guestagentopensuse/#Testing">http://www.ovirt.org/Feature/GuestAgentOpenSUSE#Testing</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td><a href="/feature/infra/sso-method-control/">Allow to disable SSO per VM</a></td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Fkobzik' title='Special MediaWiki link: original pointed to: User:Fkobzik'>Frank Kobzik</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td><span class='broken-link link-mediawiki' data-href='User:ecohen' title='Special MediaWiki link: original pointed to: User:ecohen'> Einav Cohen</span> / F19</td>
+      <td> </td>
+      <td>works for me. more details in BZ.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td>qemu-ga installed by default on Linux</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Vfeenstr' title='Special MediaWiki link: original pointed to: User:Vfeenstr'> Vinzenz 'evilissimo' Feenstra</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td><span class='broken-link link-mediawiki' data-href='User:SandroBonazzola' title='Special MediaWiki link: original pointed to: User:SandroBonazzola'> Sandro Bonazzola</span> / F19, F20, EL6</td>
+      <td> </td>
+      <td>Works for me</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td>add events for remote console connection</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:ovedo' title='Special MediaWiki link: original pointed to: User:ovedo'> Oved Ourfalli</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td><span class='broken-link link-mediawiki' data-href='User:ecohen' title='Special MediaWiki link: original pointed to: User:ecohen'>Einav Cohen</span> / F19</td>
+      <td> </td>
+      <td>works for me. more details in BZ.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td>Fix Control-Alt-Delete functionality in console options</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Fkobzik' title='Special MediaWiki link: original pointed to: User:Fkobzik'>Frank Kobzik</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td><span class='broken-link link-mediawiki' data-href='User:awels' title='Special MediaWiki link: original pointed to: User:awels'>Alexander Wels</span> / F19</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td>Show name of the template in General tab for a vm if the vm is deployed from template via clone allocation</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:tjelinek' title='Special MediaWiki link: original pointed to: User:tjelinek'> Tomas Jelinek</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td><span class='broken-link link-mediawiki' data-href='User:awels' title='Special MediaWiki link: original pointed to: User:awels'>Alexander Wels</span> / F19</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td>[RFE] Track downtime for inactive VMs</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Aglitke' title='Special MediaWiki link: original pointed to: User:Aglitke'> Adam Litke</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td>Set NIC boot order according to NIC names</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Arik' title='Special MediaWiki link: original pointed to: User:Arik'> Arik Hadas</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td>[RFE] RunOnce dialog can not set a vnc keymap itself</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:kianku' title='Special MediaWiki link: original pointed to: User:kianku'>Kobi Ianku</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>virt</td>
+      <td>[RFE] Enable configuration of maximum allowed downtime during live migration per guest</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Mbetak' title='Special MediaWiki link: original pointed to: User:Mbetak'>Martin Betak</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="regression-testing">Regression testing</h2>
+
+<h3 id="general">General</h3>
+
+<p>You need at least two physical servers to install and configure a basic yet complete oVirt environment with shared storage to exercise the following:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Bugs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Setup oVirt engine using either Active Directory or Local IPA, two hosts configured as hypervisors (Fedora / Ovirt-Node / other) with power management (Storage Domains - Data Domain / ISO Domain and Export Domain)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Setup oVirt engine - basic AIO flow</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Use ISO Uploader to populate images of OS and tools</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Basic Network Configuration</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create virtual machines and assign them to users</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Migrate Virtual Machines between the hypervisors</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Collect log file using the log collector tool</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Upgrade from 3.3 to 3.4</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="configuration">Configuration</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Bugs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Configure high availability for virtual machines which are running mission critical workloads, so they will be restarted on another host if hardware failure occurs</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Use the multi-level administration feature to assign different levels of user permissions</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Live Migration Scenarios</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Enable smartcard support for a VM and verify that the <smartcard mode="passthrough" type="spicevmc"></smartcard> is passed to libvirt</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="infra">Infra</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Bugs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Start vdsm-3.4 after fresh install over rhel 6.5\rhel6.4\fedora 19\fedora 20 - check clear outputs and clear start - report in any misunderstanding of the startup process</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Upgrade from vdsm-3.3 to vdsm-3.4 after running with vdsm 3.3, same for downgrade from 3.4 to 3.3 - verify that libvirtd configured and started properly</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Check each vdsm-tool verbs of configurator module and its outputs - for misunderstanding of the output or the help instructions please report</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Add more that one domain using manage-domains. Check that login , search for users and groups is working. Check that a a user belonging to a group can login if the group has permissions.</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="storage">Storage</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Bugs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Use the General configuration as a base configuration</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create different types of storage domains (NFS, ISCSI, FC, local storage) with 2 or more data domains</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Install at least 2 VMs on each of the Data Centers</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Move the master domain to a different domain within the Data Center</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Export one of the installed VMs, delete it, import it to another Data Center</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create a template from one of the VMs and then create a new VM based on this template</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Move the newly created VM to another data domain</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create several snapshots from a VM (Each time change something in the guest)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create several live snapshots from a VM (Each time change something in the guest)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Restore a previous snapshot</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Live migrate a disk between storage domains</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Storage Failovers</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Host Failovers</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Power User Portal provides power users the ability to create and manage virtual machines from the power user portal</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>High Availability scenarios provides instructions to configure virtual machine and host high availability</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="network">Network</h3>
+
+<ul>
+  <li>Important Note: Known Fedora 19 bug: If the ovirtmgmt bridge is not successfully installed during initial host-setup, manually click on the host, setup networks, and add the ovirtmgmt bridge.</li>
+  <li>Base config - single NIC, bridge on top, VMs attached to NIC</li>
+  <li>Advanced configurations:</li>
+</ul>
+
+<p><img alt="" title="fig:Vlan bonding.jpg" src="/images/wiki/Vlan_bonding.png?1447607916" /> Make sure each of the configs can:</p>
+
+<ul>
+  <li>Survive a reboot</li>
+  <li>Test network at both host and VM level</li>
+  <li>Ping and transfer large amounts of data (2Gb size files should be enough)</li>
+  <li>Remain operational over time (1hr of uptime should be sufficient for the basic testing)</li>
+</ul>
+
+<h3 id="tools">Tools</h3>
+
+<ul>
+  <li>Basic operations on iso-uploader:</li>
+</ul>
+
+<ol>
+  <li><strong>engine-iso-uploader list</strong></li>
+  <li>**engine-iso-uploader upload <iso> -i <iso-domain-name> -v -f**</iso-domain-name></iso></li>
+</ol>
+
+<ul>
+  <li>Basic operations on log-collector:</li>
+</ul>
+
+<ol>
+  <li><strong>engine-log-collector list</strong></li>
+  <li><strong>engine-log-collector collect</strong></li>
+</ol>
+
+<ul>
+  <li>Basic operation on image-uploader</li>
+</ul>
+
+<p>**engine-image-uploader –name=<new name="" here=""> -e <domain> upload my.ovf**</domain></new></p>
+
+<h4 id="new-to-v31">New to v3.1:</h4>
+
+<ul>
+  <li>port mirroring: one can setup a VM that sniffs all IP traffic between VMs on a network on a host.</li>
+  <li>no mac spoofing: VMs cannot emit packets with spoofed mac address (unless specifically allowed to).</li>
+  <li>Sync network: change network MTU (or other property) on host, verify that Engine may overwrite it with Sync network</li>
+  <li>Jumbo packets: see if can be configured and used by storage</li>
+</ul>
+
+<h4 id="new-to-v32">New to v3.2:</h4>
+
+<ul>
+  <li>Network main tab operational: you can search hosts and VM based on their network connectivity</li>
+  <li>Guest agent reported devices: install guest agent on a VM and see it report internal information of the vNics (internal device name, IPv4 and IPv6)</li>
+  <li>Network Linking: allow changing network the VM is connect to while it is running</li>
+</ul>
+
+<h3 id="apis">APIs</h3>
+
+<p>by default we'll be using the webadmin as our API for testing on this section we'll try to have default deployment with the different APIs</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Webadmin</th>
+      <th>UserPortal</th>
+      <th>Rest</th>
+      <th>Python-SDK</th>
+      <th>CLI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Create a data-center</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create a cluster</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Update cluster</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Install a host</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create a storage domain on DC</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Attach export/ISO domain to DC</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create vm</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Delete vm</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Import vm</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Start/hibernate/resume/stop vm</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create a snapshot to vm</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create a template from vm</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create vm from template</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Sign out</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>General</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Python API of the above scenarios can be found in: <a href="wiki/Testing/PythonApi">http://www.ovirt.org/wiki/Testing/PythonApi</a></p>
+
+<h3 id="spice">Spice</h3>
+
+<p>For details about configuration check <a href="wiki/Testing/Spice">http://www.ovirt.org/wiki/Testing/Spice</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Bugs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Install Windows VM and a Linux VM with Guest Tools (QXL graphic driver and spice vdagent)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Assign user to these vms, login to a user portal, from your client machine, and connect to it using the Spice protocol</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Try to watch a clip via YouTube or any other web based video (with QXL driver installed on VM)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Try to watch a Local movie (with QXL driver installed on VM)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Try to use client mouse mode and clipboard share between client and VM (with spice agent installed on VM)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Install AutoCAD or any other graphic application a try to work with it (with QXL driver installed on VM)</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="user-interface">User Interface</h3>
+
+<p>Webadmin:</p>
+
+<h3 id="node">Node</h3>
+
+<h3 id="sla">SLA</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Steps</th>
+      <th>Bugs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>power saving policy powering off machines</td>
+      <td>Step 1: Setup a cluster with at least two hosts including power management for both of them</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Step 2: Edit cluster and set Power saving as the cluster policy</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Step 3: Add hosts_in_reserve and enable_autopm parameters to the policy and set them to 1 and true</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Step 4: Wait for some time and you should see one of the hosts go to maintenance and after another minute or so move to Down</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Step 5: Start a VM</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Step 6: The host from step 4 should move to Unresponsive and and then to Up state. Both transitions take at least a minute so be patient.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Verify: Repeat steps 4-6 but do not let the host shut down, start the VM when the host is in Maintenance, it should come up again</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Verify: a) The SPM won't shut down b) there is always hosts_in_reserve hosts with no VMs or the cluster is using all the hosts</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Verify: With the auto_pm set to false in cluster policy, no host is shut down</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Verify: Disabling the automatic PM in the Host's power management tab keeps the host Up, but still counts it into the number of free hosts if there are no VMs running</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Verify: Host that was put to maintenance manually won't come up when the policy needs to wake up additional host</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>High Availability flag should be included when exporting/importing from Export Domain</td>
+      <td>Step 1:Have a VM marked as highly available.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Step 2: export the VM</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Step 3: rename the original VM</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Step 4: import the VM from step (2)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Step 5: Verify the imported VM is defined as highly available</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Even Distribution Policy by number of VMs</td>
+      <td>Step 1: Create a cluster with at least 1 host</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Step 2: Set the VM_Evenly_Distributed as a cluster policy</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Step 3: Add another host to the cluster</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Step 4: After a while check if the VMs are evenly distributed to all hosts in the cluster (please note that one host is SPM and should have less VMs)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Make reservations for HA VMs to make sure there's enough capacity to start them if N hosts fail</td>
+      <td>Step 1: have 2 hosts and 2 running VMs on one of them.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Step 2: Edit cluster policy and set HA reservations to "on"</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Step 3: turn off the empty host. This should trigger an alert within ~3 minutes about HA capacity.</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="affinity-groups">Affinity Groups</h4>
+
+<p><a href="/feature/sla/vm-affinity/">http://www.ovirt.org/Features/VM-Affinity</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Steps</th>
+      <th>Bugs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>affinity group CRUD commands</td>
+      <td>CRUD via webadmin</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>CRUD via REST API</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>implicitly remove VM from affinity group</td>
+      <td>delete VM</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>change VM cluster</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>run/migrate VM</td>
+      <td>hard enforcing, positive affinity</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>soft enforcing, positive affinity</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>hard enforcing, negative affinity</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>soft enforcing, negative affinity</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>VM in several affinity groups (transitive)</td>
+      <td>all positive - hard enforcing</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>all negative - hard enforcing</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>mixed positive negative - hard enforcing</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>mixed hard/soft enforcing</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="bug-reporting">Bug Reporting</h2>
+
+<ul>
+  <li>ovirt - <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=oVirt">https://bugzilla.redhat.com/enter_bug.cgi?product=oVirt</a></li>
+  <li>Spice - <a href="https://bugs.freedesktop.org/">https://bugs.freedesktop.org/</a> under Spice product</li>
+  <li>VDSM - <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=oVirt">https://bugzilla.redhat.com/enter_bug.cgi?product=oVirt</a> with vdsm component</li>
+</ul>
+
+<p>Tracker bug for the release - <a href="https://bugzilla.redhat.com/1024889">https://bugzilla.redhat.com/1024889</a></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

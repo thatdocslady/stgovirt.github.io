@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+External Scheduler Samples &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>External Scheduler Samples</td>
+</tr>
+<tr>
+<th>category</th>
+<td>sla</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>doron, nslomian</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>SLA</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>External Scheduler Samples</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>5</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-10-24</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/External_Scheduler_Samples' target='_blank'>
+External Scheduler Samples
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="external-scheduler-samples">External Scheduler Samples</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>When running or migrating VMs the external scheduler proxy is used to introduce user written logic in to the selection process of hosts . The user can effect the selection process In two ways</p>
+
+<ul>
+  <li>filtering hosts</li>
+  <li>scoring hosts</li>
+</ul>
+
+<p>He can also replace the entire load balancing logic with an entity suitably called</p>
+
+<ul>
+  <li>load balance</li>
+</ul>
+
+<h2 id="filtering">Filtering</h2>
+
+<p>Filtering is referring to the act of disqualifying hosts from being a candidates for running a VM. For instance, a VM count filter may rule out hosts already running a certain number of VMs.</p>
+
+<p>The external scheduler ships with this sample filter doing just that: <a href="/sla/filter-by-vm-count/">Filter By VM Count</a></p>
+
+<h2 id="scoring">Scoring</h2>
+
+<p>Scoring is referring to the act of giving hosts scores representing how well are they suited to run a specific VM. For instance, ksm scoring may give hosts running similar VMs a higher rank. making them more likely to be selected.</p>
+
+<p>Luckily we have just that sample already shipping with the external proxy, this proxy scores based on the similarity of the VMs operating system: <a href="/uncategorized/score-ksm-os/">Score_KSM_OS</a></p>
+
+<h2 id="load-balancing">Load Balancing</h2>
+
+<p>Load balancing is an optional settings telling the engine to periodically check if some hosts are overloaded. If one or more are found the engine will try and migrate VMs from those hosts (one at a time). There are a few default load balancers shipping with Ovirt, but the user can replace them with a custom load balancer of his own. For instance a memory load balancer may move a VMs from hosts that are under memory pressure (for instance due to overcommitting)</p>
+
+<p>An example of this can be found here: <a href="/sla/host-memory-balance/">Host_Memory_balance</a></p>
+
+<p><strong>This includes a complete explanation of every part of the code, I would recommend taking a look at it if you wish to write your own external scheduling component</strong></p>
+
+<category:sla>
+</category:sla>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

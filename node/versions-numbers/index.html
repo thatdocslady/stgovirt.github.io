@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Node versions numbers &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Node versions numbers</td>
+</tr>
+<tr>
+<th>category</th>
+<td>node</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>mburns</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Node</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Node versions numbers</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>2</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-01-12</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Node_versions_numbers' target='_blank'>
+Node versions numbers
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="node-version-numbers">Node Version Numbers</h1>
+
+<p>Conventions for ovirt-node version numbers</p>
+
+<h3 id="rpm-versions">RPM versions</h3>
+
+<ul>
+  <li>The rpm will have a version like: ovirt-node-X-Y.Z.rpm</li>
+  <li>X will be the overall version (like 2.2.0, 2.2.1, 2.3.0)</li>
+  <li>Y is the build number
+    <ul>
+      <li>0 will indicate a build prior to the release of X and will generally be followed by some form of git tag or date stamp for tracking</li>
+      <li>1 will be the first build of the release</li>
+      <li>2+ will be respins for small bug fixes that that need to be made prior to the release of X+1</li>
+    </ul>
+  </li>
+  <li>Z is the distribution, so something like fc16, fc17, etc</li>
+</ul>
+
+<p>Examples:</p>
+
+<pre class="highlight plaintext"><code>  ovirt-node-2.2.1-1.fc16&#x000A;      ^        ^   ^  ^ &#x000A;      |        |   |   --- built for Fedora 16&#x000A;      |        |    --- first official rpm of the 2.2.1 release of ovirt-node&#x000A;      |         --- the 2.2.1 release&#x000A;       --- the ovirt-node package&#x000A;</code></pre>
+
+<h3 id="iso-image-versions">ISO Image Versions</h3>
+
+<ul>
+  <li>Follow the ovirt-node rpm version without the distribution tag (so no .fc16)</li>
+  <li>Append an increasing .# to the end of the ovirt-node rpm version for the iso version</li>
+  <li>The number increases by one for each respin</li>
+  <li>Respins are generally for other package updates or updates that did not require an ovirt-node rpm update.</li>
+</ul>
+
+<p>Example:</p>
+
+<pre class="highlight plaintext"><code>  ovirt-node-image-2.2.1-1.4.iso&#x000A;      ^              ^   ^ ^ &#x000A;      |              |   |  --- 4th image build from the 2.2.1-1 ovirt-node rpm&#x000A;      |              |    --- first official rpm of the 2.2.1 release of ovirt-node&#x000A;      |               --- the 2.2.1 release&#x000A;       --- the ovirt-node-image iso&#x000A;</code></pre>
+
+<p><a href="Category: Node">Category: Node</a></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

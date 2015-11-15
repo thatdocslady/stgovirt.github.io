@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Introducing Entity Search &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Introducing Entity Search</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>lhornyak, mlipchuk, shireesh</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Development/Introducing Entity Search</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>5</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-03-04</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Development/Introducing_Entity_Search' target='_blank'>
+Development/Introducing Entity Search
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="introduction">Introduction</h1>
+
+<p>This article intends to provide step by step instructions for introducing entity search in oVirt for a new entity.</p>
+
+<h1 id="introduce-the-entity-in-database">Introduce the Entity in Database</h1>
+
+<ul>
+  <li>Database tables</li>
+  <li>Stored Procedures</li>
+  <li>DAO interface</li>
+  <li>DAO implementation</li>
+  <li>DAO JUnit tests</li>
+</ul>
+
+<p>The DAO must have a method to fetch list of entities given a query e.g.</p>
+
+<p><code>   </code>*<code>public</code> <code>List</code><glustervolumeentity> `getAllWithQuery(String` `query);`*</glustervolumeentity></p>
+
+<p>You can use the org.ovirt.engine.core.dao.SearchDAO interface, that defines this method.</p>
+
+<h1 id="add-searchtype-entry">Add SearchType entry</h1>
+
+<p>Introduce an entry (say <em>GlusterVolume</em>) for the entity in <em>org.ovirt.engine.core.common.interfaces.SearchType</em></p>
+
+<h1 id="handle-the-new-search-type-in-the-searchquery-command">Handle the new search type in the SearchQuery command</h1>
+
+<ul>
+  <li>Introduce a method to prepare the query for fetching list of entities.</li>
+</ul>
+
+<p>The genericSearch might be useful to use, as follow:
+ '' genericSearch(DbFacade.getInstance().getGlusterVolumeDAO(), true, null); It should be the same as using the following code, but more generic:</p>
+
+<pre class="highlight plaintext"><code>    '' protected List`&lt;GlusterVolumeEntity&gt;` searchGlusterVolumes() {&#x000A;    ''     List`&lt;GlusterVolumeEntity&gt;` returnValue = null;&#x000A;    ''     QueryData2 data = InitQueryData(true);&#x000A;    ''     if (data == null) {&#x000A;    ''         returnValue = new ArrayList`&lt;GlusterVolumeEntity&gt;`();&#x000A;    ''     } else {&#x000A;    ''         returnValue = DbFacade.getInstance().getGlusterVolumeDAO().getAllWithQuery(data.getQuery());&#x000A;    ''     }&#x000A;    ''     return returnValue;&#x000A;    '' }&#x000A;</code></pre>
+
+<ul>
+  <li>
+    <p>Modify the source <em>org.ovirt.engine.core.bll.SearchQuery</em> by adding a switch case for the new search type in method <em>executeQueryCommand</em> and invoke the method created in above step</p>
+
+    <p>   ''case GlusterVolume: {
+     ''        returnValue = searchGlusterVolumes();
+     ''        break;
+     ''    }</p>
+  </li>
+</ul>
+
+<h1 id="changes-in-searchbackend-project">Changes in SearchBackend project</h1>
+
+<p>This code is converted to JavaScript for rendering in browser. Following changes are required:</p>
+
+<h3 id="introduce-a-search-object-for-your-entity">Introduce a Search Object for your entity</h3>
+
+<p>Add an entry in <em>org.ovirt.engine.core.searchbackend.SearchObjects</em></p>
+
+<p><code>   </code><em><code>public</code> <code>static</code> <code>final</code> <code>String</code> <code>GLUSTER_VOLUMES_OBJ_NAME</code> <code>=</code> <code>"VOLUMES";</code></em></p>
+
+<p>Add entity name appended with : as a safe search expression in the init method</p>
+
+<p><code>   </code><em><code>SAFE_SEARCH_EXPR.add(GLUSTER_VOLUMES_OBJ_NAME.toLowerCase()</code> <code>+</code> <code>SEPERATOR);</code></em></p>
+
+<h3 id="search-field-auto-completion">Search field Auto Completion</h3>
+
+<p>Add the entity (in plural) as a valid basic search verb in the constructor of <em>org.ovirt.engine.core.searchbackend.SearchObjectAutoCompleter</em></p>
+
+<p><code>   </code><em><code>mVerbs.put(SearchObjects.GLUSTER_VOLUMES_OBJ_NAME,</code> <code>SearchObjects.GLUSTER_VOLUMES_OBJ_NAME);</code></em></p>
+
+<p>In case you need to filter the entities based on other related entities e.g. Gluster Volumes that belong to a particular Cluster, introduce a Join with that entity in the same constructor.</p>
+
+<p><code>   </code><em><code>addJoin(SearchObjects.GLUSTER_VOLUMES_OBJ_NAME,</code> <code>"cluster_id",</code> <code>SearchObjects.VDC_CLUSTER_OBJ_NAME,</code> <code>"vds_group_id");</code></em></p>
+
+<p>Modify method <em>getRelatedTableName</em> to return the correct table name for your entity.</p>
+
+<pre class="highlight plaintext"><code>     ''else if (StringHelper.EqOp(obj, SearchObjects.GLUSTER_VOLUMES_OBJ_NAME)) {&#x000A;     ''        retval = "gluster_volumes";&#x000A;     ''    }&#x000A;         &#x000A;</code></pre>
+
+<p>Modify method <em>getPrimeryKeyName</em> to return the name of the primary key of your entity table</p>
+
+<pre class="highlight plaintext"><code>     ''else if (StringHelper.EqOp(obj, SearchObjects.GLUSTER_VOLUMES_OBJ_NAME)) {&#x000A;     ''        retval = "id";&#x000A;     ''    }&#x000A;</code></pre>
+
+<p>Modify method <em>getDefaultSort</em> to return the default ordering clause to be used in the SQL query while fetching your entity objects from the database.</p>
+
+<pre class="highlight plaintext"><code>     ''else if (StringHelper.EqOp(obj, SearchObjects.GLUSTER_VOLUMES_OBJ_NAME)) {&#x000A;     ''        retval = "vol_name ASC ";&#x000A;     ''    }&#x000A;         &#x000A;</code></pre>
+
+<p>Modify method <em>getFieldAutoCompleter</em> and introduce an else if for your entity to return an object of the condition field auto completer that you will write for the entity.</p>
+
+<pre class="highlight plaintext"><code>     ''else if (StringHelper.EqOp(obj, SearchObjects.GLUSTER_VOLUMES_OBJ_NAME)) {&#x000A;     ''        retval = new GlusterVolumeConditionFieldAutoCompleter();&#x000A;     ''    }&#x000A;</code></pre>
+
+<p>If you have added a cross reference (join) with another object in the earlier step, modify the method <em>getCrossRefAutoCompleter</em> to return an object of the Cross Reference auto completer that you will write.</p>
+
+<pre class="highlight plaintext"><code>     ''} else if (StringHelper.EqOp(obj, SearchObjects.GLUSTER_VOLUMES_OBJ_NAME)) {&#x000A;     ''        return new GlusterVolumeCrossRefAutoCompleter();&#x000A;     ''    }&#x000A;</code></pre>
+
+<h3 id="entity-condition-field-auto-completer">Entity Condition Field Auto Completer</h3>
+
+<p>Write a new class that extends from <em>BaseConditionFieldAutoCompleter</em>. The job of this class is to provide information about auto completion to be provided for filtering the entities, based on attributes of the entity.</p>
+
+<h4 id="the-constructor">The constructor</h4>
+
+<ul>
+  <li>Add verbs for every attribute on which you want to support filtering</li>
+  <li>Invoke method buildCompletions after setting all verbs.</li>
+  <li>Define the types of every filtering attribute.</li>
+  <li>
+    <p>Add column name of every filtering attribute</p>
+
+    <p>''   public GlusterVolumeConditionFieldAutoCompleter() {
+  ''       super();
+  ''       // Building the basic verbs Dict
+  ''       mVerbs.put("NAME", "NAME");
+  ''       mVerbs.put("TYPE", "TYPE");
+         …
+  ''       // Building the autoCompletion Dict
+  ''       buildCompletions();
+  ''       // Building the types dict
+  ''       getTypeDictionary().put("NAME", String.class);
+  ''       getTypeDictionary().put("TYPE", VOLUME_TYPE.class);
+  ''       …
+  ''       // building the ColumnName Dict
+  ''       mColumnNameDict.put("NAME", "vol_name");
+  ''       mColumnNameDict.put("TYPE", "vol_type");
+  ''       …
+  ''       // Building the validation dict
+  ''       buildBasicValidationTable();
+  ''   }</p>
+  </li>
+</ul>
+
+<p>The "verbs" added here, are the first level of auto-completion. As soon as you type your entity name and press colon (e.g. "Volumes :") in the search text box in the UI, you will get a list of these verbs (along with verbs from the cross reference auto completer, if any), as auto-completion proposals.</p>
+
+<p>The next step is to map every field with what kind of comparisons it supports.</p>
+
+<h4 id="method-getfieldrelationshipautocompleter">Method <em>getFieldRelationshipAutoCompleter</em></h4>
+
+<p>Override this method to return appropriate "condition relation auto completer" for given field. e.g. Return <em>StringConditionRelationAutoCompleter</em> for string fields, <em>NumericConditionRelationAutoCompleter</em> for numeric fields, and so on. This reflects while typing the search string in the UI. As soon as you type the name of a numeric field and press the spacebar, you will see all numeric operators like &lt;, &gt;, =, !=, etc as auto-completion proposals.</p>
+
+<p>The next step is to provide auto-completion for values of these fields. This can be useful if the values must be from a set of predefined values e.g. booleans, flags, enums.</p>
+
+<h4 id="method-getfieldvalueautocompleter">Method <em>getFieldValueAutoCompleter</em></h4>
+
+<p>Override this method to return appropriate "condition value auto completer" for given field. e.g.</p>
+
+<pre class="highlight plaintext"><code>  ''   if (fieldName.equals("status")) {&#x000A;  ''       return new EnumValueAutoCompleter(VOLUME_STATUS.class);&#x000A;  ''   }&#x000A;</code></pre>
+
+<p>In case auto-completion is not required for values of the given field, return null</p>
+
+<p><strong>Note:</strong> If you use <em>EnumValueAutoCompleter</em>, the corresponding enum must provide following two methods:</p>
+
+<pre class="highlight plaintext"><code>  ''   public int getValue();&#x000A;  ''   public static `&lt;enum_name&gt;` forValue(int value);&#x000A;</code></pre>
+
+<h3 id="cross-reference-auto-completer">Cross Reference Auto Completer</h3>
+
+<p>Write a new class that extends <em>SearchObjectsBaseAutoCompleter</em> and add required verbs in the constructor.</p>
+
+<pre class="highlight plaintext"><code>  ''   public GlusterVolumeCrossRefAutoCompleter() {&#x000A;  ''       mVerbs.put(SearchObjects.VDC_CLUSTER_OBJ_NAME, &#x000A;  ''                           SearchObjects.VDC_CLUSTER_OBJ_NAME);&#x000A;  ''       buildCompletions();&#x000A;  ''   }&#x000A;</code></pre>
+
+<p>These verbs will also get added to the list of auto-completion proposals for the entity.</p>
+
+<p>«Other capabilities provided by the cross reference auto completer, if any, to be added»</p>
+
+<h1 id="gwt-xml-entries">GWT xml entries</h1>
+
+<p>Add entries for the newly created auto completer classes to frontend/webadmin/modules/sharedgwt/src/main/java/org/ovirt/engine/SharedGwt.gwt.xml</p>
+
+<pre class="highlight plaintext"><code>  ''   &#x000A;&#x000A; ''       ...&#x000A; ''       &lt;include name="core/searchbackend/GlusterVolumeConditionFieldAutoCompleter.java" /&gt;&#x000A; ''       &lt;include name="core/searchbackend/GlusterVolumeCrossRefAutoCompleter.java" /&gt;&#x000A; ''   &#x000A;</code></pre>
+
+<h1 id="gwt-code">GWT Code</h1>
+
+<p>Following sources need changes in appropriate places to create node(s) for the entity in the system tree, add new tab(s) for the same and link it with the search text box</p>
+
+<ul>
+  <li>org.ovirt.engine.ui.uicommonweb.models.CommonModel</li>
+  <li>org.ovirt.engine.ui.uicommonweb.models.SystemTreeModel</li>
+  <li>New class(es) for the entity tab(s)</li>
+</ul>
+
+<p>«More details to be added if required»</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Working with oVirt Gerrit &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Working with oVirt Gerrit</td>
+</tr>
+<tr>
+<th>category</th>
+<td>documentation</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>abonas, amuller, amureini, asaf, dcaroest, dneary, doron, dougsland, iheim, lpeer, mburns, mkovgan, msalem, ovedo, quaid, rmiddle, roy, sgordon, vered</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Documentation</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Working with oVirt Gerrit</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>62</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2015-06-09</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Working_with_oVirt_Gerrit' target='_blank'>
+Working with oVirt Gerrit
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="working-with-ovirt-gerrit">Working with oVirt Gerrit</h1>
+
+<p>Gerrit is a web based code review system, facilitating online code reviews for projects using the Git version control system.
+Gerrit makes reviews easier by showing changes in a side-by-side display, and allowing inline comments to be added by any reviewer.
+We use Gerrit in the oVirt project in order to review new commits, as it easily enables adding comments, suggestions, ask questions, and etc.
+The following sections are a step-by-step manual to set up a Gerrit environment in your development environment.
+oVirt Gerrit environment is in gerrit.ovirt.org</p>
+
+<h3 id="registering-as-a-user">Registering as a user</h3>
+
+<p>First of all you need to register as a new user to <a href="http://gerrit.ovirt.org">gerrit</a>. You can do that by using any OpenID provider:</p>
+
+<ul>
+  <li>Login page shows Google and Yahoo</li>
+  <li>Any fedora FAS account can login as well via</li>
+</ul>
+
+<p>&lt;username&gt;.id.fedoraproject.org</p>
+
+<p>Once you register, choose your username for the Gerrit system - this is the username you will use later in your SSH configuration: Settings –&gt; HTTP Password</p>
+
+<h3 id="ssh-configuration">SSH configuration</h3>
+
+<h4 id="set-ssh-keys-in-gerrit-settings">Set SSH keys in Gerrit settings</h4>
+
+<ul>
+  <li>
+    <p>On your local machine, create a set of SSH keys (if you don't already have one) via</p>
+
+    <p>ssh-keygen -t rsa
+   </p>
+  </li>
+  <li>Ensure that your private RSA key is in ~/.ssh and that the permissions on the .ssh directory are sufficiently restrictive (typically, the directory .ssh should have permissions 700, and the file .ssh/id_rsa should have the permissions 600).</li>
+  <li>Update via Gerrit settings the SSH public key to allow SSH to Gerrit - in the SSH Public Keys settings, copy and paste the contents of your public key file (typically id_rsa.pub) into the text box shown.</li>
+</ul>
+
+<h4 id="define-gerrit-in-sshconfig">Define Gerrit in ~/.ssh/config</h4>
+
+<pre class="highlight plaintext"><code>  Host gerrit.ovirt.org&#x000A;     HostName gerrit.ovirt.org&#x000A;     Port 29418&#x000A;     User &amp;lt;username&amp;gt;&#x000A;   &#x000A;</code></pre>
+
+<h4 id="change-permissions-to-the-file">Change permissions to the file</h4>
+
+<pre class="highlight plaintext"><code>  chmod 600 ~/.ssh/config&#x000A;   &#x000A;</code></pre>
+
+<h4 id="verify-ssh-configuration">Verify SSH configuration</h4>
+
+<p>In order to verify your SSH configuration, do the following:</p>
+
+<pre class="highlight plaintext"><code>  ssh gerrit.ovirt.org&#x000A;   &#x000A;</code></pre>
+
+<p>if you get this, it is fine:</p>
+
+<pre class="highlight plaintext"><code>  ***    Welcome to Gerrit Code Review    ****&#x000A;   &#x000A;</code></pre>
+
+<h3 id="git-configuration-and-procedures">Git configuration and procedures</h3>
+
+<h4 id="cloning-the-ovirt-engine-repository">Cloning the oVirt-engine repository</h4>
+
+<pre class="highlight plaintext"><code>  git clone gerrit.ovirt.org:ovirt-engine&#x000A;   &#x000A;</code></pre>
+
+<p>For a read-only repo, this can also be done using:</p>
+
+<pre class="highlight plaintext"><code>  #Read-only&#x000A;  git clone git://gerrit.ovirt.org/ovirt-engine&#x000A;   &#x000A;</code></pre>
+
+<h4 id="install-the-change-id-hook">Install the change-ID hook</h4>
+
+<p><strong>You must do this before you commit anything</strong>
+In order to easily track commit changes in Gerrit, each commit must have a change-ID. This change-ID is added automatically via a Git hook. In order to install this hook do the following:</p>
+
+<pre class="highlight plaintext"><code>  cd ovirt-engine&#x000A;  scp -p gerrit.ovirt.org:hooks/commit-msg .git/hooks/&#x000A;</code></pre>
+
+<p><strong>ATTENTION</strong>: All of the ovirt projects require a Signed-off-by (SOB), add the following lines in the end of .git/hooks/commit-msg, after the line "add_ChangeId":</p>
+
+<pre class="highlight plaintext"><code>  SOB=$(git var GIT_AUTHOR_IDENT | sed -n 's/^\(.*&gt;\).*$/Signed-off-by: \1/p')&#x000A;  grep -qs "^$SOB" "$1" || echo "$SOB" &gt;&gt; "$1"&#x000A;</code></pre>
+
+<p><strong>Note</strong>: If you commit something before you do the above, you can add the Change-ID and signed-off-by lines by:</p>
+
+<pre class="highlight plaintext"><code>  git commit --amend -s&#x000A;   &#x000A;</code></pre>
+
+<h4 id="configure-git-personal-settings">Configure git personal settings</h4>
+
+<pre class="highlight plaintext"><code>  git config --global user.name "John Doe"&#x000A;  git config --global user.email johndoe@example.com&#x000A;   &#x000A;</code></pre>
+
+<h4 id="configure-the-commit-template">Configure the commit template</h4>
+
+<pre class="highlight plaintext"><code>  cd ovirt-engine&#x000A;  git config commit.template config/engine-commit-template.txt&#x000A;   &#x000A;</code></pre>
+
+<h4 id="configure-git-commit-spell-check-syntax-highlighting-and-maxwidth">Configure git commit spell check, syntax highlighting and maxwidth</h4>
+
+<pre class="highlight plaintext"><code>  # edit ~/.vimrc&#x000A;  syntax on&#x000A;  plugin indenting on&#x000A;  autocmd Filetype gitcommit spell textwidth=72&#x000A;   &#x000A;</code></pre>
+
+<h4 id="rebase">Rebase</h4>
+
+<pre class="highlight plaintext"><code>  git fetch -v&#x000A;  git rebase origin/master&#x000A;   &#x000A;</code></pre>
+
+<h4 id="push-your-patch-for-review">Push your patch for review</h4>
+
+<h4 id="pushupdate-the-patch-as-a-draft">push/update the patch as a DRAFT</h4>
+
+<pre class="highlight plaintext"><code>  git push gerrit.ovirt.org:ovirt-engine HEAD:refs/drafts/master&#x000A;   &#x000A;</code></pre>
+
+<p>or, assuming you remote repo is origin you could also</p>
+
+<pre class="highlight plaintext"><code>  git push origin HEAD:refs/drafts/master&#x000A;   &#x000A;</code></pre>
+
+<h4 id="push-the-patch-after-it-is-published">push the patch after it is published</h4>
+
+<pre class="highlight plaintext"><code>  git push gerrit.ovirt.org:ovirt-engine HEAD:refs/for/master&#x000A;   &#x000A;</code></pre>
+
+<p>or, assuming you remote repo is origin you could also</p>
+
+<pre class="highlight plaintext"><code>  git push origin HEAD:refs/for/master&#x000A;   &#x000A;</code></pre>
+
+<h4 id="the-same-using-git-review-plugin">the same using git review plugin</h4>
+
+<p>pushing/updating a draft:</p>
+
+<pre class="highlight plaintext"><code>  git review -D -r origin master&#x000A;   &#x000A;</code></pre>
+
+<p>pushing/updating a published patch:</p>
+
+<pre class="highlight plaintext"><code>  git review -r origin master&#x000A;   &#x000A;</code></pre>
+
+<h3 id="track-patch-review-process">Track patch review process</h3>
+
+<p>The patch life cycle process comprises:</p>
+
+<ol>
+  <li>patch checked
+    <ul>
+      <li>draft patch for early reviews</li>
+      <li>verification (Verified+1)</li>
+      <li>maintainer review approval (Code-Review+2)</li>
+      <li>publishing [triggers CI]</li>
+    </ul>
+  </li>
+  <li>CI tests passing (Continuous-Integration+1)</li>
+  <li>merged by maintainer</li>
+</ol>
+
+<h4 id="in-higher-detail">In Higher Detail</h4>
+
+<ul>
+  <li>Anyone can send a patch
+    <ul>
+      <li>Initially a patch should be sent as draft</li>
+    </ul>
+  </li>
+  <li>Code-Review - human code review:</li>
+  <li>A human code review can result in "Code-Review" flag set to:
+    <ul>
+      <li>
+        <ul>
+          <li>+2 - Looks good to me, approved</li>
+          <li>+1 - Looks good to me, but someone else must approve</li>
+          <li>0 - No score</li>
+          <li>-1 - I would prefer that you didn't submit this</li>
+          <li>-2 - Do not submit</li>
+        </ul>
+      </li>
+      <li>Anyone can set Code-Review flag to +1/-1 and comment on the patch. This helps maintainers in reviewing the patches</li>
+      <li>Only maintainer(s) can set Code-Review flag to +2, which is required to commit (submit) it</li>
+    </ul>
+  </li>
+  <li>Verified - human verified
+    <ul>
+      <li>Somebody (can be anyone) needs to confirm they checked the patch works and set "Verified" flag to +1</li>
+      <li>this doesn't have to be the developer</li>
+      <li>this does not have to be done fully manually, but human must verify</li>
+    </ul>
+  </li>
+  <li>automated tests by Continuous Integration:
+    <ul>
+      <li>After humans have:
+        <ul>
+          <li>set Code-Review +2</li>
+          <li>confirmed the patch is ready and has Verified +1</li>
+        </ul>
+      </li>
+      <li>the developer should publish the draft patch:
+        <ul>
+          <li>Visit the patch page with your browser</li>
+          <li>Press on the button "Publish" in the web view of your patch</li>
+        </ul>
+      </li>
+      <li>After "Verified" flag is +1 and the patch is published, CI Runs on patch set updates:
+        <ul>
+          <li>CI sets "Continuous-Integration" flag to:
+            <ul>
+              <li>+1 if the patch passes CI tests</li>
+              <li>-1 if the patch fails CI tests</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>The maintainer(s) can submit (commit) the patch when it has:
+* Code-Review: +2
+    <ul>
+      <li>Verified: +1</li>
+      <li>Continuous-Integration: +1</li>
+    </ul>
+  </li>
+  <li>NACK-ed (-1/-2) patches should not be submitted</li>
+  <li>A submitted patch is automatically merged to the git repository</li>
+  <li>When uploading a new patch set, the contributor should also add a review comment of the changes from previous version, to help reviewers track and review the changes (unless gerrit itself added a comment that a rebase is needed, and in that case no new comment is needed).</li>
+</ul>
+
+<h4 id="submit-your-topic-branch-to-gerrit">Submit your topic branch to gerrit</h4>
+
+<p><a href="http://progit.org/book/ch3-4.html">topic branch</a> is a short-lived branch that you create and use for a single particular feature or related work.</p>
+
+<ul>
+  <li>First, download git-review tool from openstack and copy to your project
+    <ul>
+      <li>git-review is a tool that helps submitting git branches to gerrit for review.</li>
+      <li>URL: <a href="https://github.com/openstack-infra/git-review">https://github.com/openstack-infra/git-review</a></li>
+    </ul>
+
+    <p>  $ git clone https://github.com/openstack-infra/git-review
+    $ cp git-review/git-review project/ </p>
+  </li>
+  <li>
+    <p>Setting git-review:</p>
+
+    <p>git-review, by default, looks for a git remote called gerrit, and submits the current branch to HEAD:refs/for/master at that remote.
+  If the "gerrit" remote does not exist, git-review looks for a file called .gitreview at the root of the repository with information
+  about the gerrit remote. Assuming that file is present, git-review should be able to automatically configure your 
+  repository the first time it is run. </p>
+  </li>
+  <li>
+    <p>Example: project/.git/config</p>
+
+    <p>[remote "gerrit"]
+    url = http://gerrit.ovirt.org/p/project
+    pushurl = ssh://username@gerrit.ovirt.org:29418/project.git
+    fetch = +refs/heads/<em>:refs/remotes/gerrit/</em> </p>
+  </li>
+  <li>
+    <p>Execute git-review setup</p>
+
+    <p>  $project&gt; ./git-review -s </p>
+  </li>
+  <li>
+    <p>Create your local branch feature</p>
+
+    <p>  $project&gt; git checkout -b engine-register </p>
+  </li>
+  <li>
+    <p>Check if you are under branch</p>
+
+    <p>  $project&gt; git branch
+    * engine-register
+    master  </p>
+  </li>
+  <li>
+    <p>Execute the changes and commit it</p>
+
+    <p>  $project&gt; vi source.py
+    $project&gt; git add source.py
+    $project&gt; git commit  </p>
+  </li>
+  <li>
+    <p>Submit the topic branch changes to gerrit</p>
+
+    <p>  $project&gt;./git-review -t engine-register
+    remote: Resolving deltas:   0% (0/3)
+    remote: (W) fba45fe: no files changed, message updated
+    To ssh://user@gerrit.ovirt.org:29418/project.git
+   * [new branch]      HEAD -&gt; refs/for/master/engine-register </p>
+  </li>
+  <li>Now go to the gerrit url for your change and note that the topic field is changed to your topic branch name.</li>
+</ul>
+
+<category:documentation> [Category:Development environment](Category:Development environment) <category:git> [Category:Source code repository](Category:Source code repository)
+</category:git></category:documentation>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

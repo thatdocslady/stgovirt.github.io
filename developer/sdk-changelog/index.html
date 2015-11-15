@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Sdk-changelog &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Sdk-changelog</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>michael pasternak</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Sdk-changelog</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>5</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-11-21</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Sdk-changelog' target='_blank'>
+Sdk-changelog
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="sdk-changelog">Sdk-changelog</h1>
+
+<pre class="highlight plaintext"><code>     * wed Nov  21 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 3.2.0.5-1&#x000A;     - httpsconnection.source_address is not supported on python26 #877897&#x000A;&#x000A;     * Sun Nov  18 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 3.2.0.4-1&#x000A;     - cannot create simultaneous connections to multiple servers #853947&#x000A;     - to StorageDomainVM.import() added action.exclusive parameter&#x000A;     - to StorageDomainTemplate.import() added action.exclusive parameter&#x000A;     - added /current argument to VmCdRom.update() acorrding to #869257&#x000A;     - implemented support for #869257&#x000A;     - added /async argument to VmCdRom.update()&#x000A;     - added /async argument to ClusterNetworks.update()&#x000A;     - removed Disk.update() method&#x000A;     - added parameters overload for adding direct-lun disk&#x000A;     - added vm/template.display.smartcard_enabled&#x000A;     - added correlation_id to VMDisk.activate()/deactivate()&#x000A;     - added correlation_id to VMNic.activate()/deactivate()&#x000A;     - added certificate property to vm&#x000A;     - Disk.lunStorage renamed to Disk.lun_storage&#x000A;&#x000A;     * Thu Nov  1 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 3.2.0.3-1&#x000A;     - do not send /max header on name-based search&#x000A;     - Cannot fetch the disk using /alias #865407&#x000A;     - restrict .get() methods to id/name&#x000A;     - defend against disconnected mode when no proxy cached&#x000A;     - allow persistent_auth via localhost&#x000A;     - rebase to latest api&#x000A;       - gluster action refactored to lowercase&#x000A;       - added StorageDomainTemplate.delete()&#x000A;       - added StorageDomainVM.delete()&#x000A;       - template/vm.display.allow_reconnect renamed to template/vm.display.allow_override&#x000A;       - added TemplateDisk.copy()&#x000A;       - added template.cpu.cpu_tune.vcpu_pin: at Templates.add()/VMs.add()&#x000A;       - added VmPool.allocatevm()&#x000A;       - added size property to VmPools.add()&#x000A;       - from ClusterGlusterVolumes.add() params removed&#x000A;         access_protocols/access_control_list&#x000A;&#x000A;     * Thu Sep  20 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 3.2.0.2-1&#x000A;     - make /filter header global rather than method driven #857018&#x000A;     - to host added max_scheduling_memory property&#x000A;     - throw error when connecting to ssl site using http protocol&#x000A;&#x000A;     * Sun Sep  9 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 3.2.0.1-1&#x000A;     - to Disks.add() added /name arg&#x000A;     - to disk.install() added r/oot_password arg&#x000A;     - to Template.delete() added async/correlation_id args&#x000A;     - to Template.update added documentation&#x000A;     - to HostTags.add() added expect/correlation_id args&#x000A;     - to VM.start added /filter header&#x000A;     - raise NoCertificatesError only when no ca_file&#x000A;     - use cached /filter argument rather than demanding it in methods&#x000A;     - added correlation_id to:&#x000A;       - restore snapshot&#x000A;       - detach HostNIC&#x000A;       - added create/update/delete methods to template.nics&#x000A;     - clean context on disconnect&#x000A;     - add filter parameter to proxy ctr.&#x000A;     - support app. server errors&#x000A;&#x000A;     * Tue Aug  21 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 3.1.0.6-1&#x000A;     - make request error being capable to handle any type of response&#x000A;     - verify credentials before storing proxy in cache&#x000A;     - implement insecure flag #848046&#x000A;     - implement server identity check&#x000A;     - do not require optional params&#x000A;&#x000A;     * Sun Aug  5 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 3.1.0.5-1&#x000A;     - implemented http header support&#x000A;     - added custom_configuration flag to host NIC&#x000A;     - added override_configuration flag for setupnetworks action&#x000A;     - added Correlation-Id header params&#x000A;     - do not allow sending empty headers&#x000A;     - refactor url params documentation&#x000A;     - removed disk.allow_snapshot param documentation&#x000A;     - to network.update() added [@param network.name: string]&#x000A;     - fixed vm/template os.boot documentation&#x000A;&#x000A;     * Mon Jul 9 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 3.1.0.4-1&#x000A;     - fix typo in 'storage' based args documentation&#x000A;     - make 'name' optional in storagedomains.add() to allow importing existent SD&#x000A;     - make api.storagedomains collection searchable&#x000A;     - Host object doesnt expose storage collection #838269&#x000A;     - to DC.delete() method added [@param action.force: boolean]&#x000A;     - api.networks no longer searchable collection&#x000A;     - to create SD added [@param storagdomain.storage.override_luns: boolean]&#x000A;     - VM.delete() no longer requires Action() parameter as mandatory&#x000A;     - SDK should expose api root resource /api #830513&#x000A;     - perform get() request on proxy construction to validate user credentials #827878&#x000A;     - extract error body #827881&#x000A;     - do not show brackets in error.detail&#x000A;     - fix api.capabilities get/list methods&#x000A;&#x000A;     * Mon Jun 25 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 3.1.0.3-1&#x000A;     - to all collection added optional /max/ param. which is signals engine&#x000A;       to override default amount of returned objects with user defined value&#x000A;     - to Disk type added provisioned_size property and removed /type/ (not supported in 3.1)&#x000A;     - to StorageDomainTemplate/VM import candidates params added clone, name&#x000A;       properties for clonging imported object.&#x000A;     - to StorageDomainTemplate/VM import candidates params added &#x000A;       collapse_snapshots property&#x000A;     - to VM added vcpu_pin collection for vm cpu pinning&#x000A;&#x000A;     * Thu Jun 7 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 3.1.0.2-1alpha&#x000A;     - prevent stack overflow caused by comparisons creating infinite loops&#x000A;     - fix error handling regression&#x000A;     - implement support for 3+ period based URLs, new capabilities:    &#x000A;         - vm.snapshot.disks/nics collections support&#x000A;         - host/vm.nics.statistics collections support&#x000A;         - collection/resource.permits support&#x000A;     - rebase to latest api, new capabilities:&#x000A;         - gluster collections/resources&#x000A;         - quota support&#x000A;         - remove template disk (by storage domain)&#x000A;         - vm.payload support&#x000A;         - floating disk support&#x000A;     - add __eqals__ to business entities #782891&#x000A;&#x000A;     * Wed May 16 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 3.1.0.1-1alpha&#x000A;     - Version format refactoring to align with oVirt version schema &#x000A;     - Alpha release&#x000A;&#x000A;     * Thu May 10 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.6.5&#x000A;     - Added session based auth. support&#x000A;     - Infinite recursion when calling non-existent method #808124&#x000A;     - at Network/.add() added [@param network.usages: collection]&#x000A;     - at HostNIC/.add() added [@param hostnic.ip.mtu: int]&#x000A;     - at StorageDomainTemplate/StorageDomainVM.import() added:&#x000A;       [@param action.storagedomain.id|name: string]&#x000A;       [@param action.vm.disks.disk: collection]&#x000A;     - at StorageDomains.add() method added:&#x000A;       Overload 4:&#x000A;         @param storagdomain.name: string&#x000A;         @param storagdomain.host.id|name: string&#x000A;         @param storagdomain.type: string&#x000A;         @param storagdomain.storage.type: string&#x000A;         @param storagdomain.format: boolean&#x000A;         @param storagdomain.storage.path: string&#x000A;         @param storagedomain.storage.vfs_type: string&#x000A;         [@param storagdomain.storage.address: string]&#x000A;         [@param storagdomain.storage.mount_options: string]&#x000A;     - at Template/VM added:&#x000A;       [@param template/vm.display.allow_reconnect: boolean]&#x000A;     -at Template/VM.add() added:&#x000A;       [@param template/vm.display.allow_reconnect: boolean]&#x000A;       [@param template/vm.vm.disks.disk: collection]&#x000A;     -added VMDisk.activate() method&#x000A;     -added VMDisk.deactivate() method&#x000A;     -added VMNic.activate() method&#x000A;     -added VMNic.deactivate() method&#x000A;&#x000A;     * Wed Mar 28 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.6.4&#x000A;     - get rid of papyon dep.&#x000A;     - implement ordereddict&#x000A;     - lower lxml dep.&#x000A;&#x000A;     * Wed Mar 21 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.6.3&#x000A;     - few methods argumets documentation fixes&#x000A;&#x000A;     * Wed Mar 14 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.6.2&#x000A;     - add papyon dependency (needed for odict)&#x000A;&#x000A;     * Tue Mar 13 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.6.1&#x000A;     - rebase to latest api&#x000A;       - refactored storage.create() parameters sets&#x000A;       - added documentation for UPDATE methods arguments&#x000A;       - implemented ars-doc support for collection based arguments&#x000A;       - added vm.delete(Action) signature, to force vm removal&#x000A;       - implemented support for collection based actions&#x000A;       - added setupnetworks action on collection of HostNics&#x000A;       - added prestarted_vms property to vmpool&#x000A;       - added support for new rsdl section describing url parameters&#x000A;       - added 'reboot' property in host (used to disable reboot after installation)&#x000A;       - added 'plugged' property in vm disk (to plug/unplug the disk at runtime)&#x000A;     - implement support for documentation of netsed collection based args&#x000A;     - support actions on collection&#x000A;     - refactor documentation for collection based arguments&#x000A;     - implement support for collection based parameters&#x000A;     - implement url matrix parameters support&#x000A;     - Cluster with NULL DC cannot be attached to DC #782828&#x000A;     - use secured connection if no protocol specified&#x000A;     - add documentation for api proxy arguments&#x000A;     - add debugging capabilities&#x000A;&#x000A;     * Wed Feb 15 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.5&#x000A;     - several minor improvements&#x000A;&#x000A;     * Fri Feb 10 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.4&#x000A;     - added get_product_info() method to entry point&#x000A;&#x000A;     * Tue Feb 7 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.3&#x000A;     - rebased to latest ovirt-engine-api:&#x000A;       - added update() for role resource&#x000A;       - various parameter wrapping improvements&#x000A;&#x000A;     * Thu Jan 19 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.2-1&#x000A;     - use direct URI on get(id=x) rather than search pattern&#x000A;     - extention for #782707&#x000A;&#x000A;     * Mon Jan 16 2012 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.1-1&#x000A;     - add connectivity check and disconnect methods for #781820 `     `[`https://bugzilla.redhat.com/show_bug.cgi?id=781820`](https://bugzilla.redhat.com/show_bug.cgi?id=781820)&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

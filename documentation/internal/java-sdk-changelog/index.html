@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Java-sdk-changelog &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Java-sdk-changelog</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>michael pasternak</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Java-sdk-changelog</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>32</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-12-25</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Java-sdk-changelog' target='_blank'>
+Java-sdk-changelog
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="java-sdk-changelog">Java-sdk-changelog</h1>
+
+<pre class="highlight plaintext"><code>  * Tue  Dec 25 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;`  - 3.4.0.1-1&#x000A;  - to vms.add() added [action.vm.initialization.cloud-init]&#x000A;  - to NIC added OnBoot/BootProtocol properties&#x000A;  - to VersionCaps added a list of supported payload-encodings&#x000A;  - to Step added externalType&#x000A;  - to NIC added vnicProfile and bootProtocol&#x000A;  - to CPU added architecture &#x000A;  - to VnicProfilePermission added delete() method&#x000A;  - to Disk added readOnly&#x000A;  - to VMs.add() added [vm.cpu.architecture], [action.vm.initialization.cloud_init.*] arguments&#x000A;  - to Templates.add() added [template.cpu.architecture], [action.template.initialization.cloud_init.*] arguments&#x000A;  - to UserRoles.add() added permit.id|name arguments&#x000A;  - at VMSnapshot removed preview/undo/commit methods&#x000A;  - to DataCenterClusterGlusterVolumeGlusterBricks added activate/stopmigrate/migrate actions&#x000A;  - to NetworkVnicProfile added Permissions sub-collection&#x000A;  - to Cluster added [cluster.cpu.architecture]&#x000A;  - to DataCenter added Networks sub-collection&#x000A;  - to ClusterGlusterVolumeGlusterBricks added activate method&#x000A;  - to ClusterGlusterVolume added stoprebalance method&#x000A;  - to entry-point API added Permissions collection (for managing system-permissions)&#x000A;  - to host.install() added ssh related arguments&#x000A;  - to template added virtio_scsi.enabled&#x000A;  - to vm added virtio_scsi.enabled&#x000A;  - added ability to attach a disk snapshot to the virtual machine&#x000A;  - to File class added 'content' field&#x000A;  - Payload class now reuses Files instead of own PayloadFile collection&#x000A;&#x000A;  * Wed  Oct 30 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.0.0.19-1&#x000A;  - to host.install() added ssh related arguments&#x000A;  - to template added virtio_scsi.enabled&#x000A;  - to vm added virtio_scsi.enabled&#x000A;  - added ability to attach a disk snapshot to the virtual machine&#x000A;  - to File class added 'content' field&#x000A;  - Payload class now reuses Files instead of own PayloadFile collection&#x000A;&#x000A;  * Wed  Oct 9 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.0.0.18-1&#x000A;  - added fqdn property to GuestInfo&#x000A;  - refine host add()/update() documentation&#x000A;  - to DataCenterStorageDomainDisk added exportDisk() action&#x000A;  - to StorageDomainDisk added exportDisk() action&#x000A;  - to TemplateDisk added exportDisk() action&#x000A;  - to VMDisk added exportDisk() action&#x000A;  - to Disk added exportDisk() action&#x000A;  - update function doesn't have overloading methods #1008176&#x000A;  - setupnetworks doesn't work #1008458&#x000A;  - apache PropertyUtilsBean throws NoSuchMethodException #1007266&#x000A;  - session_timeout parameter doesn't exists in API constructor #1007231&#x000A;&#x000A;  * Wed  Sep 11 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;`  - 1.0.0.17 -1&#x000A;  - VCpuPin renamed to VCpuPin&#x000A;  - Host.getRebootAfterInstallation() returns False (null was expected) #985842&#x000A;  - make all sdk exceptions serializable&#x000A;&#x000A;  * Tue  Sep 3 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;`  - 1.0.0.16 -1&#x000A;  - mvn compile with jdk 1.7&#x000A;&#x000A;  * Tue  Sep 3 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;`  - 1.0.0.15 -1&#x000A;  - added StorageDomainStorageConnection.delete() signature&#x000A;  - added StorageDomainStorageConnection.delete(Boolean async) signature&#x000A;  - added StorageDomainStorageConnections.add(StorageConnection storageconnection) signature&#x000A;  - added StorageDomainStorageConnections.add(StorageConnection storageconnection,&#x000A;                                             String expect, String correlationId) signature&#x000A;  - add ParameterSet descriptions&#x000A;  - implement AutoCloseable interface&#x000A;  - in Cluster added glusterhooks (ClusterGlusterHooks) sub-collection&#x000A;  - in DataCenterCluster added glusterhooks (DataCenterClusterGlusterhooks)&#x000A;    sub -collection&#x000A;  - in StorageDomain added images (StorageDomainImages) sub-collection&#x000A;&#x000A;  * Tue  Aug 13 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;`  - 1.0.0.14 -1&#x000A;  - added VnicProfiles root -collection&#x000A;  - to network added VnicProfiles sub -collection&#x000A;  - to storagedomain added StorageConnections sub-collection&#x000A;  - to VnicProfile added Permission sub -collection&#x000A;  - to network.add()/.updated added [network.profile_required]&#x000A;  - to NICs.add() added new overload with [nic.vnic_profile.id]&#x000A;  - to NIC.update() added new overload with [nic.vnic_profile.id]&#x000A;  - to VMSnapshots.list()/.get() added [String allContent] parameter&#x000A;  - to VMs.add() added new overload based on [vm.initialization.configuration.type|data]&#x000A;  - added root collection StorageConnections&#x000A;  - added [host.override_iptables]&#x000A;  - added [template.cpu_shares]&#x000A;  - added [template.display.single_qxl_pci]&#x000A;  - added [vm.display.single_qxl_pci]&#x000A;  - added [vm.cpu_shares]&#x000A;  - to template added:&#x000A;  - [@param template.console.enabled: boolean] #878459&#x000A;  - to vm added:&#x000A;  - [@param vm.console.enabled: boolean] #878459&#x000A;  - to Cluster added:    &#x000A;    *[@param cluster.comment: string]&#x000A;    *[@param cluster.ballooning_enabled: boolean]&#x000A;    *[@param cluster.tunnel_migration: boolean]&#x000A;  - to Host added:&#x000A;    *[@param host.comment: string]&#x000A;    *[@param host.ssh.port: int]&#x000A;    *[@param host.ssh.fingerprint: string]&#x000A;    *[@param host.ssh.authentication_type: string]&#x000A;    *[@param host.ssh.password: string]&#x000A;    *forceselectspm() action&#x000A;  - to Network added:&#x000A;    *[@param network.comment: string]&#x000A;  - to StorageDomain&#x000A;    *[@param storagedomain.comment: string]&#x000A;  - to Template added:&#x000A;    *[@param template.comment: string]&#x000A;    *[@param template.permissions.clone: boolean]&#x000A;  - to VM added:&#x000A;    *[@param vm.comment: string]&#x000A;    *[@param vm.permissions.clone: boolean]&#x000A;&#x000A;  * Thu  Jul 18 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;`  - 1.0.0.13 -1&#x000A;  - dependencies changes&#x000A;&#x000A;  * Tue  Jul 16 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.0.0.11-1&#x000A;  - added "watchdog" feature #947977&#x000A;  - added "external tasks" feature #872719&#x000A;  - snapshot can persist/restore memory state now #960931&#x000A;&#x000A;   * Thu  Jul 8 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.0.0.10-1&#x000A;   - to cluster.add()/.update() added [trusted_service] property&#x000A;   - implement Secure Socket Layer (SSL) host verification (CA certificate) [1]&#x000A;   - allow nullifying headers via passing NULL as header value&#x000A;    ` [1] `[`http://www.ovirt.org/Java-sdk#Working_with_SSL_.28Secure_Socket_Layer.29`](http://www.ovirt.org/Java-sdk#Working_with_SSL_.28Secure_Socket_Layer.29)&#x000A;&#x000A;    * Fri  Jun 28 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.0.0.9-1&#x000A;    - configure log4j programmatically&#x000A;&#x000A;    * Thu  Jun 25 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.0.0.8-1&#x000A;    - implement support for the /capabilities resource&#x000A;    - implement basic debugging capabilities&#x000A;    - added VMApplications sub-collection&#x000A;    - to datacenter added new field [comment]&#x000A;    - to disk added [sgio] field to enable|disable filtering for the ScsiGenericIo&#x000A;    - to StorageDomain.delete() added storagedomain.host.id|name&#x000A;    - to VmPool added MaxUserVMs property&#x000A;    - to cluster.update() added [cluster.data_center.id]&#x000A;    - to host.fence() added action.fence_type&#x000A;    - to storagedomain.delete() added [storagedomain.format]&#x000A;    - to nic added [nic.custom_properties.custom_property]&#x000A;    - to vm.add(), vm.update() added [vm.memory_policy.guaranteed]&#x000A;&#x000A;    * Thu  June 4 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.0.0.7-1&#x000A;     - updated storagedomain add()/update() docs&#x000A;     - updated tag update() docs&#x000A;     - enable correct generation of Boolean getters/setters to enable Bean Introspection apis&#x000A;       (bollean getters will be prefixed with getX())&#x000A;     - fixed docs for GlusterBricks add|update&#x000A;     - fixed docs for add|update Tag&#x000A;     - added [network.usages.usage] to ClusterNetworks&#x000A;     - in add TemplateNICs, network.id|name is no longer mandatory&#x000A;     - StorageDomainVM can be removed asynchronously now&#x000A;     - removed DataCenterQuota.add|delete (yet not supported)&#x000A;&#x000A;    * Thu  Apr 4 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.0.0.6-1&#x000A;     - added new collection ClusterGlusterVolumeGlusterBrickStatistics&#x000A;     - added new properties to the GlusterBrick&#x000A;     - to vm added cpu.mode&#x000A;     - to host install action added "image" parameter&#x000A;     - ignore case in factory method lookup&#x000A;&#x000A;    * Thu  Mar 7 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.0.0.5-1&#x000A;     - use explicit classloader for JAXBContext&#x000A;     - implement support for (user defined) session authentication&#x000A;     - implement generic JAXBElement generation&#x000A;     - to DataCenterStorageDomain added Disks sub-collection&#x000A;     - to StorageDomain added Disks sub-collection&#x000A;     - to host added display.address property&#x000A;     - to vms.add() added overload for creating vm from snapshot&#x000A;&#x000A;    * Sun  Feb 24 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.0.0.4-1&#x000A;     - implement SSL support (without host verification)&#x000A;     - implement shutdown() to deallocate system resources&#x000A;     - to cluster added tunnel_migration property&#x000A;     - to DataCenter added Clusters sub-collection&#x000A;     - to root collection resource Disk added Permissions sub-collectio&#x000A;     - to root collection resource Disk added Statistic sub-collection&#x000A;     - host can be attached to cluster now either by id or name&#x000A;     - to StorageDomainTemplate added Disks sub-collection&#x000A;     - to StorageDomainVM added Disks sub-collection&#x000A;     - to template.display added keyboard_layout property&#x000A;     - to template added tunnel_migration property&#x000A;     - to vm.display added keyboard_layout property&#x000A;     - to vm added tunnel_migration property&#x000A;     - to VMSnapshot added preview method&#x000A;     - to VMSnapshot added undo method&#x000A;     - to VMSnapshot added commit method&#x000A;&#x000A;    * Wed  Jan 30 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.0.0.3-1&#x000A;     - added persistent authentication support&#x000A;     - added support for the method overloads based on url/headers params&#x000A;     - added delete methods overloads with body as parameters holder&#x000A;     - to host added overrideable [display.address] property&#x000A;     - user can specify own ticket now in vm.ticket() via [action.ticket.value]&#x000A;&#x000A;    * Wed  Jan 16 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.0.0.2-1&#x000A;     - in vm/vmnic device property renamed to reportedDevice&#x000A;     - to host added libvirtVersion&#x000A;     - addresses an issue when API constructor when NULLs used as parameters&#x000A;&#x000A;    * Tue Jan  15 2013 Michael Pasternak `&lt;mpastern@redhat.com&gt;` - 1.0.0.1-1&#x000A;     - implement parametrized list() methods&#x000A;     - events can be added now (user defined events)&#x000A;     - events can be removed now&#x000A;     - host can be added now by using cluster.name (not only cluster-id)&#x000A;     - NIC now has "linked" property&#x000A;     - NIC now has "plugged" property&#x000A;     - VM has now ReportedDevices sub-collection&#x000A;     - VMNIC has now ReportedDevices sub-collection&#x000A;     - to host add/update added power_management.agents parameter&#x000A;     - to disk added permissions sub-collection&#x000A;     - to PowerManagement added Agents collection&#x000A;     - to VMDisk added move() action&#x000A;     - to host added hooks sub-collection&#x000A;     - to cluster added threads_as_cores property&#x000A;     - to host added hardwareInformation property&#x000A;     - to host added OS property&#x000A;     - added force flag to the host.delete() method&#x000A;     - added host.power_management.pm_proxy sub-collection&#x000A;     - added permissions sub-collection to the network&#x000A;     - added search capabilities to api.networks collection&#x000A;     - added deletion protection support to template/vm via .delete_protected property&#x000A;</code></pre>
+
+<p><code>   Author: Michael Pasternak </code><a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#112;&#097;&#115;&#116;&#101;&#114;&#110;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#109;&#112;&#097;&#115;&#116;&#101;&#114;&#110;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a>
+         Date:   Sun Dec 2 11:05:26 2012 +0200
+         Initial Import</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Vdsm Coding Guidelines &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Vdsm Coding Guidelines</td>
+</tr>
+<tr>
+<th>category</th>
+<td>vdsm</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>adahms, danken, dougsland</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Vdsm Coding Guidelines</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>6</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-07-31</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Vdsm_Coding_Guidelines' target='_blank'>
+Vdsm Coding Guidelines
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h2 id="vdsm-coding-guidelines">VDSM Coding Guidelines</h2>
+
+<ul>
+  <li>VDSM is written primarily in Python, and its coding style should follow the best practices of Python coding unless otherwise declared.</li>
+  <li><a href="http://legacy.python.org/dev/peps/pep-0008/">PEP8</a> is holy.</li>
+  <li>API calls and arguments are mixedCased, but new internal modules should use underscore_separated_names.</li>
+  <li>
+    <p>Imports should be grouped in the following order:</p>
+
+    <ol>
+      <li>
+        <p>Standard library imports</p>
+      </li>
+      <li>
+        <p>Related third party imports</p>
+      </li>
+      <li>
+        <p>Local application-specific or library-specific imports You should put a blank line between each group of imports. <a href="http://legacy.python.org/dev/peps/pep-0008/#imports">More info about import? See PEP8 imports</a></p>
+      </li>
+    </ol>
+  </li>
+  <li>Class names are in CamelCase.</li>
+  <li>All indentation is made of the space characters. Tabs are evil. In makefiles, however, tabs are obligatory.</li>
+  <li>White space between code stanzas are welcome. They help to create breathing while reading long code. However, splitting stanzas into helper functions could be even better.</li>
+  <li>
+    <p>Let logging method do the formatting for you:</p>
+
+    <p>logging.debug('hello %s', 'world')</p>
+  </li>
+</ul>
+
+<p>Rather than:</p>
+
+<pre class="highlight plaintext"><code>  logging.debug('hello %s' % 'world')&#x000A;</code></pre>
+
+<ul>
+  <li>
+    <p>try-except blocks should be tiny (if existing at all), and the caught exception should be the narrowest possible. Note the following code:</p>
+
+    <p>try:
+    code_that_may_raise
+  except Exception:
+    log</p>
+  </li>
+</ul>
+
+<p>Code such as the above basically means "I do not care if code_that_may_raise fails or succeeds". If this is the case, why try run that code at all?</p>
+
+<ul>
+  <li>Swallowing an exception is evil, but if you have to do it, log it.</li>
+  <li>Long if-elif should end with an <code>else:</code> clause. <code>else: pass</code> is perfectly acceptable because it tells the reader of the code, "yes, I thought of this case, and we should do nothing when we get to it".</li>
+  <li>Configurables should be avoided. The code should do the "right thing" and not expect the end user to tweak vdsm.conf on each of their machines.</li>
+</ul>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

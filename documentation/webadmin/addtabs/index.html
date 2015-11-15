@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+AddTabs &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>AddTabs</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>derez, ecohen, gchaplik</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Documentation/webadmin/AddTabs</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>7</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-02-07</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Documentation/webadmin/AddTabs' target='_blank'>
+Documentation/webadmin/AddTabs
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="add-tabs">Add Tabs</h1>
+
+<h2 id="webadmin---tabs">Webadmin - Tabs</h2>
+
+<h3 id="summary">Summary</h3>
+
+<p>A short explanation on how to add tabs in the oVirt webadmin website.</p>
+
+<h3 id="owner">Owner</h3>
+
+<ul>
+  <li>Name: <span class='broken-link link-mediawiki' data-href='User:gchaplik' title='Special MediaWiki link: original pointed to: User:gchaplik'> Gilad Chaplik</span></li>
+  <li>Email: <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#103;&#099;&#104;&#097;&#112;&#108;&#105;&#107;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#103;&#099;&#104;&#097;&#112;&#108;&#105;&#107;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a></li>
+</ul>
+
+<h3 id="detailed-description">Detailed Description</h3>
+
+<p>The webadmin is based on the MVP framework, where:</p>
+
+<ul>
+  <li>Models: are the uicommonweb project.</li>
+  <li>Views: webadmin project (*View.java).</li>
+  <li>Presenters: webadmin project (*Presenter.java).</li>
+</ul>
+
+<p>Every tab consists of this trio.</p>
+
+<h4 id="tab-model">Tab Model</h4>
+
+<p>The base model of the project is the CommonModel (resides in uicommonweb project). the InitItems() method initializes all the models that are presented as main tabs. As you can see you ought to create a *ListModel class that is the model of the tab.</p>
+
+<ul>
+  <li>ListModel class inherits from ListWithDetailsModel and implements ISupportSystemTreeContext.</li>
+</ul>
+
+<p>ListWithDetailsModel is in charge of adding sub tabs to the main tab, and ISupportSystemTreeContext add the tree navigation related functionality. In ListWithDetailsModel, SyncSearch is the method that is invoked for fetching the business entities from the server and setting the items accordingly (SetItems method).</p>
+
+<h6 id="create-a-dialog">Create a dialog</h6>
+
+<p>First add a uicommand associated with the dialog (UICommand). In the uicommand c'tor, set the "target" parameter as the class instance which contains the ExecuteCommand() method that will be triggered upon executing it (i.e. invoking its "Execute" method).</p>
+
+<p>E.g:</p>
+
+<pre class="highlight plaintext"><code>         setEditCommand(new UICommand("Edit", this));&#x000A;</code></pre>
+
+<p>it will be invoked in:</p>
+
+<pre class="highlight plaintext"><code>         @Override&#x000A;         public void ExecuteCommand(UICommand command)&#x000A;         {&#x000A;                 super.ExecuteCommand(command);&#x000A;                 &#x000A;                 ....&#x000A;                 else if (command == getEditCommand())&#x000A;                 {&#x000A;                         Edit();&#x000A;                 }&#x000A;                 ...&#x000A;         }&#x000A;</code></pre>
+
+<p>For the action availability, create a method for it that will be called in the override method of OnSelectedItemChanged:</p>
+
+<pre class="highlight plaintext"><code>         @Override&#x000A;         protected void OnSelectedItemChanged()&#x000A;         {&#x000A;                 super.OnSelectedItemChanged();&#x000A;                 UpdateActionAvailability();&#x000A;         }&#x000A;</code></pre>
+
+<p>and then you can disable the action according the status of the model:</p>
+
+<pre class="highlight plaintext"><code>         private void UpdateActionAvailability()&#x000A;         {&#x000A;                 getEditCommand().setIsExecutionAllowed(getSelectedItem() != null &amp;&amp; items.size() == 1);&#x000A;                 ...&#x000A;</code></pre>
+
+<p>(This means that the "edit" command will be enabled only when there is only one item selected)</p>
+
+<p>You can get the selected item by calling getSelectedItem().</p>
+
+<p>To create a dialog, you need to create a model for it, named *Model (e.g. HostModel). When the Edit command is executed, instantiate the relevant model and set the Window property accordingly. In the following example, we are instantiating the DataCenterModel:</p>
+
+<pre class="highlight plaintext"><code>         public void Edit()&#x000A;         {&#x000A;                 storage_pool dataCenter = (storage_pool)getSelectedItem();&#x000A;                 &#x000A;                 if (getWindow() != null)&#x000A;                 {&#x000A;                         return;&#x000A;                 }&#x000A;                 DataCenterModel model = new DataCenterModel();&#x000A;                 setWindow(model);&#x000A;                 ...&#x000A;</code></pre>
+
+<p>The setWindow method will "open" the dialog (model wise) - an event will be raised for the presenter to open a new window in the view.</p>
+
+<p>Add to the model UICommands for closing the dialog and/or submitting something to the server. In the following example, we add a UICommand for saving the object ("OnSave") and another one for canceling the operation ("Cancel"):</p>
+
+<pre class="highlight plaintext"><code>                 ....&#x000A;                 UICommand onSaveCommand = new UICommand("OnSave", this);&#x000A;                 onSaveCommand.setTitle("OK");&#x000A;                 onSaveCommand.setIsDefault(true);&#x000A;                 model.getCommands().add(onSaveCommand);&#x000A;                 UICommand cancelCommand = new UICommand("Cancel", this);&#x000A;                 cancelCommand.setTitle("Cancel");&#x000A;                 cancelCommand.setIsCancel(true);&#x000A;                 model.getCommands().add(cancelCommand);&#x000A;         }&#x000A;</code></pre>
+
+<p>As I mentioned earlier, the command will be triggered in the ExecuteCommand method override of the class that passed as a parameter to the UICommand constructor:</p>
+
+<pre class="highlight plaintext"><code>         @Override&#x000A;         public void ExecuteCommand(UICommand command)&#x000A;         {&#x000A;                 super.ExecuteCommand(command);&#x000A;                 &#x000A;                 ....&#x000A;                 else if (command.getName == "OnSave")&#x000A;                 {&#x000A;                         onSave();&#x000A;                 }&#x000A;                         else if (command.getName == "cancel")&#x000A;                 {&#x000A;                         cancel();&#x000A;                 }&#x000A;                 ...&#x000A;         }&#x000A;</code></pre>
+
+<p>In order to "close" the popup (again - model wise) you need to set the window property to null:</p>
+
+<pre class="highlight plaintext"><code>         void cancel()&#x000A;         {&#x000A;                 setWindow(null);&#x000A;         }&#x000A;</code></pre>
+
+<p>in onSave method get the window model by getWindow():</p>
+
+<pre class="highlight plaintext"><code>         public void onSave()&#x000A;         {&#x000A;                 DataCenterModel model = (DataCenterModel)getWindow();&#x000A;                 &#x000A;                 if (!model.Validate())&#x000A;                 {&#x000A;                         return;&#x000A;                 }&#x000A;</code></pre>
+
+<p>Within the dialog model class (e.g. HostModel), use EntityModel and ListModel (represent a list/dropdown) (there is a binding mechanism for them); the value property is get/setEntiy and get/setItems respectively:</p>
+
+<pre class="highlight plaintext"><code>         private EntityModel privateName;&#x000A;         public EntityModel getName()&#x000A;         {&#x000A;                 return privateName;&#x000A;         }&#x000A;         &#x000A;         private void setName(EntityModel value)&#x000A;         {&#x000A;                 privateName = value;&#x000A;         }&#x000A;         &#x000A;         ..&#x000A;         public constructor() {&#x000A;         ..&#x000A;                 setName(new EntityModel());&#x000A;                 getName().setEntity("value as string");&#x000A;         ...&#x000A;         }&#x000A;</code></pre>
+
+<p>These entities contain event for changing (getEntityChangedEvent(), getItemsChangedEvent()), other properties like visibility (set/getIsAvailable()), enabled (set/getIsChangable()), Validation (ValidateEntity(new IValidation[] { new NotEmptyValidation(), tempVar, tempVar2 });, getIsValid()) and more.</p>
+
+<h4 id="tab-presenter--view">Tab Presenter &amp; View</h4>
+
+<h5 id="create-a-tab">Create a Tab</h5>
+
+<h6 id="tab-presenter">Tab Presenter</h6>
+
+<p>Create a MainTab*Presenter.java class as your tab presenter (e.g. MainTabHostPresenter.java)</p>
+
+<pre class="highlight plaintext"><code>         public class MainTabVolumePresenter extends AbstractMainTabWithDetailsPresenter`&lt;GlusterVolume, VolumeListModel, MainTabVolumePresenter.ViewDef, MainTabVolumePresenter.ProxyDef&gt;` {&#x000A;</code></pre>
+
+<p>in the generics supply your entity class (GlusterVolume, VDS), model class (VolumeListModel, HostListModel), and the intefaces that the GWTP enforce (ViewDef &amp; ProxyDef)</p>
+
+<pre class="highlight plaintext"><code>         @ProxyCodeSplit&#x000A;         @NameToken(ApplicationPlaces.volumeMainTabPlace)&#x000A;         public interface ProxyDef extends TabContentProxyPlace`&lt;MainTabVolumePresenter&gt;` {&#x000A;         }&#x000A;         public interface ViewDef extends AbstractMainTabWithDetailsPresenter.ViewDef`&lt;GlusterVolume&gt;` {&#x000A;         }&#x000A;</code></pre>
+
+<p>Within that class supply a static method that insert it to the TabContainer:</p>
+
+<pre class="highlight plaintext"><code>         @TabInfo(container = MainTabPanelPresenter.class)&#x000A;         static TabData getTabData(ClientGinjector ginjector) {&#x000A;                 return new ModelBoundTabData(ginjector.getApplicationConstants().volumeMainTabLabel() //the label of the tab&#x000A;                         , 4, //the order of the tab in the container&#x000A;                         ginjector.getMainTabVolumeModelProvider()); // the data provider of the tab&#x000A;         }&#x000A;</code></pre>
+
+<p>Implement other method of the presenter (also create an event class for the tab, e.g. VolumeSelectionChangeEvent, pretty straight forward):</p>
+
+<pre class="highlight plaintext"><code>         @Override&#x000A;         protected void fireTableSelectionChangeEvent() {&#x000A;                 VolumeSelectionChangeEvent.fire(this, getSelectedItems()); //create a class *SelectionChangeEvent.java)&#x000A;         }&#x000A;&#x000A;         @Override&#x000A;         protected PlaceRequest getMainTabRequest() {&#x000A;                 return new PlaceRequest(ApplicationPlaces.volumeMainTabPlace);&#x000A;         }&#x000A;         @Override&#x000A;         protected PlaceRequest getDefaultSubTabRequest() {&#x000A;                 return new PlaceRequest(ApplicationPlaces.volumeGeneralSubTabPlace); //the sub tab default tab&#x000A;         }&#x000A;</code></pre>
+
+<h6 id="default-tab">Default Tab</h6>
+
+<p>In SystemModule.java set the default place to be the main tab that you want to be displayed on startup (e.g. hostMainTabPlace)</p>
+
+<pre class="highlight plaintext"><code>          bindConfiguration() {&#x000A;                   bindConstant().annotatedWith(DefaultLoginSectionPlace.class).to(ApplicationPlaces.loginPlace);&#x000A;                   bindConstant().annotatedWith(DefaultMainSectionPlace.class).to(ApplicationPlaces.hostMainTabPlace);&#x000A;                   bind(ApplicationConstants.class).in(Singleton.class);&#x000A;</code></pre>
+
+<p>And another enum item (enum ApplicationPlaces) for your new place link the enum item to the tab presenter:</p>
+
+<pre class="highlight plaintext"><code>          @ProxyCodeSplit&#x000A;          @NameToken(ApplicationPlaces.hostMainTabPlace)&#x000A;          public interface ProxyDef extends TabContentProxyPlace`&lt;MainTabHostPresenter&gt;` {&#x000A;          }&#x000A;</code></pre>
+
+<h6 id="view">View</h6>
+
+<h6 id="gin">gin</h6>
+
+<p>Add to gin/ManagedComponent.java the proxy to get the tab presenter, and also the proxy to get the model linkage (ModelProvider.java):</p>
+
+<pre class="highlight plaintext"><code>          AsyncProvider`&lt;MainTabVolumePresenter&gt;` getMainTabVolumePresenter();&#x000A;          &#x000A;          MainModelProvider`&lt;GlusterVolume, VolumeListModel&gt;` getMainTabVolumeModelProvider();&#x000A;</code></pre>
+
+<p>Bind the view and model:</p>
+
+<pre class="highlight plaintext"><code>         bindPresenter(MainTabVolumePresenter.class,&#x000A;                 MainTabVolumePresenter.ViewDef.class,&#x000A;                 MainTabVolumeView.class,&#x000A;                 MainTabVolumePresenter.ProxyDef.class);&#x000A;</code></pre>
+
+<p>Create a new Module for your new tab (*Module.java, e.g. HostModule.java): implement the protected methods getModelPopup(1) &amp; getConfirmModelPopup(1), in order to open other sets of popup when invoking the Window/ConfirmWindow properties:</p>
+
+<pre class="highlight plaintext"><code>         @Provides&#x000A;         @Singleton&#x000A;         public MainModelProvider`&lt;GlusterVolume, VolumeListModel&gt;` getVolumeListProvider(ClientGinjector ginjector) {&#x000A;                 return new MainTabModelProvider`&lt;GlusterVolume, VolumeListModel&gt;`(ginjector, VolumeListModel.class) {&#x000A;                 @Override&#x000A;                 protected AbstractModelBoundPopupPresenterWidget`&lt;? extends Model, ?&gt;` getModelPopup(UICommand lastExecutedCommand) {&#x000A;                         return super.getModelPopup(lastExecutedCommand);&#x000A;                 }&#x000A;&#x000A;                 @Override&#x000A;                 protected AbstractModelBoundPopupPresenterWidget`&lt;? extends ConfirmationModel, ?&gt;` getConfirmModelPopup(UICommand lastExecutedCommand) {&#x000A;                         return super.getConfirmModelPopup(lastExecutedCommand);&#x000A;                 }&#x000A;         };&#x000A;</code></pre>
+
+<p>You can get the Model class by calling getModel().</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

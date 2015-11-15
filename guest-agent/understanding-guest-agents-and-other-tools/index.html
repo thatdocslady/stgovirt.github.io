@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Understanding Guest Agents and Other Tools &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Understanding Guest Agents and Other Tools</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>bobdrad, gianluca, nkesick, sven, vfeenstr</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Understanding Guest Agents and Other Tools</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>41</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2015-01-18</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Understanding_Guest_Agents_and_Other_Tools' target='_blank'>
+Understanding Guest Agents and Other Tools
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="understanding-guest-agents-and-other-tools">Understanding Guest Agents and Other Tools</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>There are three tools which together can provide the best experience when using a virtual machine with oVirt.</p>
+
+<ul>
+  <li>oVirt Guest Agent - Recommended</li>
+  <li>VirtIO Drivers - Recommended</li>
+  <li>Spice Drivers - Recommended if you use the Spice console</li>
+</ul>
+
+<h2 id="agents">Agents</h2>
+
+<h3 id="ovirt-guest-agent">oVirt Guest Agent</h3>
+
+<p>The oVirt Guest Agent provides information, notifications, and actions between the oVirt web interface and the guest. A more detailed description can be found at <a href="/vdsm/guest-agent/">Guest Agent</a>. The agent provides the Machine Name, Operating System, IP Addresses, Installed Applications, Network and RAM usage and others details to the web interface. The agent also provides Single Sign On so a authenticated user to the web interface does not need to authenticate again when connected to a VM.</p>
+
+<h3 id="spice-agent">Spice Agent</h3>
+
+<p>The Spice agent works with the Spice protocol to offer a better guest console experience. The Spice console can still be used without the Spice Agent. With the Spice agent installed the following features are enabled:</p>
+
+<ul>
+  <li>Copy &amp; Paste of text and images between the guest and client machine</li>
+  <li>Automatic adjustment of resolution when the client screen changes - e.g. if you make the Spice console full screen the guest resolution will adjust to match it rather than letterboxing.</li>
+  <li>Better mouse integration - The mouse can be captured and released without needing to click inside the console or press keys to release it. The performance of mouse movement is also improved.</li>
+</ul>
+
+<h2 id="drivers">Drivers</h2>
+
+<h3 id="virtio-drivers">VirtIO Drivers</h3>
+
+<p>The VirtIO drivers provide a number of interfaces to guests. Further information can be found at <a href="http://www.linux-kvm.org/page/Virtio">linux-kvm.org</a></p>
+
+<p>The drivers include support for</p>
+
+<ul>
+  <li>VirtIO Serial - Used for communication with oVirt Management</li>
+  <li>VirtIO SCSI - Used for communication with virtual SCSI disks</li>
+  <li>VirtIO Network - Used for communication with physical and virtual networks</li>
+  <li>Memory Ballooning - Used for freeing memory so that it can be made available to other VMs.</li>
+</ul>
+
+<p>VirtIO is built into the Linux kernel so no additional installation is required for Linux VMs with recent kernels (2.6.35 and newer). For Windows VMs the drivers must be installed. The VirtIO drivers are available on an <a href="http://alt.fedoraproject.org/pub/alt/virtio-win/latest/">ISO from Fedora</a> for easy installation to guests at run time and install time. Without the VirtIO drivers a Windows based VM can still function but it requires a IDE based virtual hard drive and e1000 or rtl8139 network devices which may not be optimal.</p>
+
+<h2 id="availability--install-instructions">Availability &amp; Install Instructions</h2>
+
+<h3 id="windows-guests">Windows Guests</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><a href="/howto/create-a-windows-xp-virtual-machine/">Win XP</a></td>
+      <td><a href="/howto/create-a-windows-7-virtual-machine/">Win 7</a></td>
+      <td><a href="/howto/create-a-windows-8-virtual-machine/">Win8</a></td>
+      <td><a href="/howto/create-a-windows-2003-virtual-machine/">Server 2003/R2</a></td>
+      <td><a href="/howto/create-a-windows-2008-virtual-machine/">Server 2008/R2</a></td>
+      <td><a href="/howto/create-a-windows-2012-virtual-machine/">Server 2012/R2</a></td>
+    </tr>
+    <tr>
+      <td>oVirt Guest Agent</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>VirtIO Drivers</td>
+      <td><a href="/howto/create-a-windows-xp-virtual-machine/#VirtIO">Yes(1)</a></td>
+      <td><a href="/howto/create-a-windows-7-virtual-machine/#Drivers">Yes</a></td>
+      <td><a href="/howto/create-a-windows-8-virtual-machine/#Drivers">Yes</a></td>
+      <td><a href="/howto/create-a-windows-2003-virtual-machine/#VirtIO">Yes(1)</a></td>
+      <td><a href="/howto/create-a-windows-2008-virtual-machine/#VirtIO">Yes</a></td>
+      <td><a href="/howto/create-a-windows-2012-virtual-machine/#VirtIO">Yes</a></td>
+    </tr>
+    <tr>
+      <td>Spice Drivers</td>
+      <td><a href="/howto/create-a-windows-xp-virtual-machine/#Graphics">Yes</a></td>
+      <td><a href="/howto/create-a-windows-7-virtual-machine/#Graphics">Yes</a></td>
+      <td>No(2)</td>
+      <td><a href="/howto/create-a-windows-2003-virtual-machine/#Graphics">Yes</a></td>
+      <td><a href="/howto/create-a-windows-2008-virtual-machine/#Graphics">Yes</a></td>
+      <td>No(2)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>(1) XP Does not support VirtIO-SCSI<a href="https://bugzilla.redhat.com/show_bug.cgi?id=1043198">1</a></em></p>
+
+<p>''(2) The spice drivers currently work with Windows 7 and below. ''</p>
+
+<h3 id="linux-guests">Linux Guests</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><a href="/howto/create-a-fedora-virtual-machine/">Fedora</a></td>
+      <td>RHEL</td>
+      <td>CentOS</td>
+      <td><a href="/howto/create-a-ubuntu-virtual-machine/">Ubuntu</a></td>
+      <td>Debian</td>
+      <td>openSuSE</td>
+      <td>SuSE Linux Enterprise</td>
+    </tr>
+    <tr>
+      <td>oVirt Guest Agent</td>
+      <td><a href="/howto/install-the-guest-agent-in-fedora/">Yes</a></td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td><a href="/feature/virt/guestagentubuntu/">Yes</a></td>
+      <td><a href="/howto/install-the-guest-agent-in-debian/">Yes</a></td>
+      <td><a href="/feature/virt/guestagentopensuse/">Yes</a></td>
+      <td><a href="/feature/virt/guestagentsles/">Yes</a></td>
+    </tr>
+    <tr>
+      <td>VirtIO Drivers</td>
+      <td>Built-in</td>
+      <td>Built-in</td>
+      <td>Built-in</td>
+      <td>Built-in</td>
+      <td>Built-in</td>
+      <td>Built-in</td>
+      <td>Built-in</td>
+    </tr>
+    <tr>
+      <td>Spice Agent</td>
+      <td><a href="/howto/install-the-spice-guest-agent/">Yes</a></td>
+      <td><a href="/howto/install-the-spice-guest-agent/">Yes</a></td>
+      <td><a href="/howto/install-the-spice-guest-agent/">Yes</a></td>
+      <td><a href="/howto/install-the-spice-guest-agent/">Yes</a></td>
+      <td><a href="/howto/install-the-spice-guest-agent/">Yes</a></td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

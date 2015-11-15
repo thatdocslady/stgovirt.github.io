@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+HSM service stand alone &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>HSM service stand alone</td>
+</tr>
+<tr>
+<th>category</th>
+<td>vdsm</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>sming</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Vdsm</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>HSM service stand alone</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>11</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-11-20</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/HSM_service_stand_alone' target='_blank'>
+HSM service stand alone
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="hsm-service-stand-alone">HSM service stand alone</h1>
+
+<p>VDSM storage service stand alone(HSM service standalone)</p>
+
+<p>The VDSM service exposes a set of node level APIs to the virtualization manager for managing KVM virtual machine life cycle and storage images for these virtual machines. Among these APIs, storage image APIs are implemented on NFS file systems, block devices, gluster file system, &amp;etc. Decoupling the storage image service from VDSM service will make the VDSM service more modular. Also an opportunity is provided for other virtualization stacks to leverage this modular storage service(HSM service). Other virtulization stacks may include OpenStack's glance, cinder projects&amp;etc.</p>
+
+<p>To make the HSM service stand alone, VDSM service will be re-factored like these. The VDSM service will keep the same APIs as before to oVirt engine and other node level API consumers. HSM service starts as an stand-alone XML-RPC service provider to the VDSM service. Also it is negotiable to support other bindings like REST API, however XML-RPC binding is the initial proposal here. HSM service will start as a stand alone service and export the XML-RPC APIs by a well known port.</p>
+
+<pre class="highlight plaintext"><code>  I) VDSM service opens the connection to HSM service.  If the open fails, it will fall back to the legacy way without HSM standalone service.&#x000A;    Like these:&#x000A;  class APIBase(object)&#x000A;       def __init__(self):&#x000A;           cli = hsm.ServiceProxy(hsm_proxy_server)&#x000A;   &#x000A;           if cli:  &lt;---HSM standalone service exists&#x000A;              self._irs = cli&#x000A;           else:  &lt;---fall back to the legacy way&#x000A;              self._cif = clientIF.getInstance()&#x000A;              self._irs = self._cif.irs&#x000A;              &#x000A;       &#x000A;</code></pre>
+
+<p>II) superVDSM service will serve both VDSM service and HSM service</p>
+
+<p>III) Two-mode task manager in VDSM service and HSM service will be introduced. So the task manager embedded in HSM service can operate in two modes, transparent mode and non-transparent mode. In transparent mode, all of the tasks under it should be transparent to the task manager in itself and the tasks will be managed by the up-layer manager in fact. In non-transparent mode, the task manager will manage the tasks in it as before. In VDSM service side, the existing task manager in VDSM service will configure the task manager embedded in HSM service to be in transparent mode and manage the tasks indirectly in HSM service. For other virtualization stack cases, they don't have similar task managers in them before, the task manager embedded in HSM service will be configured to non-transparent. That means all the tasks in HSM service are actually controlled by the manager in itself.</p>
+
+<p>IV) log service will be cloned to serve both VDSM and HSM service.</p>
+
+<p>V)The configuration parameters in vdsm.conf should be pull out to another hsm.conf file. And all VDSM process should not read hsm.conf directly. If it is necessary to get the HSM configurations, an API will be added into VDSM process for hsm configuration querying</p>
+
+<pre class="highlight plaintext"><code>     An example, [irs] section in vdsm.conf should be pulled out into hsm.conf&#x000A;</code></pre>
+
+<p>VI) All of the HSM files should be self contained and will be packaged into another RPM package different from VDSM package.</p>
+
+<p>VII) All of the python modules shared by both VDSM service and HSM service should go into python site-packages directory which is like /usr/lib/python2.7/site-packages/vdsm Now, task.py doesn't sit in this directory, we should fix it in this proposal.</p>
+
+<category:vdsm>
+</category:vdsm>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

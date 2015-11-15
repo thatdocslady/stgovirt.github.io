@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Download &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-haml'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='active nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Download</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>bproffitt, dneary, knesenko, mburns, sandrobonazzola, theron</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Download</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>60</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2015-01-21</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Download' target='_blank'>
+Download
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<div class='row'>
+<div class='col-md-7'>
+<h1 id="ovirt-deployment-options">oVirt Deployment Options</h1>
+
+<p>oVirt is a virtual datacenter manager that delivers powerful management of multiple virtual machines on multiple hosts. Using KVM and libvirt, oVirt can be installed on Fedora, CentOS, or Red Hat Enterprise Linux hosts to set up and manage your virtual data center.</p>
+
+<p>If you are absolutely new to oVirt, try our <a href="/integration/live/">Live version</a> where you can test-drive oVirt on CentOS without installing it on your machine.</p>
+
+<p>If you have some knowledge of installing packages on Linux, you can install <a href="#Install_oVirt">oVirt</a> directly on a host machine.</p>
+
+<p>Experienced users can also compile from source, using the guides for the <a href="/engine/engine-development-environment/">oVirt Engine</a> and <a href="/node/building/">oVirt Node</a>.</p>
+</div>
+<div class='col-md-5 well'>
+<h2>System Requirements</h2>
+<div class='row-fluid'>
+<div class='col-md-6'>
+<h3 id="minimum-hardwaresoftware">Minimum Hardware/Software</h3>
+
+<ul>
+  <li>4 GB memory</li>
+  <li>20 GB disk space</li>
+</ul>
+
+<h3 id="optional-hardware">Optional Hardware</h3>
+
+<ul>
+  <li>Network storage</li>
+</ul>
+
+<h3 id="recommended-browsers">Recommended browsers</h3>
+
+<ul>
+  <li>Mozilla Firefox 17</li>
+  <li>IE9 and above for the web-admin</li>
+  <li>IE8 and above for the user portal</li>
+</ul>
+</div>
+<div class='col-md-6'>
+<h3 id="supported-hosts">Supported Hosts</h3>
+
+<ul>
+  <li>Fedora 20</li>
+  <li>CentOS 6.6, 7.0</li>
+  <li>Red Hat Enterprise Linux 6.6, 7.0</li>
+  <li>Scientific Linux 6.6, 7.0</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<h2 id="version-releases-of-ovirt">Version Releases of oVirt</h2>
+
+<ul>
+  <li><a href="http://resources.ovirt.org/pub/ovirt-3.5/">ovirt-3.5</a> <strong>Recommended</strong></li>
+  <li><a href="http://resources.ovirt.org/pub/ovirt-3.4/">ovirt-3.4</a></li>
+  <li><a href="http://resources.ovirt.org/pub/ovirt-3.3/">ovirt-3.3</a></li>
+  <li><a href="http://resources.ovirt.org/pub/ovirt-master-snapshot">ovirt-3.5 Nightly</a></li>
+</ul>
+
+<h2 id="mirrors-for-ovirt-downloads">Mirrors for oVirt Downloads</h2>
+
+<h3 id="europe">Europe</h3>
+
+<ul>
+  <li><a href="http://ftp.nluug.nl/os/Linux/virtual/ovirt/">NLUUG</a>
+(<a href="http://ftp.nluug.nl/os/Linux/virtual/ovirt/ovirt-3.5/">oVirt 3.5</a> <a href="http://ftp.nluug.nl/os/Linux/virtual/ovirt/ovirt-3.4/">oVirt 3.4</a> <a href="http://ftp.nluug.nl/os/Linux/virtual/ovirt/ovirt-3.5-snapshot">oVirt 3.5 Nightly</a> <a href="http://ftp.nluug.nl/os/Linux/virtual/ovirt/ovirt-master-snapshot/">oVirt 3.6 Nightly</a>)</li>
+  <li><a href="http://ftp.snt.utwente.nl/pub/software/ovirt/">SNT - University of Twente</a> (<a href="http://ftp.snt.utwente.nl/pub/software/ovirt/ovirt-3.5/">oVirt 3.5</a> <a href="http://ftp.snt.utwente.nl/pub/software/ovirt/ovirt-3.4/">oVirt 3.4</a> <a href="http://ftp.snt.utwente.nl/pub/software/ovirt/ovirt-3.5-snapshot">oVirt 3.5 Nightly</a> <a href="http://ftp.snt.utwente.nl/pub/software/ovirt/ovirt-master-snapshot/">oVirt 3.6 Nightly</a>)</li>
+</ul>
+
+<h3 id="north-america">North America</h3>
+
+<ul>
+  <li><a href="http://archive.linux.duke.edu/ovirt/">Duke University</a> (<a href="http://archive.linux.duke.edu/ovirt/pub/ovirt-3.5/">oVirt 3.5</a> <a href="http://archive.linux.duke.edu/ovirt/pub/ovirt-3.4/">oVirt 3.4</a> [<a href="http://archive.linux.duke.edu/ovirt/pub/ovirt-3.5-snapshot/">oVirt 3.5 Nightly</a> <a href="http://archive.linux.duke.edu/ovirt/pub/ovirt-master-snapshot/">oVirt 3.6 Nightly</a>)</li>
+  <li><a href="http://www.gtlib.gatech.edu/pub/oVirt">Georgia Institute of Technology</a> (<a href="http://www.gtlib.gatech.edu/pub/oVirt/pub/ovirt-3.5/">oVirt 3.5</a> <a href="http://www.gtlib.gatech.edu/pub/oVirt/pub/ovirt-3.4/">oVirt 3.4</a> <a href="http://www.gtlib.gatech.edu/pub/ovirt/ovirt-3.5-snapshot">oVirt 3.5 Nightly</a> <a href="http://www.gtlib.gatech.edu/pub/oVirt/pub/ovirt-master-snapshot/">oVirt 3.6 Nightly</a> <a href="ftp://ftp.gtlib.gatech.edu/pub/oVirt">FTP Site</a>)</li>
+  <li><a href="http://mirrors.ibiblio.org/ovirt/">ibiblio</a> (<a href="http://mirrors.ibiblio.org/ovirt/pub/ovirt-3.5/">oVirt 3.5</a> <a href="http://mirrors.ibiblio.org/ovirt/pub/ovirt-3.4/">oVirt 3.4</a> <a href="http://mirrors.ibiblio.org/ovirt/pub/ovirt-3.5-snapshot">oVirt 3.5 Nightly</a> <a href="http://mirrors.ibiblio.org/ovirt/pub/ovirt-master-snapshot/">oVirt 3.6 Nightly</a>)</li>
+</ul>
+
+<h2 id="gpg-keys-used-by-ovirt">GPG Keys used by oVirt</h2>
+
+<p><strong>Important:</strong> We are going to sign RPMs only from next release. Please wait for the announcement email</p>
+
+<p>How does oVirt Project use GPG keys to sign packages? Each stable RPM package that is published by oVirt Project is signed with a GPG signature. By default, yum and the graphical update tools will verify these signatures and refuse to install any packages that are not signed or have bad signatures. You should always verify the signature of a package before you install it. These signatures ensure that the packages you install are what was produced by the oVirt Project and have not been altered (accidentally or maliciously) by any mirror or website that is providing the packages. Nightly repositories wont be signed.</p>
+
+<h3 id="importing-keys-manually">Importing Keys Manually</h3>
+
+<p>For some repositories, such as repositories with stable in default configuration, yum is able to find a proper key for the repository and asks the user for confirmation before importing the key if the key is not already imported into the rpm database.</p>
+
+<p>To get the public key:</p>
+
+<pre class="highlight plaintext"><code>$ gpg --recv-keys --keyserver subkeys.pgp.net FE590CB7&#x000A;$ gpg --list-keys --with-fingerprint FE590CB7&#x000A;---&#x000A;pub   2048R/FE590CB7 2014-03-30 [expires: 2016-04-02]&#x000A;      Key fingerprint = 31A5 D783 7FAD 7CB2 86CD  3469 AB8C 4F9D FE59 0CB7&#x000A;uid                  oVirt &lt;infra@ovirt.org&gt;&#x000A;sub   2048R/004BC303 2014-03-30&#x000A;---&#x000A;$ gpg --export --armor FE590CB7 &gt; ovirt-infra.pub&#x000A;# rpm --import ovirt-infra.pub&#x000A;</code></pre>
+
+<p>Importing keys Automatically</p>
+
+<pre class="highlight plaintext"><code>yum install http://resources.ovirt.org/pub/yum-repo/ovirt-release35.rpm&#x000A;</code></pre>
+
+<p><strong>Important:</strong> yum will prompt sysadmin to acknowledge import of key, make sure key id is FE590CB7.</p>
+
+<h3 id="verifying-a-package">Verifying a package</h3>
+
+<p>When using default configuration of yum package updating and installation tool in stable releases, signature of each package is verified before it is installed. Signature verification can be turned off and on globally or for specific repository with gpgcheck directive. Do not override the default setting of this directive unless you have a very good reason to do so. If you do not use yum, you can check the signature of the package using the following command</p>
+
+<pre class="highlight plaintext"><code>rpm {-K|--checksig} PACKAGE_FILE ...&#x000A;</code></pre>
+
+<h3 id="currently-used-keys">Currently used keys</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Key ID</th>
+      <th>Key Type</th>
+      <th>Key Fingerprint</th>
+      <th>Key Description</th>
+      <th>Created</th>
+      <th>Expires</th>
+      <th>Revoked</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>FE590CB7</code></td>
+      <td>2048-bit RSA</td>
+      <td><code>31A5 D783 7FAD 7CB2 86CD 3469 AB8C 4F9D FE59 0CB7</code></td>
+      <td>oVirt</td>
+      <td>2014-03-30</td>
+      <td>2016-04-02</td>
+      <td>&#160;</td>
+      <td>&#160;</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="install-ovirt">Install oVirt</h2>
+
+<p>oVirt release 3.5 is intended for production use and is available for the following platforms:</p>
+
+<ul>
+  <li><a href="#Fedora_Installation_Instructions">Fedora</a></li>
+  <li><a href="#Red_Hat_Enterprise_Linux_62FCentOS_Installation_Instructions">Red Hat Enterprise Linux</a></li>
+  <li><a href="#Red_Hat_Enterprise_Linux_62FCentOS_Installation_Instructions">CentOS</a></li>
+  <li>Scientific Linux</li>
+  <li><a href="//wiki.gentoo.org/wiki/OVirt">Gentoo</a> (Experimental)</li>
+  <li><a href="/distributions/debian/ubuntu/">Debian / Ubuntu</a></li>
+</ul>
+
+<p>Our recommended method of installing oVirt is to use the pre-built packages for Fedora or a supported EL6 distribution, such as CentOS or RHEL. This makes installing oVirt very easy. Naturally, you can run most Linux distributions or several other operating systems (e.g. Windows) as <a href="#Supported_Guest_Distributions">guests</a> inside of oVirt instances.</p>
+
+<p class="alert alert-warning"><strong>Important:</strong> If you're upgrading from a previous version, please update ovirt-release35 and verify you have the correct repositories enabled by running the following commands before upgrading with the usual procedure.
+<code>&#x000A;# yum localinstall http://resources.ovirt.org/pub/yum-repo/ovirt-release35.rpm</code></p>
+<div class='row'>
+<div class='col-md-6'>
+<h3 id="Fedora_Installation_Instructions">Fedora</h3>
+
+<p class="alert alert-warning"><strong>Important:</strong> It is recommended that you install oVirt on Fedora 20, which is the best supported version of the Fedora platform at this time.</p>
+
+<p>If you already installed oVirt 3.5.0 on Fedora 19 and want to upgrade to Fedora 20, please look at <a href="http://bugzilla.redhat.com/1131828">BZ 1131828</a></p>
+
+<ol>
+  <li>
+    <p>Add the official oVirt repository for Fedora.</p>
+
+<pre class="highlight plaintext"><code>sudo yum localinstall http://resources.ovirt.org/pub/yum-repo/ovirt-release35.rpm&#x000A;</code></pre>
+
+    <ul>
+      <li>This will add repositories from ovirt.org to your host allowing you to get the latest and greatest oVirt rpms.</li>
+      <li>It will also enable any other needed repository including for example <a href="http://fedoraproject.org/wiki/Virtualization_Preview_Repository">virt-preview</a> repository on your machine giving you access to the latest versions of things like libvirt and KVM.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Install oVirt Engine.</p>
+
+<pre class="highlight plaintext"><code>sudo yum install -y ovirt-engine&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Optionally, install the All-In-One plugin if you want to host VMs on your Engine Host</p>
+
+<pre class="highlight plaintext"><code>sudo yum install -y ovirt-engine-setup-plugin-allinone&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Set up oVirt Engine.</p>
+
+<pre class="highlight plaintext"><code>sudo engine-setup&#x000A;</code></pre>
+  </li>
+  <li>Follow the on screen prompts to configure and install the engine</li>
+  <li>Once you have successfully installed oVirt Engine, you will be provided with instructions to access oVirt's web-based management interface.</li>
+  <li>Congratulations! oVirt Engine is now installed!</li>
+  <li>For every virtualization server you'd like to manage, you can now <a href="/documentation/quick-start/quick-start-guide/#Install_Hosts">set them up as oVirt hosts</a> .</li>
+</ol>
+</div>
+<div class='col-md-6'>
+<h3 id="Red_Hat_Enterprise_Linux_62FCentOS_Installation_Instructions">Red Hat Enterprise Linux 6/CentOS</h3>
+
+<p>These instructions should work for both Red Hat Enterprise Linux and CentOS. They will likely work with other binary compatible EL6 versions as well, but they were not tested. It is strongly recommended that you use at least version 6.5 of RHEL or CentOS.</p>
+
+<p><strong>Warning:</strong> Native GlusterFS support will not work with Red Hat Enterprise Linux 6.5 at this time.</p>
+
+<ol>
+  <li>
+    <p>Add the official oVirt repository for EL6.</p>
+
+<pre class="highlight plaintext"><code>sudo yum localinstall http://resources.ovirt.org/pub/yum-repo/ovirt-release35.rpm&#x000A;</code></pre>
+
+    <ul>
+      <li>This will add repositories from ovirt.org to your host allowing you to get the latest and greatest oVirt rpms.</li>
+      <li>It will also enable the gluster and EPEL repositories for their latest release, so you will get those updates correctly as well</li>
+    </ul>
+  </li>
+  <li>
+    <p>Install oVirt Engine.</p>
+
+<pre class="highlight plaintext"><code>sudo yum install -y ovirt-engine&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Optionally install the All-In-One plugin if you want to host VMs on your Engine Host</p>
+
+<pre class="highlight plaintext"><code>sudo yum install -y ovirt-engine-setup-plugin-allinone&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Set up oVirt Engine.</p>
+
+<pre class="highlight plaintext"><code>sudo engine-setup&#x000A;</code></pre>
+  </li>
+  <li>Follow the on screen prompts to configure and install the engine</li>
+  <li>Once you have successfully installed oVirt Engine, you will be provided with instructions to access oVirt's web-based management interface.</li>
+  <li>Congratulations! oVirt Engine is now installed!</li>
+  <li>For every virtualization server you'd like to manage, you can now <a href="/Quick_Start_Guide#Install_Hosts">set them up as oVirt nodes</a> .</li>
+</ol>
+</div>
+</div>
+<h2 id="supported-guest-distributions">Supported Guest Distributions</h2>
+
+<p>Once oVirt is installed and running, you can proceed to install any number of supported operating systems as guest virtual machines.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Operating System</th>
+      <th style="text-align: left">Architecture</th>
+      <th style="text-align: left">&#160;</th>
+      <th style="text-align: left">SPICE support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Red Hat Enterprise Linux 3</td>
+      <td style="text-align: left">32-bit, 64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Red Hat Enterprise Linux 4</td>
+      <td style="text-align: left">32-bit, 64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Red Hat Enterprise Linux 5</td>
+      <td style="text-align: left">32-bit, 64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Red Hat Enterprise Linux 6</td>
+      <td style="text-align: left">32-bit, 64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Red Hat Enterprise Linux 7</td>
+      <td style="text-align: left">32-bit, 64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">SUSE Linux Enterprise Server 10 (select Other Linux for the guest type in the user interface)</td>
+      <td style="text-align: left">32-bit, 64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">SUSE Linux Enterprise Server 11 (SPICE drivers (QXL) are not supplied by Red Hat. Distribution's vendor may provide SPICE drivers.)</td>
+      <td style="text-align: left">32-bit, 64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Ubuntu 12.04 (Precise Pangolin LTS)</td>
+      <td style="text-align: left">32-bit, 64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Ubuntu 12.10 (Quantal Quetzal)</td>
+      <td style="text-align: left">32-bit, 64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Ubuntu 13.04 (Raring Ringtail)</td>
+      <td style="text-align: left">32-bit, 64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Ubuntu 13.10 (Saucy Salamander)</td>
+      <td style="text-align: left">32-bit, 64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Windows XP Service Pack 3 and newer</td>
+      <td style="text-align: left">32-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Windows 7</td>
+      <td style="text-align: left">32-bit, 64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Windows 8</td>
+      <td style="text-align: left">32-bit, 64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Windows Server 2003 Service Pack 2 and newer</td>
+      <td style="text-align: left">32-bit, 64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Windows Server 2008</td>
+      <td style="text-align: left">32-bit, 64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Windows Server 2008 R2</td>
+      <td style="text-align: left">64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Windows Server 2012 R2</td>
+      <td style="text-align: left">64-bit</td>
+      <td style="text-align: left">&#160;</td>
+      <td style="text-align: left">No</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Now that you have oVirt running, check out the <a href="/documentation/">documentation section</a> for more information and be sure to <a href="/community/">join our community</a>!</p>
+
+<p>Help <a href="/develop/">develop the software</a>, take part in discussions on the <a href="/community/mailing-lists/">mailing lists</a> and join us <a href="/community/communication/#IRC">on IRC</a>.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Live Snapshots &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Live Snapshots</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>eblake, fsimonce</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Live Snapshots</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>9</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-03-07</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Live_Snapshots' target='_blank'>
+Live Snapshots
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="live-snapshots">Live Snapshots</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Given a virtual disk image [img1] the elements (files or block devices) used to store its data in raw or cow format are called volumes.</p>
+
+<p>A raw volume always contains the entire data of an image while a cow volume might contain just the differences from its parent element (a preexisting raw or cow volume).</p>
+
+<p>The cow format is used mainly for three tasks:</p>
+
+<ul>
+  <li>create a thin provisioned image: the content is not preallocated and the new data is appended to the volume only when needed</li>
+  <li>implement the snapshots: a cow volume with a base volume could be used to separate new changes from a previous state that later on can be reused</li>
+  <li>use a template: the same raw/cow base volume can be shared between more images to save space</li>
+</ul>
+
+<p>An example of a thin provisioned image:</p>
+
+<p><img alt="" title="LiveSnapshot_ThinProvisionImage.png" src="/images/wiki/LiveSnapshot_ThinProvisionImage.png?1447607916" /></p>
+
+<p>An example of a snapshots:</p>
+
+<p><img alt="" title="LiveSnapshot_SnapshotImage.png‎" src="/images/wiki/LiveSnapshot_SnapshotImage.png?1447607916" /></p>
+
+<h2 id="live-tasks-in-vdsm-architecture">Live Tasks in VDSM Architecture</h2>
+
+<p>Live snapshots and merges have 2 components:</p>
+
+<ul>
+  <li><strong>storage level:</strong> prepare the new volume (cow snapshot), deleting an old volume (cow snapshot)</li>
+  <li><strong>vm level:</strong> switching from one volume to another or move data from one snapshot to another</li>
+</ul>
+
+<p>Given the current VDSM architecture the storage actions should run on the SPM host (in charge of the image manipulations) and the vm actions should run on the HSM host where the vm is located.</p>
+
+<h3 id="vdsm-images-and-current-limitations">VDSM Images and Current Limitations</h3>
+
+<p>The main VDSM problems and limitations today are:</p>
+
+<ul>
+  <li>The resource manager is used on HSM hosts to lock the images when in use by a vm.
+    <ul>
+      <li><strong>Problem:</strong> when the vm is running on the SPM it is impossible to create a new volume because the image is locked.</li>
+      <li><strong>Solution:</strong> using the resource manager to lock the image on HSM is wrong (since its scope is only local), don't use the resource manager on the HSM.</li>
+      <li><strong>VDSM Patch:</strong> <a href="http://gerrit.ovirt.org/554">http://gerrit.ovirt.org/554</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>It's not possible to create a new volume without accessing the parent.
+    <ul>
+      <li><strong>Problem:</strong> since the parent volume is in use by the VM it shouldn't be accessed.</li>
+      <li><strong>Solution:</strong> the only thing needed from the parent is the image size, read it from the metadata.</li>
+      <li><strong>VDSM Patch:</strong> <a href="http://gerrit.ovirt.org/570">http://gerrit.ovirt.org/570</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Each VM is exclusively using one or more images and should be able to set the permissions of each volume according to its needs.
+    <ul>
+      <li><strong>Problem:</strong> lvm updates the metadata when you change an lv permission; this operation can't be performed on HSM hosts since is going to corrupt the lvm mda.</li>
+      <li><strong>Solution:</strong> make the lvm ro/rw permissions local (don't update the mda)</li>
+      <li><strong>Bugzilla:</strong> <a href="https://bugzilla.redhat.com/show_bug.cgi?id=769293">https://bugzilla.redhat.com/show_bug.cgi?id=769293</a></li>
+      <li>VDSM Patch: n/a</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>A live snapshot shouldn't reconfigure the backing file path in the new image
+    <ul>
+      <li><strong>Bugzilla:</strong> <a href="https://bugzilla.redhat.com/show_bug.cgi?id=785683">https://bugzilla.redhat.com/show_bug.cgi?id=785683</a> (qemu-kvm)</li>
+      <li>VDSM Patch: n/a</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Specifying the entire image chain as a qemu drive.
+    <ul>
+      <li><strong>Bugzilla:</strong> <a href="https://bugzilla.redhat.com/show_bug.cgi?id=760547">https://bugzilla.redhat.com/show_bug.cgi?id=760547</a> (libvirt)</li>
+      <li><strong>Bugzilla:</strong> <a href="https://bugzilla.redhat.com/show_bug.cgi?id=750801">https://bugzilla.redhat.com/show_bug.cgi?id=750801</a> (qemu-kvm)</li>
+      <li>VDSM Patch: n/a</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Libvirt should make sure that the snapshot operation is consistent (fail or succeed for all the drives)
+    <ul>
+      <li><strong>Bugzilla:</strong> <a href="https://bugzilla.redhat.com/show_bug.cgi?id=782457">https://bugzilla.redhat.com/show_bug.cgi?id=782457</a></li>
+      <li>VDSM Patch: (not required)</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Live merge is not present in the upstream component yet (libvirt/qemu)
+    <ul>
+      <li>Bugzilla: […]</li>
+      <li>VDSM Patch: n/a</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="live-snapshot-gui">Live Snapshot GUI</h2>
+
+<p>At the moment there is no suggestion to change the interface, the backend is responsible to treat the snapshot as a "live" when the VM is running.</p>
+
+<h2 id="live-snapshot-flow">Live Snapshot Flow</h2>
+
+<p><img alt="" title="LiveSnapshot RequestFlow.png" src="/images/wiki/LiveSnapshot_RequestFlow.png?1447607916" /></p>
+
+<ul>
+  <li><strong>createVolume:</strong> regular SPM calls to create snapshot volumes (one for each image the VM is using)</li>
+  <li><strong>snapshot:</strong> HSM call used to let the VM switch to the new volumes</li>
+</ul>
+
+<h4 id="snapshot-hsm-api">Snapshot HSM API</h4>
+
+<ul>
+  <li><strong>snapshot(vmId, snapParams)</strong></li>
+</ul>
+
+<p>Snapshot Parameters Format:</p>
+
+<pre class="highlight plaintext"><code>  snapParams = [&#x000A;      {"domainID": "`&lt;sdUUID&gt;`",&#x000A;       "imageID": "`&lt;imgUUID&gt;`",&#x000A;       "baseVolumeID": "`&lt;baseVolUUID&gt;`",&#x000A;       "volumeID": "`&lt;volUUID&gt;`"},&#x000A;     ...&#x000A;  ]&#x000A;</code></pre>
+
+<h2 id="live-snapshot-backend">Live Snapshot Backend</h2>
+
+<p>Live snapshots operation extend regular snapshots as follow:</p>
+
+<ul>
+  <li>Create a locked snapshot in DB</li>
+  <li>Create images for all disks in DB</li>
+  <li>Create volumes for all disks in VDSM</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Async wait for all volumes to be created successfully</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>If the VM is up and running (as far as engine knows):
+    <ul>
+      <li>Issue the snapshot command on the VDSM host running the VM:
+        <ul>
+          <li>Success, no operation required</li>
+          <li>Failure, can't switch disks (snapErr): rollback on VDSM and DB</li>
+          <li>Failure, the VM is not running (noVM): retry the operation [1]</li>
+          <li>Failure, the VM is busy (eg: migration): rollback on VDSM and DB</li>
+          <li>Failure, any other reason: retry the operation at a later time</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Update the VM to point to new image leafs</li>
+  <li>Unlock the snapshot</li>
+</ul>
+
+<p>[1] the VM state in the engine is going to reflect the vdsm status (down) in the next cycle and then the flow will terminate successfully (this avoids races between vdsm and engine).</p>
+
+<p><strong>Notes:</strong></p>
+
+<ul>
+  <li>While snapshot is being taken, you cannot do certain actions:
+    <ul>
+      <li>Run the VM</li>
+      <li>Delete the any snapshot of the VM</li>
+      <li>Preview a different snapshot (you can't do this live anyway)</li>
+      <li>Possibly other places that care if VM is locked</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>If the user will try to do a prohibited action, he will get a "can do action" failure that describes that it can't be done while snapshot is in progress, so he should wait.</li>
+</ul>
+
+<h3 id="snapshots-actions-matrix">Snapshots Actions matrix</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>VM Running</th>
+      <th>VM Paused</th>
+      <th>VM Stopped</th>
+      <th>VM Hibernated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Create</td>
+      <td>Live Snapshot</td>
+      <td>Live Snapshot</td>
+      <td>Regular Snapshot</td>
+      <td>Regular Snapshot</td>
+    </tr>
+    <tr>
+      <td>Commit</td>
+      <td>Live Merge</td>
+      <td>Live Merge</td>
+      <td>Regular Commit</td>
+      <td>Regular Commit</td>
+    </tr>
+    <tr>
+      <td>Revert</td>
+      <td><strong>Not Permitted</strong> [1]</td>
+      <td><strong>Not Permitted</strong> [1]</td>
+      <td>Regular Revert</td>
+      <td>Regular Revert [2]</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>[1] This might be permitted if the user agrees to stop the VM.</p>
+
+<p>[2] The hibernated information must be discarded and the VM should be moved to stopped.</p>
+
+<h3 id="libvirt-flow">Libvirt Flow</h3>
+
+<p>Internal Libvirt flow using <a href="http://en.wikipedia.org/wiki/Pseudocode">pesudocode</a>, <strong>Bugzilla:</strong> <a href="https://bugzilla.redhat.com/show_bug.cgi?id=782457">https://bugzilla.redhat.com/show_bug.cgi?id=782457</a></p>
+
+<pre class="highlight plaintext"><code>  def vm_live_snapshot(vm):&#x000A;      vm_suspend(vm)&#x000A;      for d in vm_drives(vm):&#x000A;          r = vm_drive_snapshot(vm, d)&#x000A;          if r == FAILURE:&#x000A;              for j in c:&#x000A;                  vm_drive_rollback(vm, j)&#x000A;              vm_resume(vm)&#x000A;              return FAILURE&#x000A;          c += d&#x000A;      vm_resume(vm)&#x000A;      return SUCCESS&#x000A;</code></pre>
+
+<p>Libvirt API usage flow for live storage migration, from <a href="https://www.redhat.com/archives/libvir-list/2012-January/msg01448.html">upstream message</a></p>
+
+<pre class="highlight plaintext"><code>  start with:&#x000A;  vda: template &lt;- current1&#x000A;&#x000A;  create a disk-only snapshot, with:&#x000A;   tmpsnap = virDomainSnapshotCreateXML(dom,&#x000A;   "`&lt;domainsnapshot&gt;`\n"&#x000A;   "  `&lt;disks&gt;`\n"&#x000A;   "    `&lt;disk name='vda'&gt;`\n"&#x000A;   "      &#x000A;&#x000A;/path/to/current2&#x000A;</code></pre>
+
+<p>\n"</p>
+
+<pre class="highlight plaintext"><code>   "    `&lt;/disk&gt;`\n"&#x000A;   "  `&lt;disks&gt;`\n"&#x000A;   "`&lt;/domainsnapshot&gt;`", VIR_DOMAIN_SNAPSHOT_CREATE_DISK_ONLY)&#x000A;  where the xml calls out the destination file name, resulting in:&#x000A;  vda: template &lt;- current1 &lt;- current2&#x000A;&#x000A;  perform the block rebase, with:&#x000A;   virDomainBlockRebase(dom, "vda", "/path/to/template", 0)&#x000A;  as well as waiting for the event (or polling status) to wait for&#x000A;  completion, resulting in:&#x000A;  vda: template &lt;- current2&#x000A;&#x000A;  delete the disk-only snapshot metadata as no longer useful, with:&#x000A;   virDomainSnapshotDelete(tmpsnap,&#x000A;   VIR_DOMAIN_SNAPSHOT_DELETE_METADATA_ONLY)&#x000A;</code></pre>
+
+<h3 id="qemu-requirements-and-limitations">QEMU Requirements and Limitations</h3>
+
+<ul>
+  <li><strong>Drive backend change</strong>: snapshot_blkdev (or a new verb) should support a way to re-use a pre-existing qcow2 volume. This is required for the <strong>vm_drive_rollback</strong> verb described in the Libvirt Flow.</li>
+</ul>
+
+<h3 id="recovery-paths-live-snapshot">Recovery Paths: Live Snapshot</h3>
+
+<ul>
+  <li><strong>Scenario 1:</strong> one of the createVolume calls fails. The manager should decide to keep trying or rollback the created volumes.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li><strong>Scenario 2:</strong> all the createVolume calls succeed but the VM died before the snapshot command VDSM returns noVM (code: 1) and the manager should decide to keep the volumes or not.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li><strong>Scenario 3:</strong> libvirt dies during the snapshot, the vm is paused Libvirt stored why the vm was paused (virDomainGetState, status: VIR_DOMAIN_PAUSED_FROM_SNAPSHOT)</li>
+</ul>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

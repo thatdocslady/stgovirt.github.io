@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Vdsm-Node Integration &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Vdsm-Node Integration</td>
+</tr>
+<tr>
+<th>category</th>
+<td>node</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>danken, dougsland</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Vdsm</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Vdsm-Node Integration</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>5</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-02-20</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Vdsm-Node_Integration' target='_blank'>
+Vdsm-Node Integration
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="vdsm-node-integration">Vdsm-Node Integration</h1>
+
+<p>Vdsm can install on a standard RHEL (or Fedora) host, and manage its virtualization. It can also be deployed with the oVirt-node appliance.</p>
+
+<h2 id="step-by-step-ovirt-node-installation">Step-by-step oVirt-node installation</h2>
+
+<p>The installation of Vdsm on an oVirt node is a multi-phase process that involves quite a few files and operations. The files, operations, log files that are created during installation etc are depicted below.</p>
+
+<h3 id="vdsm-reg">vdsm-reg</h3>
+
+<p>When an oVirt node boots, a daemon named <a href="http://git.fedorahosted.org/git/?p=vdsm.git;a=blob_plain;f=vdsm_reg/vdsm-reg-setup;hb=HEAD">vdsm-reg</a> is started. The sole responsibility of this daemon is to register the oVirt node against an instance on RHEV-M (the node's controller) and exit. vdsm-reg is periodically polling /etc/vdsm-reg/vdsm-reg.conf and checking to see if the needed parameters to connect to the RHEV-M are already configured. The default initial values for the vdsm-reg.conf can be found <a href="http://git.fedorahosted.org/git/?p=vdsm.git;a=blob_plain;f=vdsm_reg/vdsm-reg.conf.in;hb=HEAD">here</a>. The standard ways to configure vdsm-reg.conf are depicted later in this document.</p>
+
+<h2 id="non-interactive-automatic-ovirt-installation">Non-interactive ("automatic") oVirt installation</h2>
+
+<p>The oVirt node is passed various kernel parameters (during the PXE boot of the node) that allow for the node to configure all its relevant data. j The oVirt-specific kernel parameters are documented in the <a href="http://git.virt.bos.redhat.com/git/?p=ovirt-node/.git;a=blob_plain;f=scripts/ovirt-early;hb=HEAD">ovirt-early</a> file.</p>
+
+<p>Vdsm has a few kernel arguments that, when configured, will allow for the oVirt node to register with the RHEV-M.</p>
+
+<p>This scenario is believed to be the one to be used in mass deployments of oVirt nodes that will be used as the virtualization infrastructure for a data center.</p>
+
+<p>The Vdsm kernel parameters are:</p>
+
+<p>ovirt_managment_server / managment_server / management_server:</p>
+
+<p>A tuple with the RHEV-M URL and port. URL can be either an IP address or a FQDN.</p>
+
+<p>The port part is optional, and if not specified will default to 8443.</p>
+
+<p>An example:</p>
+
+<p>management_server=vm-17-42.qa.eng.blg.redhat.com:10443</p>
+
+<p>management_server_fingerprint:</p>
+
+<p>This is the RHEVM CA certificate fingerprint, as it is produced by executing on RHEVM/Engine machine:</p>
+
+<p>grep SSLCACertificateFile /etc/httpd/conf.d/ssl.conf</p>
+
+<p>openssl x509 -fingerprint -in /etc/pki/ovirt-engine/apache-ca.pem</p>
+
+<p>An example:</p>
+
+<p>management_server_fingerprint=49:2A:EB:4C:1F:52:A5:59:F6:2B:5C:AE:B4:B5:14:77:4E:D2:0D:6C</p>
+
+<p>rhevm_admin_password:</p>
+
+<p>When installing a RHEV-H from RHEV-M (with the 'Add Host' option), the RHEV-M will configure this password for its internal use.</p>
+
+<p>The password should be hashed, the same way it is done for the rootpw kernel parameter.</p>
+
+<p>An example:</p>
+
+<p>rhevm_admin_password=$1$qaiUkE62$Su8QSyHgh6TIE6ISy</p>
+
+<p>The handling of the Vdsm kernel parameters is in <a href="http://git.fedorahosted.org/git/?p=vdsm.git;a=blob_plain;f=vdsm_reg/vdsm-config;hb=HEAD">vdsm-config</a></p>
+
+<h2 id="interactive-manual-ovirt-node-installation">Interactive (manual) oVirt-node installation</h2>
+
+<p>For interactive installation (using Text User Interface), please refer to the <a href="https://fedorahosted.org/ovirt/wiki/Installation">oVirt installation section</a> in oVirt's Wiki.</p>
+
+<p>Essentially, the RHEV-M tab in the TUI will prompt the user for the TUI equivalents of the non-interactive kernel parameters (i.e., RHEV-M address, RHEV-M CA certificate fingerprint validation and RHEV-M admin password.</p>
+
+<category:vdsm>
+</category:vdsm>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

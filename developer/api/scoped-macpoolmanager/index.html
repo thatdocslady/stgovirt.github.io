@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Scoped MacPoolManager &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Scoped MacPoolManager</td>
+</tr>
+<tr>
+<th>category</th>
+<td>api</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>mkolesni, mmucha, moti, mpavlik</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Api</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Features/Scoped MacPoolManager</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>36</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2015-01-14</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Features/Scoped_MacPoolManager' target='_blank'>
+Features/Scoped MacPoolManager
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="scoped-macpoolmanager">Scoped MacPoolManager</h1>
+
+<p><strong>TOC</strong></p>
+
+<h2 id="summary">Summary</h2>
+
+<p>Previously there was sole pool of MACs, it's MAC ranges for this pool could be configured via engine-config. Now each data center have some MAC pool associated and MAC pools cannot be configured via engine-config.</p>
+
+<h2 id="owner">Owner</h2>
+
+<p>Name: Martin Mucha</p>
+
+<p>Email: <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#109;&#117;&#099;&#104;&#097;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#109;&#109;&#117;&#099;&#104;&#097;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a></p>
+
+<h2 id="benefit-to-ovirt">Benefit to oVirt</h2>
+
+<p>Definition of domains from which MAC addresses will be allocated for each data center.</p>
+
+<h2 id="details">Details</h2>
+
+<ul>
+  <li>pools are named, and can be shared between multiple data centers.</li>
+  <li>whether MAC pool can be used for specific DataCenter is determined via user permissions.</li>
+  <li>duplicity allowance is set on pool level, not via global config values.</li>
+  <li>there is always one default pool available(replacement for former global pool). This can be used when data center does not create own one pool. During upgrade only this pool is created and all existing data centers will use it. This pool is also created on clean install. After upgrade/clean install ranges and duplicity setting will be same as now: macRanges: 00:1a:4a:1a:83:00-00:1a:4a:1a:83:ff, allowDuplicates: false. When user overrode those default values, those values will be used instead.</li>
+  <li>all pools are accessible through rest</li>
+  <li>pool definition is mandatory on data center. Each data center has one MAC Pool associated.</li>
+  <li>when specifying MAC ranges for one pool, all potential MAC range overlaps/intersections are removed. When duplicates turned off(per pool setting), one MAC can be used only once in that pool. Example: lets have two pools with two same ranges. This is ok. Duplicity allowance setting is per pool, like said above. One allows it, second does not. Thus even if duplicates are turned off in this pool, this MAC can be used multiple times in another pool.</li>
+  <li>each pools is initialized during start-up. When creating new/updating/removing MAC pool is (re)initialized/removed in respect to that.</li>
+  <li>When one update MAC ranges for given MAC pool, MAC addresses of existing nics currently will not get reassigned. Used MACs assigned from previous range definition will be added as an user specified MACs if they are now out of pool ranges. That means, that MAC is still tracked by that pool, but if pool ranges alteration makes that MAC to be outside of that newly defined ranges, it will be outside of those ranges. There will be no effort in stop using that MAC and assigning new ones.</li>
+  <li>You should try to avoid to allocate MAC which is outside of ranges of configured MAC pool(either global or scoped one). It's perfectly OK, to allocate specific MAC address from inside these ranges, actually is little bit more efficient than letting system pick one for you. But if you use one from outside of those ranges, your allocated MAC end up in less memory efficient storage(approx 300 times less efficient). So if you want to use user-specified MACs, you can, but tell system from which range those MACs will be(via MAC pool configuration).</li>
+  <li>When DataCenter definition changes so that after change different pool is used, all MACs belonging to that data center are removed from old pool and reinserted to new one.</li>
+  <li>you can use same MACs on multiple data centers. Currently no checks are done to find out whether pool definition for multiple data centers overlap or not. So if you define your pools in that way, that MAC ranges overlaps, one MAC address can be used multiple times. I'd observe that as an user error, since it's easier to stick with one global pool with allowed duplicates.</li>
+</ul>
+
+<h2 id="user-experience">User Experience</h2>
+
+<h3 id="gui">GUI</h3>
+
+<ul>
+  <li>pool are assigned to DataCenter in datacenter dialog.</li>
+  <li>pools are managed from app config, where was added new tab for pools. Here you can find out, in which places is pool used.</li>
+</ul>
+
+<p>Below is three screenshots. 'New/edit MAC pool pane' is shared component used both in new tabs of datacenter dialog and systemconfig, which are remaining two screenshots.</p>
+
+<p><img alt="" title="newMacAddressPool.png" src="/images/wiki/NewMacAddressPool.png?1447607916" /></p>
+
+<p>dialog for creating/editing MAC Pool data (name, description, duplicity allowancy) and its MAC address ranges.</p>
+
+<p><img alt="" title="configureDialog_addingModifyingRemovingPoolsAndPrivileges.png" src="/images/wiki/ConfigureDialog_addingModifyingRemovingPoolsAndPrivileges.png?1447607916" /></p>
+
+<p>new tab in configure dialog allowing to manipulate with existing MAC pools or creating new ones as well as (de)assigning user privileges to specific MAC pools.</p>
+
+<p><img alt="" title="assigningPoolToDataCenterFromDataCenterDialog.png" src="/images/wiki/AssigningPoolToDataCenterFromDataCenterDialog.png?1447607917" /></p>
+
+<p>new tab in datacenter dialog allowing to assign MAC pool to given DataCenter, view (only) MAC pool settings or clicking "New" button to create new MAC Pool.</p>
+
+<p><img alt="" title="creatingNewMacPoolFromDataCenterDialog.png" src="/images/wiki/CreatingNewMacPoolFromDataCenterDialog.png?1447607916" /></p>
+
+<p>screenshot of gui while creating new MAC Pool from DataCenter dialog after clicking "New" button</p>
+
+<h3 id="rest-api">REST API</h3>
+
+<h4 id="new-top-level-collection">New top level collection</h4>
+
+<p>A new macpools top level collection will be added supporting the following operations:</p>
+
+<ol>
+  <li>GET api/macpools</li>
+</ol>
+
+<ul>
+  <li>Request: <strong>None</strong></li>
+  <li>Response:</li>
+</ul>
+
+<mac_pools>
+`    `<mac_pool id="AAA">
+`        `<name>`Default`</name>
+`        `<description>`The default MAC addresses pool`</description>
+`        `<allow_duplicates>`false`</allow_duplicates>
+`        `<ranges>
+`            `<range>
+`                `<from>`00:1A:4A:01:00:00`</from>
+`                `<to>`00:1A:4A:FF:FF:FF`</to>
+`            `</range>
+`            `<range>
+`                `<from>`02:1A:4A:01:00:00`</from>
+`                `<to>`02:1A:4A:FF:FF:FF`</to>
+`            `</range>
+`        `</ranges>
+`    `</mac_pool>
+`    `<mac_pool id="BBB">
+              ...
+`    `</mac_pool>
+</mac_pools>
+
+<ol>
+  <li>POST api/macpools</li>
+</ol>
+
+<ul>
+  <li>Request:</li>
+</ul>
+
+<mac_pool id="AAA">
+`    `<name>`Default`</name>
+`    `<description>`The default MAC addresses pool`</description>
+`    `<allow_duplicates>`false`</allow_duplicates>
+`    `<ranges>
+`        `<range>
+`            `<from>`00:1A:4A:01:00:00`</from>
+`            `<to>`00:1A:4A:FF:FF:FF`</to>
+`        `</range>
+`        `<range>
+`            `<from>`02:1A:4A:01:00:00`</from>
+`            `<to>`02:1A:4A:FF:FF:FF`</to>
+`        `</range>
+`    `</ranges>
+</mac_pool>
+
+<ul>
+  <li>Response: <strong>GUID on the new pool</strong></li>
+</ul>
+
+<ol>
+  <li>PUT api/macpools/{macpool:id}</li>
+</ol>
+
+<ul>
+  <li>Request:</li>
+</ul>
+
+<mac_pool>
+`    `<description>`The default MAC addresses pool - allows duplicates`</description>
+`    `<allow_duplicates>`true`</allow_duplicates>
+</mac_pool>
+
+<ul>
+  <li>Response:</li>
+</ul>
+
+<mac_pool id="AAA">
+`    `<name>`Default`</name>
+`    `<description>`The default MAC addresses pool - allows duplicates`</description>
+`    `<allow_duplicates>`true`</allow_duplicates>
+`    `<ranges>
+`        `<range>
+`            `<from>`00:1A:4A:01:00:00`</from>
+`            `<to>`00:1A:4A:FF:FF:FF`</to>
+`        `</range>
+`        `<range>
+`            `<from>`02:1A:4A:01:00:00`</from>
+`            `<to>`02:1A:4A:FF:FF:FF`</to>
+`        `</range>
+`    `</ranges>
+</mac_pool>
+
+<h4 id="changes-to-existing-resources">Changes to existing resources</h4>
+
+<ul>
+  <li>Data center resource will be added a link to the MAC pool resource it's using.</li>
+  <li>POST of data center without specifying the link should *succeed*, using the default pool of the system.</li>
+</ul>
+
+<h3 id="permissions">Permissions</h3>
+
+<p>The mac pool entity is a managed entity which its actions requrie permissions. The following action groups will be added:</p>
+
+<ul>
+  <li>CREATE_MAC_POOL</li>
+  <li>EDIT_MAC_POOL</li>
+  <li>DELETE_MAC_POOL</li>
+</ul>
+
+<p>Those action groups will be part of a new predefined role named <strong>MacPoolAdmin</strong> (includes LOGIN).
+<strong>MacPoolAdmin</strong> will use to create, edit and delete mac pools from the system.
+The permission should be granted on system level for creating a pool and on a pool level for editing or removing a pool.
+ In order to use a mac pool from within the data-center, the following ActionGroup is added:</p>
+
+<ul>
+  <li>CONFIGURE_MAC_POOL</li>
+</ul>
+
+<p>This action group allows the usage of a given mac pool by any resource at first by data-center only.
+Later-on it will be expanded for additional entities as engine supports (i.e. network, cluster, vm pool).
+ A new role will be added for usage purposes, named <strong>MacPoolUser</strong>. When granted on a mac pool, it will allow the data-center administrators to use the specific mac pool
+ By default, the mac pool will be created for 'public use', meaning each Data Center admin will be able to set its data center to use the specific mac pool. Specifically, it means that for each created mac pool, a <strong>MacPoolUser</strong> role will be granted on that mac pool to 'Everyone'. The 'public use' option could be unchecked (or set to false via api/sdk) in order to restrict the pool usage only to the permitted users.</p>
+
+<p>The permissions for mac pools will be managed on GUI from the 'Configure' –&gt; 'Mac Pools' –&gt; Permissions sub-tab, and on restapi via <em>api/macpools/{macpool:id}/permissions</em>.</p>
+
+<h2 id="code-examples">Code Examples</h2>
+
+<h4 id="creation-of-new-datacenter-specific-pool">creation of new DataCenter specific pool</h4>
+
+<pre class="highlight plaintext"><code>  MacPoolPerDC.getInstance().createPool(macPool);&#x000A;</code></pre>
+
+<p>where business entity macPool holds all data required for pool creation.</p>
+
+<h4 id="modification-of-scope">modification of scope</h4>
+
+<p>let's say, that storage pool already exist, but without specified mac pool ranges, so after db is updated, new pool has to be created for it.</p>
+
+<pre class="highlight plaintext"><code>  MacPoolPerDC.getInstance().modifyPool(macPool);&#x000A;</code></pre>
+
+<h4 id="removal-of-scope">removal of scope</h4>
+
+<pre class="highlight plaintext"><code>  MacPoolPerDC.getInstance().removePool(id)&#x000A;</code></pre>
+
+<h4 id="manipulating-with-pool">manipulating with pool</h4>
+
+<p>there are few methods for getting dc related pool based on various data you have. Below is example how to return MAC back to pool, which we can identify with data center id.</p>
+
+<pre class="highlight plaintext"><code>  MacPoolPerDC.getInstance().poolForDataCenter(id).freeMacs(macsToRemove);&#x000A;</code></pre>
+
+<h2 id="implementation-details-of-datacenterscope">Implementation details of DataCenterScope</h2>
+
+<h3 id="datacenterscope-comments">DataCenterScope comments</h3>
+
+<h3 id="sample-flow">sample flow</h3>
+
+<p>Lets say, that we've got one data center. It's not configured yet to have its own MAC pool. So in system is only one pool, created during install/upgrade. We create few VMs and it's NICs will obtain its MAC from this pool, marking them as used. Next we alter data center definition, so now it uses it's own MAC pool. In system from this point on exists two MAC pools, default one pool and one related to this data center. As a last step in alteration of data center definition, which triggered new pool creation, all MAC which should be present in newly created pool are moved there from previously used pool. Now we realized, that we actually don't want that data center have its own MAC pool, so we alter it's definition removing MAC pool ranges definition, and selecting default pool again. Pool related to this data center will be removed, because i'ts not used any more, and again, all MAC will be moved from pool to be removed back to shared one.</p>
+
+<h3 id="db-details">DB details</h3>
+
+<p><img alt="" title="Erd.png" src="/images/wiki/Erd.png?1447607916" /></p>
+
+<category:api> <category:feature>
+</category:feature></category:api>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

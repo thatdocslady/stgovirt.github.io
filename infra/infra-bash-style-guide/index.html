@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Infra Bash style guide &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Infra Bash style guide</td>
+</tr>
+<tr>
+<th>category</th>
+<td>infra</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>dcaroest</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Infrastructure</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Infra Bash style guide</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>18</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-03-25</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Infra_Bash_style_guide' target='_blank'>
+Infra Bash style guide
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="infra-bash-scripts-style-guide">Infra bash scripts style guide</h1>
+
+<p>These are some coding guidelines in order to have a reference when submitting patches. It's based on the guidelines here <a href="http://wiki.bash-hackers.org/scripting/style">http://wiki.bash-hackers.org/scripting/style</a></p>
+
+<p>This is not an enforcement, it's meant to be just a reference, of course, compliance is preferred.</p>
+
+<p>Some good code layout helps you to read your own code after a while. And of course it helps others to read the code.</p>
+
+<h3 id="indentation-guidelines">Indentation guidelines</h3>
+
+<p>To indent, use 4 spaces per indentation level, similar to python indentation.</p>
+
+<p>Avoid hard-tabs them if possible. I can imagine one case where they're useful: Indenting here-documents.</p>
+
+<p>But in any case, <strong>DO NOT MIX THEM</strong>. If you decide to use tabs instead of spaces, be consistent.</p>
+
+<h4 id="breaking-up-lines">Breaking up lines</h4>
+
+<p>Whenever you need to break lines of long code, you should follow one of these two ways:</p>
+
+<p><strong>Indention using command width:</strong></p>
+
+<pre class="highlight plaintext"><code>  activate some_very_long_option \&#x000A;           some_other_option&#x000A;</code></pre>
+
+<p><strong>Indention using four spaces:</strong></p>
+
+<pre class="highlight plaintext"><code>  activate some_very_long_option \&#x000A;      some_other_option&#x000A;</code></pre>
+
+<h4 id="breaking-compound-commands">Breaking compound commands</h4>
+
+<p>Compound commands form the structures that make a shell script different from a stupid enumeration of commands. Usually they contain a kind of "head" and a "body" that contains command lists. This kind of compound command is relatively easy to indent.</p>
+
+<p>The general layout:</p>
+
+<ul>
+  <li>put the introducing keyword and the initial command list or parameters on one line ("head")</li>
+  <li>put the "body-introducing" keyword on the same line</li>
+  <li>the command list of the "body" on separate lines, indented by two spaces</li>
+  <li>put the closing keyword on a separated line, indented like the initial introducing keyword</li>
+</ul>
+
+<h4 id="symbolic">Symbolic</h4>
+
+<pre class="highlight plaintext"><code>  HEAD_KEYWORD parameters; BODY_BEGIN&#x000A;      BODY_COMMANDS&#x000A;  BODY_END&#x000A;</code></pre>
+
+<h5 id="ifthenelifelse">if/then/elif/else</h5>
+
+<p>This construct is a bit special, because it has keywords (<em>elif</em>, <em>else</em>) "in the middle". The visually nice way is to indent them like the <em>if</em>:</p>
+
+<pre class="highlight plaintext"><code>  if ...; then&#x000A;      ...&#x000A;  elif ...; then&#x000A;      ...&#x000A;  else&#x000A;      ...&#x000A;  fi&#x000A;</code></pre>
+
+<h5 id="for">for</h5>
+
+<pre class="highlight plaintext"><code>  for f in /etc/*; do&#x000A;      ...&#x000A;  done&#x000A;</code></pre>
+
+<h5 id="whileuntil">while/until</h5>
+
+<pre class="highlight plaintext"><code>  while [[ $answer != [YyNn] ]]; do&#x000A;      ...&#x000A;  done&#x000A;</code></pre>
+
+<h5 id="the-case-construct">The case construct</h5>
+
+<p>The <em>case</em> construct might need a bit more discussion here, since the structure is a bit more complex.</p>
+
+<p>In general it's the same: Every new "layer" gets a new indention level:</p>
+
+<pre class="highlight plaintext"><code>  case $input in&#x000A;      hello) echo "You said hello";;&#x000A;      bye)&#x000A;          echo "You said bye"&#x000A;          if foo; then&#x000A;              bar&#x000A;          fi&#x000A;      ;;&#x000A;      *)&#x000A;          echo "You said something weird..."&#x000A;      ;;&#x000A;  esac&#x000A;</code></pre>
+
+<p>Some notes:</p>
+
+<ul>
+  <li>if not 100% needed, the optional left parenthesis on the pattern is not written</li>
+  <li>the patterns (<em>hello)</em>) and the corresponding action terminator (<em>;;</em>) are indented at the same level</li>
+  <li>the action command lists are indented one more level (and continue to have their own indention, if needed)</li>
+  <li>though optional, the very last action terminator is given</li>
+  <li>for very short bodies, the case can be written in one line</li>
+</ul>
+
+<h3 id="syntax-and-coding-guidelines">Syntax and coding guidelines</h3>
+
+<h4 id="basic-structure">Basic structure</h4>
+
+<p>The basic structure of a script simply reads:</p>
+
+<pre class="highlight plaintext"><code>  #!SHEBANG&#x000A;  GLOBAL_CONFIGURATION_CONSTANTS&#x000A;  FUNCTION_DEFINITIONS&#x000A;  MAIN_CODE&#x000A;    PARSING_OPTIONS&#x000A;    VERIFYING_OPTIONS&#x000A;    SIMPLE_MAIN_CODE&#x000A;</code></pre>
+
+<h5 id="the-shebang">The shebang</h5>
+
+<p>If possible (I know it's not always possible!), use a shebang. Be careful with <em>/bin/sh</em>: The argument that "on Linux <em>/bin/sh</em> is a Bash" <strong>is a lie</strong> (and technically irrelevant) The shebang serves two purposes for me:</p>
+
+<ul>
+  <li>it specifies the interpreter when the script file is called directly: If you code for Bash, specify <em>bash</em>!</li>
+  <li>it documents the desired interpreter (so: use <em>bash</em> when you write a Bash-script, use <em>sh</em> when you write a general Bourne/POSIX script, …)</li>
+</ul>
+
+<p>Whenever able, use the <em>-e</em> flag, that will make sure your script fails if any of the commands fail:</p>
+
+<pre class="highlight plaintext"><code>  #!/bin/bash -e&#x000A;</code></pre>
+
+<p>If you don't really care about one of the commands failing (or returning != 0) you can use this:</p>
+
+<pre class="highlight plaintext"><code>  mycommand || :&#x000A;</code></pre>
+
+<h4 id="cryptic-constructs">Cryptic constructs</h4>
+
+<p>Cryptic constructs, we all know them, we all love them. If they are not 100% needed, avoid them, since nobody except you may be able to decipher them. It's - just like in C - the middle between smartness, efficiency and readablity. If you need to use a cryptic construct, place a small comment that actually tells what your monster is for.</p>
+
+<h4 id="configuration-variables">Configuration variables</h4>
+
+<p>I call variables that are meant to be changed by the user "configuration variables" here. Make them easy to find (directly at the top of the script), give them useful names and maybe a short comment. Use <em>UPPERCASE</em> for them and avoid modifying them inside the script if you don't need to, it's really easy to loose track of where/when a global variable it's being modified.</p>
+
+<p>When parsing the parameters, if you use a function, initialize all the global variables with the default values (or unset) before the function so when reading the script you know what globals the function does modify. For example:</p>
+
+<pre class="highlight plaintext"><code>  CONFIG_FILE="~/.config"&#x000A;  unset REQUIRED_PARAM&#x000A;  parse_params "$@"&#x000A;</code></pre>
+
+<h4 id="local-variables">Local variables</h4>
+
+<p>Since all reserved variables are <em>UPPERCASE</em>, the safest way is to only use <em>lowercase</em> variable names. This is true for reading user input, loop counting variables, etc., … (in the example: <em>file</em>)</p>
+
+<ul>
+  <li>prefer <em>lowercase</em> variables</li>
+  <li>if you use <em>UPPERCASE</em> names, **do not use reserved variable names** (see <a href="http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap08.html#tag_08">SUS</a> for an incomplete list)</li>
+  <li>if you use <em>UPPERCASE</em> names, at best prepend the name with a unique prefix (<em>MY_</em> in the example below)</li>
+</ul>
+
+<p>If used inside a function, declare as many variables as possible to be local, that will avoid name collision wherever you use that function.</p>
+
+<pre class="highlight shell"><code>  <span class="c">#!/bin/bash</span>&#x000A;  <span class="c"># global with the prefix 'MY_'</span>&#x000A;  <span class="nv">MY_LOG_DIRECTORY</span><span class="o">=</span>/var/adm/&#x000A;  my_nice_function<span class="o">()</span> <span class="o">{</span>&#x000A;      local file<span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">1</span><span class="p">?</span><span class="k">}</span><span class="s2">"</span>&#x000A;      echo <span class="s2">"This file variable </span><span class="nv">$file</span><span class="s2"> is not the same as the one used outside"</span>&#x000A;      return 0&#x000A;  <span class="o">}</span>&#x000A;  <span class="c"># local variable lowercase</span>&#x000A;  <span class="k">for</span> file in <span class="s2">"</span><span class="nv">$MY_LOG_DIRECTORY</span><span class="s2">"</span>/<span class="k">*</span>; do&#x000A;      echo <span class="s2">"Found Logfile: </span><span class="nv">$file</span><span class="s2">"</span>&#x000A;      my_nice_function <span class="s2">"whatever"</span>&#x000A;  <span class="k">done</span>&#x000A;</code></pre>
+
+<h4 id="variable-initialization">Variable initialization</h4>
+
+<p>As in C, it's always a good idea to initialize your variables, though, the shell will initialize fresh variables itself (better: Unset variables will generally behave like variables containing a nullstring). It's no problem to **pass a variable** you use **as environment** to the script. If you **blindly assume** that all variables you use are empty for the first time, somebody can **inject** a variable content by just passing it in the environment. The solution is simple and effective: **Initialize them**</p>
+
+<pre class="highlight plaintext"><code>  my_input=""&#x000A;  my_array=()&#x000A;  my_number=0&#x000A;</code></pre>
+
+<p>If you do that for every variable you use, then you also have a kind of documentation for them.</p>
+
+<h4 id="parameter-expansion">Parameter expansion</h4>
+
+<p>Unless you are really sure what you're doing, **quote every parameter expansion**. There are some cases where this isn't needed from a technical point of view, e.g.</p>
+
+<ul>
+  <li>inside <em>[[ … ]]</em></li>
+  <li>the parameter (<em>WORD</em>) in <em>case $WORD in ….</em></li>
+  <li>variable asssignment: <em>VAR=$WORD</em></li>
+</ul>
+
+<p>But quoting these is never a mistake. If you get used to quote every parameter expansion, you're safe. If you need to parse a parameter as a list of words, you can't quote, of course, like</p>
+
+<pre class="highlight plaintext"><code>  list="one two three"&#x000A;  # you MUST NOT quote $list here&#x000A;  for word in $list; do&#x000A;      ...&#x000A;  done&#x000A;</code></pre>
+
+<h4 id="function-definitions">Function definitions</h4>
+
+<p>Unless the code has reasons to not do, all needed function definitions should be declared before the main script code is run. This gives a far better overview and ensures that all function names are known before they are used. Since a function isn't parsed before it is executed, you usually don't even have to ensure a specific order. The portable form of the function definition should be used, without the <em>function</em> keyword (here using the grouping compound command):</p>
+
+<pre class="highlight plaintext"><code>  getargs() {&#x000A;      ...&#x000A;  }&#x000A;</code></pre>
+
+<p>Speaking about the command grouping in function definitions using <em>{ …; }</em>: If you don't have a good reason to use another compound command directly, you should always use this one.</p>
+
+<h4 id="function-names">Function names</h4>
+
+<p>Function names should be all <em>lowercase</em> and have a good name. The function names should be human readable ones.</p>
+
+<p>A function named <em>f1</em> may be easy and quick to write down, but for debugging and especially for other people, it will tell nothing. Good names help to document the code without using extra comments.</p>
+
+<p>A more or less funny one: If not intended to do so, <strong>do not name your functions like common commands</strong>, typically new users tend to name their scripts or functions <em>test</em>, which collides with the UNIX <em>test</em> command!</p>
+
+<p>Unless absolutely necessary, only use alphanumeric characters and the underscore for function names. <em>/bin/ls</em> is a valid function name in Bash, but it only makes limited sense.</p>
+
+<h4 id="function-parameters">Function parameters</h4>
+
+<p>When able, passs all the needed information to the functions you use using parameters instead of global variables, that helps keeping track of what infermation does the function require to run. If you ever need to use global variables inside the function, make sure that the function comments specify which ones you use. The parameters passed to the function should be stored in local variables at the start of the function, adding any required checks (the easiest one being just "${1?}" to make sure the param is not empty)</p>
+
+<h4 id="function-return-statements">Function return statements</h4>
+
+<p>Most functions should not use the exit statements, instead, they should use the return statement and let the caller of the function handle the error. Some exceptions include the <em>die</em> function. You should always write a return statement explicitly, to make sure that you return what you want and make it clear what the function will return. So usually, your functions will end with a return 0 statement.</p>
+
+<h5 id="example">Example</h5>
+
+<p>For example the following function, will return 1 when finishing correctly:</p>
+
+<pre class="highlight plaintext"><code>  my_func() {&#x000A;      local res=0&#x000A;      do_something&#x000A;      res=$(($res + $?))&#x000A;      [[ $res -ne 0 ]] &amp;&amp; die "custom message"&#x000A;  }&#x000A;</code></pre>
+
+<p>Because the last statement return code will be the return code of the function, so to avoid confusions you should use:</p>
+
+<pre class="highlight plaintext"><code>  my_func() {&#x000A;      local res=0&#x000A;      do_something&#x000A;      res=$(($res + $?))&#x000A;      [[ $res -ne 0 ]] &amp;&amp; die "custom message"&#x000A;      return 0&#x000A;  }&#x000A;</code></pre>
+
+<h4 id="command-substitution">Command substitution</h4>
+
+<p>As noted in <a href="http://wiki.bash-hackers.org/syntax/expansion/cmdsubst"> the article about command substitution</a> you should use the <em>$( … )</em> form. Though, if portability is a concern, you might have to use the backquoted form <em>` … `</em>. In any case, if other expansions and word splitting are not wanted, you should quote the command substitution!</p>
+
+<h4 id="conditionals">Conditionals</h4>
+
+<p>When testing an expression, use double brackets as much as possible, they behave better that the old test command (single square brackets) and you'll have a lot less trouble handling spaces.</p>
+
+<h4 id="builtins">Builtins</h4>
+
+<p>If able use builtin constructs instead of spawning external commands, for example:</p>
+
+<pre class="highlight plaintext"><code>  myfile="${fullpath##*/}" # replaces dirname&#x000A;  mydir="${fullpath%/*}"  # replaces basename&#x000A;</code></pre>
+
+<h4 id="eval">Eval</h4>
+
+<p><strong>"If eval is the answer, surely you are asking the wrong question."</strong> Avoid if, unless absolutely neccesary:</p>
+
+<pre class="highlight plaintext"><code>  * `*`eval`*` can be your neckshot&#x000A;  * there are most likely other ways to achieve what you want&#x000A;  * if possible, re-think the way your script works, if it seems you can't avoid `*`eval`*` with your current way&#x000A;  * if you really really have to use it, then you should take care and know what you do (**if** you know what you do, then `*`eval`*` is not evil at all)&#x000A;</code></pre>
+
+<h3 id="behaviour-and-robustness">Behaviour and robustness</h3>
+
+<h4 id="fail-early">Fail early</h4>
+
+<p><strong>Fail early</strong>, this sounds bad, but usually is good. Failing early means to error out as early as possible when checks indicate some error or unmet condition. Failing early means to error out <strong>before</strong> your script begins its work in a potentially broken state.</p>
+
+<h4 id="availability-of-commands">Availability of commands</h4>
+
+<p>If you use commands that might not be installed on the system, check for their availability and tell the user what's missing. Example:</p>
+
+<pre class="highlight plaintext"><code>  my_needed_commands="sed awk lsof who"&#x000A;  missing_counter=0&#x000A;  for needed_command in $my_needed_commands; do&#x000A;      if ! hash "$needed_command" &gt;/dev/null 2&gt;&amp;1; then&#x000A;          echo "Command not found in PATH: $needed_command" &gt;&amp;2&#x000A;          missing_counter=$(($missing_counter + 1))&#x000A;      fi&#x000A;  done&#x000A;  if (($missing_counter &gt; 0)); then&#x000A;      echo "Minimum $missing_counter commands are missing in PATH, aborting" &gt;&amp;2&#x000A;      exit 1&#x000A;  fi&#x000A;</code></pre>
+
+<h4 id="exit-meaningfully">Exit meaningfully</h4>
+
+<p>The exit code is your only way to directly communicate with the calling process without any special things to do. If your script exits, provide a meaningful exit code. That minimally means:</p>
+
+<ul>
+  <li><em>exit 0</em> (zero) if everything is okay</li>
+  <li><em>exit 1</em> - in general non-zero - if there was an error</li>
+</ul>
+
+<p>This, <strong>and only this</strong>, will enable the calling component to check the operation status of your script.</p>
+
+<p>You know:</p>
+
+<p>"One of the main causes of the fall of the Roman Empire was that, lacking zero, they had no way to indicate successful termination of their C programs."</p>
+
+<p>//– Robert Firth//</p>
+
+<h1 id="misc">Misc</h1>
+
+<h3 id="output-and-appearance">Output and appearance</h3>
+
+<ul>
+  <li>if the script is interactive, if it works for you and if you think this is a nice feature, you can try to save the terminal content and restore it after execution</li>
+  <li>output clean and understandable messages to the screen</li>
+  <li>if applicable, you can use colors or specific prefixes to tag error and warning messages
+    <ul>
+      <li>makes it more easy for the user to identify those messages</li>
+    </ul>
+  </li>
+  <li>write normal output to <em>STDOUT</em> and error, warning and diagnostic messages to <em>STDERR</em>
+    <ul>
+      <li>this gives the possibility to filter</li>
+      <li>this doesn't make the script poison the real output data with diagnostic messages</li>
+      <li>if the script gives syntax help (<em>-?</em> or <em>-h</em> or <em>–help</em> arguments), it should go to <em>STDOUT</em>, since it's expected output in this moment</li>
+    </ul>
+  </li>
+  <li>if applicable, write a logfile that contains all the details
+    <ul>
+      <li>it doesn't clutter the screen then</li>
+      <li>the messages are saved for later and don't get lost (diagnostics)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="input">Input</h3>
+
+<p>Never blindly assume anything. If you want the user to input a number, <strong>check the input</strong> for being a number, check for leading zeros, etc… As we all know, users are users and not programmers. They will do what they want, not what the program wants. If you have specific format or content needs, <strong>always check the input</strong></p>
+
+<h3 id="potability">Potability</h3>
+
+<p>If you can imagine a reason where you script is going to be executed on a machine where bash is not available (most common linux distributions and gnu based systems have bash as default shell), you should use the POSIX standard. For example, when creating a script that is going to be included in a project as part of the official build process.</p>
+
+<h1 id="other-coding-style-guidelines">Other Coding style guidelines</h1>
+
+<ul>
+  <li><a href="http://www.opensolaris.org/os/project/shell/shellstyle/">http://www.opensolaris.org/os/project/shell/shellstyle/</a></li>
+</ul>
+
+<category:infrastructure>
+</category:infrastructure>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

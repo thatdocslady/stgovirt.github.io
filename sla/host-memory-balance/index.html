@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Host Memory balance &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Host Memory balance</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>nslomian</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Host Memory balance</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>1</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-10-20</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Host_Memory_balance' target='_blank'>
+Host Memory balance
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="host-memory-balance">Host Memory balance</h1>
+
+<p>This external load balancer will move a VM from a host that has less free memory the then specified amount:</p>
+
+<p>This one is quite large, so lets break it down</p>
+
+<p>Loading of the RESTAPI sdk, so we can do rest calls</p>
+
+<pre class="highlight plaintext"><code>  from ovirtsdk.xml import params&#x000A;  from ovirtsdk.api import API&#x000A;  import sys&#x000A;</code></pre>
+
+<p>Our lovely class</p>
+
+<pre class="highlight plaintext"><code>  class host_memory_balance(object): `   `**`migrate` `vms` `from` `over` `utilized` `hosts`**&#x000A;</code></pre>
+
+<p>What are the values a user can pass to this load balancer. (they will be shown as options in the UI)</p>
+
+<p>In this instance the minimum memory threshold and should we be safe with the migration (try to move the smallest VM)</p>
+
+<pre class="highlight plaintext"><code>     #What are the values this module will accept, used to present&#x000A;     #the user with options&#x000A;     properties_validation = 'minimum_host_memoryMB=[0-9]*;safe_selection=True|False'&#x000A;</code></pre>
+
+<p>Class members</p>
+
+<pre class="highlight plaintext"><code>     TO_BYTES = 1024 * 1024&#x000A;     MINIMUM_MEMORY_DEFAULT = 500&#x000A;     SAFE_SELECTION_DEFAULT = 'True'&#x000A;     free_memory_cache = {}&#x000A;</code></pre>
+
+<p>Connect to the REST webservice</p>
+
+<pre class="highlight plaintext"><code>     def _get_connection(self):&#x000A;         #open a connection to the rest api&#x000A;         connection = None&#x000A;         try:&#x000A;             connection = API(url='`[`http://host:port`](http://host:port)`',&#x000A;                              username='user@domain', password='')&#x000A;         except BaseException as ex:&#x000A;             #letting the external proxy know there was an error&#x000A;             print &gt;&gt; sys.stderr, ex&#x000A;             return None&#x000A;         return connection&#x000A;</code></pre>
+
+<p>Query the REST for these hosts</p>
+
+<pre class="highlight plaintext"><code>     def _get_hosts(self, host_ids, connection):&#x000A;         #get all the hosts with the given ids&#x000A;         engine_hosts = connection.hosts.list(&#x000A;             query=" or ".join(["id=%s" % u for u in host_ids]))&#x000A;         return engine_hosts&#x000A;</code></pre>
+
+<p>Get a hosts free memory, this requires a REST call, so we cache the results</p>
+
+<pre class="highlight plaintext"><code>     def getFreeMemory(self, host):&#x000A;         #getiing free memory requires a REST call, so cache results&#x000A;         if not host.id in self.free_memory_cache:&#x000A;             try:&#x000A;                 self.free_memory_cache[host.id] = host.get_statistics().get(&#x000A;                     'memory.free').get_values().get_value()[0].get_datum()&#x000A;             except Exception:&#x000A;                 self.free_memory_cache[host.id] = -1&#x000A;         return self.free_memory_cache[host.id]&#x000A;</code></pre>
+
+<p>Passes over the hosts deciding which one needs a migration the most, and what hosts are valid options as the migration destination</p>
+
+<pre class="highlight plaintext"><code>     def getOverUtilizedHostAndUnderUtilizedList(self, engine_hosts, minimum_host_memory):&#x000A;         **\1**&#x000A;         over_utilized_host = None&#x000A;         under_utilized_hosts = []&#x000A;         for host in engine_hosts:&#x000A;             if not host:&#x000A;                 continue&#x000A;             free_memory = self.getFreeMemory(host)&#x000A;             if(free_memory &lt;= 0):&#x000A;                 continue&#x000A;             if free_memory &gt; minimum_host_memory:&#x000A;                     under_utilized_hosts.append(host)&#x000A;                     continue&#x000A;                 #take the host with least amount of free memory&#x000A;             if (over_utilized_host is None or&#x000A;                     self.getFreeMemory(over_utilized_host)&#x000A;                     &gt; free_memory):&#x000A;                     over_utilized_host = host&#x000A;         return over_utilized_host, under_utilized_hosts&#x000A;</code></pre>
+
+<p>This passes over the hosts marked valid as migration destination, figuring how much free memory the most underused host have</p>
+
+<p>(this number is the maximum possible memory size of a VM to migrate)</p>
+
+<pre class="highlight plaintext"><code>     def getMaximumVmMemory(self, hosts, minimum_host_memory):&#x000A;         **\1**&#x000A;         maximum_vm_memory = 0&#x000A;         for host in hosts:&#x000A;             available_memory = self.getFreeMemory(host) - minimum_host_memory&#x000A;             available_memory = min(available_memory,&#x000A;                                    host.get_max_scheduling_memory())&#x000A;             if available_memory &gt; maximum_vm_memory:&#x000A;                 maximum_vm_memory = available_memory&#x000A;         return maximum_vm_memory&#x000A;</code></pre>
+
+<p>Now according to the option selected (safe/aggressive) , get from the overused Host a VM to migrate</p>
+
+<pre class="highlight plaintext"><code>     def getBestVmForMigration(self, vms, maximum_vm_memory, memory_delta, safe):&#x000A;         #safe -&gt; select the smallest vm&#x000A;         #not safe -&gt; try and select the smallest vm larger then the delta,&#x000A;         #   if no such vm exists take the largest one&#x000A;         #migrating a small vm is more likely to succeeded and puts less strain&#x000A;         #on the network&#x000A;         selected_vm = None&#x000A;         best_effort_vm = None&#x000A;         for vm in vms:&#x000A;                 if vm.memory &gt; maximum_vm_memory:&#x000A;                     #never select a vm that will send all the under&#x000A;                     #utilized hosts over the threshold&#x000A;                     continue&#x000A;                 if safe:&#x000A;                     if (selected_vm is None or&#x000A;                             vm.memory &lt; selected_vm.memory):&#x000A;                         selected_vm = vm&#x000A;                 else:&#x000A;                     if vm.memory &gt; memory_delta:&#x000A;                         if (selected_vm is None or&#x000A;                                 vm.memory &lt; selected_vm.memmory):&#x000A;                             selected_vm = vm&#x000A;                 if (best_effort_vm is None or&#x000A;                         vm.memory &gt; best_effort_vm.memory):&#x000A;                     best_effort_vm = vm&#x000A;         if not safe and selected_vm is None:&#x000A;             selected_vm = best_effort_vm&#x000A;         return selected_vm&#x000A;</code></pre>
+
+<p><strong>This function will be called by the external scheduler</strong></p>
+
+<p>It will get a list of host ids to check, and will return a VM to migrate and a list of possible host targets.</p>
+
+<pre class="highlight plaintext"><code>     def do_balance(self, hosts_ids, args_map): &#x000A;         **\1**&#x000A;         conn = self._get_connection()&#x000A;         if conn is None:&#x000A;             return&#x000A;         #get our parameters from the map&#x000A;         minimum_host_memory = long(args_map.get('minimum_host_memoryMB',&#x000A;                                                 self.MINIMUM_MEMORY_DEFAULT))&#x000A;         minimum_host_memory = minimum_host_memory * self.TO_BYTES&#x000A;         safe = bool(args_map.get('safe_selection',&#x000A;                                  self.SAFE_SELECTION_DEFAULT))&#x000A;         #get all the hosts with the given ids&#x000A;         engine_hosts = self._get_hosts(hosts_ids, conn)&#x000A;         over_utilized_host, under_utilized_hosts = (&#x000A;             self.getOverUtilizedHostAndUnderUtilizedList(engine_hosts,&#x000A;                                                          minimum_host_memory))&#x000A;         if over_utilized_host is None:&#x000A;             return&#x000A;         maximum_vm_memory = self.getMaximumVmMemory(under_utilized_hosts,&#x000A;                                                     minimum_host_memory)&#x000A;         #amount of memory the host is missing&#x000A;         memory_delta = (&#x000A;             minimum_host_memory -&#x000A;             self.getFreeMemory(over_utilized_host))&#x000A;         host_vms = conn.vms.list('host=' + over_utilized_host.name)&#x000A;         if host_vms is None:&#x000A;             return&#x000A;         #get largest/smallest vm that will&#x000A;         selected_vm = self.getBestVmForMigration(host_vms, maximum_vm_memory,&#x000A;                                                  memory_delta, safe)&#x000A;         if selected_vm is None:&#x000A;             return&#x000A;         under_utilized_hosts_ids = [host.id for host in under_utilized_hosts]&#x000A;         print (selected_vm.id, under_utilized_hosts_ids)&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Lists.ovirt.org-Configuration &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Lists.ovirt.org-Configuration</td>
+</tr>
+<tr>
+<th>category</th>
+<td>infra</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>quaid</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Infrastructure documentation</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Lists.ovirt.org-Configuration</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>3</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2011-11-16</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Lists.ovirt.org-Configuration' target='_blank'>
+Lists.ovirt.org-Configuration
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="listsovirtorg-configuration">Lists.ovirt.org-Configuration</h1>
+
+<h2 id="configuration-for-listsovirtorg">Configuration for lists.ovirt.org</h2>
+
+<p>These configuration details are derived from notes taken during the installation and configuration of lists.ovirt.org.</p>
+
+<h3 id="overall-configuration-details">Overall configuration details</h3>
+
+<p>Trimmed all unneeded packages from system to get base install, or use a base image that is already minimal.</p>
+
+<p>Configured firewall to allow ports 22, 25, 80, and 443:</p>
+
+<pre class="highlight plaintext"><code>cat /tmp/firewall.sh&#x000A;#!/bin/bash&#x000A;iptables -F&#x000A;iptables -X&#x000A;iptables -I INPUT -p icmp -j ACCEPT&#x000A;iptables -A INPUT -d 127.0.0.1 -j ACCEPT&#x000A;iptables -A INPUT -p tcp --dport 22 -j ACCEPT&#x000A;iptables -A INPUT -p tcp --dport 25 -j ACCEPT&#x000A;iptables -A INPUT -p tcp --dport 80 -j ACCEPT&#x000A;iptables -A INPUT -p tcp --dport 443 -j ACCEPT&#x000A;iptables -A INPUT -m state --state new -j REJECT &#x000A;service iptables save&#x000A;</code></pre>
+
+<p>Set IP address to static in: '/etc/sysconfig/network-scripts/ifcfg-eth0'</p>
+
+<p>Installed mailman and postfix:</p>
+
+<pre class="highlight plaintext"><code>yum install mailman postfix&#x000A;</code></pre>
+
+<p>Configured Postfix to listen to the external interface and for all the domains you want. These are the parameters set differently from default for ovirt.org:</p>
+
+<pre class="highlight plaintext"><code>myhostname = lists.ovirt.org&#x000A;inet_interfaces = $myhostname, localhost, 173.255.252.138&#x000A;mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain, linode01.ovirt.org&#x000A;relay_domains = $mydestination, linode01.ovirt.org, lists.ovirt.org&#x000A;</code></pre>
+
+<h3 id="mailman-configuration">Mailman configuration</h3>
+
+<p>In '/etc/httpd/conf.d/mailman.conf' set '/mailman' to redirect to listinfo page:</p>
+
+<pre class="highlight plaintext"><code># Uncomment the following line, to redirect queries to /mailman to the&#x000A;# listinfo page (recommended).&#x000A;&#x000A;RedirectMatch ^/mailman[/]*$ /mailman/listinfo&#x000A;</code></pre>
+
+<p>NOTE: Normally a Mailman-only host would have '/' redirected. This may be disabled because lists.ovirt.org is serving www.ovirt.org at '/'.</p>
+
+<pre class="highlight plaintext"><code># RedirectMatch ^/[/]*$ /mailman/listinfo&#x000A;</code></pre>
+
+<p>Edited '/etc/mailman/mm_cfg.py' and configured:</p>
+
+<pre class="highlight plaintext"><code>DEFAULT_URL_HOST   = "lists.ovirt.org"&#x000A;DEFAULT_EMAIL_HOST = "ovirt.org"&#x000A;</code></pre>
+
+<p>Restarted Apache.</p>
+
+<p>Added new virtual host to '/etc/httpd/conf.d/lists.ovirt.org.conf':</p>
+
+<pre class="highlight plaintext"><code>&lt;VirtualHost *:80&gt;&#x000A;    ServerAdmin webmaster@lists.ovirt.org&#x000A;    DocumentRoot /var/www/html/&#x000A;    ServerName lists.ovirt.org&#x000A;    ErrorLog logs/lists.ovirt.org-error_log&#x000A;    CustomLog logs/lists.ovirt.org-access_log common&#x000A;&lt;/VirtualHost&gt;&#x000A;</code></pre>
+
+<p>Ran 'chkconfig {httpd,postfix,mailman,iptables} on'.</p>
+
+<p>Ran '/usr/lib/mailman/bin/mmsitepass' to set mailman password.</p>
+
+<p>Ran '/usr/lib/mailman/bin/newlist' to create a new list. Add the password to the file '/root/passwords'.</p>
+
+<p>Don't forget to add sections to '/etc/aliases' for each mailing list, then run 'newaliases'.</p>
+
+<pre class="highlight plaintext"><code>To finish creating your mailing list, you must edit your /etc/aliases (or&#x000A;equivalent) file by adding the following lines, and possibly running the&#x000A;`newaliases' program:&#x000A;&#x000A;## mailman mailing list&#x000A;mailman:              "|/usr/lib/mailman/mail/mailman post mailman"&#x000A;mailman-admin:        "|/usr/lib/mailman/mail/mailman admin mailman"&#x000A;mailman-bounces:      "|/usr/lib/mailman/mail/mailman bounces mailman"&#x000A;mailman-confirm:      "|/usr/lib/mailman/mail/mailman confirm mailman"&#x000A;mailman-join:         "|/usr/lib/mailman/mail/mailman join mailman"&#x000A;mailman-leave:        "|/usr/lib/mailman/mail/mailman leave mailman"&#x000A;mailman-owner:        "|/usr/lib/mailman/mail/mailman owner mailman"&#x000A;mailman-request:      "|/usr/lib/mailman/mail/mailman request mailman"&#x000A;mailman-subscribe:    "|/usr/lib/mailman/mail/mailman subscribe mailman"&#x000A;mailman-unsubscribe:  "|/usr/lib/mailman/mail/mailman unsubscribe mailman"&#x000A;</code></pre>
+
+<h3 id="resources-used">Resources used</h3>
+
+<p><a href="http://www.iredmail.org/forum/topic1582-howto-configure-mailman-on-centosrhel-5.html">http://www.iredmail.org/forum/topic1582-howto-configure-mailman-on-centosrhel-5.html</a></p>
+
+<p><a href="http://linux.indhran.info/2008/12/how-to-setup-mailman-in-redhat.html">http://linux.indhran.info/2008/12/how-to-setup-mailman-in-redhat.html</a></p>
+
+<p>/usr/share/doc/mailman/INSTALL.REDHAT</p>
+
+<p><a href="/infra/infrastructure-documentation/">Category:Infrastructure documentation</a> <category:mailman></category:mailman></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

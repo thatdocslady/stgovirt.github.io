@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Specs &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Specs</td>
+</tr>
+<tr>
+<th>category</th>
+<td>node</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>fabiand</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Node</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Node/Specs</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>13</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2015-01-21</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Node/Specs' target='_blank'>
+Node/Specs
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="specs">Specs</h1>
+
+<p>This page tries to grab some of the properties we like about Node and which makes it what it is.</p>
+
+<h2 id="flows-and-terms">Flows and Terms</h2>
+
+<p>Thsi section actually tries to divide the whole Node concept into distinct sections.</p>
+
+<pre class="highlight plaintext"><code>     (Build time)    Packageset -&gt; Rootfs compose -&gt; LiveCD creation&#x000A;     (Runtime)                                       LiveCD -&gt; Installation -&gt; Runtime layout&#x000A;</code></pre>
+
+<ul>
+  <li>package set: The package set defines what packages are contained in the the rootfs</li>
+  <li>rootfs compose: The rootfs is composed by some kind of tool (imgfac, yum, rpm, rpm-ostree)</li>
+  <li>LiveCD creation: Another tool creates the LiveCD, currently only livemedia-creator is avaialble, which either takes a package set or rootfs</li>
+  <li>Installation: An installer on the LiveCD can be used to install the rootfs to a host</li>
+  <li>runtime layout: The runtime is the rootfs on the host which hosts VMs</li>
+</ul>
+
+<h2 id="delivery">Delivery</h2>
+
+<p>The ISO (kernel+initrd) which is used to deliver the OS to the host.</p>
+
+<ul>
+  <li>Size: Small</li>
+  <li>Image: ISO Image</li>
+  <li>Media
+    <ul>
+      <li>USB</li>
+      <li>PXE</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="payload">Payload</h2>
+
+<p>The actual rootfs which is used at runtime.</p>
+
+<ul>
+  <li>Size: Small</li>
+  <li>Image: Deployment image (ISO)</li>
+</ul>
+
+<h4 id="installation">Installation</h4>
+
+<ul>
+  <li>iSCSI, EFI, multipath</li>
+  <li>Partitioning</li>
+  <li>Bootloader</li>
+  <li>Image transfer</li>
+</ul>
+
+<h4 id="upgrade--rollback">Upgrade + Rollback</h4>
+
+<ul>
+  <li>"Atomic" single image</li>
+  <li>Rollback into previous image (boot into different LV)</li>
+</ul>
+
+<h4 id="security">Security</h4>
+
+<ul>
+  <li>SELinux</li>
+  <li>Read-Only rootfs (because of squashfs)</li>
+</ul>
+
+<h2 id="implementation">Implementation</h2>
+
+<ul>
+  <li>Livecd (current)</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Possible alternatives
+    <ul>
+      <li>Fedora Atomic - ostree based / image like</li>
+      <li>Anaconda derived - package based</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="problems">Problems</h2>
+
+<ul>
+  <li>Bind mounts are limited</li>
+  <li>Early-boot-process changes are not possible</li>
+  <li>Live plugins are hard</li>
+  <li>Installation is custom</li>
+</ul>
+
+<h1 id="comparison-possible-implementations">Comparison: Possible Implementations</h1>
+
+<p>The following table compares how three different technologies could implement the Node specific features.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Current</th>
+      <th><a href="http://www.projectatomic.io/">Atomic</a></th>
+      <th><a href="https://github.com/fabiand/imgbased/">LVM based</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Build time</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><em>Build tool</em></td>
+      <td>koji / livecd-tools</td>
+      <td><a href="http://www.projectatomic.io/blog/2014/04/build-your-own-atomic-host-on-fedora-20/">ostree-builder</a>, koji</td>
+      <td>koji / lorax (livemedia-creator) or imgfac</td>
+    </tr>
+    <tr>
+      <td><em>Image specification</em></td>
+      <td>kickstart (recipe)</td>
+      <td>kickstart (for installation) and <code>product.json</code> for tree</td>
+      <td>kickstart (for installation) and kickstart (for tree compose)</td>
+    </tr>
+    <tr>
+      <td><strong>Delivery</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><em>Installation Media</em></td>
+      <td>CD, USB, CF, PXE</td>
+      <td>Inheriting from anaconda (at least CD, USB, PXE)</td>
+      <td>Inheriting from anaconda (at least CD, USB, PXE)</td>
+    </tr>
+    <tr>
+      <td><em>Upgrade delivery</em></td>
+      <td>Image on LiveCD in RPM</td>
+      <td>ostree with "Atomic Manager" or offline-tree</td>
+      <td>(plain) Image or Image on Livecd in RPM, or for packages through update channels</td>
+    </tr>
+    <tr>
+      <td><strong>Installation/Upgrade</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><em>Installer</em></td>
+      <td>ovirt-node-installer</td>
+      <td>anaconda</td>
+      <td>anaconda 'Notes: Could be improved (<a href="https://bugzilla.redhat.com/show_bug.cgi?id=1099222">liveimg support in textmode</a> and <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora&amp;component=anaconda">"raw" payload installation</a>)'</td>
+    </tr>
+    <tr>
+      <td><em>Driver disks</em></td>
+      <td>N/A</td>
+      <td>'Unclear'</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><em>Host-Configuration TUI</em></td>
+      <td>ovirt-node-setup</td>
+      <td>ovirt-node-setup</td>
+      <td>ovirt-node-setup</td>
+    </tr>
+    <tr>
+      <td><em>Upgrade</em></td>
+      <td>Partition based, one active, one backup/for upgrades</td>
+      <td>Tree based/ Many (os)trees on a rootfs</td>
+      <td>Image or package based / Many images in a VG or for packages with yum update</td>
+    </tr>
+    <tr>
+      <td><em>Rollback</em></td>
+      <td>Boot into other partition</td>
+      <td>Boot into specific tree</td>
+      <td>Boot into specific LV</td>
+    </tr>
+    <tr>
+      <td><strong>Plugins</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><em>Plugin format</em></td>
+      <td>rpm</td>
+      <td>rpm</td>
+      <td>rpm</td>
+    </tr>
+    <tr>
+      <td><em>Runtime plugin installation</em></td>
+      <td>N/A</td>
+      <td><a href="https://github.com/cgwalters/atomic-pkglayer">POC for rpm installation</a></td>
+      <td>Using a package manager (rpm, yum) or a cfg mgmt system <strong>Limitation: bootloader should be prevented to be upgraded</strong></td>
+    </tr>
+    <tr>
+      <td><em>Offline plugin installation</em></td>
+      <td>Using edit-node, deploy new iso</td>
+      <td>Add package to (os)tree, build on server side, deploy new tree</td>
+      <td>Using libguestfs (or wrapper around it) or a different compose process</td>
+    </tr>
+    <tr>
+      <td><strong>Persistence</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><em>Data storage (for big files)</em></td>
+      <td>On a separate storage (/data is on another LV)</td>
+      <td>On a separate storage (/var is on another LV)</td>
+      <td>On a separate storage (another LV), could also be /</td>
+    </tr>
+    <tr>
+      <td><em>Persistence (for individual/random files) between boots</em></td>
+      <td>Persisted paths are kept on a separate LV (/config) and are bind-mounted into place at boot by a service <strong>Limitation: I.e. the boot process can not be changed and kernel modules can not be persisted</strong></td>
+      <td>Changes can be made to files in /etc <strong>Limitation: I.e. the boot process can not be changed and kernel modules can not be persisted</strong></td>
+      <td>Like any normal system, as the filesystem is writable</td>
+    </tr>
+    <tr>
+      <td><em>Persistence (for individual/random files) between upgrades</em></td>
+      <td>(same as above) This effectively means that persisted files are "copied" or "kept as is" between upgrades. Additional logic can take place in the upgrade logic. <strong>Limitation: I.e. kernel modules can not be persisted</strong></td>
+      <td>Effectively a <a href="http://www.projectatomic.io/docs/os-updates/">"rebase" or three-way merge</a>. The changes done to the previous config, are identified and applied to the new configuration <strong>Limitation: I.e. kernel modules can only be persisted in modified tree</strong></td>
+      <td>Unclear for now, but several possible: <a href="http://dummdida.tumblr.com/post/104188116490/ways-to-persist-a-reminder">Keeping, copying, three-way merge, or individual handling</a> (i.e by a service which is responsible to <a href="http://0pointer.net/blog/projects/stateless.html">migrate a config file on upgrade (see ConditionNeedsUpdate)</a></td>
+    </tr>
+    <tr>
+      <td><strong>\1</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a href="Category: Node">Category: Node</a></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

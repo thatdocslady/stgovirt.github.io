@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Hosted Engine Howto &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Hosted Engine Howto</td>
+</tr>
+<tr>
+<th>category</th>
+<td>howto</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>aburden, alukiano, bobdrad, didi, doron, jmoskovc, rstory, sandrobonazzola</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>SLA</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Hosted Engine Howto</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>22</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-10-24</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Hosted_Engine_Howto' target='_blank'>
+Hosted Engine Howto
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h3 id="hosted-engine-howto">Hosted Engine Howto</h3>
+
+<h3 id="summary">Summary</h3>
+
+<p>This wiki provides the basic operational information needed to install, upgrade and maintain the oVirt hosted engine.</p>
+
+<h3 id="contacts"><strong>Contacts</strong></h3>
+
+<p>Feature Owners:
+Sean Cohen <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#115;&#099;&#111;&#104;&#101;&#110;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#115;&#099;&#111;&#104;&#101;&#110;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a>, Doron Fediuck <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#100;&#111;&#114;&#111;&#110;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#100;&#111;&#114;&#111;&#110;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a>
+Setup Component owners:
+Sandro Bonazzola <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#115;&#098;&#111;&#110;&#097;&#122;&#122;&#111;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#115;&#098;&#111;&#110;&#097;&#122;&#122;&#111;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a>, Yedidyah Bar David <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#100;&#105;&#100;&#105;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#100;&#105;&#100;&#105;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a>
+HA Component owners:
+Greg Padgett <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#103;&#112;&#097;&#100;&#103;&#101;&#116;&#116;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#103;&#112;&#097;&#100;&#103;&#101;&#116;&#116;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a>, Martin Sivak <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#115;&#105;&#118;&#097;&#107;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#109;&#115;&#105;&#118;&#097;&#107;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a></p>
+
+<h3 id="requirements"><strong>Requirements</strong></h3>
+
+<ul>
+  <li>Two hypervisors (hosts)</li>
+  <li>NFS-based shared storage (since 3.4.0) or <a href="Feature/Self_Hosted_Engine_iSCSI_Support">iSCSI storage</a> (since 3.5.0 beta)</li>
+  <li>Access to the oVirt repository</li>
+</ul>
+
+<h3 id="fresh-install"><strong>Fresh Install</strong></h3>
+
+<p>Assuming you're using ovirt RPMs, you should start with install and deploy:</p>
+
+<pre class="highlight plaintext"><code>     # yum install ovirt-hosted-engine-setup&#x000A;     # hosted-engine --deploy&#x000A;</code></pre>
+
+<p>During the deployment you'll be asked for input on host name, storage path and other relevant information. The installer will configure the system and run an empty VM. Access the VM and install an OS:</p>
+
+<pre class="highlight plaintext"><code>     [ INFO  ] Creating VM&#x000A;             ...&#x000A;             ...&#x000A;             Please install the OS on the VM.&#x000A;             When the installation is completed reboot or shutdown the VM: the system will wait until then&#x000A;             Has the OS installation been completed successfully?&#x000A;</code></pre>
+
+<p>After completing the OS installation on the VM, return to the host and continue. The installer on the host will sync with the VM and ask for the engine to be installed on the new VM:</p>
+
+<pre class="highlight plaintext"><code>    [ INFO  ] Creating VM&#x000A;             ...&#x000A;             ...&#x000A;             Please install the engine in the VM, hit enter when finished.&#x000A;</code></pre>
+
+<p>On the VM:</p>
+
+<pre class="highlight plaintext"><code>     # yum install ovirt-engine&#x000A;     # engine-setup&#x000A;</code></pre>
+
+<p>When the engine-setup has completed on the VM, return to the host and complete the configuration. Your hosted engine VM is up and running!</p>
+
+<p><strong>Notes:</strong></p>
+
+<ul>
+  <li>Remember to setup the same hostname you specified as FQDN during deploy while you're setting up the engine on the VM.</li>
+  <li>Although hosted-engine and engine-setup use different wording for the admin password ("'admin@internal' user password" vs "Engine admin password"), they are asking for the same thing. If you enter different passwords, the hosted-engine setup will fail.</li>
+  <li>
+    <p>If you want to install ovirt-engine-dwh and ovirt-engine-reports, or update the engine after the deployment is completed, remember that you need to set the system in global maintenance using
+    # hosted-engine –set-maintenance –mode=global</p>
+
+    <p>because the engine service must be stopped during setup / upgrade operations.</p>
+  </li>
+</ul>
+
+<h3 id="migrate-existing-setup-to-a-vm"><strong>Migrate existing setup to a VM</strong></h3>
+
+<p>Moving an existing setup into a VM is similar to a fresh install, but instead of running a fresh engine-setup inside the VM, we restore there a backup of the existing engine. For full details see <a href="/engine/migrate-to-hosted-engine/">Migrate_to_Hosted_Engine</a></p>
+
+<h3 id="installing-additional-nodes"><strong>Installing additional nodes</strong></h3>
+
+<p>Here is an example of a deployment on an additional host:</p>
+
+<pre class="highlight plaintext"><code>     # yum install ovirt-hosted-engine-setup&#x000A;     # hosted-engine --deploy&#x000A;</code></pre>
+
+<p>Once storage path is given, the installer will identify this is an additional host, and will change the flow accordingly:</p>
+
+<pre class="highlight plaintext"><code>     The specified storage location already contains a data domain. Is this an additional host setup (Yes, No)[Yes]? yes&#x000A;     [ INFO  ] Installing on additional host&#x000A;             Please specify the Host ID [Must be integer, default: 2]:&#x000A;</code></pre>
+
+<p>As with the first node, this will take you to the process completion.</p>
+
+<p><strong>Notes</strong></p>
+
+<ul>
+  <li>Remember to use the same storage path you used on first host.</li>
+</ul>
+
+<h3 id="maintaining-the-setup"><strong>Maintaining the setup</strong></h3>
+
+<p>The HA services have two maintenance types for different tasks.</p>
+
+<h4 id="global-maintenance"><strong>Global maintenance</strong></h4>
+
+<p>Main use is to allow the administrator to start/stop/modify the engine VM without any worry of interference from the HA agents.
+In order to maintain the engine VM, use:</p>
+
+<pre class="highlight plaintext"><code>     # hosted-engine --set-maintenance --mode=global&#x000A;</code></pre>
+
+<p>To resume HA functionality, use:</p>
+
+<pre class="highlight plaintext"><code>     # hosted-engine --set-maintenance --mode=none&#x000A;</code></pre>
+
+<h4 id="local-maintenance"><strong>Local maintenance</strong></h4>
+
+<p>Main use is to allow the administrator to maintain one or more hosts. Note that if you have only 2 nodes and one is in maintenance,
+there is only one host available to run the engine VM. The way to maintain a host is by using:</p>
+
+<pre class="highlight plaintext"><code>     # hosted-engine --set-maintenance --mode=local&#x000A;</code></pre>
+
+<p>To resume HA functionality, use:</p>
+
+<pre class="highlight plaintext"><code>     # hosted-engine --set-maintenance --mode=none&#x000A;</code></pre>
+
+<h3 id="upgrade-hosted-engine"><strong>Upgrade Hosted Engine</strong></h3>
+
+<p>Assuming you have already deployed Hosted Engine on your hosts and running the Hosted Engine VM, having the same oVirt version both on hosts and Hosted Engine VM.</p>
+
+<ol>
+  <li>Set hosted engine maintenance mode to global (now ha agent stop monitoring engine-vm, you can see above how to activate it)</li>
+  <li>Access to engine-vm and upgrade oVirt to latest version using the same procedure used for non hosted engine setups.</li>
+  <li>Upgrade hosts with new packages (changes repository to latest version and run yum update -y) on this stage may appear vdsm-tool exception <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1088805">https://bugzilla.redhat.com/show_bug.cgi?id=1088805</a></li>
+  <li>Restart vdsmd (# service vdsmd restart)</li>
+  <li>Restart ha-agent and broker services (# service ovirt-ha-broker restart &amp;&amp; service ovirt-ha-agent restart)</li>
+  <li>Enter for example via UI to engine and change 'Default' cluster (where all your hosted hosts seats) compatibility version to current version (for example 3.4) and activate your hosts (to get features of the new version)</li>
+  <li>Change hosted-engine maintenance to none, starting from 3.4 you can do it via UI(right click on engine vm, and 'Disable Global HA Maintenance Mode')</li>
+</ol>
+
+<h3 id="more-info"><strong>More info</strong></h3>
+
+<p>Additional information is available in the feature page <a href="/feature/engine/self-hosted-engine/">Features/Self_Hosted_Engine</a></p>
+
+<h1 id="faq"><strong>FAQ</strong></h1>
+
+<h3 id="engineunexpectedlydown">EngineUnexpectedlyDown</h3>
+
+<h4 id="failed-to-acquire-lock">Failed to acquire lock</h4>
+
+<p>When the hosted engine VM is down for some reason the agent(s) will try to start it again. There is no synchronization between agents while starting the VM, so it might happen that more than one agent will try to start the VM at the same time. This is intended behavior because only one host can actually acquire the lock and run the VM. The host which failed the acquire the log will print an error to the vdsm.log: 'Failed to acquire lock: error -243'. The agent will move to the EngineUnexpectedlyDown state, because it failed to start the VM, but it will sync in a while once the timeout expires (you can grep the agent.log for "Timeout" to get the specific time when it should sync).</p>
+
+<category:sla>
+</category:sla>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

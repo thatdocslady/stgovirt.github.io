@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Jenkins &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Jenkins</td>
+</tr>
+<tr>
+<th>category</th>
+<td>infra</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>eedri, mburns, quaid, rmiddle</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Infrastructure documentation</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Jenkins</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>10</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-07-23</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Jenkins' target='_blank'>
+Jenkins
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="jenkins-ovirt-server">Jenkins oVirt Server</h1>
+
+<p>oVirt Jenkins server is jenkins.ovirt.org (107.22.215.130)</p>
+
+<h1 id="recommended-server-specs">Recommended server specs</h1>
+
+<p>These are specs for servers to run Jenkins slaves for oVirt testing. One base configuration could be:</p>
+
+<ul>
+  <li>16 GB RAM each</li>
+  <li>4/8 cores each</li>
+  <li>200 GB disk each</li>
+  <li>32 GB swap</li>
+</ul>
+
+<h1 id="access">Access</h1>
+
+<pre class="highlight plaintext"><code>  * OS Level Access: Restricted to infra team only. (PKI)&#x000A;  * Read UI Access: Anonymous read access is available to see all jobs/workspaces and build results. &#x000A;  * Login UI Access: availialble only to infra team, and by request to infra@ovirt.org.&#x000A;</code></pre>
+
+<p>Contact Infra team if you think you should have privileged access to the server.</p>
+
+<h3 id="troubleshooting-os-level-access">Troubleshooting OS level access:</h3>
+
+<pre class="highlight plaintext"><code>  * restorecon -R -v /home/user&#x000A;  * restorecon -R -v /home/user/.ssh&#x000A;  * chmod 700 /home/user/.ssh&#x000A;  * chmod 600 /home/user/.ssh/authorized_keys&#x000A;  * passwd user&#x000A;</code></pre>
+
+<h1 id="installation">Installation</h1>
+
+<p><code>* Install LTS version from </code><a href="http://pkg.jenkins-ci.org/redhat-stable/"><code>http://pkg.jenkins-ci.org/redhat-stable/</code></a>
+<code>* Run it behind apache: </code><a href="https://wiki.jenkins-ci.org/display/JENKINS/Running+Jenkins+behind+Apache"><code>https://wiki.jenkins-ci.org/display/JENKINS/Running+Jenkins+behind+Apache</code></a>
+      * chkconfig httpd on
+      * yum install java-1.6.0-openjdk-devel git postgresql postgresql-server postgresql-contrib
+      * run /etc/init.d/postgresql initdb 
+      * set postgresql pg_hba.conf to trust 
+      * restart postgresql service
+      * add engine 'role' as superuser to postgres -&gt; 
+      * psql -U postgres -c "CREATE ROLE engine WITH LOGIN SUPERUSER"
+      * service jenkins start
+      * Install Jenkins plugins: 
+<code>  wget </code><a href="http://localhost:8080/jnlpJars/jenkins-cli.jar"><code>http://localhost:8080/jnlpJars/jenkins-cli.jar</code></a>
+        java -jar jenkins-cli.jar -s <code>[</code>http://localhost:8080<code>](http://localhost:8080)</code> install-plugin audit-trail
+        java -jar jenkins-cli.jar -s <code>[</code>http://localhost:8080<code>](http://localhost:8080)</code> install-plugin git
+        java -jar jenkins-cli.jar -s <code>[</code>http://localhost:8080<code>](http://localhost:8080)</code> install-plugin multiple-scms
+        java -jar jenkins-cli.jar -s <code>[</code>http://localhost:8080<code>](http://localhost:8080)</code> install-plugin analysis-collector
+        java -jar jenkins-cli.jar -s <code>[</code>http://localhost:8080<code>](http://localhost:8080)</code> install-plugin findbugs
+        java -jar jenkins-cli.jar -s <code>[</code>http://localhost:8080<code>](http://localhost:8080)</code> install-plugin Email-ext
+        java -jar jenkins-cli.jar -s <code>[</code>http://localhost:8080<code>](http://localhost:8080)</code> install-plugin port-allocator</p>
+
+<p><code>* config JAVA_HOME in </code><a href="http://jenkins.ovirt.org/configure"><code>http://jenkins.ovirt.org/configure</code></a>
+<code>* config default maven in </code><a href="http://jenkins.ovirt.org/configure"><code>http://jenkins.ovirt.org/configure</code></a>
+      * edit /etc/sysconfig/jenkins (replace line):
+      * JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true -Xms4g -Xmx4g -XX:MaxPermSize=1024M"
+      * increase limit of open file using 'ulimit -n' (for persistent  change add to '/etc/sysctl.conf') =&gt; fs.file-max = 2048
+      * amazon ec2 doesn't come with swap space -&gt; create a swap file or partition:</p>
+
+<h3 id="create-swap-space">Create swap space</h3>
+
+<p>check to see if you have /dev/xvdk device available (fdisk -cul) if it exists, follow these steps:</p>
+
+<pre class="highlight plaintext"><code>  * fdisk -cu /dev/xvdk&#x000A;  * create a new swap partition (type 82) and save changes&#x000A;  * mkswap /dev/xvdk1&#x000A;  * swapon /dev/xvdk1&#x000A;  * echo "/dev/xvdk1       none    swap    sw      0       0" &gt;&gt; /etc/fstab&#x000A;</code></pre>
+
+<p>in case it doesn't, create a swapfile</p>
+
+<p><code>* </code><a href="http://www.cyberciti.biz/faq/linux-add-a-swap-file-howto/"><code>http://www.cyberciti.biz/faq/linux-add-a-swap-file-howto/</code></a></p>
+
+<h3 id="add-temporary-space-for-workspace-deletes-data-after-reboot">add temporary space for workspace (deletes data after reboot)</h3>
+
+<pre class="highlight plaintext"><code>  * mkfs -t ext4 /dev/xvdj&#x000A;  * mkdir /ephemeral0&#x000A;  * echo "/dev/xvdj /ephemeral0 ext4 defaults 1 2" &gt;&gt; /etc/fstab&#x000A;  * mount /ephemeral0&#x000A;</code></pre>
+
+<h3 id="expand-default-root-partition">expand default root partition</h3>
+
+<p>Amazon VM comes with a default 5GB / partition. but it actually has 50GB you can use. run this command to expand it</p>
+
+<pre class="highlight plaintext"><code>  * resize2fs /dev/xvde1&#x000A;</code></pre>
+
+<h3 id="change-open-files">change open files</h3>
+
+<p>Jenkins slave might run out of openfiles. to change this you need to run:</p>
+
+<pre class="highlight plaintext"><code>  *ulimit -n 2048&#x000A;  *edit /etc/sysctl.conf: fs.file-max = 2048&#x000A;  *edit /etc/security/limits.conf:&#x000A;  *  jenkins  soft    nofiles    2048&#x000A;  *  jenkins  hard    nofiles    2048&#x000A;</code></pre>
+
+<h3 id="allows-sudo-access-for-jenkins-user">allows sudo access for jenkins user</h3>
+
+<p>Jenkins user needs sudo access to be able to run tests from jenkins jobs, do this on each jenkins slave: edit /etc/suders:</p>
+
+<pre class="highlight plaintext"><code>  * remark the line: Defaults    requiretty&#x000A;  * add the line: jenkins ALL=(ALL)       NOPASSWD: ALL&#x000A;</code></pre>
+
+<p><a href="Category: Infrastructure documentation">Category: Infrastructure documentation</a></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

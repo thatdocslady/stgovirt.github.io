@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Local Jenkins For The People &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Local Jenkins For The People</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>lpeer, mkolesni, moti, msalem</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Local Jenkins For The People</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>13</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-02-11</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Local_Jenkins_For_The_People' target='_blank'>
+Local Jenkins For The People
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="local-jenkins-guide-for-the-people">Local Jenkins (guide) for the people</h1>
+
+<p>Wherever you need to substitute a value, the notation <strong>[]</strong> is used, ie <strong>[value]</strong>.</p>
+
+<p>The needed values are:</p>
+
+<hr />
+
+<ul>
+  <li><strong>[jenkins-host]</strong> - The host you're installing jenkins to (IP/FQDN) - i.e. your VDSM host.</li>
+  <li><strong>[git-host]</strong> - The host where the GIT repository you work on is located (your local repo, not origin) - i.e. your lap[top.</li>
+  <li><strong>[user]</strong> - The user you use to work on your stuff (In order to clone from your repo).</li>
+  <li><strong>[git-repo-url]</strong> - Full URL of the git repo on the [git-host] - i.e. <a href="ssh://[user]">ssh://[user]</a>@[git-host]/~/git/ovirt-engine</li>
+</ul>
+
+<h1 id="install--configure-jenkins">Install &amp; configure Jenkins</h1>
+
+<p>The enclosed installation script does most of the work for you, installing Jenkins &amp; pre-requisites, but it does not configure Jenkins for you.</p>
+
+<p>You can either use the installation script or follow the steps manually, it's up to you!</p>
+
+<h3 id="installation-script">Installation script</h3>
+
+<p>If after running the script you get: "AWT is not properly configured on this server. Perhaps you need to run your container with "-Djava.awt.headless=true"?"</p>
+
+<p>Then run:</p>
+
+<pre class="highlight plaintext"><code>  # yum install dejavu-sans-fonts&#x000A;</code></pre>
+
+<p>and then run the script again.</p>
+
+<p>Download from here: <media:jenkins.sh.gz></media:jenkins.sh.gz></p>
+
+<p>Or copy this:</p>
+
+<pre class="highlight shell"><code><span class="c">#! /bin/bash</span>&#x000A;<span class="c">#</span>&#x000A;<span class="c"># Copyright (c) 2012 Red Hat, Inc.</span>&#x000A;<span class="c">#</span>&#x000A;<span class="c"># Licensed under the Apache License, Version 2.0 (the "License");</span>&#x000A;<span class="c"># you may not use this file except in compliance with the License.</span>&#x000A;<span class="c"># You may obtain a copy of the License at</span>&#x000A;<span class="c">#</span>&#x000A;<span class="c">#           http://www.apache.org/licenses/LICENSE-2.0</span>&#x000A;<span class="c">#</span>&#x000A;<span class="c"># Unless required by applicable law or agreed to in writing, software</span>&#x000A;<span class="c"># distributed under the License is distributed on an "AS IS" BASIS,</span>&#x000A;<span class="c"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>&#x000A;<span class="c"># See the License for the specific language governing permissions and</span>&#x000A;<span class="c"># limitations under the License.</span>&#x000A;<span class="c">#</span>&#x000A;&#x000A;usage<span class="o">()</span> <span class="o">{</span>&#x000A;<span class="c">#    echo "Usage: ${ME} [-h] -s SERVERNAME -u USERNAME [-v]"</span>&#x000A;    <span class="nb">echo</span> <span class="s2">"Usage: </span><span class="k">${</span><span class="nv">ME</span><span class="k">}</span><span class="s2"> [-h] [-f] [-v]"</span>&#x000A;    <span class="nb">echo</span> <span class="s2">""</span>&#x000A;<span class="c">#    echo "  -s SERVERNAME - The IP/FQDN for the GIT server.           (eg your machine)"</span>&#x000A;<span class="c">#    echo "  -u USERNAME   - The user you are using on the GIT server. (eg your user)"</span>&#x000A;    <span class="nb">echo</span> <span class="s2">"  -v            - Turn on verbosity."</span>&#x000A;    <span class="nb">echo</span> <span class="s2">"  -f            - Use force (don't stop if a critical step fails)."</span>&#x000A;    <span class="nb">echo</span> <span class="s2">"  -h            - This help text."</span>&#x000A;    <span class="nb">echo</span> <span class="s2">""</span>&#x000A;&#x000A;    <span class="nb">exit </span>0&#x000A;<span class="o">}</span>&#x000A;&#x000A;<span class="k">function </span>printSuccess <span class="o">{</span>&#x000A;    <span class="k">if</span> <span class="o">[</span> <span class="nv">$2</span> <span class="o">=</span> 0 <span class="o">]</span>&#x000A;    <span class="k">then&#x000A;        </span><span class="nv">successStr</span><span class="o">=</span><span class="s1">'[SUCCESS]'</span>&#x000A;    <span class="k">else&#x000A;        </span><span class="nv">successStr</span><span class="o">=</span><span class="s1">'[FAILED]'</span>&#x000A;    <span class="k">fi&#x000A;&#x000A;    </span><span class="nv">limit</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo </span>79 - <span class="k">$(</span> <span class="nb">echo</span> <span class="nv">$successStr</span> | wc -m<span class="k">)</span> | bc<span class="k">)</span>&#x000A;    <span class="nv">start</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo </span>1 + <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$1</span> | wc -m<span class="k">)</span> | bc<span class="k">)</span>&#x000A;&#x000A;    <span class="nb">echo</span> -n <span class="nv">$1</span><span class="s1">' '</span>&#x000A;&#x000A;    <span class="k">for </span>i <span class="k">in</span> <span class="sb">`</span>seq <span class="nv">$start</span> <span class="nv">$limit</span><span class="sb">`</span>;&#x000A;    <span class="k">do&#x000A;        </span><span class="nb">echo</span> -n <span class="s1">'.'</span>&#x000A;    <span class="k">done&#x000A;&#x000A;    </span><span class="nb">echo</span> <span class="s1">' '</span><span class="nv">$successStr</span>&#x000A;<span class="o">}</span>&#x000A;&#x000A;<span class="k">function </span>yumInstall <span class="o">{</span>&#x000A;    yum install <span class="nv">$VERBOSE</span> -y <span class="nv">$1</span>&#x000A;&#x000A;    <span class="nv">success</span><span class="o">=</span><span class="nv">$?</span>&#x000A;    printSuccess <span class="s2">"Installed </span><span class="nv">$1</span><span class="s2">"</span> <span class="nv">$success</span>&#x000A;<span class="o">}</span>&#x000A;&#x000A;<span class="k">function </span>startService <span class="o">{</span>&#x000A;    chkconfig <span class="nv">$1</span> on&#x000A;    <span class="nv">success</span><span class="o">=</span><span class="nv">$?</span>&#x000A;    printSuccess <span class="s2">"Enabled </span><span class="nv">$1</span><span class="s2"> service on start-up"</span> <span class="nv">$success</span>&#x000A;&#x000A;    <span class="k">if</span> <span class="o">[</span> <span class="nv">$success</span> <span class="o">]</span>&#x000A;    <span class="k">then&#x000A;        </span>service <span class="nv">$1</span> start&#x000A;        <span class="nv">success</span><span class="o">=</span><span class="nv">$?</span>&#x000A;        printSuccess <span class="s2">"Started </span><span class="nv">$1</span><span class="s2"> service"</span> <span class="nv">$success</span>&#x000A;    <span class="k">fi</span>&#x000A;<span class="o">}</span>&#x000A;&#x000A;<span class="k">function </span>installPlugin <span class="o">{</span>&#x000A;    java -jar /tmp/jenkins-cli.jar -s http://localhost:8080 install-plugin <span class="nv">$1</span>&#x000A;    printSuccess <span class="s2">"Installed Jenkins </span><span class="nv">$1</span><span class="s2"> plugin"</span> <span class="nv">$?</span>&#x000A;<span class="o">}</span>&#x000A;&#x000A;<span class="nv">VERBOSE</span><span class="o">=</span><span class="s1">'-q'</span>&#x000A;<span class="k">while </span><span class="nb">getopts</span> :hfv option; <span class="k">do&#x000A;    case</span> <span class="nv">$option</span> <span class="k">in</span>&#x000A;<span class="c">#        s) SERVERNAME=$OPTARG;;</span>&#x000A;<span class="c">#        u) USERNAME=$OPTARG;;</span>&#x000A;        v<span class="p">)</span> <span class="nv">VERBOSE</span><span class="o">=</span><span class="s1">''</span><span class="p">;;</span>&#x000A;        f<span class="p">)</span> <span class="nv">FORCE</span><span class="o">=</span><span class="nb">true</span><span class="p">;;</span>&#x000A;        h<span class="p">)</span> usage;;&#x000A;    <span class="k">esac&#x000A;done</span>&#x000A;&#x000A;<span class="c">#if [[ "$SERVERNAME" = '' || "$USERNAME" = '' ]]</span>&#x000A;<span class="c">#then</span>&#x000A;<span class="c">#    echo "ERROR: One or more required parameters are missing."</span>&#x000A;<span class="c">#    usage</span>&#x000A;<span class="c">#fi</span>&#x000A;&#x000A;<span class="nb">echo</span> <span class="s2">"Installing pre-requisites:"</span>&#x000A;<span class="nb">echo</span> <span class="s2">"=========================="</span>&#x000A;&#x000A;yumInstall ntp&#x000A;&#x000A;<span class="k">if</span> !grep <span class="s2">"10.5.26.10"</span> /etc/ntp.conf &amp;&gt; /dev/null&#x000A;<span class="k">then&#x000A;    </span><span class="nb">echo</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">server 10.5.26.10 # Added by jenkins install script.</span><span class="se">\n</span><span class="s2">"</span> &gt;&gt; /etc/ntp.conf&#x000A;    printSuccess <span class="s2">"Added working NTP server"</span> <span class="nv">$?</span>&#x000A;<span class="k">fi&#x000A;&#x000A;</span>yumInstall java&#x000A;yumInstall git&#x000A;&#x000A;<span class="k">if </span>grep Fedora /etc/redhat-release &amp;&gt; /dev/null&#x000A;<span class="k">then&#x000A;    </span>yumInstall maven&#x000A;<span class="k">else&#x000A;    </span>rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-5.noarch.rpm&#x000A;    wget <span class="nv">$VERBOSE</span> -O /etc/yum.repos.d/epel-apache-maven.repo http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo&#x000A;    yumInstall apache-maven&#x000A;<span class="k">fi&#x000A;&#x000A;</span>yumInstall postgresql-server&#x000A;yumInstall postgresql-contrib&#x000A;&#x000A;<span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="k">$(</span>rpm -q postgresql | cut -f2 -d<span class="s1">'-'</span> | cut -f1 -d<span class="s1">'.'</span><span class="k">)</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"8"</span> <span class="o">]</span>&#x000A;<span class="k">then&#x000A;    </span>su - postgres -c <span class="s1">'initdb -U postgres -D /var/lib/pgsql/data/'</span>&#x000A;<span class="k">else&#x000A;    </span>su - postgres -c <span class="s1">'pg_ctl initdb'</span>&#x000A;<span class="k">fi&#x000A;&#x000A;</span>printSuccess <span class="s2">"Initialized DB"</span> <span class="nv">$?</span>&#x000A;&#x000A;<span class="nb">echo</span> <span class="s2">""</span>&#x000A;<span class="nb">echo</span> <span class="s2">"Installing Jenkins CI:"</span>&#x000A;<span class="nb">echo</span> <span class="s2">"======================"</span>&#x000A;&#x000A;wget <span class="nv">$VERBOSE</span> -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo&#x000A;&#x000A;printSuccess <span class="s1">'Downloaded Jenkins repo'</span> <span class="nv">$?</span>&#x000A;&#x000A;rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key&#x000A;&#x000A;printSuccess <span class="s1">'Imported Jenkins RPM key'</span> <span class="nv">$?</span>&#x000A;&#x000A;yumInstall jenkins&#x000A;&#x000A;<span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$success</span><span class="s2">"</span> !<span class="o">=</span> <span class="s2">"0"</span> <span class="o">&amp;&amp;</span> !<span class="nv">$FORCE</span> <span class="o">]]</span>&#x000A;<span class="k">then&#x000A;    </span><span class="nb">echo</span> <span class="s2">"FATAL: Can't install Jenkins, exiting."</span>&#x000A;    <span class="nb">exit </span>1&#x000A;<span class="k">fi&#x000A;&#x000A;</span>startService jenkins&#x000A;&#x000A;<span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$success</span><span class="s2">"</span> !<span class="o">=</span> <span class="s2">"0"</span> <span class="o">&amp;&amp;</span> !<span class="nv">$FORCE</span> <span class="o">]]</span>&#x000A;<span class="k">then&#x000A;    </span><span class="nb">echo</span> <span class="s2">"FATAL: Can't start Jenkins service, exiting."</span>&#x000A;    <span class="nb">exit </span>1&#x000A;<span class="k">fi</span>&#x000A;&#x000A;<span class="c">#su - -s /bin/bash -c "ssh -o 'StrictHostKeyChecking no' $USERNAME@$SERVERNAME 'echo Success &gt; /dev/null'" jenkins</span>&#x000A;&#x000A;<span class="c">#printSuccess "Added server $SERVERNAME to known hosts list" $?</span>&#x000A;&#x000A;<span class="c">#su - -s /bin/bash -c "if [ ! -e ~/.ssh/id_rsa.pub ]; then ssh-keygen -q -t rsa; fi &amp;&amp; ssh-copy-id $USERNAME@$SERVERNAME" jenkins</span>&#x000A;&#x000A;<span class="c">#printSuccess "Generated &amp; deployed SSH public-key" $?</span>&#x000A;&#x000A;<span class="nb">echo</span> <span class="s2">""</span>&#x000A;<span class="nb">echo</span> <span class="s2">"Installing Jenkins Plugins:"</span>&#x000A;<span class="nb">echo</span> <span class="s2">"==========================="</span>&#x000A;&#x000A;<span class="nb">echo</span> <span class="s2">"Wait 30s for jenkins to go up.."</span>&#x000A;sleep 30s&#x000A;&#x000A;wget <span class="nv">$VERBOSE</span> -O /tmp/jenkins-cli.jar http://localhost:8080/jnlpJars/jenkins-cli.jar&#x000A;&#x000A;printSuccess <span class="s2">"Downloaded Jenkins CLI"</span> <span class="nv">$?</span>&#x000A;&#x000A;wget <span class="nv">$VERBOSE</span> -O /tmp/jenkins-update-center.tmp http://updates.jenkins-ci.org/update-center.json&#x000A;&#x000A;tail -n +2 /tmp/jenkins-update-center.tmp | head -n -1 &gt; /tmp/jenkins-update-center.json&#x000A;&#x000A;curl -X POST -d @/tmp/jenkins-update-center.json http://localhost:8080/updateCenter/byId/default/postBack&#x000A;&#x000A;printSuccess <span class="s2">"</span><span class="se">\n</span><span class="s2">Initialized Jenkins update center"</span> <span class="nv">$?</span>&#x000A;&#x000A;installPlugin git&#x000A;installPlugin checkstyle&#x000A;installPlugin findbugs&#x000A;installPlugin build-name-setter&#x000A;installPlugin saferestart&#x000A;&#x000A;java -jar /tmp/jenkins-cli.jar -s http://localhost:8080 safe-restart&#x000A;&#x000A;printSuccess <span class="s2">"Restarted Jenkins after plugins installed"</span> <span class="nv">$?</span>&#x000A;&#x000A;<span class="nb">echo</span> <span class="s2">"Jenkins should now be installed &amp; working, enjoy!"</span>&#x000A;&#x000A;<span class="nb">exit </span>0&#x000A;</code></pre>
+
+<h3 id="manual-installation">Manual installation</h3>
+
+<h4 id="prerequisites">Prerequisites</h4>
+
+<p>Make sure you have ntpd installed and running, a good server to use is (in /etc/ntp.conf):</p>
+
+<pre class="highlight plaintext"><code>  # server 10.5.26.10&#x000A;</code></pre>
+
+<h4 id="installing-jenkins">Installing Jenkins</h4>
+
+<p><strong>Note: All steps are to be done on the machine you want jenkins installed at!</strong></p>
+
+<p><code># ssh root@</code><strong><code>[jenkins-host]</code></strong></p>
+
+<h5 id="add-jenkins-repo">Add jenkins REPO</h5>
+
+<p><code># wget -O /etc/yum.repos.d/jenkins.repo </code><a href="http://pkg.jenkins-ci.org/redhat/jenkins.repo"><code>http://pkg.jenkins-ci.org/redhat/jenkins.repo</code></a>
+<code># rpm --import </code><a href="http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key"><code>http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key</code></a></p>
+
+<h5 id="install-jenkins">Install Jenkins</h5>
+
+<pre class="highlight plaintext"><code>  # yum install jenkins&#x000A;</code></pre>
+
+<h5 id="start-jenkins">Start jenkins</h5>
+
+<pre class="highlight plaintext"><code>  # service jenkins start&#x000A;</code></pre>
+
+<h5 id="make-sure-jenkins-starts-automatically">Make sure jenkins starts automatically</h5>
+
+<pre class="highlight plaintext"><code>  # chkconfig jenkins on&#x000A;</code></pre>
+
+<h4 id="additional-installations">Additional installations</h4>
+
+<h5 id="install-maven">Install maven</h5>
+
+<h6 id="on-el6-host">On EL6 host</h6>
+
+<p><code># rpm -Uvh </code><a href="http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-5.noarch.rpm"><code>http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-5.noarch.rpm</code></a>
+<code># wget -O /etc/yum.repos.d/epel-apache-maven.repo </code><a href="http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo"><code>http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo</code></a>
+      # yum install apache-maven</p>
+
+<h6 id="on-fc16-host">On FC16 host</h6>
+
+<pre class="highlight plaintext"><code>  # yum install maven&#x000A;</code></pre>
+
+<h5 id="install-git">Install git</h5>
+
+<pre class="highlight plaintext"><code>  # yum install git&#x000A;</code></pre>
+
+<h4 id="installing-some-jenkins-plugins">Installing some Jenkins plugins..</h4>
+
+<h5 id="download-jenkins-cli">Download jenkins CLI</h5>
+
+<p><code># wget </code><a href="http://localhost:8080/jnlpJars/jenkins-cli.jar"><code>http://localhost:8080/jnlpJars/jenkins-cli.jar</code></a></p>
+
+<h5 id="initialize-jenkins-update-center">Initialize Jenkins Update Center</h5>
+
+<p><code># wget -O /tmp/jenkins-update-center.tmp </code><a href="http://updates.jenkins-ci.org/update-center.json"><code>http://updates.jenkins-ci.org/update-center.json</code></a>
+      # tail -n +2 /tmp/jenkins-update-center.tmp | head -n -1 &gt; /tmp/jenkins-update-center.json
+<code># curl -X POST -d @/tmp/jenkins-update-center.json </code><a href="http://localhost:8080/updateCenter/byId/default/postBack"><code>http://localhost:8080/updateCenter/byId/default/postBack</code></a></p>
+
+<h5 id="install-the-plugins">Install the plugins</h5>
+
+<pre class="highlight plaintext"><code>  # java -jar jenkins-cli.jar -s `[`http://localhost:8080`](http://localhost:8080)` install-plugin git&#x000A;  # java -jar jenkins-cli.jar -s `[`http://localhost:8080`](http://localhost:8080)` install-plugin checkstyle&#x000A;  # java -jar jenkins-cli.jar -s `[`http://localhost:8080`](http://localhost:8080)` install-plugin findbugs&#x000A;  # java -jar jenkins-cli.jar -s `[`http://localhost:8080`](http://localhost:8080)` install-plugin build-name-setter&#x000A;  # java -jar jenkins-cli.jar -s `[`http://localhost:8080`](http://localhost:8080)` install-plugin saferestart&#x000A;</code></pre>
+
+<h5 id="restart-jenkins">Restart jenkins</h5>
+
+<pre class="highlight plaintext"><code>  # java -jar jenkins-cli.jar -s `[`http://localhost:8080`](http://localhost:8080)` safe-restart&#x000A;</code></pre>
+
+<h3 id="configure-general-settings">Configure general settings</h3>
+
+<p>Go to <a href="http://">http://</a><strong>[jenkins-host]</strong>:8080/configure which will open jenkins system config.</p>
+
+<p>Add the GIT installation, if it isn't listed.</p>
+
+<h4 id="at-the-top-section">At the top section</h4>
+
+<p>Change the following fields to the specified values:</p>
+
+<ul>
+  <li>
+    <ol>
+      <li>of executors = 4</li>
+    </ol>
+  </li>
+  <li>SCM checkout retry count = 100</li>
+</ul>
+
+<h4 id="at-the-maven-sections">At the Maven sections</h4>
+
+<ul>
+  <li>Add a maven installation (if none listed).</li>
+  <li>Uncheck 'Install automatically'</li>
+  <li>Name = maven</li>
+  <li>For EL6: MAVEN_HOME = /usr/share/apache-maven</li>
+  <li>For FC16: MAVEN_HOME = /usr/share/maven</li>
+  <li>Global MAVEN_OPTS = -Xincgc</li>
+</ul>
+
+<h1 id="configure-ssh-for-jenkins-user">Configure SSH for jenkins user</h1>
+
+<p>This is necessary so that Jenkins can clone your local GIT repository and poll it.</p>
+
+<h3 id="generate-ssh-key-for-jenkins">Generate SSH key for jenkins</h3>
+
+<pre class="highlight plaintext"><code>  # su - -s /bin/bash jenkins&#x000A;  $ ssh-keygen -t rsa&#x000A;</code></pre>
+
+<h3 id="copy-the-public-key-to-your-user-on-your-machine">Copy the public key to your user on your machine</h3>
+
+<p><code>$ ssh-copy-id </code><strong><code>[user]</code></strong><code>@</code><strong><code>[git-host]</code></strong></p>
+
+<h3 id="check-that-you-can-ssh-without-password">Check that you can SSH without password</h3>
+
+<pre class="highlight plaintext"><code>  $ ssh `**`[user]`**`@`**`[git-host]`**` "echo 'Hello world'"&#x000A;  Hello world&#x000A;</code></pre>
+
+<h1 id="add-the-jobs">Add the jobs</h1>
+
+<p>Now you can add the jobs.</p>
+
+<p>Maven job is usually what you want, this job will monitor and build your maven project.</p>
+
+<p>You can also freestyle it, which allows more advanced usages.</p>
+
+<p>Jenkins is pretty well documented so you can (and should) experiment on your own.</p>
+
+<h3 id="sample-ovirt-jobs">Sample oVirt jobs</h3>
+
+<p>Here's a selection of sample jobs that you can import to the project, just be sure to change the repo-url.</p>
+
+<media:ovirt-engine.jobs.tar.gz>
+
+You can do this by running:
+
+      # sed -i 's#`\[git-repo-url\]`#ssh://[user]@[git-host]/[git-repo-location]#' oVirt-engine.*
+
+For example:
+
+      # sed -i 's#`\[git-repo-url\]`#ssh://mkolesni@myhost/~/git/ovirt-engine#' oVirt-engine.*
+
+Then, you can import them using the Jenkins CLI client:
+
+      # cat [job].xml | java -jar /tmp/jenkins-cli.jar -s `[`http://localhost:8080`](http://localhost:8080)` create-job [job-name]
+
+For example:
+
+      # cat oVirt-engine.xml | java -jar /tmp/jenkins-cli.jar -s `[`http://localhost:8080`](http://localhost:8080)` create-job oVirt-engine
+</media:ovirt-engine.jobs.tar.gz>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

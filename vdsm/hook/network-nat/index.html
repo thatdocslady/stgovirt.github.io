@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+network-nat &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>network-nat</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>rstory</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>VDSM-Hooks/network-nat</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>1</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-11-19</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/VDSM-Hooks/network-nat' target='_blank'>
+VDSM-Hooks/network-nat
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="network-nat">network-nat</h1>
+
+<p>This hook can be used to force a VM to use a libvirt network that is managed outside of ovirt, such as an openvswitch network, or libvirt's default network.</p>
+
+<p>This is a modification of the existing extnet hook.</p>
+
+<h2 id="engine-setup">engine setup</h2>
+
+<p>Go to the engine machine's command line and do:</p>
+
+<pre class="highlight plaintext"><code>     sudo engine-config -s CustomDeviceProperties=\&#x000A;     '{type=interface;prop={extnet_pg=^[a-zA-Z0-9_ ---]+(:[a-zA-Z0-9_ ---]+|)$}}'&#x000A;</code></pre>
+
+<p>Verify that it was properly added</p>
+
+<pre class="highlight plaintext"><code>     sudo engine-config -g CustomDeviceProperties&#x000A;</code></pre>
+
+<p>Restart the engine.</p>
+
+<h2 id="webadmin-setup">webadmin setup</h2>
+
+<p>Define a vNIC profile for a network that has a 'extnet_pg' custom device property with value 'ovs-network:vlan-20', for example.</p>
+
+<p>Then, attach the defined profile to the relevant vNIC. When the VM is run, the relevant vNIC will be attached to the network and portgroup that you passed it.</p>
+
+<h2 id="hook">Hook</h2>
+
+<p>You just need to create a python executable and put it in:</p>
+
+<pre class="highlight plaintext"><code>   /usr/libexec/vdsm/hooks/before_device_create&#x000A;   /usr/libexec/vdsm/hooks/before_nic_hotplug&#x000A;&#x000A;#!/usr/bin/python&#x000A;&#x000A;"""&#x000A;Tweak an interface defintion so that it uses a specific network and port group.&#x000A;It applies on a per vnic basis, it gets triggered and used by two different&#x000A;events:&#x000A;* before_device_create&#x000A;* before_nic_hotplug&#x000A;&#x000A;This hook can be used to force a VM to use a libvirt network that is managed&#x000A;outside of ovirt, such as an openvswitch network, or libvirt's default network.&#x000A;"""&#x000A;&#x000A;import copy&#x000A;import os&#x000A;import sys&#x000A;import traceback&#x000A;import xml.dom&#x000A;&#x000A;import hooking&#x000A;&#x000A;HOOK_NAME = 'extnet_ovs'&#x000A;&#x000A;def replaceSource(interface, newnet, port_group=None):&#x000A;    source = interface.getElementsByTagName('source')[0]&#x000A;    source.removeAttribute('bridge')&#x000A;    source.setAttribute('network', newnet)&#x000A;    if port_group is not None:&#x000A;        source.setAttribute('portgroup', port_group)&#x000A;        interface.setAttribute('type', 'network')&#x000A;&#x000A;def main():&#x000A;    newnet = os.environ.get('extnet_ovs')&#x000A;    if ':' in newnet:&#x000A;        newnet, port_group = newnet.split(':')&#x000A;        if newnet is not None:&#x000A;            doc = hooking.read_domxml()&#x000A;            interface, = doc.getElementsByTagName('interface')&#x000A;            replaceSource(interface, newnet, port_group)&#x000A;            hooking.write_domxml(doc)&#x000A;&#x000A;def test():&#x000A;    interface = xml.dom.minidom.parseString("""&#x000A;            &lt;interface type="bridge"&gt;&#x000A;            &lt;address bus="0x00" domain="0x0000" function="0x0" slot="0x03"\&#x000A;            type="pci"/&gt;&#x000A;            &lt;mac address="00:1a:4a:16:01:b0"/&gt;&#x000A;            &lt;model type="virtio"/&gt;&#x000A;            &lt;source bridge="ovirtmgmt"/&gt;&#x000A;            &lt;filterref filter="vdsm-no-mac-spoofing"/&gt;&#x000A;            &lt;link state="up"/&gt;&#x000A;            &lt;boot order="1"/&gt;&#x000A;            &lt;/interface&gt;&#x000A;            """).getElementsByTagName('interface')[0]&#x000A;&#x000A;    ovs_interface = xml.dom.minidom.parseString("""&#x000A;    &lt;interface type='bridge'&gt;&#x000A;    &lt;mac address='00:1a:4a:83:fb:00'/&gt;&#x000A;    &lt;source bridge='ovirtmgmt'/&gt;&#x000A;    &lt;target dev='vnet0'/&gt;&#x000A;    &lt;model type='virtio'/&gt;&#x000A;    &lt;filterref filter='vdsm-no-mac-spoofing'/&gt;&#x000A;    &lt;link state='up'/&gt;&#x000A;    &lt;bandwidth&gt;&#x000A;    &lt;/bandwidth&gt;&#x000A;    &lt;alias name='net0'/&gt;&#x000A;    &lt;address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/&gt;&#x000A;    &lt;/interface&gt;&#x000A;    """).getElementsByTagName('interface')[0]&#x000A;&#x000A;    print "Interface before forcing network: %s" % \&#x000A;        interface.toxml(encoding='UTF-8')&#x000A;&#x000A;    first_test = copy.deepcopy(interface)&#x000A;    replaceSource(first_test, 'Eureka!')&#x000A;    print "Interface after forcing network: %s" % \&#x000A;        first_test.toxml(encoding='UTF-8')&#x000A;&#x000A;    second_test = copy.deepcopy(interface)&#x000A;    replaceSource(second_test, 'ovs-network', port_group='vlan-20')&#x000A;    print "Interface after forcing network and port group: %s" % \&#x000A;        second_test.toxml(encoding='UTF-8')&#x000A;&#x000A;    print "OVS interface before forcing network: %s" % \&#x000A;        ovs_interface.toxml(encoding='UTF-8')&#x000A;&#x000A;    replaceSource(ovs_interface, 'ovs-network', port_group='vlan-10')&#x000A;    print "OVS interface after forcing network and port group: %s" % \&#x000A;        ovs_interface.toxml(encoding='UTF-8')&#x000A;&#x000A;if __name__ == '__main__':&#x000A;    try:&#x000A;        if '--test' in sys.argv:&#x000A;            test()&#x000A;        else:&#x000A;            main()&#x000A;    except:&#x000A;        hooking.exit_hook('extnet hook: [unexpected error]: %s\n' %&#x000A;                          traceback.format_exc())&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

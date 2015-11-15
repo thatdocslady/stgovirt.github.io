@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+IDE &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>IDE</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>abonas, amureini, dneary, doron, lhornyak, nslomian, nsoffer, roy, shireesh, snmishra, tjelinek, vered</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Building oVirt Engine/IDE</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>49</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-11-12</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Building_oVirt_Engine/IDE' target='_blank'>
+Building oVirt Engine/IDE
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="ide">IDE</h1>
+
+<h2 id="using-ide-for-ovirt-engine">Using IDE for oVirt Engine</h2>
+
+<h3 id="reason">Reason</h3>
+
+<p>Java IDE Is very much like Vegemite<a href="http://en.wikipedia.org/wiki/Vegemite">1</a>;
+Some really really like it, some like it as Marmite<a href="http://en.wikipedia.org/wiki/Marmite">2</a> and some like it as Cenovis<a href="http://en.wikipedia.org/wiki/Cenovis">3</a>.
+Others, simply can't stand the thought of it…</p>
+
+<p>As for Java IDE, some like Eclipse, some like Net Beans,
+and others can't stand the thought of anything which is not <strong>VI</strong>.</p>
+
+<p>This page is intended for those who would like to use some sort of
+a graphical development environment, which does not requier the use
+of 'esc'+':' combination ;)</p>
+
+<h3 id="eclipse">Eclipse</h3>
+
+<ul>
+  <li>Recommended due to JBoss integration.</li>
+  <li>May be used with Python as well: <a href="http://wiki.python.org/moin/EclipsePythonIntegration">http://wiki.python.org/moin/EclipsePythonIntegration</a></li>
+  <li>Current Eclipse release is Juno Service Release 1.
+    <ul>
+      <li>Available from <a href="http://www.eclipse.org/downloads/">http://www.eclipse.org/downloads/</a></li>
+      <li>Use the J2EE distribution for developers.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="setting-up-ovirt-engine-development-environment-in-eclipse">Setting up oVirt engine development environment in Eclipse</h4>
+
+<ul>
+  <li>Before you start, perform a maven build from command line (refer <a href="/documentation/draft/building-engine/">Building oVirt engine</a>). This makes sure that the generated code is available, and you won't see too many compilation errors in eclipse after importing the projects.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Install Maven plugin for Eclipse, if it is not installed by default
+    <ul>
+      <li>Note: This is only relevant to old Eclipse version. In Eclipse Juno (and later), this plugin is bundled by default.</li>
+      <li>Note: If you are using Maven 2.2, make sure you use m2e version 0.12.XXX, as later versions are not compatible with it.</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>&gt;&gt; open help --&gt; &#x000A;   install new software --&gt; &#x000A;   click 'add' and place the following url http://m2eclipse.sonatype.org/sites/m2e &#x000A;&gt;&gt; check all components, install and restart eclipse at the end&#x000A;</code></pre>
+
+<ul>
+  <li>Fix maven version</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>&gt;&gt; open Windows --&gt; &#x000A;   Preferences --&gt; &#x000A;   Maven --&gt; &#x000A;   Installations&#x000A;&gt;&gt; Choose 3 installation. If it's not there, use the 'add' button and add the path to your Maven 3 installation.&#x000A;</code></pre>
+
+<ul>
+  <li>Import sources:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>&gt;&gt; file --&gt; &#x000A;   import --&gt; &#x000A;   Maven --&gt; &#x000A;   Existing Maven Projects --&gt; &#x000A;   browse into your engine sources direcotry and click OK&#x000A;</code></pre>
+
+<ul>
+  <li>You may need to first build the project directly through maven as some referenced projects are auto generated. close eclipse, build with maven and open eclipse again.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Make sure that you import the engine code formatter into eclipse <strong>before</strong> starting development. The engine maven build uses <a href="http://checkstyle.sourceforge.net">checkstyle</a> to check coding standards. One of the standards checked is that the code should not contain tabs or trailing whitespaces. Since eclipse inserts tabs by default for code formatting, you can end up with a lot of compilation errors in command line maven build if you don't follow this (and the next) step.</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>Window -&gt;  Preferences -&gt;  Java -&gt;  Code Style -&gt;  Formatter -&gt; Import -&gt; &lt;ovirt-src-root&gt;/config/engine-code-format.xml&#x000A;</code></pre>
+
+<ul>
+  <li>The above formatter however, doesn't work with trailing whitespaces inside comments. To make sure that this is also taken care, add the following <strong>Save Action</strong> to the Java editor:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>Window -&gt;  Preferences -&gt;  Java -&gt;  Editor -&gt;  Save Actions -&gt; Additional Actions -&gt;  Configure -&gt;  Code Organizing -&gt;  Remove trailing whitespace -&gt; All lines &#x000A;</code></pre>
+
+<ul>
+  <li>By now, hopefully, you should have resolved all compilation errors shown by eclipse, and ready to start development of oVirt engine.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>On some machines, editing a properties file in eclipse results in a lot of "diff" in git, making it difficult to review the code change. It may be a good idea to verify this in the beginning, and if the problem exists, edit the properties files using an external text editor.</li>
+</ul>
+
+<h4 id="troubleshooting">Troubleshooting</h4>
+
+<ul>
+  <li>Eclipse may get stuck on start-up while building worspace with no progress.</li>
+</ul>
+
+<p>Remove the following file:
+ .metadata/.plugins/org.eclipse.core.resources/.snap
+and restart eclipse.
+If the above didn't help try also removing
+ .metadata/.plugins/org.eclipse.core.resources/.snap . These files should be located under workspace.</p>
+
+<h3 id="intellij">IntelliJ</h3>
+
+<ul>
+  <li>Install IntelliJ (there is a community edition)</li>
+</ul>
+
+<p><a href="http://www.jetbrains.com/idea/free_java_ide.html">http://www.jetbrains.com/idea/free_java_ide.html</a></p>
+
+<ul>
+  <li>Run IntelliJ (make sure you have set JAVA_HOME variable first)</li>
+</ul>
+
+<p>/yourIntelliJInstallLocation/bin/idea.sh</p>
+
+<ul>
+  <li>
+    <p>In order to open the ovirt-engine project, do:</p>
+
+    <p> File–&gt;Open Project</p>
+  </li>
+</ul>
+
+<p>Select the main pom.xml located at the root of the ovirt-engine directory.
+It should then open the project structure on the left pane (there is a package-based view as well similar to Eclipse. In order to switch to it, select in left upper corner of the left pane: "view as: Packages").
+It also detects automatically the project is working with Git and its settings, and the right click menu adjusts to the Git integration.</p>
+
+<ul>
+  <li>Eclipse code formatter - in order to be aligned with code formatting along the project, it is advised to work with the code styling configuration file that is based on Eclipse.</li>
+</ul>
+
+<p>In order to use it in IntelliJ, please install the Eclipse Code Formatter plugin:</p>
+
+<pre class="highlight plaintext"><code>   Settings --&gt; IDE settings --&gt; Plugins --&gt; Available, search for Eclipse Code Formatter and right click "Install".&#x000A;</code></pre>
+
+<ul>
+  <li>
+    <p>After plugin installation, go to:</p>
+
+    <p> Settings –&gt; Project Settings –&gt; Eclipse Code Formatter</p>
+  </li>
+</ul>
+
+<ol>
+  <li>Import the code styling xml that is part of the ovirt-engine project: ovirt-engine/config/engine-code-format.xml</li>
+  <li>Make sure the Import order section is set on "Manual configuration" with the following order (that follows latest Eclipse defaults) : java;javax;org;com;</li>
+  <li>Follow the "Optimize imports section" in the plugin's help page:</li>
+</ol>
+
+<p><a href="https://github.com/krasa/EclipseCodeFormatter#instructions">https://github.com/krasa/EclipseCodeFormatter#instructions</a></p>
+
+<p>Example: <img alt="" title="fig:IDEA-EclipseFormatter-Settings.png" src="/images/wiki/IDEA-EclipseFormatter-Settings.png?1447607916" /></p>
+
+<ul>
+  <li>
+    <p>In order to prevent collapsing explicit class imports to one liner (e.g. com.my.package.*), do the following:</p>
+
+    <p> Settings -&gt; Code Style -&gt; Imports</p>
+  </li>
+</ul>
+
+<p>Set "use single class import" as checked, and "class count" and "name count" settings to 99</p>
+
+<ul>
+  <li>If you want the code formatting to run when you save a file, a-la Eclipse, you can follow <a href="http://stackoverflow.com/questions/946993/intellij-reformat-on-file-save">these instructions</a>.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Maven configuration (not mandatory) - for easier development work (not need to use command line)</li>
+</ul>
+
+<p>First, make sure that IntelliJ is pointed at the correct Maven configuration, especially if you have several different versions.</p>
+
+<pre class="highlight plaintext"><code>   Settings--&gt; Project Settings --&gt; Maven&#x000A;</code></pre>
+
+<p>In order to benefit from the Maven integration and build the project from within IntelliJ , go to :</p>
+
+<pre class="highlight plaintext"><code>   Run --&gt; Edit configurations --&gt; Add new configuration (select Maven)&#x000A;</code></pre>
+
+<ol>
+  <li>Give it a meaningful name (such as "build including UI")</li>
+  <li>Fill the working directory (where the parent pom.xml is located)</li>
+  <li>Fill goals (for example - clean install)</li>
+  <li>Fill profiles if exist (for example - gwtdev, gwt-admin, dep)</li>
+  <li>If you need to set any -D flags , it is available in the Runner tab</li>
+</ol>
+
+<p>Now you can always select this configuration from the combo box in the main pane, and press "run" (the green triangle) - it is equivalent to running "mvn clean install … " from the command line.</p>
+
+<p>Please note you can create several different configurations (with UI, without user portal, etc.)</p>
+
+<p>Configuration example: <img alt="" title="fig:Maven-Configurations.png" src="/images/wiki/Maven-Configurations.png?1447607916" /></p>
+
+<h3 id="others">Others</h3>
+
+<ul>
+  <li>Same as Net Beans…</li>
+  <li><a href="/java/backend-with-jrebel/">Backend with jrebel</a></li>
+</ul>
+
+<h3 id="troubleshooting-1">Troubleshooting</h3>
+
+<ul>
+  <li>The following problem was encountered in eclipse, but is probably not confined to a specific IDE:</li>
+</ul>
+
+<p>After build - Maven problem, invalid LOC header (bad signature).
+The fix:</p>
+
+<pre class="highlight plaintext"><code>delete repository&#x000A;#&gt; rm -rf ~/.m2/repository/*&#x000A;&#x000A;use maven&#x000A;#&gt; mvn test&#x000A;</code></pre>
+
+<p>Some explanation:
+The cause of the problem is a corrupt jar in the maven repository, and the above removes all jars and re-downloads them when using maven.
+For more details read <a href="http://tech.deepumohan.com/2012/07/maven-invalid-cen-bad-signature-invalid.html">here</a>.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

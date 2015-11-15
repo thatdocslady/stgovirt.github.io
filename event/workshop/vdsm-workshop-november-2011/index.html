@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+VDSM - oVirt workshop November 2011 &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>VDSM - oVirt workshop November 2011</td>
+</tr>
+<tr>
+<th>category</th>
+<td>event/workshop</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>danken, dannfrazier, quaid</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Workshop November 2011</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>VDSM - oVirt workshop November 2011</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>5</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2011-11-03</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/VDSM_-_oVirt_workshop_November_2011' target='_blank'>
+VDSM - oVirt workshop November 2011
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="vdsm---ovirt-workshop-november-2011">VDSM - oVirt workshop November 2011</h1>
+
+<p>Slides from talk:</p>
+
+<ul>
+  <li><img alt="" title="fig:oVirt VDSM 20111102.odp" src="/images/oVirtVDSM20111102.odp" /></li>
+  <li><img alt="" title="fig:oVirt VDSM 20111102.pdf" src="/images/oVirtVDSM20111102.pdf" /></li>
+  <li><img alt="" title="fig:oVirt VDSM Storage 20111102.odp" src="/images/oVirtVDSMStorage20111102.odp" /></li>
+  <li><img alt="" title="fig:oVirt VDSM Storage 20111102.pdf" src="/images/oVirtVDSMStorage20111102.pdf" /></li>
+</ul>
+
+<h3 id="vdsm">VDSM</h3>
+
+<ul>
+  <li>Host bootstrap and registration</li>
+  <li>VM life cycle (via libvirt)</li>
+  <li>Guest Agent: Single Sign On, stop guest from within itself</li>
+  <li>Scheduler: Moved from CFQ to deadline</li>
+  <li>Thin provisioning for storage, if you don't have high end storage to do it</li>
+  <li>Tune page cache</li>
+  <li>fence proxy, upon request</li>
+</ul>
+
+<h2 id="why-vdsm">Why VDSM?</h2>
+
+<ul>
+  <li>uses qemu/libvirt - but needs to scale to thousands of VMs</li>
+</ul>
+
+<h2 id="architecture-and-implementation">Architecture and Implementation</h2>
+
+<ul>
+  <li>VM info is store in the database, nowhere on the host</li>
+  <li>VDSM API (xmlrpc)</li>
+  <li>Communcate with guest agent via virtio serial</li>
+  <li>talks to sysfs, lvm, iscsi, etc</li>
+  <li>written in python - multithreaded/multi-process</li>
+  <li>uses clustering level above LVM to scale to 100s of nodes
+    <ul>
+      <li>Implements a distributed image repository over local dir, FCP, FCoe, iSCSI, NFS, SAS</li>
+      <li>Multihost system - one concurrent metadata writer (SPM, discuss it later)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="robustness-as-a-design-goal">Robustness as a Design Goal</h3>
+
+<ul>
+  <li>Heavily tested - add latency/block networking/drop lun paths/node crashes/livelocked qemu</li>
+</ul>
+
+<h3 id="packages">Packages</h3>
+
+<ul>
+  <li>vdsm - daemon itself</li>
+  <li>vdsm_cli - communicate w/ vdsm on host itself</li>
+  <li>vdsm_bootstrap - what needs to be setup when added to oVirt setup</li>
+  <li>vdsm_reg - registration; relevant for oVirt node</li>
+  <li>vdsm_hooks - will cover later</li>
+</ul>
+
+<h3 id="infrastructure">Infrastructure</h3>
+
+<p>Multi-processed to deal w/ D-state hangs (e.g. NFS hangs). Anything that might hang is in a separate process.</p>
+
+<ul>
+  <li>Supervdsm - used to use sudo for privileged ops, now use a separate daemon. only it does things that require root access.</li>
+  <li>Out of process -</li>
+  <li>Async Tasks - Can run some operations in an async way; want to move everything to this (engine gets job id, can monitor progress)</li>
+</ul>
+
+<h3 id="infrastructure-continued">Infrastructure continued</h3>
+
+<ul>
+  <li>When you want to perform a storage refresh (refresh SCSI LUNs, e.g.). SamplingMethod queues up multiple requests, serializes them and gives them the same result (sounds a lot like the watershed command)</li>
+  <li>ResourceManageR: refcounted lock w/ the ability to create something and destroy it when refcount goes to 0</li>
+  <li>Securable: when host is VSPM must be executed as secured (actually, commands that do not need to be secured say they shouldn't be secured)</li>
+</ul>
+
+<p>Q: what is vdsm? a library? No - it is a daemon</p>
+
+<h3 id="hooks">Hooks</h3>
+
+<ul>
+  <li>VM Livecycle hooks - for anything that is not (yet) part of the oVirt project
+    <ul>
+      <li>before/after vm start, continue, pause, hibernate, dehibernate, migrate source, migrate dest &amp; after destroy</li>
+    </ul>
+  </li>
+  <li>VDSM lifecycle hooks - before/after vdsm_start</li>
+  <li>Hooks get passed arguments from engine</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Q: Is there any mapping between these hooks and libvirt hooks?</li>
+  <li>A: No.</li>
+  <li>Q: Is there any guarantee that a hook will continue to work w/ future oVirt changes?</li>
+  <li>A: No - we only guarantee that we'll continue to run your hooks</li>
+  <li>Q: Is it possible to have different hooks on different hosts?</li>
+  <li>A: Yes - but not recommended; might make sense if you have VMs that are non-migrateable, or if nodes have heterogenous storage domain access mechanisms</li>
+  <li>Q: can before/after hooks communicate?</li>
+  <li>A: must devise their own communication schemes (run a daemon, persist files)</li>
+  <li>Q: is there any plan to formalize the hooks?</li>
+  <li>A: no plans. hooks are not intended to be sustainable; send patches to get those features included in oVirt</li>
+</ul>
+
+<p>You are invited to take a look at an assortment of completely unsupported set of <a href="http://danken.fedorapeople.org/hooks-2011-11-02.tar.gz">Vdsm hooks</a></p>
+
+<h3 id="vm-livecycle-api">VM Livecycle API</h3>
+
+<ul>
+  <li>create/destroy/pause/continue</li>
+  <li>setVmTicket - for setting up a SPICE connection</li>
+  <li>changeCD/changeFloppy</li>
+  <li>migrate/hibernate - hibernate writes VM to disk externaly, integrate w/ S4 inside the guest (migrate to file)
+    <ul>
+      <li>mainly done for timing; guest knows this is happening.</li>
+      <li>Q: would you consider falling back to externally hibernating a VM? Would prefer not to. Lots of problems w/ KVM around timekeeping.</li>
+    </ul>
+  </li>
+  <li>shutdown - shutdown gracefully</li>
+  <li>desktopLogin/Logoff/Lock</li>
+</ul>
+
+<h3 id="vm-monitoring-api">VM Monitoring API</h3>
+
+<ul>
+  <li>list - list running Vms</li>
+  <li>getAllVmStats, getVmStats</li>
+</ul>
+
+<h2 id="network-config-api">Network Config API</h2>
+
+<ul>
+  <li>Add/Del/Edit Network</li>
+  <li>SetupNetworks - transactional; avoid situation where you don't lose connectivity to the node. makes sure it can still reach manager - if it cannot, roll back.</li>
+</ul>
+
+<h3 id="host-monitoring-api">Host Monitoring API</h3>
+
+<ul>
+  <li>getVdsCapabilities (cpu capabilities, etc)</li>
+  <li>getVdsStats - oVirt engine doesn't use it, introduced for testing purposes (or was that ping?)</li>
+  <li>fenceNode</li>
+</ul>
+
+<h2 id="storageapi">StorageAPI</h2>
+
+<p>extensive…. too extensive</p>
+
+<h3 id="async-tasks-api">Async Tasks API</h3>
+
+<h3 id="roadmap">Roadmap</h3>
+
+<ul>
+  <li>Networking
+    <ul>
+      <li>Vepa, VN-Link, SR-IOV</li>
+      <li>storage network (requires bridgeless network). all virtual networks are bridged today; would need to get rid of teh bridge for better performance (also redundant)</li>
+      <li>migration network (requires bridgeless network)</li>
+      <li>traffic shaping (tc, cgroups)</li>
+      <li>intrusion detection</li>
+    </ul>
+  </li>
+  <li>Cgroups (CPU, Memory, I/o, Network) for SLA; restrict number of IOPS a node can used out of the overall pool, allow HA VMs to get prioritization.</li>
+  <li>Monitoring
+    <ul>
+      <li>Add counters
+        <ul>
+          <li>Q: What counters? Storage - how much allocated, monitor usage, IOPS, there's a list somewhere</li>
+        </ul>
+      </li>
+      <li>Move to collectd?</li>
+    </ul>
+  </li>
+  <li>Support for self-contained single host - not necessarily inside VDSM, but acts as a manager inside the host &amp; stores config locallky</li>
+  <li>API needs generalization and stability - current API is not very clean
+    <ul>
+      <li>want a looks &amp; feel similar to engine API, Adam Litke working on RESTful</li>
+    </ul>
+  </li>
+  <li>Events, etc</li>
+</ul>
+
+<p>Q: how do we see the libvirt relationship continuing? features have to go through KVM-&gt;QEMU-&gt;libvirt-&gt;VDSM A: haven't experienced the time between libvirt-&gt;oVirt features to be a long amount of time. libvirt used to wait for stability in KVM, but recently libvirt is working in parallel (even leading - libvirt has feature before KVM implements it). libvirt/RH maintainer is here, is committed to working closely w/ KVM community. Speaker would like libvirt to be an actual library instead of daemon. Q: What's the scope between libvirt and VDSM? (e.g. cgroups - VDSM has it on the roadmap, libvirt has it) A: perhaps a BoF later Q: VDSM does iSCSI directly - will that migrate to libvirt? A: No. Basically using libvirt for hypervisor management/VM lifecycle, not storage management, etc. RH considers libvirt a great API for kvm; lots of apps use libvirt (e.g. for monitoring). Q: Managmeent tools that use libvirt vs. VDSM APIs - where should they plug in? sounds like they'd need to migrate. relies on RPM for package mgmt; requires specific versions of packages like qemu-kvm - don't want baggage of maintaining compatability like libvirt does</p>
+
+<h3 id="how-to-contribute">How to contribute</h3>
+
+<p><a href="Category: Workshop November 2011">Category: Workshop November 2011</a></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

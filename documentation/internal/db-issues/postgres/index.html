@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Postgres &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Postgres</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>emesika</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>OVirt-DB-Issues/Postgres</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>31</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-08-09</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/OVirt-DB-Issues/Postgres' target='_blank'>
+OVirt-DB-Issues/Postgres
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="postgres">Postgres</h1>
+
+<h2 id="installation">Installation</h2>
+
+<p>We are using version 9.1.x
+<a href="wiki/Installing_PostgreSQL_DB">Installation Guide</a></p>
+
+<h2 id="authentication">Authentication</h2>
+
+<p>Trust
+Password
+GSSAPI
+SSPI
+Kerberos
+Ident
+Peer
+LDAP
+RADIUS
+Certificate
+PAM
+ details:
+<a href="http://www.postgresql.org/docs/9.1/static/auth-methods.html">Authentication Methods</a></p>
+
+<h2 id="creating-a-new-user">Creating a new user</h2>
+
+<p><a href="http://www.postgresql.org/docs/9.1/static/sql-createrole.html">Create Role</a>
+<a href="http://www.postgresql.org/docs/9.0/static/sql-createuser.html">Create User</a>
+<a href="http://www.postgresql.org/docs/9.0/static/libpq-pgpass.html">The password file</a></p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>Default postgres configuration files are under <em>/var/lib/pgsql/data</em></p>
+
+<h3 id="postgresqlconf">postgresql.conf</h3>
+
+<p><code>  </code><a href="http://www.postgresql.org/docs/current/static/view-pg-settings.html"><code>defaults</code></a>
+<code>   </code><a href="http://www.postgresql.org/docs/current/static/sql-reset.html"><code>reset</code></a>
+      === reload configuration ===</p>
+
+<p>If you are making modifications to the Postgres configuration file postgresql.conf (or similar), and you want to new settings to take effect without needing to restart the entire database, there are two ways to accomplish this.</p>
+
+<p>option 1
+ su - postgres /usr/bin/pg_ctl reload option 2
+ echo "SELECT pg_reload_conf();" | psql -U <user> <database></database></user></p>
+
+<h3 id="connection">Connection</h3>
+
+<p><a href="http://www.postgresql.org/docs/current/static/runtime-config-connection.html">Connection parameters</a></p>
+
+<h3 id="remote-access-listenaddresses">Remote access (listen_addresses)</h3>
+
+<p><code> </code><a href="http://www.postgresql.org/docs/current/static/auth-pg-hba-conf.html"><code>pg_hba.conf</code></a></p>
+
+<h3 id="maxconnections">max_connections</h3>
+
+<p>The maximum number of client connections allowed. This is very important to some of the below parameters (particularly work_mem) because there are some memory resources that are or can be allocated on a per-client basis, so the maximum number of clients suggests the maximum possible memory use. Generally, PostgreSQL on good hardware can support a few hundred connections. If you want to have thousands instead, you should consider using connection pooling software to reduce the connection overhead.</p>
+
+<h3 id="sharedbuffers">shared_buffers</h3>
+
+<p>The shared_buffers configuration parameter determines how much memory is dedicated to PostgreSQL use for caching data. One reason the defaults are low because on some platforms (like older Solaris versions and SGI) having large values requires invasive action like recompiling the kernel. Even on a modern Linux system, the stock kernel will likely not allow setting shared_buffers to over 32MB without adjusting kernel settings first.</p>
+
+<p>If you have a system with 1GB or more of RAM, a reasonable starting value for shared_buffers is 1/4 of the memory in your system. If you have less ram you'll have to account more carefully for how much RAM the OS is taking up, closer to 15% is more typical there. There are some workloads where even larger settings for shared_buffers are effective, but given the way PostgreSQL also relies on the operating system cache it's unlikely you'll find using more than 40% of RAM to work better than a smaller amount.</p>
+
+<h3 id="workmem">work_mem</h3>
+
+<p>Specifies the amount of memory to be used by internal sort operations and hash tables before writing to temporary disk files. The value defaults to one megabyte (1MB). Note that for a complex query, several sort or hash operations might be running in parallel; each operation will be allowed to use as much memory as this value specifies before it starts to write data into temporary files. Also, several running sessions could be doing such operations concurrently. Therefore, the total memory used could be many times the value of work_mem; it is necessary to keep this fact in mind when choosing the value. Sort operations are used for ORDER BY, DISTINCT, and merge joins. Hash tables are used in hash joins, hash-based aggregation, and hash-based processing of IN subqueries.</p>
+
+<h3 id="maintenanceworkmem">maintenance_work_mem</h3>
+
+<p>Specifies the maximum amount of memory to be used by maintenance operations, such as VACUUM, CREATE INDEX, and ALTER TABLE ADD FOREIGN KEY. It defaults to 16 megabytes (16MB). Since only one of these operations can be executed at a time by a database session, and an installation normally doesn't have many of them running concurrently, it's safe to set this value significantly larger than work_mem. Larger settings might improve performance for vacuuming and for restoring database dumps.</p>
+
+<h3 id="synchronouscommit">synchronous_commit</h3>
+
+<p>Asynchronous commit is an option that allows transactions to complete more quickly, at the cost that the most recent transactions may be lost if the database should crash. In many applications this is an acceptable trade-off.</p>
+
+<p>Asynchronous commit introduces the risk of data loss. There is a short time window between the report of transaction completion to the client and the time that the transaction is truly committed (that is, it is guaranteed not to be lost if the server crashes).</p>
+
+<p>The risk that is taken by using asynchronous commit is of data loss, not data corruption. If the database should crash, it will recover by replaying WAL up to the last record that was flushed. The database will therefore be restored to a self-consistent state, but any transactions that were not yet flushed to disk will not be reflected in that state. The net effect is therefore loss of the last few transactions.</p>
+
+<p>The user can select the commit mode of each transaction, so that it is possible to have both synchronous and asynchronous commit transactions running concurrently. This allows flexible trade-offs between performance and certainty of transaction durability.</p>
+
+<h3 id="guidlines-for-dedicatedshared-server">Guidlines for Dedicated/Shared server</h3>
+
+<p>For the following , a good understanding of the database clock lifecycle is needed.</p>
+
+<pre class="highlight plaintext"><code>  page request --&gt; changes --&gt; dirty --&gt; commit to WAL --&gt; Statistics (pg_stat_user_tables etc.) (*) --&gt; Write to disk &amp; clean dirty flag (*)&#x000A;  (*) - async&#x000A;</code></pre>
+
+<p>Dedicated</p>
+
+<pre class="highlight plaintext"><code>    logging can be more verbose&#x000A;    shared_buffers - 25% of RAM&#x000A;    work_mem should be `&lt;OS cache size&gt;` / (max_connections * 2)&#x000A;    maintenance_work_mem - 50MB per each 1GB of RAM&#x000A;    checkpoint_segments - at least 10 [1]&#x000A;    checkpoint_timeout&#x000A;    wal_buffers - 16MB  [2]&#x000A;     `  [1] `[`http://www.postgresql.org/docs/9.1/static/pgbuffercache.html` `pg_buffercache`](http://www.postgresql.org/docs/9.1/static/pgbuffercache.html pg_buffercache)&#x000A;    [2] `[`http://www.postgresql.org/docs/9.1/static/wal-configuration.html` `WAL` `Configuration`](http://www.postgresql.org/docs/9.1/static/wal-configuration.html WAL Configuration)`   &#x000A;</code></pre>
+
+<p>Shared</p>
+
+<pre class="highlight plaintext"><code>    reduce logging &#x000A;    shared_buffers - 10% of RAM&#x000A;    be very stingy about increasing work_mem &#x000A;    all other recomendations from the Dedicated section may apply&#x000A;</code></pre>
+
+<h3 id="pgtune">pgtune</h3>
+
+<p>pgtune takes the default postgresql.conf and expands the database server to be as powerful as the hardware it's being deployed on.</p>
+
+<p><a href="http://sourcefreedom.com/tuning-postgresql-9-0-with-pgtune/">How to tune your database</a></p>
+
+<h2 id="vaccum">VACCUM</h2>
+
+<p>Cleans up after old transactions, including removing information that is no longer visible and reuse free space.
+ ANALYSE looks at tables in the database and collects statistics about them like number of distinct values etc.
+Many aspects of query planning depends on this statistics data being accurate.
+ From 8.1 , there is a autovaccum daemon that runs in the background and do this work automatically.</p>
+
+<h2 id="logging">Logging</h2>
+
+<p>General logging is important especially if you have unexpected behaviour and you want to find the reason for that
+The default logging level is only Errors but this can be easily changed.</p>
+
+<h3 id="loglineprefix">log_line_prefix</h3>
+
+<p>Controls the line prefix of each log message.</p>
+
+<pre class="highlight plaintext"><code>   %t timestamp&#x000A;   %u user&#x000A;   %r remote host connection&#x000A;   %d database connection&#x000A;   %p pid of connection&#x000A;</code></pre>
+
+<h3 id="logstatement">log_statement</h3>
+
+<p>Controls which statements are logged</p>
+
+<pre class="highlight plaintext"><code>   none&#x000A;   ddl&#x000A;   mod&#x000A;   all&#x000A;</code></pre>
+
+<h3 id="logmindurationstatement">log_min_duration_statement</h3>
+
+<p>Controls how long should a query being executed to be logged
+Very usefull to find most expensive queries</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

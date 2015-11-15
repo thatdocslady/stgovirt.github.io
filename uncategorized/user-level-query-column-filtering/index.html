@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+User-level-query-column-filtering &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>User-level-query-column-filtering</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>emesika</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>User-level-query-column-filtering</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>3</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-06-18</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/User-level-query-column-filtering' target='_blank'>
+User-level-query-column-filtering
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="user-level-query-column-filtering">User-level-query-column-filtering</h1>
+
+<h2 id="overview">Overview</h2>
+
+<p>Suppose you have a table T with columns c1 c2 c3 c4. (c1 is the PK)
+Also, assume that c3 and c4 includes sensetive information that should be shown only to Administrators. How do you achieve that?</p>
+
+<h2 id="solution">Solution</h2>
+
+<p>Adding a table called object_column_white_list that holds for each relevant table/view for which columns we want to show, other columns are filtered vertically, the column names that should have NULL values in the returned result. The script adding this table and inserting its initial data is reentrant and run the in pre-upgrade step.</p>
+
+<p>A second table object_column_white_list_sql stores the generated sql per object. This sql is cleaned upon upgrade to reflect schema changes since if a column was added to an object that is already participating in vertical filtering, this column will be automatically filtered out unless added specifically in the upgrade/pre_upgrade/add_object_column_white_list_table.sql script.</p>
+
+<p>A function fn_db_mask_object that accepts the object to filter and returns the result with filtered column values.</p>
+
+<p>A function to add new object columns to the white list fn_db_add_column_to_object_white_list</p>
+
+<h3 id="so-how-do-i-filter-c3--c4-columns-from-t-">So, how do I filter c3 &amp; c4 columns from T ?</h3>
+
+<p>1) Open upgrade/pre_upgrade/add_object_column_white_list_table.sql script.
+2) Look for "Initial white list settings" comment.
+3) Add at the end of this section.</p>
+
+<pre class="highlight plaintext"><code>     if not exists (select 1 from object_column_white_list where object_name = 'T') then&#x000A;       insert into object_column_white_list(object_name,column_name)&#x000A;       (select 'T', column_name&#x000A;        from information_schema.columns&#x000A;        where table_name = 'T' and&#x000A;        column_name in ('c1,'c2');&#x000A;</code></pre>
+
+<p>4) Assume you have a SP that selects from T by id (c1 column), it should now look like :</p>
+
+<pre class="highlight plaintext"><code>  Create or replace FUNCTION GetAllFromT(v_id UUID, v_user_id UUID, v_is_filtered BOOLEAN)   &#x000A;  RETURNS SETOF T&#x000A;    AS $procedure$&#x000A;  DECLARE&#x000A;  v_columns text[];&#x000A;  BEGIN&#x000A;     BEGIN&#x000A;       if (v_is_filtered) then&#x000A;           RETURN QUERY SELECT DISTINCT (rec).*&#x000A;           FROM fn_db_mask_object('T') as q (rec T)&#x000A;           WHERE (rec).c1 = v_id&#x000A;           AND EXISTS (SELECT 1&#x000A;               FROM   user_vds_permissions_view&#x000A;               WHERE  user_id = v_user_id AND entity_id = v_id);&#x000A;       else&#x000A;           RETURN QUERY SELECT DISTINCT T.*&#x000A;           FROM T&#x000A;           WHERE c1 = v_id;&#x000A;       end if;&#x000A;     END;&#x000A;    RETURN;&#x000A;  END; $procedure$&#x000A;  LANGUAGE plpgsql;&#x000A;</code></pre>
+
+<p>5) You should add the following to fixters.xml</p>
+
+<table name="object_column_white_list">
+`       `<column>`object_name`</column>
+`       `<column>`column_name`</column>
+`   `<row>
+`       `<value>`T`</value>
+`       `<value>`c1`</value>
+`   `</row>
+`   `<row>
+`       `<value>`T`</value>
+`       `<value>`c2`</value>
+`   `</row>
+       
+
+</table>
+<p>That's all, this insures that administrator will get all c1 to c4 columns while users will get only c1 and c2.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

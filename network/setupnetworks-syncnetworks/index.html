@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+SetupNetworks SyncNetworks &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>SetupNetworks SyncNetworks</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>alkaplan, mkolesni</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>SetupNetworks SyncNetworks</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>13</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-09-02</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/SetupNetworks_SyncNetworks' target='_blank'>
+SetupNetworks SyncNetworks
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="setupnetworks-syncnetworks">SetupNetworks SyncNetworks</h1>
+
+<h2 id="what-is-sync-network">What is "Sync Network"?</h2>
+
+<p>Logical Network definition can get out-of-sync with the Host network device for several reasons (stated below). This state will occur naturally even without the enhancement in place. We need to be able to notify the Admin when it happened &amp; grant him control over the situation.</p>
+
+<p>"Sync Network" is a proposed enhancement to "Setup Networks" feature which is targeted to the following cases:</p>
+
+<ul>
+  <li>When a host is added to the system it will by default receive a "management" network which is a VM network (implemented as bridge) with MTU 1500 and default boot-protocol details (TODO fill).</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>When a host is moved between data-centers, it's "management" network (and other networks) might get out-of sync.
+    <ul>
+      <li>For example, I have network "red" with MTU 9000 on DC1 where the host it and it's defined on eth1 on the host. When I move the host to DC2 where there is network "red" with MTU 1500, the new network setup will not be applied to the host's eth1 interface.</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Setup Networks will send network details only if the configuration changed, but how would it know that the new conigurations needs to be applied or not?</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Admin that wants the network to be out of sync (customly defined) can keep it like that.</li>
+</ul>
+
+<p>There can be other solutions for these problems, for starters we can change the bootstrap installation script to set the network correctly, However, that means doubling the setup networks logic to the bootstrap script (also doubles the maintenance). Also this won't solve the other 2 issues. We can also add some code that fixes networks when host moves to different DC, but that also means some duplication and more maintenance.</p>
+
+<p>Also, it is possible that the Admin would want the network definitions to stay custom for a reason, and doesn't want to sync them automatically.</p>
+
+<p>Another option is the "Sync Network" enhancement.</p>
+
+<p>The "Sync Network" enhancement is a way for clients which are calling "Setup Networks" to be able to report networks which are out of sync on a host's interfaces, and issue a request to sync those networks. The enhancement is not a new command, but rather a way to communicate more details when using "Setup Networks" on a host.</p>
+
+<h2 id="when-to-sync-network">When to Sync Network?</h2>
+
+<p>Network will be considered 'out of sync' on the following conditions:</p>
+
+<ul>
+  <li>VM Netwrok is different.</li>
+  <li>VLAN ID is different.</li>
+  <li>MTU is set on the logical network, and is different.</li>
+</ul>
+
+<p>When network is out of sync, it is considered as an unmanaged network, until synced. This means it cannot be edited or moved if it is out of sync, unless it is set to be synced.</p>
+
+<h2 id="how-to-sync-network">How to Sync Network?</h2>
+
+<p>The needed additions are:</p>
+
+<h3 id="in-engine">In Engine</h3>
+
+<ul>
+  <li>We need to add a way to report if a network is out of sync.
+    <ul>
+      <li>This information is already available to us in the DB, and can be calculated when needed.</li>
+      <li>Today only the host's NICs are reported, and on them only the network name is available.</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Also need to provide an audit log when network(s) get automatically out of sync.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Possible way to do this is to add an internal "Network Container" class which will hold for each NIC the network name + is it in sync or not.
+    <ul>
+      <li>This can also be used to indicate other detials: Is network managed or not, etc.</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Also need a way to specify which network to sync.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Possible way to do this is add a list of networks to sync to the SetupNetwork parameters.
+    <ul>
+      <li>It can also be added to the network container, but it's best to keep the representation of is network in sync, and the order to sync it separately.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="in-rest">In REST</h3>
+
+<ul>
+  <li>Add fields to HostNIC entity:
+    <ul>
+      <li>custom_configuration - boolean, status field to specify if the network definition on the NIC is in sync with logical definition or is it a custom definition.</li>
+      <li>override_configuration - boolean, action field to set the NIC to be synced back to the logical network definition.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="in-ui">In UI</h3>
+
+<ul>
+  <li>Host in 3.0 and beneath version won't support sync functionality (derived from Setup Networks support).</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Setup Networks dialog-
+    <ul>
+      <li>If the network is unsynced-
+        <ol>
+          <li>A "!" icon will be added to the network panel.</li>
+          <li>A "sync" check box will be added to the edit network panel.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="other-considerations">Other Considerations</h2>
+
+<ul>
+  <li>Since management network is an oVirt centric network:
+    <ul>
+      <li>Need to consider to always sync the management network when host is installed.</li>
+      <li>Same as above, for host migration between DCs.</li>
+    </ul>
+  </li>
+  <li>Old network commands are still supported (REST/host &lt; 3.1)
+    <ul>
+      <li>Should we allow to control this behaviour there?</li>
+    </ul>
+  </li>
+  <li>Do we want to allow a broader approach, allowing the logical network properties to be specifically edited for a given NIC?</li>
+  <li>Perhaps we would want to expose unsync data in REST for cluster or even root networks context?</li>
+</ul>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

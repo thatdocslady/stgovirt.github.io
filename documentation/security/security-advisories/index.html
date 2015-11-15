@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Security advisories &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Security advisories</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>djorm</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Security advisories</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>5</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-05-12</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Security_advisories' target='_blank'>
+Security advisories
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="security-advisories">Security advisories</h1>
+
+<p>This page lists all security vulnerabilities fixed in oVirt. Each vulnerability is assigned a security impact rating on a four-point scale (low, moderate, important and critical). The versions that are affected by each vulnerability are also listed.</p>
+
+<h2 id="moderate-cve-2014-0153-ovirt-engine-api-session-id-stored-in-html5-local-storage">[Moderate] CVE-2014-0153 ovirt-engine-api: session ID stored in HTML5 local storage</h2>
+
+<h3 id="description">Description</h3>
+
+<p>It was found that the oVirt REST API stored session IDs in HTML5 local storage. A remote attacker could provide a specially-crafted web page that, when visited by a user with a valid REST API session, would allow the attacker to read the session ID from local storage. This is possible because HTML5 local storage is not protected by same-origin policy (SOP).</p>
+
+<h3 id="affected-versions">Affected versions</h3>
+
+<p>oVirt 3.4.0 is confirmed to be affected. Older releases of oVirt may also be affected.</p>
+
+<h3 id="patch-commits">Patch commit(s)</h3>
+
+<p><a href="http://gerrit.ovirt.org/#/c/25987/">http://gerrit.ovirt.org/#/c/25987/</a></p>
+
+<h2 id="moderate-cve-2014-0152-ovirt-engine-webadmin-session-fixation">[Moderate] CVE-2014-0152 ovirt-engine-webadmin: session fixation</h2>
+
+<h3 id="description-1">Description</h3>
+
+<p>It was found that the oVirt web admin interface did not generate a new session ID after authenticating a user. A remote attacker could use this flaw to perform session fixation attacks.</p>
+
+<h3 id="affected-versions-1">Affected versions</h3>
+
+<p>oVirt 3.4.0 is confirmed to be affected. Older releases of oVirt may also be affected.</p>
+
+<h3 id="patch-commits-1">Patch commit(s)</h3>
+
+<p><a href="http://gerrit.ovirt.org/#/c/25959/">http://gerrit.ovirt.org/#/c/25959/</a></p>
+
+<h2 id="important-cve-2014-0160-heartbleed-ovirt-node-iso-openssl-exposes-information-disclosure-in-handling-of-tls-heartbeat-extension-packets">[Important] CVE-2014-0160 (Heartbleed) ovirt-node-iso: OpenSSL exposes information disclosure in handling of TLS heartbeat extension packets</h2>
+
+<h3 id="description-2">Description</h3>
+
+<p>A missing bounds check was found in the way OpenSSL handled TLS heartbeart extension packets. This flaw could be used to reveal up to 64k of memory from a connected client or server. ovirt-node-iso included a vulnerable version of OpenSSL.</p>
+
+<h3 id="affected-versions-2">Affected versions</h3>
+
+<p>Only ovirt-node-iso images based on Red Hat Enterprise Linux 6.5 or Fedora 19 are affected. A patched image is available here: <a href="http://resources.ovirt.org/pub/ovirt-3.4/iso/ovirt-node-iso-3.4-20140423.1.el6.iso">http://resources.ovirt.org/pub/ovirt-3.4/iso/ovirt-node-iso-3.4-20140423.1.el6.iso</a></p>
+
+<h3 id="patch-commits-2">Patch commit(s)</h3>
+
+<p>N/A</p>
+
+<h2 id="moderate-cve-2013-4367-ovirt-engine-some-config-files-left-world-writable-due-to-improper-use-of-oschmod">[Moderate] CVE-2013-4367 ovirt-engine: some config files left world-writable due to improper use of os.chmod()</h2>
+
+<h3 id="description-3">Description</h3>
+
+<p>It was found that ovirt-engine would create certain files world-writable (such as /etc/sysconfig/nfs). This is due to an upstream <a href="https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable.git/commit/fs/open.c?id=e57712ebebbb9db7d8dcef216437b3171ddcf115">kernel change</a> which impacts how python's os.chmod() works when passed a mode of '-1'. Prior to this kernel change, a mode of '-1' would have implied "do nothing", however with the upstream kernel change this will turn all possible bits on (thus making the file world-writable).</p>
+
+<p>As a result, this only affects ovirt-engine (or other python scripts using os.chmod() in this way) with newer Linux kernels (version 3.1 and newer).</p>
+
+<p>This has been addressed to fix permissions on installations that upgrade from 3.2. In 3.3, the entire setup package was rewritten and the copyFile() function (from common_utils.py, where this os.chmod() call is made) has been removed. As a result, this only affects ovirt-engine 3.2 running on a Linux kernel 3.1.</p>
+
+<h3 id="affected-versions-3">Affected versions</h3>
+
+<p>This vulnerability only affects ovirt-engine 3.2 running on Linux kernel 3.1.</p>
+
+<h3 id="patch-commits-3">Patch commit(s)</h3>
+
+<p><a href="http://gerrit.ovirt.org/#/c/19472/">http://gerrit.ovirt.org/#/c/19472/</a></p>
+
+<h2 id="moderate-cve-2013-4181-ovirt-engine-redirectservlet-cross-site-scripting-flaw">[Moderate] CVE-2013-4181 ovirt-engine: RedirectServlet cross-site scripting flaw</h2>
+
+<h3 id="description-4">Description</h3>
+
+<p>A reflected cross-site scripting (XSS) flaw was found in the RedirectServlet component of ovirt-engine. Access to RedirectServlet does not require authentication.</p>
+
+<h3 id="affected-versions-4">Affected versions</h3>
+
+<p>All versions of ovirt-engine prior to 3.3.0 are affected.</p>
+
+<h3 id="patch-commits-4">Patch commit(s)</h3>
+
+<p><a href="http://gerrit.ovirt.org/#/c/19152/">http://gerrit.ovirt.org/#/c/19152/</a></p>
+
+<h2 id="moderate-cve-2012-3533-ovirt-engine-does-not-validate-server-identity-in-new-python-sdk-and-cli">[Moderate] CVE-2012-3533 ovirt-engine: does not validate server identity in new python SDK and CLI</h2>
+
+<h3 id="description-5">Description</h3>
+
+<p>It was reported that oVirt 3.1 did not properly validate SSL certificates of the server when the client would connect. This could permit man-in-the-middle attacks.</p>
+
+<p>In oVirt sdk, the python httplib.HTTPSConnection function is used to let the programmer specify the client's pair of certificates, but does not force the underlying SSL library to check the server certificate against the client keys. Because of this, the oVirt CLI tool does not check certificates upon connection. The new python SDK (ovirt-engine-sdk) and new python CLI (ovirt-engine-cli) were introduced in oVirt 3.1 ; earlier versions are not affected by this flaw.</p>
+
+<h3 id="affected-versions-5">Affected versions</h3>
+
+<p>All versions ovirt-engine-sdk 3.1 prior to 3.1.0.6 and ovrt-engine-cli 3.1 prior to 3.1.0.8 are affected. The new python SDK (ovirt-engine-sdk) and new python CLI (ovirt-engine-cli) were introduced in oVirt 3.1 ; earlier versions are not affected by this flaw.</p>
+
+<h3 id="patch-commits-5">Patch commit(s)</h3>
+
+<p><a href="http://gerrit.ovirt.org/#/c/7209/">http://gerrit.ovirt.org/#/c/7209/</a> <a href="http://gerrit.ovirt.org/#/c/7249/">http://gerrit.ovirt.org/#/c/7249/</a></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

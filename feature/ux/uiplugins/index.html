@@ -1,0 +1,2325 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+UIPlugins &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>UIPlugins</td>
+</tr>
+<tr>
+<th>category</th>
+<td>feature</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>sahina, vszocs</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Feature</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Features/UIPlugins</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>51</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-10-13</td>
+</tr>
+<tr>
+<th>wiki_conversion_fallback</th>
+<td>true</td>
+</tr>
+<tr>
+<th>wiki_warnings</th>
+<td>conversion-fallback</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Features/UIPlugins' target='_blank'>
+Features/UIPlugins
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<section class='feature'>
+<section class='feature-sidebar col-md-4'>
+<h1>Features</h1>
+<form class='hide' id='feature-search'>
+<div class='form-group'>
+<input autocomplete='off' class='form-control' id='feature-search-input' placeholder='Filter features'>
+<div class='checkbox'>
+<label>
+</label>
+</div>
+</div>
+</form>
+<h2>Unclassified</h2>
+<ul class='feature-list'>
+<li class=' status-development'>
+<a href='/feature/affinity-rules-enforcement-manager' title='Status: Development'>Affinity Rules Enforcement Manager</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/backupawareness' title='Status: NEW'>Adding Backup Awareness to oVirt</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/boot' title='Status: WIP'>Boot oVirt.org</a>
+
+</li>
+<li class=' status-developement'>
+<a href='/feature/cinderglance-docker-integration' title='Status: Developement'>Cinder and Glance integration via Docker</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/copy-disks' title='Status: Unknown'>Copy Disks</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/debian-support-for-hosts' title='Status: NEW'>Debian support for hosts</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/extension-tester-tool' title='Status: Unknown'>Extension tester tool</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/feature-template' title='Status: Released'>Your feature name</a>
+
+</li>
+<li class=' status-merged'>
+<a href='/feature/genericregistration' title='Status: Merged'>Generic Registration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/heapplianceflow' title='Status: WIP'>oVirt hosted-engine appliance flow</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/hosted-engine-add-hosts-with-web-ui' title='Status: NEW'>Hosted Engine: add hosts with Web UI</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/hosted-engine-configuration-on-shared-storage' title='Status: NEW'>Hosted Engine configuration on shared storage</a>
+
+</li>
+<li class=' status-design-&amp;-research'>
+<a href='/feature/hosted-engine-vm-management' title='Status: Design-&amp;-research'>Hosted engine VM management enhancements</a>
+
+</li>
+<li class=' status-implementation'>
+<a href='/feature/image-upload' title='Status: Implementation'>Image Upload</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/iothreads-support' title='Status: Unknown'>IOThreads Support</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/ip-on-role-network' title='Status: design'>IP address configuration on role bearing NICs</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/katellointegration' title='Status: Development'>Katello Integration</a>
+
+</li>
+<li class=' status-qa'>
+<a href='/feature/live-rebase-on-centos-7' title='Status: QA'>oVirt Live Rebase on CentOS 7</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/lun-resize' title='Status: Design'>Refresh LUN Size</a>
+
+</li>
+<li class=' status-draft'>
+<a href='/feature/memorybasedbalancing' title='Status: Draft'>CPU and Memory based cluster auto balancing</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/numaawareksmsupport' title='Status: Design'>NUMA aware KSM support</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/patternfly-tooltips' title='Status: Development'>PatternFly tooltips</a>
+
+</li>
+<li class=' status-draft'>
+<a href='/feature/pendingresourcemanager' title='Status: Draft'>Pending Resource Manager</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/scheduler-policies' title='Status: Unknown'>oVirt Scheduler Policies</a>
+
+</li>
+<li class=' status-planning'>
+<a href='/feature/splash' title='Status: Planning'>Backup Awareness UI - Splash Screen</a>
+
+</li>
+<li class=' status-planning'>
+<a href='/feature/ui' title='Status: Planning'>Backup Awareness UI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vmdevices-rework' title='Status: Unknown'>VMDevices rework</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/vmpinningtomultiplehosts' title='Status: Development'>VM pinning to multiple hosts</a>
+
+</li>
+</ul>
+<h2>Cloud</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/cloud/addingkeystoneurltoexternalproviders' title='Status: Unknown'>Adding Keystone URL To External Providers</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/cloud/cloud-init-integration' title='Status: Unknown'>Cloud-Init Integration</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/cloud/neutronvirtualappliance' title='Status: Completed'>Neutron Virtual Appliance</a>
+
+</li>
+</ul>
+<h2>Engine</h2>
+<ul class='feature-list'>
+<li class=' status-planning'>
+<a href='/feature/engine/avoid-ip-spoofing' title='Status: Planning'>Avoid IP Spoofing</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/better-vurti' title='Status: Unknown'>Better vurti</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/cluster-parameters-override' title='Status: Design'>Cluster parameters override</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/engine/commandcoordinator' title='Status: Completed'>Introduce CommandCoordinator Framework and Ability To Persist Commands in Database</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/cumulative-rx-tx-statistics' title='Status: Design'>Cumulative Network Usage Statistics</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/engine-backup' title='Status: Released'>oVirt engine backup</a>
+
+</li>
+<li class=' status-partial'>
+<a href='/feature/engine/engine-cleanup' title='Status: Partial'>Engine</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/engine-config-utilities' title='Status: Unknown'>Engine Config Utilities</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/engine-high-availability' title='Status: Unknown'>Engine High Availability</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/engine-nic-health-check' title='Status: Released'>Engine NIC health check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/engine-snmp' title='Status: Unknown'>engine snmp</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/engine-support-for-ppc64' title='Status: Released'>Engine support for PPC64</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/feature-level-support' title='Status: Unknown'>Feature Level Support</a>
+
+</li>
+<li class=' status-wontfix'>
+<a href='/feature/engine/fedora-21-support' title='Status: WONTFIX'>Fedora 21 Support</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/engine/fedora-22-support' title='Status: NEW'>Fedora 22 Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/fence-kdump' title='Status: Unknown'>Fence kdump</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/fenceagents' title='Status: Unknown'>Fence Agents</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/fencing-refactoring' title='Status: Design'>Fencing refactoring</a>
+
+</li>
+<li class=' status-proposed'>
+<a href='/feature/engine/get-route' title='Status: Proposed'>Get Route</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/guest-reboot' title='Status: Unknown'>Guest Reboot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/hostdeployprotocol' title='Status: Unknown'>Host Deploy Protocol</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/hostdev-passthrough' title='Status: Unknown'>hostdev passthrough</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/engine/hosted-engine' title='Status: WIP'>Node Hosted Engine</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/importunregisteredentities' title='Status: Released'>Detach/Attach Storage Domain with entities</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/integrating-libosinfo-with-engine' title='Status: Released'>Integrating libosinfo with oVirt engine</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/migration-of-local-dwh-reports-to-remote' title='Status: Design'>Migrating local DWH and Reports to remote</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/orm' title='Status: Unknown'>ORM</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/reportguestdiskslogicaldevicename' title='Status: Design'>Report Guest Disks Logical Device Name</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/self-hosted-engine-fc-support' title='Status: design'>Self Hosted Engine FC Support</a>
+
+</li>
+<li class=' status-post'>
+<a href='/feature/engine/self-hosted-engine-gluster-support' title='Status: POST'>Self Hosted Engine Gluster Support</a>
+
+</li>
+<li class=' status-post'>
+<a href='/feature/engine/self-hosted-engine-hyper-converged-gluster-support' title='Status: POST'>Self Hosted Engine Hyper Converged Gluster Support</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/engine/self-hosted-engine-iscsi-support' title='Status: Completed'>Self Hosted Engine iSCSI Support</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/self-hosted-engine-maintenance-flows' title='Status: Released'>Hosted Engine Maintenance Flow Unification</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/self-hosted-engine' title='Status: Released'>Self Hosted Engine</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/separate-dwh-host' title='Status: Design'>Separate DWH Host</a>
+
+</li>
+<li class=' status-qe'>
+<a href='/feature/engine/separate-reports-host' title='Status: QE'>Separate Reports Host</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/engine/serial-console' title='Status: Unknown'>Serial Console</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/sr-iov' title='Status: Design'>SR_IOV</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/upgrademanager' title='Status: Released'>Upgrade Manager</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/engine/vm-icons' title='Status: Design'>VM Icons</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/watchdog-engine-support' title='Status: Released'>Watchdog engine support</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/engine/windows-guest-tools' title='Status: Released'>oVirt Windows Guest Tools ISO</a>
+
+</li>
+</ul>
+<h2>Foreman</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/foreman/advancedforemanintegration' title='Status: Unknown'>Advanced Foreman Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/foreman/foremanintegration' title='Status: Unknown'>Foreman Integration</a>
+
+</li>
+</ul>
+<h2>Infra</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/infra/aaa-jdbc' title='Status: Unknown'>AAA JDBC</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/aaa' title='Status: Unknown'>AAA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/api' title='Status: Unknown'>API</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/asynctaskmanagerchanges-3.3' title='Status: Unknown'>AsyncTaskManagerChanges 3.3</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/asynctaskmanagerchanges-3.3detailed' title='Status: Unknown'>AsyncTaskManagerChanges 3.3Detailed</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/asynctaskmanagerchanges' title='Status: Unknown'>Async Task Manager Changes</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/authentication-rewrite' title='Status: Unknown'>Authentication Rewrite</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/bootstrap-improvements' title='Status: Unknown'>Bootstrap Improvements</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/cli' title='Status: Unknown'>CLI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/clonevmfromsnapshot' title='Status: Unknown'>Clone VM From Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/custompropertiessheet' title='Status: Unknown'>Custom Properties Sheet</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/dbschemaversioncheck' title='Status: Unknown'>DB Schema Version Check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedclonevmfromsnapshot' title='Status: Unknown'>Detailed Clone VM From Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedhostpmproxypreferences' title='Status: Unknown'>Detailed Host PM Proxy Preferences</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedlockmechanism' title='Status: Unknown'>Detailed Lock Mechanism</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/detailedpmhealthcheck' title='Status: Unknown'>Detailed PM Health Check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/drbd' title='Status: Unknown'>DRBD</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/entity-comment' title='Status: Unknown'>Entity comment</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/entity-configuration-management' title='Status: Unknown'>Entity Configuration Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/externalevents' title='Status: Unknown'>External Events</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/externaltasks' title='Status: Unknown'>External Tasks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/fullapplicationslist' title='Status: Unknown'>Full Applications List</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/hostpmproxypreferences' title='Status: Unknown'>Host PM Proxy Preferences</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/hsm-async-tasks' title='Status: Unknown'>HSM Async Tasks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/java-sdk' title='Status: Unknown'>Java sdk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/kerberos-support-in-sdks-and-cli' title='Status: Unknown'>Kerberos Support in SDKs and CLI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/microthreading' title='Status: Unknown'>Microthreading</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/nagios-integration' title='Status: Unknown'>Nagios Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/ntpsupport' title='Status: Unknown'>NTP Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/one-certificate-key-pair-per-nic' title='Status: Unknown'>One certificate-key pair per NIC</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pki-improvements' title='Status: Unknown'>PKI Improvements</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pki' title='Status: Unknown'>PKI</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pkireduce' title='Status: Unknown'>PKI Reduce</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/pmhealthcheck' title='Status: Unknown'>PM Health Check</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/python-sdk' title='Status: Unknown'>Python sdk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/reloadableconfiguration' title='Status: Unknown'>Reloadable Configuration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/restsessionmanagement' title='Status: Unknown'>REST Session Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/rsdl-schema' title='Status: Unknown'>RSDL schema</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/rsdl' title='Status: Unknown'>RSDL</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/runningcommandsonendactionfailure' title='Status: Unknown'>Running Commands On End Action Failure</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/ssh-abilities' title='Status: Unknown'>SSH Abilities</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/sso-method-control' title='Status: Unknown'>SSO Method Control</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/sso' title='Status: Unknown'>SSO</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/taskmanager' title='Status: Unknown'>Task Manager</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/taskmanagercanceltask' title='Status: Unknown'>Task Manager Cancel Task</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/taskmanagerdetailed' title='Status: Unknown'>Task Manager Detailed</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/testingframework' title='Status: Unknown'>Testing Framework</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/uniformssosupport' title='Status: Unknown'>Uniform SSO Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/infra/user-portal-permissions' title='Status: Unknown'>User Portal Permissions</a>
+
+</li>
+</ul>
+<h2>Infra / Reloadable Configuration</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/infra/reloadable-configuration/keys-table' title='Status: Unknown'>keys table</a>
+
+</li>
+</ul>
+<h2>Infra / User Portal Permissions</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/infra/user-portal-permissions/writing-a-new-user-query' title='Status: Unknown'>Writing A New User Query</a>
+
+</li>
+</ul>
+<h2>Integration</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/integration/allinone' title='Status: Released'>All in One</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/integration/otopi-infra-migration' title='Status: Unknown'>Otopi Infra Migration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/integration/ovirtappliance' title='Status: WIP'>oVirt Appliance</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/integration/remotedb' title='Status: Unknown'>Remote DB</a>
+
+</li>
+<li class=' status-completed'>
+<a href='/feature/integration/websocketproxy-on-a-separate-host' title='Status: completed'>WebSocketProxy on a separate host</a>
+
+</li>
+</ul>
+<h2>Network</h2>
+<ul class='feature-list'>
+<li class=' status-qa'>
+<a href='/feature/network/apidatacenternetworks' title='Status: QA'>API Data Center Networks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/arbitraryvlandevicename' title='Status: Unknown'>Arbitrary VLAN Device Name</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/bridgeless-networking' title='Status: Unknown'>Bridgeless Networking</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/bridgeless-networks' title='Status: Unknown'>Bridgeless Networks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/compatibilityversion' title='Status: Unknown'>compatibility Version</a>
+
+</li>
+<li class=' status-implementation'>
+<a href='/feature/network/detailed-host-network-qos' title='Status: Implementation'>Host Network QoS</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/detailed-osn-integration' title='Status: Unknown'>Detailed OSN Integration</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/detailedhostnetworkingapi' title='Status: Design'>Host Networking API</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/network/detailedmanagementnetworkasarole' title='Status: WIP'>Management network as a role - Detailed</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/detailednetworklinking' title='Status: Unknown'>Detailed Network Linking</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/detailedreportingvnicinformation' title='Status: Unknown'>Detailed Reporting Vnic Information</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/device-custom-properties' title='Status: Unknown'>Device Custom Properties</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/directhostaddress' title='Status: Unknown'>Direct Host Address</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/ethtool-options' title='Status: Released'>Device ethtool options</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/get-route-device' title='Status: Unknown'>Get Route Device</a>
+
+</li>
+<li class=' status-implementation'>
+<a href='/feature/network/host-network-qos' title='Status: Implementation'>Host Network QoS</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/hostnetworkingapi' title='Status: Design'>Host Networking API</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/hotplugnic' title='Status: Released'>Hotplug/Hotunplug of Network Interface Cards</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/isolatednetworks' title='Status: Design'>Isolated Network</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/management-network-as-a-role' title='Status: design'>Management network as a role</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/migration-network' title='Status: Unknown'>Migration Network</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/multihostnetworkconfiguration' title='Status: Unknown'>Multi Host Network Configuration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/multiple-gateways' title='Status: Unknown'>Multiple Gateways</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/network-custom-properties' title='Status: Released'>Network Custom Properties</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/network-labels' title='Status: Unknown'>Network Labels</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/network-qos-detailed-design' title='Status: Unknown'>Network QoS - detailed design</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkfiltering' title='Status: Unknown'>Network Filtering</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/networklabels' title='Status: Released'>Network Labels</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networklinking' title='Status: Unknown'>Network Linking</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkmaintab' title='Status: Unknown'>Network Main Tab</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkmanager-support' title='Status: Unknown'>NetworkManager Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkpermissions' title='Status: Unknown'>Network Permissions</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/networkreloaded' title='Status: Unknown'>Network Reloaded</a>
+
+</li>
+<li class=' status-dormant'>
+<a href='/feature/network/nicless-network' title='Status: Dormant'>Nic-less Network</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/normalized-ovirtmgmt-initialization' title='Status: Unknown'>Normalized oVirtmgmt Initialization</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/osn-integration' title='Status: Unknown'>OSN Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/portmirroring' title='Status: Unknown'>Port Mirroring</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/predictable-vnic-order' title='Status: Released'>Predictable vNIC Order</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/reportingvnicinformation' title='Status: Unknown'>Reporting Vnic Information</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/required-networks' title='Status: Unknown'>Required Networks</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/network/select-network-for-gluster' title='Status: Design'>Select Network for Gluster traffic</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/setupnetworks' title='Status: Unknown'>Setup Networks</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/network/ucs-integration' title='Status: Released'>Cisco UCS integration</a>
+
+</li>
+<li class=' status-proposed'>
+<a href='/feature/network/unrestricted-network-names' title='Status: Proposed'>Unrestricted Network Names</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/network/update-device-hooks' title='Status: Unknown'>Update device hooks</a>
+
+</li>
+</ul>
+<h2>Node</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/node/buildtoolmigration' title='Status: Unknown'>Buildtool Migration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/node/cockpit' title='Status: WIP'>Cockpit</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/node/dbusbackend' title='Status: WIP'>D-Bus Backend</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/diagnostic-page' title='Status: Unknown'>Node Diagnostic Page</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/docker-integration' title='Status: Unknown'>Docker Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/featurepublishing' title='Status: Unknown'>Feature Publishing</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/glusterfs-support' title='Status: Unknown'>Node GlusterFS Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/ipv6-support' title='Status: Unknown'>IPv6 support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/kimchiplugin' title='Status: Unknown'>Kimchi Plugin</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/nic-bonding' title='Status: Unknown'>NIC Bonding</a>
+
+</li>
+<li class=' status-new'>
+<a href='/feature/node/node.next' title='Status: New'>Node.next</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/nodeautomation' title='Status: Unknown'>Node Automation</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/openvswitchsupport' title='Status: Unknown'>Open V Switch Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/packagerefactoring' title='Status: Unknown'>Package Refactoring</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/pluginliveinstall' title='Status: Unknown'>Plugin Live Install</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/plugins' title='Status: Unknown'>Node plugins</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/puppet-plugin' title='Status: Unknown'>Node Puppet Plugin</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/software-iscsi-root' title='Status: Unknown'>Node software iscsi root</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/storageandinstallermodulerewrite' title='Status: Unknown'>Storage And Installer Module Rewrite</a>
+
+</li>
+<li class=' status-review'>
+<a href='/feature/node/subpackages' title='Status: Review'>subpackages</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/tuiredesign' title='Status: Unknown'>TU Iredesign</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/universal-image' title='Status: Unknown'>Universal Image</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/upgrade-tool' title='Status: Unknown'>Node upgrade tool</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/node/urwid-tui' title='Status: Unknown'>Urwid TUI</a>
+
+</li>
+</ul>
+<h2>Plugins</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/plugins/plugins' title='Status: Unknown'>Plugins</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/plugins/uipluginsoriginaldesignnotes' title='Status: Unknown'>UI Plugins Original Design Notes</a>
+
+</li>
+</ul>
+<h2>SLA</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/sla/aggregate-qos' title='Status: Unknown'>aggregate QoS</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/automatic-scaling' title='Status: Unknown'>Automatic scaling</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/autorecovery' title='Status: Unknown'>Autorecovery</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/blkio-support' title='Status: Unknown'>blkio support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/cpu-host-support' title='Status: Unknown'>CPU-host Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/cpu-sla' title='Status: Unknown'>CPU SLA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/cpu-thread-handling' title='Status: Unknown'>CPU thread handling</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/detailed-numa-and-virtual-numa' title='Status: Unknown'>Detailed NUMA and Virtual NUMA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/detailedquota' title='Status: Unknown'>Detailed Quota</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/drools-planner-scheduler' title='Status: Unknown'>drools planner scheduler</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/even-vm-count-distribution' title='Status: Unknown'>Even VM Count Distribution</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/external-scheduling-proxy' title='Status: Unknown'>oVirt External Scheduling Proxy</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ha-vm-reservation-detaileddesign' title='Status: Unknown'>HA VM reservation detailedDesign</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ha-vm-reservation' title='Status: Unknown'>HA VM reservation</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/hostpowermanagementpolicy' title='Status: Unknown'>Host Power Management Policy</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/memory-hotplug' title='Status: Unknown'>Memory Hotplug</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/minimum-guaranteed-memory' title='Status: Unknown'>Minimum guaranteed memory</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/momintegration' title='Status: Unknown'>Mom Integration</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/numa-and-virtual-numa' title='Status: Unknown'>NUMA and Virtual NUMA</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/optaplanner' title='Status: Unknown'>Optaplanner</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ovirtscheduler' title='Status: Unknown'>o Virt Scheduler</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/ovirtschedulerapi' title='Status: Unknown'>o Virt Scheduler API</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/performance-and-scalability' title='Status: Unknown'>Performance And Scalability</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/quota' title='Status: Unknown'>Quota</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/sla-mom-ballooning-tp' title='Status: Unknown'>SLA mom ballooning tp</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/sla-mom' title='Status: Unknown'>SLA mom</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/trusted-compute-pools' title='Status: Unknown'>Trusted compute pools</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/vm-affinity' title='Status: Unknown'>VM Affinity</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/vm-coredump' title='Status: Unknown'>VM coredump</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/vnic-profiles' title='Status: Unknown'>Vnic Profiles</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/sla/xbzrle-and-auto-convergence' title='Status: Unknown'>XBZRLE and Auto-Convergence</a>
+
+</li>
+</ul>
+<h2>Storage</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/storage/advancednfsoptions' title='Status: Released'>Advanced Nfs Options</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/backup-provider' title='Status: Unknown'>Backup Provider</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/backup-restore-api-integration' title='Status: Unknown'>Backup-Restore API Integration</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/storage/cinder-integration' title='Status: Design'>Cinder Integration</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/connectionreferences' title='Status: Released'>Connection References</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/decommission-master-domain-and-spm' title='Status: Unknown'>Decommission Master Domain and SPM</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/design-for-multiple-storage-domains' title='Status: Released'>Manage storage connections</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/detailed-gluster-geo-rep' title='Status: Unknown'>Detailed Gluster Geo Rep</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/detailed-gluster-volume-asynchronous-tasks-management' title='Status: Unknown'>Detailed Gluster Volume Asynchronous Tasks Management</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/detailedfloatingdisk' title='Status: Released'>Floating Disk</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/detailedhotplug' title='Status: Released'>Disk Hot Plug</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/detailedsharedrawdisk' title='Status: Released'>Shared Raw Disk</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/direct-lun' title='Status: Released'>Direct LUN</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/disk-hooks' title='Status: Released'>Disk Hooks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/diskalignment' title='Status: Unknown'>Disk Alignment</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/diskpermissions' title='Status: Released'>Disk Permissions</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/domain-scan' title='Status: Released'>Domain Scan</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/floatingdisk' title='Status: Released'>Floating Disk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/glance-integration' title='Status: Unknown'>Glance Integration</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/storage/gluster-dashboard' title='Status: WIP'>Gluster Dashboard</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/storage/gluster-geo-replication' title='Status: WIP'>Geo replication</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/gluster-hooks-management' title='Status: Released'>Gluster Hooks management</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/gluster-import-existing-cluster' title='Status: Released'>Import cluster</a>
+
+</li>
+<li class=' status-complete'>
+<a href='/feature/storage/gluster-support' title='Status: Complete'>Gluster management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-swift-management' title='Status: Unknown'>Gluster Swift Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-sync-configuration-with-cli' title='Status: Unknown'>Gluster Sync Configuration With CLI</a>
+
+</li>
+<li class=' status-complete'>
+<a href='/feature/storage/gluster-volume-asynchronous-tasks-management' title='Status: Complete'>Gluster tasks management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-volume-capacity' title='Status: Unknown'>Gluster Volume Capacity</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/gluster-volume-performance-statistics' title='Status: Unknown'>Gluster Volume Performance Statistics</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/glusterfs-hyperconvergence' title='Status: Unknown'>GlusterFS Hyperconvergence</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/glusterfs-storage-domain' title='Status: Released'>GlusterFS Storage Domain</a>
+
+</li>
+<li class=' status-wip'>
+<a href='/feature/storage/glusterhostdiskmanagement' title='Status: WIP'>Host Device Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/glustervolumeadvanceddetails' title='Status: Unknown'>Gluster Volume Advanced Details</a>
+
+</li>
+<li class=' status-not-started'>
+<a href='/feature/storage/glustervolumequota' title='Status: Not-Started'>Gluster Volume Quota</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/hotplug' title='Status: Released'>Disk Hot Plug</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/importmorethanonce' title='Status: Released'>Import VM or Template More than Once</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/importstoragedomain' title='Status: Released'>Import Storage Domain</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/ioprocess' title='Status: Unknown'>ioprocess</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/iscsi-multipath' title='Status: Released'>Configure iSCSI Multipathing</a>
+
+</li>
+<li class=' status-stabilization'>
+<a href='/feature/storage/live-merge' title='Status: Stabilization'>Live Merge</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/manage-storage-connections' title='Status: Released'>Manage storage connections</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/mixed-types-data-center' title='Status: Unknown'>Mixed Types Data Center</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/move-disk-two-phase-commit' title='Status: Unknown'>Move Disk Two Phase Commit</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/moveascopyanddelete' title='Status: Unknown'>Move As Copy And Delete</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/multiplestoragedomains' title='Status: Released'>Manage storage connections</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/nfsv4' title='Status: Released'>NFSv4</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/online-virtual-drive-resize' title='Status: Released'>Online Virtual Drive Resize</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/orphaned-images' title='Status: Unknown'>Orphaned Images</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/ovfautoupdater' title='Status: Unknown'>Ovf Auto Updater</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/ovfonanydomain' title='Status: Unknown'>Ovf On Any Domain</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/posixfsconnection' title='Status: Released'>PosixFS Connection</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/read-only-disk' title='Status: Released'>Read-Only Disks</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/storage/sanlock-fencing' title='Status: Design'>Sanlock Fencing</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/serial-execution-of-asynchronous-tasks-detailed-design' title='Status: Unknown'>Serial Execution of Asynchronous Tasks Detailed Design</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/serial-execution-of-asynchronous-tasks' title='Status: Released'>Serial Execution of Asynchronous Tasks</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/sharedrawdisk' title='Status: Released'>Shared Raw Disk</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/single-disk-snapshot' title='Status: Unknown'>Single Disk Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/snapshots-overview' title='Status: Unknown'>Snapshots Overview</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/storage/spmpriority' title='Status: Released'>SPM Priority</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/storagedomainliveupgrade' title='Status: Unknown'>Storage Domain Live Upgrade</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/storagepool-metadata-removal' title='Status: Unknown'>StoragePool Metadata Removal</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/storage/virtio-scsi' title='Status: Unknown'>Virtio SCSI</a>
+
+</li>
+</ul>
+<h2>UX</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/ux/branding' title='Status: Released'>Branding</a>
+
+</li>
+<li class=' status-proposal'>
+<a href='/feature/ux/cssgrids' title='Status: Proposal'>CSS Grids</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedexternalevents' title='Status: Unknown'>Detailed External Events</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedexternaltasks' title='Status: Unknown'>Detailed External Tasks</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedhostpmmultipleagents' title='Status: Unknown'>Detailed Host PM Multiple Agents</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedhotplugnic' title='Status: Unknown'>Detailed Hot Plug NIC</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/detailedstabledeviceaddresses' title='Status: Unknown'>Detailed Stable Device Addresses</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/entityhealthstatus' title='Status: Unknown'>Entity Health Status</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/foreign-menu-using-rest' title='Status: Unknown'>Foreign Menu Using REST</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/ux/frontendrefactor' title='Status: Released'>Frontend Refactoring</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/glustergeoreplication' title='Status: Unknown'>Gluster Geo Replication</a>
+
+</li>
+<li class=' status-inception'>
+<a href='/feature/ux/glustervolumesnapshots' title='Status: Inception'>Gluster Volume Snapshot</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/gwt-platform-upgrade' title='Status: Unknown'>GWT Platform Upgrade</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/hostbiosinfo' title='Status: Unknown'>Host Bios Info</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/hosthardwareinfo' title='Status: Unknown'>Host Hardware Info</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/hostpmmultipleagents' title='Status: Unknown'>Host PM Multiple Agents</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/i18n' title='Status: Unknown'>I18N</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/jasper-in-webadmin' title='Status: Unknown'>jasper in webadmin</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/ux/lowerresolutionsupport' title='Status: Released'>Low Resolution Support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/memory-aware-even-distribution-policy' title='Status: Unknown'>Memory-aware Even-distribution Policy</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/ux/newlookandfeelpatternflyphase1' title='Status: Development'>New Look and Feel based on PatternFly -- Phase 1</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/quota-3.2' title='Status: Unknown'>Quota 3.2</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/reports-dashboard' title='Status: Unknown'>Reports Dashboard</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/sla-for-storage-io-bandwidth' title='Status: Unknown'>SLA for storage io bandwidth</a>
+
+</li>
+<li class='selected status-unknown'>
+<a href='/feature/ux/uiplugins' title='Status: Unknown'>UI Plugins</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/ux/uirefreshsynchronization' title='Status: Released'>Refresh Synchronization</a>
+
+</li>
+</ul>
+<h2>UX / Design</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/glusterhostdiskmanagement' title='Status: Unknown'>Gluster Host Disk Management</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/jsonrpc3.5' title='Status: Unknown'> JSON RPC 3.5</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/livemerge' title='Status: Unknown'>Live Merge</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/stabledeviceaddresses' title='Status: Unknown'>Stable Device Addresses</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/storagehelpers' title='Status: Unknown'>Storage Helpers</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/storagelivemigration' title='Status: Unknown'>Storage Live Migration</a>
+
+</li>
+</ul>
+<h2>UX / Design / Network</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/ux/design/network/jumbo-frames' title='Status: Unknown'>Jumbo frames</a>
+
+</li>
+</ul>
+<h2>VDSM</h2>
+<ul class='feature-list'>
+<li class=' status-released'>
+<a href='/feature/vdsm/for-ppc64' title='Status: Released'>VDSM for PPC64</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/hostconfiguration' title='Status: Unknown'>Host Configuration</a>
+
+</li>
+<li class=' status-development'>
+<a href='/feature/vdsm/jsonrpc' title='Status: Development'>Introduce Messaged communication to VDSM using  JSON-RPC on top of various transport protocols</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/libvdsm' title='Status: Unknown'>libVDSM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/measurements' title='Status: Unknown'>Measurements</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/python3-compatibility' title='Status: Unknown'>VDSM python3 compatibility</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/supervdsm-service' title='Status: Unknown'>SuperVDSM service</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/vdsm/vdsm-plugin' title='Status: Unknown'>Node VDSM plugin</a>
+
+</li>
+<li class=' status-proposed'>
+<a href='/feature/vdsm/vdsm-vm-query-api' title='Status: Proposed'>VDSM VM Data Query API</a>
+
+</li>
+</ul>
+<h2>Virt</h2>
+<ul class='feature-list'>
+<li class=' status-unknown'>
+<a href='/feature/virt/blank-to-defaults' title='Status: Unknown'>Blank to Defaults</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/clone-vm' title='Status: Unknown'>Clone VM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/cluster-emulation-modes' title='Status: Unknown'>Cluster emulation modes</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/console-connection-settings-dialog-in-portals' title='Status: Unknown'>Console connection settings dialog in portals</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/detailed-exit-reason' title='Status: Unknown'>Detailed Exit Reason</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/display-address-override' title='Status: Unknown'>Display Address Override</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/edit-running-vm' title='Status: Unknown'>Edit Running VM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/expose-vm-devices' title='Status: Unknown'>Expose VM Devices</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/guestagent' title='Status: Unknown'>Guest Agent</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentdebian' title='Status: Done'>oVirt Guest Agent on Debian</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentopensuse' title='Status: Done'>oVirt Guest Agent on OpenSUSE</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentsles' title='Status: Done'>oVirt Guest Agent on SLE(S)</a>
+
+</li>
+<li class=' status-done'>
+<a href='/feature/virt/guestagentubuntu' title='Status: Done'>oVirt Guest Agent on Ubuntu</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/virt/hostusb' title='Status: Released'>Expose Host attached USB to a Node</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/hot-plug-cpu' title='Status: Unknown'>Hot plug CPU</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/instance-types' title='Status: Unknown'>Instance Types</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/intial-run-vm-tab' title='Status: Unknown'>Intial Run VM tab</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/multiple-consoles' title='Status: Unknown'>Multiple Consoles</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/multiple-graphic-servers' title='Status: Unknown'>Multiple Graphic Servers</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/multiplemonitors' title='Status: Unknown'>Multiple Monitors</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/non-plugin-console-invocation' title='Status: Unknown'>Non plugin console invocation</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/novnc-console' title='Status: Unknown'>noVNC console</a>
+
+</li>
+<li class=' status-released'>
+<a href='/feature/virt/os-info' title='Status: Released'>OS info</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/prestartedvm' title='Status: Unknown'>Prestarted VM</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/ram-snapshots' title='Status: Unknown'>RAM Snapshots</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/resourceusagegraph' title='Status: Unknown'>Resource Usage Graph</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/s3-suspend' title='Status: Unknown'>S3 suspend</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/smartcard-support' title='Status: Unknown'>Smartcard support</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/spice-proxy' title='Status: Unknown'>Spice Proxy</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/spicehtml5' title='Status: Unknown'>Spice HTML5</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/spicerelatedfeatures' title='Status: Unknown'>SPICE Related Features</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/template-versions' title='Status: Unknown'>Template Versions</a>
+
+</li>
+<li class=' status-design'>
+<a href='/feature/virt/virt-v2v-integration' title='Status: Design'>Extended import of Virtual Machines</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/vm-init-persistent' title='Status: Unknown'>VM init persistent</a>
+
+</li>
+<li class=' status-unknown'>
+<a href='/feature/virt/vmpayload' title='Status: Unknown'>VM Payload</a>
+
+</li>
+</ul>
+</section>
+<section class='feature-info col-md-8'>
+<div class='well'>
+<h2>At a glance</h2>
+No feature info available. Please contact
+<span class='author-name' title='sahina'>Sahina Bose</span> or <span class='author-name' title='vszocs'>Vojtech Szocs</span>
+to fix.
+</div>
+<h1 id="ui-plugins">UI Plugins</h1>
+
+<h3 id="summary">Summary</h3>
+
+<p>This feature provides an infrastructure and API for implementing and deploying custom user interface plugins for oVirt web administration application.</p>
+
+<h3 id="owner">Owner</h3>
+
+<ul>
+  <li>Name: <span class='broken-link link-mediawiki' data-href='user:Vszocs' title='Special MediaWiki link: original pointed to: user:Vszocs'>Vojtech Szocs</span></li>
+  <li>Email: «vszocs@redhat.com»&lt;/<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#118;&#115;&#122;&#111;&#099;&#115;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#118;&#115;&#122;&#111;&#099;&#115;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a>&gt;</li>
+</ul>
+
+<h3 id="overview">Overview</h3>
+
+<p>oVirt web administration application (WebAdmin) is the main graphical user interface for managing all components of a virtual system infrastructure. In addition to existing WebAdmin functionality, there can be times when administrators want to expose additional features or to integrate with other systems through WebAdmin UI. This is where UI plugins come into play: each plugin represents a set of user interface extensions that can be packaged and distributed for deployment on oVirt Engine via WebAdmin.</p>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>UI plugins integrate with WebAdmin directly on the client (web browser) using <a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a> programming language. Plugin invocation is driven by WebAdmin and happens right within the context of browser's JavaScript runtime, using JavaScript language as the lowest common denominator between WebAdmin (<a href="http://en.wikipedia.org/wiki/Google_Web_Toolkit">GWT</a>) and individual plugins. UI plugins can take full advantage of JavaScript language and its rich ecosystem of libraries. There are no specific rules on how to implement UI plugins, plugin API is designed to be simple and not to get in developer's way, regardless of how a developer chooses to write the plugin.</p>
+
+<p>At key events during runtime, WebAdmin invokes individual plugins via <a href="#Application_event_reference">event handler functions</a> representing WebAdmin → plugin communication. Even though WebAdmin supports many different event handler functions, a plugin only declares functions which are of interest to its implementation. Each plugin must register relevant event handler functions as part of its <a href="#Plugin_bootstrap_sequence">bootstrap sequence</a>, before the plugin is put to use by WebAdmin.</p>
+
+<p>To facilitate plugin → WebAdmin communication that drives UI extension, WebAdmin exposes <a href="#API_function_reference">plugin API</a> as global (top-level) <code>pluginApi</code> JavaScript object for individual plugins to consume. Each plugin obtains specific <code>pluginApi</code> instance, allowing WebAdmin to control plugin API function invocation per each plugin with regard to <a href="#Plugin_lifecycle">plugin lifecycle</a>.</p>
+
+<h3 id="discovering-plugins">Discovering plugins</h3>
+
+<p>Before a plugin can be <a href="#Loading_plugins">loaded</a> and <a href="#Plugin_bootstrap_sequence">bootstrapped</a> by WebAdmin, it has to be discovered by UI plugin infrastructure in the first place.</p>
+
+<p><img alt="" title="Discovering plugins" src="/images/wiki/Discovering-plugins.png?1447607916" /></p>
+
+<p><a href="#Plugin_descriptor">Plugin descriptor</a> is the entry point to discovery process, containing plugin meta-data as well as (optional) default plugin-specific configuration.</p>
+
+<p>As part of handling WebAdmin HTML page request (1), UI plugin infrastructure attempts to discover and load plugin descriptors from local file system (2). For each descriptor, the infrastructure also attempts to load corresponding <a href="#Plugin_user_configuration">plugin user configuration</a> used to override default plugin-specific configuration (if any) and tweak plugin runtime behavior. Note that providing plugin user configuration is completely optional. After loading descriptors and corresponding user configuration files (if any), oVirt Engine aggregates UI plugin data and embeds it into WebAdmin HTML page for runtime evaluation (3).</p>
+
+<p>Descriptor files are expected to reside in <code>$ENGINE_USR/ui-plugins</code> directory, with default mapping <code>ENGINE_USR=/usr/share/ovirt-engine</code> as defined by oVirt Engine local configuration. Descriptor files should comply with <a href="http://en.wikipedia.org/wiki/JSON">JSON</a> format specification with the addition of allowing Java/C++ style comments, i.e. both <code>/* comment */</code> and <code>// comment</code> varieties.</p>
+
+<p>User configuration files are expected to reside in <code>$ENGINE_ETC/ui-plugins</code> directory, with default mapping <code>ENGINE_ETC=/etc/ovirt-engine</code> as defined by oVirt Engine local configuration. User configuration files should comply with same content format rules as descriptors. Note that user configuration files follow <code>-config.json</code> naming convention, i.e. using <code>-config</code> suffix.</p>
+
+<h3 id="loading-plugins">Loading plugins</h3>
+
+<p>After a plugin has been <a href="#Discovering_plugins">discovered</a> and its data embedded into WebAdmin HTML page, WebAdmin will attempt to load the given plugin as part of application startup (unless configured otherwise).</p>
+
+<p><img alt="" title="Loading plugins" src="/images/wiki/Loading-plugins.png?1447607916" /></p>
+
+<p>For each plugin, WebAdmin creates hidden HTML <code>iframe</code> element used to load <a href="#Plugin_host_page">plugin host page</a> (1). Plugin host page is the entry point to <a href="#Plugin_bootstrap_sequence">bootstrap</a> process, used to evaluate plugin code (JavaScript) within the context of the corresponding <code>iframe</code> element. UI plugin infrastructure supports serving plugin resource files, such as host page, from local file system (2). Host page gets loaded into <code>iframe</code> element and plugin code is evaluated (3). From this point forward, plugin communicates with WebAdmin via plugin API (4). Since the purpose of host page is to bootstrap plugin code, any UI extensions should be done via <a href="#API_function_reference">plugin API</a> rather than direct HTML DOM manipulation.</p>
+
+<p>Plugin resource files are expected to reside in <code>$ENGINE_USR/ui-plugins/</code> directory, with <code>resourcePath</code> value defined by the corresponding attribute in <a href="#Plugin_descriptor">plugin descriptor</a>. For example:</p>
+
+<ul>
+  <li>Client requests URL <code>/ovirt-engine/webadmin/plugin//path/to/file</code></li>
+  <li>Engine serves content of <code>$ENGINE_USR/ui-plugins//path/to/file</code></li>
+</ul>
+
+<h3 id="plugin-descriptor">Plugin descriptor</h3>
+
+<p>Plugin descriptor contains plugin meta-data as well as default plugin-specific configuration.</p>
+
+<p>Following code snippet shows a sample plugin descriptor:</p>
+
+<pre class="highlight plaintext"><code>  /usr/share/ovirt-engine/ui-plugins/example.json&#x000A;&#x000A;{&#x000A;&#x000A;    // Unique name of the plugin (required)&#x000A;    // Unrelated to descriptor file name, must not be empty&#x000A;    "name": "ExamplePlugin",&#x000A;&#x000A;    // URL of plugin host page that bootstraps plugin code (required)&#x000A;    // This URL maps to $ENGINE_USR/ui-plugins/example-resources/plugin.html&#x000A;    "url": "plugin/ExamplePlugin/plugin.html",&#x000A;&#x000A;    // Default configuration associated with the plugin (optional)&#x000A;    "config": { "band": "ZZ Top", "score": 10 },&#x000A;&#x000A;    // Path to plugin resource files relative to descriptor (optional)&#x000A;    // Required when using UI plugin infrastructure to serve plugin resource files&#x000A;    // This path maps to $ENGINE_USR/ui-plugins/example-resources&#x000A;    "resourcePath": "example-resources"&#x000A;&#x000A;}&#x000A;</code></pre>
+
+<p>Notice the use of relative URL in <code>url</code> attribute. Since WebAdmin resides in <code>/ovirt-engine/webadmin</code> URL context, it's usually best to use relative URLs when referring to plugin resource files. This way, the plugin is more resilient to potential changes in WebAdmin base URL.</p>
+
+<h3 id="plugin-user-configuration">Plugin user configuration</h3>
+
+<p>Plugin user configuration contains custom plugin-specific configuration and attributes to tweak plugin runtime behavior.</p>
+
+<p>Following code snippet shows a sample plugin user configuration:</p>
+
+<pre class="highlight plaintext"><code>  /etc/ovirt-engine/ui-plugins/example-config.json&#x000A;&#x000A;{&#x000A;&#x000A;    // Custom configuration associated with the plugin (optional)&#x000A;    // This overrides default configuration within descriptor, if any&#x000A;    "config": { "band": "AC/DC" },&#x000A;&#x000A;    // Whether the plugin should be loaded on WebAdmin startup (optional)&#x000A;    // Default value is true&#x000A;    "enabled": true,&#x000A;&#x000A;    // Relative order in which the plugin will be loaded (optional)&#x000A;    // Default value is Integer.MAX_VALUE (lowest order)&#x000A;    "order": 0&#x000A;&#x000A;}&#x000A;</code></pre>
+
+<p>As part of <a href="#Discovering_plugins">discovering plugins</a>, UI plugin infrastructure will merge custom configuration (if any) on top of default configuration (if any). For example:</p>
+
+<ul>
+  <li>Plugin descriptor defines <code>config</code> attribute as <code>{ "band": "ZZ Top", "score": 10 }</code></li>
+  <li>Plugin user configuration defines <code>config</code> attribute as <code>{ "band": "AC/DC" }</code></li>
+  <li>Resulting plugin configuration, accessible to given plugin at runtime, will be <code>{ "band": "AC/DC", "score": 10 }</code></li>
+</ul>
+
+<h3 id="plugin-host-page">Plugin host page</h3>
+
+<p>Plugin host page <a href="#Plugin_bootstrap_sequence">bootstraps</a> plugin code by evaluating JavaScript within the context of the corresponding <code>iframe</code> element.</p>
+
+<p>Following code snippet shows a sample plugin host page:</p>
+
+<pre class="highlight plaintext"><code>  /usr/share/ovirt-engine/ui-plugins/example-resources/plugin.html&#x000A;&#x000A;        // Plugin code, evaluated within HTML head section (2)&#x000A;&#x000A;        // Plugin code, evaluated within HTML body section (3)&#x000A;</code></pre>
+
+<p>Prior to evaluating actual plugin code, host page can load dependent scripts or other resources as necessary (1). Plugin code can be evaluated either within <code>head</code> (2) or <code>body</code> (3) section of the HTML document. In addition to embedding plugin code inline into host page, code can be also loaded asynchronously as external script, i.e. ``</p>
+
+<p>. There are no specific rules on how to load plugin code within the host page, the only requirement is that loading host page HTML document should evaluate plugin code eventually.</p>
+
+<p>Note that WebAdmin <a href="#Loading_plugins">loads</a> the given plugin via hidden HTML <code>iframe</code> element. This has following implications:</p>
+
+<ul>
+  <li>Plugin code runs within the context of the corresponding <code>iframe</code> element, i.e. not in WebAdmin (top-level) context</li>
+  <li>Plugin code should use <a href="#API_function_reference">plugin API</a> to make UI extensions, i.e. avoid direct HTML DOM manipulation of WebAdmin UI</li>
+  <li>Any markup placed within HTML <code>body</code> section will have no effect since the <code>iframe</code> element is hidden from WebAdmin view</li>
+</ul>
+
+<p>Notice the use of relative URL to load additional script in above snippet. According to <a href="#Plugin_descriptor">plugin descriptor</a>, the host page resides in <code>/ovirt-engine/webadmin/plugin/ExamplePlugin</code> URL context. From this context, we can refer to plugin resource files directly using relative paths.</p>
+
+<h3 id="why-load-plugins-via-iframe-element">Why load plugins via iframe element?</h3>
+
+<p>From UI plugin infrastructure perspective, each plugin represents a standalone web application that integrates with WebAdmin through <a href="#API_function_reference">plugin API</a>.</p>
+
+<p>Each plugin can load dependent scripts or other resources scoped to its own context, i.e. <code>Window</code> object for the corresponding <code>iframe</code> element. The <code>iframe</code> element is essentially a sandbox for evaluating plugin code:</p>
+
+<ul>
+  <li>WebAdmin UI won't break when some plugin breaks - instead, WebAdmin puts the misbehaving plugin out of service</li>
+  <li>WebAdmin DOM won't be polluted with dependencies (external scripts or other resources) of individual plugins</li>
+  <li>WebAdmin vs. plugin integration happens through plugin API, discouraging direct HTML DOM manipulation of WebAdmin UI which would impose a fragile, HTML structure dependant bond between plugin and WebAdmin</li>
+</ul>
+
+<p>Aside from <a href="#Plugin_host_page">plugin host page</a>, any custom UI contributed by a plugin follows the same principles as mentioned above.</p>
+
+<h3 id="plugin-bootstrap-sequence">Plugin bootstrap sequence</h3>
+
+<p>Plugin code that runs due to host page being loaded typically follows a common pattern:</p>
+
+<ul>
+  <li>Get <code>pluginApi</code> instance for the given plugin</li>
+  <li>Get runtime plugin configuration (optional)</li>
+  <li>Customize API options that affect specific features of plugin API (optional)</li>
+  <li>Register relevant <a href="#Application_event_reference">event handler functions</a></li>
+  <li>When ready, notify UI plugin infrastructure to proceed with plugin initialization</li>
+</ul>
+
+<p>Following code snippet illustrates the above mentioned pattern:</p>
+
+<pre class="highlight plaintext"><code>// Get plugin API for "ExamplePlugin", using "parent" due to plugin code being evaluated within an iframe context&#x000A;// Note that "parent.pluginApi" is subject to Same-Origin Policy, this implies WebAdmin HTML page and plugin host&#x000A;// page must be on same origin, which holds true when using UI plugin infrastructure to serve plugin resource files&#x000A;var api = parent.pluginApi('ExamplePlugin');&#x000A;&#x000A;// Get runtime plugin configuration, i.e. custom configuration (if any) merged on top of default configuration (if any)&#x000A;var cfg = api.configObject();&#x000A;&#x000A;// Customize API options that affect specific features of plugin API, i.e. override default API options&#x000A;api.options({ ... });&#x000A;&#x000A;// Register relevant event handler functions for later invocation by UI plugin infrastructure&#x000A;api.register({ ... });&#x000A;&#x000A;// Notify UI plugin infrastructure to proceed with plugin initialization, i.e. expect UiInit event callback&#x000A;api.ready();&#x000A;</code></pre>
+
+<h3 id="plugin-lifecycle">Plugin lifecycle</h3>
+
+<p>UI plugin infrastructure maintains a common lifecycle to control execution of individual plugins. The lifecycle consists of possible states and transitions between these states at runtime.</p>
+
+<p><img alt="" title="Plugin lifecycle" src="/images/wiki/Plugin-lifecycle.png?1447607916" /></p>
+
+<p>DEFINED</p>
+
+<p>The plugin has been defined through its meta-data. A corresponding <code>iframe</code> element has been created. This is the initial state for all plugins.</p>
+
+<p>LOADING</p>
+
+<p>The <code>iframe</code> element has been attached to DOM, causing plugin host page to be fetched asynchronously in the background. We are waiting for the plugin to report back as ready.</p>
+
+<p>READY</p>
+
+<p>The plugin has indicated that it is ready for use. We expect the event handler object (object containing <a href="#Application_event_reference">event handler functions</a>) to be registered by now. While in plugin invocation context<code>*</code>, proceed with plugin initialization. Otherwise, initialize the plugin upon entering next invocation context.</p>
+
+<p>INITIALIZING</p>
+
+<p>The plugin is being initialized by calling <code>UiInit</code> event handler function. The <code>UiInit</code> function will be called just once during the lifetime of a plugin, before calling other event handler functions.</p>
+
+<p>IN USE</p>
+
+<p>The <code>UiInit</code> function completed successfully, WebAdmin will call other event handler functions as necessary. The plugin is in use.</p>
+
+<p>FAILED</p>
+
+<p>An uncaught exception escaped while calling plugin event handler function, indicating internal error within plugin code. The <code>iframe</code> element has been detached from DOM. The plugin is removed from service.</p>
+
+<p><code>*</code> Plugin invocation context starts when user logs into WebAdmin and ends when user logs out. Processing <a href="#Application_event_reference">event handler functions</a> as well as <a href="#API_function_reference">plugin API</a> calls is constrained by this context, i.e. plugins are in effect only while user stays authenticated in WebAdmin UI.</p>
+
+<h3 id="plugin-development-tips">Plugin development tips</h3>
+
+<h4 id="avoid-mixed-content-issues">Avoid mixed content issues</h4>
+
+<p>If WebAdmin HTML page is served over HTTPS, WebAdmin and UI plugins should retrieve all content from remote servers through HTTPS in order not to compromise security of the whole application. When HTML page served over HTTPS includes content retrieved through cleartext HTTP, it's called mixed content page.</p>
+
+<p>There are generally two types of <a href="https://developer.mozilla.org/en-US/docs/Security/MixedContent">mixed content</a>:</p>
+
+<ul>
+  <li>mixed active content - content through which an attacker could gain access to all or parts of web page: <code>script</code> element, <code>iframe</code> element, <code>XMLHttpRequest</code> object, etc.</li>
+  <li>mixed passive content - content that cannot access or alter web page: <code>img</code> element, etc.</li>
+</ul>
+
+<p>Modern browsers typically block mixed active content and allow mixed passive content by default.</p>
+
+<p>When requesting content from remote servers, UI plugins should ensure that requests are made through HTTPS in case WebAdmin HTML page is served over HTTPS. In other words, UI plugins shouldn't compromise security of the whole application.</p>
+
+<p>For example, to load remote script using protocol of enclosing web page: ``</p>
+
+<h4 id="prevent-closing-shared-rest-api-session">Prevent closing shared REST API session</h4>
+
+<p>Upon successful login, WebAdmin acquires oVirt Engine REST API session for use by all UI plugins. Refer to <a href="#REST_API_integration">REST API integration</a> for details.</p>
+
+<p>To prevent closing the REST API session after processing given request, UI plugins should always include <code>Prefer: persistent-auth</code> header in all requests to REST API service.</p>
+
+<h3 id="terms-used-in-api-reference">Terms used in API reference</h3>
+
+<h4 id="javascript-interface-object">JavaScript interface object</h4>
+
+<p>Object implementing a contract (interface) by declaring corresponding functions. Unlike the traditional concept of interface abstract type in object-oriented languages, an interface object doesn't necessarily have to declare all functions of the given interface in order to "implement" such interface. In fact, an empty object can be used as a valid interface object. Missing functions will be treated as empty (no-op) functions with default return values, as defined by the contract of such functions. An interface object can "implement" multiple interfaces simply by declaring functions of those interfaces.</p>
+
+<h3 id="application-event-reference">Application event reference</h3>
+
+<caption>Supported event handler functions</caption>
+
+<p>Function</p>
+
+<p>Arguments<code>*</code></p>
+
+<p>Description</p>
+
+<h4 id="core-functions">Core functions</h4>
+
+<pre class="highlight plaintext"><code>  UiInit&#x000A;</code></pre>
+
+<p>-</p>
+
+<p>Called by the infrastructure as part of plugin initialization. The <code>UiInit</code> function will be called just once during the lifetime of a plugin, before WebAdmin calls other event handler functions. This function is a good place for one-time UI extensions.</p>
+
+<h4 id="authentication">Authentication</h4>
+
+<pre class="highlight plaintext"><code>  UserLogin&#x000A;&#x000A;  string userNameWithDomain  `string userId`&#x000A;</code></pre>
+
+<p>Called after a user logs into WebAdmin. The <code>userNameWithDomain</code> follows <code>user@domain</code> convention.</p>
+
+<pre class="highlight plaintext"><code>  UserLogout&#x000A;</code></pre>
+
+<p>-</p>
+
+<p>Called after a user logs out of WebAdmin.</p>
+
+<h4 id="main-tab-item-selection">Main tab item selection</h4>
+
+<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="err">EntityType}SelectionChange</span><span class="w">&#x000A;&#x000A;  </span><span class="err">arguments</span><span class="w">&#x000A;</span></code></pre>
+
+<p>Called when item selection changes in the given main tab. Replace <code>{EntityType}</code> with name of desired entity. Refer to <a href="#Entity_type_reference">entity types</a> for details on supported entities and their object representations.</p>
+
+<pre class="highlight plaintext"><code>api.register({&#x000A;    DataCenterSelectionChange: function() {&#x000A;        var firstSelectedItem = (arguments.length &gt; 0) ? arguments[0] : null;&#x000A;        var firstSelectedItemId = firstSelectedItem &amp;&amp; firstSelectedItem.id;&#x000A;    }&#x000A;});&#x000A;</code></pre>
+
+<h4 id="system-tree-node-selection">System tree node selection</h4>
+
+<pre class="highlight plaintext"><code>  SystemTreeSelectionChange&#x000A;&#x000A;  object selectedNode&#x000A;</code></pre>
+
+<p>Called when node selection changes in the system tree. The <code>selectedNode</code> object contains two attributes: <code>string type</code> and <code>object entity</code> (optional, only if selected node has an entity associated). Refer to <a href="#Entity_type_reference">entity types</a> for details on supported entities and their object representations.</p>
+
+<pre class="highlight plaintext"><code>api.register({&#x000A;    SystemTreeSelectionChange: function(selectedNode) {&#x000A;        // See SystemTreeItemType Java enum for all supported values&#x000A;        var nodeType = selectedNode.type;&#x000A;        // Defined only if selected node has an entity associated&#x000A;        var associatedEntity = selectedNode.entity;&#x000A;        var associatedEntityId = associatedEntity &amp;&amp; associatedEntity.id;&#x000A;    }&#x000A;});&#x000A;</code></pre>
+
+<h4 id="rest-api-integration">REST API integration</h4>
+
+<pre class="highlight plaintext"><code>  RestApiSessionAcquired&#x000A;&#x000A;  string sessionId&#x000A;</code></pre>
+
+<p>Called upon acquiring oVirt Engine <a href="/developer/api/rest-api/">REST API</a> <a href="/feature/infra/restsessionmanagement/">persistent session</a> after successful login. The <code>sessionId</code> maps to REST API session bound to current WebAdmin user, which means this value is shared between all plugins. The REST API session is acquired with timeout equal to oVirt Engine user session timeout. WebAdmin will try to keep the REST API session (and corresponding Engine user session) alive by sending heartbeat requests while user stays authenticated in WebAdmin UI. WebAdmin won't close the session upon logout, as there might be other systems still working with it.</p>
+
+<hr />
+
+<p><strong>Note:</strong> the <code>sessionId</code> applies to oVirt Engine REST API service deployed at <code>/ovirt-engine/api</code>, not the legacy URL <code>/api</code>. UI plugins should always use <code>/ovirt-engine/api</code> to access the REST API service.</p>
+
+<h4 id="cross-window-messaging">Cross-window messaging</h4>
+
+<pre class="highlight plaintext"><code>  MessageReceived&#x000A;&#x000A;  string` or `object data  `object sourceWindow`&#x000A;</code></pre>
+
+<p>Called when another <code>Window</code> (i.e. custom UI contributed by a plugin) sends message to WebAdmin <code>Window</code> via HTML5 <a href="http://en.wikipedia.org/wiki/Web_Messaging">postMessage</a> API. In a typical scenario, custom UI living in <code>iframe</code> context sends message to WebAdmin (parent) <code>Window</code> which in turn dispatches the message to individual plugins. Refer to <code>allowedMessageOrigins</code> in <a href="#API_option_reference">API options</a> for details on customizing origins from which messages will be accepted. The <code>sourceWindow</code> can be used to establish two-way communication between plugin code and sender's <code>Window</code> object. Note that some browsers might support only <code>string</code> values when passing data through HTML5 postMessage API.</p>
+
+<p><code>*</code> If specified, <code>arguments</code> represent the implicit JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/arguments">function argument object</a>.</p>
+
+<h3 id="api-function-reference">API function reference</h3>
+
+<caption>Supported API functions</caption>
+
+<p>Function</p>
+
+<p>Arguments</p>
+
+<p>Description</p>
+
+<h4 id="core-functions-1">Core functions</h4>
+
+<pre class="highlight plaintext"><code>  register&#x000A;&#x000A;  object eventHandlerObject&#x000A;</code></pre>
+
+<p>Registers the event handler object, i.e. object containing <a href="#Application_event_reference">event handler functions</a> which facilitate WebAdmin → plugin communication. The <code>register</code> function must be called with valid <code>eventHandlerObject</code> before calling <code>ready</code> function. The <code>eventHandlerObject</code> must be an object declaring event handler functions as its properties, or an empty object. After the <code>eventHandlerObject</code> has been set for given plugin, calling <code>register</code> function has no effect.</p>
+
+<pre class="highlight plaintext"><code>api.register({&#x000A;    UiInit: function() {&#x000A;        api.addSubTab('Host', 'Special Host Tab', 'special-host-tab',&#x000A;            'plugin/ExamplePlugin/special-tab.html');&#x000A;        api.setTabAccessible('special-host-tab', false);&#x000A;    },&#x000A;    HostSelectionChange: function() {&#x000A;        var isSpecial = arguments.length == 1 &amp;&amp; arguments[0].name.indexOf('special') != -1;&#x000A;        api.setTabAccessible('special-host-tab', isSpecial);&#x000A;    }&#x000A;});&#x000A;&#x000A;  options&#x000A;&#x000A;  object apiOptionsObject&#x000A;</code></pre>
+
+<p>Provides custom API options that affect specific features of plugin API, overriding default API options. The <code>options</code> function can be called anytime during the lifetime of a plugin. Refer to <a href="#API_option_reference">API options</a> for details.</p>
+
+<pre class="highlight plaintext"><code>api.options({&#x000A;    allowedMessageOrigins: ['http://one.com', 'https://two.org']&#x000A;});&#x000A;&#x000A;  ready&#x000A;</code></pre>
+
+<p>-</p>
+
+<p>Notifies the infrastructure to proceed with plugin initialization, calling <code>UiInit</code> event handler function (if defined) as soon as the plugin invocation context is entered (refer to <a href="#Plugin_lifecycle">plugin lifecycle</a> for details). The <code>register</code> function must be called with valid <code>eventHandlerObject</code> before calling <code>ready</code> function, otherwise the <code>ready</code> function has no effect.</p>
+
+<pre class="highlight plaintext"><code>api.ready();&#x000A;&#x000A;  configObject&#x000A;</code></pre>
+
+<p>-</p>
+
+<p>Returns the runtime plugin configuration object containing custom configuration (if any) merged on top of default configuration (if any). Refer to <a href="#Plugin_user_configuration">plugin user configuration</a> for details. In case neither the default nor custom configuration is available for given plugin, the <code>configObject</code> function returns an empty object.</p>
+
+<pre class="highlight plaintext"><code>var conf = api.configObject();&#x000A;var favoriteBand = conf.band || ;&#x000A;</code></pre>
+
+<h4 id="authentication-1">Authentication</h4>
+
+<pre class="highlight plaintext"><code>  loginUserName&#x000A;</code></pre>
+
+<p>-</p>
+
+<p>Returns user name and domain of currently logged in user, following <code>user@domain</code> convention.</p>
+
+<pre class="highlight plaintext"><code>var userNameWithDomain = api.loginUserName();&#x000A;var domain = userNameWithDomain.substring(userNameWithDomain.indexOf('@') + 1);&#x000A;&#x000A;  loginUserId&#x000A;</code></pre>
+
+<p>-</p>
+
+<p>Returns <a href="http://en.wikipedia.org/wiki/Universally_unique_identifier">UUID</a> of currently logged in user.</p>
+
+<pre class="highlight plaintext"><code>var userId = api.loginUserId();&#x000A;</code></pre>
+
+<h4 id="main-and-sub-tabs">Main and sub tabs</h4>
+
+<pre class="highlight plaintext"><code>  addMainTab&#x000A;&#x000A;  string label  `string historyToken`  `string contentUrl`  `object options`&#x000A;</code></pre>
+
+<p>Adds new main tab with content provided from given URL. All arguments are required except for <code>options</code>. The <code>label</code> is the text displayed on tab header. The <code>historyToken</code> serves as unique identifier of the tab, with its value reflected in tab header URL. Recommended <code>historyToken</code> format is <code>letters-with-dashes</code>. The <code>contentUrl</code> is passed to <code>src</code> attribute of the <code>iframe</code> element which renders tab content. The <code>options</code> can be undefined, null or object containing additional tab options:</p>
+
+<ul>
+  <li><code>alignRight</code> - controls horizontal tab header alignment, default value is <code>false</code></li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>api.addMainTab('Custom Tab One', 'custom-tab-one',&#x000A;    'plugin/ExamplePlugin/one.html'&#x000A;);&#x000A;api.addMainTab('Custom Tab Two, 'custom-tab-two',&#x000A;    'plugin/ExamplePlugin/two.html',&#x000A;    {&#x000A;        alignRight: true&#x000A;    }&#x000A;);&#x000A;&#x000A;  addSubTab&#x000A;&#x000A;  string entityTypeName  `string label`  `string historyToken`  `string contentUrl`  `object options`&#x000A;</code></pre>
+
+<p>Adds new sub tab with content provided from given URL. All arguments are required except for <code>options</code>. Semantics of <code>label</code>, <code>historyToken</code>, <code>contentUrl</code> and <code>options</code> are identical to ones declared by <code>addMainTab</code> function. The <code>entityTypeName</code> identifies existing main tab to which the newly added sub tab should be associated (only standard main tabs are supported). Refer to <a href="#Entity_type_reference">entity types</a> for details on supported entity names.</p>
+
+<pre class="highlight plaintext"><code>api.addSubTab('Host', 'Custom Host Tab One', 'custom-host-tab-one',&#x000A;    'plugin/ExamplePlugin/host-one.html'&#x000A;);&#x000A;api.addSubTab('Host', 'Custom Host Tab Two, 'custom-host-tab-two',&#x000A;    'plugin/ExamplePlugin/host-two.html',&#x000A;    {&#x000A;        alignRight: true&#x000A;    }&#x000A;);&#x000A;&#x000A;  setTabContentUrl&#x000A;&#x000A;  string historyToken  `string contentUrl`&#x000A;</code></pre>
+
+<p>Updates the content URL of given (main or sub) tab. Semantics of <code>historyToken</code> and <code>contentUrl</code> are identical to ones declared by <code>addMainTab</code> function. The <code>setTabContentUrl</code> function works only for tabs added via plugin API.</p>
+
+<pre class="highlight plaintext"><code>api.setTabContentUrl('custom-tab',&#x000A;    'plugin/ExamplePlugin/tab-content.html');&#x000A;&#x000A;  setTabAccessible&#x000A;&#x000A;  string historyToken  `boolean tabAccessible`&#x000A;</code></pre>
+
+<p>Controls the accessibility of given (main or sub) tab. Semantics of <code>historyToken</code> is identical to one declared by <code>addMainTab</code> function. If <code>tabAccessible</code> is <code>false</code>, corresponding tab header will be hidden in WebAdmin UI and attempts to reveal the given tab manually by manipulating URL will be denied. The <code>setTabAccessible</code> function works only for tabs added via plugin API.</p>
+
+<pre class="highlight plaintext"><code>api.setTabAccessible('custom-tab', false);&#x000A;&#x000A;  addMainTabActionButton&#x000A;&#x000A;  string entityTypeName  `string label`  `object actionButtonInterface`&#x000A;</code></pre>
+
+<p>Adds new button to the action panel and/or context menu for the given main tab. Semantics of <code>entityTypeName</code> is identical to one declared by <code>addSubTab</code> function. The <code>label</code> is the text displayed on button. The <code>actionButtonInterface</code> is an <a href="#JavaScript_interface_object">interface object</a> that overrides button behavior via following properties:</p>
+
+<ul>
+  <li><code>onClick</code> - function called when user clicks the button, arguments are items currently selected in given main tab, no-op by default</li>
+  <li><code>isEnabled</code> - function called to determine whether the button should be enabled (clickable), arguments are items currently selected in given main tab, returns <code>true</code> by default</li>
+  <li><code>isAccessible</code> - function called to determine whether the button should be accessible (visible), arguments are items currently selected in given main tab, returns <code>true</code> by default</li>
+  <li><code>location</code> - controls button location in action panel and main tab's context menu, supported values:
+    <ul>
+      <li><code>OnlyFromContext</code> - button available only from context menu</li>
+      <li><code>OnlyFromToolBar</code> - button available only from action panel</li>
+      <li><code>ContextAndToolBar</code> - button available from both action panel and context menu (default value)</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>api.addMainTabActionButton('Host', 'Custom Button', {&#x000A;    onClick: function() {&#x000A;        var selectedHost = arguments[0];&#x000A;        var isSpecial = selectedHost.name.indexOf('special') != -1;&#x000A;        api.setTabAccessible('custom-tab', isSpecial);&#x000A;    },&#x000A;    isEnabled: function() {&#x000A;        return arguments.length == 1;&#x000A;    }&#x000A;});&#x000A;&#x000A;  addSubTabActionButton&#x000A;&#x000A;  string mainTabEntityTypeName  `string subTabEntityTypeName`  `string label`  `object actionButtonInterface`&#x000A;</code></pre>
+
+<p>Adds new button to the action panel and/or context menu for the given sub tab. Semantics of <code>label</code> and <code>actionButtonInterface</code> are identical to ones declared by <code>addMainTabActionButton</code> function. The <code>mainTabEntityTypeName</code> and <code>subTabEntityTypeName</code> together identify existing sub tab to which the newly added button should be associated (only standard sub tabs are supported). Refer to <a href="#Entity_type_reference">entity types</a> for details on supported entity names.</p>
+
+<pre class="highlight plaintext"><code>api.addSubTabActionButton('Host', 'Event', 'Custom Button', {&#x000A;    onClick: function() {&#x000A;        var selectedHostEvent = arguments[0];&#x000A;        var isSpecial = selectedHostEvent.message.indexOf('special') != -1;&#x000A;        api.setTabAccessible('custom-tab', isSpecial);&#x000A;    },&#x000A;    isEnabled: function() {&#x000A;        return arguments.length == 1;&#x000A;    }&#x000A;});&#x000A;</code></pre>
+
+<hr />
+
+<p><strong>Limitation:</strong> <code>subTabEntityTypeName</code> currently supports only <code>Event</code> value, see <a href="https://bugzilla.redhat.com/1028124">RFE ticket</a>.</p>
+
+<h4 id="dialogs">Dialogs</h4>
+
+<pre class="highlight plaintext"><code>  showDialog&#x000A;&#x000A;  string title  `string dialogToken`  `string contentUrl`  `string width`  `string height`  `object options`&#x000A;</code></pre>
+
+<p>Shows new dialog with content provided from given URL. All arguments are required except for <code>options</code>. The <code>title</code> is the text displayed on dialog header. The <code>dialogToken</code> serves as unique identifier of the dialog. The <code>dialogToken</code> can be null in case the plugin doesn't need to reference the dialog after showing it, i.e. in case the dialog is meant to be closed via close icon or by pressing Escape key. Recommended <code>dialogToken</code> format is <code>letters-with-dashes</code>. The <code>contentUrl</code> is passed to <code>src</code> attribute of the iframe element which renders dialog content. The <code>width</code> and <code>height</code> are used to define dialog dimensions in CSS units. The <code>options</code> can be undefined, null or object containing additional dialog options:</p>
+
+<ul>
+  <li><code>buttons</code> - array defining buttons to display in dialog's footer area, empty by default, each element is an <a href="#JavaScript_interface_object">interface object</a> that overrides button behavior via following properties:
+    <ul>
+      <li><code>label</code> - controls text displayed on button, default value is empty string</li>
+      <li><code>onClick</code> - function called when user clicks the button, no arguments, no-op by default</li>
+    </ul>
+  </li>
+  <li><code>resizeEnabled</code> - controls whether the dialog can be resized with mouse, default value is <code>false</code></li>
+  <li><code>closeIconVisible</code> - controls whether the close icon (located in right-hand part of dialog header) is visible, default value is <code>true</code></li>
+  <li><code>closeOnEscKey</code> - controls whether the dialog can be closed by pressing Escape key, default value is <code>true</code></li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>api.showDialog('Custom Dialog One', 'custom-dialog-one',&#x000A;    'plugin/ExamplePlugin/dialog-one.html',&#x000A;    '640px', '480px'&#x000A;);&#x000A;api.showDialog('Custom Dialog Two', 'custom-dialog-two',&#x000A;    'plugin/ExamplePlugin/dialog-two.html',&#x000A;    '640px', '480px',&#x000A;    {&#x000A;        buttons: [&#x000A;            {&#x000A;                label: 'Close',&#x000A;                onClick: function() {&#x000A;                    api.closeDialog('custom-dialog-two');&#x000A;                }&#x000A;            }&#x000A;        ],&#x000A;        resizeEnabled: true,&#x000A;        closeIconVisible: false,&#x000A;        closeOnEscKey: false&#x000A;    }&#x000A;);&#x000A;&#x000A;  setDialogContentUrl&#x000A;&#x000A;  string dialogToken  `string contentUrl`&#x000A;</code></pre>
+
+<p>Updates the content URL of given dialog. Semantics of <code>dialogToken</code> and <code>contentUrl</code> are identical to ones declared by <code>showDialog</code> function. The <code>setDialogContentUrl</code> function has no effect if the given dialog is already closed. The <code>setDialogContentUrl</code> function works only for dialogs shown via plugin API.</p>
+
+<pre class="highlight plaintext"><code>api.setDialogContentUrl('custom-dialog',&#x000A;    'plugin/ExamplePlugin/dialog-content.html');&#x000A;&#x000A;  closeDialog&#x000A;&#x000A;  string dialogToken&#x000A;</code></pre>
+
+<p>Closes the given dialog. Semantics of <code>dialogToken</code> is identical to one declared by <code>showDialog</code> function. Once closed, the dialog is destroyed.</p>
+
+<pre class="highlight plaintext"><code>api.closeDialog('custom-dialog');&#x000A;</code></pre>
+
+<h3 id="api-option-reference">API option reference</h3>
+
+<caption>Supported plugin API options</caption>
+
+<p>Option</p>
+
+<p>Default value</p>
+
+<p>Description</p>
+
+<h4 id="cross-window-messaging-1">Cross-window messaging</h4>
+
+<pre class="highlight plaintext"><code>  string` or `string[] allowedMessageOrigins&#x000A;</code></pre>
+
+<p>empty array</p>
+
+<p>Defines <a href="http://en.wikipedia.org/wiki/Same_origin_policy#Origin_determination_rules">origins</a> from which <code>message</code> events will be accepted and dispatched to plugin via <code>MessageReceived</code> event handler function. The value can be a string (single origin) or a string array (multiple origins). <code>*</code> translates to "any origin", as per HTML5 <a href="http://en.wikipedia.org/wiki/Web_Messaging">postMessage</a> specification. Refer to <code>MessageReceived</code> function for details on cross-window messaging workflow.</p>
+
+<hr />
+
+<p><strong>Limitation:</strong> plugins currently have to customize <code>allowedMessageOrigins</code> value to accept messages that originate from content served through UI plugin infrastructure, i.e. plugin resource files requested as <code>/ovirt-engine/webadmin/plugin//path/to/file</code>. Since Engine origin is generally considered safe, <code>allowedMessageOrigins</code> default value should be changed to Engine origin, see <a href="https://bugzilla.redhat.com/972226">RFE ticket</a>.</p>
+
+<h3 id="entity-type-reference">Entity type reference</h3>
+
+<caption>Supported entity types</caption>
+
+<p>Name</p>
+
+<p>Attributes exposed by object representation<code>*</code></p>
+
+<pre class="highlight plaintext"><code>  DataCenter&#x000A;&#x000A;  string name&#x000A;&#x000A;  Cluster&#x000A;&#x000A;  string name&#x000A;&#x000A;  Host&#x000A;&#x000A;  string name  `string hostname`&#x000A;&#x000A;  Network&#x000A;&#x000A;  string name&#x000A;&#x000A;  Storage&#x000A;&#x000A;  string name&#x000A;&#x000A;  Disk&#x000A;</code></pre>
+
+<p>-</p>
+
+<pre class="highlight plaintext"><code>  VirtualMachine&#x000A;&#x000A;  string name  `string ipaddress`&#x000A;&#x000A;  Pool&#x000A;&#x000A;  string name&#x000A;&#x000A;  Template&#x000A;&#x000A;  string name&#x000A;&#x000A;  GlusterVolume&#x000A;&#x000A;  string name&#x000A;&#x000A;  Provider&#x000A;&#x000A;  string name&#x000A;&#x000A;  User&#x000A;&#x000A;  string username  `string domain`&#x000A;&#x000A;  Quota&#x000A;&#x000A;  string name&#x000A;&#x000A;  Event&#x000A;&#x000A;  string correlationId  `string message`  `string callStack`  `string customEventId`  `string toString`&#x000A;</code></pre>
+
+<p><code>*</code> all representations expose <code>string id</code> attribute which maps to <a href="http://en.wikipedia.org/wiki/Universally_unique_identifier">UUID</a> of the given entity.</p>
+
+<h3 id="tutorials">Tutorials</h3>
+
+<h4 id="ui-plugins-crash-course">UI Plugins Crash Course</h4>
+
+<p>The <a href="/tutorial/crashcourse/">oVirt Space Shooter</a> tutorial walks you through the basics of creating your first UI plugin.</p>
+
+<p><img alt="" title="oVirt Space Shooter" src="/images/wiki/OVirt_Space_Shooter_3.png?1447607916" /></p>
+
+<h4 id="angularjs-demo-plugin">AngularJS Demo Plugin</h4>
+
+<p>This sample UI plugin uses <a href="http://angularjs.org/">AngularJS</a>, Model-View-Controller framework for JavaScript.</p>
+
+<p>Plugin source code is available from <a href="#Sample_UI_plugins">sample UI plugin repository</a> as <code>angular-demo-plugin</code>.</p>
+
+<h3 id="resources">Resources</h3>
+
+<ul>
+  <li><img alt="" title="Writing UI plugin with AngularJS" src="/images/Writing-ui-plugin-with-angularjs.pdf" /> + <img alt="" title="Sample Code" src="/images/Writing-ui-plugin-with-angularjs-demo-files.tar.gz" /> (April 2014)</li>
+  <li><img alt="" title="UI Plugins at oVirt Workshop Sunnyvale" src="/images/UI_Plugins_at_oVirt_Workshop_Sunnyvale_2013.pdf" /> (January 2013)</li>
+  <li><img alt="" title="UI Plugins PoC Overview" src="/images/UI_Plugins_PoC_Overview_2012.pdf" /> (October 2012)</li>
+  <li><a href="/feature/plugins/uipluginsoriginaldesignnotes/">Original Design Notes</a></li>
+  <li><img alt="" title="UI Plugin Figures" src="/images/Ui-plugin-figures.tar.gz" /></li>
+</ul>
+
+<h3 id="ui-plugin-cheat-sheet">UI plugin cheat sheet</h3>
+
+<p>Minimal plugin descriptor:</p>
+
+<pre class="highlight plaintext"><code>  /usr/share/ovirt-engine/ui-plugins/minimal.json&#x000A;&#x000A;{&#x000A;    "name": "MinimalPlugin",&#x000A;    "url": "plugin/MinimalPlugin/plugin.html",&#x000A;    "resourcePath": "minimal-resources"&#x000A;}&#x000A;</code></pre>
+
+<p>Minimal plugin host page:</p>
+
+<pre class="highlight plaintext"><code>  /usr/share/ovirt-engine/ui-plugins/minimal-resources/plugin.html&#x000A;&#x000A;        var api = parent.pluginApi('MinimalPlugin');&#x000A;        api.register({&#x000A;            UiInit: function() { window.alert('Hello world!'); }&#x000A;        });&#x000A;        api.ready();&#x000A;</code></pre>
+
+<h3 id="sample-ui-plugins">Sample UI plugins</h3>
+
+<p>Following repository hosts sample UI plugins contributed by community:</p>
+
+<pre class="highlight plaintext"><code>$ git clone git://gerrit.ovirt.org/samples-uiplugins&#x000A;</code></pre>
+
+<p>Feel free to submit patches that introduce new plugins (or update existing ones) in this repository.</p>
+
+<h3 id="showcase">Showcase</h3>
+
+<h4 id="ovirt-monitoring-ui-plugin">oVirt Monitoring UI Plugin</h4>
+
+<p>This plugin brings integration with <a href="http://www.nagios.org/">Nagios</a> or <a href="https://www.icinga.org/">Icinga</a> monitoring solution into oVirt.</p>
+
+<ul>
+  <li>Author: René Koch «r.koch@ovido.at»&lt;/<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#114;&#046;&#107;&#111;&#099;&#104;&#064;&#111;&#118;&#105;&#100;&#111;&#046;&#097;&#116;">&#114;&#046;&#107;&#111;&#099;&#104;&#064;&#111;&#118;&#105;&#100;&#111;&#046;&#097;&#116;</a>&gt;</li>
+  <li>Project web site: <a href="https://labs.ovido.at/monitoring/wiki/ovirt-monitoring-ui-plugin">https://labs.ovido.at/monitoring/wiki/ovirt-monitoring-ui-plugin</a></li>
+  <li>Installation documentation: <a href="https://labs.ovido.at/monitoring/wiki/ovirt-monitoring-ui-plugin:install">https://labs.ovido.at/monitoring/wiki/ovirt-monitoring-ui-plugin:install</a></li>
+  <li>UI plugin source code: <a href="https://github.com/monitoring-ui-plugin/monitoring-ui-plugin">https://github.com/monitoring-ui-plugin/monitoring-ui-plugin</a></li>
+</ul>
+
+<p><img alt="" title="Monitoring Details sub tab" src="/images/Ovirt-monitoring%20hosts%20graph.png" /></p>
+
+<h4 id="docker-ui-plugin">Docker UI Plugin</h4>
+
+<p>This plugin allows you to create VM that runs a Docker image.</p>
+
+<ul>
+  <li>Author: Oved Ourfali «ovedo@redhat.com»&lt;/<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#111;&#118;&#101;&#100;&#111;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#111;&#118;&#101;&#100;&#111;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a>&gt;</li>
+  <li>Documentation: <a href="http://ovedou.blogspot.co.il/2014/03/running-docker-container-in-ovirt.html">http://ovedou.blogspot.co.il/2014/03/running-docker-container-in-ovirt.html</a></li>
+  <li>UI plugin source code: available from <a href="#Sample_UI_plugins">sample UI plugin repository</a> as <code>docker-plugin</code></li>
+</ul>
+
+<p><img alt="" title="Create Docker VM dialog" src="/images/Create%20docker%20vm%20dialog.jpg" /></p>
+
+<h4 id="foreman-ui-plugin">Foreman UI Plugin</h4>
+
+<p>The purpose of this plugin is to allow administrators to see details on <a href="http://theforeman.org/">Foreman</a> related entities (such as VMs).</p>
+
+<ul>
+  <li>Author: Oved Ourfali «ovedo@redhat.com»&lt;/<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#111;&#118;&#101;&#100;&#111;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#111;&#118;&#101;&#100;&#111;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a>&gt;</li>
+  <li>Documentation: <a href="http://ovedou.blogspot.co.il/2012/12/ovirt-foreman-ui-plugin.html">http://ovedou.blogspot.co.il/2012/12/ovirt-foreman-ui-plugin.html</a></li>
+  <li>Foreman plugin source code: <a href="https://github.com/oourfali/foreman_ovirt">https://github.com/oourfali/foreman_ovirt</a></li>
+  <li>UI plugin source code: available from <a href="#Sample_UI_plugins">sample UI plugin repository</a> as <code>foreman-plugin</code></li>
+</ul>
+
+<p><img alt="" title="Foreman Details sub tab" src="/images/Foreman%20view%20details.png" /></p>
+
+<h4 id="ui-vdsm-hooks-plugin">UI-VDSM-Hooks Plugin</h4>
+
+<p>Using CGI scripts located on the host's web-server, VDSM commands (vdsClient) can be invoked directly from the WebAdmin UI.</p>
+
+<ul>
+  <li>Author: Daniel Erez «derez@redhat.com»&lt;/<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#100;&#101;&#114;&#101;&#122;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#100;&#101;&#114;&#101;&#122;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a>&gt;</li>
+  <li>Documentation: <a href="http://derezvir.blogspot.co.il/2013/06/ovirt-ui-vdsm-hooks-plugin.html">http://derezvir.blogspot.co.il/2013/06/ovirt-ui-vdsm-hooks-plugin.html</a></li>
+  <li>UI plugin source code: available from <a href="#Sample_UI_plugins">sample UI plugin repository</a> as <code>ui-vdsm-hooks-plugin</code></li>
+</ul>
+
+<p><img alt="" title="UI-VDSM-Hooks context menu" src="/images/wiki/UI-VDSM-Hooks-Examples.png?1447607916" /></p>
+
+<h4 id="shell-in-a-box-ui-plugin">Shell In A Box UI Plugin</h4>
+
+<p>Using oVirt WebAdmin, make SSH connection to a host and emulate a terminal via <a href="http://code.google.com/p/shellinabox/">Shell In A Box</a>.</p>
+
+<ul>
+  <li>Author: Daniel Erez «derez@redhat.com»&lt;/<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#100;&#101;&#114;&#101;&#122;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#100;&#101;&#114;&#101;&#122;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a>&gt;</li>
+  <li>Documentation: <a href="http://derezvir.blogspot.co.il/2013/01/ovirt-webadmin-shellinabox-ui-plugin.html">http://derezvir.blogspot.co.il/2013/01/ovirt-webadmin-shellinabox-ui-plugin.html</a></li>
+  <li>UI plugin source code: available from <a href="#Sample_UI_plugins">sample UI plugin repository</a> as <code>shellinabox-plugin</code></li>
+</ul>
+
+<p><img alt="" title="Shell Box sub tab" src="/images/ShellBox%20SubTab.png" /></p>
+
+<h3 id="comments-and-discussion">Comments and discussion</h3>
+
+<ul>
+  <li>Refer to <a href="talk:Features/UIPlugins">discussion page</a>.</li>
+</ul>
+
+</section>
+</section>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>
+<script>
+  (function() {
+    var $featureItems, $featureLists, $featureSidebar, $form, $headers, $input, clearField, showAll, updateHeaders, updateList;
+  
+    $featureSidebar = $('.feature-sidebar');
+  
+    $form = $('#feature-search');
+  
+    $input = $('#feature-search-input');
+  
+    $featureLists = $('.feature-list');
+  
+    $featureItems = $('li', $featureLists);
+  
+    $headers = $('.feature-sidebar h2');
+  
+    clearField = function() {
+      return $input.val('');
+    };
+  
+    showAll = function() {
+      return $featureItems.filter('.hide').removeClass('hide');
+    };
+  
+    updateHeaders = function() {
+      var $emptyList;
+      $('h2.hide', $featureSidebar).removeClass('hide');
+      $emptyList = $headers.filter(function(i, el) {
+        return $(el).next('ul').find('li:visible').length === 0;
+      });
+      return $emptyList.addClass('hide');
+    };
+  
+    updateList = function() {
+      var $hide, searchStr;
+      searchStr = $input.val();
+      showAll();
+      $hide = $featureItems.not(function(i, el) {
+        return $(el).text().toLowerCase().match(searchStr.toLowerCase());
+      });
+      $hide.addClass('hide');
+      return updateHeaders();
+    };
+  
+    $(function() {
+      var statuses;
+      $input.focus();
+      statuses = ["in development", "new", "wip", "developement", "unclassified", "released", "merged", "design & research", "implementation", "design", "development", "on_qa", "draft", "planning", "completed", "partial", "to be released", "wontfix", "proposed", "in progress", "post", "qe", "dormant", "partially released", "patch in review", "complete", "not started", "stabilization", "proposal", "inception", "done"];
+      console.log(statuses);
+      return $form.removeClass('hide').on('submit', function(e) {
+        return e.preventDefault();
+      }).on('keyup', function(e) {
+        switch (e.key) {
+          case 'Escape':
+            clearField();
+            showAll();
+            return updateHeaders();
+          default:
+            return updateList();
+        }
+      });
+    });
+  
+  }).call(this);
+</script>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+OVirt Guest Agent For Windows &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>OVirt Guest Agent For Windows</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>karli.sjoberg, lveyde, nkesick</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>OVirt Guest Agent For Windows</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>5</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-12-08</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/OVirt_Guest_Agent_For_Windows' target='_blank'>
+OVirt Guest Agent For Windows
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="ovirt-guest-agent-for-windows">OVirt Guest Agent For Windows</h1>
+
+<h2 id="important-note">Important Note!</h2>
+
+<p>With the release of oVirt 3.5 we have introduced the oVirt WGT (Windows Guest Tools).</p>
+
+<p>The oVirt WGT provides an ISO with all the tools and drivers one needs to install on a Windows VM, with an easy to use installer to install it all in one step.</p>
+
+<p>So manual compilation and installation of oVirt Guest Agent is no longer necessary.</p>
+
+<p>The oVirt WGT ISO is included in <a href="http://resources.ovirt.org/pub/ovirt-3.5/rpm/fc20/noarch/ovirt-guest-tools-iso-3.5-7.noarch.rpm">ovirt-guest-tools-iso-3.5-7.noarch.rpm</a> package.</p>
+
+<h2 id="how-to-install-the-ovirt-guest-agent-on-windows">How to install the ovirt-guest-agent on Windows.</h2>
+
+<p>First of all, make sure that you have installed drivers for virtio-serial and let the VM reboot, it won´t work otherwise. Then you need to get the files for windows. You use "git" to clone the tree needed:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$ git clone <a href="https://github.com/oVirt/ovirt-guest-agent.git">https://github.com/oVirt/ovirt-guest-agent.git</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>You either install git inside the VM, or sit at another machine where you have git and then find a way to get the "ovirt-guest-agent" directory over on to the Windows VM.</p>
+
+<p>So you´ll end up with a directory called ovirt-guest-agent. Inside of it is another directory also called ovirt-guest-agent (to not complicate matters..), and inside of that is a file called "README-windows.txt" that very clearly explains how to install the service.</p>
+
+<ol>
+  <li><a href="http://www.python.org/ftp/python/2.7.3/python-2.7.3.msi">Install Python 2.7 for Windows</a></li>
+  <li><a href="http://sourceforge.net/projects/pywin32/files/pywin32/Build216/pywin32-216.win32-py2.7.exe/download">Install Python for Windows extension</a></li>
+  <li><a href="http://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/py2exe-0.6.9.win32-py2.7.exe/download">Install py2exe</a></li>
+</ol>
+
+<table>
+  <tbody>
+    <tr>
+      <td>%EXTRACTDIR%\ovirt-guest-agent\ovirt-guest-agent&gt; C:\Python27\python.exe setup.py py2exe -b 1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>And you´ll get two files in .\dist\ called "OVirtGuestService.exe" and "w9xpopen.exe". Take them, along with .\ovirt-guest-agent.ini, create an appropriate folder for them, e.g. "C:\Program Files\Guest Agents\oVirt Guest Agent" and copy those files there.</p>
+
+<p>Using as command prompt running as administrator, run the following commands to get it installed:</p>
+
+<p>|—————————————————————————————————-|
+| 1.  C:\Program Files\Guest Agents\oVirt Guest Agent&gt; OVirtGuestService.exe -install          <br />
+ 2.  C:\Program Files\Guest Agents\oVirt Guest Agent&gt; net start OVirtGuestService              <br />
+ 3.  C:\Program Files\Guest Agents\oVirt Guest Agent&gt; sc config "OVirtGuestService" start= auto  |</p>
+
+<p>Everything is then installed so you can delete the "%EXTRACTDIR%\ovirt-guest-agent", you won´t be needing it anymore.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

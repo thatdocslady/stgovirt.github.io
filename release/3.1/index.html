@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+OVirt 3.1 release notes &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>OVirt 3.1 release notes</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>abonas, amureini, danken, dneary, jbrooks, nkesick, roy, sgordon, val0x00ff</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>OVirt 3.1 release notes</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>70</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-10-17</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/OVirt_3.1_release_notes' target='_blank'>
+OVirt 3.1 release notes
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="ovirt-31-release-notes">OVirt 3.1 release notes</h1>
+
+<p>The oVirt Project is pleased to announce the availability of its second formal release, oVirt 3.1.</p>
+
+<h2 id="whats-new">What's New?</h2>
+
+<p>The oVirt 3.1 release includes these notable changes.</p>
+
+<h3 id="installer">Installer</h3>
+
+<ul>
+  <li>The installation script now supports the configuration of a HTTP/HTTPS proxy, allowing the oVirt Engine to be accessed via port 80 for HTTP, and port 443 for HTTPS (<a href="Features/OvirtEnginePort80">Features/OvirtEnginePort80</a>).</li>
+  <li>The oVirt Engine now supports the use of a remote PostgreSQL database server, specified during installation (<a href="/feature/integration/remotedb/">Features/RemoteDB</a>).</li>
+  <li>An 'all-in-one' proof of concept mode is now available. This allows a single machine to both run the management engine and act as a virtualization host (<a href="/feature/integration/allinone/">Feature/AllInOne</a>).</li>
+</ul>
+
+<h3 id="tools">Tools</h3>
+
+<ul>
+  <li>The Log Collector (engine-log-collector), ISO Uploader (engine-iso-uploader), and Image Uploader (engine-image-uploader) have been rebased to access the oVirt Engine using the new Python SDK. Previously these tools, written in Python, accessed the REST API directly.</li>
+</ul>
+
+<h3 id="infrastructure">Infrastructure</h3>
+
+<ul>
+  <li>The oVirt Engine is now supports the use of Red Hat Directory Server and/or IBM Tivoli Directory Server for user authentication. This is addition to existing support for IPA and Active Directory.</li>
+  <li>An additional tab has been added to the oVirt Engine's management interface to support monitoring the status of tasks in the oVirt Environment.</li>
+  <li>A correlation identifier to support debugging is now used to track events across the user interfaces, engine backend, and VDSM.</li>
+  <li>The oVirt Engine now automatically attempts to auto-activate hosts detected as non-operational.</li>
+</ul>
+
+<h3 id="user-interface">User Interface</h3>
+
+<ul>
+  <li>Infrastructure supporting localization has been added, with translations to follow in a later release.</li>
+  <li>Infrastructure supporting integration of reports functionality has been added to the oVirt Engine management interface.</li>
+</ul>
+
+<h3 id="storage">Storage</h3>
+
+<ul>
+  <li>Support has been added for presenting any block device as a local disk attached to a virtual machine simply by specifying the device's GUID. This provides <strong>directlun</strong> support, which previously had to be implemented using a VDSM hook (<a href="/feature/storage/direct-lun/">Features/Direct_Lun</a>).</li>
+  <li>Support has been added to VDSM, and by extension oVirt Engine, for the attachment and use of NFSv4 storage (<a href="/feature/storage/nfsv4/">Features/NFSv4)</a>).</li>
+  <li>It is now possible to override some of VDSM's default NFS settings from the oVirt Engine when attaching storage (<a href="/feature/storage/advancednfsoptions/">Features/AdvancedNfsOptions</a>).</li>
+  <li>Support has been added for the attachment and use of POSIX filesystem compliant storage, allowing users to attach any type of storage supported by <strong>mount</strong> (<a href="/feature/storage/posixfsconnection/">Features/PosixFSConnection</a>).</li>
+  <li>Support for defining the priority of hosts in the storage pool manager (SPM) selection process has been added. Hosts can also be assigned a priority of <strong>-1</strong>m which means that they must not be selected as the SPM (<a href="/feature/storage/spmpriority/">Features/SPMPriority</a>).</li>
+  <li>Support has been added for sharing of disks between virtual machines. Previously each disk could only be attached to a single virtual machine, it is now possible to share a disk between multiple virtual machines concurrently (<a href="/feature/storage/sharedrawdisk/">Features/SharedRawDisk</a>).</li>
+  <li>Support has been added for hot plugging and unplugging of <strong>virtio-blk</strong> disks to and from virtual machines If the "Add" menu command in the virtual disks pane of a running VM is disabled, a disk may be added from the VM "Guide Me" dialog) (<a href="/feature/storage/hotplug/">Features/HotPlug</a>).</li>
+  <li>Support has been added for floating disks, disks which are not necessarily attached to a virtual machine at any one point in time but can be attached to virtual machines as and when needed. Floating disks can be found in the web administration portal under the <strong>Disks</strong> tab (<a href="/feature/storage/floatingdisk/">Features/FloatingDisk</a>).</li>
+  <li>It is now possible for virtual machines to have their disks spread across multiple storage domains within the same data center. Previously all disks attached to a virtual machine had to reside on the same storage domain (<a href="/feature/storage/multiplestoragedomains/">Features/MultipleStorageDomains</a>).</li>
+  <li>Initial support has been added for provisioning and managing Gluster based storage clusters in oVirt. See <a href="/feature/storage/gluster-support/">Features/Gluster_Support</a> for implementation details and known issues.</li>
+</ul>
+
+<h3 id="virtualization">Virtualization</h3>
+
+<ul>
+  <li>Previously it was not possible to import a Virtual Machine or Template that had already been imported, even if it was to a different data center. This is no longer the case (<a href="/feature/storage/importmorethanonce/">Features/ImportMoreThanOnce</a>).</li>
+  <li>Devices attached to guest virtual machines now retain the same address allocations as other devices are added and/or removed from the guest's configuration (<a href="/feature/ux/detailedstabledeviceaddresses/">Features/Design/DetailedStableDeviceAddresses</a>).</li>
+  <li>Support for "pre-started" virtual machine pools has been added. Instead of having to wait for a virtual machine allocated from the pool to boot user's will instead, where possible, be allocated a virtual machine which has already been started (<a href="/feature/virt/prestartedvm/">Features/PrestartedVm</a>).</li>
+  <li>Support for virtual machine payloads has been added, in the form of a Floppy or CD/DVD image that will be passed to the virtual machine. Virtual machine payloads may be either temporary or permanent.(<a href="/feature/virt/vmpayload/">Features/VMPayload</a>).</li>
+  <li>Added support for cloning a Virtual Machine from a specific Snapshot (<a href="/feature/infra/clonevmfromsnapshot/">Features/CloneVmFromSnapshot</a>).</li>
+  <li>Support has been added for virtualization hosts with Intel Sandybridge and Opteron G4 based CPUs.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>
+    <p>"windows" and "linux" OS Types are removed from the OS repository as they have no real use. This will break import of those OSs. To fix the import its enough to add to <em>$PREFIX/etc/ovirt-engine/osinfo.conf.d/20-import-export-linux-windows-fix.properties</em></p>
+
+    <p> 20-import-export-linux-windows-fix.properties:
+   backwardCompatibility.linux = 5
+   backwardCompatibility.windows = 1</p>
+  </li>
+</ul>
+
+<h3 id="sla">SLA</h3>
+
+<ul>
+  <li>Added support for the definition quotas restricting user resource usage (<a href="/feature/sla/quota/">Features/Quota</a>).</li>
+  <li>Added support for pinning Virtual Machines to specific physical CPUs (<a href="/sla/cpu-pinning/">Features/Design/cpu-pinning</a>).</li>
+</ul>
+
+<h3 id="network">Network</h3>
+
+<ul>
+  <li>A new network setup API to support complex network provisioning tasks has been added to the backend, as a result the user interface for host network setup has also been redesigned (<a href="/feature/network/setupnetworks/">Features/Design/Network/SetupNetworks</a>).</li>
+  <li>It is now possible to adjust the MTU of a logical network, when it is not attached to a cluster (<a href="/feature/ux/design/network/jumbo-frames/">Features/Design/Network/Jumbo_frames</a>).</li>
+  <li>It is now possible to create bridgeless logical networks, previously all logical network were represented using a bridge (<a href="/feature/network/bridgeless-networks/">Features/Design/Network/Bridgeless_Networks</a>).</li>
+  <li>Hot plugging and unplugging of virtual Network Interface Cards from virtual machines is now supported (<a href="/feature/network/hotplugnic/">Features/HotplugNic</a>).</li>
+  <li>~~Support for port mirroring, allowing all network traffic to be mirrored to a specific virtual machine, has been added (<a href="/feature/network/portmirroring/">Features/PortMirroring</a>).~~ (postponed to Ovirt-3.2)</li>
+  <li>Previously, all logical networks were considered mandatory for all hosts in a cluster. Hosts that were not attached to all logcal networks in the cluster were marked non-responsive. Administrators now have the option to mark specific logical networks as non-mandatory, bypassing this behavior (<a href="/feature/network/required-networks/">Features/Design/Network/Required_Networks</a>).</li>
+</ul>
+
+<h3 id="interfaces">Interfaces</h3>
+
+<ul>
+  <li>New Python SDK, packaged as <em>ovirt-engine-sdk</em> (<a href="/developer/sdk/">SDK</a>).</li>
+  <li>New Python CLI, packaged as <em>ovirt-engine-cli</em> (<a href="/feature/infra/cli/">CLI</a>).</li>
+  <li>Added JSON support for REST API.</li>
+  <li>Added session support to the REST API, allowing one login to process multiple requests.</li>
+</ul>
+
+<h2 id="installation-instructions">Installation Instructions</h2>
+
+<h3 id="ovirt-engine">oVirt Engine</h3>
+
+<p>The oVirt Engine provides the browser based management interface for managing your oVirt environment. It also provides command line tools for managing configuration options not exposed via the user interface as well as a series of APIs supporting automation of both common and advanced tasks.</p>
+
+<h4 id="fedora">Fedora</h4>
+
+<p>To install the oVirt Engine on a Fedora 17 system:</p>
+
+<ul>
+  <li>Log in to the system on which you wish to host oVirt Engine as the <strong>root</strong> user.</li>
+  <li>Install the <em>ovirt-release</em> package using <strong>yum</strong>, this package configures your system to receive updates from the oVirt project's software repository:</li>
+</ul>
+
+<p><code>   # yum localinstall </code><a href="releases/ovirt-release-fedora.noarch.rpm"><code>http://ovirt.org/releases/ovirt-release-fedora.noarch.rpm</code></a></p>
+
+<ul>
+  <li>
+    <p>Install the <em>ovirt-engine</em> package, and all of the packages it depends on, using <strong>yum</strong>:</p>
+
+    <p>   # yum install ovirt-engine</p>
+  </li>
+  <li>
+    <p>Run the <strong>engine-setup</strong> script and follow the prompts to complete installation of oVirt Engine. Once the Engine has been installed successfully the script will provide instructions for accessing the web Administration Portal:</p>
+
+    <p>   # engine-setup</p>
+  </li>
+</ul>
+
+<p>Suggested quick start path for new users:</p>
+
+<ul>
+  <li>Add a host to the <em>Default</em> cluster.</li>
+  <li>Add storage, refer to <a href="/uncategorized/troubleshooting-nfs-storage-issues/">Troubleshooting NFS Storage Issues</a> for information on configuring NFS storage for use with oVirt. Support is also available for iSCSI, FCP, and POSIX compliant filesystem storage.
+    <ul>
+      <li>Add a data storage domain to the <em>Default</em> data center.</li>
+      <li>Add an ISO storage domain to the <em>Default</em> data center.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Upload operating system installation media, in ISO format, to the ISO storage domain using the <strong>engine-iso-uploader</strong> command line tool.</p>
+
+    <p>   # engine-iso-uploader -i MyISODomainName upload /root/Downloads/Fedora-17-x86_64-DVD.iso</p>
+  </li>
+  <li>Create a virtual machine!</li>
+</ul>
+
+<h3 id="ovirt-node">oVirt Node</h3>
+
+<p>oVirt Node is distributed as a compact image for use on a variety of installation media. It provides a minimal installation of Fedora and includes the packages necessary to support use of the system as a virtualization host in an environment controlled by oVirt Engine.</p>
+
+<p>To install oVirt Node:</p>
+
+<ul>
+  <li>Download the latest oVirt Node ISO from <a href="releases/3.1/tools/">http://ovirt.org/releases/3.1/tools/</a>
+    <ul>
+      <li>Burn the ISO to a CD-ROM or DVD-ROM (<strong>\1</strong>); or</li>
+      <li>Copy the ISO to a USB drive (<strong># dd if=./ovirt-node-iso-2.5.1-1.0.fc17.iso of=/dev/sdb</strong>).</li>
+    </ul>
+  </li>
+  <li>Boot the target virtualization host from the CD-ROM/DVD-ROM/USB device.</li>
+  <li>Follow the prompts to complete the installation, once the installation is complete and the system is rebooted the configuration screen will be displayed.</li>
+  <li>Use the terminal user interface to configure the Node, in particular ensure networking is configured and set the address to the oVirt Engine.</li>
+  <li>After applying your changes log in to your oVirt Engine installation, select the newly installed Node from the <strong>Hosts</strong> tab, and click <strong>Approve</strong>.</li>
+</ul>
+
+<p>Your oVirt Node has been added to the environment, after adding your first oVirt Node you should:</p>
+
+<ul>
+  <li>Add Data and ISO storage domains.</li>
+  <li>Upload an ISO image for an operating system.</li>
+  <li>Create a virtual machine!</li>
+</ul>
+
+<h3 id="fedora-host">Fedora Host</h3>
+
+<p>In addition to oVirt Node hosts, you can also reconfigure servers which are running Fedora 17 to be used as virtual machine hosts.</p>
+
+<p>To install a Fedora 17 host:</p>
+
+<ul>
+  <li>On the machine designated as your Fedora host, install Fedora 17. A minimal installation is sufficient.</li>
+  <li>Log in to your Fedora host as the <strong>root</strong> user.</li>
+  <li>Install the <em>ovirt-release</em> package using <strong>yum</strong>, this package configures your system to receive updates from the oVirt project's software repository:</li>
+</ul>
+
+<p><code>   # yum localinstall </code><a href="releases/ovirt-release-fedora.noarch.rpm"><code>http://ovirt.org/releases/ovirt-release-fedora.noarch.rpm</code></a></p>
+
+<ul>
+  <li>After installing this package, log in to your oVirt Engine installation, select "Add" from the <strong>Hosts</strong> tab, enter a name for the Fedora host, and provide the hostname or IP address and root password for the Fedora host, and click <strong>OK</strong>.</li>
+</ul>
+
+<p>Your Fedora host has been added to the environment, after adding your first host (whether Fedora or oVirt Node-based) you should:</p>
+
+<ul>
+  <li>Add Data and ISO storage domains.</li>
+  <li>Upload an ISO image for an operating system.</li>
+  <li>Create a virtual machine!</li>
+</ul>
+
+<h2 id="upgrade-instructions">Upgrade Instructions</h2>
+
+<p>Upgrading from oVirt 3.0 to oVirt 3.1 is <strong>not</strong> recommended. Users are instead advised to use the migration process as documented on this page. Upgrade instructions are however available, refer to <a href="/release/3.0/to-3.1-upgrade/"> OVirt 3.0 to 3.1 upgrade</a> for more information.</p>
+
+<h2 id="migration-instructions">Migration Instructions</h2>
+
+<p>Users of oVirt 3.0 who wish to migrate to oVirt 3.1 should:</p>
+
+<ul>
+  <li>Create an export storage domain.</li>
+  <li>Export all virtual machines to the export storage domain.</li>
+  <li>Detach the export storage domain.</li>
+  <li>
+    <p>Cleanup the engine installation:</p>
+
+    <p>   # engine-cleanup
+     # yum remove ovirt* </p>
+  </li>
+  <li>Upgrade to Fedora 17: <a href="https://fedoraproject.org/wiki/How_to_use_PreUpgrade">https://fedoraproject.org/wiki/How_to_use_PreUpgrade</a></li>
+  <li>Install oVirt Engine 3.1.</li>
+  <li>Attach the export storage domain.</li>
+  <li>Import all virtual machines.</li>
+</ul>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

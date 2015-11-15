@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Sample user portals &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Sample user portals</td>
+</tr>
+<tr>
+<th>category</th>
+<td>development</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>dneary, ovedo, shaharh</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Development</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Sample user portals</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>9</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-02-07</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Sample_user_portals' target='_blank'>
+Sample user portals
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="sample-user-portals">Sample user portals</h1>
+
+<p><span class='broken-link link-mediawiki' data-href='User:Shaharh' title='Special MediaWiki link: original pointed to: User:Shaharh'> Shahar Havivi</span> has developed a series of sample user portals, using the oVirt SDK, in Java, Python and Ruby, to give you an idea of what is possible with SDK bindings, and how to use them in various languages.</p>
+
+<p>The sample portals repository is hosted in gerrit, and contains the same portal written in three different languages:</p>
+
+<ul>
+  <li><a href="http://gerrit.ovirt.org/gitweb?p=samples-portals.git;a=tree;f=java">Java</a></li>
+  <li><a href="http://gerrit.ovirt.org/gitweb?p=samples-portals.git;a=tree;f=python">Python</a></li>
+  <li><a href="http://gerrit.ovirt.org/gitweb?p=samples-portals.git;a=tree;f=ruby">Ruby</a></li>
+</ul>
+
+<p>You can use this code as a guide to using the oVirt SDK, and a basis for the development of a basic User Portal.</p>
+
+<p>The idea is to show how simple it is to use the oVirt SDK to support the following operations:</p>
+
+<ul>
+  <li>Login</li>
+  <li>Logout</li>
+  <li>Start VM</li>
+  <li>Stop VM</li>
+  <li>Connect to VM console</li>
+  <li>Get VM status</li>
+  <li>Show VM display type (SPICE/VNC)</li>
+</ul>
+
+<p><img alt="" title="VMsSapmlesPortal.png" src="/images/wiki/VMsSapmlesPortal.png?1447607916" /></p>
+
+<p>The portals build on the user-level API.</p>
+
+<p>The different versions of the portal use language bindings for the appropriate language:</p>
+
+<ul>
+  <li><a href="/feature/infra/java-sdk/">oVirt Java SDK</a></li>
+  <li><a href="/feature/infra/python-sdk/">oVirt Python SDK</a></li>
+  <li>Ruby currently does not have a separate oVirt SDK, we use <a href="https://github.com/abenari/rbovirt">rbovirt</a>, which contains partial REST bindings to basic operations.</li>
+</ul>
+
+<h2 id="enabling-spice-console-connections">Enabling SPICE console connections</h2>
+
+<p>The Portals enable user to connect to VM via SPICE under Firefox or Internet Explorer. In order to start a SPICE session we need to set a ticket for the VM (SDK call), the ticket is the spice password. We also need the host IP and port which provided via the display entity (a property of VM).</p>
+
+<h2 id="ticket-and-display-details-in-firefox">Ticket and Display details in Firefox</h2>
+
+<p><img alt="" title="SpiceJavascript.png" src="/images/wiki/SpiceJavascript.png?1447607916" /></p>
+
+<p>For more details refer to the README file in each Sample Portal directory</p>
+
+<category:development>
+</category:development>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

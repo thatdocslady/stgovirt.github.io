@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+PythonApi &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>PythonApi</td>
+</tr>
+<tr>
+<th>category</th>
+<td>api</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>mgoldboi, mkollaro, moti, mpavlik, rvaknin</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Testing/PythonApi</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>36</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-03-27</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Testing/PythonApi' target='_blank'>
+Testing/PythonApi
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="python-api">Python Api</h1>
+
+<h2 id="create-a-basic-environment-using-ovirt-engine-sdk">Create a Basic Environment using ovirt-engine-sdk</h2>
+
+<p>Ovirt-Engine-SDK is an auto-generated python API which uses REST-API to perform operations against ovirt-engine. In order to connect to ovirt-engine using ovirt-engine-sdk and get the API proxy (reference instance to REST-API), the following connection information is required:</p>
+
+<ul>
+  <li>URL - The URL consists of HTTP method, ovirt-engine's IP or FQDN, ovirt-engine's TCP PORT and the REST-API's entry point. The HTTP method and the PORT are usually HTTPS/8443 for secure connection (default installation option), or HTTP/8080 for insecure connection (in use mostly in development environments). The REST-API's entry point is fixed - "/api"</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>User and Password - The user consists of a username, the "@" sign and domain name. You can use either the default internal user's account or any of your LDAP users that has both login permissions and of course also has permissions to execute the desired operations.</li>
+</ul>
+
+<h3 id="importing-the-relevant-modules-and-obtaining-an-api-object">Importing the relevant modules and obtaining an API object</h3>
+
+<p>Add the following to you python script, remember to set the URL/USERNAME/PASSWORD constants accordingly</p>
+
+<pre class="highlight plaintext"><code>     #! /usr/bin/python&#x000A;     &#x000A;     from ovirtsdk.api import API&#x000A;     from ovirtsdk.xml import params&#x000A;     &#x000A;     VERSION = params.Version(major='3', minor='0')&#x000A;      &#x000A;     URL =           '`[`https://192.168.1.1:8443/api`](https://192.168.1.1:8443/api)`'&#x000A;     USERNAME =      'my_user@my.domain.com'&#x000A;     PASSWORD =      'my_password'&#x000A;     &#x000A;     DC_NAME =       'my_datacenter'&#x000A;     CLUSTER_NAME =  'my_cluster'&#x000A;     HOST_NAME =     'my_host'&#x000A;     STORAGE_NAME =  'my_storage'&#x000A;     EXPORT_NAME =   'my_export'&#x000A;     VM_NAME =       'my_vm'&#x000A;     &#x000A;     api = API(url=URL, username=USERNAME, password=PASSWORD)&#x000A;</code></pre>
+
+<h3 id="create-iscsi-data-center">Create iSCSI Data Center</h3>
+
+<pre class="highlight plaintext"><code>     try:&#x000A;         if api.datacenters.add(params.DataCenter(name=DC_NAME, storage_type='iscsi', version=VERSION)):&#x000A;             print 'iSCSI Data Center was created successfully'&#x000A;     except Exception as e:&#x000A;         print 'Failed to create iSCSI Data Center:\n%s' % str(e)&#x000A;</code></pre>
+
+<h3 id="create-cluster">Create Cluster</h3>
+
+<p>Note that the CPU type should be chosen according to your host's CPU.</p>
+
+<pre class="highlight plaintext"><code>     CPU_TYPE = 'Intel Nehalem Family'&#x000A;     &#x000A;     try:&#x000A;         if api.clusters.add(params.Cluster(name=CLUSTER_NAME, cpu=params.CPU(id=CPU_TYPE), data_center=api.datacenters.get(DC_NAME), version=VERSION)):&#x000A;             print 'Cluster was created successfully'&#x000A;     except Exception as e:&#x000A;         print 'Failed to create Cluster:\n%s' % str(e)&#x000A;</code></pre>
+
+<h3 id="install-host">Install Host</h3>
+
+<pre class="highlight plaintext"><code>     HOST_ADDRESS = 'hostname.my.domain.com'&#x000A;     ROOT_PASSWORD = 'root_password'&#x000A;     &#x000A;     try:&#x000A;         if api.hosts.add(params.Host(name=HOST_NAME, address=HOST_ADDRESS, cluster=api.clusters.get(CLUSTER_NAME), root_password=ROOT_PASSWORD)):&#x000A;             print 'Host was installed successfully'&#x000A;             print 'Waiting for host to reach the Up status'&#x000A;             while api.hosts.get(HOST_NAME).status.state != 'up':&#x000A;                 sleep(1)&#x000A;             print "Host is up"&#x000A;     except Exception as e:&#x000A;         print 'Failed to install Host:\n%s' % str(e)&#x000A;</code></pre>
+
+<h2 id="working-with-storages">Working with storages</h2>
+
+<h3 id="create-iscsi-storage-domain-on-data-center">Create iSCSI Storage Domain on Data Center</h3>
+
+<pre class="highlight plaintext"><code>     STORAGE_ADDRESS = 'storage_server.my.domain.com'&#x000A;     TARGET_NAME = 'target_name'&#x000A;     LUN_GUID = 'lun_guid'&#x000A;     &#x000A;     sdParams = params.StorageDomain(name=STORAGE_NAME,&#x000A;                       data_center=api.datacenters.get(DC_NAME),&#x000A;                       storage_format='v2',&#x000A;                       type_='data',&#x000A;                       host=api.hosts.get(HOST_NAME),&#x000A;                       storage = params.Storage(type_='iscsi',&#x000A;                                        volume_group=params.VolumeGroup(logical_unit=[params.LogicalUnit(id=LUN_GUID,&#x000A;                                                            address=STORAGE_ADDRESS,&#x000A;                                                            port=3260,&#x000A;                                                            target=TARGET_NAME)]))  )&#x000A;     &#x000A;     try:&#x000A;         if api.storagedomains.add(sdParams):&#x000A;             print 'iSCSI Storage Domain was created successfully'&#x000A;     except Exception as e:&#x000A;         print 'Failed to create iSCSI Storage Domain:\n%s' % str(e)&#x000A;     &#x000A;     try:&#x000A;         if api.datacenters.get(name=DC_NAME).storagedomains.add(api.storagedomains.get(name=STORAGE_NAME)):&#x000A;             print 'iSCSI Storage Domain was attached successfully'&#x000A;     except Exception as e:&#x000A;         print 'Failed to attach iSCSI Storage Domain:\n%s' % str(e)&#x000A;</code></pre>
+
+<h3 id="attach-iso-domain-to-data-center">Attach ISO domain to Data Center</h3>
+
+<p>You can either create a new ISO Storage Domain or import an existing ISO Storage Domain that was configured during ovirt-engine's installation wizard (both options uses the same code below). Please upload the following ISO file to the ISO Storage Domain once the ISO Storage Domain was created: <a href="http://distro.ibiblio.org/tinycorelinux/4.x/x86/release/TinyCore-current.iso">http://distro.ibiblio.org/tinycorelinux/4.x/x86/release/TinyCore-current.iso</a></p>
+
+<pre class="highlight plaintext"><code>     ISO_ADDRESS = 'my_ovirt_engine_ip'&#x000A;     ISO_PATH = '/path/to/iso/domain'&#x000A;     ISO_NAME = 'my_iso'&#x000A;     &#x000A;     isoParams = params.StorageDomain(name=ISO_NAME,&#x000A;                                         data_center=api.datacenters.get(DC_NAME),&#x000A;                                         type_='iso',&#x000A;                                         host=api.hosts.get(HOST_NAME),&#x000A;                                         storage = params.Storage(   type_='nfs',&#x000A;                                                                     address=ISO_ADDRESS,&#x000A;                                                                     path=ISO_PATH  )  )&#x000A;     &#x000A;     try:&#x000A;         if api.storagedomains.add(isoParams):&#x000A;             print 'ISO Domain was created/imported successfully'&#x000A;     &#x000A;         if api.datacenters.get(DC_NAME).storagedomains.add(api.storagedomains.get(ISO_NAME)):&#x000A;             print 'ISO Domain was attached successfully'&#x000A;     &#x000A;         if api.datacenters.get(DC_NAME).storagedomains.get(ISO_NAME).activate():&#x000A;             print 'ISO Domain was activated successfully'&#x000A;     except Exception as e:&#x000A;         print 'Failed to add ISO domain:\n%s' % str(e)&#x000A;</code></pre>
+
+<h3 id="attach-export-domain-to-data-center">Attach Export domain to Data Center</h3>
+
+<pre class="highlight plaintext"><code>     EXPORT_ADDRESS = 'ip_of_export_domain_storage'&#x000A;     EXPORT_PATH = '/path/to/export/domain'&#x000A;     &#x000A;     isoParams = params.StorageDomain(name=EXPORT_NAME,&#x000A;                                         data_center=api.datacenters.get(DC_NAME),&#x000A;                                         type_='export',&#x000A;                                         host=api.hosts.get(HOST_NAME),&#x000A;                                         storage = params.Storage(   type_='nfs',&#x000A;                                                                     address=EXPORT_ADDRESS,&#x000A;                                                                     path=EXPORT_PATH  )  )&#x000A;     try:&#x000A;         if api.storagedomains.add(isoParams):&#x000A;             print 'Export Domain was created/imported successfully'&#x000A;     &#x000A;         if api.datacenters.get(DC_NAME).storagedomains.add(api.storagedomains.get(EXPORT_NAME)):&#x000A;             print 'Export Domain was attached successfully'&#x000A;     &#x000A;         if api.datacenters.get(DC_NAME).storagedomains.get(EXPORT_NAME).activate():&#x000A;             print 'Export Domain was activated successfully'&#x000A;     &#x000A;     except Exception as e:&#x000A;         print 'Failed to add export domain:\n%s' % str(e)&#x000A;</code></pre>
+
+<h2 id="virtual-machines">Virtual Machines</h2>
+
+<h3 id="create-vm-with-one-nic-and-one-disk">Create VM with one NIC and one Disk</h3>
+
+<pre class="highlight plaintext"><code>     MB = 1024*1024&#x000A;     GB = 1024*MB&#x000A;        &#x000A;     try:&#x000A;         api.vms.add(params.VM(name=VM_NAME, memory=2*GB, cluster=api.clusters.get(CLUSTER_NAME), template=api.templates.get('Blank')))&#x000A;         print 'VM created'&#x000A;     &#x000A;         api.vms.get(VM_NAME).nics.add(params.NIC(name='eth0', network=params.Network(name='ovirtmgmt'), interface='virtio'))&#x000A;         print 'NIC added to VM'&#x000A;      &#x000A;         api.vms.get(VM_NAME).disks.add(params.Disk(storage_domains=params.StorageDomains(storage_domain=[api.storagedomains.get(STORAGE_NAME)]),&#x000A;                                                     size=512*MB,&#x000A;                                                     # type_='system', - disk type is deprecated&#x000A;                                                     status=None,&#x000A;                                                     interface='virtio',&#x000A;                                                     format='cow',&#x000A;                                                     sparse=True,&#x000A;                                                     bootable=True))&#x000A;         print 'Disk added to VM'&#x000A;         print 'Waiting for VM to reach Down status'&#x000A;         while api.vms.get(VM_NAME).status.state != 'down':&#x000A;             sleep(1)&#x000A;     &#x000A;     except Exception as e:&#x000A;         print 'Failed to create VM with disk and NIC\n%s' % str(e)&#x000A;</code></pre>
+
+<h3 id="starthibernateresumestop-vm">Start/hibernate/resume/stop VM</h3>
+
+<ul>
+  <li>
+    <p>Start VM</p>
+
+    <p>   try:
+         if api.vms.get(VM_NAME).status.state != 'up':
+             print 'Starting VM'
+             api.vms.get(VM_NAME).start()
+             print 'Waiting for VM to reach Up status'
+             while api.vms.get(VM_NAME).status.state != 'up':
+                 sleep(1)
+         else:
+             print 'VM already up'
+     except Exception as e:
+         print 'Failed to Start VM:\n%s' % str(e)</p>
+  </li>
+  <li>
+    <p>Suspend VM</p>
+
+    <p>   while api.vms.get(VM_NAME).status.state != 'suspended':
+         try:
+             print 'Suspend VM'
+             api.vms.get(VM_NAME).suspend()
+             print 'Waiting for VM to reach Suspended status'
+             while api.vms.get(VM_NAME).status.state != 'suspended':
+                 sleep(1)
+      
+         except Exception as e:
+             if e.reason == 'Bad Request' \
+                 and 'asynchronous running tasks' in e.detail:
+                 print 'VM has asynchronous running tasks, trying again'
+                 sleep(1)
+             else:
+                 print 'Failed to Suspend VM:\n%s' % str(e)
+                 break</p>
+  </li>
+  <li>
+    <p>Resume VM (identical to start up)</p>
+
+    <p>   try:
+         if api.vms.get(VM_NAME).status.state != 'up':
+             print 'Resume VM'
+             api.vms.get(VM_NAME).start()
+             print 'Waiting for VM to Resume'
+             while api.vms.get(VM_NAME).status.state != 'up':
+                 sleep(1)
+         else:
+             print 'VM already up'
+     except Exception as e:
+         print 'Failed to Resume VM:\n%s' % str(e)</p>
+  </li>
+  <li>
+    <p>Stop VM</p>
+
+    <p>   try:
+         if api.vms.get(VM_NAME).status.state != 'down':
+             print 'Stop VM'
+             api.vms.get(VM_NAME).stop()
+             print 'Waiting for VM to reach Down status'
+             while api.vms.get(VM_NAME).status.state != 'down':
+                 sleep(1)
+         else:
+             print 'VM already down'
+     except Exception as e:
+         print 'Stop VM:\n%s' % str(e)</p>
+  </li>
+</ul>
+
+<h3 id="export-delete-and-import-vm">Export, delete and import VM</h3>
+
+<ul>
+  <li>
+    <p>Export VM (into Export Domain)</p>
+
+    <p>   try:
+         api.vms.get(VM_NAME).export(params.Action(storage_domain=api.storagedomains.get(EXPORT_NAME)))
+         print 'VM was exported successfully'
+         print 'Waiting for VM to reach Down status'
+         while api.vms.get(VM_NAME).status.state != 'down':
+             sleep(1)
+     except Exception as e:
+        print 'Failed to export VM:\n%s' % str(e)</p>
+  </li>
+  <li>
+    <p>Delete VM</p>
+
+    <p>   try:
+         api.vms.get(VM_NAME).delete()
+         print 'VM was removed successfully'
+         print 'Waiting for VM to be deleted'
+         while VM_NAME in [vm.name for vm in api.vms.list()]:
+             sleep(1)
+     except Exception as e:
+         print 'Failed to remove VM:\n%s' % str(e)</p>
+  </li>
+  <li>
+    <p>Import VM (from Export Domain)</p>
+
+    <p>   try:
+         api.storagedomains.get(EXPORT_NAME).vms.get(VM_NAME).import_vm(params.Action(storage_domain=api.storagedomains.get(STORAGE_NAME), cluster=api.clusters.get(name=CLUSTER_NAME)))
+         print 'VM was imported successfully'
+         print 'Waiting for VM to reach Down status'
+         while api.vms.get(VM_NAME).status.state != 'down':
+             sleep(1)
+     except Exception as e:
+         print 'Failed to import VM:\n%s' % str(e)</p>
+  </li>
+</ul>
+
+<h3 id="create-a-snapshot-to-vm">Create a snapshot to VM</h3>
+
+<pre class="highlight plaintext"><code>     SNAPSHOT_NAME = 'my_snapshot'&#x000A;     &#x000A;     try:&#x000A;         api.vms.get(VM_NAME).snapshots.add(params.Snapshot(description=SNAPSHOT_NAME, vm=api.vms.get(VM_NAME)))&#x000A;         print 'Creating a Snapshot'&#x000A;         print 'Waiting for Snapshot creation to finish'&#x000A;         while api.vms.get(VM_NAME).status.state == 'image_locked':&#x000A;             sleep(1)&#x000A;     except Exception as e:&#x000A;         print 'Failed to Create a Snapshot:\n%s' % str(e)&#x000A;</code></pre>
+
+<h3 id="create-a-template-from-vm">Create a Template from VM</h3>
+
+<pre class="highlight plaintext"><code>     TEMPLATE_NAME = 'my_template'&#x000A;     &#x000A;     try:&#x000A;         api.templates.add(params.Template(name=TEMPLATE_NAME, vm=api.vms.get(VM_NAME), cluster=api.clusters.get(CLUSTER_NAME)))&#x000A;         print 'Creating a Template from VM'&#x000A;         print 'Waiting for VM to reach Down status'&#x000A;         while api.vms.get(VM_NAME).status.state != 'down':&#x000A;             sleep(1)&#x000A;     except Exception as e:&#x000A;         print 'Failed to Create a Template from VM:\n%s' % str(e)&#x000A;</code></pre>
+
+<h3 id="create-vm-from-template">Create VM from Template</h3>
+
+<pre class="highlight plaintext"><code>     NEW_VM_NAME = 'my_vm_from_template'&#x000A;     &#x000A;     try:&#x000A;         api.vms.add(params.VM(name=NEW_VM_NAME, cluster=api.clusters.get(CLUSTER_NAME), template=api.templates.get(TEMPLATE_NAME)) )&#x000A;         print 'VM was created from Template successfully'&#x000A;         print 'Waiting for VM to reach Down status'&#x000A;         while api.vms.get(VM_NAME).status.state != 'down':&#x000A;             sleep(1)&#x000A;     except Exception as e:&#x000A;         print 'Failed to create VM from Template:\n%s' % str(e)&#x000A;</code></pre>
+
+<h2 id="networking">Networking</h2>
+
+<h3 id="add-vm-network-to-the-data-center">Add VM network to the data-center</h3>
+
+<pre class="highlight plaintext"><code>     DATA_CENTER_NAME = 'my_dc_name'&#x000A;     vmVlan400 = params.Network(name = 'VM_VLAN_400',&#x000A;                            data_center = api.datacenters.get(name = DATA_CENTER_NAME), &#x000A;                            description = 'a tagged vm network',&#x000A;                            vlan = params.VLAN(id = '400'))&#x000A;     &#x000A;     vmVlan400 = api.networks.add(vmVlan400)&#x000A;</code></pre>
+
+<h3 id="add-non-vm-network-to-the-data-center">Add Non-VM network to the data-center</h3>
+
+<pre class="highlight plaintext"><code>     DATA_CENTER_NAME = 'my_dc_name'&#x000A;     nonVmVlan500 = params.Network(name = 'NON_VM_VLAN_500',&#x000A;                            data_center = api.datacenters.get(name = DATA_CENTER_NAME), &#x000A;                            description = 'a tagged non-vm network',&#x000A;                            vlan = params.VLAN(id = '500'),&#x000A;                            usages = params.Usages())&#x000A;     &#x000A;     nonVmVlan500 = api.networks.add(nonVmVlan500)&#x000A;</code></pre>
+
+<h3 id="attach-network-to-cluster">Attach network to cluster</h3>
+
+<pre class="highlight plaintext"><code>     CLUSTER_NAME = 'my_cluster_name'&#x000A;     api.clusters.get(CLUSTER_NAME).networks.add(vmVlan400)&#x000A;</code></pre>
+
+<h3 id="configure-bond-with-several-networks">Configure bond with several networks</h3>
+
+<p>The target configuration of the following program is:</p>
+
+<pre class="highlight plaintext"><code>     eth0 ---| &#x000A;             |          |------ ovirtmgmt&#x000A;             |--- bond0 |------ bond0.100 ----- NON_VM_VLAN_100&#x000A;             |          |------ bond0.200 ----- VM_VLAN_200&#x000A;     eth4 ---|&#x000A;&#x000A;     nic0 = params.HostNIC(name = 'eth0', network =  params.Network(), boot_protocol='none', ip=params.IP(address=`*`,` `netmask=`*`, gateway=''))&#x000A;     nic1 = params.HostNIC(name = 'eth4', network =  params.Network(), boot_protocol='none', ip=params.IP(address=`*`,` `netmask=`*`, gateway=''))&#x000A;     &#x000A;     # bond &#x000A;     bond = params.Bonding(&#x000A;        slaves = params.Slaves(host_nic = [ nic0, nic1 ]),&#x000A;                 options = params.Options(&#x000A;                             option = [&#x000A;                               params.Option(name = 'miimon', value = '100'),&#x000A;                               params.Option(name = 'mode', value = '1'),&#x000A;                               params.Option(name = 'primary', value = 'eth0')]&#x000A;                             )&#x000A;                           )&#x000A;     &#x000A;     # management network on top of the bond&#x000A;     managementNetwork = params.HostNIC(network = params.Network(name = 'ovirtmgmt'),&#x000A;                           name = 'bond0',&#x000A;                           boot_protocol = 'static',&#x000A;                               ip = params.IP(&#x000A;                               address = '10.1.1.1',&#x000A;                               netmask = '255.255.254.0',&#x000A;                               gateway = '10.1.1.254'),&#x000A;                           override_configuration = 1,&#x000A;                           bonding = bond)&#x000A;     &#x000A;     # create vlan device for network with vlan tag 100&#x000A;     networkName = 'NON_VM_VLAN_100'&#x000A;     clusterNetwork = api.clusters.get('nettest').networks.get(name = networkName)&#x000A;     vlanNetwork = params.HostNIC(network = params.Network(name = networkName), name = "bond0.%s" % clusterNetwork.vlan.id)&#x000A;     &#x000A;     # create vlan device for network with vlan tag 200&#x000A;     networkName = 'VM_VLAN_200'&#x000A;     clusterNetwork = api.clusters.get('nettest').networks.get(name = networkName)&#x000A;     vlanNetwork2 = params.HostNIC(network = params.Network(name = networkName), name = "bond0.%s" % clusterNetwork.vlan.id)&#x000A;     &#x000A;     # Now apply the configuration&#x000A;     host = api.hosts.get('my-host-name')&#x000A;     host.nics.setupnetworks(params.Action(force = 0,&#x000A;                                           check_connectivity = 1,&#x000A;                                           host_nics = params.HostNics(host_nic = [ managementNetwork, &#x000A;                                                                                    vlanNetwork, &#x000A;                                                                                    vlanNetwork2 ])))&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

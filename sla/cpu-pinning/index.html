@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+cpu-pinning &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>cpu-pinning</td>
+</tr>
+<tr>
+<th>category</th>
+<td>sla</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>doron, ecohen, lhornyak</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>SLA</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Features/Design/cpu-pinning</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>10</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-10-30</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Features/Design/cpu-pinning' target='_blank'>
+Features/Design/cpu-pinning
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="cpu-pinning">cpu-pinning</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>CPU pinning is the ability to run specific VM's virtual CPU (vCPU) on
+specific physical CPU (pCPU) in a specific host. Currently there's
+a vdsm hook handling it, and we'd like to implement it in the engine
+itself.</p>
+
+<h2 id="how-does-it-work">How does it work?</h2>
+
+<p>Existing libvirt <a href="http://libvirt.org/formatdomain.html#elementsCPU">support</a> sample:</p>
+
+<pre class="highlight plaintext"><code>  &lt;domain&gt;&#x000A;    ...&#x000A;    &lt;cputune&gt;&#x000A;      &lt;vcpupin vcpu="0" cpuset="1-4,^2"/&gt;&#x000A;      &lt;vcpupin vcpu="1" cpuset="0,1"/&gt;&#x000A;      &lt;vcpupin vcpu="2" cpuset="2,3"/&gt;&#x000A;      &lt;vcpupin vcpu="3" cpuset="0,4"/&gt;&#x000A;    &lt;/cputune&gt;&#x000A;    ...&#x000A;  &lt;/domain&gt;&#x000A;</code></pre>
+
+<h2 id="engine-core">Engine core</h2>
+
+<ul>
+  <li>A new VM attribute - cpuTopology - will be added to support this feature.
+    <ul>
+      <li>Means a DB change: extend vm_static to add it.</li>
+    </ul>
+  </li>
+  <li>The attribute will hold a string in a libvirt-like format
+    <ul>
+      <li>Format: v#p[_v#p]</li>
+      <li>Examples
+        <ul>
+          <li>0#0 =&gt; pin vCPU 0 to pCPU 0</li>
+          <li>0#0_1#3 =&gt; pin vCPU 0 to pCPU 0 and pin vCPU 1 to pCPU 3</li>
+          <li>1#1-4,^2 =&gt; pin vCPU 1 to pCPU set 1 to 4, excluding 2.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Validations
+    <ul>
+      <li>
+        <p>Make sure we have vCPU and pCPU(set) for each given pattern:
+*# Parse string for '_'</p>
+
+        <p>*# For each entry: parse string for '#'</p>
+
+        <p>*# Make sure we got 2 elements (vCPU and pCPU)</p>
+      </li>
+    </ul>
+  </li>
+  <li>Default value is NULL</li>
+  <li>The attribute will be added to the new API as a VM level attribute (ie- not a device),sent as a dictionay.</li>
+</ul>
+
+<h2 id="vdsm">VDSM</h2>
+
+<p>VDSM receives the cpu pinning information through its xml-rpc interface at createVM (alias VM.create()) call. Expected data structure:</p>
+
+<pre class="highlight plaintext"><code>  * cpuPinning - map of { vcpuid : cpuset } e.g. { 0 : '1-4' } sets the vcpu 4 to cpu 1-4&#x000A;</code></pre>
+
+<h2 id="rest-api">Rest API</h2>
+
+<ul>
+  <li>
+    <p>Should be added in the relevant actions.</p>
+
+    <cpu>
+    &lt;topology sockets="4" cores="1"/&gt;
+    <cputune>
+      &lt;vcpupin vcpu="0" cpuset="1-4,^2"/&gt;
+      &lt;vcpupin vcpu="1" cpuset="0,1"/&gt;
+      &lt;vcpupin vcpu="2" cpuset="2,3"/&gt;
+      &lt;vcpupin vcpu="3" cpuset="0,4"/&gt;
+    </cputune>
+  </cpu>
+  </li>
+</ul>
+
+<h2 id="ui">UI</h2>
+
+<ul>
+  <li>In relevant dialog, we'll add a plain text-box.</li>
+  <li>Validations
+    <ul>
+      <li>
+        <p>Make sure we have vCPU and pCPU(set) for each given pattern:
+*# Parse string for '_'</p>
+
+        <p>*# For each entry: parse string for '#'</p>
+
+        <p>*# Make sure we got 2 elements (vCPU and pCPU)</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><img alt="" title="Neweditvmdialogcpuenabled.png" src="/images/wiki/Neweditvmdialogcpuenabled.png?1447607916" /></p>
+
+<h2 id="notes">Notes</h2>
+
+<ol>
+  <li>Due to API change, This will be supported in 3.1 clusters only.</li>
+  <li>Live migration <strong>may fail</strong>, if destination host cannot support the relevant pinning request.</li>
+</ol>
+
+<category:sla>
+</category:sla>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

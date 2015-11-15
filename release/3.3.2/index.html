@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+OVirt 3.3.2 release notes &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>OVirt 3.3.2 release notes</td>
+</tr>
+<tr>
+<th>category</th>
+<td>documentation</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>dougsland, lvernia, sandrobonazzola, ybronhei</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Documentation</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>OVirt 3.3.2 release notes</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>16</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-12-19</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/OVirt_3.3.2_release_notes' target='_blank'>
+OVirt 3.3.2 release notes
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="ovirt-332-release-notes">OVirt 3.3.2 release notes</h1>
+
+<p>The oVirt Project is pleased to announce the availability of oVirt 3.3.2 release</p>
+
+<p>oVirt is an open source alternative to VMware vSphere, and provides an awesome KVM management interface for multi-node virtualization.</p>
+
+<p>To find out more about features which were added in previous oVirt releases, check out the <a href="/release/3.3.1/">oVirt 3.3.1 release notes</a>, <a href="/release/3.3/">oVirt 3.3 release notes</a>, <a href="/release/3.2/">oVirt 3.2 release notes</a> and <a href="/release/3.1/">oVirt 3.1 release notes</a>. For a general overview of oVirt, read <a href="/release/3.0/feature-guide/"> the oVirt 3.0 feature guide</a> and the <a href="/documentation/about-ovirt/">about oVirt</a> page.</p>
+
+<h2 id="install--upgrade-from-previous-versions">Install / Upgrade from previous versions</h2>
+
+<h3 id="fedora--centos--rhel">Fedora / CentOS / RHEL</h3>
+
+<p>If you're installing oVirt 3.3.2 on a clean host you should read our <a href="/documentation/quick-start/quick-start-guide/">Quick Start Guide</a></p>
+
+<p><strong>IMPORTANT NOTE:</strong> If you're upgrading from a previous version please update ovirt-release to latest version (10) and ensure you've <strong>ovirt-3.3.2</strong> and <strong>ovirt-stable</strong> repository enabled.</p>
+
+<pre class="highlight plaintext"><code>  # yum update ovirt-release&#x000A;  # yum repolist enabled&#x000A;</code></pre>
+
+<p>If you're upgrading from oVirt 3.3 then you should just execute:</p>
+
+<pre class="highlight plaintext"><code>  # yum update ovirt-engine-setup&#x000A;  # engine-setup&#x000A;</code></pre>
+
+<p>If you're upgrading from oVirt 3.2 you should read <a href="/release/3.2/to-3.3-upgrade/">oVirt 3.2 to 3.3 upgrade</a></p>
+
+<p>If you're upgrading from oVirt 3.1 you should upgrade to 3.2 before upgrading to 3.3.1. Please read <a href="/release/3.1/to-3.2-upgrade/">oVirt 3.1 to 3.2 upgrade</a> before starting the upgrade.
+On CentOS and RHEL: For upgrading to 3.2 you'll need 3.2 stable repository.
+So, first step is disable 3.3 / stable repository and enable 3.2 in /etc/yum.repos.d/ovirt.repo:</p>
+
+<pre class="highlight plaintext"><code>  [ovirt-32]&#x000A;  name=Stable builds of the oVirt 3.2 project `baseurl=`[`http://ovirt.org/releases/3.2/rpm/EL/$releasever/`](http://ovirt.org/releases/3.2/rpm/EL/$releasever/)&#x000A;  enabled=1&#x000A;  skip_if_unavailable=1&#x000A;  gpgcheck=0&#x000A;</code></pre>
+
+<p>Then</p>
+
+<pre class="highlight plaintext"><code>  # yum update ovirt-engine-setup&#x000A;</code></pre>
+
+<p>should install ovirt-engine-setup-3.2.3-1.el6.noarch.rpm
+if you have already updated to 3.3.x please use distro-sync or downgrade instead of update.
+Then:</p>
+
+<pre class="highlight plaintext"><code>  # engine-upgrade&#x000A;</code></pre>
+
+<p>this will upgrade your system to latest 3.2.
+Once you've all working on 3.2, enable 3.3/stable repository, then just</p>
+
+<pre class="highlight plaintext"><code>  # yum update ovirt-engine-setup&#x000A;  # engine-setup&#x000A;</code></pre>
+
+<p>will upgrade to latest 3.3.</p>
+
+<h2 id="whats-new-in-332">What's New in 3.3.2?</h2>
+
+<h3 id="vm-creation-guide-me-sequence">VM creation "Guide Me" sequence</h3>
+
+<p>The ability to add VM network interfaces has been dropped from the New VM "Guide Me" sequence, as they can now be added/removed directly in the New VM dialog. As always, administrators are encouraged to maintain templates which include networking configurations commonly used in their deployments of oVirt; for special cases, networking should now be configured in the New VM dialog instead of the "Guide Me" sequence.</p>
+
+<h3 id="backup-and-restore-api-for-independent-software-vendors">Backup and Restore API for Independent Software Vendors</h3>
+
+<p>oVirt now provides an API set for Independent Software Vendors to backup and restore virtual machines.
+For backup, a snapshot of a virtual machine's disk is created then attached to a virtual appliance.
+For restore, disks are attached to a virtual appliance, the data is restored to the disks, then the disks are attached to a virtual machine.</p>
+
+<h2 id="known-issues">Known issues</h2>
+
+<ul>
+  <li>EL &gt;= 6.5 or cloud-init &gt;= 0.7.2 are needed for cloud-init feature support ()</li>
+  <li>On Fedora 19 with recent versions of PostgreSQL it may be necessary to manually change kernel.shmmax settings ()</li>
+</ul>
+
+<h2 id="bugs-fixed">Bugs fixed</h2>
+
+<h3 id="ovirt-engine">oVirt Engine</h3>
+
+<ul>
+  <li>[Text] Make clear that Pinning a VM to a host only takes effect on the next power up</li>
+  <li>[TEXT] [rhevm] - Webadmin - Incorrect error message when selecting multiple Hosts from different DCs and openging a report</li>
+  <li>[Admin Portal] Copying a quota drops consumers and permissions</li>
+  <li>PRD33 - [RFE] Backup and Restore API for Independent Software Vendors</li>
+  <li>Missing Quota for VM, proceeding since in Permissive (Audit) mode - VM name missing</li>
+  <li>engine: can't live migrate vm's disk after a failure because image already exists in the target</li>
+  <li>[rhevm] Hosts stuck in status “Unassigned”, “Connecting", "Non Responding” - when restrict connection from host to DC, for 5 minutes</li>
+  <li>[RHEVM-RHS] Should check for gluster capabilities when moving host from virt to gluster cluster</li>
+  <li>[TEXT] restore.sh woes, unable to restore engine DB without using '-u postgres'</li>
+  <li>Unable to put a host into maintenance because VMs previously managed by vdsm are running on the host</li>
+  <li>Missing correlation-Id for adding new host</li>
+  <li>[oVirt] [provider] It's seemingly possible to add a provider with the same name</li>
+  <li>UI issues in volume popup view</li>
+  <li>IP of rhevm bridge should be greyed out when rhevm has static IP configuration</li>
+  <li>[Neutron] Network name/ID is missing from error message when importing existing network ID on DC</li>
+  <li>There is no favicon</li>
+  <li>vnics subtab not updating properly</li>
+  <li>Copy template operation don't properly update storage resources of quota.</li>
+  <li>Failed Remove Storage Domain after restart “ovirt-engine” service</li>
+  <li>User has no information that service ovirt-scheduler-proxy is not running, thus his scheduler is not used.</li>
+  <li>Provide more informative error message and logs when there is no host which vm can run on.</li>
+  <li>backup/restore: support restoring to different database location</li>
+  <li>Make UseSecureConnectionWithServers config option availabe via rhevm-config</li>
+  <li>[rhevm] Webadmin - Events - Search box with value "Events: Templates.os =anything" doesnt filter (Shows all events)</li>
+  <li>Stateless VM with memory state snapshot fails to run due to "VolumeError: Bad volume specification"</li>
+  <li>[RHEVM][webadmin] Inaccurate message when importing a VM to a DC without a matching VNIC profile</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Admin Portal] Run-Once</td>
+          <td>Cloud-Init does not work correctly</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>[REST-API] Update power management agent type via CLI failed</li>
+  <li>Trying to import a template with 2 disks again after a previously failed import attempt fails because rollback doesn't delete the disk</li>
+  <li>Support lowering cluster CPU level.</li>
+  <li>Update VM pool name, description and size fail with NPE</li>
+  <li>Uninformative message when trying to import VM while the MAC address pool is depleted</li>
+  <li>[User Portal] OS type 'Linux' and (just) Windows has 'OS ?' icon (but 'Other Linux' has penguin)</li>
+  <li>[ja_JP][Admin Portal] Cluster tab -&gt; Logical Networks subtab -&gt; Manage Networks window -&gt; horizontal scroll-bar added due to column width that is changing dynamically per locale</li>
+  <li>[AIO] Host does not resolve on NON loopback if ipv6 address is resolved at DNS</li>
+  <li>all-in-one: do not perform all in one installation if there are no cpu capabilities</li>
+  <li>[ALL_LANG][Admin_Portal][User_Portal] Header -&gt; Guide -&gt; Missing Language message unlocalized</li>
+  <li>[Admin Portal] link to documentation is broken + [text] Warning about missing English 'language pack' - should change to 'documentation'</li>
+  <li>Block multicast MAC addresses for VNICs</li>
+  <li>[RHEVM][webadmin] bad looking rectangle on advanced parameters expansion in New Network Interface dialog</li>
+  <li>[RHEVM][webadmin] rephrase error message on adding profile to nonVM network</li>
+  <li>[webadmin] pin left pane to dialog window in New logical network dialog</li>
+  <li>RHEVM Backend: Bad request error doesn't returns enough details (cannot understand from the error what was bad/missing in request)</li>
+  <li>/etc/sysconfig/nfs is deleted on cleanup</li>
+  <li>Number of images listed in glance domains shouldn't be limited by server-side configuration</li>
+  <li>[REST-API] no ssh-publickey support for install host action</li>
+  <li>The automatic install in RHEV-M 3.3 does not have all the values in the config file it uses.</li>
+  <li>"Resources" tab on the Power User Portal unable to display all virtual machine disks</li>
+  <li>[ovirt-engine-backend] cloud-init fake-cdrom is attached even during normal Run action</li>
+  <li>support for configurable attachment of VirtIO-SCSI controller</li>
+  <li>in PM only selecting apc or ipmilan changes the options, choosing other types is static</li>
+  <li>Remove support for IB700 watchdog</li>
+  <li>Scheduling: avoid running external plugins in validations</li>
+  <li>[User Portal] RDP browser plugin shows no error when there's no RDP connection to guest</li>
+  <li>[admin portal] cannot add Windows VM with 512MB memory, or more than 64GB</li>
+  <li>Missing permissions link at /neworks/network-id/vnicprofiles url</li>
+  <li>[rhevm] Backend - Error importing old template (WinXP &amp; RHEL)</li>
+  <li>VmPoolMonitor throws a NullPointerException while starting a guest that in turn remains down with its images locked.</li>
+  <li>ovirt-engine 3rd party dependencies closeup</li>
+  <li>Edit Storage Domain dialog hangs when domain connected to “None” Data Center</li>
+  <li>Update VM NIC of a running VM accepts networks that don't exist on the host</li>
+  <li>log spam when using external load balancing</li>
+  <li>remove quota consumer dialog is stuck</li>
+  <li>CPU pinning option is not available for the VMs running on "Local on Host" type DataCenter.</li>
+  <li>Starting some of VMs to meet prestarted value of a pool fails because of snapshot issue</li>
+  <li>[pt-BR][Admin Portal] please extend New Cluster dialog to accommodate the check-box labels in "optimization" section</li>
+  <li>[restapi] undo snapshot preview through restapi commits snapshot instead of undoing preview</li>
+  <li>Power on VM fails after blocking HSM connectivity to SDs while LSM and powering off the VM</li>
+  <li>Cannot access Host with sshd alternative port after deployment.</li>
+  <li>[RESTAPI] wrong VM link for Template's watchdog</li>
+  <li>disks view under system tab are missing (refresh issue)</li>
+  <li>When adding new domain with -addPermissions param, it add permissions also for all other domains which are already added without -addPermissions param.</li>
+  <li>Quota isn't enforced in run VM</li>
+  <li>problems in engine-backup.sh</li>
+  <li>Expose instructions for configuration drop dir variables</li>
+  <li>Additional vNIC flickering on creating new VM</li>
+  <li>attempt to import Export domain as ISO domain creates an orphaned storage connection that prevents subsequent import of the domain as an Export domain</li>
+  <li>vm import: rhevm doesn't recognize that the template is present in the cluster when importing via webadmin</li>
+  <li>[notifier] SECURITY - notifier.log contains value of MAIL_PASSWORD if not empty</li>
+  <li>[notifier] MAIL_PORT_SSL ignored - javax.mail.MessagingException: Could not connect to SMTP host: smtp.corp.redhat.com, port: 465;</li>
+  <li>[engine-webadmin] [external-provider] no indication of disk export operation to glance</li>
+  <li>[host-deploy] print stderr content as error in audit log</li>
+  <li>Max Memory Over Commitment's units should use percentage and not "MB"</li>
+  <li>server.log is at debug priority after jboss update</li>
+  <li>[engine-webadmin] [text] inappropriate text message on UI when trying to scan alignment an unattached disk</li>
+  <li>Non migratables VM's cannot run without a specific host to run on</li>
+  <li>No manual for rhevm-cleanup command</li>
+  <li>engine-setup should not fail if /etc/sysconfig/nfs does not exist</li>
+  <li>GlusterFS mount succeeded and exists although the create storage domain failed</li>
+  <li>Wrong description of delete vnic profile's permission</li>
+  <li>[engine-backend] [external-provider] importing a snapshot image from glance fails with "Error during CanDoActionFailure.: java.lang.IllegalStateException: Connection manager has been shut down"</li>
+  <li>check database object ownership to engine before upgrade</li>
+  <li>engine-setup should not fail if /etc/ovirt-engine/.pgpass exists</li>
+  <li>[RHEVM] [webadmin] [UI] not enough space for nic10 in New Virtual Machine dialog</li>
+  <li>Incorrect java home detection</li>
+  <li>[RHEVM] [network] Audit log message for unmanaged network</li>
+  <li>Host moves to "UP" although it's already connected to another pool</li>
+  <li>Reconstruct isn't being executed as expected on different master version between engine and vdsm</li>
+  <li>[RHEVM][webadmin] vNIC profile screens are missing features</li>
+  <li>Database downtime causes OutOfConnection problem in ovirt, and even if the database restarts - an ovirt service restart is necessary</li>
+  <li>iptables rules set on U1 nodes does not include 8080 and 38469 for bigbend</li>
+  <li>[RHEVM][vNIC profiles] Block unsupported profiles from vNICs</li>
+  <li>[RHEVM] [webadmin] remove "add new nic" from Create new VM Guide me</li>
+  <li>[engine-backend] [external-provider] [glance] exporting a disk to glance storage domain does not lock the disk for the first few seconds</li>
+  <li>[engine-webadmin] [external-provider] [text] inappropriate text message on UI when trying to export a disk twice to glance storage domain</li>
+  <li>[DWH] ETL process doesn't recover from postgres restart</li>
+  <li>Windows 2008 Server as VM in RHEV-M 3.3 loads the HDA sound card and it needs the AC'97 instead.</li>
+  <li>vNIC profile name is overridden by network name</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Add Network</td>
+          <td>QoS list not updated for profiles added with "+" button</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>[engine] Allocated size not calculated correctly for storage domains</li>
+  <li>disk stays in "image locked" status long after action (snapshot preview) failure when all related task are gone from vdsm and engine</li>
+  <li>Add osinfo configuration instruction and warning not to override defaults</li>
+  <li>sysprep floppy is not attached to Windows 2008 R2 machine - even when specifically checked in Run Once</li>
+  <li>Removing VM without removing its disks releases quota of the disks wrongfully</li>
+  <li>ovirt-engine is killed by oom-killer in is21</li>
+  <li>Required/non-required networks gone from setup networks dialog</li>
+  <li>inappropriate text message on UI when trying to scan alignment for disk</li>
+  <li>[engine] vm appears in 2 different rhev-h hosts (split brain)</li>
+  <li>Can't detach LUN: casting problem</li>
+  <li>engine-cleanup (and possible engine-setup) does not affect runtime value of shmmax</li>
+  <li>Host/Interface subtab unusable in old clusters</li>
+  <li>engine-cleanup (and possible engine-setup) does not affect runtime value of shmmax</li>
+  <li>Make the UseFqdnForRdpIfAvailable engine-config option available</li>
+  <li>Possibility to edit Network description and comment while attached to VMs</li>
+  <li>add NIC to VM failed on create VM from template</li>
+  <li>require openjdk version which solves the memory leak in RHEV-M: service ovirt-engine gets OOM killed after few days of uptime</li>
+  <li>rhevm-setup fails do to missing 'file' tool</li>
+  <li>export isn't executed because of space check performed not only for relevant disks</li>
+  <li>memory volumes aren't being exported for diskless vms</li>
+  <li>getallfromvmtemplates stored in procedure execution takes long time making VM creation take long time when having more than 80 templates</li>
+  <li>taskcleaner.sh '-l' option does not produce logfile</li>
+  <li>when exporting vm with memory snapshots, the tasks for export the memory volumes are never cleaned</li>
+  <li>[RHEVM][webadmin] check if network profile exists on DC before creating VM</li>
+  <li>core/GUI: prevent potential serialization exceptions post upgrade to GWT 2.5</li>
+  <li>[engine-backend] cannot detach an unplugged disk from a running VM if the cluster doesn't support hotplug/hotunplug</li>
+  <li>when provisioning db engine-setup output confusing message about using existing credentials</li>
+  <li>/etc/exports is removed on cleanup</li>
+  <li>[engine-backend] Host doesn't move to UP although it connected succesfully to the pool</li>
+  <li>The GWT applications should use /api/ instead of /api to avoid sending credentials to /rhevm-reports</li>
+  <li>RHEL 6 VM gets ac97 soundcard (osinfo overrides broken?)</li>
+  <li>TryBackToAllSnapshotsOfVm threw NullPointerException during snapshot-preview because of random disk attached to VM</li>
+  <li>[RHEV][host deploy] Support OpenStack Havana layer 2 agent integration</li>
+  <li>Unable to run regular yum update due to implicit (undeclared) version lock on rhevm-websocket-proxy</li>
+  <li>Updating info from Host fails when a VM without a balloon is found</li>
+  <li>[postgres provisioning] when locale is non unicode non unicode password may be generate failing java database access</li>
+  <li>[AIO] ssh issues</li>
+  <li>can't use cloud-init /run once via api</li>
+  <li>[REST API] Network object has no attribute ID</li>
+  <li>restapi: cloud-init incorrectly implements RSDL metadata at vm.start()</li>
+</ul>
+
+<h3 id="vdsm">VDSM</h3>
+
+<ul>
+  <li>Paused VM not unpaused when vdsm is starting and storage domain is valid</li>
+  <li>Domain monitoring stops after disconnecting and reconnecting storage pool leading to bogus "No space left" error</li>
+  <li>hosted-engine –vm-shutdown throws an exception when ha agent tries to stop engine vm after maintenance mode on the host was set to "local".</li>
+  <li>Cannot disable KSM.</li>
+  <li>[vdsm] vdsm.spec restorecon verbosity.</li>
+  <li>[RHS-C] Error while executing action Add Gluster Hook: Internal Engine Error.</li>
+  <li>Node isn't registred when NIC with VLAN.</li>
+  <li>Mom tries to set balloon bigger than max_balloon.</li>
+  <li>Migration status verb fails on engine side due to change in response format.</li>
+  <li>DestroyVDSCommand called after CancelMigrateVDSCommand failure when attempting to cancel multiple live migrations at a time .</li>
+  <li>Accents in the vm name break the migration .</li>
+  <li>vdsm fails to start if reconfiguring of libvirt was performed.</li>
+  <li>LVM logical volumes on FC SDs are activated automatically after hypervisor reboot.</li>
+  <li>VDSM does not report the qemu version in capabilities, if qemu-kvm-rhev is used.</li>
+  <li>_highWrite should not extend a drive if the highest allocated extent is outside the capacity of the volume.</li>
+  <li>Tune dirty_ratio and dirty_background_ratio not set on Fedora &gt;= 19.</li>
+  <li>[vdsm] VM disk does not get resized when performing live virtual disk resize on block storage</li>
+  <li>SD is partially accessible after extending.</li>
+</ul>
+
+<h3 id="ovirt-node-plugin-vdsm">ovirt-node-plugin-vdsm</h3>
+
+<p>No bugs reported at moment.</p>
+
+<h3 id="ovirt-image-uploader">ovirt-image-uploader</h3>
+
+<ul>
+  <li>image not showing up with –nfs-server option</li>
+  <li>RHEV message seen after upgrade to 3.2 from 3.1 "WARNING: A deprecated configuration key has been found. Please replace the deprecated key, 'rhevm', with the new one 'engine'"</li>
+</ul>
+
+<h3 id="ovirt-iso-uploader">ovirt-iso-uploader</h3>
+
+<ul>
+  <li>RHEV message seen after upgrade to 3.2 from 3.1 "WARNING: A deprecated configuration key has been found. Please replace the deprecated key, 'rhevm', with the new one 'engine'"</li>
+</ul>
+
+<h3 id="ovirt-log-collector">ovirt-log-collector</h3>
+
+<ul>
+  <li>RHEV message seen after upgrade to 3.2 from 3.1 "WARNING: A deprecated configuration key has been found. Please replace the deprecated key, 'rhevm', with the new one 'engine'"</li>
+  <li>When calling the API the LC does not provide a max value, limiting the returned results to 100 by default.</li>
+  <li>[LOG_COLLECTOR] - infinite loop in configuration parser</li>
+  <li>warning suggesting the user to use filters when collected logs are too big</li>
+  <li>rhevm-log-collector does not collect database dump</li>
+</ul>
+
+<category:documentation> <category:releases>
+</category:releases></category:documentation>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+mom-balloon.conf &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>mom-balloon.conf</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>aglitke</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Sla/autoballooning-howto/mom-balloon.conf</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>2</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-02-21</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Sla/autoballooning-howto/mom-balloon.conf' target='_blank'>
+Sla/autoballooning-howto/mom-balloon.conf
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="mom-balloonconf">mom-balloon.conf</h1>
+
+<p>Copy the contents of the box below to /etc/vdsm/mom-balloon.conf on the hypervisor host.</p>
+
+<pre class="highlight plaintext"><code>[main]&#x000A;# The wake up frequency of the main daemon (in seconds)&#x000A;main-loop-interval: 5&#x000A;&#x000A;# The data collection interval for host statistics (in seconds)&#x000A;host-monitor-interval: 5&#x000A;&#x000A;# The data collection interval for guest statistics (in seconds)&#x000A;guest-monitor-interval: 5&#x000A;&#x000A;# The wake up frequency of the guest manager (in seconds).  The guest manager&#x000A;# sets up monitoring and control for newly-created guests and cleans up after&#x000A;# deleted guests.&#x000A;guest-manager-interval: 5&#x000A;&#x000A;# The interface MOM using to discover active guests and collect guest memory&#x000A;# statistics. There're two choices for it: libvirt or vdsm.&#x000A;hypervisor-interface: VDSM&#x000A;&#x000A;# The wake up frequency of the policy engine (in seconds).  During each&#x000A;# interval the policy engine evaluates the policy and passes the results&#x000A;# to each enabled controller plugin.&#x000A;policy-engine-interval: 10&#x000A;&#x000A;# A comma-separated list of Controller plugins to enable&#x000A;controllers: Balloon, KSM&#x000A;&#x000A;# Sets the maximum number of statistic samples to keep for the purpose of&#x000A;# calculating moving averages.&#x000A;sample-history-length: 10&#x000A;&#x000A;# Set this to an existing, writable directory to enable plotting.  For each&#x000A;# invocation of the program a subdirectory momplot-NNN will be created where NNN&#x000A;# is a sequence number.  Within that directory, tab-delimited data files will be&#x000A;# created and updated with all data generated by the configured Collectors.&#x000A;plot-dir:&#x000A;&#x000A;# Activate the RPC server on the designated port (-1 to disable).  RPC is&#x000A;# disabled by default until authentication is added to the protocol.&#x000A;rpc-port: -1&#x000A;&#x000A;# At startup, load a policy from the given file.  If empty, no policy is loaded&#x000A;policy: /etc/vdsm/mom-balloon.policy&#x000A;&#x000A;[logging]&#x000A;# Set the destination for program log messages.  This can be either 'stdio' or&#x000A;# a filename.  When the log goes to a file, log rotation will be done&#x000A;# automatically.&#x000A;log: /var/log/vdsm/mom.log&#x000A;&#x000A;# Set the logging verbosity level.  The following levels are supported:&#x000A;# 5 or debug:     Debugging messages&#x000A;# 4 or info:      Detailed messages concerning normal program operation&#x000A;# 3 or warn:      Warning messages (program operation may be impacted)&#x000A;# 2 or error:     Errors that severely impact program operation&#x000A;# 1 or critical:  Emergency conditions&#x000A;# This option can be specified by number or name.&#x000A;verbosity: info&#x000A;&#x000A;## The following two variables are used only when logging is directed to a file.&#x000A;# Set the maximum size of a log file (in bytes) before it is rotated.&#x000A;max-bytes: 2097152&#x000A;# Set the maximum number of rotated logs to retain.&#x000A;backup-count: 5&#x000A;&#x000A;[host]&#x000A;# A comma-separated list of Collector plugins to use for Host data collection.&#x000A;collectors: HostMemory, HostKSM&#x000A;&#x000A;[guest]&#x000A;# A comma-separated list of Collector plugins to use for Guest data collection.&#x000A;collectors: GuestQemuProc, GuestMemory, GuestBalloon&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

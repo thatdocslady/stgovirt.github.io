@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+OvirtTestDay3.1 &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>OvirtTestDay3.1</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>aglitke, gcheresh, jhernand, mburns, mkolesni, rmiddle, rvaknin, snmishra, ykaul</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Testing/OvirtTestDay3.1</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>33</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-06-15</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Testing/OvirtTestDay3.1' target='_blank'>
+Testing/OvirtTestDay3.1
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="ovirt-test-day-31">Ovirt Test Day 3.1</h1>
+
+<h2 id="objective">Objective</h2>
+
+<p>The purpose of test days initiative is to accomplish the following goals:</p>
+
+<ul>
+  <li>Get multiple engineers and stakeholders to have hands-on opportunity to learn more about Ovirt functionality and features.</li>
+  <li>Improve the quality of oVirt, towards its second release (aka '3.1')</li>
+  <li>While learning about the project, the stakeholders can come with their own test cases, in different categories:
+    <ul>
+      <li>General/Project installation</li>
+      <li>Storage</li>
+      <li>Networking</li>
+      <li>APIs, SDK, CLI</li>
+      <li>Spice</li>
+      <li>User Interface</li>
+      <li>Tools</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="participants">Participants</h2>
+
+<p>Test Days are open to anyone. If you have your own setup we will provide all the software packages and the required information. Please refer - What to do as a participant - in the section below, if you're willing to participate please add yourself to the below table:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>General</th>
+      <th>Storage</th>
+      <th>Networking</th>
+      <th>APIs</th>
+      <th>Spice</th>
+      <th>User Interface</th>
+      <th>Tools</th>
+      <th>Distribution</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>snmishra</td>
+      <td>V</td>
+      <td> </td>
+      <td>Basic</td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+      <td>RHEL 6.2</td>
+    </tr>
+    <tr>
+      <td>rvaknin</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>SDK</td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+      <td>Fedora 16</td>
+    </tr>
+    <tr>
+      <td>mkolesni</td>
+      <td> </td>
+      <td> </td>
+      <td>Advanced</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>Fedora 17</td>
+    </tr>
+    <tr>
+      <td>gcheresh</td>
+      <td> </td>
+      <td> </td>
+      <td>Basic</td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+      <td>Fedora 17</td>
+    </tr>
+    <tr>
+      <td>rmiddle</td>
+      <td>V</td>
+      <td> </td>
+      <td>Basic</td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+      <td>Fedora 17</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="test-dates">Test Dates</h2>
+
+<p>The overall test dates are spread across multiple duration which are driven by the beta releases from the engineering. The following are the list of test days scheduled -</p>
+
+<ul>
+  <li>JAN 18th, 2012 - First Release (3.0)</li>
+  <li>Jun 14th, 2012 - Second Release (3.1)</li>
+</ul>
+
+<h2 id="execution-plan-and-guidelines">Execution Plan and Guidelines</h2>
+
+<p>The following is the list of categories which we would like to focus on. However the scope is not limited and they are guidelines only. Feel free to extend it to the limitations of the software.</p>
+
+<h3 id="general">General</h3>
+
+<p>You need at least two physical servers to install and configure a basic yet complete oVirt environment with shared storage to exercise the following:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Bugs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Setup oVirt engine using either Active Directory or Local IPA, two hosts configured as hypervisors (Fedora / Ovirt-Node / other) with power management (Storage Domains - Data Domain / ISO Domain and Export Domain)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Use ISO Uploader to populate images of OS and tools</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Basic Network Configuration</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create virtual machines and assign them to users</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Migrate Virtual Machines between the hypervisors</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Collect log file using the log collector tool</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="configuration">Configuration</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Bugs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Configure high availability for virtual machines which are running mission critical workloads, so they will be restarted on another host if hardware failure occurs</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Use the multi-level administration feature to assign different levels of user permissions</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Live Migration Scenarios</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="storage">Storage</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Bugs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Use the General configuration as a base configuration</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create different types of storage domains (NFS, ISCSI, FC, local storage) with 2 or more data domains</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Install at least 2 VMs on each of the Data Centers</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Move the master domain to a different domain within the Data Center</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Export one of the installed VMs, delete it, import it to another Data Center</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create a template from one of the VMs and then create a new VM based on this template</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Move the newly created VM to another data domain</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create several snapshots from a VM (Each time change something in the guest)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Restore a previous snapshot</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Storage Failovers</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Host Failovers</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Power User Portal provides power users the ability to create and manage virtual machines from the power user portal</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>High Availability scenarios provides instructions to configure virtual machine and host high availability</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="network">Network</h3>
+
+<ul>
+  <li>Base config - single NIC, bridge on top, VMs attached to NIC</li>
+  <li>Advanced configurations:</li>
+</ul>
+
+<p><img alt="" title="fig:Vlan bonding.jpg" src="/images/wiki/Vlan_bonding.png?1447607916" /> make sure each of the configs can:</p>
+
+<ul>
+  <li>survive a reboot</li>
+  <li>test network at both host and VM level</li>
+  <li>ping and transfer large amounts of data (2Gb size files should be enough)</li>
+  <li>remain operational over time (1hr of uptime should be sufficient for the basic testing)</li>
+</ul>
+
+<h3 id="apis">APIs</h3>
+
+<p>by default we'll be using the webadmin as our API for testing on this section we'll try to have default deployment with the different APIs</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Webadmin</th>
+      <th>UserPortal</th>
+      <th>Rest</th>
+      <th>Python-SDK</th>
+      <th>CLI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Create a data-center</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create a cluster</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Update cluster</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Install a host</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create a storage domain on DC</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Attach export/ISO domain to DC</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create vm</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Delete vm</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Import vm</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Start/hibernate/resume/stop vm</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create a snapshot to vm</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create a template from vm</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Create vm from template</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Sign out</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>General</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>V</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Python API of the above scenarios can be found in: <a href="wiki/Testing/PythonApi">http://www.ovirt.org/wiki/Testing/PythonApi</a></p>
+
+<h3 id="spice">Spice</h3>
+
+<p>For details about configuration check <a href="wiki/Testing/Spice">http://www.ovirt.org/wiki/Testing/Spice</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Bugs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Install Windows VM and a Linux VM with Guest Tools (QXL graphic driver and spice vdagent)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Assign user to these vms, login to a user portal, from your client machine, and connect to it using the Spice protocol</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Try to watch a clip via YouTube or any other web based video (with QXL driver installed on VM)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Try to watch a Local movie (with QXL driver installed on VM)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Try to use client mouse mode and clipboard share between client and VM (with spice agent installed on VM)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Install AutoCAD or any other graphic application a try to work with it (with QXL driver installed on VM)</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="user-interface">User Interface</h3>
+
+<p>Webadmin: BZ#832046, BZ#832064, BZ#832128</p>
+
+<h3 id="node">Node</h3>
+
+<p>Pre-built node available <a href="releases/beta/binary/ovirt-node-iso-2.4.0-1.1.fc17.iso">here</a>.</p>
+
+<p>Please check <a href="/node/release-notes/">Node_Release_Notes</a> prior to testing for information on current known issues</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Bugs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Boot image and install using the TUI on a single disk</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Boot image and install using the TUI on multiple disks</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Boot image and install using autoinstall parameters from <a href="http://docs.redhat.com/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Hypervisor_Deployment_Guide/sect-Deployment_Guide-Installing_Red_Hat_Enterprise_Virtualization_Hypervisors-RHEV_Hypervisor_Kernel_Parameters_and_Automated_Installation.html">here</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Configure Networking using the TUI</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Configure ssh password auth and attempt to login using ssh</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Configure remote logging</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Configure kdump</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Configure iscsi initiator name</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Configure collectd</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Configure oVirt Engine hostname and port</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Configure admin password on oVirt Engine screen and add host through ovirt engine</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Once registered, run vms on top of ovirt-node</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="ovirt-information-details">Ovirt Information Details</h2>
+
+<p>Beta RPMs for Fedora 17 are available from <a href="releases/beta/fedora/17/">http://www.ovirt.org/releases/beta/fedora/17/</a>. In order to use it create a <code>/etc/yum.repos.d/ovirt-engine-beta.repo</code> file with the following content:</p>
+
+<pre class="highlight plaintext"><code>[ovirt-beta]&#x000A;name=ovirt-beta&#x000A;baseurl=http://ovirt.org/releases/beta/fedora/17&#x000A;enabled=1&#x000A;skip_if_unavailable=1&#x000A;gpgcheck=0&#x000A;</code></pre>
+
+<p>The run <code>yum install ovirt-engine</code>.</p>
+
+<p><em><strong>Note:</strong> Take into account that if this repository is not configured propertly you will be installing version 3.0 of the engine (it is part of Fedora 17), which is not the subject of this test day.</em></p>
+
+<p>Please refer the following documents for more information on hardware requirements, installation procedure and software download locations:</p>
+
+<ul>
+  <li><a href="wiki/Installing_ovirt_from_rpm">http://ovirt.org/wiki/Installing_ovirt_from_rpm</a></li>
+  <li><a href="wiki/Installing_ovirt-node_from_rpm">http://ovirt.org/wiki/Installing_ovirt-node_from_rpm</a></li>
+</ul>
+
+<p>Please refer the following documents for Ovirt Installation guide, bits location and admin guide:</p>
+
+<ul>
+  <li><a href="wiki/Documentation">http://ovirt.org/wiki/Documentation</a></li>
+</ul>
+
+<p>Please refer the following document for 'virt-to-date' tool, simple tool for setting up local yum repo with all required packages and easy deployment.</p>
+
+<ul>
+  <li><a href="wiki/virt-to-date">http://ovirt.org/wiki/virt-to-date</a></li>
+</ul>
+
+<p>In case you would like to test a product with a new test case, there is a template to be used for creating test cases. Please copy this template for the test case, and update the link in this document to point to the results table below. It is not necessary that the person who is writing the test case will also be the person executing the test case, please make sure the instructions are explicit enough that anyone who may want to participate in the test day can follow them, and execute it.</p>
+
+<h2 id="what-to-do-as-a-participant">What to do as a participant</h2>
+
+<ul>
+  <li>If you already have the hardware, verify if it meets the hardware requirement, refer information detail section below</li>
+  <li>Update the Participants section.</li>
+  <li>Accomplish the goals set in objective section , run the tests, update the test matrix.</li>
+  <li>Running into any issues - contact any participant in the list</li>
+</ul>
+
+<h2 id="bug-reporting">Bug Reporting</h2>
+
+<ul>
+  <li>ovirt - <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=oVirt">https://bugzilla.redhat.com/enter_bug.cgi?product=oVirt</a></li>
+  <li>Spice - <a href="https://bugs.freedesktop.org/">https://bugs.freedesktop.org/</a> under Spice product</li>
+  <li>VDSM - <a href="https://bugzilla.redhat.com/show_bug.cgi?id=831998">https://bugzilla.redhat.com/show_bug.cgi?id=831998</a></li>
+</ul>
+
+<p>Track bug for the release - <a href="https://bugzilla.redhat.com/show_bug.cgi?id=822145">https://bugzilla.redhat.com/show_bug.cgi?id=822145</a></p>
+
+<h2 id="miscellaneous">Miscellaneous</h2>
+
+<p>IRC - #ovirt at irc.oftc.net</p>
+
+<h2 id="current-issues">Current Issues</h2>
+
+<ul>
+  <li>VM state shown as Non-responsive in UI even though VM is Up according to vdsm</li>
+  <li><a href="https://bugzilla.redhat.com/show_bug.cgi?id=832158">Bug 832158 - ISO List is not refreshed after new ISO is uploaded</a></li>
+  <li>Fixed in ovirt-node-iso-2.4.0-1.0.fc17.iso - ovirt-node-iso network interface config not working. New build expected with a fixed shortly.</li>
+  <li><a href="https://bugzilla.redhat.com/769571">Bug 769571 - Console icon doesn't get reenabled when spice console is closed</a></li>
+  <li>ovirt-node-iso <a href="https://bugzilla.redhat.com/show_bug.cgi?id=832196">Bug 832196 - Getting directory not found error.</a></li>
+  <li><a href="https://bugzilla.redhat.com/show_bug.cgi?id=832199">Bug 832199 - vdsmd init script times out due to lengthy semanage operation</a></li>
+  <li>Workaround for sanlock error: "Readonly leases are not supported."
+    <ul>
+      <li>comment out: lock_manager="sanlock" in /etc/libvirt/qemu.conf and restart libvirt and vdsm</li>
+    </ul>
+  </li>
+</ul>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+OVirt 3.3 release-management &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>OVirt 3.3 release-management</td>
+</tr>
+<tr>
+<th>category</th>
+<td>release</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>abonas, amuller, amureini, arik, awels, danken, derez, dneary, doron, dpkshetty, ecohen, emesika, fkobzik, fsimonce, gpadgett, knarra, laravot, lhornyak, lpeer, mburns, mgoldboi, michael pasternak, mkolesni, moti, mperina, mskrivan, netbulae, ofrenkel, ofri, oschreib, prasanth, roy, sahina, sandrobonazzola, sgotliv, tjelinek, vered, vszocs, yair zaslavsky, ybronhei</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Releases</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>OVirt 3.3 release-management</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>220</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-08-27</td>
+</tr>
+<tr>
+<th>wiki_warnings</th>
+<td>table-style</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/OVirt_3.3_release-management' target='_blank'>
+OVirt 3.3 release-management
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="ovirt-33-release-management">OVirt 3.3 release-management</h1>
+
+<h2 id="timeline">Timeline</h2>
+
+<p><em>' These are tentative planning dates and may change</em>'</p>
+
+<ul>
+  <li>General availability: <strong>2013-09-04</strong>
+    <ul>
+      <li>Beta release: <strong>2013-07-18</strong></li>
+      <li>Feature freeze: <strong>2013-07-17</strong></li>
+      <li><a href="/release/3.3/testday/"> oVirt 3.3 Test Day:</a> <strong>2013-07-24</strong></li>
+      <li>RC Build: <strong>2013-08-14</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="tracker-bug">Tracker Bug</h2>
+
+<ul>
+  <li><a href="https://bugzilla.redhat.com/show_bug.cgi?id=918494">Tracker - 918494</a></li>
+</ul>
+
+<h2 id="release-criteria">Release Criteria</h2>
+
+<p>Tracker bug: <a href="https://bugzilla.redhat.com/918494">https://bugzilla.redhat.com/918494</a></p>
+
+<h3 id="general">General</h3>
+
+<ul>
+  <li>All sources must be available on ovirt.org</li>
+</ul>
+
+<h3 id="must">MUST</h3>
+
+<ul>
+  <li><strong>MUST</strong>: No blockers on the lower level components - libvirt, lvm,device-mapper,qemu-kvm, Jboss, postgres, iscsi-initiator
+    <ul>
+      <li><strong>Current blocker list:</strong></li>
+      <li>…</li>
+    </ul>
+  </li>
+  <li><strong>MUST</strong>: All image related operations work - copy, move, import, export, snapshot (vm and template)</li>
+  <li><strong>MUST</strong>: Ovirt/host installation should work flawlessly (w/o SSL)</li>
+  <li><strong>MUST</strong>: Fully operational flow (define DC hierarchy so you can run vm) with GUI/CLI/Python-API/REST-API</li>
+  <li><strong>MUST</strong>: vm life-cycle is working flawlessly (start,suspend,resume,stop,migrate)</li>
+  <li><strong>MUST</strong>: Upgrade from previous release
+    <ul>
+      <li><strong>Features/bug list:</strong></li>
+      <li><a href="/feature/node/upgrade-tool/">Features/Node_upgrade_tool</a> - Status:</li>
+      <li><a href="//bugzilla.redhat.com/show_bug.cgi?id=916728">Bug #916728: Upgrade from 3.1 to 3.2 fails</a></li>
+      <li><a href="//bugzilla.redhat.com/show_bug.cgi?id=963275">Bug #963275: Need upgrade process from 3.2 to 3.3</a></li>
+      <li>…</li>
+    </ul>
+  </li>
+  <li><strong>MUST</strong>: ovirt-node full cycle (register, approve and running VM)
+    <ul>
+      <li>See <a href="Node test procedure">Node test procedure</a></li>
+    </ul>
+  </li>
+  <li><strong>MUST</strong>: No known data corruptors
+    <ul>
+      <li><strong>Current list of data corruptors:</strong></li>
+      <li>…</li>
+    </ul>
+  </li>
+  <li><strong>MUST</strong>: Can define NFS, iSCSI, FC and local based storage domains
+    <ul>
+      <li>See <a href="storage test procedure">storage test procedure</a></li>
+    </ul>
+  </li>
+  <li><strong>MUST</strong>: Can define VLAN based networks, bond interfaces, and have VLANs over bonded interfaces</li>
+  <li><strong>MUST</strong>: Can authenticate users against at least one external LDAP server</li>
+  <li><strong>MUST</strong>: Can run multiple VMs</li>
+  <li><strong>MUST</strong>: Can connect to VMs using SPICE</li>
+  <li><strong>MUST</strong>: VM watchdog support</li>
+  <li><strong>MUST</strong>: Predictable host timeouts for HA fencing</li>
+  <li><strong>MUST</strong>: MoM integration- KSM verification</li>
+  <li><strong>MUST</strong>: Have Release Notes with feature specific information</li>
+  <li><strong>MUST</strong>: Have updated quick start guide available</li>
+  <li><strong>MUST</strong>: No regressions from 3.1 Release</li>
+  <li><strong>MUST</strong>: Have release announcement for front page of ovirt.org and for mailing lists</li>
+</ul>
+
+<h3 id="should">SHOULD</h3>
+
+<ul>
+  <li><strong>SHOULD</strong>: Can run full cycle with gluster storage</li>
+  <li><strong>SHOULD</strong>: have updated installation guide available</li>
+  <li><strong>SHOULD</strong>: Scheduling API.</li>
+  <li><strong>SHOULD</strong>: MoM integration- ballooning.</li>
+  <li><strong>SHOULD</strong>: Alerts when balloon not supported by guest</li>
+  <li><strong>SHOULD</strong>: (scheduling API first) VM affinity</li>
+  <li><strong>SHOULD</strong>: (scheduling API first) VM not getting minimum guaranteed memory</li>
+</ul>
+
+<h2 id="features-status-table">Features Status Table</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Functional team</th>
+      <th>Feature</th>
+      <th>Release priority</th>
+      <th>Owner</th>
+      <th>Status</th>
+      <th>Target date</th>
+      <th>Test page</th>
+      <th>Remarks</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Virt</td>
+      <td><a href="/feature/virt/ram-snapshots/">RAM Snapshots</a></td>
+      <td>?</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:ahadas' title='Special MediaWiki link: original pointed to: User:ahadas'> Arik Hadas</span></td>
+      <td>Green</td>
+      <td>June 25th</td>
+      <td><a href="/feature/virt/ram-snapshots/#Testing">http://www.ovirt.org/Features/RAM_Snapshots#Testing</a></td>
+      <td>Merged</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Virt</td>
+      <td><a href="/feature/virt/novnc-console/">noVNC console</a></td>
+      <td>?</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:FKobzik' title='Special MediaWiki link: original pointed to: User:FKobzik'> Frantisek Kobzik</span></td>
+      <td>Green</td>
+      <td>?</td>
+      <td><a href="/feature/virt/novnc-console/#Testing">http://www.ovirt.org/Features/noVNC_console#Testing</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Virt</td>
+      <td><a href="/feature/virt/non-plugin-console-invocation/">Non Plugin RDP Invocation</a></td>
+      <td>?</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:FKobzik' title='Special MediaWiki link: original pointed to: User:FKobzik'> Frantisek Kobzik</span></td>
+      <td>Green</td>
+      <td>?</td>
+      <td><a href="/feature/virt/non-plugin-console-invocation/#RDP">http://www.ovirt.org/Features/Non_plugin_console_invocation#RDP</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Virt</td>
+      <td><a href="/feature/virt/instance-types/">Instance Types - VM Dialog Redesing</a></td>
+      <td>?</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:tjelinek' title='Special MediaWiki link: original pointed to: User:tjelinek'> Tomas Jelinek</span> <span class='broken-link link-mediawiki' data-href='User:ofrenkel' title='Special MediaWiki link: original pointed to: User:ofrenkel'> Omer Frenkel</span></td>
+      <td>Green</td>
+      <td>Jun 25th</td>
+      <td><a href="/feature/virt/instance-types/#Testing">http://www.ovirt.org/Features/Instance_Types#Testing</a></td>
+      <td>will be there partially - only redesigned Edit VM dialog and typeahead listboxes</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Virt</td>
+      <td><a href="/feature/virt/os-info/">OS Info</a></td>
+      <td>?</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:rgolan' title='Special MediaWiki link: original pointed to: User:rgolan'> Roy Golan</span></td>
+      <td>Green</td>
+      <td>Jun 23rd</td>
+      <td><a href="http://wiki.ovirt.org/OS_info#Testing">http://wiki.ovirt.org/OS_info#Testing</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Virt</td>
+      <td><a href="/feature/virt/console-connection-settings-dialog-in-portals/">Redesigned Display Options dialog</a></td>
+      <td>?</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:fkobzik' title='Special MediaWiki link: original pointed to: User:fkobzik'> Frantisek Kobzik</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td>?</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Virt</td>
+      <td><a href="Features/EmulatedMachine">EmulatedMachine</a></td>
+      <td>?</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:rgolan' title='Special MediaWiki link: original pointed to: User:rgolan'> Roy Golan</span></td>
+      <td>Green</td>
+      <td>June 27th</td>
+      <td><a href="/feature/virt/cluster-emulation-modes/#Testing">http://www.ovirt.org/Cluster_emulation_modes#Testing</a></td>
+      <td>automatically use the right emulated machine type for QEMU. On review</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Virt</td>
+      <td><a href="/feature/virt/spicehtml5/">SPICE HTML5 client integration</a></td>
+      <td>?</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:fkobzik' title='Special MediaWiki link: original pointed to: User:fkobzik'> Frantisek Kobzik</span></td>
+      <td>Green</td>
+      <td>June 25th</td>
+      <td><a href="/feature/virt/spicehtml5/#Testing">http://www.ovirt.org/Features/SpiceHTML5#Testing</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Virt</td>
+      <td><a href="/feature/storage/glusterfs-storage-domain/">GlusterFS Storage Domain</a></td>
+      <td>Must</td>
+      <td>Deepak C Shetty (vdsm) &amp; Sharad Mishra (engine)</td>
+      <td>Green</td>
+      <td> </td>
+      <td><a href="/feature/storage/glusterfs-storage-domain/#Testing">http://www.ovirt.org/Features/GlusterFS_Storage_Domain#Testing</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Virt</td>
+      <td><a href="/feature/cloud/cloud-init-integration/">Cloud-Init Integration</a></td>
+      <td>?</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Gpadgett' title='Special MediaWiki link: original pointed to: User:Gpadgett'>Greg Padgett</span> <span class='broken-link link-mediawiki' data-href='User:ofrenkel' title='Special MediaWiki link: original pointed to: User:ofrenkel'> Omer Frenkel</span></td>
+      <td>Green</td>
+      <td>Jul 25</td>
+      <td><a href="/feature/cloud/cloud-init-integration/#Testing">http://www.ovirt.org/Features/Cloud-Init_Integration#Testing</a></td>
+      <td>Only available with UI, no REST implementation yet.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td><a href="/feature/network/device-custom-properties/">Device Custom Properties</a></td>
+      <td>must</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:mperina' title='Special MediaWiki link: original pointed to: User:mperina'> Martin Perina</span> - infra <span class='broken-link link-mediawiki' data-href='User:amuller' title='Special MediaWiki link: original pointed to: User:amuller'> Assaf Muller</span> - network</td>
+      <td>Green</td>
+      <td>2013-06-03</td>
+      <td>?</td>
+      <td>This feature is spread over infra network and storage. The infra aspect is covered by Martin, the network part is covered by Assaf and the storage part is not covered ATM. Infra and Networks parts are done.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td><a href="/feature/infra/asynctaskmanagerchanges-3.3/">Async task manager changes</a></td>
+      <td>should</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Yair Zaslavsky' title='Special MediaWiki link: original pointed to: User:Yair Zaslavsky'> Yair Zaslavsky</span></td>
+      <td>Green - Merged</td>
+      <td>2013-07-03</td>
+      <td><a href="/feature/infra/asynctaskmanagerchanges-3.3/#Testing">http://www.ovirt.org/Features/AsyncTaskManagerChanges_3.3#Testing</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td><a href="/feature/infra/externaltasks/">ExternalTasks</a></td>
+      <td>Must</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:emesika' title='Special MediaWiki link: original pointed to: User:emesika'> Eli Mesika</span></td>
+      <td>Green</td>
+      <td>2013-07-14</td>
+      <td> </td>
+      <td><a href="/feature/infra/externaltasks/#Testing">Features/ExternalTasks#Testing</a></td>
+      <td>Merged</td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td><a href="/feature/vdsm/supervdsm-service/">Supervdsm service</a></td>
+      <td>Should</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:ybronhei' title='Special MediaWiki link: original pointed to: User:ybronhei'> Yaniv Bronhaim</span></td>
+      <td>Green</td>
+      <td>2013-06-03</td>
+      <td><a href="/feature/vdsm/supervdsm-service/">http://www.ovirt.org/Features/Supervdsm_service</a></td>
+      <td>Submitted upstream, missing backport to rhev</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td><a href="/engine/automatic-fencing/#Automatic_Fencing_in_oVirt_3.3">SSH Soft Fencing</a></td>
+      <td>Should</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:mperina' title='Special MediaWiki link: original pointed to: User:mperina'> Martin Perina</span></td>
+      <td>Green</td>
+      <td>2013-07-02</td>
+      <td><a href="/engine/automatic-fencing/#Testing">http://www.ovirt.org/Automatic_Fencing#Testing</a></td>
+      <td>Merged</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td><a href="Features/Java_SDK">Java SDK</a></td>
+      <td>Must</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Michael pasternak' title='Special MediaWiki link: original pointed to: User:Michael pasternak'> Michael Pasternak</span></td>
+      <td>Green - Merged</td>
+      <td> </td>
+      <td><a href="Features/Java_SDK_3.3#Testing">http://www.ovirt.org/Features/Java_SDK_3.3#Testing</a></td>
+      <td>Merged</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Infra</td>
+      <td><a href="/feature/infra/ssh-abilities/">SSH Abilities</a></td>
+      <td>Should</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:ybronhei' title='Special MediaWiki link: original pointed to: User:ybronhei'> Yaniv Bronhaim</span></td>
+      <td>Green</td>
+      <td>2013-07-17</td>
+      <td><a href="/feature/infra/ssh-abilities/#Testing">http://www.ovirt.org/Features/Ssh_Abilities#Testing</a></td>
+      <td>Merged</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Networking</td>
+      <td><a href="/feature/network/normalized-ovirtmgmt-initialization/">Normalized ovirtmgmt Initialization</a></td>
+      <td>Must</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:masayag' title='Special MediaWiki link: original pointed to: User:masayag'> Moti Asayag</span></td>
+      <td>Green</td>
+      <td>2013-06-03</td>
+      <td><a href="/feature/network/normalized-ovirtmgmt-initialization/#Testing">Features/Normalized_ovirtmgmt_Initialization#Testing</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Networking</td>
+      <td><a href="/feature/network/migration-network/">Migration Network</a></td>
+      <td>Must</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:alkaplan' title='Special MediaWiki link: original pointed to: User:alkaplan'> Alona Kaplan</span></td>
+      <td>Green</td>
+      <td>Now</td>
+      <td><a href="/feature/network/migration-network/#Testing">Features/Migration_Network#Testing</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Networking</td>
+      <td><a href="Features/Quantum_Integration">Quantum Integration</a></td>
+      <td>Must</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:mkolesni' title='Special MediaWiki link: original pointed to: User:mkolesni'> Michael Kolesnik</span></td>
+      <td>Green</td>
+      <td>2013-06-16</td>
+      <td><a href="Features/Quantum_Integration#Testing">Features/Quantum_Integration#Testing</a></td>
+      <td>?</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Networking</td>
+      <td><a href="/feature/network/networkreloaded/">NetworkReloaded</a></td>
+      <td>Optional - see comment</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:asegurap' title='Special MediaWiki link: original pointed to: User:asegurap'> Antoni Segura Puimedon</span></td>
+      <td>Orange - In progress, partially merged</td>
+      <td>?</td>
+      <td>?</td>
+      <td>This feature is mostly about code refactoring and enabling a pluggable network configuration implementation. This feature should not hold back the release.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Networking</td>
+      <td><a href="/feature/network/multiple-gateways/">Multiple Gateways</a></td>
+      <td>Must</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:amuller' title='Special MediaWiki link: original pointed to: User:amuller'> Assaf Muller</span></td>
+      <td>mostly done (though selinux kills dhcp support for multigw)</td>
+      <td>2013-06-09</td>
+      <td><a href="/feature/network/multiple-gateways/#Testing">Features/Multiple_Gateways#Testing</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Storage</td>
+      <td><a href="/feature/storage/virtio-scsi/">Virtio-SCSI support</a></td>
+      <td>Optional</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:derez' title='Special MediaWiki link: original pointed to: User:derez'>Daniel Erez</span></td>
+      <td>Green</td>
+      <td>?</td>
+      <td><a href="/feature/storage/virtio-scsi/#Testing">Features/Virtio-SCSI#Testing</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Storage</td>
+      <td><a href="/feature/storage/read-only-disk/">Read Only Disks</a></td>
+      <td>Optional</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:vvolansk' title='Special MediaWiki link: original pointed to: User:vvolansk'>Vered Volansky</span></td>
+      <td>Orange - In progress, not submitted</td>
+      <td>?</td>
+      <td>?</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Storage</td>
+      <td><a href="/feature/storage/manage-storage-connections/">Manage Storage Connections</a></td>
+      <td>Must</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:abonas' title='Special MediaWiki link: original pointed to: User:abonas'>Alissa Bonas</span></td>
+      <td>Orange - Work in Progress, partially merged</td>
+      <td>2013-06-30</td>
+      <td><a href="/feature/storage/manage-storage-connections/#Testing">Features/Manage_Storage_Connections#Testing</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Storage</td>
+      <td><a href="/feature/storage/disk-hooks/">Adding VDSM hooks for hotplugging/unplugging a disk</a></td>
+      <td>Optional</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:vvolansk' title='Special MediaWiki link: original pointed to: User:vvolansk'>Vered Volansky</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Storage</td>
+      <td><a href="/feature/storage/moveascopyanddelete/">Separating "Move" vm operation to "Copy" and "Delete" operations to improve VM availability</a></td>
+      <td>Optional</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:laravot' title='Special MediaWiki link: original pointed to: User:laravot'>Liron Aravot</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td> </td>
+      <td>Done</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Storage</td>
+      <td><a href="/feature/storage/backup-restore-api-integration/">Backup and Restore API for Independent Software Vendors</a></td>
+      <td>Optional</td>
+      <td>Deepak C Shetty (vdsm) &amp; Sharad Mishra (engine)</td>
+      <td>Red - Work in Progress</td>
+      <td>?</td>
+      <td>?</td>
+      <td>Still in the early stages of development</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Storage</td>
+      <td>Allow resign/force re-election of SPM</td>
+      <td>Optional</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:tal' title='Special MediaWiki link: original pointed to: User:tal'>Tal Nisan</span></td>
+      <td>?</td>
+      <td>?</td>
+      <td>?</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Storage</td>
+      <td><a href="/feature/storage/diskalignment/">Disks Block Alignment</a></td>
+      <td>Optional</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:fsimonce' title='Special MediaWiki link: original pointed to: User:fsimonce'>Federico Simoncelli</span></td>
+      <td>Orange - In progress</td>
+      <td> </td>
+      <td> </td>
+      <td>VDSM patches merged, Engine/Webadmin in review</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>SLA</td>
+      <td><a href="Features/oVirt_scheduler">oVirt scheduler</a></td>
+      <td>Must</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:GChaplik' title='Special MediaWiki link: original pointed to: User:GChaplik'>Gilad Chaplik</span></td>
+      <td>Green</td>
+      <td>15/7/2013</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>SLA</td>
+      <td><a href="Features/Scheduling_API">Scheduling API</a></td>
+      <td>Must</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:GChaplik' title='Special MediaWiki link: original pointed to: User:GChaplik'>Gilad Chaplik</span></td>
+      <td>orange - in review</td>
+      <td> </td>
+      <td>?</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>SLA</td>
+      <td><a href="Features/Design/Network_QoS">Network QoS</a></td>
+      <td>Must</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:OMasad' title='Special MediaWiki link: original pointed to: User:OMasad'>Ofri Masad</span></td>
+      <td>Green</td>
+      <td> </td>
+      <td>?</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>SLA</td>
+      <td><a href="/feature/engine/watchdog-engine-support/">Watchdog engine support</a></td>
+      <td>Must</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:LHornyak' title='Special MediaWiki link: original pointed to: User:LHornyak'>lhornyak@redhat.com</span></td>
+      <td> </td>
+      <td> </td>
+      <td><a href="/feature/engine/watchdog-engine-support/#Test_cases">Test cases</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>SLA</td>
+      <td><a href="/feature/sla/trusted-compute-pools/">Trusted compute pools</a></td>
+      <td>Must</td>
+      <td><user:omasad></user:omasad></td>
+      <td> </td>
+      <td> </td>
+      <td><a href="/feature/sla/trusted-compute-pools/#Test_cases">Trusted_compute_pools#Test_cases</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Gluster</td>
+      <td><a href="/feature/storage/gluster-hooks-management/">Gluster Hooks Management</a></td>
+      <td>Should</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:Sahina' title='Special MediaWiki link: original pointed to: User:Sahina'>Sahina Bose</span></td>
+      <td>Green</td>
+      <td>17/06/2013</td>
+      <td><a href="/feature/storage/gluster-hooks-management/#Test_Cases">Gluster Hooks Management Testing</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Node</td>
+      <td><a href="/feature/node/universal-image/">Universal Node Image</a></td>
+      <td>Must</td>
+      <td>mburns@redhat.com</td>
+      <td>Green</td>
+      <td>Now</td>
+      <td>?</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Node</td>
+      <td><a href="/feature/vdsm/vdsm-plugin/">Node VDSM Plugin</a></td>
+      <td>Must</td>
+      <td>mburns</td>
+      <td>Green</td>
+      <td>2013-05-31</td>
+      <td><a href="/feature/vdsm/vdsm-plugin/#Testing">Features/Node_vdsm_plugin#Testing</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Integration</td>
+      <td><a href="/feature/integration/otopi-infra-migration/">Otopi Infra Migration</a></td>
+      <td>Must</td>
+      <td><span class='broken-link link-mediawiki' data-href='User:SandroBonazzola' title='Special MediaWiki link: original pointed to: User:SandroBonazzola'> Sandro Bonazzola</span></td>
+      <td>Green</td>
+      <td>29/6/2013</td>
+      <td><a href="/feature/integration/otopi-infra-migration/#Basic_Testing">Test cases</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>UX</td>
+      <td>User Portal performance improvements for IE8</td>
+      <td>Must</td>
+      <td>vszocs@redhat.com, awels@redhat.com</td>
+      <td>Green</td>
+      <td>Now</td>
+      <td>N/A</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>UX</td>
+      <td><a href="Feature/Branding">Branding Support</a></td>
+      <td>Should</td>
+      <td>awels@redhat.com</td>
+      <td>Green</td>
+      <td>June 11, 2013</td>
+      <td>N/A</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="feature-table-mapping">Feature Table Mapping</h3>
+
+<h4 id="release-priority">Release priority:</h4>
+
+<ul>
+  <li>Must - feature absense will delay the release</li>
+  <li>Should - feature absense won't delay the release</li>
+</ul>
+
+<h4 id="status-mapping">Status mapping:</h4>
+
+<pre class="highlight plaintext"><code>* Red  - Feature isn't in code base yet.&#x000A;&#x000A;* Orange  -  Feature is in code base but not completed yet.&#x000A;&#x000A;* Green  - Feature is in code base and ready for testing.&#x000A;</code></pre>
+
+<h4 id="target-date">Target Date</h4>
+
+<p>date complete feature is merged in code base</p>
+
+<h4 id="test-page">Test Page</h4>
+
+<p>base description on how to test the new feature - should be relevant for test day</p>
+
+<h2 id="features">Features</h2>
+
+<p>Features being considered for inclusion/already in master:</p>
+
+<h3 id="virt">Virt</h3>
+
+<ul>
+  <li><a href="/feature/virt/ram-snapshots/">Features/RAM Snapshots</a></li>
+  <li><a href="/feature/virt/novnc-console/">Features/noVNC console</a></li>
+  <li><a href="/feature/storage/glusterfs-storage-domain/">Features/GlusterFS_Storage_Domain</a></li>
+  <li><a href="/feature/cloud/cloud-init-integration/">Features/Cloud-Init_Integration</a></li>
+</ul>
+
+<h3 id="infra">Infra</h3>
+
+<ul>
+  <li><a href="/feature/network/device-custom-properties/">Features/Device Custom Properties</a></li>
+  <li><a href="/feature/infra/externaltasks/">Features/ExternalTasks</a></li>
+  <li><a href="/feature/vdsm/supervdsm-service/">Features/Supervdsm_service</a></li>
+  <li><a href="Features/Java_SDK">Features/Java_SDK</a></li>
+  <li><a href="/feature/infra/ssh-abilities/">Features/Ssh_Abilities</a></li>
+</ul>
+
+<h3 id="networking">Networking</h3>
+
+<ul>
+  <li><a href="/feature/network/migration-network/">Features/Migration Network</a></li>
+  <li><a href="/feature/network/normalized-ovirtmgmt-initialization/">Features/Normalized ovirtmgmt Initialization</a></li>
+  <li><a href="Features/Quantum_Integration">Features/Quantum_Integration</a></li>
+  <li><a href="/feature/network/networkreloaded/">Feature/NetworkReloaded</a> reimplementation of configNetwork in vdsm. Should have zero (0) effect on users, but required for future support for ovs/NM</li>
+  <li><a href="/feature/network/multiple-gateways/">Features/Multiple Gateways</a> configure more gateways on host, on top of the default one.</li>
+</ul>
+
+<h3 id="storage">Storage</h3>
+
+<ul>
+  <li><a href="/feature/storage/online-virtual-drive-resize/">Enable online virtual drive resize</a></li>
+  <li><a href="/feature/storage/virtio-scsi/">Virtio-SCSI support</a></li>
+  <li><a href="/feature/storage/read-only-disk/"> Read Only Disks </a></li>
+  <li><a href="Features/Edit_Connection_Properties">Edit Connection Properties</a></li>
+  <li><a href="/feature/storage/disk-hooks/">Adding VDSM hooks for hotplugging/unplugging a disk</a></li>
+  <li><a href="/feature/storage/moveascopyanddelete/">Separating "Move" vm operation to "Copy" and "Delete" operations to improve VM availability</a></li>
+  <li><a href="/feature/storage/backup-restore-api-integration/">Backup and Restore API for Independent Software Vendors</a></li>
+  <li>Allow resign/force re-election of SPM</li>
+  <li><a href="/feature/storage/diskalignment/">Disks Block Alignment</a></li>
+  <li><a href="/feature/storage/glance-integration/">Integration with Glance</a></li>
+</ul>
+
+<h3 id="sla--scheduling">SLA &amp; Scheduling</h3>
+
+<ul>
+  <li><a href="Features/oVirt_scheduler">Features/oVirt_scheduler</a> Wrapping scheduling functionalities as a separate package</li>
+  <li><a href="Features/Scheduling_API">Features/Scheduling_API</a> (depends on <a href="Features/oVirt_scheduler">Features/oVirt_scheduler</a>) exposing user-level scheduling API</li>
+  <li><a href="/feature/engine/watchdog-engine-support/">Features/Watchdog_engine_support</a></li>
+  <li><a href="/sla/network-qos/">Features/Network_QoS</a></li>
+  <li><a href="/feature/sla/trusted-compute-pools/">Trusted_compute_pools</a></li>
+</ul>
+
+<h3 id="gluster">Gluster</h3>
+
+<ul>
+  <li><a href="/feature/storage/gluster-hooks-management/">Features/Gluster Hooks Management</a> Managing gluster hooks from console
+    <ul>
+      <li>Status : In Progress</li>
+      <li>gerrit :
+        <ul>
+          <li><a href="http://gerrit.ovirt.org/#/q/project:ovirt-engine+branch:master+topic:gluster-hooks,n,z">http://gerrit.ovirt.org/#/q/project:ovirt-engine+branch:master+topic:gluster-hooks,n,z</a></li>
+          <li><a href="http://gerrit.ovirt.org/#/c/14145">http://gerrit.ovirt.org/#/c/14145</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="node">Node</h3>
+
+<ul>
+  <li><a href="/feature/node/universal-image/">Universal Node Image</a> make the ovirt-node image generic for use with non-oVirt Projects</li>
+  <li><a href="/feature/vdsm/vdsm-plugin/">Node VDSM Plugin</a> extract all vdsm and oVirt Engine specific code from ovirt-node into a plugin</li>
+  <li>oVirt Node works on a different asynchronous release schedule from the rest of oVirt.
+    <ul>
+      <li>At the time of the oVirt 3.3 release, the current version of ovirt-node will be 3.0.0.</li>
+      <li>Feature for oVirt node 3.0.0 can be found on the <a href="/node/3.0-release-management/">oVirt Node 3.0.0 release page</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="integration">Integration</h3>
+
+<ul>
+  <li>(MUST) <a href="/feature/integration/otopi-infra-migration/">Features/Otopi_Infra_Migration</a> A complete re-write of engine-setup, engine-cleanup, engine-upgrade and AIO plugin using otopi.</li>
+  <li>(SHOULD) <a href="/feature/engine/self-hosted-engine/">Features/Self_Hosted_Engine</a> The ability to run the Engine as a VM on the hosts that are managed by this Engine, in an HA configuration, when the Engine VM can start on any of the hosts.</li>
+</ul>
+
+<h3 id="ux">UX</h3>
+
+<ul>
+  <li>User Portal performance improvements for IE8
+    <ul>
+      <li><a href="http://gerrit.ovirt.org/#/c/11975/">http://gerrit.ovirt.org/#/c/11975/</a></li>
+      <li><a href="http://gerrit.ovirt.org/#/c/12104/">http://gerrit.ovirt.org/#/c/12104/</a></li>
+      <li><a href="http://gerrit.ovirt.org/#/c/10509/">http://gerrit.ovirt.org/#/c/10509/</a></li>
+      <li><a href="http://gerrit.ovirt.org/#/c/10579/">http://gerrit.ovirt.org/#/c/10579/</a></li>
+      <li><a href="http://gerrit.ovirt.org/#/c/12213/">http://gerrit.ovirt.org/#/c/12213/</a></li>
+      <li><a href="http://gerrit.ovirt.org/#/c/12301/">http://gerrit.ovirt.org/#/c/12301/</a></li>
+      <li><a href="http://gerrit.ovirt.org/#/c/12340/">http://gerrit.ovirt.org/#/c/12340/</a></li>
+      <li><a href="http://gerrit.ovirt.org/#/c/12524/">http://gerrit.ovirt.org/#/c/12524/</a></li>
+    </ul>
+  </li>
+  <li>Branding support
+    <ul>
+      <li><a href="http://gerrit.ovirt.org/#/c/13181/">http://gerrit.ovirt.org/#/c/13181/</a></li>
+    </ul>
+  </li>
+  <li>Frontend Clean-up/Refactoring (at least partial/first phase) <a href="/feature/ux/frontendrefactor/">Features/Design/FrontendRefactor</a></li>
+  <li>Upgrade Google Web Toolkit &amp; related framework versions</li>
+</ul>
+
+<category:releases> [Category:Release management](Category:Release management)
+</category:releases>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

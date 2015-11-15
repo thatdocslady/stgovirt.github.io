@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Node Testing &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Node Testing</td>
+</tr>
+<tr>
+<th>category</th>
+<td>node</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>fabiand, mburns</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Testing</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Node Testing</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>20</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2013-03-20</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Node_Testing' target='_blank'>
+Node Testing
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="node-testing">Node Testing</h1>
+
+<p>Automated testing can be done on several levels. Currently we plan to do some checks at build time and some high level checks on a running node instance.</p>
+
+<h3 id="tests-at-build-time">Tests at build time</h3>
+
+<p><strong>Requirements</strong></p>
+
+<ul>
+  <li>Should check the basic functionality of low-level libraries to reduce simple programming errors or changes in function calls which break some depending code.</li>
+  <li>Should be triggered at build time e.g. with a <code>make check</code> and test some basic functionality</li>
+</ul>
+
+<h4 id="syntax-checks">Syntax checks</h4>
+
+<p>Very trivial, just check if we follow pythons style guide <a href="http://www.python.org/dev/peps/pep-0008/">pep8</a></p>
+
+<ul>
+  <li>pep8 - Syntax checks</li>
+  <li>pylint</li>
+  <li>pyflakes</li>
+</ul>
+
+<h3 id="runtime-tests">Runtime tests</h3>
+
+<h4 id="infrastructure">Infrastructure</h4>
+
+<p>The tests need to be carried out on VMs and real hardware. The necessary steps involved to run the tests (select and prepare a host, run the test, tear it down) are not part of Jenkins and are carried out by <a href="https://gitorious.org/ovirt/igord">igor</a>.</p>
+
+<p>The page <a href="/howto/write-igor-tests-for-node/">How to write Igor tests for Node</a> covers how to write Igor tests for Node.</p>
+
+<h5 id="workflow">Workflow</h5>
+
+<ul>
+  <li>Jenkins builds an ISO</li>
+  <li>With Jenkins
+    <ul>
+      <li>Inject <a href="https://gitorious.org/ovirt/ovirt-igor-client">ovirt-igor-client</a> into ISO using edit-node tool</li>
+      <li>Upload modified ISO to igor</li>
+      <li>Start igor job by providing testsuite, profile(ISO+kargs), and host</li>
+      <li>Wait for igor to finish</li>
+      <li>Mail igor report</li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="todo">Todo</h5>
+
+<ul>
+  <li>Merge upload ISO and start testing functionality into something more high level</li>
+  <li>Allow to define test plans (list of (testsuite,profile,host)-tuples)</li>
+</ul>
+
+<h4 id="sanity-checks">Sanity checks</h4>
+
+<p><strong>Requirements</strong></p>
+
+<ul>
+  <li>Should be triggered automatically from automated builds (Jenkins)</li>
+  <li>Ideally will cause builds to be marked either failed or unstable</li>
+  <li>Should cover basic sanity testing scenarios that we cover in manual testing today</li>
+  <li>Testcases should be easy to write and flexible</li>
+  <li>Individual testcases should be also <em>easily</em> testable</li>
+  <li>Needs to cover different (see below) to allow complex setups like: Test 'Suite A' on a Fedora host with three unpartitioned disks and on a second Fedora host with three partitioned disks
+    <ul>
+      <li>hosts (e.g. virtual, real)</li>
+      <li>distributions (e.g. RHEL, Fedora, CentOS, …)</li>
+      <li>profiles (e.g. partitioned or not, with auto-install or not, …)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Basic Sanity testing scenarios</strong></p>
+
+<ol>
+  <li>Boot and install oVirt on real hardware or virtualized (Sanity testing should always include at least 1 test on real hardware)</li>
+  <li>install using TUI</li>
+  <li>install using auto-install</li>
+  <li>general configuration done (network, storage, ovirt-engine)</li>
+  <li>start vms on running ovirt-node hosts using FC and iscsi storage domains</li>
+</ol>
+
+<h4 id="unit-tests">Unit tests</h4>
+
+<p>Unit tests can be used to check our internal "API" stability and discover bugs or regressions.</p>
+
+<p>doctests is one way to add basic unit tests as comments to methods in python.</p>
+
+<ul>
+  <li>doctest - <a href="http://docs.python.org/library/doctest.html">http://docs.python.org/library/doctest.html</a> , <a href="http://wiki.python.org/moin/DocTest">http://wiki.python.org/moin/DocTest</a></li>
+  <li>unittest</li>
+  <li>nose</li>
+</ul>
+
+<p><strong>Problems</strong> Much code in ovirt relies on runtime informations and thus might be hard to test outside of a running system.</p>
+
+<h4 id="tui-testing">TUI testing</h4>
+
+<p>The plan is to separate the TUI code and "logic" code even more, so that TUI actions (approximately) map to library methods. In such a case we can use unit testing to test the functionality of the library backing the TUI, and it should be easier to track bugs down which arise in the TUI.</p>
+
+<h1 id="testplan">Testplan</h1>
+
+<p>The testcases and kept in the <a href="http://gerrit.ovirt.org/gitweb?p=ovirt-node.git;a=tree;f=tests/igor;hb=HEAD">test subdirectory of the ovirt-node git repository</a>.</p>
+
+<h3 id="basic-testcases">Basic Testcases</h3>
+
+<p>Link: <a href="http://gerrit.ovirt.org/gitweb?p=ovirt-node.git;a=tree;f=tests/igor;hb=HEAD">All available igor testcases/sets/suites</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Testsuite</th>
+      <th>Difficulty</th>
+      <th>Complete</th>
+      <th>Comment</th>
+      <th>Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Auto-install with storage_init=usb,ata</td>
+      <td>difficult</td>
+      <td>0%</td>
+      <td>Igor changes: VM with different storage devices</td>
+      <td>2012-11-19</td>
+    </tr>
+    <tr>
+      <td>Engine registration - Register with an existing Engine instance</td>
+      <td>difficult</td>
+      <td>0%</td>
+      <td>Should be possible with igor's current featureset</td>
+      <td>2012-11-15</td>
+    </tr>
+    <tr>
+      <td>Update - Basic update</td>
+      <td>difficult</td>
+      <td>100%</td>
+      <td><a href="http://gerrit.ovirt.org/gitweb?p=ovirt-node.git;a=blob;f=tests/igor/plans/ai_upgrade.plan;hb=HEAD">testplan</a></td>
+      <td>2013-03-20</td>
+    </tr>
+    <tr>
+      <td>Basic Auto-Install - Installation with the basic parameters and a login into the TUI</td>
+      <td>easy</td>
+      <td>100%</td>
+      <td><a href="http://gerrit.ovirt.org/gitweb?p=ovirt-node.git;a=blob;f=tests/igor/suites/ai_basic.suite;hb=HEAD">testsuite</a></td>
+      <td>2012-06-20</td>
+    </tr>
+    <tr>
+      <td>Basic TUI-Install - Simple TUI installation using sane defaults</td>
+      <td>medium</td>
+      <td>100%</td>
+      <td><a href="http://gerrit.ovirt.org/gitweb?p=ovirt-node.git;a=blob;f=tests/igor/suites/mi_basic.suite;hb=HEAD">testsuite</a></td>
+      <td>2012-11-15</td>
+    </tr>
+    <tr>
+      <td>Basic TUI Testing - Perform a couple of TUI tasks</td>
+      <td>medium</td>
+      <td>100%</td>
+      <td><a href="http://gerrit.ovirt.org/gitweb?p=ovirt-node.git;a=blob;f=tests/igor/sets/tui/check_navigation.set;hb=HEAD">testcase</a> part of *_extended testsuites</td>
+      <td>2012-11-15</td>
+    </tr>
+    <tr>
+      <td>Basic unit tests - Perform doctest and unitests on the running Node</td>
+      <td>easy</td>
+      <td>100%</td>
+      <td><a href="http://gerrit.ovirt.org/gitweb?p=ovirt-node.git;a=blob;f=tests/igor/sets/python.set;hb=HEAD">testcase</a> part of *_extended testsuites</td>
+      <td>2012-11-15</td>
+    </tr>
+  </tbody>
+</table>
+
+<category:testing> <category:automation> <category:node>
+</category:node></category:automation></category:testing>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

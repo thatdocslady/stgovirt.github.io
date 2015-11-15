@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Gluster Storage Domain Reference &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Gluster Storage Domain Reference</td>
+</tr>
+<tr>
+<th>category</th>
+<td>documentation</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>fsimonce</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Documentation</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Gluster Storage Domain Reference</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>1</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-05-21</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Gluster_Storage_Domain_Reference' target='_blank'>
+Gluster Storage Domain Reference
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="gluster-storage-domain-reference">Gluster Storage Domain Reference</h1>
+
+<h2 id="suggested-gluster-volume-configuration-for-storage-domain">Suggested Gluster Volume Configuration for Storage Domain</h2>
+
+<p>In order to use a gluster volume as an oVirt Storage Domain we suggest to:</p>
+
+<ul>
+  <li>use the gluster replica 3 (three copies)</li>
+  <li>set the network.ping-timeout to 10 seconds</li>
+  <li>set the cluster.quorum-type to auto</li>
+</ul>
+
+<p>Volume Info:</p>
+
+<pre class="highlight plaintext"><code>  Volume Name: (...)&#x000A;  Type: Replicate&#x000A;  Volume ID: (...)&#x000A;  Status: Started&#x000A;  Number of Bricks: 1 x 3 = 3&#x000A;  Transport-type: tcp&#x000A;  Bricks:&#x000A;  (...three bricks...)&#x000A;  Options Reconfigured:&#x000A;  network.ping-timeout: 10&#x000A;  cluster.quorum-type: auto&#x000A;</code></pre>
+
+<p>This configuration will prevent a split-brain on the files that are accessed in read-write mode from multiple hosts (e.g. sanlock ids file).</p>
+
+<p>The commands used to configure the options are:</p>
+
+<pre class="highlight plaintext"><code>  # gluster volume set `&lt;volume_name&gt;` network.ping-timeout 10&#x000A;  # gluster volume set `&lt;volume_name&gt;` cluster.quorum-type auto&#x000A;</code></pre>
+
+<p>Bug <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1066996">BZ#1066996</a> still generated in some cases a split-brain on sanlock files even with the proper configuration. It is suggested to use a gluster build where this bug is solved (when it will be available).</p>
+
+<category:documentation>
+</category:documentation>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Wed 11 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Memory FAQ &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Memory FAQ</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>apahim, rmiddle</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Memory FAQ</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>6</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-07-20</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Memory_FAQ' target='_blank'>
+Memory FAQ
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="memory-faq">Memory FAQ</h1>
+
+<p>oVirt Memory Frequently Asked Questions</p>
+
+<h2 id="how-does-ovirt-check-the-available-memory-to-start-a-vm">How does oVirt check the available memory to start a VM?</h2>
+
+<p>CURRENT MEMORY ALLOCATION (MB):</p>
+
+<pre class="highlight plaintext"><code> DATABASE/Target Node/vds_dynamic.mem_commited = 68551&#x000A; DATABASE/Target Node/vds_dynamic.pending_vmem_size = 0&#x000A; DATABASE/Target Node/vds_dynamic.guest_overhead = 65&#x000A; DATABASE/Target Node/vds_dynamic.reserved_mem = 256&#x000A; DATABASE/Target VM/vm_static.min_allocated_mem = 2048&#x000A;&#x000A; 68551 + 0 + 65 + 256 + 2048 = 70920&#x000A;</code></pre>
+
+<p>CURRENT OVERCOMMIT RATE:</p>
+
+<pre class="highlight plaintext"><code> DATABASE/Target Node's Cluster/vds_groups.max_vds_memory_over_commit = 100&#x000A;</code></pre>
+
+<p>CURRENT MEMORY LIMIT (MB):</p>
+
+<pre class="highlight plaintext"><code> DATABASE/Target Node/vds_dynamic.physical_mem_mb = 64420&#x000A;&#x000A; max_vds_memory_over_commit * physical_mem_mb / 100&#x000A; 100 * 64420 / 100 = 64420&#x000A;</code></pre>
+
+<p>"CAN RUN VM?" LOGIC:</p>
+
+<pre class="highlight plaintext"><code> IF "CURRENT MEMORY ALLOCATION (70920)" &lt;= "CURRENT MEMORY LIMIT (64420)"&#x000A;  THEN RUN VM&#x000A;  ELSE CAN NOT RUN VM&#x000A;</code></pre>
+
+<h2 id="what-is-the-difference-between-defined-memory-and-physical-memory-guaranteed">What is the difference between "Defined Memory" and "Physical Memory Guaranteed"?</h2>
+
+<p>Physical Memory Guaranteed is the minimum threshold always available to VM. It's a value that oVirt is taking care, but not used anywhere to define the VM. VM will use as much memory as needed, till the limit of Defined Memory. This flexible memory allocation is called memory ballooning.</p>
+
+<p>Using free comand, the Total Memory is always the Defined Memory. You can also check the actual active memory on VM:</p>
+
+<pre class="highlight plaintext"><code># grep "Active:" /proc/meminfo&#x000A;</code></pre>
+
+<h2 id="where-are-the-memory-usage-value-for-each-node-coming-from">Where are the memory usage value for each Node coming from?</h2>
+
+<p>This value is coming from oVirt Node memory statistcs in /proc/meminfo. It depends on how much memory is being used by the entire system, including VMs and all processes.</p>
+
+<h2 id="why-can-i-not-start-a-new-vm-due-to-cannot-run-vm-there-are-no-available-running-hosts-with-sufficient-memory-in-vms-cluster">Why can I not start a new VM due to "Cannot run VM. There are no available running Hosts with sufficient memory in VM's Cluster."?</h2>
+
+<p>Even with low Node memory usage. Even when VMs are not using all Node memory, oVirt must assure that will have enough memory when VMs become high loaded. To do so, oVirt considers the worst case (see #1).</p>
+
+<h2 id="why-is-the-use-of-memory-for-each-vm-in-0">Why is the use of memory for each VM in 0%?</h2>
+
+<p>You have to install <a href="http://wiki.ovirt.org/wiki/Category:Ovirt_guest_agent">ovirt-guest-agent</a> on each VM in order to see memory usage.</p>
+
+<h2 id="how-does-cluster--memory-optimization-work">How does "Cluster / Memory Optimization" work?</h2>
+
+<p>When you set your cluster to Memory Optimization, you are setting max_vds_memory_over_commit (see #1) to 150 (server load) or 200 (desktop load).This setting allows oVirt to create VMs as if had 50% (server load) or (100%) more physical memory than really has.</p>
+
+<h2 id="what-does-shared-memory-stand-for">What does "Shared Memory" stand for?</h2>
+
+<p>Shared Memory is the result of <a href="http://www.linux-kvm.org/page/KSM">KSM</a> memory page de-duplication. oVirt shows the percent of memory being saved by KSM.</p>
+
+<h2 id="how-is-shared-memory-calculated">How is "Shared Memory" calculated?</h2>
+
+<p>oVirt NODE TOTAL MEMORY (MB):</p>
+
+<pre class="highlight plaintext"><code> DATABASE/Target Node/vds_dynamic.physical_mem_mb = 64420&#x000A;</code></pre>
+
+<p>oVirt NODE MEMORY SHARED (MB):</p>
+
+<pre class="highlight plaintext"><code># vdsClient -s 0 getVdsStats | grep memShared&#x000A;        memShared = 16105&#x000A;</code></pre>
+
+<p>"SHARED MEMORY" LOGIC:</p>
+
+<pre class="highlight plaintext"><code>memShared * 100 / physical_mem_mb&#x000A;16105 * 100 / 64420  = 25%&#x000A;</code></pre>
+
+<h2 id="where-does-ovirt-use-shared-memory">Where does oVirt use "Shared Memory"?</h2>
+
+<p>oVirt does not use this value to any operation/calculation, overcommit included. But KSM will help oVirt Nodes to avoid using swap when you overcommit them and they become highly loaded.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

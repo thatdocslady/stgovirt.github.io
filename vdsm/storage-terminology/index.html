@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Vdsm Storage Terminology &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>Vdsm Storage Terminology</td>
+</tr>
+<tr>
+<th>category</th>
+<td>vdsm</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>abonas, amureini, danken, quaid</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Vdsm</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Vdsm Storage Terminology</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>6</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2012-11-25</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Vdsm_Storage_Terminology' target='_blank'>
+Vdsm Storage Terminology
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="vdsm-storage-terminology">Vdsm Storage Terminology</h1>
+
+<h2 id="storage-pool">Storage Pool</h2>
+
+<p>A group of domains that are managed together. Currently domains grouped and can only be managed while being a part of a pool. We plan to remove the limitations created by using storage pools.</p>
+
+<h2 id="storage-domain">Storage Domain</h2>
+
+<p>An atomic storage unit. On file domains it's either a mount point or a folder. On block devices on the other hand this can be a group of LUNs. There is no hard limitation but it is highly recommended that all the LUNs composing a block domain are on the same physical host. This is done because when only parts of the domain disappear in case of failure there is a real issue with detecting problems.</p>
+
+<p>Storage domains contains the images that the VMs will use.</p>
+
+<p>Storage domains split to 2 distinct groups.</p>
+
+<ol>
+  <li><em>File Based Storage</em>
+(NFS and Local FS targets)
+    <ul>
+      <li>pros:
+        <ul>
+          <li>Usually takes care of safe access to files across the cluster</li>
+          <li>Faster setup</li>
+        </ul>
+      </li>
+      <li>cons:
+        <ul>
+          <li>Slower</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>''Block Based Storage
+(SAN Storage and in the future Local Disks)
+    <ul>
+      <li>pros:
+        <ul>
+          <li>Faster</li>
+        </ul>
+      </li>
+      <li>cons:
+        <ul>
+          <li>VDSM has to do some extra work to make sure consistency</li>
+          <li>Slower setup</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>Vdsm tries to keep feature parity between the two major types. There are a few things to note:</p>
+
+<ul>
+  <li>Some operations may differ in performance between the two types.</li>
+  <li>RAW/SPARSE images are currently only supported on file domains. This feature is implemented using sparse files and this feature currently has no equivalent in the block/LVM world.</li>
+</ul>
+
+<h2 id="image">Image</h2>
+
+<p>A group of one or more volumes comprising a disk image to be used by VMs.</p>
+
+<h2 id="volumesnapshot">Volume/Snapshot</h2>
+
+<p>Currently volumes and snapshots are the same. On block domain each volume is translated to an LV (logical volume) and on file domains to a separate file. Base volumes can be either raw or qcow but snapshots must be in qcow format.</p>
+
+<category:vdsm> <category:documentation>
+</category:documentation></category:vdsm>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>

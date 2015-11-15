@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+CrashCourse &mdash;
+oVirt
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-download' role='menuitem'>
+<a href='/download/'>Download</a>
+</li>
+
+<li class='nav-link-documentation' role='menuitem'>
+<a href='/documentation/'>Documentation</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-develop' role='menuitem'>
+<a href='/develop/'>Develop</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+<div class='alert alert-warning'>
+<div class='pull-right'>
+<a>Hover for more info</a>
+</div>
+<div class='frontmatter-metadata'>
+<table class='metadata'>
+<caption>Frontmatter Metadata</caption>
+<tr>
+<th>title</th>
+<td>CrashCourse</td>
+</tr>
+<tr>
+<th>category</th>
+<td>tutorial</td>
+</tr>
+<tr>
+<th>authors</th>
+<td>vszocs</td>
+</tr>
+<tr>
+<th>wiki_category</th>
+<td>Tutorial</td>
+</tr>
+<tr>
+<th>wiki_title</th>
+<td>Tutorial/UIPlugins/CrashCourse</td>
+</tr>
+<tr>
+<th>wiki_revision_count</th>
+<td>16</td>
+</tr>
+<tr>
+<th>wiki_last_updated</th>
+<td>2014-03-07</td>
+</tr>
+</table>
+</div>
+Original Wiki page:
+<a href='http://ovirt.org/Tutorial/UIPlugins/CrashCourse' target='_blank'>
+Tutorial/UIPlugins/CrashCourse
+</a>
+</div>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="crash-course">Crash Course</h1>
+
+<h2 id="ui-plugins-crash-course-ovirt-space-shooter">UI Plugins Crash Course: oVirt Space Shooter</h2>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>Welcome, space traveler! This tutorial will walk you through the basics of creating your first <a href="/feature/ux/uiplugins/">UI plugin</a> for oVirt web administration application (WebAdmin).</p>
+
+<p>The <em>oVirt Space Shooter</em> plugin we will create is based on <a href="https://github.com/cykod/AlienInvasion">Alien Invasion</a>, sample HTML5 game developed by <a href="https://github.com/cykod">Pascal Rettig</a> and released under both GPL and MIT license. For those who are impatient, you can play the game <a href="http://cykod.github.io/AlienInvasion/">here</a>.</p>
+
+<p>No prior <a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a> programming experience is required, just make sure you have oVirt Engine <a href="/engine/installing-engine-from-rpm/">up and running</a> on your system. Oh, and once we're done creating our plugin, be prepared to blast some aliens!</p>
+
+<p><em>Note: code presented here aims to demonstrate how to write a simple plugin, it's not meant to be a showcase of best JavaScript coding practices. When writing a real-world plugin, you should follow good JavaScript coding practices such as scoping your application within a single global variable, using closure for proper information hiding, etc.</em></p>
+
+<p>Plugin source code is available from <a href="/feature/ux/uiplugins/#Sample_UI_plugins">sample UI plugin repository</a> as <code>space-shooter-plugin</code> - see the README file for details on installation.</p>
+
+<p>If you have any questions or find any issues, send your feedback to <span class='broken-link link-mediawiki' data-href='User:Vszocs' title='Special MediaWiki link: original pointed to: User:Vszocs'>Vojtech Szocs</span> <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#118;&#115;&#122;&#111;&#099;&#115;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;">&#118;&#115;&#122;&#111;&#099;&#115;&#064;&#114;&#101;&#100;&#104;&#097;&#116;&#046;&#099;&#111;&#109;</a></p>
+
+<h3 id="level-1-hello-ui-plugins">Level 1: Hello UI Plugins</h3>
+
+<p>Our journey starts in <code>/usr/share/ovirt-engine/ui-plugins</code> directory, home of plugin meta-data and other plugin resources. Let's go ahead and create <a href="/feature/ux/uiplugins/#Plugin_descriptor">descriptor</a> for our plugin inside this directory:</p>
+
+<pre class="highlight plaintext"><code>  /usr/share/ovirt-engine/ui-plugins/space-shooter.json&#x000A;&#x000A;{&#x000A;    "name": "space-shooter",&#x000A;    "url": "plugin/space-shooter/plugin.html",&#x000A;    "resourcePath": "space-shooter-resources"&#x000A;}&#x000A;</code></pre>
+
+<p>For those who are curious about the meaning of each attribute:</p>
+
+<ul>
+  <li><code>name</code> is the unique name of our plugin, think of it as plugin ID</li>
+  <li><code>url</code> points to <a href="/feature/ux/uiplugins/#Plugin_host_page">plugin host page</a> which is basically an HTML page that bootstraps plugin code</li>
+  <li><code>resourcePath</code> tells Engine where to find plugin resource files, such as the plugin host page</li>
+</ul>
+
+<p>Note that the <code>url</code> in above snippet is relative and follows <code>plugin/&lt;pluginName&gt;/&lt;relativePath&gt;</code> pattern. You can use it to fetch plugin resource files that reside under <code>resourcePath</code> directory. In other words, <strong>you don't have to run your own custom web server to serve plugin resource files</strong>, Engine does this for you out-of-the-box.</p>
+
+<p>Having the plugin descriptor in place, all that remains is plugin host page. Let's create <code>space-shooter-resources</code> sub-directory along with plugin host page inside it:</p>
+
+<pre class="highlight html"><code>  /usr/share/ovirt-engine/ui-plugins/space-shooter-resources/start.html&#x000A;&#x000A;<span class="cp">&lt;!doctype html&gt;</span>&#x000A;<span class="nt">&lt;html&gt;</span>&#x000A;<span class="nt">&lt;head&gt;</span>&#x000A;    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>&#x000A;<span class="nt">&lt;/head&gt;</span>&#x000A;<span class="nt">&lt;body&gt;</span>&#x000A;<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">'text/javascript'</span><span class="nt">&gt;</span>&#x000A;&#x000A;    <span class="c1">// Get API object for 'space-shooter' plugin</span>&#x000A;    <span class="c1">// Note: using 'parent' due to plugin code being evaluated within an iframe context</span>&#x000A;    <span class="kd">var</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">pluginApi</span><span class="p">(</span><span class="s1">'space-shooter'</span><span class="p">);</span>&#x000A;&#x000A;    <span class="c1">// Register event handler functions for later invocation by UI plugin infrastructure</span>&#x000A;    <span class="nx">api</span><span class="p">.</span><span class="nx">register</span><span class="p">({</span>&#x000A;        <span class="na">UiInit</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;            <span class="nx">alert</span><span class="p">(</span><span class="s1">'Woohoo!'</span><span class="p">);</span>&#x000A;        <span class="p">}</span>&#x000A;    <span class="p">});</span>&#x000A;&#x000A;    <span class="c1">// Tell plugin infrastructure that we are good to go, expect UiInit callback</span>&#x000A;    <span class="nx">api</span><span class="p">.</span><span class="nx">ready</span><span class="p">();</span>&#x000A;&#x000A;<span class="nt">&lt;/script&gt;</span>&#x000A;<span class="nt">&lt;/body&gt;</span>&#x000A;<span class="nt">&lt;/html&gt;</span>&#x000A;</code></pre>
+
+<p>And that's about it! <strong>It takes only two files to create a minimal UI plugin.</strong></p>
+
+<p>Without even restarting Engine, reload WebAdmin in your browser, log in and embrace the awesome <em>Woohoo!</em> alert window.</p>
+
+<p>As you can see, plugin host page is your typical HTML web page with some JavaScript to interact with plugin API. As you may have guessed, with JavaScript around, the sky is the limit - <strong>design and implement your plugin your way</strong>. Want to use popular JavaScript libraries like <a href="http://angularjs.org/">AngularJS</a> or tools like <a href="http://coffeescript.org/">CoffeeScript</a>? You can. Want to write your plugin using vanilla JavaScript? You can. Plugin API is designed to be simple and not to get in your way, regardless of how you choose to write your plugin.</p>
+
+<p>Note that there's no HTML markup within the plugin host page and for a good reason - the purpose of this page is to bootstrap actual plugin code. WebAdmin evaluates plugin host page via hidden <code>iframe</code> element attached to HTML DOM, so <strong>WebAdmin vs. plugin integration happens through plugin API</strong>, discouraging direct HTML DOM manipulation of WebAdmin UI. See <a href="/feature/ux/uiplugins/#Why_load_plugins_via_iframe_element.3F">here</a> if you're curious about reasons behind this design decision.</p>
+
+<h3 id="level-2-must-blast-some-aliens">Level 2: Must Blast Some Aliens</h3>
+
+<p>Let's take the <em>Alien Invasion</em> game and integrate it into WebAdmin with our plugin. Sounds a bit more complicated than <em>Woohoo!</em> alert window, but is it really that complicated?</p>
+
+<p>Download the game and put its files under <code>/usr/share/ovirt-engine/ui-plugins/space-shooter-resources/game</code> directory. Since the game relies on specific HTML5 features that might not be available in older browsers, download and use <a href="http://modernizr.com/">Modernizr</a> for detecting these features.</p>
+
+<p>Plugin file structure should now look like this:</p>
+
+<ul>
+  <li><code>/usr/share/ovirt-engine/ui-plugins/space-shooter.json</code> - plugin descriptor</li>
+  <li><code>/usr/share/ovirt-engine/ui-plugins/space-shooter-resources/game/*</code> - game files</li>
+  <li><code>/usr/share/ovirt-engine/ui-plugins/space-shooter-resources/modernizr.custom.js</code> - Modernizr library</li>
+  <li><code>/usr/share/ovirt-engine/ui-plugins/space-shooter-resources/start.html</code> - plugin host page</li>
+</ul>
+
+<p>Let's open plugin host page and add some more JavaScript:</p>
+
+<pre class="highlight html"><code>  /usr/share/ovirt-engine/ui-plugins/space-shooter-resources/start.html&#x000A;&#x000A;<span class="cp">&lt;!doctype html&gt;</span>&#x000A;<span class="nt">&lt;html&gt;</span>&#x000A;<span class="nt">&lt;head&gt;</span>&#x000A;    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>&#x000A;    <span class="c">&lt;!-- Use Modernizr for detecting necessary HTML5 features like Canvas --&gt;</span>&#x000A;    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">'text/javascript'</span> <span class="na">src=</span><span class="s">'modernizr.custom.js'</span><span class="nt">&gt;&lt;/script&gt;</span>&#x000A;<span class="nt">&lt;/head&gt;</span>&#x000A;<span class="nt">&lt;body&gt;</span>&#x000A;<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">'text/javascript'</span><span class="nt">&gt;</span>&#x000A;&#x000A;    <span class="kd">var</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">pluginApi</span><span class="p">(</span><span class="s1">'space-shooter'</span><span class="p">);</span>&#x000A;&#x000A;    <span class="kd">var</span> <span class="nx">openDialog</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;        <span class="c1">// Show modal dialog with actual game content</span>&#x000A;        <span class="nx">api</span><span class="p">.</span><span class="nx">showDialog</span><span class="p">(</span>&#x000A;                        <span class="s1">'Aliens are attacking'</span><span class="p">,</span> <span class="c1">// Title</span>&#x000A;            <span class="s1">'space-shooter-dialog'</span><span class="p">,</span> <span class="c1">// Dialog token</span>&#x000A;                        <span class="s1">'plugin/space-shooter/game/index.html'</span><span class="p">,</span> <span class="c1">// Content URL</span>&#x000A;                        <span class="s1">'340px'</span><span class="p">,</span> <span class="c1">// Width</span>&#x000A;                        <span class="s1">'560px'</span> <span class="c1">// Height</span>&#x000A;                <span class="p">);</span>&#x000A;    <span class="p">};</span>&#x000A;&#x000A;    <span class="kd">var</span> <span class="nx">browserRocks</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;        <span class="c1">// Detect necessary HTML5 features via Modernizr</span>&#x000A;        <span class="k">return</span> <span class="nx">Modernizr</span><span class="p">.</span><span class="nx">canvas</span> <span class="o">&amp;&amp;</span> <span class="nx">Modernizr</span><span class="p">.</span><span class="nx">canvastext</span><span class="p">;</span>&#x000A;    <span class="p">};</span>&#x000A;&#x000A;    <span class="nx">api</span><span class="p">.</span><span class="nx">register</span><span class="p">({</span>&#x000A;        <span class="na">UiInit</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;            <span class="k">if</span> <span class="p">(</span><span class="nx">browserRocks</span><span class="p">())</span> <span class="p">{</span>&#x000A;                <span class="nx">openDialog</span><span class="p">();</span>&#x000A;            <span class="p">}</span>&#x000A;        <span class="p">}</span>&#x000A;    <span class="p">});</span>&#x000A;&#x000A;    <span class="nx">api</span><span class="p">.</span><span class="nx">ready</span><span class="p">();</span>&#x000A;&#x000A;<span class="nt">&lt;/script&gt;</span>&#x000A;<span class="nt">&lt;/body&gt;</span>&#x000A;<span class="nt">&lt;/html&gt;</span>&#x000A;</code></pre>
+
+<p>The code is pretty much straight-forward. <code>UiInit</code> callback performs HTML5 feature detection and calls <code>openDialog</code> if successful. <code>api.showDialog</code> takes care of opening new modal dialog with content loaded from the given URL. Notice that the URL points to game's <code>index.html</code> served from <code>/usr/share/ovirt-engine/ui-plugins/space-shooter-resources/game</code> directory.</p>
+
+<p>Reload WebAdmin in your browser, log in and see what happens! Don't spend too much time playing the game, though.</p>
+
+<p><img alt="" title="OVirt_Space_Shooter_1.png" src="/images/wiki/OVirt_Space_Shooter_1.png?1447607916" /></p>
+
+<h3 id="level-3-data-center-under-attack">Level 3: Data Center Under Attack</h3>
+
+<p>Opening new modal dialog on user login is just too easy. What if the aliens from outer space wanted to invade your precious Data Centers? Let's make this happen and move the battle from generic dialog into Data Center main tab.</p>
+
+<p>Here, we want to do following things:</p>
+
+<ul>
+  <li>Allow opening game dialog only if the user selects a specific Data Center</li>
+  <li>Since a shooter game might distract admins from doing their work, allow opening game dialog only via secret context-menu item</li>
+  <li>Once opened, the dialog cannot be closed unless you win at least once</li>
+  <li>Those who cannot beat the game (it can happen!) can use Cheat button<code>*</code></li>
+</ul>
+
+<p><code>*</code> Cheating works in video games. In real life, cheaters always lose.</p>
+
+<p>Implementing these improvements seems like a lot of work, let's see how much code it really takes.</p>
+
+<p>First, we need to register some more event handler callbacks:</p>
+
+<ul>
+  <li><code>DataCenterSelectionChange</code> triggered when item selection changes in Data Center main tab</li>
+  <li><code>MessageReceived</code> triggered when custom content (game) sends us a message<code>*</code></li>
+</ul>
+
+<p><code>*</code> To facilitate game → plugin communication, we will use HTML5 <a href="http://en.wikipedia.org/wiki/Web_Messaging">postMessage</a> API.</p>
+
+<pre class="highlight plaintext"><code>  /usr/share/ovirt-engine/ui-plugins/space-shooter-resources/start.html&#x000A;&#x000A;api.options({&#x000A;    // Configure source origin(s), i.e. protocol://domain:port&#x000A;    // from which HTML5 message events will be accepted&#x000A;    allowedMessageOrigins: ['http://127.0.0.1:8080']&#x000A;});&#x000A;&#x000A;var victory = false; // Has player won at least one game in the current game dialog?&#x000A;var dataCenter = null; // Data Center entity associated with the current game dialog&#x000A;var gameContentWindow = null; // Reference to game Window object&#x000A;&#x000A;api.register({&#x000A;&#x000A;    // Called by the infrastructure as part of plugin initialization,&#x000A;    // will be called just once during the lifetime of a plugin&#x000A;    UiInit: function() {&#x000A;        if (browserRocks()) {&#x000A;            init(); // Defined later on&#x000A;        }&#x000A;    },&#x000A;&#x000A;    // Called when item selection changes in Data Center main tab,&#x000A;    // useful for keeping track of currently selected Data Center entity&#x000A;    DataCenterSelectionChange: function() {&#x000A;        if (arguments.length == 1) {&#x000A;            // Single entity was selected, remember it&#x000A;            dataCenter = arguments[0];&#x000A;        } else {&#x000A;            // Otherwise, forget the entity&#x000A;            dataCenter = null;&#x000A;        }&#x000A;    },&#x000A;&#x000A;    // Called when another Window (i.e. custom UI contributed by a plugin)&#x000A;    // sends message to WebAdmin Window via HTML5 postMessage API,&#x000A;    // ideal for cross-window communication that works across different origins&#x000A;    MessageReceived: function(data, sourceWindow) {&#x000A;        // If we get here, we already passed allowed source origin check&#x000A;        switch (data) {&#x000A;            // Game content just got loaded&#x000A;            case 'GameInit':&#x000A;                gameContentWindow = sourceWindow;&#x000A;                break;&#x000A;            // User just won the game&#x000A;            case 'GameWin':&#x000A;                victory = true;&#x000A;                break;&#x000A;        }&#x000A;    }&#x000A;&#x000A;});&#x000A;</code></pre>
+
+<p>Since we want the game to notify our plugin upon specific occasions, we use <code>api.options</code> to configure source origin from which <code>message</code> events will be accepted. Above snippet uses <code>http://127.0.0.1:8080</code> so we assume Engine runs locally and WebAdmin is available via HTTP at port 8080.</p>
+
+<p>The <code>DataCenterSelectionChange</code> callback receives currently selected items as function <code>arguments</code>. Since we only care for single Data Center selected in the main tab, we check <code>arguments.length</code> and remember or forget current selection.</p>
+
+<p>The <code>MessageReceived</code> callback is used to process two kinds of messages sent by the game <code>Window</code>:</p>
+
+<ul>
+  <li><code>GameInit</code> fired right after game's HTML document gets loaded, right before the game initializes its <a href="http://en.wikipedia.org/wiki/Canvas_element">Canvas</a></li>
+  <li><code>GameWin</code> fired right after user wins the game, i.e. beats all levels</li>
+</ul>
+
+<p>We use <code>GameInit</code> to keep the reference to game <code>Window</code> object in order to call functions on this object later on. In other words, we establish <strong>two-way communication between game and plugin</strong>, with game being the initiator of this communication.</p>
+
+<p>Let's modify <code>game.js</code> under <code>game</code> directory to add the missing bits:</p>
+
+<pre class="highlight plaintext"><code>  /usr/share/ovirt-engine/ui-plugins/space-shooter-resources/game/game.js&#x000A;&#x000A;...&#x000A;var winGame = function() {&#x000A;    Game.setBoard(3, new TitleScreen('You win!',  'Press fire to play again', playGame));&#x000A;    parent.postMessage('GameWin', '*'); // Change here&#x000A;};&#x000A;...&#x000A;window.addEventListener('load', function() {&#x000A;    parent.postMessage('GameInit', '*'); // Change here&#x000A;    Game.initialize('game', sprites, startGame);&#x000A;});&#x000A;...&#x000A;</code></pre>
+
+<p>Since the game is rendered via <code>iframe</code> element attached to HTML DOM, <code>parent</code> refers to WebAdmin <code>Window</code> object.</p>
+
+<p>Remember the missing <code>init</code> function used inside our <code>UiInit</code> callback? Let's add this function and complete our plugin:</p>
+
+<pre class="highlight plaintext"><code>  /usr/share/ovirt-engine/ui-plugins/space-shooter-resources/start.html&#x000A;&#x000A;var dialogToken = 'space-shooter-dialog';&#x000A;var dialogUrl = 'plugin/space-shooter/game/index.html';&#x000A;&#x000A;var init = function() {&#x000A;    // Add new action button to Data Center main tab&#x000A;    api.addMainTabActionButton(&#x000A;        'DataCenter', // To which main tab the button should be added to&#x000A;        'Protect DataCenter from Alien Invasion', // Label&#x000A;        // Extra options for addMainTabActionButton function&#x000A;        {&#x000A;            isEnabled: function() {&#x000A;                // Enable button only when selecting single Data Center&#x000A;                return arguments.length == 1;&#x000A;            },&#x000A;            onClick: function() {&#x000A;                // Reset victory flag and open new game dialog&#x000A;                victory = false;&#x000A;                openDialog();&#x000A;            },&#x000A;            location: 'OnlyFromContext' // Button available only from context menu&#x000A;        });&#x000A;};&#x000A;&#x000A;var openDialog = function() {&#x000A;    // Show modal dialog with actual game content&#x000A;    api.showDialog(dataCenter.name + ' under attack', dialogToken, dialogUrl, '340px', '560px',&#x000A;        // Extra options for showDialog function&#x000A;        {&#x000A;            closeIconVisible: false, // Hide dialog's close icon&#x000A;            closeOnEscKey: false, // Prevent user from closing dialog with Escape key&#x000A;            resizeEnabled: true, // Allow dialog resizing&#x000A;            buttons:&#x000A;            [&#x000A;                // Button for those who cannot beat the game (it can happen!)&#x000A;                {&#x000A;                    label: 'Cheat',&#x000A;                    onClick: cheatGame&#x000A;                },&#x000A;                // Button to close the dialog&#x000A;                {&#x000A;                    label: 'Get me outta here',&#x000A;                    onClick: closeDialog&#x000A;                }&#x000A;            ]&#x000A;        });&#x000A;};&#x000A;&#x000A;var closeDialog = function() {&#x000A;    if (victory) {&#x000A;        api.closeDialog(dialogToken);&#x000A;    } else {&#x000A;        alert('Not so fast! Destroy the aliens at least once.');&#x000A;    }&#x000A;};&#x000A;&#x000A;var cheatGame = function() {&#x000A;    if (gameContentWindow != null) {&#x000A;        // Invoke function on game Window object&#x000A;        gameContentWindow.winGame();&#x000A;    }&#x000A;};&#x000A;</code></pre>
+
+<p>Instead of showing new modal dialog with game content right away, the <code>init</code> function adds new <em>action button</em> to Data Center main tab via <code>api.addMainTabActionButton</code>. Think of action button as a button located in corresponding main tab's upper panel. For example, <em>New</em>, <em>Edit</em> and <em>Remove</em> are all action buttons living inside Data Center main tab. Each action button usually gets reflected into context menu for given main tab, but there can be exceptions.</p>
+
+<p><img alt="" title="OVirt_Space_Shooter_2.png" src="/images/wiki/OVirt_Space_Shooter_2.png?1447607916" /></p>
+
+<p>In our case, we want the <em>Protect DataCenter from Alien Invasion</em> button to be visible only via context-menu item, so we customize <code>location</code> within <code>addMainTabActionButton</code> options. Each time item selection changes in Data Center main tab, <code>isEnabled</code> callback will be fired to determine whether the button should be enabled or disabled. In case the button is enabled, <code>onClick</code> callback will be fired when a user clicks the button. Note that both callbacks receive currently selected items (entities) as function <code>arguments</code>.</p>
+
+<p>The <code>openDialog</code> function is pretty much straight-forward, we just pass some extra options to customize the dialog and add some buttons to it. On the other hand, <code>cheatGame</code> shows an interesting pattern - utilizing two-way communication between game and plugin by invoking function (i.e. <code>winGame</code>) on game's <code>Window</code> object.</p>
+
+<p><img alt="" title="OVirt_Space_Shooter_3.png" src="/images/wiki/OVirt_Space_Shooter_3.png?1447607916" /></p>
+
+<h3 id="secret-level-making-things-configurable">Secret Level: Making Things Configurable</h3>
+
+<p>Blasting through waves of aliens is nice, but what if someone accessed WebAdmin from a remote machine? Assuming WebAdmin would be exposed at <code>https://engine-domain:8765</code>, someone would need to modify <code>allowedMessageOrigins</code> inside plugin host page to ensure that communication between game and plugin works properly. Of course, we could still use <code>*</code> as the value for <code>allowedMessageOrigins</code> to accept <code>message</code> events from any origin, however doing this would open back door for malicious JavaScript to exploit our plugin.</p>
+
+<p>To make things a bit more configurable, let's add new configuration option right into plugin descriptor:</p>
+
+<pre class="highlight plaintext"><code>  /usr/share/ovirt-engine/ui-plugins/space-shooter.json&#x000A;&#x000A;"config": {&#x000A;    "allowedOrigins": ["http://127.0.0.1:8080"]&#x000A;}&#x000A;</code></pre>
+
+<p>The <code>config</code> attribute is completely optional and can be used to contain default (plugin-specific) configuration. <strong>Users shouldn't modify plugin descriptor directly</strong> - if you need to override default configuration, create <a href="/feature/ux/uiplugins/#Plugin_user_configuration">plugin user configuration</a> inside <code>/etc/ovirt-engine/ui-plugins</code> directory, using <code>-config</code> suffix:</p>
+
+<pre class="highlight plaintext"><code>  /etc/ovirt-engine/ui-plugins/space-shooter-config.json&#x000A;&#x000A;"config": {&#x000A;    "allowedOrigins": ["http://127.0.0.1:8080", "https://engine-domain:8765"]&#x000A;}&#x000A;</code></pre>
+
+<p>Each time our plugin gets loaded in WebAdmin, UI plugin infrastructure takes care of merging user configuration (if any) on top of default configuration (if any). In our case, <code>allowedOrigins</code> from user configuration would override <code>allowedOrigins</code> from default configuration.</p>
+
+<p>Accessing plugin configuration at runtime is as easy as calling <code>api.configObject</code>:</p>
+
+<pre class="highlight plaintext"><code>  /usr/share/ovirt-engine/ui-plugins/space-shooter-resources/start.html&#x000A;&#x000A;// Get runtime plugin configuration, i.e. custom configuration (if any)&#x000A;// merged on top of default configuration (if any)&#x000A;var config = api.configObject();&#x000A;&#x000A;api.options({&#x000A;    // Note: "config.allowedOrigins" is JSON array&#x000A;    allowedMessageOrigins: config.allowedOrigins&#x000A;});&#x000A;</code></pre>
+
+<h3 id="level-4-insert-coin-and-keep-the-score">Level 4: Insert Coin And Keep The Score</h3>
+
+<p>Let's add one more feature to our plugin: the ability to track score (games won) per each Data Center via custom sub tab under Data Center main tab. Heroic deeds of admins blasting through waves of aliens shouldn't be forgotten, right?</p>
+
+<pre class="highlight plaintext"><code>  /usr/share/ovirt-engine/ui-plugins/space-shooter-resources/start.html&#x000A;&#x000A;var subTabWindow = null; // Reference to 'Score' sub tab Window object&#x000A;&#x000A;var subTabToken = 'space-shooter-dc-score';&#x000A;var subTabUrl = 'plugin/space-shooter/dc-score.html';&#x000A;&#x000A;var init = function() {&#x000A;    // Add new action button to Data Center main tab&#x000A;    api.addMainTabActionButton( ... );&#x000A;&#x000A;    // Add new 'Score' sub tab under Data Center main tab&#x000A;    api.addSubTab(&#x000A;        'DataCenter', // To which main tab the sub tab should be added to&#x000A;        'Space Shooter Score', // Label&#x000A;        subTabToken, // Sub tab token&#x000A;        subTabUrl // Content URL&#x000A;    );&#x000A;};&#x000A;&#x000A;var getKey = function() {&#x000A;    // Calculate unique key (string) for storing and retrieving game score for&#x000A;    // given user + Data Center combination, i.e. admin@internal_dc123_DCScore&#x000A;    return dataCenter != null ? api.loginUserName() + '_' + dataCenter.id + '_DCScore' : null;&#x000A;};&#x000A;&#x000A;var getScore = function() {&#x000A;    // Return current score as string, or 0 if there is no score yet&#x000A;    return localStorage.getItem(getKey()) || '0';&#x000A;};&#x000A;&#x000A;var incScore = function() {&#x000A;    // Increment current score by 1, store the result as string&#x000A;    localStorage.setItem(getKey(), (parseInt(getScore(), 10) + 1) + '');&#x000A;};&#x000A;&#x000A;var updateSubTab = function() {&#x000A;    if (subTabWindow == null || dataCenter == null) {&#x000A;        return;&#x000A;    }&#x000A;&#x000A;    // Get the current user score&#x000A;    var score = getScore();&#x000A;    var intScore = parseInt(score, 10);&#x000A;&#x000A;    // Calculate rank based on user score&#x000A;    var rank, rankColor;&#x000A;    switch (true) {&#x000A;        case (intScore &gt;= 10):&#x000A;            rank = 'Laser Master';&#x000A;            rankColor = 'green';&#x000A;            break;&#x000A;        case (intScore &gt;= 3):&#x000A;            rank = 'Veteran';&#x000A;            rankColor = 'orange';&#x000A;            break;&#x000A;        case (intScore &gt;= 1):&#x000A;            rank = 'Survivor';&#x000A;            rankColor = 'red';&#x000A;            break;&#x000A;        default:&#x000A;            rank = 'Newbie';&#x000A;            rankColor = 'gray';&#x000A;            break;&#x000A;    }&#x000A;&#x000A;    // Update 'Score' sub tab&#x000A;    subTabWindow.update(dataCenter.name, score, rank, rankColor);&#x000A;};&#x000A;&#x000A;api.register({&#x000A;    ...&#x000A;    MessageReceived: function(data, sourceWindow) {&#x000A;        switch (data) {&#x000A;            // Game content just got loaded&#x000A;            case 'GameInit':&#x000A;                gameContentWindow = sourceWindow;&#x000A;                break;&#x000A;            // User just won the game&#x000A;            case 'GameWin':&#x000A;                victory = true;&#x000A;                incScore();&#x000A;                updateSubTab();&#x000A;                break;&#x000A;            // 'Score' sub tab asks for current user score&#x000A;            case 'GetDataCenterScore':&#x000A;                subTabWindow = sourceWindow;&#x000A;                updateSubTab();&#x000A;                break;&#x000A;        }&#x000A;    }&#x000A;    ...&#x000A;});&#x000A;</code></pre>
+
+<p>Just like with game content, we use the same technique to establish two-way communication between custom sub tab and plugin.</p>
+
+<p>To keep things simple, <code>getScore</code> and <code>incScore</code> functions utilize HTML5 <a href="http://en.wikipedia.org/wiki/Web_storage#Local_and_session_storage">Local Storage</a> to fetch and persist score locally in browser.</p>
+
+<p>Finally, we need to add <code>dc-score.html</code> representing custom sub tab content:</p>
+
+<pre class="highlight html"><code>  /usr/share/ovirt-engine/ui-plugins/space-shooter-resources/dc-score.html&#x000A;&#x000A;<span class="cp">&lt;!doctype html&gt;</span>&#x000A;<span class="nt">&lt;html&gt;</span>&#x000A;<span class="nt">&lt;head&gt;</span>&#x000A;    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>&#x000A;<span class="nt">&lt;/head&gt;</span>&#x000A;<span class="nt">&lt;body&gt;</span>&#x000A;&#x000A;<span class="nt">&lt;p&gt;</span>&#x000A;Score for Data Center <span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">'dataCenterName'</span><span class="nt">&gt;</span>?<span class="nt">&lt;/span&gt;</span>:&#x000A;<span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">'score'</span><span class="nt">&gt;</span>?<span class="nt">&lt;/span&gt;</span> (<span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">'rank'</span><span class="nt">&gt;</span>?<span class="nt">&lt;/span&gt;</span>)&#x000A;<span class="nt">&lt;/p&gt;</span>&#x000A;&#x000A;<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">'text/javascript'</span><span class="nt">&gt;</span>&#x000A;&#x000A;    <span class="c1">// Ask the plugin for current user score</span>&#x000A;    <span class="nx">parent</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span><span class="s1">'GetDataCenterScore'</span><span class="p">,</span> <span class="s1">'*'</span><span class="p">);</span>&#x000A;&#x000A;    <span class="c1">// The plugin should call this function in response to GetDataCenterScore message</span>&#x000A;    <span class="kd">var</span> <span class="nx">update</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dataCenterName</span><span class="p">,</span> <span class="nx">score</span><span class="p">,</span> <span class="nx">rank</span><span class="p">,</span> <span class="nx">rankColor</span><span class="p">)</span> <span class="p">{</span>&#x000A;        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'dataCenterName'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">'&lt;em&gt;'</span> <span class="o">+</span> <span class="nx">dataCenterName</span> <span class="o">+</span> <span class="s1">'&lt;/em&gt;'</span><span class="p">;</span>&#x000A;        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'score'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">'&lt;b&gt;'</span> <span class="o">+</span> <span class="nx">score</span> <span class="o">+</span> <span class="s1">'&lt;/b&gt;'</span><span class="p">;</span>&#x000A;        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'rank'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">'&lt;b&gt;'</span> <span class="o">+</span> <span class="nx">rank</span> <span class="o">+</span> <span class="s1">'&lt;/b&gt;'</span><span class="p">;</span>&#x000A;        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'rank'</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">rankColor</span><span class="p">;</span>&#x000A;    <span class="p">};</span>&#x000A;&#x000A;<span class="nt">&lt;/script&gt;</span>&#x000A;&#x000A;<span class="nt">&lt;/body&gt;</span>&#x000A;<span class="nt">&lt;/html&gt;</span>&#x000A;</code></pre>
+
+<p>And we're done! Take a break from coding and play the game to see new score and ranking feature in action.</p>
+
+<p><img alt="" title="OVirt_Space_Shooter_4.png" src="/images/wiki/OVirt_Space_Shooter_4.png?1447607916" /></p>
+
+<h3 id="mission-accomplished">Mission Accomplished</h3>
+
+<p>Congratulations! You've made it past all the levels, you should have a pretty good understanding of UI plugins now.</p>
+
+<p>See <a href="/feature/ux/uiplugins/">UI plugins feature page</a> for details on plugin infrastructure, plugin API reference and other useful information to aid you in writing your own plugins.</p>
+
+<category:tutorial>
+</category:tutorial>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<ul class='footer-nav-list'>
+<li><a target="_blank" href="/privacy/">Privacy policy</a></li>
+<li><a target="_blank" href="/about/">About</a></li>
+<li><a target="_blank" href="/disclaimers/">Disclaimers</a></li>
+</ul>
+
+&copy; 2013&ndash;2015 oVirt
+<div class='last-modified'>
+Page last modified
+Mon 22 Jun 2015 10:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+
+<!-- eloqua -->
+<script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script src='http://www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+
+</body>
+</html>
