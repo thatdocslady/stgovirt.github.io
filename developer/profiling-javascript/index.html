@@ -22,14 +22,14 @@ oVirt
 <link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
 <link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
 <link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
-<link href="/stylesheets/application.css?1447607916" rel="stylesheet" type="text/css" />
-<link href="/stylesheets/print.css?1447607916" rel="stylesheet" type="text/css" media="print" />
+<link href="/stylesheets/application.css?1447609181" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447609181" rel="stylesheet" type="text/css" media="print" />
 </head>
 <body class=' source-md'>
 <header class='masthead hidden-print' id='branding' role='banner'>
 <section class='hgroup'>
 <h1>
-<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447607917" />
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447609182" />
 </a></h1>
 </section>
 <div id='access'>
@@ -136,7 +136,7 @@ Profiling JavaScript
 
 <p>Start Chrome and hit F12. Click the Profile tab. Since we're debugging JavaScript performance, we'll use Collect JavaScript CPU Profile.</p>
 
-<p><img alt="" title="Collect_javascript_cpu.png" src="/images/wiki/Collect_javascript_cpu.png?1447607916" /></p>
+<p><img alt="" title="Collect_javascript_cpu.png" src="/images/wiki/Collect_javascript_cpu.png?1447609181" /></p>
 
 <p>It's best to start profiling right before we do the problematic operation in our application – that way, there will be less noise in our profiler data.</p>
 
@@ -144,17 +144,17 @@ Profiling JavaScript
 
 <p>Click the record button in the Chrome profiler. It's now profiling. Do the problematic operation. Hit the Stop button when you're done. Wait a few seconds for the profiler to compile its data.</p>
 
-<p><img alt="" title="Profiler_recording.png" src="/images/wiki/Profiler_recording.png?1447607916" /></p>
+<p><img alt="" title="Profiler_recording.png" src="/images/wiki/Profiler_recording.png?1447609181" /></p>
 
 <h3 id="viewing-the-profiler-data">Viewing the profiler data</h3>
 
 <p>There are a few ways to view the data. If you just want to see where the most time was spent, use the Heavy view.</p>
 
-<p><img alt="" title="Profiler_data.png" src="/images/wiki/Profiler_data.png?1447607916" /></p>
+<p><img alt="" title="Profiler_data.png" src="/images/wiki/Profiler_data.png?1447609181" /></p>
 
 <p>When running my example, the browser hung for about 2 seconds. Looking at my profiler data, it looks like the JavaScript engine spent a lot of time in the functions named "isSelected", "resolveChanges". The root cause appears to be a slow "toPowerOfTwoString" function.</p>
 
-<p><img alt="" title="Nasty_function.png" src="/images/wiki/Nasty_function.png?1447607916" /></p>
+<p><img alt="" title="Nasty_function.png" src="/images/wiki/Nasty_function.png?1447609181" /></p>
 
 </section>
 </section>
@@ -170,12 +170,12 @@ Profiling JavaScript
 &copy; 2013&ndash;2015 oVirt
 <div class='last-modified'>
 Page last modified
-Mon 22 Jun 2015 10:08 UTC
+Mon 22 Jun 2015 10:11 UTC
 </div>
 </footer>
 
 
-<script src="/javascripts/application.js?1447607928" type="text/javascript"></script>
+<script src="/javascripts/application.js?1447609193" type="text/javascript"></script>
 
 <!-- eloqua -->
 <script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
