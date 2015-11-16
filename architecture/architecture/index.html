@@ -22,14 +22,14 @@ oVirt
 <link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
 <link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
 <link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
-<link href="/stylesheets/application.css?1447609181" rel="stylesheet" type="text/css" />
-<link href="/stylesheets/print.css?1447609181" rel="stylesheet" type="text/css" media="print" />
+<link href="/stylesheets/application.css?1447687441" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447687441" rel="stylesheet" type="text/css" media="print" />
 </head>
 <body class=' source-md'>
 <header class='masthead hidden-print' id='branding' role='banner'>
 <section class='hgroup'>
 <h1>
-<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447609182" />
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447687442" />
 </a></h1>
 </section>
 <div id='access'>
@@ -116,7 +116,7 @@ Architecture
 <a href="http://browsehappy.com/">Upgrade your browser today</a> or
 <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 <![endif]-->
-<p><img alt="" title="Ovirt-1024x698.png" src="/images/wiki/Ovirt-1024x698.png?1447609181" /></p>
+<p><img alt="" title="Ovirt-1024x698.png" src="/images/wiki/Ovirt-1024x698.png?1447687442" /></p>
 
 <h1 id="ovirt-architecture">oVirt Architecture</h1>
 
@@ -140,7 +140,7 @@ Architecture
 
 <p>The following diagram shows the different components in the oVirt project:</p>
 
-<p><img alt="" title="Architecture.png" src="/images/wiki/Architecture.png?1447609182" /></p>
+<p><img alt="" title="Architecture.png" src="/images/wiki/Architecture.png?1447687442" /></p>
 
 <p>These main components are:</p>
 
@@ -187,13 +187,13 @@ Architecture
 
 <p>The following diagram shows the different layers in the oVirt engine component:</p>
 
-<p><img alt="" title="Engine-arch.png" src="/images/wiki/Engine-arch.png?1447609181" /></p>
+<p><img alt="" title="Engine-arch.png" src="/images/wiki/Engine-arch.png?1447687442" /></p>
 
 <h4 id="engine-core-architecture">Engine-Core Architecture</h4>
 
 <p>The following diagram shows the different components in the engine-core:</p>
 
-<p><img alt="" title="Engine-arch2.png" src="/images/wiki/Engine-arch2.png?1447609181" /></p>
+<p><img alt="" title="Engine-arch2.png" src="/images/wiki/Engine-arch2.png?1447687442" /></p>
 
 <p>The main components in the engine core are:</p>
 
@@ -220,7 +220,7 @@ Architecture
   <li>Scales linearly in data writers</li>
 </ol>
 
-<p><img alt="" title="Vdsm-arch.png" src="/images/wiki/Vdsm-arch.png?1447609181" /></p>
+<p><img alt="" title="Vdsm-arch.png" src="/images/wiki/Vdsm-arch.png?1447687442" /></p>
 
 <h4 id="hooks-mechanism">Hooks mechanism</h4>
 
@@ -234,11 +234,11 @@ Architecture
 
 <p>The following diagram illustrates the Hook mechanism in the VM lifetime cycle:</p>
 
-<p><img alt="" title="Hook-arch.png" src="/images/wiki/Hook-arch.png?1447609181" /></p>
+<p><img alt="" title="Hook-arch.png" src="/images/wiki/Hook-arch.png?1447687442" /></p>
 
 <h4 id="mom-integration">MOM integration</h4>
 
-<p><img alt=" [MoM](MoM) Integration diagram with [VDSM](VDSM) " title=" MoM Integration diagram with VDSM " src="/images/wiki/Mom-vdsm.png?1447609181" /></p>
+<p><img alt=" [MoM](MoM) Integration diagram with [VDSM](VDSM) " title=" MoM Integration diagram with VDSM " src="/images/wiki/Mom-vdsm.png?1447687442" /></p>
 
 <p>VDSM is integrated with <a href="/project/mom/">MoM</a>. The behavior of MOM is configured with policies. With these policies users can fine tune the host for high memory overcommit or safe operation. In order to control its mom instance, vdsm does ship a mom configuration file and a mom policy file that sets mom's default behavior. At startup, vdsmd imports mom and initializes it with the configuration and policy files. From that point on, mom interacts with vdsm through the well-defined API in API.py and is controlling the memory balloons of each VM running on the host. The MOM Instance runs as a thread within the vdsm daemon.</p>
 
@@ -246,7 +246,7 @@ Architecture
 
 <p>Following diagram provides a high level overview of oVirt user interface architecture:</p>
 
-<p><img alt="" title="Ovirt-ui-architecture.png" src="/images/wiki/Ovirt-ui-architecture.png?1447609181" /></p>
+<p><img alt="" title="Ovirt-ui-architecture.png" src="/images/wiki/Ovirt-ui-architecture.png?1447687442" /></p>
 
 <ul>
   <li><a href="http://www.gwtproject.org/overview.html">Google Web Toolkit</a>: Java-based SDK providing tools and APIs for building web applications</li>
@@ -258,7 +258,7 @@ Architecture
 
 <p>Following diagram shows a typical GWT development workflow:</p>
 
-<p><img alt="" title="Gwt-development-workflow.png" src="/images/wiki/Gwt-development-workflow.png?1447609181" /></p>
+<p><img alt="" title="Gwt-development-workflow.png" src="/images/wiki/Gwt-development-workflow.png?1447687442" /></p>
 
 <p>oVirt UI is designed around following concepts:</p>
 
@@ -367,7 +367,7 @@ Architecture
   <li>SSO for RHEL 6 is based on a PAM module with support for both KDE and Gnome</li>
 </ol>
 
-<p><img alt="" title="Guest-agent-arch.png" src="/images/wiki/Guest-agent-arch.png?1447609181" /></p>
+<p><img alt="" title="Guest-agent-arch.png" src="/images/wiki/Guest-agent-arch.png?1447687442" /></p>
 
 <category:architecture> <category:node>
 </category:node></category:architecture>
@@ -391,7 +391,7 @@ Mon 22 Jun 2015 10:11 UTC
 </footer>
 
 
-<script src="/javascripts/application.js?1447609193" type="text/javascript"></script>
+<script src="/javascripts/application.js?1447687452" type="text/javascript"></script>
 
 <!-- eloqua -->
 <script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>

@@ -22,14 +22,14 @@ oVirt
 <link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
 <link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
 <link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
-<link href="/stylesheets/application.css?1447609181" rel="stylesheet" type="text/css" />
-<link href="/stylesheets/print.css?1447609181" rel="stylesheet" type="text/css" media="print" />
+<link href="/stylesheets/application.css?1447687441" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447687441" rel="stylesheet" type="text/css" media="print" />
 </head>
 <body class=' source-md'>
 <header class='masthead hidden-print' id='branding' role='banner'>
 <section class='hgroup'>
 <h1>
-<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447609182" />
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447687442" />
 </a></h1>
 </section>
 <div id='access'>
@@ -1678,7 +1678,7 @@ to fix.
 
 <p>No major gui modifications are required. The action to move a VM from one storage to another should be enabled also when the VM is running, in which case the engine will issue a live block migration.</p>
 
-<p><img alt="" title="StorageLiveMigrationGUI.png" src="/images/wiki/StorageLiveMigrationGUI.png?1447609181" /></p>
+<p><img alt="" title="StorageLiveMigrationGUI.png" src="/images/wiki/StorageLiveMigrationGUI.png?1447687442" /></p>
 
 <h3 id="pre-copy-post-copy-and-mirrored-snapshot">Pre-Copy, Post-Copy and Mirrored-Snapshot</h3>
 
@@ -1706,11 +1706,11 @@ to fix.
 
 <h3 id="pre-copy-execution-diagrams-and-description">Pre-Copy Execution Diagrams and Description</h3>
 
-<p><img alt="" title="StorageLiveMigration3.png" src="/images/wiki/StorageLiveMigration3.png?1447609181" /></p>
+<p><img alt="" title="StorageLiveMigration3.png" src="/images/wiki/StorageLiveMigration3.png?1447687442" /></p>
 
 <p>The <strong>preliminary snapshot</strong> in <strong>step 2</strong> is not mandatory but it's preferable since it will allow almost the entire copy to be done externally by the SPM (and not by the qemu-kvm process).</p>
 
-<p><img alt="" title="StorageLiveMigrationAPIDiagram3.png" src="/images/wiki/StorageLiveMigrationAPIDiagram3.png?1447609181" /></p>
+<p><img alt="" title="StorageLiveMigrationAPIDiagram3.png" src="/images/wiki/StorageLiveMigrationAPIDiagram3.png?1447687442" /></p>
 
 <h4 id="rest-api">REST API</h4>
 
@@ -1816,13 +1816,13 @@ to fix.
 
 <h3 id="post-copy-execution-diagrams-and-description">Post-Copy Execution Diagrams and Description</h3>
 
-<p><img alt="" title="StorageLiveMigration1.png" src="/images/wiki/StorageLiveMigration1.png?1447609181" /></p>
+<p><img alt="" title="StorageLiveMigration1.png" src="/images/wiki/StorageLiveMigration1.png?1447687442" /></p>
 
 <ul>
   <li><strong>Note on [3]</strong>: when the SPM finishes the operation it's also responsible to set the 'Snapshot 2 Volume' metadata to point to 'Snapshot 1 Volume' on 'Source Domain' even if the real swap happens in the next step.</li>
 </ul>
 
-<p><img alt="" title="StorageLiveMigrationAPIDiagram1.png" src="/images/wiki/StorageLiveMigrationAPIDiagram1.png?1447609181" /></p>
+<p><img alt="" title="StorageLiveMigrationAPIDiagram1.png" src="/images/wiki/StorageLiveMigrationAPIDiagram1.png?1447687442" /></p>
 
 <h4 id="limitations-and-risks">Limitations and Risks</h4>
 
@@ -1844,9 +1844,9 @@ to fix.
 
 <h3 id="mirrored-snapshot-execution-diagrams-and-description">Mirrored-Snapshot Execution Diagrams and Description</h3>
 
-<p><img alt="" title="StorageLiveMigration2.png" src="/images/wiki/StorageLiveMigration2.png?1447609181" /></p>
+<p><img alt="" title="StorageLiveMigration2.png" src="/images/wiki/StorageLiveMigration2.png?1447687442" /></p>
 
-<p><img alt="" title="StorageLiveMigrationAPIDiagram2.png" src="/images/wiki/StorageLiveMigrationAPIDiagram2.png?1447609181" /></p>
+<p><img alt="" title="StorageLiveMigrationAPIDiagram2.png" src="/images/wiki/StorageLiveMigrationAPIDiagram2.png?1447687442" /></p>
 
 <h4 id="vdsm-api">VDSM API</h4>
 
@@ -1871,7 +1871,7 @@ to fix.
 
 <p>This state machine describes what will happen in engine flow in more detail</p>
 
-<p><img alt="" title="SLM.png" src="/images/wiki/SLM.png?1447609181" /></p>
+<p><img alt="" title="SLM.png" src="/images/wiki/SLM.png?1447687442" /></p>
 
 </section>
 </section>
@@ -1895,7 +1895,7 @@ Mon 22 Jun 2015 10:11 UTC
 </footer>
 
 
-<script src="/javascripts/application.js?1447609193" type="text/javascript"></script>
+<script src="/javascripts/application.js?1447687452" type="text/javascript"></script>
 
 <!-- eloqua -->
 <script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>

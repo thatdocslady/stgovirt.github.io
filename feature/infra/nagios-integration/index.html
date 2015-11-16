@@ -22,14 +22,14 @@ oVirt
 <link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
 <link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
 <link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
-<link href="/stylesheets/application.css?1447609181" rel="stylesheet" type="text/css" />
-<link href="/stylesheets/print.css?1447609181" rel="stylesheet" type="text/css" media="print" />
+<link href="/stylesheets/application.css?1447687441" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447687441" rel="stylesheet" type="text/css" media="print" />
 </head>
 <body class=' source-md'>
 <header class='masthead hidden-print' id='branding' role='banner'>
 <section class='hgroup'>
 <h1>
-<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447609182" />
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447687442" />
 </a></h1>
 </section>
 <div id='access'>
@@ -1710,7 +1710,7 @@ to fix.
 
 <p><strong>The diagram below provides an overview about the proposed architecture</strong></p>
 
-<p><img alt="" title="fig:Setup.png" src="/images/wiki/Geo-Replication-Start-SSH-Setup.png?1447609181" /> Nagios monitors storage clusters to ensure clusters, hosts, volumes, and software services are functioning properly. In the event of a failure, Nagios can alert technical staff of the problem, allowing them to begin remediation processes before outages affect business processes, end-users, or customers. This is achieved through the checks(Active/Passive) and these checks executed on the monitored resources. Nagios Analyzes the check result and if there is any event that meets the Alert definition, it would be flagged as an Alert on the Nagios server or on oVirt (if it’s deployed) and the appropriate configured notifications (Email, SNMP Traps) will be sent. , In the proposed architecture, we have three main functional blocks- oVirt, Nagios and the Gluster nodes. Nagios server will have the Nagios core installed and a set of infrastructure plugins/addons to execute the checks, process the check result and generate notifications. Gluster nodes will have the infrastructure plugins/addons for check execution and also the plugins which implement the check logic. oVirt will implement (As a UI Plugin) the alert dashboard and the plugins for trending and reporting so that administrator gets a clear view of what is happening in the storage network. External management stations can subscribe for SNMP traps from Nagios so that they get alerted as and when something goes wrong.</p>
+<p><img alt="" title="fig:Setup.png" src="/images/wiki/Geo-Replication-Start-SSH-Setup.png?1447687442" /> Nagios monitors storage clusters to ensure clusters, hosts, volumes, and software services are functioning properly. In the event of a failure, Nagios can alert technical staff of the problem, allowing them to begin remediation processes before outages affect business processes, end-users, or customers. This is achieved through the checks(Active/Passive) and these checks executed on the monitored resources. Nagios Analyzes the check result and if there is any event that meets the Alert definition, it would be flagged as an Alert on the Nagios server or on oVirt (if it’s deployed) and the appropriate configured notifications (Email, SNMP Traps) will be sent. , In the proposed architecture, we have three main functional blocks- oVirt, Nagios and the Gluster nodes. Nagios server will have the Nagios core installed and a set of infrastructure plugins/addons to execute the checks, process the check result and generate notifications. Gluster nodes will have the infrastructure plugins/addons for check execution and also the plugins which implement the check logic. oVirt will implement (As a UI Plugin) the alert dashboard and the plugins for trending and reporting so that administrator gets a clear view of what is happening in the storage network. External management stations can subscribe for SNMP traps from Nagios so that they get alerted as and when something goes wrong.</p>
 
 <p>At a high-level, each functional block will have the following software components:</p>
 
@@ -1769,7 +1769,7 @@ to fix.
 
 <p>The oVirt REST API contact can be associated with the notification method that will post the event details to be added as an external event in oVirt. Whenever a state change occurs that requires notification, this event with all its details is sent to oVirt REST API as an external event. The external event API will create an Audit Log entry for this event and mark the origin as Nagios. The oVirt Dashboard will display these events after applying various filters for cluster and volume events.</p>
 
-<p><img alt="" title="NagiosToOvirt.png" src="/images/wiki/NagiosToOvirt.png?1447609181" /></p>
+<p><img alt="" title="NagiosToOvirt.png" src="/images/wiki/NagiosToOvirt.png?1447687442" /></p>
 
 <h4 id="brick-volume-and-cluster-state">Brick, Volume and Cluster State</h4>
 
@@ -1800,13 +1800,13 @@ to fix.
 
 <p>Dashboard and trends tabs will be added to the oVirt-UI through ui-plugins approach. All the alerts pushed from Nagios to oVirt will be shown in the dashboard. It will also show a summary of the entities currently being manged by oVirt like Hosts, Volumes and Bricks. Alerts will be shown for individual clusters as well. This is planned for a subsequent release.</p>
 
-<p><img alt="" title="Ovirt-dashboard.png" src="/images/wiki/Ovirt-dashboard.png?1447609181" /></p>
+<p><img alt="" title="Ovirt-dashboard.png" src="/images/wiki/Ovirt-dashboard.png?1447687442" /></p>
 
 <p>Trends tab will show the graphs from pnp4nagios. The graphs will be displayed based on the user selection in System Tree. Available from 3.5 If user has selected a particular cluster, the volume utilization graph will be shown for all the volumes in the cluster. In the same way, when a volume is selected in the system tree, brick utilization graph for all the bricks part of that volume will be shown.</p>
 
 <p>The graphs by default will be shown for last 24 hours. The user select a custom time range for displaying the graph data. Graphs shown in the page can be either printed directly or can be saved as a report in PDF format.</p>
 
-<p><img alt="" title="Ovirt_Monitoring_Trends.png" src="/images/wiki/Ovirt_Monitoring_Trends.png?1447609181" /></p>
+<p><img alt="" title="Ovirt_Monitoring_Trends.png" src="/images/wiki/Ovirt_Monitoring_Trends.png?1447687442" /></p>
 
 <h2 id="nagios-specific">Nagios Specific</h2>
 
@@ -1824,7 +1824,7 @@ to fix.
 
 <h3 id="active-checks-on-remote-nodes">Active Checks on Remote Nodes</h3>
 
-<p><img alt="" title="active.png" src="/images/wiki/Active.png?1447609182" /></p>
+<p><img alt="" title="active.png" src="/images/wiki/Active.png?1447687442" /></p>
 
 <ul>
   <li>Active checks are initiated by the Nagios and run on a regularly scheduled basis.</li>
@@ -1838,7 +1838,7 @@ to fix.
 
 <h3 id="passive-checks-on-remote-nodes">Passive checks on Remote Nodes</h3>
 
-<p><img alt="" title="passive.png" src="/images/wiki/Passive.png?1447609181" /></p>
+<p><img alt="" title="passive.png" src="/images/wiki/Passive.png?1447687442" /></p>
 
 <ul>
   <li>Passive checks are initiated and performed external applications/processes and results are submitted to Nagios for processing</li>
@@ -1853,7 +1853,7 @@ to fix.
 
 <h3 id="generating-snmp-trapsalerts-from-nagios-server">Generating SNMP Traps/Alerts From Nagios Server</h3>
 
-<p><img alt="" title="trap.png" src="/images/wiki/Trap.png?1447609181" /></p>
+<p><img alt="" title="trap.png" src="/images/wiki/Trap.png?1447687442" /></p>
 
 <ul>
   <li>External Program/script/cron jobs or Application hooks monitor the status of specific resources/services.</li>
@@ -1867,7 +1867,7 @@ to fix.
 
 <h3 id="generating-trapsalerts-based-on-the-syslog-entries">Generating traps/alerts Based on the Syslog Entries</h3>
 
-<p><img alt="" title="syslog.png" src="/images/wiki/Syslog.png?1447609181" /></p>
+<p><img alt="" title="syslog.png" src="/images/wiki/Syslog.png?1447687442" /></p>
 
 <ul>
   <li>rsyslog's omprog filter is used to send passive checks to Nagios server whenever logs of interest appear in syslog.</li>
@@ -2001,7 +2001,7 @@ to fix.
 
 <p>This will configure monitoring for gluster services on nodes in your cluster and the web UI should be accesible at <server-name-or-ip>/nagios. A sample screenshot from nagios server is below</server-name-or-ip></p>
 
-<p><img alt="" title="Gluster-Nagios-screenshot.png" src="/images/wiki/Gluster-Nagios-screenshot.png?1447609181" /></p>
+<p><img alt="" title="Gluster-Nagios-screenshot.png" src="/images/wiki/Gluster-Nagios-screenshot.png?1447687442" /></p>
 
 <h3 id="instegrating-with-ovirt">Instegrating with oVirt</h3>
 
@@ -2054,7 +2054,7 @@ Mon 22 Jun 2015 10:11 UTC
 </footer>
 
 
-<script src="/javascripts/application.js?1447609193" type="text/javascript"></script>
+<script src="/javascripts/application.js?1447687452" type="text/javascript"></script>
 
 <!-- eloqua -->
 <script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>

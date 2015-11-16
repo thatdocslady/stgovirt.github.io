@@ -22,14 +22,14 @@ oVirt
 <link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
 <link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
 <link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
-<link href="/stylesheets/application.css?1447609181" rel="stylesheet" type="text/css" />
-<link href="/stylesheets/print.css?1447609181" rel="stylesheet" type="text/css" media="print" />
+<link href="/stylesheets/application.css?1447687441" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447687441" rel="stylesheet" type="text/css" media="print" />
 </head>
 <body class=' source-md'>
 <header class='masthead hidden-print' id='branding' role='banner'>
 <section class='hgroup'>
 <h1>
-<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447609182" />
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447687442" />
 </a></h1>
 </section>
 <div id='access'>
@@ -1729,7 +1729,7 @@ Authors:
 
 <h3 id="actions-are-not-immediately-shown-in-updated-ui-elements">Actions are not immediately shown in updated UI elements</h3>
 
-<p>Quite frequently it happens that one performs an action on lets say a VM, and after the action completes it takes the UI a few seconds to show the updated status. For instance if I delete an existing VM from my grid after I click the ok button, the dialog disappears, as illustrated by the following image. <img alt="" title="fig:Remove_dialog.png" src="/images/wiki/Remove_dialog.png?1447609181" /> but it takes a few seconds for VM to be removed from the VM grid, as illustrated by the following image (The VM is still there after clicking the ok button). <img alt="" title="fig:Remove_dialog_finished.png" src="/images/wiki/Remove_dialog_finished.png?1447609181" /> This is especially noticeable if you have the refresh of the grid set to 30 or 60 seconds.</p>
+<p>Quite frequently it happens that one performs an action on lets say a VM, and after the action completes it takes the UI a few seconds to show the updated status. For instance if I delete an existing VM from my grid after I click the ok button, the dialog disappears, as illustrated by the following image. <img alt="" title="fig:Remove_dialog.png" src="/images/wiki/Remove_dialog.png?1447687442" /> but it takes a few seconds for VM to be removed from the VM grid, as illustrated by the following image (The VM is still there after clicking the ok button). <img alt="" title="fig:Remove_dialog_finished.png" src="/images/wiki/Remove_dialog_finished.png?1447687442" /> This is especially noticeable if you have the refresh of the grid set to 30 or 60 seconds.</p>
 
 <h4 id="actions-cause-an-immediate-refresh-however-the-result-of-the-action-takes-a-while-to-materialize">Actions cause an immediate refresh, however the result of the action takes a while to materialize</h4>
 
@@ -1737,7 +1737,7 @@ Authors:
 
 <h3 id="the-event-log-is-updated-but-the-rest-of-the-ui-elements-are-not">The event log is updated, but the rest of the UI elements are not</h3>
 
-<p>This is related but slightly different problem from the one described above. In this case something in the system caused an event to be generated and this event shows up in the event log in the UI but there is no corresponding change in the rest of the UI. For instance someone removed a VM and the event shows up in the event log, however the VM is still visible in the VM grid. This is illustrated in the following image. <img alt="" title="fig:Event_out_of_sync.png" src="/images/wiki/Event_out_of_sync.png?1447609181" /> This is caused by the fact that the event log is refresh at a different interval than the rest of the UI, in fact you cannot change the refresh of the event log, but you can change the refresh of the rest of the UI (like the VM grid).</p>
+<p>This is related but slightly different problem from the one described above. In this case something in the system caused an event to be generated and this event shows up in the event log in the UI but there is no corresponding change in the rest of the UI. For instance someone removed a VM and the event shows up in the event log, however the VM is still visible in the VM grid. This is illustrated in the following image. <img alt="" title="fig:Event_out_of_sync.png" src="/images/wiki/Event_out_of_sync.png?1447687442" /> This is caused by the fact that the event log is refresh at a different interval than the rest of the UI, in fact you cannot change the refresh of the event log, but you can change the refresh of the rest of the UI (like the VM grid).</p>
 
 <h1 id="proposed-solutions">Proposed solutions</h1>
 
@@ -1749,7 +1749,7 @@ Authors:
 
 <p>As demonstrated in this figure:</p>
 
-<p><img alt="" title="UI_Sync_action.png" src="/images/wiki/UI_Sync_action.png?1447609181" /></p>
+<p><img alt="" title="UI_Sync_action.png" src="/images/wiki/UI_Sync_action.png?1447687442" /></p>
 
 <p>Unfortunately this does not solve the problem of an action taking a little longer to complete. The refresh happens immediately and afterwards there is no notification that the action completed one way or the other. To remedy this situation the ideal solution would be some sort of notification from the back-end that the action completed and that we can refresh the model. Unfortunately we not yet ready to fully support push technology so we have to use some creative solutions.</p>
 
@@ -1767,7 +1767,7 @@ Authors:
 
 <p>As demonstrated by the following figure:</p>
 
-<p><img alt="" title="UI_Sync_event.png" src="/images/wiki/UI_Sync_event.png?1447609181" /></p>
+<p><img alt="" title="UI_Sync_event.png" src="/images/wiki/UI_Sync_event.png?1447687442" /></p>
 
 <category:feature>
 </category:feature>
@@ -1814,7 +1814,7 @@ Mon 22 Jun 2015 10:11 UTC
 </footer>
 
 
-<script src="/javascripts/application.js?1447609193" type="text/javascript"></script>
+<script src="/javascripts/application.js?1447687452" type="text/javascript"></script>
 
 <!-- eloqua -->
 <script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>

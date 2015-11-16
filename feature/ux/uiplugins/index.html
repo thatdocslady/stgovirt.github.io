@@ -22,14 +22,14 @@ oVirt
 <link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
 <link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
 <link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
-<link href="/stylesheets/application.css?1447609181" rel="stylesheet" type="text/css" />
-<link href="/stylesheets/print.css?1447609181" rel="stylesheet" type="text/css" media="print" />
+<link href="/stylesheets/application.css?1447687441" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css?1447687441" rel="stylesheet" type="text/css" media="print" />
 </head>
 <body class=' source-md'>
 <header class='masthead hidden-print' id='branding' role='banner'>
 <section class='hgroup'>
 <h1>
-<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447609182" />
+<a href="/"><img id="logo" class="logo is-svg" alt="oVirt" src="/images/logo.svg?1447687442" />
 </a></h1>
 </section>
 <div id='access'>
@@ -1715,7 +1715,7 @@ to fix.
 
 <p>Before a plugin can be <a href="#Loading_plugins">loaded</a> and <a href="#Plugin_bootstrap_sequence">bootstrapped</a> by WebAdmin, it has to be discovered by UI plugin infrastructure in the first place.</p>
 
-<p><img alt="" title="Discovering plugins" src="/images/wiki/Discovering-plugins.png?1447609181" /></p>
+<p><img alt="" title="Discovering plugins" src="/images/wiki/Discovering-plugins.png?1447687442" /></p>
 
 <p><a href="#Plugin_descriptor">Plugin descriptor</a> is the entry point to discovery process, containing plugin meta-data as well as (optional) default plugin-specific configuration.</p>
 
@@ -1729,7 +1729,7 @@ to fix.
 
 <p>After a plugin has been <a href="#Discovering_plugins">discovered</a> and its data embedded into WebAdmin HTML page, WebAdmin will attempt to load the given plugin as part of application startup (unless configured otherwise).</p>
 
-<p><img alt="" title="Loading plugins" src="/images/wiki/Loading-plugins.png?1447609181" /></p>
+<p><img alt="" title="Loading plugins" src="/images/wiki/Loading-plugins.png?1447687442" /></p>
 
 <p>For each plugin, WebAdmin creates hidden HTML <code>iframe</code> element used to load <a href="#Plugin_host_page">plugin host page</a> (1). Plugin host page is the entry point to <a href="#Plugin_bootstrap_sequence">bootstrap</a> process, used to evaluate plugin code (JavaScript) within the context of the corresponding <code>iframe</code> element. UI plugin infrastructure supports serving plugin resource files, such as host page, from local file system (2). Host page gets loaded into <code>iframe</code> element and plugin code is evaluated (3). From this point forward, plugin communicates with WebAdmin via plugin API (4). Since the purpose of host page is to bootstrap plugin code, any UI extensions should be done via <a href="#API_function_reference">plugin API</a> rather than direct HTML DOM manipulation.</p>
 
@@ -1822,7 +1822,7 @@ to fix.
 
 <p>UI plugin infrastructure maintains a common lifecycle to control execution of individual plugins. The lifecycle consists of possible states and transitions between these states at runtime.</p>
 
-<p><img alt="" title="Plugin lifecycle" src="/images/wiki/Plugin-lifecycle.png?1447609181" /></p>
+<p><img alt="" title="Plugin lifecycle" src="/images/wiki/Plugin-lifecycle.png?1447687442" /></p>
 
 <p>DEFINED</p>
 
@@ -2122,7 +2122,7 @@ to fix.
 
 <p>The <a href="/tutorial/crashcourse/">oVirt Space Shooter</a> tutorial walks you through the basics of creating your first UI plugin.</p>
 
-<p><img alt="" title="oVirt Space Shooter" src="/images/wiki/OVirt_Space_Shooter_3.png?1447609181" /></p>
+<p><img alt="" title="oVirt Space Shooter" src="/images/wiki/OVirt_Space_Shooter_3.png?1447687442" /></p>
 
 <h4 id="angularjs-demo-plugin">AngularJS Demo Plugin</h4>
 
@@ -2208,7 +2208,7 @@ to fix.
   <li>UI plugin source code: available from <a href="#Sample_UI_plugins">sample UI plugin repository</a> as <code>ui-vdsm-hooks-plugin</code></li>
 </ul>
 
-<p><img alt="" title="UI-VDSM-Hooks context menu" src="/images/wiki/UI-VDSM-Hooks-Examples.png?1447609181" /></p>
+<p><img alt="" title="UI-VDSM-Hooks context menu" src="/images/wiki/UI-VDSM-Hooks-Examples.png?1447687442" /></p>
 
 <h4 id="shell-in-a-box-ui-plugin">Shell In A Box UI Plugin</h4>
 
@@ -2250,7 +2250,7 @@ Wed 11 Nov 2015 18:11 UTC
 </footer>
 
 
-<script src="/javascripts/application.js?1447609193" type="text/javascript"></script>
+<script src="/javascripts/application.js?1447687452" type="text/javascript"></script>
 
 <!-- eloqua -->
 <script src='http://www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
